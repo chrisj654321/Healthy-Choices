@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Food Scanner App — Competitor Pricing Comparison</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #F3F8F6;
+      color: #1A2E28;
+      padding: 40px 24px 80px;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .page-header h1 {
+      font-size: 28px;
+      font-weight: 800;
+      color: #1A2E28;
+      margin-bottom: 8px;
+    }
+    .page-header p {
+      font-size: 14px;
+      color: #6B8F84;
+    }
+
+    .our-badge {
+      display: inline-block;
+      background: #1D9E75;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 20px;
+      margin-left: 6px;
+      vertical-align: middle;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Chart section ── */
+    .chart-section {
+      background: #fff;
+      border-radius: 20px;
+      padding: 32px 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .chart-section h2 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: #1A2E28;
+    }
+    .chart-wrap {
+      position: relative;
+      height: 340px;
+    }
+
+    /* ── Table ── */
+    .table-section {
+      max-width: 900px;
+      margin: 24px auto;
+    }
+    .table-section h2 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #1A2E28;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    th {
+      background: #1D9E75;
+      color: #fff;
+      padding: 14px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      text-align: left;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    td {
+      padding: 14px 16px;
+      font-size: 14px;
+      border-bottom: 1px solid #EDF2F0;
+      vertical-align: middle;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr.ours { background: #F0FBF7; }
+    tr.ours td { font-weight: 600; color: #1D9E75; }
+
+    .pill {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .pill-green  { background: #D4F5E9; color: #0E7A56; }
+    .pill-yellow { background: #FFF3D4; color: #9A6B00; }
+    .pill-red    { background: #FDE8E8; color: #B93333; }
+    .pill-gray   { background: #F0F0F0; color: #666; }
+    .pill-blue   { background: #E0EEFF; color: #2255BB; }
+
+    .price-big {
+      font-size: 18px;
+      font-weight: 800;
+    }
+    .price-period {
+      font-size: 11px;
+      color: #9BB5AE;
+      font-weight: 500;
+    }
+    .na { color: #BFCFCA; font-style: italic; font-size: 13px; }
+    .unconfirmed { color: #C89B3C; font-size: 12px; }
+
+    /* ── Insight cards ── */
+    .insights {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+    }
+    .insight-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    .insight-card .icon { font-size: 28px; margin-bottom: 10px; }
+    .insight-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .insight-card p { font-size: 13px; color: #6B8F84; line-height: 1.5; }
+    .insight-card.highlight { background: #1D9E75; color: #fff; }
+    .insight-card.highlight p { color: rgba(255,255,255,0.8); }
+
+    .note {
+      max-width: 900px;
+      margin: 16px auto 24px;
+      font-size: 12px;
+      color: #9BB5AE;
+      background: #fff;
+      border-radius: 12px;
+      padding: 12px 16px;
+      border-left: 3px solid #F0C040;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: #9BB5AE;
+      margin-top: 48px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-header">
+    <h1>Food Scanner App — Competitor Pricing</h1>
+    <p>Monthly &amp; yearly subscription costs across major food/ingredient scanner apps &nbsp;·&nbsp; June 2026</p>
+  </div>
+
+  <!-- ── Monthly chart ── -->
+  <div class="chart-section">
+    <h2>Monthly Subscription Price (USD)</h2>
+    <div class="chart-wrap">
+      <canvas id="monthlyChart"></canvas>
+    </div>
+  </div>
+
+  <!-- ── Yearly chart ── -->
+  <div class="chart-section">
+    <h2>Annual Subscription Price (USD)</h2>
+    <div class="chart-wrap">
+      <canvas id="yearlyChart"></canvas>
+    </div>
+  </div>
+
+  <div class="note">
+    ⚠️ <strong>Note:</strong> Yuka's monthly price could not be confirmed via public sources — their help center and website only document annual plans ($10–$20/year sliding scale). Marked as "N/A" in charts; update if you know the actual figure.
+  </div>
+
+  <!-- ── Full comparison table ── -->
+  <div class="table-section">
+    <h2>Full Comparison Table</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>App</th>
+          <th>Monthly</th>
+          <th>Yearly</th>
+          <th>Free Tier?</th>
+          <th>Focus</th>
+          <th>Position</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr class="ours">
+          <td>Healthy Choices <span class="our-badge">OURS</span></td>
+          <td>
+            <span class="price-big">$2.99</span><br>
+            <span class="price-period">/month</span>
+          </td>
+          <td>
+            <span class="price-big">$17.99</span><br>
+            <span class="price-period">/year · $1.50/mo</span>
+          </td>
+          <td><span class="pill pill-green">Yes</span></td>
+          <td>Ingredients + Company transparency</td>
+          <td><span class="pill pill-green">Cheapest monthly</span></td>
+        </tr>
+
+        <tr>
+          <td>Yuka</td>
+          <td>
+            <span class="na">Not confirmed</span><br>
+            <span class="unconfirmed">(annual only per website)</span>
+          </td>
+          <td>
+            <span class="price-big">$10–$20</span><br>
+            <span class="price-period">/year (sliding scale)</span>
+          </td>
+          <td><span class="pill pill-green">Yes</span></td>
+          <td>Food &amp; cosmetics scanner</td>
+          <td><span class="pill pill-green">Cheapest yearly</span></td>
+        </tr>
+
+        <tr>
+          <td>Oasis</td>
+          <td>
+            <span class="price-big">$7.99</span><br>
+            <span class="price-period">/month</span>
+          </td>
+          <td>
+            <span class="price-big">$47</span><br>
+            <span class="price-period">/year · $3.92/mo</span>
+          </td>
+          <td><span class="pill pill-green">Yes</span></td>
+          <td>Water, food &amp; personal care</td>
+          <td><span class="pill pill-yellow">Mid-range</span></td>
+        </tr>
+
+        <tr>
+          <td>Exposr</td>
+          <td>
+            <span class="price-big">$9.99</span><br>
+            <span class="price-period">/month</span>
+          </td>
+          <td>
+            <span class="price-big">$39.99</span><br>
+            <span class="price-period">/year · $3.33/mo</span>
+          </td>
+          <td><span class="pill pill-yellow">Very limited</span></td>
+          <td>Seed oils, additives, AI scanner</td>
+          <td><span class="pill pill-red">Most expensive monthly</span></td>
+        </tr>
+
+        <tr>
+          <td>Fooducate</td>
+          <td>
+            <span class="price-big">$12.99</span><br>
+            <span class="price-period">/month</span>
+          </td>
+          <td>
+            <span class="price-big">$64.99</span><br>
+            <span class="price-period">/year · $5.41/mo</span>
+          </td>
+          <td><span class="pill pill-green">Yes</span></td>
+          <td>Nutrition grades + meal tracking</td>
+          <td><span class="pill pill-red">Most expensive overall</span></td>
+        </tr>
+
+        <tr>
+          <td>EWG Healthy Living</td>
+          <td><span class="na">—</span></td>
+          <td><span class="na">Mostly free</span></td>
+          <td><span class="pill pill-green">Yes</span></td>
+          <td>Cosmetics, food &amp; cleaners</td>
+          <td><span class="pill pill-gray">Non-profit</span></td>
+        </tr>
+
+        <tr>
+          <td>Open Food Facts</td>
+          <td><span class="na">Free</span></td>
+          <td><span class="na">Free</span></td>
+          <td><span class="pill pill-green">Always free</span></td>
+          <td>Open community database</td>
+          <td><span class="pill pill-gray">Non-profit</span></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── Insight cards ── -->
+  <div class="insights">
+
+    <div class="insight-card highlight">
+      <div class="icon">💰</div>
+      <h3>Cheapest monthly by 167%</h3>
+      <p>At $2.99/mo, you're <strong>70% cheaper than Oasis</strong> ($7.99) and <strong>77% cheaper than Exposr</strong> ($9.99). Fooducate charges $12.99/mo.</p>
+    </div>
+
+    <div class="insight-card">
+      <div class="icon">📅</div>
+      <h3>Yearly: beat 3 of 4 rivals</h3>
+      <p>$17.99/year undercuts Oasis ($47), Exposr ($39.99), and Fooducate ($64.99). Only Yuka's $10–$20 sliding scale beats you annually.</p>
+    </div>
+
+    <div class="insight-card">
+      <div class="icon">🏆</div>
+      <h3>Unique differentiator</h3>
+      <p>Zero competitors show lobbying spend, political donations, or brand ownership maps. That's exclusive value at the market's lowest price.</p>
+    </div>
+
+    <div class="insight-card">
+      <div class="icon">🎯</div>
+      <h3>Pricing sweet spot</h3>
+      <p>Monthly converts impulse buyers; yearly locks in retention. Offering both at these prices is more competitive than any single rival.</p>
+    </div>
+
+  </div>
+
+  <footer style="margin-top:40px;">
+    Sources: App Store listings, help.yuka.io, oasishealth.app, exposr.app screenshots, feastgood.com/fooducate-app-review · June 2026<br>
+    † Yuka monthly not documented publicly — verify in app directly
+  </footer>
+
+  <script>
+    const OUR   = '#1D9E75';
+    const COMP  = '#A0BEBC';
+    const WARN  = '#E07A50';
+    const DANGER= '#D95555';
+    const GRAY  = '#D0D8D6';
+
+    Chart.defaults.font.family = "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+    const gridColor = '#EDF2F0';
+
+    // ── Monthly chart ──
+    // Yuka excluded (no confirmed monthly price)
+    new Chart(document.getElementById('monthlyChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Healthy Choices', 'Oasis', 'Exposr', 'Fooducate'],
+        datasets: [{
+          label: 'Monthly Price (USD)',
+          data: [2.99, 7.99, 9.99, 12.99],
+          backgroundColor: [OUR, COMP, WARN, DANGER],
+          borderRadius: 12,
+          borderSkipped: false,
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: { label: (ctx) => ` $${ctx.parsed.y.toFixed(2)} / month` },
+          },
+        },
+        scales: {
+          x: {
+            grid: { display: false },
+            ticks: { font: { size: 13, weight: '600' }, color: '#3A5248' },
+          },
+          y: {
+            grid: { color: gridColor },
+            ticks: { callback: (v) => '$' + v, font: { size: 12 }, color: '#8AA49E' },
+            beginAtZero: true,
+            max: 15,
+          },
+        },
+      },
+    });
+
+    // ── Yearly chart ──
+    new Chart(document.getElementById('yearlyChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Healthy Choices', 'Yuka (min)', 'Yuka (max)', 'Oasis', 'Exposr', 'Fooducate'],
+        datasets: [{
+          label: 'Annual Price (USD)',
+          data: [17.99, 10, 20, 47, 39.99, 64.99],
+          backgroundColor: [OUR, COMP, COMP, WARN, WARN, DANGER],
+          borderRadius: 12,
+          borderSkipped: false,
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: { label: (ctx) => ` $${ctx.parsed.y.toFixed(2)} / year` },
+          },
+        },
+        scales: {
+          x: {
+            grid: { display: false },
+            ticks: { font: { size: 13, weight: '600' }, color: '#3A5248' },
+          },
+          y: {
+            grid: { color: gridColor },
+            ticks: { callback: (v) => '$' + v, font: { size: 12 }, color: '#8AA49E' },
+            beginAtZero: true,
+            max: 75,
+          },
+        },
+      },
+    });
+  </script>
+</body>
+</html>

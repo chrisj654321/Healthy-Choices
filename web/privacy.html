@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Healthy Choices</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      background: #F7FAF9;
+      color: #1A2E28;
+      padding: 48px 24px 80px;
+    }
+    .wrap { max-width: 680px; margin: 0 auto; }
+    header { margin-bottom: 40px; }
+    .logo { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+    .logo-icon {
+      width: 48px; height: 48px; border-radius: 14px;
+      background: #1D9E75; display: flex; align-items: center;
+      justify-content: center; font-size: 24px;
+    }
+    .logo-name { font-size: 20px; font-weight: 800; color: #1A2E28; }
+    h1 { font-size: 30px; font-weight: 800; margin-bottom: 6px; }
+    .updated { font-size: 13px; color: #6B8F84; margin-bottom: 8px; }
+    .intro { font-size: 15px; color: #4A6A60; line-height: 1.7; }
+
+    h2 {
+      font-size: 18px; font-weight: 700;
+      margin: 36px 0 10px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #E8F3EF;
+      color: #1A2E28;
+    }
+    p { font-size: 15px; color: #3A5248; line-height: 1.75; margin-bottom: 14px; }
+    ul { margin: 0 0 14px 20px; }
+    li { font-size: 15px; color: #3A5248; line-height: 1.75; margin-bottom: 6px; }
+    a { color: #1D9E75; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .highlight-box {
+      background: #E8F5F0; border-left: 4px solid #1D9E75;
+      border-radius: 0 10px 10px 0;
+      padding: 14px 18px; margin: 20px 0;
+    }
+    .highlight-box p { margin: 0; font-weight: 600; color: #0E6B50; }
+
+    footer {
+      margin-top: 56px; padding-top: 24px;
+      border-top: 1px solid #D4EDE6;
+      font-size: 13px; color: #9BB5AE;
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="logo">
+      <div class="logo-icon">🧺</div>
+      <span class="logo-name">Healthy Choices</span>
+    </div>
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: June 1, 2026</p>
+    <p class="intro">
+      Your privacy matters. This policy explains what information Healthy Choices collects,
+      how it is used, and what choices you have. We keep things simple: we collect as little
+      as possible and never sell your data.
+    </p>
+  </header>
+
+  <div class="highlight-box">
+    <p>🔒 We collect only what is necessary to provide the service. We never sell your personal
+    information to third parties.</p>
+  </div>
+
+  <h2>1. Information We Collect</h2>
+  <p><strong>Account information (stored securely in our database):</strong></p>
+  <ul>
+    <li><strong>Email address</strong> — collected when you create an account or sign in with Apple or Google. Used only to identify your account and send essential service emails (e.g., password reset, email confirmation). We do not send marketing emails without your explicit opt-in.</li>
+    <li><strong>Authentication provider</strong> — whether you signed in via Apple, Google, or email/password. No passwords are stored by us — authentication is handled by Supabase and the respective provider.</li>
+    <li><strong>Subscription status</strong> — whether you have an active Pro subscription, tied to your account so it follows you across devices.</li>
+  </ul>
+  <p><strong>Data stored only on your device:</strong></p>
+  <ul>
+    <li><strong>Scan history</strong> — barcodes and product names you have scanned, stored locally using your device's storage.</li>
+    <li><strong>App preferences</strong> — dietary preferences and allergen settings you configure, stored locally on your device.</li>
+  </ul>
+
+  <h2>2. Camera</h2>
+  <p>
+    Healthy Choices requests access to your device camera solely to scan product barcodes.
+    Camera data is processed entirely on your device in real time and is never stored,
+    transmitted, or used for any other purpose. You can deny camera access at any time in
+    your device's Settings; the app will still function using manual barcode entry.
+  </p>
+
+  <h2>3. Purchases &amp; Subscriptions</h2>
+  <p>
+    Subscription purchases are processed entirely through Apple's App Store or Google Play.
+    We never see or store your payment information. Apple and Google's privacy policies
+    govern the handling of your payment data.
+  </p>
+  <p>
+    We use <strong>RevenueCat</strong> to manage subscription status verification.
+    RevenueCat receives an anonymous, device-generated identifier to confirm whether a
+    valid subscription is active. No personal information is shared with RevenueCat.
+    You can review RevenueCat's privacy policy at
+    <a href="https://www.revenuecat.com/privacy" target="_blank">revenuecat.com/privacy</a>.
+  </p>
+
+  <h2>4. Product &amp; Nutritional Data</h2>
+  <p>
+    When you scan a product barcode, the app may query the
+    <strong>USDA FoodData Central API</strong> to retrieve nutritional information.
+    This request contains only the barcode number — no personal or device information
+    is included. USDA's data service is a free, public government resource.
+  </p>
+
+  <h2>5. Analytics &amp; Crash Reporting</h2>
+  <p>
+    We do not currently use any third-party analytics or crash reporting services.
+    If this changes in a future update, this policy will be updated and users notified
+    via the app update release notes.
+  </p>
+
+  <h2>6. Children's Privacy</h2>
+  <p>
+    Healthy Choices is not directed at children under the age of 13. We do not knowingly
+    collect any personal information from children. If you believe a child has provided
+    information through the app, please contact us and we will address it promptly.
+  </p>
+
+  <h2>7. Data Retention &amp; Deletion</h2>
+  <p>
+    All data (scan history, preferences, subscription status) is stored locally on your
+    device. You can delete all app data at any time by:
+  </p>
+  <ul>
+    <li>Using the "Clear History" button in the Scan History screen, or</li>
+    <li>Uninstalling the app from your device, which removes all locally stored data permanently.</li>
+  </ul>
+  <p>We hold no data on our servers that could be deleted remotely — there is nothing to request deletion of.</p>
+
+  <h2>8. Third-Party Links</h2>
+  <p>
+    The app may display information about companies and their publicly reported activities.
+    Links to external websites are for reference only. We are not responsible for the
+    privacy practices of any third-party websites.
+  </p>
+
+  <h2>9. Changes to This Policy</h2>
+  <p>
+    We may update this Privacy Policy from time to time. When we do, we will update the
+    "Last updated" date at the top of this page and note the change in the app's update
+    release notes. Your continued use of the app after any changes constitutes acceptance
+    of the updated policy.
+  </p>
+
+  <h2>10. Contact Us</h2>
+  <p>
+    If you have any questions or concerns about this Privacy Policy, please contact us at:<br>
+    <a href="mailto:jamesadventuremarketing@gmail.com">jamesadventuremarketing@gmail.com</a>
+  </p>
+
+  <footer>
+    &copy; 2026 Healthy Choices. All rights reserved.
+  </footer>
+
+</div>
+</body>
+</html>

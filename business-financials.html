@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Healthy Choices — Business Financials & Breakeven</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #F3F8F6;
+      color: #1A2E28;
+      padding: 40px 24px 80px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    h1 { font-size: 28px; font-weight: 800; margin-bottom: 6px; }
+    .subtitle { font-size: 14px; color: #6B8F84; margin-bottom: 48px; }
+
+    h2 { font-size: 18px; font-weight: 700; margin-bottom: 16px; color: #1A2E28; }
+    h3 { font-size: 14px; font-weight: 700; margin-bottom: 8px; color: #1A2E28; }
+
+    section { margin-bottom: 40px; }
+
+    /* ── Cards ── */
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      margin-bottom: 16px;
+    }
+    .card p { font-size: 14px; color: #4A6A60; line-height: 1.7; }
+    .card.green { border-left: 4px solid #1D9E75; }
+    .card.yellow { border-left: 4px solid #F0C040; }
+    .card.red   { border-left: 4px solid #D95555; }
+    .card.blue  { border-left: 4px solid #4488DD; }
+
+    /* ── Grid ── */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    @media (max-width: 640px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    }
+
+    /* ── Stat card ── */
+    .stat { text-align: center; padding: 20px; }
+    .stat .big { font-size: 36px; font-weight: 900; color: #1D9E75; }
+    .stat .label { font-size: 12px; color: #9BB5AE; margin-top: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .stat .sub { font-size: 12px; color: #6B8F84; margin-top: 6px; line-height: 1.4; }
+
+    /* ── Fee row ── */
+    .fee-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 0; border-bottom: 1px solid #EDF2F0; gap: 12px;
+    }
+    .fee-row:last-child { border-bottom: none; }
+    .fee-name { font-size: 14px; font-weight: 600; flex: 1; }
+    .fee-amount { font-size: 14px; font-weight: 700; color: #1A2E28; min-width: 80px; text-align: right; }
+    .fee-note { font-size: 12px; color: #9BB5AE; flex: 2; }
+    .badge {
+      font-size: 10px; font-weight: 700; padding: 2px 8px;
+      border-radius: 20px; white-space: nowrap;
+    }
+    .badge-green { background: #D4F5E9; color: #0E7A56; }
+    .badge-yellow { background: #FFF3D4; color: #9A6B00; }
+    .badge-red    { background: #FDE8E8; color: #B93333; }
+    .badge-gray   { background: #F0F0F0; color: #666; }
+
+    /* ── Breakeven table ── */
+    table {
+      width: 100%; border-collapse: collapse;
+      background: #fff; border-radius: 16px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    th {
+      background: #1D9E75; color: #fff;
+      padding: 12px 14px; font-size: 11px; font-weight: 700;
+      text-align: left; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    td { padding: 13px 14px; font-size: 14px; border-bottom: 1px solid #EDF2F0; }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) { background: #FAFCFB; }
+    td.price { font-weight: 800; font-size: 16px; color: #1D9E75; }
+    td.low { color: #0E7A56; font-weight: 700; }
+    td.mid { color: #9A6B00; font-weight: 700; }
+    td.high { color: #B93333; font-weight: 700; }
+
+    /* ── Chart ── */
+    .chart-wrap { position: relative; height: 300px; }
+
+    /* ── Timeline ── */
+    .timeline { position: relative; padding-left: 32px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 10px; top: 6px; bottom: 6px;
+      width: 2px; background: #D4EDE6;
+    }
+    .tl-item { position: relative; margin-bottom: 20px; }
+    .tl-dot {
+      position: absolute; left: -26px; top: 3px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: #1D9E75; border: 2px solid #fff;
+      box-shadow: 0 0 0 2px #1D9E75;
+    }
+    .tl-item h3 { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+    .tl-item p { font-size: 13px; color: #6B8F84; line-height: 1.5; }
+
+    .callout {
+      background: #1D9E75; color: #fff;
+      border-radius: 16px; padding: 20px 24px;
+      margin-bottom: 16px;
+    }
+    .callout h3 { color: #fff; font-size: 16px; margin-bottom: 8px; }
+    .callout p { color: rgba(255,255,255,0.85); font-size: 14px; line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+  <h1>Healthy Choices — Business Financials</h1>
+  <p class="subtitle">Complete cost breakdown, store fees, and breakeven analysis · June 2026</p>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 1: WHAT IS A SERVER?
+  ══════════════════════════════════════════════ -->
+  <section>
+    <h2>🖥️ What Is a "Server" and Do You Even Need One?</h2>
+
+    <div class="card green">
+      <h3>The simple explanation</h3>
+      <p>A server is just a computer that runs 24/7 somewhere in the world and responds when your app sends it a request. Think of it like a store's back room — users see the app (the storefront), but the server is where the data lives and the heavy lifting happens.</p>
+    </div>
+
+    <div class="card blue">
+      <h3>✅ Great news: your app barely needs one right now</h3>
+      <p>
+        Your current architecture is almost entirely <strong>on-device</strong>:<br><br>
+        • The product database lives <em>inside the app</em> (it's a JS file that ships with the build)<br>
+        • Scan history is stored locally on the user's phone (AsyncStorage)<br>
+        • Subscription state is stored locally<br>
+        • Scoring logic runs entirely on the device<br><br>
+        This means you could launch, get your first 500+ paying users, and spend <strong>near $0 on servers</strong>.
+        The only thing that hits an external server right now is the USDA API lookup — and that's free.
+      </p>
+    </div>
+
+    <div class="card yellow">
+      <h3>⚠️ When you WILL need a server (future features)</h3>
+      <p>
+        • <strong>User accounts / login</strong> — so history syncs across phone replacements<br>
+        • <strong>Cloud scan history backup</strong> — so users don't lose data<br>
+        • <strong>Real-time product database updates</strong> — adding new products without a full app update<br>
+        • <strong>Push notifications</strong> — alerting users to ingredient recalls, etc.<br><br>
+        None of these are needed for launch. Build them when you have revenue to fund them.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 2: STORE FEES
+  ══════════════════════════════════════════════ -->
+  <section>
+    <h2>🍎 App Store Fees — What Apple &amp; Google Take</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Apple App Store</h3>
+        <div class="fee-row">
+          <span class="fee-name">Standard cut</span>
+          <span class="fee-amount">30%</span>
+          <span class="badge badge-red">Large developers</span>
+        </div>
+        <div class="fee-row">
+          <span class="fee-name">Small Business Program</span>
+          <span class="fee-amount">15%</span>
+          <span class="badge badge-green">Under $1M/year</span>
+        </div>
+        <p style="margin-top:12px; font-size:13px; color:#6B8F84;">
+          You automatically qualify for the 15% rate as a new developer. Apple takes this cut from every subscription payment, every month, forever — directly before the money reaches you.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Google Play Store</h3>
+        <div class="fee-row">
+          <span class="fee-name">Standard cut</span>
+          <span class="fee-amount">30%</span>
+          <span class="badge badge-red">Large developers</span>
+        </div>
+        <div class="fee-row">
+          <span class="fee-name">Reduced rate</span>
+          <span class="fee-amount">15%</span>
+          <span class="badge badge-green">First $1M/year</span>
+        </div>
+        <p style="margin-top:12px; font-size:13px; color:#6B8F84;">
+          Same deal as Apple. You get 15% rate automatically until you hit $1M in annual revenue — which is a great problem to have.
+        </p>
+      </div>
+    </div>
+
+    <div class="card green">
+      <h3>Bottom line: plan on keeping 85 cents of every dollar</h3>
+      <p>At your scale as a new indie developer, <strong>both stores take 15%</strong>. All the breakeven math below uses 15%.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 3: ALL YOUR COSTS
+  ══════════════════════════════════════════════ -->
+  <section>
+    <h2>💸 Complete Cost Breakdown</h2>
+
+    <div class="card">
+      <h3>One-Time Costs</h3>
+      <div class="fee-row">
+        <span class="fee-name">Apple Developer Account</span>
+        <span class="fee-amount">$99/yr</span>
+        <span class="fee-note">Required to publish on iOS. Billed annually.</span>
+      </div>
+      <div class="fee-row">
+        <span class="fee-name">Google Play Developer Account</span>
+        <span class="fee-amount">$25 once</span>
+        <span class="fee-note">One-time fee. Never pay again.</span>
+      </div>
+      <div class="fee-row">
+        <span class="fee-name">Domain name (privacy policy URL)</span>
+        <span class="fee-amount">~$12/yr</span>
+        <span class="fee-note">Required by both stores before submission.</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Monthly Recurring Costs — Launch Phase (0–500 users)</h3>
+      <div class="fee-row">
+        <span class="fee-name">RevenueCat (subscription management)</span>
+        <span class="fee-amount">$0</span>
+        <span class="fee-note badge badge-green">Free up to $2,500/mo revenue</span>
+      </div>
+      <div class="fee-row">
+        <span class="fee-name">Backend / server hosting</span>
+        <span class="fee-amount">$0</span>
+        <span class="fee-note badge badge-green">Not needed at launch (local DB)</span>
+      </div>
+      <div class="fee-row">
+        <span class="fee-name">Expo EAS (app builds)</span>
+        <span class="fee-amount">$0–$29</span>
+        <span class="fee-note">Free tier: 30 builds/mo. Pay $29/mo only when building frequently.</span>
+      </div>
+      <div class="fee-row">
+        <span class="fee-name">Privacy policy hosting (Vercel)</span>
+        <span class="fee-amount">$0</span>
+        <span class="fee-note badge badge-green">Vercel free tier is plenty</span>
+      </div>
+      <div class="fee-row">
+        <span class="fee-name">Apple Developer (amortized monthly)</span>
+        <span class="fee-amount">$8.25</span>
+        <span class="fee-note">$99/year ÷ 12 months</span>
+      </div>
+      <div class="fee-row" style="border-top: 2px solid #1D9E75; margin-top:8px; padding-top:14px;">
+        <span class="fee-name" style="color:#1D9E75; font-size:15px;">TOTAL (launch phase)</span>
+        <span class="fee-amount" style="color:#1D9E75; font-size:18px;">~$8–$37/mo</span>
+        <span class="fee-note">Depending on whether you need EAS paid plan</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Monthly Recurring Costs — Growth Phase (500–5,000 users)</h3>
+      <div class="fee-row">
+        <span class="fee-name">RevenueCat</span>
+        <span class="fee-amount">$0–1%</span>
+        <span class="fee-note">Free until $2,500 MRR, then 1% of revenue</span>
+      </div>
+      <div class="fee-row">
+        <span class="fee-name">Backend (Supabase or Railway)</span>
+        <span class="fee-amount">$0–$25</span>
+        <span class="fee-note">Supabase free tier handles ~10K users easily. Railway starts at $5/mo.</span>
+      </div>
+      <div class="fee-row">
+        <span class="fee-name">Expo EAS</span>
+        <span class="fee-amount">$29</span>
+        <span class="fee-note">Production plan for more builds &amp; priority queue</span>
+      </div>
+      <div class="fee-row">
+        <span class="fee-name">Apple Developer</span>
+        <span class="fee-amount">$8.25</span>
+        <span class="fee-note">Same as always</span>
+      </div>
+      <div class="fee-row" style="border-top: 2px solid #F0C040; margin-top:8px; padding-top:14px;">
+        <span class="fee-name" style="color:#9A6B00; font-size:15px;">TOTAL (growth phase)</span>
+        <span class="fee-amount" style="color:#9A6B00; font-size:18px;">~$42–$65/mo</span>
+        <span class="fee-note">Plus 1% RevenueCat after $2,500 MRR</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 4: BREAKEVEN ANALYSIS
+  ══════════════════════════════════════════════ -->
+  <section>
+    <h2>📊 Breakeven Analysis by Price Point</h2>
+
+    <div class="card yellow" style="margin-bottom:20px;">
+      <h3>How this math works</h3>
+      <p>
+        Store takes 15% → you keep 85%.<br>
+        Breakeven = Fixed monthly costs ÷ Revenue per subscriber after store fee.<br>
+        Two scenarios: <strong>Lean</strong> ($8.25/mo — just Apple dev account) and <strong>Full</strong> ($50/mo — Apple + EAS + basic backend).
+      </p>
+    </div>
+
+    <table style="margin-bottom:24px;">
+      <thead>
+        <tr>
+          <th>Price</th>
+          <th>You keep (after 15%)</th>
+          <th>Break even — LEAN ($8.25/mo)</th>
+          <th>Break even — FULL ($50/mo)</th>
+          <th>100 subs = monthly profit</th>
+          <th>500 subs = monthly profit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="price">$2.99/mo</td>
+          <td>$2.54</td>
+          <td class="low">4 subscribers</td>
+          <td class="low">20 subscribers</td>
+          <td>$204/mo</td>
+          <td>$1,220/mo</td>
+        </tr>
+        <tr>
+          <td class="price">$3.99/mo</td>
+          <td>$3.39</td>
+          <td class="low">3 subscribers</td>
+          <td class="low">15 subscribers</td>
+          <td>$289/mo</td>
+          <td>$1,645/mo</td>
+        </tr>
+        <tr>
+          <td class="price">$4.99/mo</td>
+          <td>$4.24</td>
+          <td class="low">2 subscribers</td>
+          <td class="low">12 subscribers</td>
+          <td>$374/mo</td>
+          <td>$2,070/mo</td>
+        </tr>
+        <tr>
+          <td class="price">$7.99/mo</td>
+          <td>$6.79</td>
+          <td class="low">2 subscribers</td>
+          <td class="low">8 subscribers</td>
+          <td>$629/mo</td>
+          <td>$3,345/mo</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="chart-wrap card" style="padding:24px;">
+      <h3 style="margin-bottom:16px;">Monthly Profit at 100 vs 500 Subscribers</h3>
+      <div style="position:relative; height:280px;">
+        <canvas id="profitChart"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 5: YEARLY BREAKEVEN
+  ══════════════════════════════════════════════ -->
+  <section>
+    <h2>📅 Yearly Plans — Same Analysis</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Yearly Price</th>
+          <th>You keep (after 15%)</th>
+          <th>Break even — LEAN</th>
+          <th>Break even — FULL</th>
+          <th>100 annual subs = yearly profit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="price">$17.99/yr</td>
+          <td>$15.29</td>
+          <td class="low">7 subscribers</td>
+          <td class="low">40 subscribers</td>
+          <td class="low">$1,429/yr ($119/mo)</td>
+        </tr>
+        <tr>
+          <td class="price">$29.99/yr</td>
+          <td>$25.49</td>
+          <td class="low">4 subscribers</td>
+          <td class="low">24 subscribers</td>
+          <td class="mid">$2,449/yr ($204/mo)</td>
+        </tr>
+        <tr>
+          <td class="price">$39.99/yr</td>
+          <td>$33.99</td>
+          <td class="low">3 subscribers</td>
+          <td class="low">18 subscribers</td>
+          <td class="mid">$3,299/yr ($275/mo)</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px; color:#9BB5AE; margin-top:8px;">Yearly breakeven uses $99/yr fixed (Apple) + $600/yr EAS = $699/yr total.</p>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 6: REALISTIC PATH
+  ══════════════════════════════════════════════ -->
+  <section>
+    <h2>🗓️ Realistic Path to Profit</h2>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <h3>Month 1–2: Launch ($8/mo cost)</h3>
+        <p>You only pay $8.25/mo (Apple developer, amortized). Get even 4 subscribers at $2.99 and you're already profitable. Your only real upfront costs are $99 (Apple) + $25 (Google) = $124 total.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <h3>Month 3–6: Early growth (still ~$8/mo)</h3>
+        <p>RevenueCat is free until you hit $2,500 MRR. At $2.99/mo that's 833 paying subscribers before you owe RevenueCat anything. You'll likely be well under that for months.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <h3>Month 6–12: Add backend when needed (~$30–50/mo)</h3>
+        <p>Only add server infrastructure when users start asking for account backup or cross-device sync. Supabase free tier handles thousands of users. You add this cost AFTER you have the revenue to support it.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <h3>Year 2+: Scale costs are % of revenue, not fixed</h3>
+        <p>RevenueCat goes to 1% of revenue above $2,500 MRR. Server costs scale gradually. By the time costs go up meaningfully, your revenue will be much higher.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 7: PRICING RECOMMENDATION
+  ══════════════════════════════════════════════ -->
+  <section>
+    <h2>💡 Pricing Recommendation</h2>
+
+    <div class="callout">
+      <h3>The best risk-free strategy: start at $3.99/mo + $27.99/yr</h3>
+      <p>
+        • <strong>$3.99/month</strong> is still 60% cheaper than Exposr and 50% cheaper than Oasis — you look like a steal<br>
+        • <strong>$27.99/year</strong> (~$2.33/mo) gives users a compelling reason to commit annually — better for your cashflow<br>
+        • You only need <strong>13 paying subscribers</strong> to cover your max $50/mo costs<br>
+        • At 200 subscribers you're making ~$580/mo profit — enough to fund any server infrastructure you need<br>
+        • You can always discount or run promos — it's much harder to raise prices later
+      </p>
+    </div>
+
+    <div class="grid-3">
+      <div class="card stat">
+        <div class="big">$124</div>
+        <div class="label">Total to launch</div>
+        <div class="sub">Apple ($99) + Google ($25). That's it.</div>
+      </div>
+      <div class="card stat">
+        <div class="big">13</div>
+        <div class="label">Subs to break even</div>
+        <div class="sub">At $3.99/mo with full $50/mo cost stack</div>
+      </div>
+      <div class="card stat">
+        <div class="big">$0</div>
+        <div class="label">Server cost at launch</div>
+        <div class="sub">Your app runs locally. No server needed day one.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 8: APP STORE SUBMISSION BLOCKERS
+  ══════════════════════════════════════════════ -->
+  <section>
+    <h2>🚀 Before You Can Submit to the App Store</h2>
+
+    <div class="progress-summary">
+      <div class="prog-stat prog-done">
+        <div class="prog-num">3</div>
+        <div class="prog-label">✅ Done</div>
+      </div>
+      <div class="prog-stat prog-blocked">
+        <div class="prog-num">1</div>
+        <div class="prog-label">🚧 Blocked</div>
+      </div>
+      <div class="prog-stat prog-skipped">
+        <div class="prog-num">1</div>
+        <div class="prog-label">⏸️ Skipped</div>
+      </div>
+      <div class="prog-stat prog-pending">
+        <div class="prog-num">1</div>
+        <div class="prog-label">⏳ Pending</div>
+      </div>
+    </div>
+
+    <!-- ✅ DONE: RevenueCat -->
+    <div class="todo-item todo-done">
+      <div class="todo-left">
+        <span class="todo-num todo-num-done">✓</span>
+        <div>
+          <div class="todo-title todo-title-done">Integrate RevenueCat (real in-app purchases)</div>
+          <div class="todo-desc">SDK installed, <code>subscription.js</code> rewritten with real RC calls, API key configured, user identity linked to Supabase auth. Purchases and entitlement checks are live.</div>
+        </div>
+      </div>
+      <span class="todo-badge todo-badge-done">DONE</span>
+    </div>
+
+    <!-- ✅ DONE: Supabase credentials -->
+    <div class="todo-item todo-done">
+      <div class="todo-left">
+        <span class="todo-num todo-num-done">✓</span>
+        <div>
+          <div class="todo-title todo-title-done">Fill in Supabase credentials</div>
+          <div class="todo-desc">Project URL (<code>https://huvxeaegygaeotomdqpc.supabase.co</code>) and anon key are both set in <code>src/utils/supabase.js</code>. Auth is wired up.</div>
+        </div>
+      </div>
+      <span class="todo-badge todo-badge-done">DONE</span>
+    </div>
+
+    <!-- 🚧 BLOCKED: Apple Developer Account -->
+    <div class="todo-item todo-blocked">
+      <div class="todo-left">
+        <span class="todo-num todo-num-blocked">!</span>
+        <div>
+          <div class="todo-title">Apple Developer Account — enrollment blocked</div>
+          <div class="todo-desc">Enrollment attempted, phone call to Apple Support completed — still not resolved. This is the <strong>single remaining hard blocker</strong> for App Store submission. Everything else (RevenueCat, Supabase, code) is ready.</div>
+          <div class="todo-steps">
+            <strong>Next escalation steps to try (in order):</strong><br><br>
+            <strong>1. Online appeal form</strong> — <code>developer.apple.com/contact</code> → Membership and Enrollment → submit a written appeal. Include your Apple ID email and a brief explanation. Written appeals sometimes succeed when phone calls don't because a different team reviews them.<br><br>
+            <strong>2. Try enrolling as an Organization</strong> — If you have an LLC, sole proprietorship, or any registered business entity, enroll under that instead of as an individual. Organization enrollments use a different review path and a D-U-N-S number (free, takes 1–5 business days to get one at <code>dnb.com/duns-number/get-a-duns-number.html</code>).<br><br>
+            <strong>3. Use a different Apple ID</strong> — Create a brand new Apple ID (new email), enable 2FA immediately, wait 24–48 hours before attempting enrollment. Make sure the name exactly matches your credit card.<br><br>
+            <strong>4. Different payment method</strong> — Try a different credit/debit card. The name on the card must match the Apple ID account name exactly.<br><br>
+            <strong>5. @AppleSupport on X (Twitter)</strong> — DM them. Sounds odd but the social media team has direct escalation paths and often resolves cases that phone support can't.
+          </div>
+        </div>
+      </div>
+      <span class="todo-badge todo-badge-blocked">BLOCKED</span>
+    </div>
+
+    <!-- ⏸️ SKIPPED: Google OAuth -->
+    <div class="todo-item todo-skipped">
+      <div class="todo-left">
+        <span class="todo-num todo-num-skipped">–</span>
+        <div>
+          <div class="todo-title todo-title-skipped">Configure Google OAuth in Supabase</div>
+          <div class="todo-desc">Intentionally skipped for launch. The Google login button is still in the UI — users who tap it will get an error. Consider hiding the button until this is configured, or leaving it and adding it in a v1.1 update.</div>
+          <div class="todo-steps">
+            <strong>When ready:</strong> <code>console.cloud.google.com</code> → APIs &amp; Services → Credentials → OAuth 2.0 Client ID → iOS → Bundle ID: <code>com.healthychoices.app</code> → paste Client ID into Supabase Auth → Providers → Google.
+          </div>
+        </div>
+      </div>
+      <span class="todo-badge todo-badge-skipped">SKIPPED FOR NOW</span>
+    </div>
+
+    <!-- ✅ DONE: Privacy Policy -->
+    <div class="todo-item todo-done">
+      <div class="todo-left">
+        <span class="todo-num todo-num-done">✓</span>
+        <div>
+          <div class="todo-title todo-title-done">Host the privacy policy at a live public URL</div>
+          <div class="todo-desc">Live at <code>https://fastidious-cuchufli-a0a96a.netlify.app/privacy.html</code> — contact email updated to <code>jamesadventuremarketing@gmail.com</code>. Paste this URL into App Store Connect's Privacy Policy field when the developer account is ready.</div>
+        </div>
+      </div>
+      <span class="todo-badge todo-badge-done">DONE</span>
+    </div>
+
+    <!-- ⏳ PENDING: Screenshots -->
+    <div class="todo-item todo-medium">
+      <div class="todo-left">
+        <span class="todo-num">6</span>
+        <div>
+          <div class="todo-title">Capture App Store screenshots</div>
+          <div class="todo-desc">Waiting on Apple Developer account (item 3) before this makes sense — you need a working build. Once the account is sorted, this takes about an hour.</div>
+          <div class="todo-steps">
+            <strong>When ready:</strong> Run app on simulator → take 5 screenshots → Scanner, A-grade product score, F-grade product with red flags, Company profile, Profile screen. Required size: <strong>1320 × 2868 px</strong> (iPhone 6.9"). Use Simulator → File → Save Screenshot.
+          </div>
+        </div>
+      </div>
+      <span class="todo-badge todo-badge-medium">PENDING</span>
+    </div>
+
+  </section>
+
+  <style>
+    .todo-item {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px 20px 20px 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      border-left: 4px solid #ccc;
+    }
+    .todo-critical { border-left-color: #D95555; }
+    .todo-high     { border-left-color: #F0A030; }
+    .todo-medium   { border-left-color: #1D9E75; }
+
+    .todo-left { display: flex; align-items: flex-start; gap: 16px; flex: 1; }
+
+    .todo-num {
+      min-width: 32px; height: 32px; border-radius: 50%;
+      background: #F3F8F6; border: 2px solid #D4EDE6;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 800; color: #1D9E75;
+      margin-top: 2px;
+    }
+
+    .todo-title {
+      font-size: 15px; font-weight: 700; color: #1A2E28; margin-bottom: 6px;
+    }
+    .todo-desc {
+      font-size: 13px; color: #4A6A60; line-height: 1.6; margin-bottom: 10px;
+    }
+    .todo-steps {
+      font-size: 12px; color: #6B8F84; line-height: 1.7;
+      background: #F3F8F6; border-radius: 10px; padding: 10px 14px;
+    }
+    .todo-steps code {
+      background: #D4EDE6; color: #0E7A56; padding: 1px 5px;
+      border-radius: 4px; font-size: 11px; font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+
+    .todo-badge {
+      font-size: 10px; font-weight: 800; padding: 4px 10px;
+      border-radius: 20px; white-space: nowrap; align-self: flex-start;
+      letter-spacing: 0.3px;
+    }
+    .todo-badge-critical { background: #FDE8E8; color: #B93333; }
+    .todo-badge-high     { background: #FFF3D4; color: #9A6B00; }
+    .todo-badge-medium   { background: #D4F5E9; color: #0E7A56; }
+    .todo-badge-done     { background: #D4F5E9; color: #0E7A56; }
+    .todo-badge-blocked  { background: #FDE8E8; color: #B93333; }
+    .todo-badge-skipped  { background: #F0F0F0; color: #888; }
+
+    /* Status variants */
+    .todo-done    { border-left-color: #1D9E75; opacity: 0.75; }
+    .todo-blocked { border-left-color: #D95555; }
+    .todo-skipped { border-left-color: #CCC; opacity: 0.65; }
+
+    .todo-title-done    { color: #6B8F84; text-decoration: line-through; }
+    .todo-title-skipped { color: #999; }
+
+    .todo-num-done    { background: #1D9E75; border-color: #1D9E75; color: #fff; font-size: 18px; }
+    .todo-num-blocked { background: #FDE8E8; border-color: #D95555; color: #D95555; font-weight: 900; }
+    .todo-num-skipped { background: #F0F0F0; border-color: #CCC; color: #AAA; font-size: 20px; font-weight: 300; }
+
+    /* Progress summary bar */
+    .progress-summary {
+      display: flex; gap: 12px; margin-bottom: 24px;
+    }
+    .prog-stat {
+      flex: 1; border-radius: 14px; padding: 16px 12px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .prog-num   { font-size: 28px; font-weight: 900; margin-bottom: 4px; }
+    .prog-label { font-size: 11px; font-weight: 700; }
+    .prog-done    { background: #D4F5E9; }
+    .prog-done .prog-num { color: #0E7A56; }
+    .prog-done .prog-label { color: #0E7A56; }
+    .prog-blocked { background: #FDE8E8; }
+    .prog-blocked .prog-num { color: #B93333; }
+    .prog-blocked .prog-label { color: #B93333; }
+    .prog-skipped { background: #F0F0F0; }
+    .prog-skipped .prog-num { color: #888; }
+    .prog-skipped .prog-label { color: #888; }
+    .prog-pending { background: #FFF8E6; }
+    .prog-pending .prog-num { color: #9A6B00; }
+    .prog-pending .prog-label { color: #9A6B00; }
+    @media (max-width: 480px) { .progress-summary { flex-wrap: wrap; } .prog-stat { flex: calc(50% - 6px); } }
+  </style>
+
+  <footer style="text-align:center; font-size:12px; color:#9BB5AE; margin-top:32px;">
+    All figures assume Apple/Google Small Business Program (15% cut). Calculations use after-fee net revenue. June 2026.
+  </footer>
+
+  <script>
+    const GREEN  = '#1D9E75';
+    const GREEN2 = 'rgba(29,158,117,0.6)';
+    const YELLOW = '#F0C040';
+    const YELLOW2= 'rgba(240,192,64,0.6)';
+
+    Chart.defaults.font.family = "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+
+    new Chart(document.getElementById('profitChart'), {
+      type: 'bar',
+      data: {
+        labels: ['$2.99/mo', '$3.99/mo', '$4.99/mo', '$7.99/mo'],
+        datasets: [
+          {
+            label: '100 subscribers',
+            data: [204, 289, 374, 629],
+            backgroundColor: GREEN2,
+            borderColor: GREEN,
+            borderWidth: 2,
+            borderRadius: 8,
+          },
+          {
+            label: '500 subscribers',
+            data: [1220, 1645, 2070, 3345],
+            backgroundColor: YELLOW2,
+            borderColor: YELLOW,
+            borderWidth: 2,
+            borderRadius: 8,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'top' },
+          tooltip: {
+            callbacks: { label: (ctx) => ` $${ctx.parsed.y.toLocaleString()} / month profit` },
+          },
+        },
+        scales: {
+          x: { grid: { display: false }, ticks: { font: { size: 13, weight: '600' }, color: '#3A5248' } },
+          y: {
+            grid: { color: '#EDF2F0' },
+            ticks: { callback: (v) => '$' + v.toLocaleString(), font: { size: 12 }, color: '#8AA49E' },
+            beginAtZero: true,
+          },
+        },
+      },
+    });
+  </script>
+</body>
+</html>

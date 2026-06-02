@@ -1,0 +1,18 @@
+export const STORES = [
+  { id: 'aldi', label: 'Aldi', emoji: '🛒' },
+  { id: 'costco', label: 'Costco', emoji: '🏪' },
+  { id: 'walmart', label: 'Walmart', emoji: '🛍️' },
+  { id: 'target', label: 'Target', emoji: '🎯' },
+  { id: 'kroger', label: 'Kroger', emoji: '🛒' },
+  { id: 'publix', label: 'Publix', emoji: '🛒' },
+  { id: 'harris-teeter', label: 'Harris Teeter', emoji: '🛒' },
+  { id: 'food-lion', label: 'Food Lion', emoji: '🦁' },
+  { id: 'whole-foods', label: 'Whole Foods', emoji: '🌿' },
+  { id: 'trader-joes', label: "Trader Joe's", emoji: '🌺' },
+  { id: 'sams-club', label: "Sam's Club", emoji: '🏪' },
+  { id: 'sprouts', label: 'Sprouts', emoji: '🌱' },
+  { id: 'wegmans', label: 'Wegmans', emoji: '🛒' },
+  { id: 'meijer', label: 'Meijer', emoji: '🛒' },
+  { id: 'heb', label: 'H-E-B', emoji: '🛒' },
+  { id: 'gordons', label: "Gordon's Food", emoji: '🍽️' },
+];
