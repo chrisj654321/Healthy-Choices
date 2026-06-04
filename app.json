@@ -14,7 +14,7 @@
     },
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.healthychoices.app",
+      "bundleIdentifier": "com.jamesadventure.healthychoices",
       "infoPlist": {
         "NSCameraUsageDescription": "Healthy Choices uses your camera to scan product barcodes."
       }
@@ -24,7 +24,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#1D9E75"
       },
-      "package": "com.healthychoices.app",
+      "package": "com.jamesadventure.healthychoices",
       "permissions": [
         "android.permission.CAMERA"
       ]

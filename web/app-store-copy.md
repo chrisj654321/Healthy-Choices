@@ -122,7 +122,7 @@ Suggested screens to capture:
 
 - [ ] Supabase URL + anon key filled into `src/utils/supabase.js`
 - [ ] Apple Developer account created
-- [ ] Apple Service ID created (com.healthychoices.app.siwa) for Sign in with Apple
+- [ ] Apple Service ID created (com.jamesadventure.healthychoices.siwa) for Sign in with Apple
 - [ ] Google OAuth client ID configured in Supabase Auth → Providers → Google
 - [ ] RevenueCat integrated (replaces mock `src/utils/subscription.js`) — **REQUIRED for App Store**
 - [ ] Privacy policy hosted at a live URL

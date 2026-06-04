@@ -4,7 +4,7 @@
  *
  * Dashboard setup (do once before testing purchases):
  *   1. app.revenuecat.com → New Project → Add iOS App
- *      Bundle ID: com.healthychoices.app
+ *      Bundle ID: com.jamesadventure.healthychoices
  *   2. Entitlements → New → Identifier: "Healthy Choices Pro"
  *   3. Products → Add product IDs that match App Store Connect:
  *      "monthly" and "yearly"
