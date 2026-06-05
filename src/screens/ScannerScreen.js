@@ -19,6 +19,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFocusEffect } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { checkAndIncrementDailyScan } from '../utils/storage';
 import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
 import { BRAND_TO_COMPANY, BRAND_PARENT_MAP, COMPANY_DB } from '../data/companies';
@@ -161,6 +162,35 @@ export default function ScannerScreen({ navigation }) {
 
   const handleBarCodeScanned = async ({ data: barcode }) => {
     if (cooldown.current || scanned) return;
+
+    // ── Daily scan limit for free users ───────────────────────────────────────
+    if (!isPro) {
+      const { allowed, remaining } = await checkAndIncrementDailyScan();
+      if (!allowed) {
+        Alert.alert(
+          "Daily Limit Reached",
+          "Free accounts can scan 5 products per day. Upgrade to Pro for unlimited scans.",
+          [
+            { text: "Not Now", style: "cancel", onPress: reset },
+            { text: "Upgrade", onPress: () => navigation.navigate('Paywall', { feature: 'scan' }) },
+          ]
+        );
+        return;
+      }
+      // Show a subtle heads-up on the last free scan of the day
+      if (remaining === 0) {
+        Alert.alert(
+          "Last Free Scan Today",
+          "You've used all 5 free scans for today. Upgrade to Pro for unlimited scanning.",
+          [
+            { text: "Continue", style: "cancel" },
+            { text: "Upgrade to Pro", onPress: () => navigation.navigate('Paywall', { feature: 'scan' }) },
+          ]
+        );
+      }
+    }
+    // ─────────────────────────────────────────────────────────────────────────
+
     cooldown.current = true;
     setScanned(true);
     Vibration.vibrate(60);

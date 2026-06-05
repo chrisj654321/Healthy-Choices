@@ -15,11 +15,9 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
 import ScanHistoryItem from '../components/ScanHistoryItem';
-import { getScanHistory, removeScanEntry, clearScanHistory } from '../utils/storage';
+import { getScanHistory, removeScanEntry, clearScanHistory, FREE_HISTORY_LIMIT } from '../utils/storage';
 import { PRODUCT_DB } from '../data/products';
 import { useProStatus } from '../utils/subscription';
-
-const FREE_HISTORY_LIMIT = 5;
 
 export default function ScanHistoryScreen({ navigation }) {
   const insets = useSafeAreaInsets();

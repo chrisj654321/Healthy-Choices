@@ -1,9 +1,59 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const HISTORY_KEY = '@hc_scan_history';
-const PREFS_KEY = '@hc_user_prefs';
-const ONBOARDING_KEY = '@hc_onboarding_done';
-const MAX_HISTORY = 100;
+const HISTORY_KEY     = '@hc_scan_history';
+const PREFS_KEY       = '@hc_user_prefs';
+const ONBOARDING_KEY  = '@hc_onboarding_done';
+const DAILY_SCAN_KEY  = '@hc_daily_scans';
+const MAX_HISTORY     = 100;
+
+export const FREE_DAILY_LIMIT   = 5;
+export const FREE_HISTORY_LIMIT = 20;
+
+// ─── Daily scan limit ─────────────────────────────────────────────────────────
+
+/**
+ * Call before processing a scan for a free user.
+ * Increments today's count and returns whether the scan is allowed.
+ * Resets automatically at midnight.
+ */
+export async function checkAndIncrementDailyScan() {
+  try {
+    const today = new Date().toDateString();
+    const raw   = await AsyncStorage.getItem(DAILY_SCAN_KEY);
+    const data  = raw ? JSON.parse(raw) : { date: today, count: 0 };
+
+    // New day — reset counter
+    if (data.date !== today) {
+      data.date  = today;
+      data.count = 0;
+    }
+
+    const allowed = data.count < FREE_DAILY_LIMIT;
+    if (allowed) {
+      data.count += 1;
+      await AsyncStorage.setItem(DAILY_SCAN_KEY, JSON.stringify(data));
+    }
+
+    return { allowed, scansToday: data.count, remaining: FREE_DAILY_LIMIT - data.count };
+  } catch {
+    return { allowed: true, scansToday: 0, remaining: FREE_DAILY_LIMIT };
+  }
+}
+
+/**
+ * Returns how many free scans remain today (0–5).
+ */
+export async function getDailyScansRemaining() {
+  try {
+    const today = new Date().toDateString();
+    const raw   = await AsyncStorage.getItem(DAILY_SCAN_KEY);
+    const data  = raw ? JSON.parse(raw) : { date: today, count: 0 };
+    if (data.date !== today) return FREE_DAILY_LIMIT;
+    return Math.max(0, FREE_DAILY_LIMIT - data.count);
+  } catch {
+    return FREE_DAILY_LIMIT;
+  }
+}
 
 export async function addScanToHistory(product, scoreResult) {
   try {
