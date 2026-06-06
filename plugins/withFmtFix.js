@@ -11,7 +11,6 @@ module.exports = function withFmtFix(config) {
       let podfile = fs.readFileSync(podfilePath, 'utf8');
 
       const fmtFix = `
-post_install do |installer|
   # Fix fmt consteval errors with Xcode 26 / Apple Clang 21
   installer.pods_project.targets.each do |target|
     if target.name == 'fmt'
@@ -20,11 +19,14 @@ post_install do |installer|
       end
     end
   end
-end
 `;
 
       if (!podfile.includes('Fix fmt consteval')) {
-        podfile = podfile + fmtFix;
+        // Insert inside the existing post_install block
+        podfile = podfile.replace(
+          /post_install do \|installer\|/,
+          `post_install do |installer|\n${fmtFix}`
+        );
         fs.writeFileSync(podfilePath, podfile);
       }
 
