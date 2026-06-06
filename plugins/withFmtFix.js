@@ -3,7 +3,6 @@ const fs = require('fs');
 const path = require('path');
 
 // Fixes fmt consteval errors with Xcode 26 / Apple Clang 21
-// by compiling the fmt pod with C++17 instead of C++20
 module.exports = function withFmtFix(config) {
   return withDangerousMod(config, [
     'ios',
@@ -12,6 +11,7 @@ module.exports = function withFmtFix(config) {
       let podfile = fs.readFileSync(podfilePath, 'utf8');
 
       const fmtFix = `
+post_install do |installer|
   # Fix fmt consteval errors with Xcode 26 / Apple Clang 21
   installer.pods_project.targets.each do |target|
     if target.name == 'fmt'
@@ -20,13 +20,11 @@ module.exports = function withFmtFix(config) {
       end
     end
   end
+end
 `;
 
       if (!podfile.includes('Fix fmt consteval')) {
-        podfile = podfile.replace(
-          /end\s*$/,
-          `${fmtFix}\nend`
-        );
+        podfile = podfile + fmtFix;
         fs.writeFileSync(podfilePath, podfile);
       }
 
