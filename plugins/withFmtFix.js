@@ -21,9 +21,11 @@ module.exports = function withFmtFix(config) {
       const fmtFix = [
         '  # Fix fmt consteval errors with Xcode 26 / Apple Clang 21',
         '  installer.pods_project.targets.each do |target|',
-        '    target.build_configurations.each do |cfg|',
-        "      cfg.build_settings['OTHER_CPLUSPLUSFLAGS'] = '$(inherited) -DFMT_USE_CONSTEVAL=0'",
-        "      cfg.build_settings['CLANG_CXX_LANGUAGE_STANDARD'] = 'c++17'",
+        "    if target.name == 'fmt'",
+        '      target.build_configurations.each do |cfg|',
+        "        cfg.build_settings['CLANG_CXX_LANGUAGE_STANDARD'] = 'c++17'",
+        "        cfg.build_settings['OTHER_CPLUSPLUSFLAGS'] = '$(inherited) -std=c++17 -DFMT_USE_CONSTEVAL=0'",
+        '      end',
         '    end',
         '  end',
       ].join('\n');
