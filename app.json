@@ -6,7 +6,6 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "privacy": "public",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -16,7 +15,8 @@
       "supportsTablet": false,
       "bundleIdentifier": "com.jamesadventure.healthychoices",
       "infoPlist": {
-        "NSCameraUsageDescription": "Healthy Choices uses your camera to scan product barcodes."
+        "NSCameraUsageDescription": "Healthy Choices uses your camera to scan product barcodes.",
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
@@ -26,7 +26,8 @@
       },
       "package": "com.jamesadventure.healthychoices",
       "permissions": [
-        "android.permission.CAMERA"
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
       ]
     },
     "web": {
@@ -41,13 +42,14 @@
         }
       ],
       "expo-secure-store",
-      [
-        "react-native-purchases",
-        {
-          "androidApiKey": "REPLACE_WITH_ANDROID_RC_KEY"
-        }
-      ]
+      "expo-font"
     ],
-    "scheme": "healthychoices"
+    "scheme": "healthychoices",
+    "extra": {
+      "eas": {
+        "projectId": "158b3aec-7944-42f9-8427-c86ecc45176a"
+      }
+    },
+    "owner": "chrisj654321"
   }
 }
