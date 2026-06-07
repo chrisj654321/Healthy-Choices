@@ -289,11 +289,11 @@ export default function ProfileScreen({ navigation }) {
           <TouchableOpacity
             style={styles.manageRow}
             onPress={async () => {
-              try {
-                await restorePurchases();
-                Alert.alert('Restored', 'Your purchases have been restored.');
-              } catch (e) {
-                Alert.alert('Restore Failed', 'Could not restore purchases. Please try again.');
+              const success = await restorePurchases();
+              if (success) {
+                Alert.alert('Restored', 'Your Pro access has been restored!');
+              } else {
+                Alert.alert('Nothing to Restore', 'No active subscription found for this Apple ID.');
               }
             }}
           >
