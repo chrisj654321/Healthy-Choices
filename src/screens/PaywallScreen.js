@@ -20,6 +20,7 @@ import {
 
 const FEATURES = [
   { icon: 'business-outline',      color: Colors.primary,    text: 'Company lobbying & donation data' },
+  { icon: 'search-outline',        color: Colors.primary,    text: 'Search any product by name' },
   { icon: 'time-outline',          color: Colors.primary,    text: 'Unlimited scan history' },
   { icon: 'share-social-outline',  color: Colors.primary,    text: 'Share product health scores' },
   { icon: 'warning-outline',       color: Colors.flagOrange, text: 'Priority ingredient alerts' },

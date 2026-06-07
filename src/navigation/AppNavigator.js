@@ -9,14 +9,15 @@ import { Font } from '../constants/typography';
 import { isOnboardingDone } from '../utils/storage';
 import { useAuth } from '../context/AuthContext';
 
-import ScannerScreen        from '../screens/ScannerScreen';
-import ProductScoreScreen   from '../screens/ProductScoreScreen';
-import CompanyProfileScreen from '../screens/CompanyProfileScreen';
-import ScanHistoryScreen    from '../screens/ScanHistoryScreen';
-import ProfileScreen        from '../screens/ProfileScreen';
-import OnboardingScreen     from '../screens/OnboardingScreen';
-import PaywallScreen        from '../screens/PaywallScreen';
-import AuthScreen           from '../screens/AuthScreen';
+import ScannerScreen          from '../screens/ScannerScreen';
+import ProductScoreScreen     from '../screens/ProductScoreScreen';
+import CompanyProfileScreen   from '../screens/CompanyProfileScreen';
+import ScanHistoryScreen      from '../screens/ScanHistoryScreen';
+import ProductSearchScreen    from '../screens/ProductSearchScreen';
+import ProfileScreen          from '../screens/ProfileScreen';
+import OnboardingScreen       from '../screens/OnboardingScreen';
+import PaywallScreen          from '../screens/PaywallScreen';
+import AuthScreen             from '../screens/AuthScreen';
 
 const Tab   = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -42,6 +43,16 @@ function HistoryStack() {
   );
 }
 
+function SearchStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="ProductSearch"  component={ProductSearchScreen} />
+      <Stack.Screen name="ProductScore"   component={ProductScoreScreen} />
+      <Stack.Screen name="CompanyProfile" component={CompanyProfileScreen} />
+    </Stack.Navigator>
+  );
+}
+
 function MainTabs() {
   return (
     <Tab.Navigator
@@ -53,9 +64,10 @@ function MainTabs() {
         tabBarLabelStyle: styles.tabLabel,
         tabBarIcon: ({ focused, color, size }) => {
           const icons = {
-            Scan:    focused ? 'scan'   : 'scan-outline',
-            History: focused ? 'time'   : 'time-outline',
-            Profile: focused ? 'person' : 'person-outline',
+            Scan:    focused ? 'scan'        : 'scan-outline',
+            Search:  focused ? 'search'      : 'search-outline',
+            History: focused ? 'time'        : 'time-outline',
+            Profile: focused ? 'person'      : 'person-outline',
           };
           const iconName = icons[route.name];
           if (route.name === 'Scan') {
@@ -70,6 +82,7 @@ function MainTabs() {
       })}
     >
       <Tab.Screen name="Scan"    component={ScanStack}    options={{ title: 'Scan' }} />
+      <Tab.Screen name="Search"  component={SearchStack}  options={{ title: 'Search' }} />
       <Tab.Screen name="History" component={HistoryStack} options={{ title: 'History' }} />
       <Tab.Screen name="Profile" component={ProfileScreen} options={{ title: 'Profile' }} />
     </Tab.Navigator>

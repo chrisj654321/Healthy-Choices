@@ -23,92 +23,11 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { checkAndIncrementDailyScan } from '../utils/storage';
 import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
-import { BRAND_TO_COMPANY, BRAND_PARENT_MAP, COMPANY_DB } from '../data/companies';
 import { PRODUCT_DB } from '../data/products';
 import { useProStatus } from '../utils/subscription';
+import { buildProduct, findCompanyId } from '../utils/productParser';
 
 const OFF_API = 'https://world.openfoodfacts.org/api/v2/product';
-
-// ─── Parsers ─────────────────────────────────────────────────────────────────
-
-function parseIngredients(p) {
-  if (p.ingredients?.length > 0) {
-    return p.ingredients
-      .map((i) => (i.text || '').toLowerCase().replace(/\([^)]*\)/g, '').trim())
-      .filter((s) => s.length > 1);
-  }
-  if (p.ingredients_text) {
-    return p.ingredients_text
-      .toLowerCase()
-      .split(/[,;]/)
-      .map((s) => s.replace(/\([^)]*\)/g, '').replace(/\d+(\.\d+)?%/g, '').trim())
-      .filter((s) => s.length > 1);
-  }
-  return [];
-}
-
-function parseNutrition(n = {}) {
-  return {
-    fat: Math.round((n['fat_100g'] ?? 0) * 10) / 10,
-    saturatedFat: Math.round((n['saturated-fat_100g'] ?? 0) * 10) / 10,
-    sodium: Math.round((n['sodium_100g'] ?? 0) * 1000),
-    carbs: Math.round((n['carbohydrates_100g'] ?? 0) * 10) / 10,
-    sugars: Math.round((n['sugars_100g'] ?? 0) * 10) / 10,
-    protein: Math.round((n['proteins_100g'] ?? 0) * 10) / 10,
-  };
-}
-
-function findCompanyId(brand) {
-  if (!brand) return null;
-  const lower = brand.toLowerCase().trim();
-
-  if (BRAND_TO_COMPANY[lower]) return BRAND_TO_COMPANY[lower];
-
-  const directKey = Object.keys(BRAND_TO_COMPANY).find(
-    (k) => lower.includes(k) || k.includes(lower)
-  );
-  if (directKey) return BRAND_TO_COMPANY[directKey];
-
-  // Fall back to BRAND_PARENT_MAP — match parent display name to a COMPANY_DB entry
-  const parentName = BRAND_PARENT_MAP[lower];
-  if (parentName) {
-    const pLower = parentName.toLowerCase();
-    const match = Object.values(COMPANY_DB).find(
-      (c) => c.name.toLowerCase().includes(pLower) || pLower.includes(c.name.toLowerCase())
-    );
-    if (match) return match.id;
-  }
-
-  return null;
-}
-
-function buildProduct(barcode, data) {
-  const p = data.product || {};
-  const brand = (p.brands || '').split(',')[0].trim();
-  const labels = p.labels_tags || [];
-  const cats = p.categories_tags || [];
-
-  return {
-    barcode,
-    name: p.product_name || p.product_name_en || 'Unknown Product',
-    brand: brand || 'Unknown Brand',
-    companyId: findCompanyId(brand),
-    category: cats[0]?.replace('en:', '').replace(/-/g, ' ') || 'General',
-    ingredients: parseIngredients(p),
-    nutrition: parseNutrition(p.nutriments),
-    certifications: labels.includes('en:organic') ? ['USDA Organic'] : [],
-    isOrganic: labels.includes('en:organic'),
-    isVegan: labels.includes('en:vegan'),
-    isGlutenFree: labels.includes('en:gluten-free'),
-    servingSize: p.serving_size || null,
-    calories: Math.round(
-      p.nutriments?.['energy-kcal_serving'] ||
-        p.nutriments?.['energy-kcal_100g'] ||
-        0
-    ),
-    image: p.image_front_url || null,
-  };
-}
 
 // ─── Screen ───────────────────────────────────────────────────────────────────
 
