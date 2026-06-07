@@ -12,3 +12,4 @@ web-build/
 .env
 .env.local
 .claude/
+src/data/products_generated.json
