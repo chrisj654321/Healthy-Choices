@@ -157,7 +157,11 @@ export default function ProductScoreScreen({ route, navigation }) {
   useEffect(() => {
     const r = scoreProduct(product);
     setResult(r);
-    addScanToHistory(product, r);
+    // Only add to history when navigating from the scanner, not when
+    // viewing a past scan from the history list.
+    if (!route?.params?.fromHistory) {
+      addScanToHistory(product, r);
+    }
     getUserPrefs().then((prefs) => {
       setWarnings(getPersonalisedWarnings(r.analyzedIngredients, product, prefs));
     });
@@ -489,7 +493,7 @@ export default function ProductScoreScreen({ route, navigation }) {
         </View>
 
         {/* Informational disclaimer — required for Apple Health & Fitness category */}
-        <Text style={ps.disclaimer}>
+        <Text style={s.disclaimer}>
           Scores and ingredient information are for educational purposes only and are not medical advice.
           They should not be used to diagnose, treat, or prevent any health condition.
           Consult a qualified healthcare professional for dietary guidance.

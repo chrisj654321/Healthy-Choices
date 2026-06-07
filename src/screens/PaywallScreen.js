@@ -163,7 +163,9 @@ export default function PaywallScreen({ route, navigation }) {
   const handleSkip = () => navigation.goBack();
 
   const plan = prices[selectedPlan];
-  const planHasTrial = selectedPlan === 'yearly'; // adjust if RC returns introPrice
+  // Only show trial messaging if RevenueCat confirms an intro price exists
+  const planHasTrial = selectedPlan === 'yearly' &&
+    !!rcPackages.yearly?.product?.introPrice;
 
   return (
     <View style={[s.container, { paddingTop: insets.top }]}>

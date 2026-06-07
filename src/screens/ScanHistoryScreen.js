@@ -75,7 +75,7 @@ export default function ScanHistoryScreen({ navigation }) {
       Alert.alert('Unavailable', 'Full details for this scan are no longer available. Scan the product again to reload it.');
       return;
     }
-    navigation.navigate('ProductScore', { product });
+    navigation.navigate('ProductScore', { product, fromHistory: true });
   };
 
   const FILTERS = ['all', 'A', 'B', 'C', 'D', 'F'];
@@ -177,7 +177,7 @@ export default function ScanHistoryScreen({ navigation }) {
           {history.length === 0 && (
             <TouchableOpacity
               style={styles.scanNowBtn}
-              onPress={() => navigation.navigate('Scanner')}
+              onPress={() => navigation.getParent()?.navigate('Scan')}
             >
               <Text style={styles.scanNowText}>Scan a Product</Text>
             </TouchableOpacity>

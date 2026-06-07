@@ -18,7 +18,7 @@ import { getUserPrefs, saveUserPrefs, clearScanHistory, getScanHistory } from '.
 import { STORES } from '../data/stores';
 import { DIET_PREFERENCE_OPTIONS, PRIMARY_GOAL_OPTIONS } from '../data/preferences';
 import { useAuth } from '../context/AuthContext';
-import { useProStatus } from '../utils/subscription';
+import { useProStatus, restorePurchases } from '../utils/subscription';
 import RevenueCatUI from 'react-native-purchases-ui';
 
 const DIETARY_OPTIONS = [
@@ -276,12 +276,31 @@ export default function ProfileScreen({ navigation }) {
       {/* Data */}
       <SectionHeader title="Data & Privacy" />
       <View style={styles.settingsCard}>
-        {isPro && (
+        {isPro ? (
           <TouchableOpacity style={styles.manageRow} onPress={handleManageSubscription}>
             <Ionicons name="card-outline" size={18} color={Colors.primary} />
             <View style={{ flex: 1 }}>
               <Text style={styles.manageLabel}>Manage Subscription</Text>
               <Text style={styles.manageSub}>Cancel, pause, or view billing details</Text>
+            </View>
+            <Ionicons name="chevron-forward" size={16} color={Colors.textMuted} />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            style={styles.manageRow}
+            onPress={async () => {
+              try {
+                await restorePurchases();
+                Alert.alert('Restored', 'Your purchases have been restored.');
+              } catch (e) {
+                Alert.alert('Restore Failed', 'Could not restore purchases. Please try again.');
+              }
+            }}
+          >
+            <Ionicons name="refresh-outline" size={18} color={Colors.primary} />
+            <View style={{ flex: 1 }}>
+              <Text style={styles.manageLabel}>Restore Purchases</Text>
+              <Text style={styles.manageSub}>Already subscribed? Tap to restore access.</Text>
             </View>
             <Ionicons name="chevron-forward" size={16} color={Colors.textMuted} />
           </TouchableOpacity>

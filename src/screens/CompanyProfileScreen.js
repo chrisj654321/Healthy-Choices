@@ -15,9 +15,11 @@ import LobbyingFlagCard from '../components/LobbyingFlagCard';
 import { getLobbyingRiskLevel, formatCurrency } from '../utils/scorer';
 
 export default function CompanyProfileScreen({ route, navigation }) {
-  const { company } = route.params;
+  const { company } = route?.params ?? {};
   const insets = useSafeAreaInsets();
   const [activeTab, setActiveTab] = useState('overview');
+
+  if (!company) return null;
 
   const lobbyRisk = getLobbyingRiskLevel(company.lobbyingSpend);
   const repPct = company.donationSplit?.republican ?? 50;

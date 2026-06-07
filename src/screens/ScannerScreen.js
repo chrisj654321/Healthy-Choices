@@ -163,34 +163,6 @@ export default function ScannerScreen({ navigation }) {
   const handleBarCodeScanned = async ({ data: barcode }) => {
     if (cooldown.current || scanned) return;
 
-    // ── Daily scan limit for free users ───────────────────────────────────────
-    if (!isPro) {
-      const { allowed, remaining } = await checkAndIncrementDailyScan();
-      if (!allowed) {
-        Alert.alert(
-          "Daily Limit Reached",
-          "Free accounts can scan 5 products per day. Upgrade to Pro for unlimited scans.",
-          [
-            { text: "Not Now", style: "cancel", onPress: reset },
-            { text: "Upgrade", onPress: () => navigation.navigate('Paywall', { feature: 'scan' }) },
-          ]
-        );
-        return;
-      }
-      // Show a subtle heads-up on the last free scan of the day
-      if (remaining === 0) {
-        Alert.alert(
-          "Last Free Scan Today",
-          "You've used all 5 free scans for today. Upgrade to Pro for unlimited scanning.",
-          [
-            { text: "Continue", style: "cancel" },
-            { text: "Upgrade to Pro", onPress: () => navigation.navigate('Paywall', { feature: 'scan' }) },
-          ]
-        );
-      }
-    }
-    // ─────────────────────────────────────────────────────────────────────────
-
     cooldown.current = true;
     setScanned(true);
     Vibration.vibrate(60);
@@ -205,7 +177,7 @@ export default function ScannerScreen({ navigation }) {
         `${OFF_API}/${barcode}?fields=product_name,product_name_en,brands,` +
           `ingredients_text,ingredients,nutriments,categories_tags,labels_tags,` +
           `serving_size,image_front_url`,
-        { headers: { 'User-Agent': 'HealthyChoices/1.0 (christianjames128@gmail.com)' } }
+        { headers: { 'User-Agent': 'HealthyChoices/1.0 (support@healthychoices.app)' } }
       );
 
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -214,6 +186,32 @@ export default function ScannerScreen({ navigation }) {
       if (data.status === 0 || !data.product) {
         const local = PRODUCT_DB[barcode];
         if (local) {
+          // ── Daily scan limit check (only on successful lookup) ───────────────
+          if (!isPro) {
+            const { allowed, remaining } = await checkAndIncrementDailyScan();
+            if (!allowed) {
+              setLoading(false);
+              Alert.alert(
+                "Daily Limit Reached",
+                "Free accounts can scan 5 products per day. Upgrade to Pro for unlimited scans.",
+                [
+                  { text: "Not Now", style: "cancel", onPress: reset },
+                  { text: "Upgrade", onPress: () => navigation.navigate('Paywall', { feature: 'scan' }) },
+                ]
+              );
+              return;
+            }
+            if (remaining === 0) {
+              Alert.alert(
+                "Last Free Scan Today",
+                "You've used all 5 free scans for today. Upgrade to Pro for unlimited scanning.",
+                [
+                  { text: "Continue", style: "cancel" },
+                  { text: "Upgrade to Pro", onPress: () => navigation.navigate('Paywall', { feature: 'scan' }) },
+                ]
+              );
+            }
+          }
           setLoading(false);
           navigation.navigate('ProductScore', { product: local });
           return;
@@ -227,13 +225,42 @@ export default function ScannerScreen({ navigation }) {
         return;
       }
 
+      // ── Daily scan limit check (only on successful lookup) ─────────────────
+      if (!isPro) {
+        const { allowed, remaining } = await checkAndIncrementDailyScan();
+        if (!allowed) {
+          setLoading(false);
+          Alert.alert(
+            "Daily Limit Reached",
+            "Free accounts can scan 5 products per day. Upgrade to Pro for unlimited scans.",
+            [
+              { text: "Not Now", style: "cancel", onPress: reset },
+              { text: "Upgrade", onPress: () => navigation.navigate('Paywall', { feature: 'scan' }) },
+            ]
+          );
+          return;
+        }
+        if (remaining === 0) {
+          Alert.alert(
+            "Last Free Scan Today",
+            "You've used all 5 free scans for today. Upgrade to Pro for unlimited scanning.",
+            [
+              { text: "Continue", style: "cancel" },
+              { text: "Upgrade to Pro", onPress: () => navigation.navigate('Paywall', { feature: 'scan' }) },
+            ]
+          );
+        }
+      }
+      // ───────────────────────────────────────────────────────────────────────
+
       setLoadingMsg('Analyzing ingredients…');
       await delay(200);
 
       const product = buildProduct(barcode, data);
       setLoading(false);
       navigation.navigate('ProductScore', { product });
-    } catch {
+    } catch (err) {
+      console.warn('[Scanner] scan error:', err);
       const local = PRODUCT_DB[barcode];
       if (local) {
         setLoading(false);
