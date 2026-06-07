@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -13,11 +13,17 @@ import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
 import LobbyingFlagCard from '../components/LobbyingFlagCard';
 import { getLobbyingRiskLevel, formatCurrency } from '../utils/scorer';
+import { getUserPrefs } from '../utils/storage';
 
 export default function CompanyProfileScreen({ route, navigation }) {
   const { company } = route?.params ?? {};
   const insets = useSafeAreaInsets();
   const [activeTab, setActiveTab] = useState('overview');
+  const [prefs, setPrefs] = useState({ showLobbying: true, showDonations: true });
+
+  useEffect(() => {
+    getUserPrefs().then(setPrefs);
+  }, []);
 
   if (!company) return null;
 
@@ -64,25 +70,27 @@ export default function CompanyProfileScreen({ route, navigation }) {
           </View>
         </View>
 
-        {/* Risk banner */}
-        <View style={[styles.riskBanner, { backgroundColor: lobbyRisk.bg }]}>
-          <View style={styles.riskLeft}>
-            <Text style={[styles.riskLabel, { color: lobbyRisk.color }]}>Lobbying Risk</Text>
-            <Text style={[styles.riskLevel, { color: lobbyRisk.color }]}>{lobbyRisk.label}</Text>
-          </View>
-          <View style={styles.riskRight}>
-            <Text style={[styles.riskAmount, { color: lobbyRisk.color }]}>
-              {formatCurrency(company.lobbyingSpend)}/yr
-            </Text>
-            <Text style={[styles.riskSub, { color: lobbyRisk.color }]}>Federal lobbying</Text>
-          </View>
-          {highSeverityCount > 0 && (
-            <View style={styles.highFlag}>
-              <Ionicons name="alert-circle" size={14} color={Colors.flagRed} />
-              <Text style={styles.highFlagText}>{highSeverityCount} high-severity issue{highSeverityCount > 1 ? 's' : ''}</Text>
+        {/* Risk banner — only shown when showLobbying pref is on */}
+        {prefs.showLobbying !== false && (
+          <View style={[styles.riskBanner, { backgroundColor: lobbyRisk.bg }]}>
+            <View style={styles.riskLeft}>
+              <Text style={[styles.riskLabel, { color: lobbyRisk.color }]}>Lobbying Risk</Text>
+              <Text style={[styles.riskLevel, { color: lobbyRisk.color }]}>{lobbyRisk.label}</Text>
             </View>
-          )}
-        </View>
+            <View style={styles.riskRight}>
+              <Text style={[styles.riskAmount, { color: lobbyRisk.color }]}>
+                {formatCurrency(company.lobbyingSpend)}/yr
+              </Text>
+              <Text style={[styles.riskSub, { color: lobbyRisk.color }]}>Federal lobbying</Text>
+            </View>
+            {highSeverityCount > 0 && (
+              <View style={styles.highFlag}>
+                <Ionicons name="alert-circle" size={14} color={Colors.flagRed} />
+                <Text style={styles.highFlagText}>{highSeverityCount} high-severity issue{highSeverityCount > 1 ? 's' : ''}</Text>
+              </View>
+            )}
+          </View>
+        )}
       </LinearGradient>
 
       {/* Tabs */}
@@ -125,35 +133,43 @@ export default function CompanyProfileScreen({ route, navigation }) {
               </View>
             </View>
 
-            {/* Political donations */}
-            <SectionHeader title="Political Donations" subtitle={`Total: ${formatCurrency(company.politicalDonations)}`} />
-            <View style={styles.donationCard}>
-              <View style={styles.donationBarWrap}>
-                <View style={[styles.donationRed, { flex: repPct }]} />
-                <View style={[styles.donationBlue, { flex: demPct }]} />
-              </View>
-              <View style={styles.donationLegend}>
-                <View style={styles.legendItem}>
-                  <View style={[styles.legendDot, { backgroundColor: '#C0392B' }]} />
-                  <Text style={styles.legendText}>Republican {repPct}%</Text>
+            {/* Political donations — only shown when showDonations pref is on */}
+            {prefs.showDonations !== false && (
+              <>
+                <SectionHeader title="Political Donations" subtitle={`Total: ${formatCurrency(company.politicalDonations)}`} />
+                <View style={styles.donationCard}>
+                  <View style={styles.donationBarWrap}>
+                    <View style={[styles.donationRed, { flex: repPct }]} />
+                    <View style={[styles.donationBlue, { flex: demPct }]} />
+                  </View>
+                  <View style={styles.donationLegend}>
+                    <View style={styles.legendItem}>
+                      <View style={[styles.legendDot, { backgroundColor: '#C0392B' }]} />
+                      <Text style={styles.legendText}>Republican {repPct}%</Text>
+                    </View>
+                    <View style={styles.legendItem}>
+                      <View style={[styles.legendDot, { backgroundColor: '#2980B9' }]} />
+                      <Text style={styles.legendText}>Democrat {demPct}%</Text>
+                    </View>
+                  </View>
                 </View>
-                <View style={styles.legendItem}>
-                  <View style={[styles.legendDot, { backgroundColor: '#2980B9' }]} />
-                  <Text style={styles.legendText}>Democrat {demPct}%</Text>
-                </View>
-              </View>
-            </View>
+              </>
+            )}
 
-            {/* Lobbying targets */}
-            <SectionHeader title="Lobbying Targets" />
-            <View style={styles.targetList}>
-              {company.lobbyingTargets?.map((t, i) => (
-                <View key={i} style={styles.targetRow}>
-                  <Ionicons name="megaphone-outline" size={14} color={Colors.primary} />
-                  <Text style={styles.targetText}>{t}</Text>
+            {/* Lobbying targets — only shown when showLobbying pref is on */}
+            {prefs.showLobbying !== false && (
+              <>
+                <SectionHeader title="Lobbying Targets" />
+                <View style={styles.targetList}>
+                  {company.lobbyingTargets?.map((t, i) => (
+                    <View key={i} style={styles.targetRow}>
+                      <Ionicons name="megaphone-outline" size={14} color={Colors.primary} />
+                      <Text style={styles.targetText}>{t}</Text>
+                    </View>
+                  ))}
                 </View>
-              ))}
-            </View>
+              </>
+            )}
           </View>
         )}
 

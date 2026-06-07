@@ -65,14 +65,34 @@ export function getPersonalisedWarnings(analyzedIngredients, product, prefs) {
   }, []);
 
   // Goal note
+  const highRiskIngredients = analyzedIngredients.filter((i) => i.flag === 'avoid');
+  const unknownIngredients  = analyzedIngredients.filter((i) => i.category === 'unknown');
   const GOAL_NOTE_MAP = {
-    'avoid-added-sugar': nutrition.sugars > 12 ? `Contains ${nutrition.sugars}g sugar — above your low-sugar goal.` : null,
-    'reduce-sodium': nutrition.sodium > 300 ? `Contains ${nutrition.sodium}mg sodium — high for your sodium goal.` : null,
-    'increase-protein': nutrition.protein < 5 ? 'Low protein content — under 5g per serving.' : null,
-    'increase-fiber': null,
-    'avoid-high-risk': null,
-    'eat-clean': null,
-    'low-carb-diet': nutrition.carbs > 20 ? `Contains ${nutrition.carbs}g carbs — above your low-carb target.` : null,
+    'avoid-added-sugar': nutrition.sugars > 12
+      ? `Contains ${nutrition.sugars}g sugar — above your low-sugar goal.`
+      : null,
+    'reduce-sodium': nutrition.sodium > 300
+      ? `Contains ${nutrition.sodium}mg sodium — high for your sodium goal.`
+      : null,
+    'increase-protein': nutrition.protein < 5
+      ? 'Low protein content — under 5g per serving.'
+      : null,
+    'increase-fiber': nutrition.fiber != null
+      ? (nutrition.fiber < 3
+          ? `Only ${nutrition.fiber ?? 0}g fiber per serving — low for your fiber goal.`
+          : null)
+      : 'Fiber content not listed for this product.',
+    'avoid-high-risk': highRiskIngredients.length > 0
+      ? `${highRiskIngredients.length} high-risk ingredient${highRiskIngredients.length > 1 ? 's' : ''} found: ${highRiskIngredients.slice(0, 2).map((i) => i.label).join(', ')}${highRiskIngredients.length > 2 ? '…' : ''}.`
+      : null,
+    'eat-clean': unknownIngredients.length > 3
+      ? `${unknownIngredients.length} unrecognized ingredients — may be heavily processed.`
+      : (highRiskIngredients.length > 0
+          ? `Contains ${highRiskIngredients.length} flagged additive${highRiskIngredients.length > 1 ? 's' : ''} — not ideal for a clean diet.`
+          : null),
+    'low-carb-diet': nutrition.carbs > 20
+      ? `Contains ${nutrition.carbs}g carbs — above your low-carb target.`
+      : null,
   };
   const goalNote = primaryGoal ? GOAL_NOTE_MAP[primaryGoal] ?? null : null;
 

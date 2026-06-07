@@ -153,6 +153,7 @@ export default function ProductScoreScreen({ route, navigation }) {
   const [warnings, setWarnings] = useState(null);
   const [activeTab, setActiveTab] = useState('ingredients');
   const [collapsedCats, setCollapsedCats] = useState(new Set());
+  const [prefs, setPrefs] = useState({ showLobbying: true, showDonations: true });
 
   useEffect(() => {
     const r = scoreProduct(product);
@@ -162,8 +163,9 @@ export default function ProductScoreScreen({ route, navigation }) {
     if (!route?.params?.fromHistory) {
       addScanToHistory(product, r);
     }
-    getUserPrefs().then((prefs) => {
-      setWarnings(getPersonalisedWarnings(r.analyzedIngredients, product, prefs));
+    getUserPrefs().then((userPrefs) => {
+      setPrefs(userPrefs);
+      setWarnings(getPersonalisedWarnings(r.analyzedIngredients, product, userPrefs));
     });
   }, [product]);
 
@@ -435,12 +437,14 @@ export default function ProductScoreScreen({ route, navigation }) {
                   <View style={s.coStats}>
                     <CoStat icon="people-outline" label="Employees" value={company.employees} />
                     <CoStat icon="trending-up-outline" label="Revenue" value={`$${company.revenue}`} />
-                    <CoStat
-                      icon="megaphone-outline"
-                      label="Lobbying/yr"
-                      value={formatMoney(company.lobbyingSpend)}
-                      highlight
-                    />
+                    {prefs.showLobbying !== false && (
+                      <CoStat
+                        icon="megaphone-outline"
+                        label="Lobbying/yr"
+                        value={formatMoney(company.lobbyingSpend)}
+                        highlight
+                      />
+                    )}
                   </View>
 
                   {company.issues?.length > 0 && (

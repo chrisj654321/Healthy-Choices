@@ -15,6 +15,7 @@ import {
   Platform,
 } from 'react-native';
 import { CameraView, useCameraPermissions } from 'expo-camera';
+import * as Haptics from 'expo-haptics';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFocusEffect } from '@react-navigation/native';
@@ -213,6 +214,7 @@ export default function ScannerScreen({ navigation }) {
             }
           }
           setLoading(false);
+          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
           navigation.navigate('ProductScore', { product: local });
           return;
         }
@@ -258,12 +260,14 @@ export default function ScannerScreen({ navigation }) {
 
       const product = buildProduct(barcode, data);
       setLoading(false);
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
       navigation.navigate('ProductScore', { product });
     } catch (err) {
       console.warn('[Scanner] scan error:', err);
       const local = PRODUCT_DB[barcode];
       if (local) {
         setLoading(false);
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
         navigation.navigate('ProductScore', { product: local });
         return;
       }

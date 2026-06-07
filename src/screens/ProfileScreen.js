@@ -266,9 +266,10 @@ export default function ProfileScreen({ navigation }) {
         />
         <ToggleRow
           label="New Flag Notifications"
-          sublabel="Alert when flagged ingredients are scanned"
-          value={prefs.notifyNewFlags}
-          onToggle={(v) => updatePref('notifyNewFlags', v)}
+          sublabel="Coming soon — push alerts for flagged ingredients"
+          value={false}
+          onToggle={() => Alert.alert('Coming Soon', 'Push notifications for ingredient alerts are coming in a future update.')}
+          disabled
           last
         />
       </View>
@@ -340,16 +341,17 @@ const shStyles = StyleSheet.create({
   sub: { fontSize: Font.sizes.sm, color: Colors.textSecondary, marginTop: 2 },
 });
 
-function ToggleRow({ label, sublabel, value, onToggle, last = false }) {
+function ToggleRow({ label, sublabel, value, onToggle, last = false, disabled = false }) {
   return (
-    <View style={[trStyles.row, !last && trStyles.rowBorder]}>
+    <View style={[trStyles.row, !last && trStyles.rowBorder, disabled && { opacity: 0.45 }]}>
       <View style={{ flex: 1, marginRight: 12 }}>
         <Text style={trStyles.label}>{label}</Text>
         {sublabel && <Text style={trStyles.sub}>{sublabel}</Text>}
       </View>
       <Switch
         value={value}
-        onValueChange={onToggle}
+        onValueChange={disabled ? undefined : onToggle}
+        disabled={disabled}
         trackColor={{ false: Colors.border, true: Colors.primary }}
         thumbColor={Colors.white}
       />
