@@ -19,10 +19,12 @@ import { Platform } from 'react-native';
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 
+// ⚠️  Replace with your PRODUCTION key from app.revenuecat.com before App Store submission.
+// Dashboard → Project → API Keys → iOS public SDK key (starts with "appl_")
 const RC_API_KEY = Platform.select({
-  ios:     'test_OGDUwBQEwAbrJPBbvDRYlEKDYfH',
-  android: 'REPLACE_WITH_ANDROID_RC_KEY',   // add when ready for Google Play
-  default: 'test_OGDUwBQEwAbrJPBbvDRYlEKDYfH',
+  ios:     'appl_REPLACE_WITH_PRODUCTION_IOS_KEY',
+  android: 'REPLACE_WITH_ANDROID_RC_KEY',
+  default: 'appl_REPLACE_WITH_PRODUCTION_IOS_KEY',
 });
 
 export const ENTITLEMENT_ID = 'Healthy Choices Pro';
@@ -35,18 +37,22 @@ export const ENTITLEMENT_ID = 'Healthy Choices Pro';
  * leave userId undefined to start anonymous (RC assigns its own ID).
  */
 export async function initRevenueCat(userId) {
-  if (__DEV__) {
-    Purchases.setLogLevel(LOG_LEVEL.DEBUG);
-  }
-
-  Purchases.configure({ apiKey: RC_API_KEY });
-
-  if (userId) {
-    try {
-      await Purchases.logIn(userId);
-    } catch (e) {
-      console.warn('[RC] logIn during init:', e.message);
+  try {
+    if (__DEV__) {
+      Purchases.setLogLevel(LOG_LEVEL.DEBUG);
     }
+
+    Purchases.configure({ apiKey: RC_API_KEY });
+
+    if (userId) {
+      try {
+        await Purchases.logIn(userId);
+      } catch (e) {
+        console.warn('[RC] logIn during init:', e.message);
+      }
+    }
+  } catch (e) {
+    console.warn('[RC] configure failed:', e.message);
   }
 }
 
