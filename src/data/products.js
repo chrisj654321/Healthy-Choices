@@ -3,7 +3,10 @@
  * MANUAL_PRODUCTS: hand-curated entries — always take priority over generated data.
  * products_generated.json: auto-ingested from OpenFoodFacts + USDA via ingest-products.js
  */
-import generatedRaw from './products_generated.json';
+// products_generated.json is excluded from git (211MB). Fall back to empty
+// if the file isn't present so the bundle doesn't crash.
+let generatedRaw = null;
+try { generatedRaw = require('./products_generated.json'); } catch (_) {}
 
 // Normalize generated products into the same shape as manual entries,
 // keyed by barcode string
