@@ -6,11 +6,6 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#1D9E75"
-    },
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.jamesadventure.healthychoices",
@@ -42,7 +37,9 @@
       "expo-secure-store",
       "expo-font",
       "expo-build-properties",
-      "./plugins/withFmtFix"
+      "./plugins/withFmtFix",
+      "expo-status-bar",
+      "expo-web-browser"
     ],
     "scheme": "healthychoices",
     "extra": {
