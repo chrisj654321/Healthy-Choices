@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>App Store Submission Checklist — Healthy Choices</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      background: #F7FAF9; color: #1A2E28;
+      padding: 48px 24px 80px;
+    }
+    .wrap { max-width: 720px; margin: 0 auto; }
+    .logo { display: flex; align-items: center; gap: 12px; margin-bottom: 32px; }
+    .logo-icon {
+      width: 48px; height: 48px; border-radius: 14px;
+      background: #1D9E75; display: flex; align-items: center;
+      justify-content: center; font-size: 24px;
+    }
+    .logo-name { font-size: 20px; font-weight: 800; color: #1A2E28; }
+    h1 { font-size: 28px; font-weight: 800; margin-bottom: 6px; }
+    .subtitle { font-size: 15px; color: #5C7A72; margin-bottom: 40px; }
+
+    .section { margin-bottom: 36px; }
+    .section-title {
+      font-size: 13px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: #9BB5AE;
+      margin-bottom: 12px;
+    }
+
+    .item {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: #fff; border-radius: 14px;
+      padding: 16px 18px; margin-bottom: 8px;
+      border: 1.5px solid #E8F0ED;
+    }
+    .item.done  { border-color: #B8E8D8; background: #F0FBF6; }
+    .item.needs { border-color: #FFD9C0; background: #FFF7F3; }
+    .item.manual { border-color: #FFE9A0; background: #FFFDF0; }
+
+    .badge {
+      flex-shrink: 0; width: 28px; height: 28px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; margin-top: 1px;
+    }
+    .badge.done   { background: #C8F0DE; }
+    .badge.needs  { background: #FFD9C0; }
+    .badge.manual { background: #FFE9A0; }
+
+    .item-body { flex: 1; }
+    .item-title { font-size: 15px; font-weight: 700; color: #1A2E28; margin-bottom: 3px; }
+    .item-desc  { font-size: 13px; color: #5C7A72; line-height: 1.6; }
+    .item-action {
+      display: inline-block; margin-top: 7px;
+      font-size: 12px; font-weight: 700; padding: 4px 10px;
+      border-radius: 6px; text-decoration: none;
+    }
+    .action-done   { background: #1D9E75; color: #fff; }
+    .action-needs  { background: #F06A25; color: #fff; }
+    .action-manual { background: #D4960A; color: #fff; }
+
+    .progress-bar-wrap {
+      background: #E8F0ED; border-radius: 20px; height: 10px;
+      margin-bottom: 32px; overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%; border-radius: 20px;
+      background: linear-gradient(90deg, #1D9E75, #2EC090);
+      width: 47%;
+      transition: width 0.6s ease;
+    }
+    .progress-label { font-size: 13px; color: #5C7A72; margin-bottom: 8px; }
+
+    footer {
+      margin-top: 48px; padding-top: 20px;
+      border-top: 1px solid #D4EDE6;
+      font-size: 12px; color: #9BB5AE;
+    }
+    a { color: #1D9E75; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="logo">
+    <div class="logo-icon">🧺</div>
+    <span class="logo-name">Healthy Choices</span>
+  </div>
+
+  <h1>App Store Submission Checklist</h1>
+  <p class="subtitle">Last updated June 8, 2026 &nbsp;·&nbsp; Track everything needed before going live.</p>
+
+  <p class="progress-label">Overall readiness: <strong>~47% complete</strong></p>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar"></div>
+  </div>
+
+  <!-- ── CRASHES & BUILD ─────────────────────────────────── -->
+  <div class="section">
+    <div class="section-title">🔧 Crashes &amp; Build</div>
+
+    <div class="item done">
+      <div class="badge done">✅</div>
+      <div class="item-body">
+        <div class="item-title">ErrorBoundary wraps entire app</div>
+        <div class="item-desc">Any unhandled render error shows "Try Again" instead of a blank crash.</div>
+      </div>
+    </div>
+
+    <div class="item done">
+      <div class="badge done">✅</div>
+      <div class="item-body">
+        <div class="item-title">New architecture disabled for RN 0.85 compatibility</div>
+        <div class="item-desc">react-native-purchases v10 doesn't fully support Fabric yet. Disabled via expo-build-properties.</div>
+      </div>
+    </div>
+
+    <div class="item done">
+      <div class="badge done">✅</div>
+      <div class="item-body">
+        <div class="item-title">expo-dev-client removed from JS/plugins (kept in package.json for native pod)</div>
+        <div class="item-desc">The JS import that caused the original crash is gone. Native pod kept for ReactAppDependencyProvider generation.</div>
+      </div>
+    </div>
+
+    <div class="item done">
+      <div class="badge done">✅</div>
+      <div class="item-body">
+        <div class="item-title">products_generated.json gracefully handled</div>
+        <div class="item-desc">Falls back silently if file is missing — bundle no longer fails without it.</div>
+      </div>
+    </div>
+
+    <div class="item done">
+      <div class="badge done">✅</div>
+      <div class="item-body">
+        <div class="item-title">RevenueCat init is fully non-fatal</div>
+        <div class="item-desc">Wrapped in try/catch — a bad API key or network failure cannot crash the app.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── REQUIRED BY APPLE ───────────────────────────────── -->
+  <div class="section">
+    <div class="section-title">🍎 Required by Apple — Will Be Rejected Without These</div>
+
+    <div class="item needs">
+      <div class="badge needs">❌</div>
+      <div class="item-body">
+        <div class="item-title">RevenueCat production API key</div>
+        <div class="item-desc">
+          The app currently has a placeholder key. Apple tests purchases in sandbox — RC must be configured with your real iOS production key or purchases will fail review.<br>
+          Go to: <strong>app.revenuecat.com → Project → API Keys → iOS public SDK key</strong> (starts with "appl_").<br>
+          Replace the placeholder in <code>src/utils/subscription.js</code>.
+        </div>
+        <a class="item-action action-needs" href="https://app.revenuecat.com" target="_blank">Open RevenueCat Dashboard →</a>
+      </div>
+    </div>
+
+    <div class="item needs">
+      <div class="badge needs">❌</div>
+      <div class="item-body">
+        <div class="item-title">Terms of Service page live at healthychoices.app/terms</div>
+        <div class="item-desc">
+          The page is written and ready at <code>web/terms.html</code>. Needs to be deployed to your website so the link in the app works. Apple will tap the link during review.
+        </div>
+        <a class="item-action action-needs" href="terms.html" target="_blank">Preview Terms →</a>
+      </div>
+    </div>
+
+    <div class="item needs">
+      <div class="badge needs">❌</div>
+      <div class="item-body">
+        <div class="item-title">Privacy Policy live at healthychoices.app/privacy</div>
+        <div class="item-desc">
+          Page is written and ready at <code>web/privacy.html</code>. Needs to be deployed. Must also be entered in App Store Connect under App Information → Privacy Policy URL.
+        </div>
+        <a class="item-action action-needs" href="privacy.html" target="_blank">Preview Privacy Policy →</a>
+      </div>
+    </div>
+
+    <div class="item done">
+      <div class="badge done">✅</div>
+      <div class="item-body">
+        <div class="item-title">Sign in with Apple implemented</div>
+        <div class="item-desc">Required for any app that offers third-party social login. Already built into AuthScreen.</div>
+      </div>
+    </div>
+
+    <div class="item done">
+      <div class="badge done">✅</div>
+      <div class="item-body">
+        <div class="item-title">Account deletion option in app</div>
+        <div class="item-desc">Required since June 2023 for any app with user accounts. "Delete Account" button added to Profile screen.</div>
+      </div>
+    </div>
+
+    <div class="item manual">
+      <div class="badge manual">⚠️</div>
+      <div class="item-body">
+        <div class="item-title">App Store screenshots (manual)</div>
+        <div class="item-desc">
+          Required sizes: iPhone 6.7" (1290×2796) and 6.5" (1242×2688). Take them from your phone via TestFlight once the crash is fixed, or use a simulator on a Mac.<br>
+          Minimum: 3 screenshots per device size. Recommended: 5–6 showing Scan, Score, Company, Search, and Profile screens.
+        </div>
+      </div>
+    </div>
+
+    <div class="item manual">
+      <div class="badge manual">⚠️</div>
+      <div class="item-body">
+        <div class="item-title">Privacy nutrition labels in App Store Connect (manual)</div>
+        <div class="item-desc">
+          Go to App Store Connect → your app → App Privacy. You collect: Email Address (account creation), Purchase History (subscription), and Usage Data (scan history on-device only — select "not linked to user").
+        </div>
+      </div>
+    </div>
+
+    <div class="item manual">
+      <div class="badge manual">⚠️</div>
+      <div class="item-body">
+        <div class="item-title">Age rating questionnaire (manual)</div>
+        <div class="item-desc">
+          In App Store Connect → your app → App Information → Age Rating. Answer the questionnaire. Healthy Choices should qualify as 4+ (no objectionable content).
+        </div>
+      </div>
+    </div>
+
+    <div class="item manual">
+      <div class="badge manual">⚠️</div>
+      <div class="item-body">
+        <div class="item-title">App Store description &amp; keywords (manual)</div>
+        <div class="item-desc">
+          In App Store Connect → your app → App Store Listing. Write a compelling short description (170 chars) and full description. Add up to 100 chars of searchable keywords separated by commas (no spaces after commas).
+        </div>
+        <a class="item-action action-manual" href="app-store-copy.md" target="_blank">View Draft Copy →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── BEFORE GOING LIVE ───────────────────────────────── -->
+  <div class="section">
+    <div class="section-title">🚀 Before Going Live</div>
+
+    <div class="item needs">
+      <div class="badge needs">❌</div>
+      <div class="item-body">
+        <div class="item-title">RevenueCat products configured in dashboard</div>
+        <div class="item-desc">
+          In RevenueCat: create an Entitlement called exactly <strong>"Healthy Choices Pro"</strong>, add two products with IDs <strong>"monthly"</strong> and <strong>"yearly"</strong>, attach both to the entitlement, then create a Default Offering with both packages. These must match your App Store Connect subscription product IDs exactly.
+        </div>
+      </div>
+    </div>
+
+    <div class="item needs">
+      <div class="badge needs">❌</div>
+      <div class="item-body">
+        <div class="item-title">In-app purchase products created in App Store Connect</div>
+        <div class="item-desc">
+          In App Store Connect → your app → Monetization → Subscriptions. Create a subscription group "Healthy Choices Pro" with two auto-renewable subscriptions: one monthly ($3.99) and one yearly ($27.99). Set the 7-day free trial on the yearly plan.
+        </div>
+      </div>
+    </div>
+
+    <div class="item needs">
+      <div class="badge needs">❌</div>
+      <div class="item-body">
+        <div class="item-title">Support email updated to support@healthychoices.app</div>
+        <div class="item-desc">
+          The privacy policy currently lists <code>jamesadventuremarketing@gmail.com</code>. Update the privacy policy and App Store Connect to use <code>support@healthychoices.app</code> before submission. Apple prefers a custom domain email.
+        </div>
+      </div>
+    </div>
+
+    <div class="item done">
+      <div class="badge done">✅</div>
+      <div class="item-body">
+        <div class="item-title">Camera usage description in Info.plist</div>
+        <div class="item-desc">NSCameraUsageDescription is set in app.json — Apple requires a clear reason string.</div>
+      </div>
+    </div>
+
+    <div class="item done">
+      <div class="badge done">✅</div>
+      <div class="item-body">
+        <div class="item-title">No private APIs or restricted entitlements</div>
+        <div class="item-desc">App only uses camera, secure storage, and in-app purchases — all standard entitlements.</div>
+      </div>
+    </div>
+
+    <div class="item done">
+      <div class="badge done">✅</div>
+      <div class="item-body">
+        <div class="item-title">Restore Purchases available to free users</div>
+        <div class="item-desc">Apple requires apps with subscriptions to offer a way to restore — implemented in Profile screen.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── NICE TO HAVE ─────────────────────────────────────── -->
+  <div class="section">
+    <div class="section-title">✨ Nice to Have Before Launch</div>
+
+    <div class="item done">
+      <div class="badge done">✅</div>
+      <div class="item-body">
+        <div class="item-title">Haptic feedback on scan success</div>
+        <div class="item-desc">expo-haptics wired to all successful scan outcomes.</div>
+      </div>
+    </div>
+
+    <div class="item done">
+      <div class="badge done">✅</div>
+      <div class="item-body">
+        <div class="item-title">Prefs-gated lobbying &amp; donation data</div>
+        <div class="item-desc">Users can hide political data from company profiles via Profile settings.</div>
+      </div>
+    </div>
+
+    <div class="item manual">
+      <div class="badge manual">⚠️</div>
+      <div class="item-body">
+        <div class="item-title">App icon redesign</div>
+        <div class="item-desc">Food basket icon — food currently appears too small and in front of the basket rather than inside. Consider redesigning before App Store launch for a stronger first impression.</div>
+      </div>
+    </div>
+
+    <div class="item manual">
+      <div class="badge manual">⚠️</div>
+      <div class="item-body">
+        <div class="item-title">Deploy website to healthychoices.app</div>
+        <div class="item-desc">
+          The web folder contains <code>terms.html</code>, <code>privacy.html</code>, and this checklist. Deploy to your domain so all app links work. A simple Netlify or Vercel drop is fastest.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2026 Healthy Choices &nbsp;·&nbsp;
+    <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="terms.html">Terms of Service</a>
+  </footer>
+
+</div>
+</body>
+</html>

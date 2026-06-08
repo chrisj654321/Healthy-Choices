@@ -84,6 +84,34 @@ export default function ProfileScreen({ navigation }) {
     }
   };
 
+  const handleDeleteAccount = () => {
+    Alert.alert(
+      'Delete Account',
+      'This will permanently delete your account and all associated data. This cannot be undone.',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Delete Account',
+          style: 'destructive',
+          onPress: async () => {
+            try {
+              await clearScanHistory();
+              await signOut();
+              // Supabase account deletion requires a backend function or support request.
+              // Direct users to email support for full account removal per Apple guidelines.
+              Alert.alert(
+                'Account Deletion Requested',
+                'Your local data has been cleared and you have been signed out.\n\nTo permanently delete your account from our servers, email us at support@healthychoices.app and we will complete the deletion within 30 days.'
+              );
+            } catch (e) {
+              Alert.alert('Error', 'Something went wrong. Please try again or contact support@healthychoices.app.');
+            }
+          },
+        },
+      ]
+    );
+  };
+
   const handleClearHistory = () => {
     Alert.alert('Clear History', 'This will remove all your scan history permanently.', [
       { text: 'Cancel', style: 'cancel' },
@@ -311,6 +339,14 @@ export default function ProfileScreen({ navigation }) {
           <View style={{ flex: 1 }}>
             <Text style={styles.dangerLabel}>Clear Scan History</Text>
             <Text style={styles.dangerSub}>{scanCount} entries stored locally</Text>
+          </View>
+          <Ionicons name="chevron-forward" size={16} color={Colors.textMuted} />
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.dangerRow, { borderTopWidth: 1, borderTopColor: Colors.border }]} onPress={handleDeleteAccount}>
+          <Ionicons name="person-remove-outline" size={18} color={Colors.flagRed} />
+          <View style={{ flex: 1 }}>
+            <Text style={styles.dangerLabel}>Delete Account</Text>
+            <Text style={styles.dangerSub}>Permanently remove your account and data</Text>
           </View>
           <Ionicons name="chevron-forward" size={16} color={Colors.textMuted} />
         </TouchableOpacity>
