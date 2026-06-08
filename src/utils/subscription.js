@@ -19,12 +19,11 @@ import { Platform } from 'react-native';
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 
-// ⚠️  Replace with your PRODUCTION key from app.revenuecat.com before App Store submission.
-// Dashboard → Project → API Keys → iOS public SDK key (starts with "appl_")
+// Production iOS SDK key from app.revenuecat.com → Project → API Keys
 const RC_API_KEY = Platform.select({
-  ios:     'appl_REPLACE_WITH_PRODUCTION_IOS_KEY',
-  android: 'REPLACE_WITH_ANDROID_RC_KEY',
-  default: 'appl_REPLACE_WITH_PRODUCTION_IOS_KEY',
+  ios:     'appl_SYiRPjeztFkVwTveOffZPjSXuRl',
+  android: 'appl_SYiRPjeztFkVwTveOffZPjSXuRl',
+  default: 'appl_SYiRPjeztFkVwTveOffZPjSXuRl',
 });
 
 export const ENTITLEMENT_ID = 'Healthy Choices Pro';
