@@ -156,6 +156,7 @@ export default function ProductScoreScreen({ route, navigation }) {
   const [prefs, setPrefs] = useState({ showLobbying: true, showDonations: true });
 
   useEffect(() => {
+    if (!product) return;
     const r = scoreProduct(product);
     setResult(r);
     // Only add to history when navigating from the scanner, not when
@@ -387,8 +388,8 @@ export default function ProductScoreScreen({ route, navigation }) {
                 <Text style={s.nutTitle}>Nutrition Facts</Text>
                 <Text style={s.nutSub}>
                   {product.servingSize
-                    ? `Per serving: ${product.servingSize} · ${product.calories} kcal`
-                    : `Per 100g · ${product.calories} kcal`}
+                    ? `Per serving: ${product.servingSize} · ${product.calories ?? '—'} kcal`
+                    : `Per 100g · ${product.calories ?? '—'} kcal`}
                 </Text>
               </View>
               <StatBar label="Sugar" value={nutrition.sugars ?? 0} max={50} unit="g" warn={(nutrition.sugars ?? 0) > 20} />

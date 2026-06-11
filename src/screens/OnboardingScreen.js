@@ -24,7 +24,7 @@ const BAD_PRODUCTS = [
   { name: 'Lunchables',       brand: 'Kraft Heinz',   tag: 'Nitrites + sodium',  score: 24, color: '#E05252', emoji: '🧃' },
   { name: 'Oreos',            brand: 'Mondelēz',      tag: 'HFCS + palm oil',    score: 22, color: '#E05252', emoji: '🍪' },
   { name: 'Cheetos',          brand: 'PepsiCo',       tag: 'Yellow 6 + MSG',     score: 24, color: '#E05252', emoji: '🧀' },
-  { name: 'Mountain Dew',     brand: 'PepsiCo',       tag: 'Yellow 5 + BVO',     score: 21, color: '#D93B3B', emoji: '💚' },
+  { name: 'Mountain Dew',     brand: 'PepsiCo',       tag: 'Yellow 5 + 46g sugar', score: 21, color: '#D93B3B', emoji: '💚' },
   { name: 'Kraft Mac & Cheese', brand: 'Kraft Heinz', tag: 'Yellow 5 & 6',       score: 26, color: '#E05252', emoji: '🧀' },
   { name: 'Hot Pockets',      brand: 'Nestlé',        tag: 'TBHQ + nitrites',    score: 23, color: '#D93B3B', emoji: '🌮' },
   { name: 'Eggo Waffles',     brand: 'Kellanova',     tag: 'TBHQ + dyes',        score: 27, color: '#E05252', emoji: '🧇' },

@@ -170,7 +170,7 @@ export default function ProductSearchScreen({ navigation }) {
             <Ionicons name="star" size={16} color={Colors.white} style={{ marginRight: 6 }} />
             <Text style={styles.upgradeBtnText}>Upgrade to Pro</Text>
           </TouchableOpacity>
-          <Text style={styles.gateNote}>7-day free trial • Cancel anytime</Text>
+          <Text style={styles.gateNote}>Cancel anytime</Text>
         </View>
       </View>
     );

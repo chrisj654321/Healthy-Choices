@@ -28,6 +28,11 @@ export function AuthProvider({ children }) {
       if (session?.user?.id) {
         identifyRCUser(session.user.id);
       }
+    }).catch((e) => {
+      // A corrupted/unreadable stored session must not leave the app
+      // stuck on the boot spinner — fall through to the signed-out state.
+      console.warn('[Auth] getSession failed:', e.message);
+      setAuthLoading(false);
     });
 
     // Listen for auth state changes (sign-in, sign-out, token refresh)

@@ -13,3 +13,5 @@ web-build/
 .env.local
 .claude/
 src/data/products_generated.json
+scripts/ingestion_log.txt
+supabase/.temp/

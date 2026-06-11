@@ -31,22 +31,23 @@
       [
         "expo-camera",
         {
-          "cameraPermission": "Healthy Choices uses your camera to scan product barcodes."
+          "cameraPermission": "Healthy Choices uses your camera to scan product barcodes.",
+          "microphonePermission": false
         }
       ],
       "expo-secure-store",
       "expo-font",
-      ["expo-build-properties", {
-        "ios": {
-          "newArchEnabled": false
-        },
-        "android": {
-          "newArchEnabled": false
-        }
-      }],
       "./plugins/withFmtFix",
       "expo-status-bar",
-      "expo-web-browser"
+      "expo-web-browser",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash.png",
+          "resizeMode": "cover",
+          "backgroundColor": "#1D9E75"
+        }
+      ]
     ],
     "scheme": "healthychoices",
     "extra": {

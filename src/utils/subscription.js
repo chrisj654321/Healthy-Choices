@@ -19,11 +19,11 @@ import { Platform } from 'react-native';
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 
-// Production iOS SDK key from app.revenuecat.com → Project → API Keys
+// Production iOS SDK key from app.revenuecat.com → Project → API Keys.
+// Android needs its own goog_ key before any Android release.
 const RC_API_KEY = Platform.select({
   ios:     'appl_SYiRPjeztFkVwTveOffZPjSXuRl',
-  android: 'appl_SYiRPjeztFkVwTveOffZPjSXuRl',
-  default: 'appl_SYiRPjeztFkVwTveOffZPjSXuRl',
+  default: null,
 });
 
 export const ENTITLEMENT_ID = 'Healthy Choices Pro';
@@ -37,6 +37,11 @@ export const ENTITLEMENT_ID = 'Healthy Choices Pro';
  */
 export async function initRevenueCat(userId) {
   try {
+    if (!RC_API_KEY) {
+      console.warn('[RC] no SDK key for this platform — skipping configure');
+      return;
+    }
+
     if (__DEV__) {
       Purchases.setLogLevel(LOG_LEVEL.DEBUG);
     }
@@ -214,12 +219,25 @@ export function useProStatus() {
 
     // RC fires this listener whenever subscription state changes:
     // purchase, renewal, cancellation, grace period, etc.
-    const remove = Purchases.addCustomerInfoUpdateListener((info) => {
+    // addCustomerInfoUpdateListener returns void in RC v10 — removal is
+    // by passing the same listener to removeCustomerInfoUpdateListener.
+    const listener = (info) => {
       setIsPro(info.entitlements.active[ENTITLEMENT_ID] !== undefined);
       setLoading(false);
-    });
+    };
+    try {
+      Purchases.addCustomerInfoUpdateListener(listener);
+    } catch (e) {
+      console.warn('[RC] addCustomerInfoUpdateListener:', e.message);
+    }
 
-    return () => remove();
+    return () => {
+      try {
+        Purchases.removeCustomerInfoUpdateListener(listener);
+      } catch (e) {
+        console.warn('[RC] removeCustomerInfoUpdateListener:', e.message);
+      }
+    };
   }, [refresh]);
 
   return { isPro, loading, refresh };

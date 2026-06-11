@@ -1,0 +1,29 @@
+# EAS build archive exclusions.
+# NOTE: when .easignore exists it REPLACES .gitignore for EAS uploads,
+# so this must be a superset of .gitignore.
+node_modules/
+.expo/
+dist/
+web-build/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+.env
+.env.local
+.claude/
+
+# The 221 MB generated catalog must never reach a build machine —
+# bundling it would OOM Metro. The app falls back to the OpenFoodFacts API.
+src/data/products_generated.json
+
+# Internal docs / data-pipeline artifacts not needed to build the app
+scripts/ingestion_log.txt
+scripts/files.zip
+scripts/.ingestion_state.json
+business-financials.html
+competitor-pricing.html
+web/
+supabase/

@@ -6,7 +6,7 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import RevenueCatUI from 'react-native-purchases-ui';
+import * as WebBrowser from 'expo-web-browser';
 import { Colors } from '../constants/colors';
 import {
   getCurrentOffering,
@@ -30,9 +30,21 @@ const FEATURES = [
 // ─── Fallback prices (shown if RC offerings haven't loaded yet) ───────────────
 
 const FALLBACK_PRICES = {
-  yearly:  { price: '$27.99', period: '/year',  monthly: '$2.33/mo — save 71%' },
+  yearly:  { price: '$27.99', period: '/year',  monthly: '$2.33/mo' },
   monthly: { price: '$3.99',  period: '/month', monthly: null },
 };
+
+// Build a "3 Days Free" style label from a confirmed FREE intro offer.
+// Returns null unless App Store Connect actually has a $0 intro price,
+// so trial copy can never advertise a trial that doesn't exist.
+function trialLabel(introPrice) {
+  if (!introPrice || introPrice.price !== 0) return null;
+  const n = introPrice.periodNumberOfUnits;
+  const unit = (introPrice.periodUnit || '').toLowerCase();
+  if (!n || !unit) return null;
+  const unitLabel = unit.charAt(0).toUpperCase() + unit.slice(1) + (n > 1 ? 's' : '');
+  return `${n} ${unitLabel} Free`;
+}
 
 // ─── Headline copy per triggering feature ─────────────────────────────────────
 
@@ -87,13 +99,22 @@ export default function PaywallScreen({ route, navigation }) {
     const { yearly: yearlyPkg, monthly: monthlyPkg } = extractPackages(offering);
     setRcPackages({ yearly: yearlyPkg, monthly: monthlyPkg });
 
+    // Savings claim is computed from the real store prices — never hardcoded
+    let saveSuffix = '';
+    if (yearlyPkg && monthlyPkg && monthlyPkg.product.price > 0) {
+      const pct = Math.round(
+        (1 - yearlyPkg.product.price / 12 / monthlyPkg.product.price) * 100
+      );
+      if (pct > 0) saveSuffix = ` — save ${pct}%`;
+    }
+
     // Use real localized prices from the App Store when available
     setPrices({
       yearly: {
         price:   yearlyPkg?.product.priceString  ?? FALLBACK_PRICES.yearly.price,
         period:  '/year',
         monthly: yearlyPkg
-          ? `${_monthlyEquiv(yearlyPkg.product.price, yearlyPkg.product.currencyCode)} — save 71%`
+          ? `${_monthlyEquiv(yearlyPkg.product.price, yearlyPkg.product.currencyCode)}${saveSuffix}`
           : FALLBACK_PRICES.yearly.monthly,
       },
       monthly: {
@@ -151,21 +172,13 @@ export default function PaywallScreen({ route, navigation }) {
     }
   };
 
-  // ── Present RC's built-in paywall (alternative view) ──────────────────────
-  const handleShowRCPaywall = async () => {
-    try {
-      await RevenueCatUI.presentPaywall();
-    } catch (e) {
-      if (!e.userCancelled) console.warn('[RC] presentPaywall error:', e);
-    }
-  };
-
   const handleSkip = () => navigation.goBack();
 
   const plan = prices[selectedPlan];
-  // Only show trial messaging if RevenueCat confirms an intro price exists
-  const planHasTrial = selectedPlan === 'yearly' &&
-    !!rcPackages.yearly?.product?.introPrice;
+  // Trial copy only appears when App Store Connect confirms a free intro offer
+  const yearlyTrial = trialLabel(rcPackages.yearly?.product?.introPrice);
+  const monthlyTrial = trialLabel(rcPackages.monthly?.product?.introPrice);
+  const planTrial = selectedPlan === 'yearly' ? yearlyTrial : monthlyTrial;
 
   return (
     <View style={[s.container, { paddingTop: insets.top }]}>
@@ -214,12 +227,6 @@ export default function PaywallScreen({ route, navigation }) {
             ))}
           </View>
 
-          {/* ── Launch promo banner ── */}
-          <View style={s.launchBanner}>
-            <Ionicons name="flash" size={14} color="#FF9500" />
-            <Text style={s.launchBannerText}>Launch pricing — save 50% while it lasts</Text>
-          </View>
-
           {/* ── Plan selector ── */}
           <View style={s.plans}>
 
@@ -245,9 +252,9 @@ export default function PaywallScreen({ route, navigation }) {
                         <Text style={[s.planLabel, selected && s.planLabelSelected]}>
                           {planId.toUpperCase()}
                         </Text>
-                        {isYearly && (
+                        {isYearly && yearlyTrial && (
                           <View style={s.trialPill}>
-                            <Text style={s.trialText}>3 Days Free</Text>
+                            <Text style={s.trialText}>{yearlyTrial}</Text>
                           </View>
                         )}
                       </View>
@@ -287,7 +294,7 @@ export default function PaywallScreen({ route, navigation }) {
             ) : (
               <>
                 <Text style={s.ctaText}>
-                  {planHasTrial ? 'Start 3 Days Free' : 'Unlock Pro Now'}
+                  {planTrial ? `Start ${planTrial}` : 'Unlock Pro Now'}
                 </Text>
                 <Ionicons name="arrow-forward" size={17} color="#fff" />
               </>
@@ -296,8 +303,8 @@ export default function PaywallScreen({ route, navigation }) {
 
           {/* Fine print */}
           <Text style={s.finePrint}>
-            {planHasTrial
-              ? `3 days free then ${plan.price}${plan.period}`
+            {planTrial
+              ? `${planTrial}, then ${plan.price}${plan.period}`
               : `${plan.price}${plan.period} — cancel anytime`}
           </Text>
 
@@ -317,6 +324,19 @@ export default function PaywallScreen({ route, navigation }) {
             Subscriptions auto-renew unless cancelled at least 24 hours before the end of the
             current period. Manage or cancel in your device's App Store settings.
           </Text>
+          <View style={s.legalLinks}>
+            <TouchableOpacity
+              onPress={() => WebBrowser.openBrowserAsync('https://healthychoices.app/terms')}
+            >
+              <Text style={s.legalLink}>Terms of Use</Text>
+            </TouchableOpacity>
+            <Text style={s.footerSep}>·</Text>
+            <TouchableOpacity
+              onPress={() => WebBrowser.openBrowserAsync('https://healthychoices.app/privacy')}
+            >
+              <Text style={s.legalLink}>Privacy Policy</Text>
+            </TouchableOpacity>
+          </View>
 
         </Animated.View>
       </ScrollView>
@@ -370,16 +390,6 @@ const s = StyleSheet.create({
   },
   featureIcon: { width: 34, height: 34, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
   featureText: { flex: 1, fontSize: 14, fontWeight: '500', color: Colors.textPrimary },
-
-  // Launch banner
-  launchBanner: {
-    flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6,
-    backgroundColor: '#FFF4E0',
-    borderRadius: 10, paddingHorizontal: 14, paddingVertical: 8,
-    marginBottom: 14,
-    borderWidth: 1, borderColor: '#FFD580',
-  },
-  launchBannerText: { fontSize: 12, fontWeight: '700', color: '#9A5F00' },
 
   // Plans
   plans:            { gap: 10, marginBottom: 20 },
@@ -436,4 +446,6 @@ const s = StyleSheet.create({
   freeLink:     { fontSize: 13, color: Colors.textSecondary, fontWeight: '600' },
   restoreLink:  { fontSize: 13, color: Colors.textMuted, fontWeight: '500' },
   legal:        { fontSize: 12, color: Colors.textMuted, textAlign: 'center', lineHeight: 17 },
+  legalLinks:   { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, marginTop: 10 },
+  legalLink:    { fontSize: 12, color: Colors.textSecondary, fontWeight: '600', textDecorationLine: 'underline' },
 });

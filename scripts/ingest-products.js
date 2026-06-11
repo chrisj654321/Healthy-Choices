@@ -38,7 +38,7 @@ const STATE_FILE = path.join(SCRIPT_DIR, '.ingestion_state.json');
 const args = parseArgs(process.argv.slice(2));
 const BATCH_SIZE = Math.max(1, parseInt(args.batch || args['batch-size'] || args.batchSize || '25', 10));
 const SOURCE = String(args.source || 'both').toLowerCase();
-const USDA_API_KEY = process.env.USDA_API_KEY || 'ceYGtJpUYpZjZpezqnVqaeiyix1ZgeRrFsPOw6b4';
+const USDA_API_KEY = process.env.USDA_API_KEY || 'DEMO_KEY';
 
 // NOTE: When running via Cowork scheduled tasks, api.nal.usda.gov must be added to the
 // egress allowlist in Settings → Capabilities. Without it, USDA calls will fail with

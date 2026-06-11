@@ -18,6 +18,7 @@ import { getUserPrefs, saveUserPrefs, clearScanHistory, getScanHistory } from '.
 import { STORES } from '../data/stores';
 import { DIET_PREFERENCE_OPTIONS, PRIMARY_GOAL_OPTIONS } from '../data/preferences';
 import { useAuth } from '../context/AuthContext';
+import { supabase } from '../utils/supabase';
 import { useProStatus, restorePurchases } from '../utils/subscription';
 import RevenueCatUI from 'react-native-purchases-ui';
 
@@ -95,16 +96,26 @@ export default function ProfileScreen({ navigation }) {
           style: 'destructive',
           onPress: async () => {
             try {
+              // Server-side deletion first — the edge function removes the
+              // Supabase auth user with the service-role key.
+              const { error } = await supabase.functions.invoke('delete-account');
+              if (error) throw error;
+
               await clearScanHistory();
-              await signOut();
-              // Supabase account deletion requires a backend function or support request.
-              // Direct users to email support for full account removal per Apple guidelines.
+              try {
+                await signOut();
+              } catch {
+                // Session is already invalid after deletion — ignore.
+              }
               Alert.alert(
-                'Account Deletion Requested',
-                'Your local data has been cleared and you have been signed out.\n\nTo permanently delete your account from our servers, email us at support@healthychoices.app and we will complete the deletion within 30 days.'
+                'Account Deleted',
+                'Your account and all associated data have been permanently deleted.'
               );
             } catch (e) {
-              Alert.alert('Error', 'Something went wrong. Please try again or contact support@healthychoices.app.');
+              Alert.alert(
+                'Deletion Failed',
+                'We could not delete your account right now. Please check your connection and try again, or contact support@healthychoices.app.'
+              );
             }
           },
         },
@@ -291,13 +302,6 @@ export default function ProfileScreen({ navigation }) {
           sublabel="Display donation split on company profiles"
           value={prefs.showDonations}
           onToggle={(v) => updatePref('showDonations', v)}
-        />
-        <ToggleRow
-          label="New Flag Notifications"
-          sublabel="Coming soon — push alerts for flagged ingredients"
-          value={false}
-          onToggle={() => Alert.alert('Coming Soon', 'Push notifications for ingredient alerts are coming in a future update.')}
-          disabled
           last
         />
       </View>
@@ -356,7 +360,8 @@ export default function ProfileScreen({ navigation }) {
       <View style={styles.about}>
         <Text style={styles.aboutText}>Healthy Choices v1.0</Text>
         <Text style={styles.aboutSub}>
-          Ingredient scoring, corporate transparency, and dietary personalization — all offline & private.
+          Ingredient scoring, corporate transparency, and dietary personalization.
+          Your scan history and preferences stay on your device.
         </Text>
       </View>
     </ScrollView>

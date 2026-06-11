@@ -133,25 +133,24 @@
     </div>
 
     <div class="card blue">
-      <h3>✅ Great news: your app barely needs one right now</h3>
+      <h3>✅ Great news: everything you need is on free tiers</h3>
       <p>
-        Your current architecture is almost entirely <strong>on-device</strong>:<br><br>
-        • The product database lives <em>inside the app</em> (it's a JS file that ships with the build)<br>
-        • Scan history is stored locally on the user's phone (AsyncStorage)<br>
-        • Subscription state is stored locally<br>
-        • Scoring logic runs entirely on the device<br><br>
-        This means you could launch, get your first 500+ paying users, and spend <strong>near $0 on servers</strong>.
-        The only thing that hits an external server right now is the USDA API lookup — and that's free.
+        Your architecture keeps server costs at <strong>$0 for launch</strong>:<br><br>
+        • Scan history, preferences, and scoring logic all live <strong>on the user's device</strong><br>
+        • Product lookups hit the <strong>Open Food Facts API</strong> — free and unlimited for reasonable use<br>
+        • <strong>Supabase</strong> handles accounts/login and the account-deletion function — free tier covers ~10K+ users<br>
+        • <strong>RevenueCat</strong> manages subscriptions — free until $2,500/mo revenue<br><br>
+        This means you can launch, get your first 500+ paying users, and spend <strong>near $0 on infrastructure</strong>.
       </p>
     </div>
 
     <div class="card yellow">
-      <h3>⚠️ When you WILL need a server (future features)</h3>
+      <h3>⚠️ When server costs WILL appear (future features)</h3>
       <p>
-        • <strong>User accounts / login</strong> — so history syncs across phone replacements<br>
-        • <strong>Cloud scan history backup</strong> — so users don't lose data<br>
-        • <strong>Real-time product database updates</strong> — adding new products without a full app update<br>
-        • <strong>Push notifications</strong> — alerting users to ingredient recalls, etc.<br><br>
+        • <strong>Cloud scan history backup</strong> — syncing history across devices (today it's local-only)<br>
+        • <strong>Real-time product database updates</strong> — your own catalog instead of Open Food Facts<br>
+        • <strong>Push notifications</strong> — alerting users to ingredient recalls, etc.<br>
+        • <strong>Supabase past free tier</strong> — $25/mo Pro plan, only at significant scale<br><br>
         None of these are needed for launch. Build them when you have revenue to fund them.
       </p>
     </div>
@@ -480,105 +479,67 @@
     <h2>🚀 Before You Can Submit to the App Store</h2>
 
     <div class="progress-summary">
-      <div class="prog-stat prog-done">
-        <div class="prog-num">3</div>
-        <div class="prog-label">✅ Done</div>
-      </div>
-      <div class="prog-stat prog-blocked">
-        <div class="prog-num">1</div>
-        <div class="prog-label">🚧 Blocked</div>
-      </div>
-      <div class="prog-stat prog-skipped">
-        <div class="prog-num">1</div>
-        <div class="prog-label">⏸️ Skipped</div>
-      </div>
       <div class="prog-stat prog-pending">
-        <div class="prog-num">1</div>
+        <div class="prog-num">5</div>
         <div class="prog-label">⏳ Pending</div>
       </div>
     </div>
 
-    <!-- ✅ DONE: RevenueCat -->
-    <div class="todo-item todo-done">
+    <!-- ⏳ PENDING: Deploy website -->
+    <div class="todo-item todo-critical">
       <div class="todo-left">
-        <span class="todo-num todo-num-done">✓</span>
+        <span class="todo-num">1</span>
         <div>
-          <div class="todo-title todo-title-done">Integrate RevenueCat (real in-app purchases)</div>
-          <div class="todo-desc">SDK installed, <code>subscription.js</code> rewritten with real RC calls, API key configured, user identity linked to Supabase auth. Purchases and entitlement checks are live.</div>
+          <div class="todo-title">Deploy healthychoices.app with corrected /privacy and /terms</div>
+          <div class="todo-desc">Privacy policy and terms have been updated to match actual app behavior: Open Food Facts API (not USDA), RevenueCat receives user ID linkage, Supabase account deletion, introductory pricing ($3.99/mo trial base $7.99/mo, $24.99/yr trial base $49.99/yr). Deploy <code>web/</code> to healthychoices.app and verify <code>support@healthychoices.app</code> mail works.</div>
         </div>
       </div>
-      <span class="todo-badge todo-badge-done">DONE</span>
+      <span class="todo-badge todo-badge-critical">PENDING — REQUIRED</span>
     </div>
 
-    <!-- ✅ DONE: Supabase credentials -->
-    <div class="todo-item todo-done">
+    <!-- ⏳ PENDING: RevenueCat ↔ App Store Connect -->
+    <div class="todo-item todo-critical">
       <div class="todo-left">
-        <span class="todo-num todo-num-done">✓</span>
+        <span class="todo-num">2</span>
         <div>
-          <div class="todo-title todo-title-done">Fill in Supabase credentials</div>
-          <div class="todo-desc">Project URL (<code>https://huvxeaegygaeotomdqpc.supabase.co</code>) and anon key are both set in <code>src/utils/supabase.js</code>. Auth is wired up.</div>
+          <div class="todo-title">Connect RevenueCat to App Store Connect and configure pricing</div>
+          <div class="todo-desc">App Store Connect: create auto-renewable subscriptions <code>monthly</code> ($7.99 base, $3.99 intro) and <code>yearly</code> ($49.99 base, $24.99 intro). RevenueCat: link the App Store app and sync offerings. Once done, the paywall automatically reads prices and trial duration from ASC.</div>
         </div>
       </div>
-      <span class="todo-badge todo-badge-done">DONE</span>
+      <span class="todo-badge todo-badge-critical">PENDING — REQUIRED</span>
     </div>
 
-    <!-- 🚧 BLOCKED: Apple Developer Account -->
-    <div class="todo-item todo-blocked">
+    <!-- ⏳ PENDING: App Privacy labels -->
+    <div class="todo-item todo-high">
       <div class="todo-left">
-        <span class="todo-num todo-num-blocked">!</span>
+        <span class="todo-num">3</span>
         <div>
-          <div class="todo-title">Apple Developer Account — enrollment blocked</div>
-          <div class="todo-desc">Enrollment attempted, phone call to Apple Support completed — still not resolved. This is the <strong>single remaining hard blocker</strong> for App Store submission. Everything else (RevenueCat, Supabase, code) is ready.</div>
-          <div class="todo-steps">
-            <strong>Next escalation steps to try (in order):</strong><br><br>
-            <strong>1. Online appeal form</strong> — <code>developer.apple.com/contact</code> → Membership and Enrollment → submit a written appeal. Include your Apple ID email and a brief explanation. Written appeals sometimes succeed when phone calls don't because a different team reviews them.<br><br>
-            <strong>2. Try enrolling as an Organization</strong> — If you have an LLC, sole proprietorship, or any registered business entity, enroll under that instead of as an individual. Organization enrollments use a different review path and a D-U-N-S number (free, takes 1–5 business days to get one at <code>dnb.com/duns-number/get-a-duns-number.html</code>).<br><br>
-            <strong>3. Use a different Apple ID</strong> — Create a brand new Apple ID (new email), enable 2FA immediately, wait 24–48 hours before attempting enrollment. Make sure the name exactly matches your credit card.<br><br>
-            <strong>4. Different payment method</strong> — Try a different credit/debit card. The name on the card must match the Apple ID account name exactly.<br><br>
-            <strong>5. @AppleSupport on X (Twitter)</strong> — DM them. Sounds odd but the social media team has direct escalation paths and often resolves cases that phone support can't.
-          </div>
+          <div class="todo-title">Fill in App Privacy labels</div>
+          <div class="todo-desc">Declare <strong>Email Address</strong>, <strong>User ID</strong>, and <strong>Purchase History</strong> as collected and <em>linked to the user</em> (app functionality, no tracking). Do not mark anonymous.</div>
         </div>
       </div>
-      <span class="todo-badge todo-badge-blocked">BLOCKED</span>
+      <span class="todo-badge todo-badge-high">PENDING</span>
     </div>
 
-    <!-- ⏸️ SKIPPED: Google OAuth -->
-    <div class="todo-item todo-skipped">
+    <!-- ⏳ PENDING: TestFlight release test -->
+    <div class="todo-item todo-high">
       <div class="todo-left">
-        <span class="todo-num todo-num-skipped">–</span>
+        <span class="todo-num">4</span>
         <div>
-          <div class="todo-title todo-title-skipped">Configure Google OAuth in Supabase</div>
-          <div class="todo-desc">Intentionally skipped for launch. The Google login button is still in the UI — users who tap it will get an error. Consider hiding the button until this is configured, or leaving it and adding it in a v1.1 update.</div>
-          <div class="todo-steps">
-            <strong>When ready:</strong> <code>console.cloud.google.com</code> → APIs &amp; Services → Credentials → OAuth 2.0 Client ID → iOS → Bundle ID: <code>com.jamesadventure.healthychoices</code> → paste Client ID into Supabase Auth → Providers → Google.
-          </div>
+          <div class="todo-title">Build to TestFlight and verify the release build</div>
+          <div class="todo-desc">Run <code>eas build --platform ios --profile production</code> → install on device/simulator from TestFlight → test: app launches (launch crash fixed), scan product and tap back (no crash), sign out, attempt sandbox purchase and restore, delete account via Profile screen.</div>
         </div>
       </div>
-      <span class="todo-badge todo-badge-skipped">SKIPPED FOR NOW</span>
-    </div>
-
-    <!-- ✅ DONE: Privacy Policy -->
-    <div class="todo-item todo-done">
-      <div class="todo-left">
-        <span class="todo-num todo-num-done">✓</span>
-        <div>
-          <div class="todo-title todo-title-done">Host the privacy policy at a live public URL</div>
-          <div class="todo-desc">Live at <code>https://fastidious-cuchufli-a0a96a.netlify.app/privacy.html</code> — contact email updated to <code>jamesadventuremarketing@gmail.com</code>. Paste this URL into App Store Connect's Privacy Policy field when the developer account is ready.</div>
-        </div>
-      </div>
-      <span class="todo-badge todo-badge-done">DONE</span>
+      <span class="todo-badge todo-badge-high">PENDING</span>
     </div>
 
     <!-- ⏳ PENDING: Screenshots -->
     <div class="todo-item todo-medium">
       <div class="todo-left">
-        <span class="todo-num">6</span>
+        <span class="todo-num">5</span>
         <div>
           <div class="todo-title">Capture App Store screenshots</div>
-          <div class="todo-desc">Waiting on Apple Developer account (item 3) before this makes sense — you need a working build. Once the account is sorted, this takes about an hour.</div>
-          <div class="todo-steps">
-            <strong>When ready:</strong> Run app on simulator → take 5 screenshots → Scanner, A-grade product score, F-grade product with red flags, Company profile, Profile screen. Required size: <strong>1320 × 2868 px</strong> (iPhone 6.9"). Use Simulator → File → Save Screenshot.
-          </div>
+          <div class="todo-desc">Once TestFlight verified: run app on simulator → take 5 screenshots at <strong>1320 × 2868 px</strong> (iPhone 6.9"). Scenes: Scanner, A-grade product, F-grade with warnings, Company profile, Profile screen. Simulator → File → Save Screenshot.</div>
         </div>
       </div>
       <span class="todo-badge todo-badge-medium">PENDING</span>
