@@ -18,28 +18,52 @@ export const COMPANY_DB = {
     donationSplit: { republican: 52, democrat: 48 },
     issues: [
       {
-        id: 'water',
-        title: 'Water Privatization',
+        id: 'buitoni-ecoli-criminal',
+        title: 'Buitoni Pizza E. Coli Deaths — Criminal Charges',
         severity: 'high',
         description:
-          'Nestlé has lobbied against public water regulations and extracted water from drought-stressed communities at below-market rates.',
-        source: 'Mother Jones, 2021',
+          'A 2022 E. coli HUS outbreak linked to Nestlé\'s Buitoni Fraîch\'Up frozen pizzas killed 2 children and sickened 56 people in France, including 50 cases of Hemolytic Uremic Syndrome. French judges placed Nestlé France and subsidiary SPAC under formal criminal investigation in 2024 for involuntary manslaughter, deceptive practices, and endangering others; the criminal trial remains pending as of mid-2026.',
+        source: 'Food Safety News, 2024; France24, 2022',
       },
       {
-        id: 'infant',
-        title: 'Infant Formula Marketing',
+        id: 'infant-formula-recall-2026',
+        title: 'Largest-Ever Infant Formula Recall — Criminal Probe',
         severity: 'high',
         description:
-          'Repeatedly violated WHO breast-milk substitute marketing standards in developing countries.',
-        source: 'WHO / IBFAN Report, 2022',
+          'Nestlé launched its largest-ever recall in January 2026, covering infant formula from 10+ factories across 60+ countries after Bacillus cereus contamination was detected at its Nunspeet, Netherlands plant. Dutch authorities opened a criminal probe after Nestlé delayed notifying regulators by 13 days; French authorities opened a separate criminal investigation after two infant deaths were reported.',
+        source: 'Food Safety News, 2026; NL Times, 2026; Euronews, 2026',
       },
       {
-        id: 'child_labor',
-        title: 'Child Labor in Cocoa Supply Chain',
+        id: 'cocoa-child-labor-litigation',
+        title: 'Cocoa Child Labor — Active Litigation',
         severity: 'high',
         description:
-          'Documented use of child labor in Ivory Coast cocoa farms supplying Nestlé products.',
-        source: 'Washington Post Investigation, 2019',
+          'Corporate Accountability Lab\'s 2023 report documented ongoing child labor on farms supplying Nestlé and other major chocolate companies. Nestlé\'s Child Labor Monitoring and Remediation System covers only a fraction of its supply chain; the industry\'s Harkin-Engel Protocol deadlines (originally 2005) have been extended to 2025 without fulfillment.',
+        source: 'Corporate Accountability Lab, 2023; Harvard Law Systemic Justice Project, 2023',
+      },
+      {
+        id: 'toll-house-wood-recall',
+        title: 'Nestlé Toll House Recall — Wood Fragments',
+        severity: 'medium',
+        description:
+          'Nestlé USA voluntarily recalled limited batches of Nestlé Toll House Chocolate Chip Cookie Dough Bar (16.5 oz, produced April 24–25, 2023) in August 2023 for potential wood fragment contamination. A small number of consumer complaints prompted the action; no injuries were reported.',
+        source: 'FDA.gov, August 2023',
+      },
+      {
+        id: 'perrier-labeling-lawsuit',
+        title: 'Perrier "Natural Mineral Water" Class Action',
+        severity: 'medium',
+        description:
+          'A class action filed in March 2024 (Case No. 2:24-cv-01607, E.D.N.Y.) alleges Nestlé USA misled consumers about Perrier\'s purity and "natural mineral water" designation, claiming undisclosed blending of water sources and filtration methods inconsistent with natural mineral water standards. No adjudication has been reached as of mid-2026.',
+        source: 'ClassAction.org, 2024; Bloomberg Law, 2024',
+      },
+      {
+        id: 'cocoa-lobbying',
+        title: 'Alleged Lobbying Against Child Labor Legislation',
+        severity: 'high',
+        description:
+          'Nestlé, alongside Mars, Hershey, and Cargill, has historically advocated for voluntary rather than mandatory import restrictions on cocoa produced with child labor; the Harkin-Engel Protocol\'s binding legislation was replaced with a voluntary protocol in 2001, and every subsequent deadline was missed. According to the Harvard Law Systemic Justice Project (2023), the industry continued lobbying against mandatory enforcement measures through trade groups during the 2020–2024 period.',
+        source: 'Harvard Law Systemic Justice Project, 2023; IRAadvocates.org',
       },
     ],
     subsidiaries: ['KitKat', 'Nescafé', 'Purina', 'Häagen-Dazs', 'Gerber', 'Perrier', 'DiGiorno'],
@@ -59,20 +83,36 @@ export const COMPANY_DB = {
     donationSplit: { republican: 44, democrat: 56 },
     issues: [
       {
-        id: 'soda_tax',
-        title: 'Soda Tax Opposition',
-        severity: 'medium',
-        description:
-          'PepsiCo has spent millions lobbying against soda taxes and sugar warning labels across multiple states.',
-        source: 'Center for Science in the Public Interest, 2023',
-      },
-      {
-        id: 'plastic',
-        title: 'Plastic Pollution',
+        id: 'ftc-price-discrimination',
+        title: 'FTC Alleged Illegal Preferential Pricing for Walmart',
         severity: 'high',
         description:
-          'One of the world\'s top plastic polluters; consistently appears in ocean plastic audits.',
-        source: 'Break Free From Plastic Audit, 2023',
+          'The FTC filed suit in January 2025 alleging PepsiCo gave Walmart illegal preferential pricing — including lower average retail prices and promotional payments not proportionally available to competing retailers — in violation of the Robinson-Patman Act. The FTC dismissed the case in May 2025 under the new administration without prejudice; a federal judge ordered the complaint unsealed in December 2025, citing the public\'s constitutional right to access.',
+        source: 'FTC.gov, January 2025; American Prospect, December 2025',
+      },
+      {
+        id: 'plastic-pollution-lawsuits',
+        title: 'Plastic Pollution — Multi-Government Lawsuits',
+        severity: 'high',
+        description:
+          'New York Attorney General Letitia James filed suit in November 2023 citing PepsiCo as responsible for 17% of branded plastic found in the Buffalo River watershed — three times more than the next brand. Los Angeles County (October 2024), Baltimore (June 2024), and Earth Island Institute (July 2024) have filed additional active or pending suits over plastic pollution and deceptive recyclability claims.',
+        source: 'NY AG press release, November 2023; LA County press release, October 2024',
+      },
+      {
+        id: 'quaker-salmonella-settlement',
+        title: 'Quaker Oats Salmonella Recall — $6.75M Settlement',
+        severity: 'high',
+        description:
+          'PepsiCo\'s Quaker Oats subsidiary recalled over 90 granola bar and granola product SKUs in late 2023 and early 2024 for potential Salmonella contamination. Quaker agreed to pay $6.75 million to settle a resulting class action without admitting wrongdoing; the claim deadline was June 27, 2025.',
+        source: 'FDA.gov; TopClassActions.com, 2025',
+      },
+      {
+        id: 'soda-tax-lobbying',
+        title: 'Ongoing Opposition to Soda Tax Legislation',
+        severity: 'medium',
+        description:
+          'PepsiCo has actively opposed soda tax initiatives across multiple U.S. cities and states through direct lobbying and funding of industry front groups, as documented by the Center for Science in the Public Interest. These campaigns have been ongoing through the 2020–2025 period.',
+        source: 'CSPI; OpenSecrets, 2020–2025',
       },
     ],
     subsidiaries: ['Pepsi', 'Mountain Dew', 'Gatorade', 'Lay\'s', 'Quaker', 'Tropicana', 'Doritos', 'Cheetos'],
@@ -92,20 +132,44 @@ export const COMPANY_DB = {
     donationSplit: { republican: 55, democrat: 45 },
     issues: [
       {
-        id: 'sugar_science',
+        id: 'plastic-greenwashing-lawsuits',
+        title: 'Plastic Greenwashing — D.C. Appeals Court Ruling',
+        severity: 'high',
+        description:
+          'The D.C. Court of Appeals ruled on August 28, 2024 that Coca-Cola must face a greenwashing lawsuit (Earth Island Institute v. Coca-Cola) over its sustainability marketing claims, reversing a lower-court dismissal. Los Angeles County filed a separate suit in October 2024 alleging deceptive recyclability marketing; Break Free From Plastic named Coca-Cola the world\'s largest plastic polluter for the sixth consecutive year in its 2023 audit.',
+        source: 'D.C. Court of Appeals, August 2024; LA County press release, October 2024',
+      },
+      {
+        id: 'sugar-science-funding',
         title: 'Funding Biased Sugar Research',
         severity: 'high',
         description:
-          'Coca-Cola funded research downplaying links between sugary drinks and obesity/diabetes.',
-        source: 'JAMA Internal Medicine, 2016',
+          'A 2016 JAMA Internal Medicine investigation revealed that Coca-Cola secretly funded the Global Energy Balance Network to produce research downplaying the role of sugary drinks in obesity, directing attention toward lack of exercise instead. The UCSF Industry Documents Library continues to document the pattern of corporate funding of research favorable to Coca-Cola\'s products.',
+        source: 'JAMA Internal Medicine, 2016; UCSF Industry Documents Library',
       },
       {
-        id: 'plastic',
-        title: '#1 Plastic Polluter',
-        severity: 'high',
+        id: 'natural-flavors-class-action',
+        title: 'Sprite/Fanta "100% Natural Flavors" Lawsuit',
+        severity: 'medium',
         description:
-          'Named the world\'s top plastic polluter for six consecutive years in global brand audits.',
-        source: 'Break Free From Plastic, 2023',
+          'A class action filed in May 2025 (Case No. 2:25-cv-04777, C.D. Cal.) alleges Sprite and Fanta are marketed as containing "100% Natural Flavors" while containing citric acid, sodium citrate, potassium citrate, aspartame, and acesulfame potassium produced through synthetic processes. The case was still proceeding as of October 2025; no adjudication has been reached.',
+        source: 'OnlyClassActions; TopClassActions, 2025',
+      },
+      {
+        id: 'metal-contamination-recall',
+        title: 'Metal Contamination Recall — Texas Distribution',
+        severity: 'medium',
+        description:
+          'Coca-Cola Southwest Beverages LLC recalled 4,228 cans of Coca-Cola Zero Sugar, Coca-Cola, and Sprite on October 3, 2025 (FDA Class II) due to potential metal contamination. Products were distributed in parts of Texas; all recalled product was confirmed removed from market.',
+        source: 'FDA.gov, October 2025',
+      },
+      {
+        id: 'beverage-regulation-lobbying',
+        title: 'Lobbying Against Plastic and Beverage Regulation',
+        severity: 'medium',
+        description:
+          'Coca-Cola\'s trade association lobbying against plastic reduction mandates and beverage container legislation is disclosed in SEC proxy filings (Form PX14A6G, 2023). According to the Center for Responsive Politics, Coca-Cola has consistently opposed beverage-specific regulations through industry trade groups during the 2020–2025 period.',
+        source: 'SEC Form PX14A6G, 2023; Center for Responsive Politics',
       },
     ],
     subsidiaries: ['Coca-Cola', 'Sprite', 'Fanta', 'Dasani', 'Smartwater', 'Minute Maid', 'Powerade', 'Honest Tea'],
@@ -125,12 +189,36 @@ export const COMPANY_DB = {
     donationSplit: { republican: 48, democrat: 52 },
     issues: [
       {
-        id: 'labeling',
-        title: 'GMO Labeling Opposition',
+        id: 'honey-smacks-criminal-conviction',
+        title: 'Honey Smacks Salmonella — $19.2M Criminal Fine',
+        severity: 'high',
+        description:
+          'A 2018 Salmonella outbreak linked to Kellogg\'s Honey Smacks (produced at a Kerry Inc. facility in Gridley, IL) sickened 135+ people across 36 states. Kerry Inc. pleaded guilty on February 3, 2023 to distributing adulterated food and paid a $19,228,000 criminal fine and forfeiture; Kerry\'s former QA Director separately pleaded guilty to three federal misdemeanors for directing subordinates to conceal unsanitary conditions from Kellogg.',
+        source: 'DOJ press release, February 2023; FDA announcement, 2023',
+      },
+      {
+        id: 'bctgm-strike-nlrb',
+        title: '2021 Worker Strike — Unfair Labor Practice Charges',
+        severity: 'high',
+        description:
+          'Approximately 1,400 Kellogg\'s cereal workers (BCTGM) struck at four U.S. plants from October 5 to December 21, 2021, disputing a two-tier wage system, mandatory overtime documented at up to 80 hours per week, and healthcare and retirement benefits. BCTGM filed NLRB unfair labor practice charges alleging bad-faith bargaining and direct dealing; the strike resolved December 21, 2021 with a five-year contract.',
+        source: 'BCTGM.org, December 2021; NPR, December 2021',
+      },
+      {
+        id: 'mars-acquisition-consolidation',
+        title: 'Acquired by Mars Inc. — $35.9B Consolidation',
         severity: 'medium',
         description:
-          'Kellogg\'s spent heavily to oppose mandatory GMO labeling in California and Washington.',
-        source: 'Open Secrets, 2012–2014',
+          'Mars, Inc. completed its $35.9 billion acquisition of Kellanova on December 11, 2025, following unconditional FTC and European Commission clearance. Kellanova\'s brands — including Pringles, Pop-Tarts, Cheez-It, Eggo, MorningStar Farms, and Nutri-Grain — now sit under Mars\'s ownership, creating a combined entity with estimated annual revenues exceeding $80 billion.',
+        source: 'Mars.com press release; BusinessWire, December 2025',
+      },
+      {
+        id: 'gmo-labeling-history',
+        title: 'Historical GMO Labeling Opposition (Resolved)',
+        severity: 'low',
+        description:
+          'Kellogg\'s joined industry lobbying campaigns against mandatory GMO labeling from 2012 to 2014. The issue was substantively resolved when the USDA National Bioengineered Food Disclosure Standard took effect on January 1, 2022, making mandatory GMO disclosure federal law.',
+        source: 'CSPI; USDA NBFDS, effective January 2022',
       },
     ],
     subsidiaries: ["Kellogg's", 'Special K', 'Frosted Flakes', 'Pop-Tarts', 'Pringles', 'Cheez-It', 'Eggo'],
@@ -150,12 +238,36 @@ export const COMPANY_DB = {
     donationSplit: { republican: 50, democrat: 50 },
     issues: [
       {
-        id: 'glyphosate',
-        title: 'Glyphosate in Oat Products',
+        id: 'gold-medal-flour-salmonella',
+        title: 'Gold Medal Flour Salmonella Outbreak — 14 Ill',
         severity: 'high',
         description:
-          'Independent testing found glyphosate residues in many General Mills oat-based products above EWG thresholds.',
-        source: 'EWG Report, 2022',
+          'General Mills recalled Gold Medal All Purpose Flour (2-, 5-, and 10-pound bags) on April 28, 2023 after FDA and CDC confirmed 14 illnesses across 13 states and 3 hospitalizations linked to Salmonella Infantis. A second recall followed in September 2023 for potential E. coli O121 in 5-pound bags; this was at least the third General Mills flour recall in five years.',
+        source: 'FDA.gov outbreak investigation, April 2023; CDC, 2023',
+      },
+      {
+        id: 'nature-valley-labeling-settlement',
+        title: 'Nature Valley "100% Natural" Settlement',
+        severity: 'medium',
+        description:
+          'General Mills settled a consumer lawsuit over "100% Natural" claims on Nature Valley products that contained glyphosate residues, dropping the claim without admitting wrongdoing; the settlement was finalized between 2016 and 2018. Glyphosate was detected at 0.45 ppm — below the EPA limit but above EWG\'s children\'s health benchmark of 0.01 ppm.',
+        source: 'Food Dive, 2018; Insurance Journal, July 2025',
+      },
+      {
+        id: 'glyphosate-oat-products',
+        title: 'Glyphosate Detected in Oat Products',
+        severity: 'high',
+        description:
+          'EWG\'s 2022 testing found glyphosate residues in General Mills oat-based products including Cheerios and Nature Valley bars at levels above EWG\'s children\'s health benchmark of 0.01 ppm. The herbicide is classified as a probable human carcinogen by the International Agency for Research on Cancer.',
+        source: 'Environmental Working Group, 2022',
+      },
+      {
+        id: 'healthy-label-lobbying',
+        title: 'Threatened Legal Action Against FDA Label Rules',
+        severity: 'medium',
+        description:
+          'According to trade press reporting in 2022, General Mills joined Kellogg\'s and Post Consumer Brands in threatening legal action against the FDA over proposed updates to the definition of "healthy" on food labels that would require cereals to reduce sodium and sugar content. No lawsuit was ultimately filed per the available record.',
+        source: 'Food Dive, 2022',
       },
     ],
     subsidiaries: ['Cheerios', 'Wheaties', 'Yoplait', 'Häagen-Dazs', 'Nature Valley', 'Betty Crocker', 'Pillsbury'],
@@ -175,11 +287,36 @@ export const COMPANY_DB = {
     donationSplit: { republican: 30, democrat: 70 },
     issues: [
       {
-        id: 'palm_oil',
-        title: 'Palm Oil Deforestation',
+        id: 'dry-shampoo-benzene-recall',
+        title: 'Benzene in Dry Shampoos — Recall and Ongoing Litigation',
         severity: 'high',
-        description: "Despite pledges, Unilever's supply chain remains linked to deforestation and human rights abuses in Southeast Asia.",
-        source: 'Rainforest Action Network, 2023',
+        description:
+          'Unilever recalled aerosol dry shampoos under the Dove, Nexxus, Suave, TIGI Bed Head, and TRESemmé brands in October 2022 after elevated benzene — a known human carcinogen — was detected, traced to a hydrocarbon propellant supplied by Aeropres Corporation. A proposed $3.625 million class action settlement was denied by a federal judge in early 2025; litigation was ongoing as of mid-2026.',
+        source: 'Law360, 2025; TopClassActions, 2025',
+      },
+      {
+        id: 'ben-jerrys-censorship-suit',
+        title: 'Ben & Jerry\'s Sues Unilever Over Social Mission',
+        severity: 'medium',
+        description:
+          'Ben & Jerry\'s and five independent board members filed a federal lawsuit against Unilever in November 2024 alleging Unilever censored at least four social media posts (2023–2024) and violated the social mission protections of their 2000 merger agreement. Additional claims filed in March 2025 alleged Unilever fired the company\'s CEO in retaliation for political activism without following the required advisory process; Unilever moved to dismiss in April 2025.',
+        source: 'CBS News, 2025; NPR, March 2025',
+      },
+      {
+        id: 'nutrafol-deceptive-claims',
+        title: 'Nutrafol — Alleged Deceptive Hair Loss Marketing',
+        severity: 'medium',
+        description:
+          'TINA.org filed a complaint with the FTC and FDA in April 2023 alleging Unilever\'s Nutrafol brand marketed supplements as "medical-grade" and "clinically proven" to increase hair growth without adequate scientific substantiation, citing inadequate study designs, biased researchers, and influencer disclosure failures. No formal FTC or FDA enforcement action has been publicly announced as of mid-2026.',
+        source: 'TINA.org / GlobeNewswire, April 2023',
+      },
+      {
+        id: 'palm-oil-deforestation',
+        title: 'Palm Oil — Missed 2023 Deforestation-Free Deadline',
+        severity: 'high',
+        description:
+          'Unilever officially missed its 2023 deadline for achieving a deforestation-free palm oil supply chain, as documented by the Rainforest Action Network\'s 2023 report. Reporting in 2022 additionally linked Unilever\'s supply chain to Brazilian suppliers associated with forced displacement and community conflict in the Amazon.',
+        source: 'Rainforest Action Network, 2023; Mondelēz Form DEF 14A, 2022',
       },
     ],
     subsidiaries: ["Dove", "Ben & Jerry's", "Hellmann's", 'Knorr', 'Lipton', 'Magnum', 'Vaseline'],
@@ -198,8 +335,46 @@ export const COMPANY_DB = {
     politicalDonations: 1200000,
     donationSplit: { republican: 58, democrat: 42 },
     issues: [
-      { id: 'processing', title: 'Ultra-Processed Food Portfolio', severity: 'high', description: 'Over 90% of revenue comes from ultra-processed foods. Kraft Heinz has lobbied against mandatory front-of-pack warning labels.', source: 'BMJ Open, 2023' },
-      { id: 'hfcs', title: 'HFCS & Additive Lobbying', severity: 'medium', description: 'Lobbied against mandatory labeling of high-fructose corn syrup and artificial dyes in multiple states.', source: 'Center for Responsive Politics, 2022' },
+      {
+        id: 'sec-accounting-fraud-settlement',
+        title: 'SEC Accounting Fraud — $62M Settlement',
+        severity: 'high',
+        description:
+          'The SEC charged Kraft Heinz in September 2021 with a multi-year procurement accounting scheme (Q4 2015–end of 2018) involving falsified supplier contracts and approximately 300 transactions that improperly reduced cost of goods sold by $208 million. Kraft Heinz agreed to pay $62 million to settle without admitting wrongdoing; the company had restated financials in June 2019 and recorded a $12.6 billion Q4 2018 loss tied to brand write-downs.',
+        source: 'SEC.gov press release, September 2021',
+      },
+      {
+        id: 'oscar-mayer-listeria-recall',
+        title: 'Oscar Mayer Turkey Bacon — Listeria Recall',
+        severity: 'high',
+        description:
+          'Kraft Heinz recalled 367,812 pounds of Oscar Mayer Turkey Bacon Original in July 2025 for potential Listeria monocytogenes contamination; products were distributed in the US, British Virgin Islands, and Hong Kong. A class action was filed in Florida federal court in August 2025 alleging failure to disclose contamination and violations of Florida consumer protection law.',
+        source: 'USDA FSIS, July 2025; Law360, August 2025',
+      },
+      {
+        id: 'kraft-singles-choking-recall',
+        title: 'Kraft Singles Recall — Six Choking Complaints',
+        severity: 'medium',
+        description:
+          'Kraft Heinz recalled approximately 83,800 cases of individually-wrapped Kraft Singles American processed cheese slices in September 2023 after a wrapping machine defect caused plastic film to potentially remain adhered to cheese slices, creating a choking or gagging hazard. Kraft Heinz\'s own press release documented six consumer complaints of choking or gagging.',
+        source: 'FDA.gov; Kraft Heinz press release, September 2023',
+      },
+      {
+        id: 'mac-cheese-preservative-lawsuit',
+        title: 'Kraft Mac & Cheese "No Artificial Preservatives" Suit',
+        severity: 'medium',
+        description:
+          'A class action alleges Kraft Heinz falsely advertised Kraft Macaroni & Cheese as containing "no artificial preservatives" when it contains synthetic citric acid and sodium phosphates that function as preservatives. U.S. District Judge Mary Rowland ruled in November 2024 that plaintiffs sufficiently alleged their claims; the case is proceeding.',
+        source: 'CNN Business, November 2024; Law360',
+      },
+      {
+        id: 'powdered-drink-metal-glass-recall',
+        title: 'Country Time / Tang / Kool-Aid — Metal & Glass Recall',
+        severity: 'medium',
+        description:
+          'Kraft Heinz voluntarily recalled select Country Time Lemonade, Tang, Arizona Tea, and Kool-Aid powdered beverages in November 2021 due to potential presence of very small metal or glass pieces from a manufacturing defect. No injuries were reported.',
+        source: 'FDA.gov recall notice, November 2021',
+      },
     ],
     subsidiaries: ['Kraft', 'Heinz', 'Oscar Mayer', 'Philadelphia', 'Velveeta', 'Lunchables', 'Planters', 'Maxwell House', "Jell-O", 'Kool-Aid', 'Capri Sun'],
     sustainabilityScore: 36,
@@ -217,8 +392,38 @@ export const COMPANY_DB = {
     politicalDonations: 890000,
     donationSplit: { republican: 62, democrat: 38 },
     issues: [
-      { id: 'sodium', title: 'High-Sodium Frozen Meals', severity: 'medium', description: 'Many Conagra frozen meal brands exceed 40% of the daily recommended sodium in a single serving.', source: 'American Heart Association, 2023' },
-      { id: 'pesticides', title: 'Pesticide Residue in Produce Brands', severity: 'medium', description: 'Multiple Birds Eye and other Conagra produce brands have tested positive for pesticide residues above EWG thresholds.', source: 'EWG, 2022' },
+      {
+        id: 'canned-meat-class-i-recall',
+        title: 'Canned Meat Recall — 2.58M Pounds (Class I)',
+        severity: 'high',
+        description:
+          'Conagra recalled 2,581,816 pounds of canned meat and poultry products on January 31, 2023 due to a packaging defect that could allow bacterial contamination without outward signs. The USDA FSIS classified the recall as Class I — meaning a reasonable probability of serious adverse health consequences — and products had been distributed nationwide.',
+        source: 'USDA FSIS recall notice, January 2023',
+      },
+      {
+        id: 'sustainable-seafood-settlement',
+        title: '"Certified Sustainable" Seafood Labeling Settlement',
+        severity: 'medium',
+        description:
+          'A class action (Bohen et al. v. Conagra Brands, N.D. Ill., Case No. 1:23-cv-01298) filed in March 2023 alleged Conagra falsely advertised Mrs. Paul\'s and Van De Kamp\'s seafood products as "certified sustainable seafood" when sourcing practices did not support that designation. The parties reported a settlement in principle at a November 2024 status hearing; full terms were not publicly disclosed.',
+        source: 'SeafoodSource, November 2024; ClassAction.org',
+      },
+      {
+        id: 'birds-eye-rock-metal-recall',
+        title: 'Birds Eye Broccoli Tots — Rock and Metal Fragments',
+        severity: 'medium',
+        description:
+          'Conagra voluntarily recalled Birds Eye Broccoli Tots (12 oz) in December 2021 for potential small rocks and metal fragments after two consumer reports of dental damage.',
+        source: 'FDA.gov recall notice, December 2021',
+      },
+      {
+        id: 'wish-bone-allergen-recall',
+        title: 'Wish-Bone Dressing — Undeclared Egg Allergen',
+        severity: 'medium',
+        description:
+          'Conagra recalled limited quantities of Wish-Bone Thousand Island and Chunky Blue Cheese dressings on January 31, 2022 for undeclared egg, a major allergen that was absent from the product label. No injuries or illnesses were reported.',
+        source: 'FDA.gov recall notice; PR Newswire, February 2022',
+      },
     ],
     subsidiaries: ["Marie Callender's", 'Healthy Choice', "Birds Eye", 'Slim Jim', "Orville Redenbacher's", 'Duncan Hines', 'Reddi-wip', 'Vlasic', 'Banquet', 'Hunt\'s', 'PAM'],
     sustainabilityScore: 41,
@@ -236,8 +441,46 @@ export const COMPANY_DB = {
     politicalDonations: 1050000,
     donationSplit: { republican: 49, democrat: 51 },
     issues: [
-      { id: 'palm_oil', title: 'Palm Oil Deforestation', severity: 'high', description: 'Mondelēz has repeatedly missed its own deforestation-free supply chain targets for palm oil.', source: 'Rainforest Action Network, 2023' },
-      { id: 'sugar', title: 'Aggressive Sugar Marketing to Children', severity: 'high', description: 'Oreo and other Mondelēz brands have been cited for targeting children with high-sugar products in digital advertising.', source: 'WHO, 2022' },
+      {
+        id: 'ritz-peanut-allergen-recalls',
+        title: 'Ritz Cracker Peanut Allergen Recalls (2020, 2025)',
+        severity: 'high',
+        description:
+          'Mondelēz Global LLC recalled Ritz Peanut Butter Cracker Sandwiches in July 2025 after packaging defects mislabeled inner packs, posing a life-threatening risk to peanut-allergic consumers; a prior undeclared peanut allergen incident involving Ritz Cheese Cracker Sandwiches was documented in 2020. These are two separate, verified incidents.',
+        source: 'FDA.gov, 2020 and July 2025',
+      },
+      {
+        id: 'cocoa-child-labor-dc-suit',
+        title: 'Cocoa Child Labor — D.C. Class Action Active',
+        severity: 'high',
+        description:
+          'International Rights Advocates filed a class action in November 2023 against Mars, Cargill, and Mondelēz for consumer fraud and negligent supervision tied to child labor on cocoa farms in Ghana, naming seven child plaintiffs as young as six. A U.S. District Court remanded the case to D.C. Superior Court in March 2025 after finding it had been improperly removed to federal court; it remains active as of mid-2026.',
+        source: 'Courthouse News, November 2023; Duane Morris Blog, March 2025',
+      },
+      {
+        id: 'palm-oil-brazil-suppliers',
+        title: 'Palm Oil — Brazilian Supplier Human Rights Allegations',
+        severity: 'high',
+        description:
+          'According to Rainforest Action Network\'s 2023 report and 2022 proxy filings, Mondelēz sourced palm oil from Brazilian suppliers Brasil Biofuels (BBF) and Agropalma, linked to allegations of forced displacement, torture, and community conflict in the Amazon. Mondelēz\'s Cocoa Life program is documented as covering only a minority of its cocoa and palm oil sourcing.',
+        source: 'RAN, 2023; Mondelēz Form DEF 14A, 2022',
+      },
+      {
+        id: 'chips-ahoy-choking-recall',
+        title: 'Chips Ahoy! Baked Bites — Choking Hazard Recall',
+        severity: 'medium',
+        description:
+          'Mondelēz Global LLC recalled Chips Ahoy! Baked Bites (Brookie variety) in December 2024–January 2025 for potential choking hazard caused by corn starch clumps from incorrect mixing. A separate recall of the same product was reported in May 2026.',
+        source: 'Mondelēz press release; Newsweek, 2025',
+      },
+      {
+        id: 'lobbying-vs-climate-commitments',
+        title: 'Shareholders Flag Lobbying vs. Climate Pledges',
+        severity: 'medium',
+        description:
+          'A 2025 shareholder proposal demanded Mondelēz disclose alignment between its direct and indirect lobbying activities and its net-zero 2050 commitment. The Mondelēz board recommended voting against the proposal, which was put to a vote on May 21, 2025.',
+        source: 'Mondelēz Form PX14A6G, SEC, 2025',
+      },
     ],
     subsidiaries: ['Oreo', 'Ritz', 'Chips Ahoy!', 'Triscuit', 'Cadbury', 'Milka', 'Toblerone', 'Sour Patch Kids', 'Swedish Fish', 'Trident', 'Halls', 'Clif Bar'],
     sustainabilityScore: 43,
@@ -255,8 +498,30 @@ export const COMPANY_DB = {
     politicalDonations: 780000,
     donationSplit: { republican: 53, democrat: 47 },
     issues: [
-      { id: 'cocoa', title: 'Child Labor in Cocoa Supply Chain', severity: 'high', description: 'Mars cocoa supply chains in West Africa have been linked to child labor despite pledges to eliminate it by 2025.', source: 'Washington Post, 2019' },
-      { id: 'sugar_portfolio', title: 'Sugar-Heavy Product Portfolio', severity: 'medium', description: 'Mars earns the majority of food revenue from confectionery products with high sugar content.', source: 'CSPI, 2022' },
+      {
+        id: 'cocoa-child-labor-dc-suit-2025',
+        title: 'Cocoa Child Labor — Active D.C. Lawsuit, Missed 2025 Pledge',
+        severity: 'high',
+        description:
+          'International Rights Advocates filed a class action in November 2023 against Mars, Cargill, and Mondelēz for consumer fraud and negligent supervision tied to child labor on cocoa farms; the case was remanded to D.C. Superior Court in March 2025 and remains active. The 2025 industry pledge deadline — originally made in 2001 and extended repeatedly — has now passed with no public confirmation of fulfillment by Mars.',
+        source: 'CNBC, November 2023; Duane Morris Blog, March 2025; ILO reports',
+      },
+      {
+        id: 'kellanova-acquisition-consolidation',
+        title: 'Kellanova Acquisition — $35.9B Market Consolidation',
+        severity: 'medium',
+        description:
+          'Mars completed its $35.9 billion acquisition of Kellanova on December 11, 2025 following unconditional FTC and European Commission clearance, adding Pringles, Pop-Tarts, Cheez-It, Eggo, MorningStar Farms, and Nutri-Grain to its existing portfolio. The combined entity has estimated annual revenues exceeding $80 billion.',
+        source: 'Mars.com press release; BusinessWire, December 2025',
+      },
+      {
+        id: 'skittles-gummies-metal-recall',
+        title: 'Skittles / Starburst / Life Savers — Metal Strand Recall',
+        severity: 'medium',
+        description:
+          'Mars Wrigley Confectionery LLC voluntarily recalled Skittles Gummies, Starburst Gummies, and Life Savers Gummies on May 13, 2022 for potential thin metal strands embedded in the candy or loose in the bag, distributed in the US, Canada, and Mexico. No injuries were reported at the time of the recall; the FDA confirmed the recall complete.',
+        source: 'FDA.gov, May 2022',
+      },
     ],
     subsidiaries: ["M&M's", 'Snickers', 'Twix', 'Milky Way', 'Skittles', 'Starburst', 'Dove', 'Kind', "Ben's Original", 'Pedigree', 'Whiskas', 'Royal Canin', 'Orbit', 'Extra'],
     sustainabilityScore: 45,
@@ -274,8 +539,38 @@ export const COMPANY_DB = {
     politicalDonations: 620000,
     donationSplit: { republican: 55, democrat: 45 },
     issues: [
-      { id: 'cocoa_child_labor', title: 'Cocoa Child Labor', severity: 'high', description: "Hershey has faced lawsuits over failure to disclose child labor in its cocoa supply chain after decades of pledges.", source: 'International Labor Rights Forum, 2022' },
-      { id: 'lead_cadmium', title: 'Lead & Cadmium in Dark Chocolate', severity: 'high', description: 'Consumer Reports testing found Hershey dark chocolate products with elevated lead and cadmium levels.', source: 'Consumer Reports, 2022' },
+      {
+        id: 'lead_cadmium',
+        title: 'Lead & Cadmium Found in Dark Chocolate',
+        severity: 'high',
+        description:
+          'Consumer Reports tested Hershey dark chocolate products in December 2022 and found lead and cadmium at levels exceeding California Prop 65 daily limits. A class action filed December 28, 2022 (Lazazzaro v. Hershey, E.D.N.Y.) was dismissed without prejudice in February 2024; the underlying heavy metal findings from independent testing have not been contested.',
+        source: 'Consumer Reports, December 2022; Top Class Actions, February 2024',
+      },
+      {
+        id: 'pfas_wrappers',
+        title: 'PFAS Chemicals in Chocolate Wrappers',
+        severity: 'high',
+        description:
+          'Two class actions filed in Pennsylvania federal court in 2024 allege that Hershey wrappers contain PFAS (per- and polyfluoroalkyl substances): Parish v. Hershey (1:24-cv-01868-CCC, filed Oct 29, 2024) and Beekman v. Hershey (1:24-cv-02234-CCC, filed Dec 24, 2024); the cases were consolidated in 2025. Independent lab testing across four facilities by Grizzly Research confirmed PFAS presence in the wrappers, and in January 2025 the FDA revoked 35 Food Contact Notifications permitting PFAS in food packaging.',
+        source: 'Insurance Journal, 2024; Top Class Actions, 2025; Bakery & Snacks, 2025',
+      },
+      {
+        id: 'cocoa_child_labor',
+        title: 'Cocoa Supply Chain Child Labor Suit',
+        severity: 'high',
+        description:
+          'Hershey is named as a defendant in Coubaly et al. v. Nestlé, Cargill, Barry Callebaut, Mars, Olam, Mondelēz, and Hershey, a trafficking and forced labor lawsuit filed by International Rights Advocates on behalf of Malian children who allege they were trafficked to work on Ivory Coast cocoa farms. As of July 2025, the defendant companies successfully defeated an appeal; the case\'s further legal status is pending.',
+        source: 'International Rights Advocates; Reuters, July 2025',
+      },
+      {
+        id: 'skinnypop_underfilling',
+        title: 'SkinnyPop Alleged 43% Underfilling',
+        severity: 'medium',
+        description:
+          'A class action filed September 12, 2024 in the U.S. District Court for the Southern District of California (Bogren et al. v. Hershey) alleges that SkinnyPop popcorn bags are filled to only 57% of stated weight, a 43% underfill. The case was pending as of late 2024.',
+        source: 'Bloomberg Law, 2024; ClassAction.org, 2024',
+      },
     ],
     subsidiaries: ["Hershey's", "Reese's", 'Kit Kat (US)', "Hershey's Kisses", 'Jolly Rancher', 'Twizzlers', 'York', 'Mounds', 'Almond Joy', 'SkinnyPop', 'Pirate Brands'],
     sustainabilityScore: 42,
@@ -293,8 +588,54 @@ export const COMPANY_DB = {
     politicalDonations: 640000,
     donationSplit: { republican: 28, democrat: 72 },
     issues: [
-      { id: 'formula_marketing', title: 'Infant Formula Marketing', severity: 'high', description: "Danone's Aptamil and Nutricia brands have been cited for violating WHO breast-milk substitute marketing codes in multiple countries.", source: 'IBFAN, 2023' },
-      { id: 'water_extraction', title: 'Water Extraction in Drought Areas', severity: 'medium', description: "Evian and Volvic brands extract water from protected French sources; scrutiny has increased amid European droughts.", source: 'Le Monde, 2023' },
+      {
+        id: 'listeria_silk',
+        title: 'Silk Plant-Based Milk Listeria Deaths',
+        severity: 'high',
+        description:
+          'A national recall of Silk plant-based milk products was issued in July 2024 after Listeria contamination at third-party manufacturer Joriki (Pickering, Ontario) was linked to 3 deaths, 20 illnesses, and 15 hospitalizations. Danone Canada, Walmart Canada, and Intact Insurance agreed to a C$6.5 million class action settlement, with an approval hearing scheduled for January 26, 2026 in Montreal; no party admitted liability.',
+        source: 'Globe and Mail, 2025; CP24, November 2025; Top Class Actions Canada',
+      },
+      {
+        id: 'aptamil_cereulide_2026',
+        title: 'Infant Formula Recalled Over Toxin Contamination',
+        severity: 'high',
+        description:
+          'The UK Food Standards Agency issued multiple recall alerts (FSA-PRIN-03/05/07-2026) for Aptamil and Cow & Gate infant formulas after cereulide toxin was identified in an ARA oil ingredient manufactured in China and incorporated into base powder produced in Ireland. Products were distributed across the UK, EU, and third countries; Nigeria\'s NAFDAC also issued a public alert (No. 08/2026). No admissions of liability have been made.',
+        source: 'UK Food Standards Agency recalls FSA-PRIN-03/05/07-2026, 2026; NAFDAC Alert 08/2026',
+      },
+      {
+        id: 'formula_marketing',
+        title: 'Infant Formula WHO Code Violations',
+        severity: 'high',
+        description:
+          'The Access to Nutrition Foundation\'s Breast Milk Substitutes Index assigned Danone a 31% WHO Code compliance score, among the lowest of major formula manufacturers. IBFAN and Baby Milk Action have documented tactics including sponsorship of healthcare professional bodies and donations to government nutrition programs in Indonesia that monitors allege constitute improper formula promotion.',
+        source: 'Access to Nutrition Foundation BMS Index; Baby Milk Action / IBFAN archives',
+      },
+      {
+        id: 'yocrunch_plastic_recall',
+        title: 'YoCrunch Recalled for Plastic Pieces',
+        severity: 'medium',
+        description:
+          'The FDA confirmed a recall of 17 YoCrunch yogurt varieties on July 14, 2025 (initiated July 11) after plastic pieces measuring 7–25 mm with sharp edges were found in dome toppers, posing a choking and laceration risk. The recall was nationwide and no injuries were reported at the time of announcement.',
+        source: 'FDA recall database, July 2025; ABC News GMA, 2025',
+      },
+      {
+        id: 'so_delicious_recall',
+        title: 'So Delicious Recalled for Hard Foreign Objects',
+        severity: 'medium',
+        description:
+          'The FDA issued a Class II recall on December 15, 2025 for So Delicious Dairy Free Salted Caramel Cluster frozen dessert pints after small stones and hard objects were found in cashew inclusions. No injuries were reported at the time of the recall.',
+        source: 'FDA recall notice, December 2025; Food Safety News, December 2025',
+      },
+      {
+        id: 'evian_microplastics',
+        title: 'Evian Microplastics Lawsuit Settled',
+        severity: 'medium',
+        description:
+          'The Plastic Pollution Coalition and Earth Island Institute each filed suit against Danone alleging that Evian water bottles leach microplastics and BPA, based on independent lab testing. Danone settled both lawsuits in September 2025, agreeing to allocate corporate funds over three years toward plastic-free Evian alternatives in the U.S.; Danone did not admit liability.',
+        source: 'Plastic Pollution Coalition, July 2024; Packaging Dive, September 2025',
+      },
     ],
     subsidiaries: ['Activia', 'Dannon', 'Oikos', 'Silk', 'So Delicious', 'Horizon Organic', 'Evian', 'Volvic', 'Aptamil', 'Happy Family', 'Vega', 'International Delight'],
     sustainabilityScore: 54,
@@ -312,8 +653,38 @@ export const COMPANY_DB = {
     politicalDonations: 430000,
     donationSplit: { republican: 51, democrat: 49 },
     issues: [
-      { id: 'sodium_content', title: 'High Sodium in Soups', severity: 'medium', description: "Many Campbell's condensed soups contain 800–1,000mg of sodium per serving, well above AHA guidelines.", source: 'American Heart Association, 2023' },
-      { id: 'bpa', title: 'BPA in Can Linings', severity: 'medium', description: "Campbell's was slower than peers to transition away from BPA-lined cans despite consumer pressure.", source: 'Environmental Working Group, 2019' },
+      {
+        id: 'clean_water_act_ohio',
+        title: 'EPA Suit Over 5,400+ Admitted Pollution Discharges',
+        severity: 'high',
+        description:
+          'The DOJ and EPA filed suit in March 2024 against Campbell Soup Supply Co. over more than 5,400 admitted Clean Water Act violations at its Napoleon, Ohio facility, alleging illegal discharges of phosphorus, ammonia, E. coli, oil, grease, and suspended solids into the Maumee River, a tributary of Lake Erie. Campbell admitted liability via joint stipulation in September 2025; a trial to determine the penalty amount is anticipated in 2026.',
+        source: 'EPA / DOJ complaint, March 2024; Spectrum News 1 Ohio, September 2025; Environment Ohio, 2025',
+      },
+      {
+        id: 'wood_contamination_2025',
+        title: 'USDA Alert: Wood Fragments in Soup Products',
+        severity: 'medium',
+        description:
+          'The USDA Food Safety and Inspection Service issued a public health alert on April 11, 2025 for Campbell\'s, Healthy Request, Molly\'s Kitchen, Sysco, Verve, and Crafted Market soup products distributed across Illinois, Indiana, Michigan, and Ohio after wood fragments were discovered originating from an FDA-regulated cilantro ingredient. No injuries were reported.',
+        source: 'USDA FSIS public health alert, April 11, 2025; Food Safety News, April 2025',
+      },
+      {
+        id: 'sodium_labeling',
+        title: 'Consumer Lawsuits Over Sodium Health Claims',
+        severity: 'medium',
+        description:
+          'Multiple consumer class actions filed between 2019 and 2024 allege that Campbell misleadingly marketed high-sodium soups using "healthy" imagery and labeling claims. The cases\' settlement status had not been confirmed in primary court records as of mid-2026.',
+        source: 'The Hill; TheHill.com; consumer court filings 2019–2024',
+      },
+      {
+        id: 'bpa',
+        title: 'BPA in Can Linings',
+        severity: 'medium',
+        description:
+          'Campbell has used bisphenol A (BPA) in the epoxy linings of its metal soup cans. Independent testing has detected BPA migration into canned foods, and the FDA has faced ongoing scientific debate about safe exposure thresholds. Campbell has stated it is working to transition to alternative liners.',
+        source: 'FDA BPA assessments; consumer advocacy reporting',
+      },
     ],
     subsidiaries: ["Campbell's", 'Pepperidge Farm', 'Goldfish', 'V8', 'Prego', 'Pace', 'Swanson', 'Pacific Foods', 'Snyder\'s of Hanover', 'Lance', 'Kettle Brand'],
     sustainabilityScore: 52,
@@ -331,7 +702,46 @@ export const COMPANY_DB = {
     politicalDonations: 310000,
     donationSplit: { republican: 60, democrat: 40 },
     issues: [
-      { id: 'sugar_jelly', title: 'High-Sugar Spreads & Snacks', severity: 'medium', description: "Smucker's jams and jellies are among the highest-sugar condiments per serving in mainstream grocery.", source: 'CSPI, 2022' },
+      {
+        id: 'jif_salmonella_2022',
+        title: 'Jif Peanut Butter Salmonella Recall — 16 Ill',
+        severity: 'high',
+        description:
+          'The FDA issued a Class I recall in May 2022 for Jif peanut butter produced at the Lexington, Kentucky facility (lot codes 1274425–2140425) after whole-genome sequencing linked the strain to 16 illnesses across 12 states. Investigators matched the outbreak strain to an environmental sample from the same facility collected as far back as 2010. Smucker reported a $90 million direct financial impact from the recall.',
+        source: 'FDA recall notice, May 2022; CDC outbreak investigation; Axios, September 2022',
+      },
+      {
+        id: 'pet_food_pentobarbital',
+        title: 'Euthanasia Drug Found in Gravy Train Pet Food',
+        severity: 'high',
+        description:
+          'Smucker voluntarily withdrew Gravy Train, Kibbles \'N Bits, Ol\' Roy, and Skippy wet dog food products in February 2018 after the FDA confirmed the presence of pentobarbital, a euthanasia drug, in samples; an ABC7/WJLA investigation found positive results in approximately 60% of Gravy Train cans tested. The FDA traced the contamination to tallow from a single supplier at one facility. This entry covers a pet food product.',
+        source: 'FDA Animal & Veterinary advisories, 2018; CNN, 2018',
+      },
+      {
+        id: 'pet_food_inspection_failures',
+        title: 'Repeated FDA Pet Food Facility Violations',
+        severity: 'medium',
+        description:
+          'An FDA inspection in December 2019–January 2020 found Smucker\'s pet food facility had repeated the same Preventive Controls failure—relating to nutrient hazard management—that was cited in a March 2019 inspection. This inspection pattern coincided with three pet food recalls in under two years: 9Lives (December 2018, thiamine deficiency), Special Kitty (December 2019, excess choline chloride), and Natural Balance (July 2020, excess choline chloride). These entries cover pet food products.',
+        source: 'FDA inspection reports; FDA recall notices 2018–2020; Food Safety News, 2018',
+      },
+      {
+        id: 'uncrustables_protein',
+        title: 'Uncrustables Protein Content Lawsuit',
+        severity: 'medium',
+        description:
+          'A class action filed in 2021 in the Northern District of California (Brown v. J.M. Smucker) alleges that Uncrustables sandwiches overstate protein content by 20–140%, in violation of the California Consumers Legal Remedies Act. The case\'s current status in 2026 has not been confirmed in primary court records.',
+        source: 'Top Class Actions, 2021; ClassAction.org',
+      },
+      {
+        id: 'natural_pb_recall_2021',
+        title: 'Smucker\'s Natural Peanut Butter Salmonella Recall',
+        severity: 'medium',
+        description:
+          'The FDA issued a recall in November 2021 for approximately 3,000 jars of Smucker\'s Natural Peanut Butter Chunky (16 oz) due to potential Salmonella contamination. No illnesses were linked to the recalled product.',
+        source: 'FDA recall notice, November 2021; AboutLawsuits.com, November 2021',
+      },
     ],
     subsidiaries: ["Smucker's", 'Jif', 'Folgers', "Dunkin' (packaged)", 'Café Bustelo', "Milk-Bone", 'Meow Mix', 'Rachael Ray Nutrish', 'Robin Hood', "R.W. Knudsen", 'Santa Cruz Organic'],
     sustainabilityScore: 57,
@@ -349,7 +759,30 @@ export const COMPANY_DB = {
     politicalDonations: 220000,
     donationSplit: { republican: 52, democrat: 48 },
     issues: [
-      { id: 'lead_spices', title: 'Lead Contamination in Spices', severity: 'high', description: "McCormick spice products have been among brands tested with elevated lead levels, particularly in imported herbs and spices.", source: 'Consumer Reports, 2023' },
+      {
+        id: 'cinnamon_lead_recall',
+        title: 'Recurring Lead Contamination in Cinnamon',
+        severity: 'high',
+        description:
+          'McCormick issued a recall of specific cinnamon lots in 2024 (beginning "L23" or "M07") for elevated lead levels, and in March 2026 a nationwide FDA recall of McCormick cinnamon products was announced due to lead contamination. Consumer Reports\' 2023 investigation of herbs and spices found elevated arsenic, cadmium, and lead readings across multiple McCormick product lines, indicating a recurring pattern of heavy metal contamination.',
+        source: 'FDA recall notices, 2024 and March 2026; Consumer Reports, 2023',
+      },
+      {
+        id: 'salmonella_recall_2021',
+        title: 'Salmonella Recall: Italian Seasoning & Frank\'s',
+        severity: 'medium',
+        description:
+          'The FDA recalled McCormick Perfect Pinch Italian Seasoning, McCormick Culinary Italian Seasoning, and Frank\'s RedHot Buffalo Ranch Seasoning in July 2021 after routine FDA testing detected Salmonella. Distribution covered 32 states, Bermuda, and Canada. No illnesses were reported and the recall was completed and terminated.',
+        source: 'FDA recall notice, July 26, 2021; McCormick press release, 2021',
+      },
+      {
+        id: 'lead_spices',
+        title: 'Heavy Metals Found Across Spice Lineup',
+        severity: 'high',
+        description:
+          'Consumer Reports\' December 2022 and 2023 investigations found elevated lead, cadmium, and arsenic levels in multiple McCormick spice products. As You Sow filed California Prop 65 legal notices against McCormick for lead and cadmium levels in specific products exceeding state daily safe harbor limits.',
+        source: 'Consumer Reports, 2022–2023; As You Sow toxic enforcement program',
+      },
     ],
     subsidiaries: ["McCormick", "French's", "Frank's RedHot", 'Cholula', 'Old Bay', 'Lawry\'s', 'Zatarain\'s', 'Thai Kitchen', 'Simply Asia', 'Club House'],
     sustainabilityScore: 60,
@@ -367,8 +800,38 @@ export const COMPANY_DB = {
     politicalDonations: 290000,
     donationSplit: { republican: 44, democrat: 56 },
     issues: [
-      { id: 'palm_oil_ferrero', title: 'Palm Oil Use', severity: 'medium', description: 'Ferrero is the world\'s largest buyer of palm oil; while it has achieved RSPO certification, deforestation risks in supply chain persist.', source: 'Rainforest Alliance, 2022' },
-      { id: 'nutella_sugar', title: 'Nutella Sugar Content', severity: 'medium', description: "Nutella is ~57% sugar by weight. Ferrero has resisted EU proposals for front-of-pack nutritional warning labels.", source: 'EURACTIV, 2022' },
+      {
+        id: 'kinder_salmonella_2022',
+        title: 'Kinder Salmonella Outbreak, Delayed Disclosure',
+        severity: 'high',
+        description:
+          'Belgian food safety authorities closed Ferrero\'s Arlon plant on April 8, 2022 after monophasic Salmonella Typhimurium was linked to at least 101 illnesses in the UK (majority in children under 5) and additional cases across France, Germany, Ireland, Sweden, and the Netherlands. UK FSA and Scottish FSS formally raised concerns about delays in Ferrero\'s disclosure after the contamination was reportedly detected in a buttermilk tank in December 2021 and Ferrero concluded there was no risk without notifying authorities until the outbreak became public. The US FDA also recalled Kinder Happy Moments and Kinder Mix Chocolate Treats Basket; the Arlon plant did not resume production until September 2022.',
+        source: 'UK Food Standards Agency recall notices, 2022; Food Safety News, 2022; FDA US recall notice, 2022',
+      },
+      {
+        id: 'hazelnut_child_labor',
+        title: '3,020 Children in Hazelnut Supply Chain',
+        severity: 'high',
+        description:
+          'Ferrero\'s own 2024 Sustainability Report, produced in collaboration with the International Labour Organization, identified 3,020 children engaged in child labor in its Turkish hazelnut supply chain. Ferrero\'s ILO partnership is in its fifth phase (2024–2026), indicating the problem has persisted for at least a decade without full remediation.',
+        source: 'Ferrero 2024 Sustainability Report; ILO project pages (ilo.org), 2024',
+      },
+      {
+        id: 'palm_oil_ferrero',
+        title: 'Palm Oil Linked to Deforestation Allegations',
+        severity: 'medium',
+        description:
+          'According to the Rainforest Action Network\'s Keep Forests Standing scorecard and a 2022 Rainforest Rescue open letter signed by more than 77,000 people, Ferrero\'s palm oil supply chain—including through Brazilian supplier Agropalma—has been associated with ongoing deforestation and land rights concerns. These findings have not been adjudicated; Ferrero has adopted a "no deforestation" palm oil policy but civil society organizations document continued gaps in implementation.',
+        source: 'Rainforest Action Network KFS Scorecard; Rainforest Rescue, 2022; Great Italian Food Trade, 2022',
+      },
+      {
+        id: 'nutella_sugar',
+        title: 'Nutella Opposed EU Front-of-Pack Warning Label',
+        severity: 'medium',
+        description:
+          'Ferrero lobbied against the adoption of the EU\'s Nutri-Score front-of-pack nutritional warning system in 2022, which would assign Nutella a low score due to its high sugar and palm oil content. EURACTIV confirmed Ferrero\'s opposition as part of broader industry efforts to block or delay the mandatory labeling scheme.',
+        source: 'EURACTIV, 2022',
+      },
     ],
     subsidiaries: ['Nutella', 'Ferrero Rocher', 'Kinder', 'Tic Tac', 'Butterfinger', 'Baby Ruth', 'Crunch', 'Nestlé Toll House (US cookie dough)', '100Grand', 'Raisinets'],
     sustainabilityScore: 49,
@@ -386,7 +849,22 @@ export const COMPANY_DB = {
     politicalDonations: 80000,
     donationSplit: { republican: 35, democrat: 65 },
     issues: [
-      { id: 'lead_lindt', title: 'Lead & Cadmium in Dark Chocolate', severity: 'high', description: 'Consumer Reports testing found Lindt dark chocolate among brands with concerning lead and cadmium levels.', source: 'Consumer Reports, 2022' },
+      {
+        id: 'lead_lindt',
+        title: 'Lead & Cadmium in Dark Chocolate, Lawsuit Active',
+        severity: 'high',
+        description:
+          'Consumer Reports\' December 2022 testing found that several Lindt dark chocolate bars contained lead and cadmium at levels exceeding California Prop 65 daily limits, and As You Sow subsequently filed Prop 65 legal notices citing both metals in Lindt\'s 70% and 85% cocoa bars. A class action, In re Lindt & Sprüngli Dark Chocolate Litigation (No. 1:2023cv01186, E.D.N.Y.), survived Lindt\'s motion to dismiss on September 6, 2024, when Judge Ann M. Donnelly rejected Lindt\'s argument that phrases like "expertly crafted" constituted non-actionable puffery; the case was in early discovery as of late 2024.',
+        source: 'Consumer Reports, December 2022; Justia case 1:2023cv01186; Fortune, 2024; Snopes, December 2024',
+      },
+      {
+        id: 'prop65_dual_metals',
+        title: 'Prop 65 Notices for Lead and Cadmium',
+        severity: 'high',
+        description:
+          'As You Sow\'s Toxic Chocolate enforcement program issued California Prop 65 notices against Lindt for both lead and cadmium in its 70% and 85% cocoa dark chocolate bars. These dual-metal findings are consistent with confirmed scientific mechanisms: cadmium is absorbed from soil by cocoa trees, while lead contamination typically occurs post-harvest during drying and transport. The FDA does not enforce binding cadmium limits for most chocolate products, making Prop 65 the primary U.S. regulatory mechanism.',
+        source: 'As You Sow asyousow.org/environmental-health/toxic-enforcement/toxic-chocolate; Consumer Reports, 2022',
+      },
     ],
     subsidiaries: ['Lindt', 'Ghirardelli', 'Russell Stover', 'Whitman\'s', 'Pangburn\'s'],
     sustainabilityScore: 58,
@@ -404,7 +882,22 @@ export const COMPANY_DB = {
     politicalDonations: 40000,
     donationSplit: { republican: 40, democrat: 60 },
     issues: [
-      { id: 'gelatin_source', title: 'Pork Gelatin & Animal Welfare', severity: 'medium', description: "Haribo's use of pork gelatin from factory farms was documented in a viral 2017 investigative report.", source: 'SPIEGEL TV, 2017' },
+      {
+        id: 'carnauba_wax_forced_labor',
+        title: 'Forced Labor Conditions in Carnauba Wax Supply',
+        severity: 'high',
+        description:
+          'A 2017 ARD/WDR Markencheck documentary investigation found workers in Haribo\'s Brazilian carnauba wax supply chain sleeping outdoors or in trucks, lacking toilets and clean drinking water, and earning approximately $12 per day; the Brazilian Labor Ministry described conditions at one site as "slavery." Haribo pledged an independent audit following the broadcast, but no public audit results or confirmed full remediation have been published through 2025.',
+        source: 'Business & Human Rights Resource Centre; FoodNavigator, November 2017; Vice, 2017',
+      },
+      {
+        id: 'gelatin_source',
+        title: 'Gelatin Sourced from Documented Factory Farms',
+        severity: 'medium',
+        description:
+          'The same 2017 ARD/WDR investigation documented conditions at pig farms supplying gelatin to Haribo, including animals with open sores, inadequate water access, and dead animals left among live pigs. Haribo pledged an investigation but has not published independent audit results confirming remediation of its pork gelatin supply chain.',
+        source: 'ARD/WDR Markencheck documentary, 2017; FoodNavigator, November 2017',
+      },
     ],
     subsidiaries: ['Haribo', 'Goldbears', 'Starmix', 'Super Mix'],
     sustainabilityScore: 44,
@@ -422,7 +915,22 @@ export const COMPANY_DB = {
     politicalDonations: 60000,
     donationSplit: { republican: 57, democrat: 43 },
     issues: [
-      { id: 'artificial_colors', title: 'Artificial Dyes in Children\'s Candy', severity: 'medium', description: 'Tootsie Roll products contain artificial food dyes (Red 40, Yellow 5/6) linked to hyperactivity in children.', source: 'CSPI, 2023' },
+      {
+        id: 'osha_amputation_2021',
+        title: 'OSHA Willful Violation: Worker Finger Amputation',
+        severity: 'high',
+        description:
+          'OSHA cited Tootsie Roll Industries for one willful serious violation and proposed a $136,532 penalty following a workplace incident on April 19, 2021 at its Chicago facility, in which a 48-year-old worker suffered a partial finger amputation when a safety lockout was bypassed on a Robert\'s C-1500 Form, Fill and Seal Machine. OSHA\'s Region 5 news release, dated October 5, 2021, confirmed the willful classification.',
+        source: 'OSHA Region 5 news release, October 5, 2021 (osha.gov); Bloomberg Law, 2021',
+      },
+      {
+        id: 'artificial_colors',
+        title: 'Synthetic Dyes Under FDA Phase-Out Pressure',
+        severity: 'medium',
+        description:
+          'Tootsie Roll products contain Red 40, Yellow 5, and Yellow 6 synthetic food dyes. In April 2025 the HHS and FDA announced an initiative to phase out synthetic dyes from the food supply, and in January 2025 the FDA finalized a ban on Red 3 effective 2027. California\'s School Food Safety Act (2024) and bans enacted in multiple states in 2024–2025 further restrict these dyes. CSPI\'s Synthetic Dyes Corporate Commitment Tracker does not list Tootsie Roll as having made any commitment to remove synthetic dyes.',
+        source: 'FDA official announcements, April 2025; CSPI (cspi.org); Morgan Lewis client alert, 2026',
+      },
     ],
     subsidiaries: ['Tootsie Roll', 'Tootsie Pop', 'Charms', 'Junior Mints', 'Sugar Daddy', 'Andes', 'Blow Pop'],
     sustainabilityScore: 38,
@@ -440,8 +948,54 @@ export const COMPANY_DB = {
     politicalDonations: 1800000,
     donationSplit: { republican: 70, democrat: 30 },
     issues: [
-      { id: 'worker_safety', title: 'Worker Safety During COVID-19', severity: 'high', description: "Tyson plants became COVID-19 hotspots in 2020; managers were accused of running betting pools on how many workers would get infected.", source: 'ProPublica, 2020' },
-      { id: 'water_pollution', title: 'Water Pollution Violations', severity: 'high', description: "Tyson is one of the largest contributors to water pollution in the US, discharging millions of pounds of pollutants into waterways.", source: 'Environment America, 2021' },
+      {
+        id: 'water-pollution-371m',
+        title: '371M lbs of Waterway Pollution (2018–2022)',
+        severity: 'high',
+        description:
+          'Tyson Foods released at least 371.7 million pounds of pollutants — including nitrogen, phosphorus, chloride, and cyanide — into US waterways across 41 facilities between 2018 and 2022, according to a Union of Concerned Scientists / Investigate Midwest analysis published in May 2024. Separately, Tyson agreed to pay $3 million to the Alabama Attorney General in August 2021 to settle a 2019 illegal discharge into the Mulberry Fork of the Black Warrior River that killed an estimated 175,000 fish.',
+        source: 'Union of Concerned Scientists / Investigate Midwest, May 2024; Alabama AG, August 2021',
+      },
+      {
+        id: 'covid-betting-pool',
+        title: 'Managers Ran COVID Betting Pool on Workers',
+        severity: 'high',
+        description:
+          'A Tyson plant manager at the Waterloo, Iowa facility organized a cash-entry betting pool in which supervisors wagered on how many workers would contract COVID-19; seven managers were terminated in December 2020 following an independent investigation led by former US Attorney General Eric Holder. Over 1,000 workers at the facility were infected and at least six died.',
+        source: 'NPR, NBC News, CNBC, December 2020',
+      },
+      {
+        id: 'child-labor-dol',
+        title: 'DOL Finds Minors at Arkansas Plants',
+        severity: 'high',
+        description:
+          'The US Department of Labor launched an investigation in September 2023 into child labor at Tyson facilities; Arkansas court records unsealed in October 2024 confirmed the DOL found minors under 16 employed at two Arkansas Tyson plants, linked to cleaning subcontractor QSI/Vincit Group. As of June 2026, the investigation remains open with no published settlement.',
+        source: 'US Department of Labor; CBS News, October 2024',
+      },
+      {
+        id: 'product-recall-2025',
+        title: '58 Million lb Corn Dog & Sausage Recall',
+        severity: 'high',
+        description:
+          'Tyson subsidiary Hillshire Brands recalled approximately 58 million pounds of State Fair Corn Dogs and Jimmy Dean Pancakes & Sausage on a Stick products in September 2025 after wood fragment contamination was discovered; USDA classified the recall as Class I, its highest urgency level, and at least five consumer injuries were reported. Products had been distributed to retail stores, school districts, and the US Department of Defense.',
+        source: 'USDA FSIS official recall notice, September 27, 2025',
+      },
+      {
+        id: 'labor-controversy-2024',
+        title: 'Plant Closure Amid Migrant Hiring Controversy',
+        severity: 'medium',
+        description:
+          'In March 2024, Tyson announced the closure of its Perry, Iowa plant affecting 1,276 workers; separately, the company announced a migrant hiring initiative at other facilities. Tyson stated the two decisions were unrelated, but the coinciding announcements prompted a documented public boycott campaign.',
+        source: 'NPR, Newsweek, Fox Business, March 2024',
+      },
+      {
+        id: 'lobbying-pac-2024',
+        title: 'Lobbying & PAC Contributions (2022–2024)',
+        severity: 'medium',
+        description:
+          'Federal Election Commission and OpenSecrets public filings show Tyson spent approximately $1.886 million on federal lobbying in 2022 and approximately $1.670 million in 2024, with approximately $1.05 million in PAC contributions during the 2024 election cycle.',
+        source: 'OpenSecrets; FEC filings, 2022–2024',
+      },
     ],
     subsidiaries: ['Tyson', 'Jimmy Dean', "Ball Park", 'Hillshire Farm', 'Wright Brand', 'State Fair', 'Aidells', 'Nature Raised Farms'],
     sustainabilityScore: 28,
@@ -459,8 +1013,38 @@ export const COMPANY_DB = {
     politicalDonations: 680000,
     donationSplit: { republican: 67, democrat: 33 },
     issues: [
-      { id: 'spam_sodium', title: 'SPAM Sodium Content', severity: 'medium', description: "SPAM contains 790mg of sodium per 2oz serving — one of the highest sodium-density foods in mainstream retail.", source: 'American Heart Association, 2022' },
-      { id: 'factory_farming', title: 'Factory Farming Practices', severity: 'high', description: 'Hormel has resisted animal welfare reforms; gestation crate use in pork supply chain has been documented.', source: 'Humane Society, 2022' },
+      {
+        id: 'product-recalls-2024-2025',
+        title: 'Three Recalls for Foreign Matter (2024–2025)',
+        severity: 'high',
+        description:
+          'USDA FSIS issued three separate recall notices for Hormel products within 20 months: approximately 945 lbs of spiced deli ham in February 2024 for an undeclared milk allergen; approximately 256,185 lbs of canned beef stew in May 2025 for wood contamination; and approximately 4.87 million lbs of ready-to-eat frozen chicken in October 2025 for metal fragments from a conveyor belt, which generated multiple consumer complaints. Products from the October 2025 recall had been distributed between February and September 2025.',
+        source: 'USDA FSIS official recall notices, February 2024, May 2025, October 2025',
+      },
+      {
+        id: 'worker-rights-2025',
+        title: 'Class Action: Sick Leave Law Violations',
+        severity: 'medium',
+        description:
+          'Four UFCW Local 663 members filed suit against Hormel in Mower County District Court in July 2025, alleging the company willfully violated Minnesota\'s Earned Sick and Safe Time law by forcing workers to use contractual vacation time in place of statutory sick leave benefits and withholding accruals from January through February 2025. A labor arbitrator had previously ruled Hormel could not substitute vacation time for ESST compliance; the lawsuit is pending.',
+        source: 'UFCW Local 663, July 30, 2025; CBS Minnesota; Minnesota Reformer',
+      },
+      {
+        id: 'gestation-crates',
+        title: 'Supply Chain Gestation Crate Use Alleged',
+        severity: 'high',
+        description:
+          'Animal welfare organizations, including the Humane Society of the United States, allege that Hormel\'s contract pork supply chain continues to source from farms using gestation crates despite long-standing pledges to phase them out; Hormel has not provided independent third-party verification of full compliance.',
+        source: 'Humane Society of the United States; Prop 12 compliance reporting',
+      },
+      {
+        id: 'lobbying-correction',
+        title: 'Lobbying Spend Lower Than Reported',
+        severity: 'low',
+        description:
+          'OpenSecrets data for the 2024 election cycle shows Hormel spent approximately $490,000 on federal lobbying and approximately $7,000 in PAC contributions — substantially below figures previously cited for the company, which appear to reflect a historical peak year.',
+        source: 'OpenSecrets, 2024 cycle',
+      },
     ],
     subsidiaries: ['SPAM', 'Skippy', 'Applegate', "Jennie-O", "Justin's", 'Natural Choice', 'Columbus Craft Meats', 'Wholly Guacamole', 'Dinty Moore'],
     sustainabilityScore: 35,
@@ -478,8 +1062,46 @@ export const COMPANY_DB = {
     politicalDonations: 1400000,
     donationSplit: { republican: 72, democrat: 28 },
     issues: [
-      { id: 'amazon_deforestation', title: 'Amazon Deforestation', severity: 'high', description: "JBS is the world's largest meat processor; its Brazilian cattle supply chain has been directly linked to Amazon deforestation.", source: 'Mighty Earth, 2022' },
-      { id: 'corruption', title: 'Bribery & Corruption Scandals', severity: 'high', description: "JBS executives pled guilty to bribing Brazilian government officials, paying over $3.2B in fines in a 2017 US-Brazil settlement.", source: 'Reuters, 2017' },
+      {
+        id: 'fcpa-corruption',
+        title: '$155M US Bribery Settlement (2020)',
+        severity: 'high',
+        description:
+          'JBS parent company J&F Investimentos agreed to pay approximately $155 million to the US Department of Justice and Securities and Exchange Commission in October 2020 to settle Foreign Corrupt Practices Act charges arising from a scheme involving more than $148 million in payments to Brazilian government officials, without admitting wrongdoing. Separately, J&F paid approximately $3.2 billion in a 2017 domestic Brazilian settlement covering the same underlying bribery conduct.',
+        source: 'US DOJ and SEC official filings, October 2020',
+      },
+      {
+        id: 'antitrust-beef',
+        title: '~$160M in Beef Price-Fixing Settlements',
+        severity: 'high',
+        description:
+          'JBS has agreed to at least three separate settlements totaling approximately $160.5 million to resolve federal antitrust class actions alleging beef price-fixing: $52.5 million to direct purchasers (February 2022), $25 million to commercial and institutional indirect purchasers, and $83.5 million to cattle producers (2025). All settlements were reached without admission of wrongdoing.',
+        source: 'National Trial Lawyers; Food Dive; Perishable News; court records, 2022–2025',
+      },
+      {
+        id: 'ransomware-payment',
+        title: '$11M Ransom Paid to Cybercriminal Group',
+        severity: 'high',
+        description:
+          'JBS paid $11 million in Bitcoin in June 2021 to the REvil ransomware group following a cyberattack on May 30, 2021 that disrupted beef and pork processing operations in the United States, Canada, and Australia for several days; the FBI attributed the attack to REvil/Sodinokibi.',
+        source: 'JBS statement; FBI; NPR, June 2021',
+      },
+      {
+        id: 'greenwashing-settlement',
+        title: 'NY AG: Net Zero Claim Was Misleading',
+        severity: 'high',
+        description:
+          'JBS agreed on October 31, 2025 to pay $1.1 million and revise its marketing following a New York Attorney General investigation that found the company\'s "Net Zero by 2040" pledge failed to account for deforestation emissions from its supply chain. Under the settlement, JBS must change "pledge" to "goal" in consumer-facing materials and submit to annual compliance reviews for three years.',
+        source: 'New York Attorney General official press release; Kelley Drye, November 2025',
+      },
+      {
+        id: 'amazon-deforestation',
+        title: 'Supply Chain Linked to Amazon Deforestation',
+        severity: 'high',
+        description:
+          'Investigative reporting by Mighty Earth and independent analyses have documented links between JBS\'s Brazilian beef supply chain and deforestation in the Amazon; the New York Attorney General\'s 2025 greenwashing investigation independently confirmed that JBS\'s Net Zero claim failed to account for deforestation-related emissions, providing primary-source legal corroboration of the supply chain findings.',
+        source: 'Mighty Earth; New York AG, October 2025',
+      },
     ],
     subsidiaries: ['Swift', "Pilgrim's Pride", 'Butterball', 'Primo', 'JBS USA', 'Plumrose'],
     sustainabilityScore: 22,
@@ -497,8 +1119,30 @@ export const COMPANY_DB = {
     politicalDonations: 960000,
     donationSplit: { republican: 68, democrat: 32 },
     issues: [
-      { id: 'lagoon_pollution', title: 'Hog Lagoon Pollution', severity: 'high', description: "Smithfield's open-air hog waste lagoons in North Carolina have polluted waterways and disproportionately affected Black and low-income communities.", source: 'Environmental Justice Foundation, 2022' },
-      { id: 'chinese_ownership', title: 'Chinese State-Linked Ownership', severity: 'medium', description: "Smithfield is owned by WH Group (formerly Shuanghui), a Chinese conglomerate with state ties, raising food security concerns.", source: 'USDA / Congressional Research Service, 2021' },
+      {
+        id: 'covid-worker-safety',
+        title: 'COVID Outbreak: ~1,300 Workers Infected',
+        severity: 'high',
+        description:
+          'Approximately 1,300 workers at Smithfield Foods\' Sioux Falls, South Dakota pork processing plant were infected with COVID-19 in April 2020 after the facility remained open during the early pandemic; OSHA fined Smithfield $13,494 — a penalty the workers\' union publicly called inadequate. A lawsuit filed in April 2020 by Food & Water Watch over working conditions was dismissed in May 2024.',
+        source: 'NPR, April 2020; OSHA; Food & Water Watch v. Smithfield (dismissed May 2024)',
+      },
+      {
+        id: 'lagoon-pollution',
+        title: 'Hog Lagoon Nuisance: Jury Awards up to $473.5M',
+        severity: 'high',
+        description:
+          'In the April 2018 Kinlaw Farms trial, a jury awarded $50 million in punitive damages against Smithfield subsidiary Murphy-Brown over hog lagoon odor and runoff; the judge subsequently reduced the punitive award to approximately $3.25 million under North Carolina\'s punitive damages cap. A separate jury in 2019 awarded $473.5 million in a related hog nuisance case against Murphy-Brown.',
+        source: 'NC Newsline; Insurance Journal; The Counter, 2018–2019',
+      },
+      {
+        id: 'chinese-ownership-ccp',
+        title: 'Chinese State-Linked Ownership of US Facilities',
+        severity: 'high',
+        description:
+          'Smithfield Foods is owned by Hong Kong-listed WH Group, whose executive chairman Wan Long is a confirmed member of the Chinese Communist Party; Smithfield holds approximately 89,218 acres of US farmland according to AFIDA reporting. The federal Protecting America\'s Strategic Farmland Act (PASS Act), introduced in February 2023, and multiple state legislatures have introduced restrictions specifically targeting Chinese ownership of US agricultural assets.',
+        source: 'Federal Newswire; National Hog Farmer; AFIDA filings; PASS Act, 2023',
+      },
     ],
     subsidiaries: ['Smithfield', 'Eckrich', 'Nathan\'s Famous (packaged)', 'Farmland', 'Armour', 'Margherita', 'Cook\'s'],
     sustainabilityScore: 25,
@@ -516,7 +1160,30 @@ export const COMPANY_DB = {
     politicalDonations: 420000,
     donationSplit: { republican: 64, democrat: 36 },
     issues: [
-      { id: 'chicken_antibiotic', title: 'Antibiotic Use in Poultry', severity: 'medium', description: 'While Perdue eliminated routine antibiotics earlier than peers, ionophores (non-medically important antibiotics) are still used.', source: 'NRDC, 2021' },
+      {
+        id: 'child-labor-dol',
+        title: '$4.15M Child Labor Settlement (2025)',
+        severity: 'high',
+        description:
+          'Perdue Farms agreed on January 15, 2025 to pay $4.15 million to settle US Department of Labor findings that children as young as minors under 16 had been employed at its Accomac, Virginia processing facility between 2020 and 2023, working with electric knives and heat-sealing presses and during prohibited nighttime hours. The settlement included $2 million in restitution to affected minors, $2 million to child labor advocacy organizations, and a $150,000 civil monetary penalty; staffing agency SMX/Staff Management Solutions paid a $125,000 penalty and was permanently enjoined from future violations in meat processing.',
+        source: 'US Department of Labor press release, January 15, 2025 (dol.gov)',
+      },
+      {
+        id: 'product-recalls-2022-2023',
+        title: 'USDA Recalls for Foreign Matter (2022–2023)',
+        severity: 'medium',
+        description:
+          'USDA FSIS issued recall notices for Perdue Foods products in 2022 and 2023 for foreign matter and extraneous material contamination, affecting sausage products and frozen chicken nuggets and tenders.',
+        source: 'USDA FSIS official recall notices, 2022–2023',
+      },
+      {
+        id: 'antibiotic-use',
+        title: 'Antibiotic Use in Poultry Production',
+        severity: 'medium',
+        description:
+          'Perdue Farms has faced scrutiny from public health advocates over antibiotic use practices in its poultry supply chain; the company has made commitments to reduce antibiotic use, but independent verification of full compliance across contract growers has not been publicly established.',
+        source: 'Consumer and public health advocacy reporting',
+      },
     ],
     subsidiaries: ['Perdue', 'Niman Ranch', 'Coleman Natural', 'Panorama Organic', 'Draper Valley Farms'],
     sustainabilityScore: 52,
@@ -534,7 +1201,38 @@ export const COMPANY_DB = {
     politicalDonations: 140000,
     donationSplit: { republican: 66, democrat: 34 },
     issues: [
-      { id: 'animal_welfare_bt', title: 'Animal Welfare Investigations', severity: 'high', description: "Undercover investigations at Butterball facilities documented turkey abuse; resulted in criminal charges against workers in 2012.", source: 'Humane Society, 2012' },
+      {
+        id: 'sanitation-violations-2025',
+        title: 'FSIS Sanitation Violations at Two NC Plants',
+        severity: 'high',
+        description:
+          'FSIS noncompliance reports documented violations at Butterball\'s Raeford, North Carolina plant on October 27, 2025 and at its Mount Olive, North Carolina plant on October 15–17, 2025; violations included documentation failures at Raeford and unsanitary conditions — including turkey bones along a back wall — that were not properly escalated at Mount Olive. Carolina Public Press and NC Health News reported in December 2025 that FSIS lacked sufficient enforcement tools to compel correction.',
+        source: 'FSIS noncompliance reports; Carolina Public Press / NC Health News, December 2025',
+      },
+      {
+        id: 'product-recall-2021',
+        title: 'Ground Turkey Recalled for Blue Plastic',
+        severity: 'medium',
+        description:
+          'Butterball LLC recalled approximately 14,107 pounds of ground turkey in October 2021 after possible contamination with blue plastic pieces was identified; USDA classified the recall as Class II.',
+        source: 'USDA FSIS official recall notice, October 2021',
+      },
+      {
+        id: 'covid-worker-safety-2020',
+        title: 'COVID Safety Failures at NC Plants (2020)',
+        severity: 'high',
+        description:
+          'Workers at Butterball\'s North Carolina facilities filed five OSHA and NC OSH complaints in 2020 alleging inadequate COVID-19 protections; OSHA dismissed the complaints and NC OSH cited lack of jurisdiction, resulting in no enforcement action. Civil Eats and NC Health News documented the safety concerns raised by workers.',
+        source: 'Civil Eats, May 2020; NC Health News, November 2020',
+      },
+      {
+        id: 'animal-welfare-record',
+        title: 'Animal Welfare Violations & Ongoing Scrutiny',
+        severity: 'high',
+        description:
+          'Butterball was the subject of a documented undercover animal cruelty investigation in 2012. Good Jobs First\'s Violation Tracker records approximately $19.6 million in penalties across 21 enforcement records for Butterball; animal welfare advocacy organizations continue to rate the company poorly on welfare standards.',
+        source: 'Good Jobs First Violation Tracker; advocacy reporting, 2012–present',
+      },
     ],
     subsidiaries: ['Butterball'],
     sustainabilityScore: 33,
@@ -552,7 +1250,30 @@ export const COMPANY_DB = {
     politicalDonations: 160000,
     donationSplit: { republican: 58, democrat: 42 },
     issues: [
-      { id: 'salmonella', title: 'Salmonella Outbreaks', severity: 'high', description: 'Foster Farms chicken was linked to multistate Salmonella Heidelberg outbreaks in 2013–2014, sickening over 600 people.', source: 'CDC, 2014' },
+      {
+        id: 'product-recall-2025',
+        title: '~4 Million lb Corn Dog Recall for Wood',
+        severity: 'high',
+        description:
+          'Foster Poultry Farms LLC recalled approximately 3,961,138 pounds of chicken corn dog products in October 2025 after wood fragments were found embedded in the batter; USDA classified the recall as Class I and at least five consumer injuries were reported. Products had been distributed to retail stores, the US Department of Defense, and USDA Commodity Foods programs, and were produced between July 30, 2024 and August 4, 2025.',
+        source: 'USDA FSIS official recall notice, October 17, 2025',
+      },
+      {
+        id: 'salmonella-outbreak-2013',
+        title: '634 Salmonella Illnesses Across 29 States',
+        severity: 'high',
+        description:
+          'The CDC confirmed 634 Salmonella Heidelberg illnesses across 29 states linked to Foster Farms chicken between September 2013 and March 2014, involving seven antibiotic-resistant strains; USDA FSIS documents obtained via FOIA disclosed over 200 sanitation noncompliance reports at two Foster Farms California plants during the same period.',
+        source: 'CDC; USDA FSIS (FOIA disclosure); NRDC analysis, 2014',
+      },
+      {
+        id: 'pe-acquisition-2022',
+        title: 'Private Equity Acquisition by Atlas Holdings',
+        severity: 'medium',
+        description:
+          'Atlas Holdings, a Greenwich, Connecticut private equity firm, completed its acquisition of Foster Farms on June 7, 2022, ending 83 years of family ownership. The new CEO is Donnie Smith, who previously served as CEO of Tyson Foods from 2009 to 2016.',
+        source: 'WATTPoultry, June 2022',
+      },
     ],
     subsidiaries: ['Foster Farms'],
     sustainabilityScore: 38,
@@ -570,7 +1291,22 @@ export const COMPANY_DB = {
     politicalDonations: 90000,
     donationSplit: { republican: 63, democrat: 37 },
     issues: [
-      { id: 'sodium_sausage', title: 'High Sodium Breakfast Products', severity: 'medium', description: 'Bob Evans breakfast sausage products contain high sodium and saturated fat levels relative to serving size.', source: 'CSPI, 2022' },
+      {
+        id: 'product-recalls-plastic',
+        title: 'Two Blue Rubber Recalls, Same Facility',
+        severity: 'medium',
+        description:
+          'USDA FSIS issued recall notices for Bob Evans raw pork sausage products in 2020 (approximately 4,200 lbs produced December 17, 2020) and again in 2022 (approximately 7,560 lbs of Italian sausage produced September 8, 2022), both for contamination with thin blue rubber pieces from the same Xenia, Ohio facility. Two identical contamination incidents involving the same contaminant at the same plant within two years constitutes a documented pattern.',
+        source: 'USDA FSIS official recall notices, 2020 and 2022',
+      },
+      {
+        id: 'post-holdings-ownership',
+        title: 'Owned by Post Holdings Since 2021',
+        severity: 'low',
+        description:
+          'Post Holdings, a publicly traded consumer packaged goods company, acquired the Bob Evans grocery division in 2021. OpenSecrets records show Post Holdings spent approximately $520,000 on federal lobbying, with PAC contributions directed approximately 61% to Republican candidates.',
+        source: 'Post Holdings SEC filings; OpenSecrets',
+      },
     ],
     subsidiaries: ['Bob Evans'],
     sustainabilityScore: 41,
@@ -588,7 +1324,38 @@ export const COMPANY_DB = {
     politicalDonations: 310000,
     donationSplit: { republican: 35, democrat: 65 },
     issues: [
-      { id: 'infant_recall', title: 'Infant Formula Salmonella Recall', severity: 'high', description: 'In 2017, Lactalis recalled 12 million cans of infant formula worldwide after a Salmonella outbreak at its French factory sickened 35 infants.', source: 'Reuters, 2018' },
+      {
+        id: 'criminal-indictment-2023',
+        title: 'Criminal Charges Filed in France (2023)',
+        severity: 'high',
+        description:
+          'Lactalis Group and its subsidiary Celia Laiterie de Craon were formally indicted on February 16, 2023 in France on charges of aggravated deception, involuntary injuries, and failure to execute product withdrawal and recall measures; both entities were placed under judicial supervision with €300,000 bonds each, and several hundred civil complainants are parties to the pending criminal case. Prosecutors allege Salmonella contamination was present at the Craon facility since at least 2005.',
+        source: 'Dairy Reporter, February 20, 2023; France24, February 16, 2023; Food Safety News',
+      },
+      {
+        id: 'infant-formula-recall-2026',
+        title: 'Cereulide Recall: 18 Countries, Delayed Response',
+        severity: 'high',
+        description:
+          'A French court opened a judicial investigation on January 30, 2026 following a Foodwatch legal complaint over cereulide contamination in Lactalis infant formula products that had been on sale since January 2025 — a full year before recall. Authorities in Belgium, Luxembourg, and Brazil confirmed links to infant illness, and recalls spread across 18 European countries.',
+        source: 'Dairy Reporter, January 23, 2026; Foodwatch.org; Just-Food',
+      },
+      {
+        id: 'infant-salmonella-recall',
+        title: 'Global Infant Formula Salmonella Recall',
+        severity: 'high',
+        description:
+          'Lactalis conducted a worldwide recall of infant formula products in December 2017 after Salmonella Agona contamination was detected at its Craon, France manufacturing facility; the recall affected products in more than 80 countries and was linked to illnesses in infants across multiple nations.',
+        source: 'French Ministry of Social Affairs and Health; international regulatory bodies, 2017',
+      },
+      {
+        id: 'corporate-opacity',
+        title: 'Privately Held with No Public Reporting',
+        severity: 'medium',
+        description:
+          'Lactalis is one of the world\'s largest dairy companies with revenues of approximately $28 billion, yet it is privately held by the Besnier family with no public reporting obligations; CEO Emmanuel Besnier is documented as declining media interviews and press inquiries, and multiple investigative outlets have noted the company\'s systematic refusal to provide public disclosure.',
+        source: 'Multiple investigative outlets; Lactalis company structure records',
+      },
     ],
     subsidiaries: ['Président', 'Galbani', 'Stonyfield', 'Siggi\'s', 'Parmalat', 'Lactaid (US license)', 'Sorrento'],
     sustainabilityScore: 44,
@@ -606,7 +1373,46 @@ export const COMPANY_DB = {
     politicalDonations: 820000,
     donationSplit: { republican: 65, democrat: 35 },
     issues: [
-      { id: 'price_fixing', title: 'Antitrust & Price Fixing', severity: 'high', description: 'DFA paid $50M to settle class-action claims that it conspired to suppress milk prices paid to farmers in the Northeast.', source: 'Reuters, 2020' },
+      {
+        id: 'price-fixing-northeast',
+        title: '$50M Northeast Price-Fixing Settlement',
+        severity: 'high',
+        description:
+          'Dairy Farmers of America agreed to pay $50 million to settle a class-action lawsuit alleging the cooperative engaged in anticompetitive practices that suppressed milk prices paid to dairy farmers in the Northeast region, without admitting wrongdoing.',
+        source: 'Cohen Milstein; Reuters',
+      },
+      {
+        id: 'price-fixing-southwest',
+        title: '$24.5M Southwest Price-Fixing Settlement (2025)',
+        severity: 'high',
+        description:
+          'DFA agreed to pay $24.5 million in July 2025 to settle federal antitrust claims alleging price-fixing in the Southwest milk market, with co-defendant Select Milk paying an additional $9.9 million for a combined $34.4 million settlement; non-monetary terms included dissolution of the Greater Southwest Agency and antitrust compliance education requirements. The preliminary settlement was filed in US District Court for the District of New Mexico.',
+        source: 'Farmshine, August 10, 2025; Hagens Berman case filings',
+      },
+      {
+        id: 'price-fixing-southeast-historical',
+        title: '$140M Southeast Price-Fixing Settlement (2013)',
+        severity: 'medium',
+        description:
+          'DFA agreed to pay $70 million — part of a combined $140 million settlement including subsidiaries National Dairy Holdings and Mid-Am Capital — in January 2013 to resolve a Southeast region antitrust class action alleging anticompetitive milk pricing, without admitting wrongdoing. Together with the Northeast and Southwest settlements, DFA\'s documented antitrust exposure across three regions totals approximately $214.5 million or more.',
+        source: 'Dairy Herd; Dairy Foods; NPR, January 23, 2013',
+      },
+      {
+        id: 'antitrust-doj-intervention',
+        title: 'DOJ Required Divestitures in Dean Foods Deal',
+        severity: 'high',
+        description:
+          'The US Department of Justice required DFA to divest three dairy processing plants — in Illinois, Wisconsin, and Massachusetts — as conditions of approving DFA\'s $433 million acquisition of the majority of Dean Foods\' assets in May 2020; the DOJ stated the deal "poses a serious risk of anticompetitive harm." The Wisconsin divestiture included surrender of associated intellectual property and brand name rights.',
+        source: 'US DOJ Antitrust Division filing, May 1, 2020',
+      },
+      {
+        id: 'lobbying-fmmo',
+        title: 'Lobbying USDA & Congress on Milk Pricing',
+        severity: 'medium',
+        description:
+          'DFA, which controls approximately 30% of the US milk supply, actively lobbies the USDA, Congressional agriculture committees, and the FDA on Federal Milk Marketing Order rules that govern minimum prices paid to dairy farmers; the cooperative\'s market concentration and lobbying activity have been documented in OpenSecrets filings and USDA FMMO proceedings.',
+        source: 'OpenSecrets; USDA Federal Milk Marketing Order proceedings',
+      },
     ],
     subsidiaries: ['Borden', 'Kemps', 'Cache Valley', 'Plugrá Butter', 'Sport Shake'],
     sustainabilityScore: 46,
@@ -624,7 +1430,38 @@ export const COMPANY_DB = {
     politicalDonations: 580000,
     donationSplit: { republican: 61, democrat: 39 },
     issues: [
-      { id: 'fertilizer_runoff', title: 'Fertilizer & Agribusiness Runoff', severity: 'medium', description: "Land O'Lakes' WinField United agribusiness unit sells fertilizers linked to nutrient runoff in the Mississippi River basin.", source: 'Environmental Defense Fund, 2021' },
+      {
+        id: 'fda-warning-animal-feed-deaths',
+        title: 'FDA Warning: Calf Deaths from Feed Contamination',
+        severity: 'high',
+        description:
+          'In 2023, the FDA issued a warning letter to Nutra Blend LLC, a Land O\'Lakes subsidiary, after cross-contamination at its Mason City, Iowa medicated feed mill caused multiple calf deaths from ionophore toxicity. The company also failed to file a required Reportable Food Registry report within the mandated timeframe.',
+        source: 'FDA Warning Letter, May 2023',
+      },
+      {
+        id: 'antitrust-cwt-settlement',
+        title: 'Antitrust Settlement: Dairy Price-Fixing Allegations',
+        severity: 'medium',
+        description:
+          'Land O\'Lakes was a named defendant in a $52 million class-action antitrust settlement (2016) alleging that dairy cooperatives slaughtered more than 500,000 cows under the CWT herd retirement program between 2003 and 2010 to artificially inflate milk prices. No admission of wrongdoing.',
+        source: 'Hagens Berman Press Release; Dairy Reporter, September 2016',
+      },
+      {
+        id: 'lobbying-spend',
+        title: 'Ongoing Federal Lobbying on Dairy & Labeling',
+        severity: 'low',
+        description:
+          'Land O\'Lakes spends approximately $1.2 million annually lobbying Congress and federal agencies on dairy pricing, nutrition labeling, and environmental regulation. Lobbying activity is reported to OpenSecrets under client ID D000022070.',
+        source: 'OpenSecrets, ongoing',
+      },
+      {
+        id: 'fertilizer-runoff',
+        title: 'WinField United Linked to Mississippi River Runoff',
+        severity: 'medium',
+        description:
+          'WinField United, Land O\'Lakes\' agribusiness subsidiary and a major U.S. crop input distributor, has been documented by the Environmental Defense Fund and NRDC as a contributor to nitrogen loading in the Mississippi River Basin and Gulf hypoxia. No direct EPA enforcement action against Land O\'Lakes has been confirmed.',
+        source: 'Environmental Defense Fund; NRDC, ongoing',
+      },
     ],
     subsidiaries: ["Land O'Lakes Butter", 'Kozy Shack', 'Alpine Lace', 'WinField United'],
     sustainabilityScore: 50,
@@ -642,7 +1479,30 @@ export const COMPANY_DB = {
     politicalDonations: 95000,
     donationSplit: { republican: 22, democrat: 78 },
     issues: [
-      { id: 'organic_standards', title: 'Organic Standards Dilution', severity: 'low', description: 'As organic goes mainstream, Organic Valley has publicly opposed weakening of USDA organic pasture standards by large competitors.', source: 'NOSB, 2021' },
+      {
+        id: 'lyons-magnus-recall-2022',
+        title: 'Recall: Aseptic Products Contaminated by Co-Packer',
+        severity: 'high',
+        description:
+          'Organic Valley products were included in a major recall in August 2022 when co-packer Lyons Magnus LLC recalled 35+ million packages of aseptic products due to potential contamination with Cronobacter sakazakii and Clostridium botulinum. The FDA later issued a warning letter to Lyons Magnus (January 2023) for continuing production for months after internal contamination was detected in April 2022.',
+        source: 'FDA Recall Notice; FDA Warning Letter, January 2023',
+      },
+      {
+        id: 'calf-separation-lawsuit-dismissed',
+        title: 'Humanewashing Lawsuit: Dismissed Without Settlement',
+        severity: 'low',
+        description:
+          'A 2022 PETA Foundation-backed class action alleged Organic Valley misled consumers about calf separation practices; a 2023 court ruling found a reasonable consumer could find the labeling misleading. The parties mutually dismissed the case in September 2024 with no settlement or payment.',
+        source: 'U.S. District Court N.D. Cal. (Judge Jon S. Tigar); parties\' dismissal, September 2024',
+      },
+      {
+        id: 'oregon-deq-fine-milk-spill',
+        title: 'Oregon DEQ Fine: Milk Discharge to Waterway',
+        severity: 'low',
+        description:
+          'In 2019, Oregon fined Organic Valley (CROPP Cooperative) $26,574 for discharging milk into a storm drain that turned a local creek white for three-quarters of a mile. A fire at the same McMinnville, Oregon creamery in 2021 prompted a half-mile evacuation radius due to ammonia release; the facility was rebuilt and reopened in May 2022.',
+        source: 'Oregon DEQ Press Release, 2019; news reports, 2021',
+      },
     ],
     subsidiaries: ['Organic Valley', 'Organic Prairie'],
     sustainabilityScore: 82,
@@ -660,7 +1520,22 @@ export const COMPANY_DB = {
     politicalDonations: 110000,
     donationSplit: { republican: 30, democrat: 70 },
     issues: [
-      { id: 'added_sugar', title: 'Added Sugar in Flavored Products', severity: 'low', description: "Some Chobani flavored yogurts contain 12–15g of added sugar per cup, undermining the health halo of Greek yogurt.", source: 'CSPI, 2022' },
+      {
+        id: 'phthalates-lawsuit-2025',
+        title: 'Class Action: Phthalates in "Natural" Yogurt',
+        severity: 'medium',
+        description:
+          'An April 2025 class action (S.D. Cal., Wysocki v. Chobani LLC) alleges that Chobani plain Greek yogurts contained phthalates — endocrine-disrupting chemicals — leached from plastic packaging, despite marketing claiming "only natural ingredients." Independent testing by PlasticList detected four phthalate variants (DEHP, DEP, DBP, DEHT). No FDA recall has been issued and the case is pending.',
+        source: 'U.S. District Court S.D. Cal., Case 3:25-cv-00907; PlasticList, 2025',
+      },
+      {
+        id: 'farmworker-labor-conditions',
+        title: 'Supplier Farms Alleged to Have Poor Labor Conditions',
+        severity: 'medium',
+        description:
+          'The Worker Justice Center of New York and a coalition of 35 labor rights organizations have alleged that dairy farms in Chobani\'s supplier network maintain substandard housing, high injury rates, and retaliate against workers seeking to organize. Chobani partnered with Fair Trade USA for supplier certification, a program that labor groups have criticized as inadequate on union rights.',
+        source: 'Worker Justice Center of New York; Fair World Project, 2021–ongoing',
+      },
     ],
     subsidiaries: ['Chobani'],
     sustainabilityScore: 68,
@@ -677,7 +1552,48 @@ export const COMPANY_DB = {
     lobbyingTargets: ['USDA', 'Oregon Legislature'],
     politicalDonations: 70000,
     donationSplit: { republican: 48, democrat: 52 },
-    issues: [],
+    issues: [
+      {
+        id: 'dairy-done-right-lawsuit',
+        title: '"Dairy Done Right" Marketing Lawsuit Proceeds',
+        severity: 'high',
+        description:
+          'A 2019 class action alleging that Tillamook\'s "Dairy Done Right" and "Goodbye Big Food" marketing campaigns deceive consumers — because upwards of two-thirds of Tillamook\'s milk comes from Threemile Canyon Farms, a CAFO with approximately 70,000 cattle near Boardman, Oregon, not the small coastal farms depicted in advertising — was revived by the Oregon Supreme Court in April 2025 and is proceeding to trial.',
+        source: 'Oregon Supreme Court, April 3, 2025; OPB',
+      },
+      {
+        id: 'threemile-supplier-violations',
+        title: 'Primary Supplier Fined for Air & Water Violations',
+        severity: 'medium',
+        description:
+          'Threemile Canyon Farms, Tillamook\'s primary milk supplier, was fined $19,500 by the Oregon DEQ for five air quality permit violations (2019–2020). A 2022 advocacy report by Food and Water Watch alleged the farm continued collecting California clean-energy credits while violating air quality rules. A 2019 spill sent over 300,000 gallons of manure into an Oregon waterway.',
+        source: 'Oregon DEQ; Food and Water Watch, 2022; OPB, January 2022',
+      },
+      {
+        id: 'allergen-recall-ice-cream-2023',
+        title: 'Recall: Undeclared Allergens in Ice Cream',
+        severity: 'low',
+        description:
+          'In May–June 2023, Tillamook recalled up to 1,440 cartons of Waffle Cone Swirl ice cream after the product was mis-packaged in Chocolate Peanut Butter cartons, leaving wheat and soy allergens undeclared. Distribution was limited to Safeway locations in Washington state and northern Idaho, and no illnesses were reported.',
+        source: 'FDA Recall Notice; KPTV, June 2023',
+      },
+      {
+        id: 'plastic-recall-cheese-2024',
+        title: 'Recall: Plastic Pieces Found in Cheese',
+        severity: 'low',
+        description:
+          'In May 2024, Tillamook recalled Colby Jack and Monterey Jack cheese twin-packs sold exclusively at Costco Northwest locations after gray and black plastic pieces were found in the product. The FDA classified the recall as Class II, indicating temporary adverse health consequences were possible but serious harm was unlikely; no illnesses were reported.',
+        source: 'FDA Recall Notice, May 2024',
+      },
+      {
+        id: 'groundwater-contamination-supplier',
+        title: 'Supplier Linked to Groundwater Contamination',
+        severity: 'medium',
+        description:
+          'Environmental advocates and NW Environmental Advocates have documented ongoing nitrogen contamination of the Lower Umatilla Basin groundwater linked to CAFO operations, including Threemile Canyon Farms, operating under Oregon\'s agricultural permitting framework. This is an ongoing regulatory and advocacy record, not a single enforcement action.',
+        source: 'NW Environmental Advocates, ongoing',
+      },
+    ],
     subsidiaries: ['Tillamook'],
     sustainabilityScore: 72,
   },
@@ -694,7 +1610,22 @@ export const COMPANY_DB = {
     politicalDonations: 200000,
     donationSplit: { republican: 45, democrat: 55 },
     issues: [
-      { id: 'water_usage', title: 'High Water Usage in Dairy Processing', severity: 'low', description: "Saputo's dairy operations are water-intensive; the company has faced community opposition to plant expansions in drought-prone regions.", source: 'Reuters, 2022' },
+      {
+        id: 'cottage-cheese-recall-pasteurization-2026',
+        title: 'Recall: Pasteurization Failure in Cottage Cheese',
+        severity: 'medium',
+        description:
+          'In February 2026, Saputo recalled Great Value cottage cheese distributed to 24 states at Walmart stores after a pasteurization equipment failure was identified; the California Department of Food and Agriculture was involved in the investigation. The pasteurizer was subsequently repaired and certified, and no illnesses were reported.',
+        source: 'FDA Recall Notice, February 2026; California CDFA',
+      },
+      {
+        id: 'water-usage-opposition',
+        title: 'Community Opposition to Plant Water Use',
+        severity: 'low',
+        description:
+          'Saputo faced documented community opposition to plant expansions in drought-affected regions in 2021–2022. No formal EPA or California enforcement action has been confirmed.',
+        source: 'Reuters, 2022',
+      },
     ],
     subsidiaries: ['Saputo', 'Frigo', 'Treasure Cave', 'Frigo Cheese Heads', 'Vachon', 'Dairyland'],
     sustainabilityScore: 55,
@@ -711,7 +1642,32 @@ export const COMPANY_DB = {
     lobbyingTargets: ['FDA', 'USDA'],
     politicalDonations: 30000,
     donationSplit: { republican: 20, democrat: 80 },
-    issues: [],
+    issues: [
+      {
+        id: 'humanewashing-lawsuit-dismissed',
+        title: 'Humanewashing Lawsuit Dismissed; Vital Farms Prevailed',
+        severity: 'low',
+        description:
+          'A 2021 PETA Foundation-backed class action alleging Vital Farms misled consumers about pasture-raised and humane-certification claims was dismissed in January 2025 with no settlement or consumer payment. During litigation, Vital Farms was ordered to pay $292,000 in sanctions related to overly broad discovery subpoenas served on PETA.',
+        source: 'Court dismissal, January 2025; Vital Farms vitalfarms.com',
+      },
+      {
+        id: 'almark-listeria-recall-2019',
+        title: 'Eggs Recalled in Listeria Outbreak at Co-Packer',
+        severity: 'low',
+        description:
+          'Vital Farms pasture-raised hard-boiled eggs were included in a December 2019–January 2020 recall of all products from co-packer Almark Foods\' Georgia facility, linked to a Listeria outbreak that caused 7 illnesses, 4 hospitalizations, and 1 death. Vital Farms was an affected brand; the contamination originated at the co-packer\'s facility, not at Vital Farms.',
+        source: 'FDA Recall Notice; CDC Outbreak Investigation, 2019–2020',
+      },
+      {
+        id: 'linoleic-acid-controversy-2026',
+        title: 'Social Media Controversy: Egg Fatty Acid Composition',
+        severity: 'low',
+        description:
+          'A January 2026 social media controversy followed a Nourish Food Club and Michigan State University fatty acid analysis that found 22.5% linoleic acid in Vital Farms eggs, raising online debate about feed composition. Vital Farms disclosed feed composition openly on its website; Nourish Food Club confirmed the company did not misrepresent its feed ingredients. No lawsuit has been filed.',
+        source: 'Nourish Food Club; Michigan State University analysis, January 2026',
+      },
+    ],
     subsidiaries: ['Vital Farms', 'Pasture-Raised Eggs & Butter'],
     sustainabilityScore: 81,
   },
@@ -727,7 +1683,40 @@ export const COMPANY_DB = {
     lobbyingTargets: ['USDA', 'Congress'],
     politicalDonations: 45000,
     donationSplit: { republican: 42, democrat: 58 },
-    issues: [],
+    issues: [
+      {
+        id: 'vermont-wastewater-fine-2026',
+        title: 'Vermont Fined Parent Co. for Wastewater Violations',
+        severity: 'medium',
+        description:
+          'In February 2026, the Vermont Agency of Natural Resources fined Agri-Mark (Cabot Creamery\'s parent cooperative) $60,000 for 15 wastewater permit violations at its Middlebury, Vermont facility since July 2022, including unpermitted discharges of high-strength dairy waste that impacted the town\'s municipal treatment plant. The violations were notable because Vermont taxpayers had previously funded a $716,000 upgrade to the same facility.',
+        source: 'Vermont ANR Press Release; Vermont Superior Court Environmental Division consent order, February 2026',
+      },
+      {
+        id: 'butter-recall-coliform-2025',
+        title: 'Recall: Possible Fecal Contamination in Butter',
+        severity: 'low',
+        description:
+          'Cabot Creamery voluntarily recalled approximately 1,700 pounds of Extra Creamy Premium Butter in April 2025 after Coliform bacteria were detected in finished product testing. The FDA classified the recall as Class III (not likely to cause adverse health consequences). Agri-Mark recovered 99.5% of the affected lot before retail sale, and no illnesses were reported.',
+        source: 'FDA Recall Notice; VTDigger, April 10, 2025',
+      },
+      {
+        id: 'peanut-allergen-recall-popcorn-2025',
+        title: 'Recall: Undeclared Peanuts in Co-Branded Popcorn',
+        severity: 'medium',
+        description:
+          'In October 2025, co-manufacturer Jody\'s Inc. recalled Cabot Creamery-branded Sea Salt Caramel Cheddar Popcorn in nine states due to undeclared peanuts, a potentially life-threatening allergen for susceptible consumers. The issue was discovered through consumer complaints, and no illnesses were reported.',
+        source: 'FDA Recall Notice, October 2025',
+      },
+      {
+        id: 'antitrust-cwt-settlement',
+        title: 'Antitrust Settlement: Dairy Price-Fixing Allegations',
+        severity: 'medium',
+        description:
+          'Agri-Mark (Cabot Creamery\'s parent cooperative) was a named defendant in a $52 million class-action antitrust settlement (2016) alleging that dairy cooperatives slaughtered over 500,000 cows under the CWT herd retirement program (2003–2010) to artificially inflate milk prices. No admission of wrongdoing.',
+        source: 'Hagens Berman; Dairy Reporter, September 2016',
+      },
+    ],
     subsidiaries: ['Cabot', 'Cabot Creamery'],
     sustainabilityScore: 74,
   },
@@ -743,7 +1732,16 @@ export const COMPANY_DB = {
     lobbyingTargets: ['FDA', 'USDA'],
     politicalDonations: 70000,
     donationSplit: { republican: 60, democrat: 40 },
-    issues: [],
+    issues: [
+      {
+        id: 'rizo-lopez-listeria-recall-2024',
+        title: 'Recall: Listeria from Supplier; 2 Deaths in Outbreak',
+        severity: 'high',
+        description:
+          'In February 2024, Sargento voluntarily recalled 10,498 cases of food service and ingredients products containing Cotija cheese from supplier Rizo-Lopez Foods (Modesto, CA) after Listeria monocytogenes was detected by Hawaii health authorities. The broader Rizo-Lopez Listeria outbreak — with contamination history traced back to 2014 — caused 26 illnesses, 23 hospitalizations, and 2 deaths. Rizo-Lopez was permanently banned from food production by federal court order in October 2024 and subsequently filed for bankruptcy.',
+        source: 'FDA Outbreak Investigation; CDC; U.S. District Court consent decree, October 2024',
+      },
+    ],
     subsidiaries: ['Sargento'],
     sustainabilityScore: 61,
   },
@@ -760,8 +1758,46 @@ export const COMPANY_DB = {
     politicalDonations: 1100000,
     donationSplit: { republican: 54, democrat: 46 },
     issues: [
-      { id: 'pod_waste', title: 'K-Cup Plastic Pod Waste', severity: 'high', description: "Over 60 billion K-Cups are sold annually; the original inventor has expressed regret that they're not recyclable in most municipalities.", source: 'Atlantic, 2015; KDP 2023 report' },
-      { id: 'soda_tax_kdp', title: 'Sugar Tax Opposition', severity: 'medium', description: "Dr Pepper Snapple spent heavily to defeat soda tax measures across multiple US cities before merging with Keurig.", source: 'Center for Science in the Public Interest, 2022' },
+      {
+        id: 'penafiel-arsenic-recall',
+        title: 'Peñafiel Water Recalled: Arsenic Above FDA Limit',
+        severity: 'high',
+        description:
+          'Keurig Dr Pepper withdrew all unflavored Peñafiel mineral spring water in June 2019 after independent lab testing found arsenic at approximately 16 ppb, exceeding the FDA limit of 10 ppb. Consumer Reports documented that FDA had data indicating elevated arsenic levels as far back as 2013, raising questions about the six-year delay before a recall was issued.',
+        source: 'FDA Safety Alert, June 2019; Consumer Reports, 2019',
+      },
+      {
+        id: 'sec-recyclability-greenwashing',
+        title: 'SEC Fines KDP $1.5M for K-Cup Recycling Claims',
+        severity: 'high',
+        description:
+          'The SEC charged Keurig Dr Pepper with making incomplete and inaccurate recyclability statements in its 2019 and 2020 annual reports, specifically by failing to disclose that two major recycling companies said they would not accept K-Cup pods. KDP paid a $1.5 million civil penalty to settle the enforcement order finalized September 10, 2024; internal testing dating to 2016 had shown pods were not commercially viable for curbside recycling.',
+        source: 'SEC Press Release 2024-122, September 2024',
+      },
+      {
+        id: 'kcup-antitrust-mdl',
+        title: 'K-Cup Antitrust MDL: $3B+ Claims, Appeal Pending',
+        severity: 'high',
+        description:
+          'A multidistrict antitrust litigation in the Southern District of New York consolidated cases alleging KDP used exclusive supplier agreements and technological locks to suppress competition, with direct purchasers claiming more than $3 billion in damages. Judge Vernon S. Broderick denied class certification on November 21, 2025; an appeal to the Second Circuit is pending.',
+        source: 'SDNY Docket 1:2014mc02542; Bloomberg Law, 2025',
+      },
+      {
+        id: 'mccafe-decaf-caffeine-recall',
+        title: 'McCafé Decaf K-Cups May Contain Caffeine',
+        severity: 'medium',
+        description:
+          'KDP voluntarily recalled approximately 80,640 McCafé Premium Roast Decaf K-Cup pods in December 2025 after discovering a production batch may have contained caffeinated coffee. The FDA classified the recall as Class II, meaning the product may cause temporary adverse health consequences; distribution was limited to Amazon customers in California, Indiana, and Nevada.',
+        source: 'FDA Recall Database, January 2026; NBC News, 2025',
+      },
+      {
+        id: 'kcup-recyclability-ftc-complaint',
+        title: 'FTC Complaint: Continued K-Cup Recycling Deception',
+        severity: 'medium',
+        description:
+          'Consumer advocacy group TINA.org filed a complaint with the FTC alleging KDP continued to mislead consumers about K-Cup recyclability after its 2019 and 2020 disclosures; as of mid-2026, the FTC had not taken formal enforcement action. The SEC separately fined KDP $1.5 million in September 2024 for the same underlying conduct, establishing a verified regulatory record of the recycling misrepresentation.',
+        source: 'TINA.org, 2023; SEC Press Release 2024-122',
+      },
     ],
     subsidiaries: ["Dr Pepper", "7UP", "Snapple", "A&W", "Canada Dry", "RC Cola", "Bai", "Core Hydration", "Polar", "Green Mountain Coffee", "Keurig"],
     sustainabilityScore: 39,
@@ -779,8 +1815,46 @@ export const COMPANY_DB = {
     politicalDonations: 420000,
     donationSplit: { republican: 58, democrat: 42 },
     issues: [
-      { id: 'caffeine_heart', title: 'Caffeine-Related Health Incidents', severity: 'high', description: 'Monster Energy was named in FDA adverse event reports linked to 5 deaths and numerous hospitalizations between 2004–2012.', source: 'FDA CFSAN Adverse Events, 2012' },
-      { id: 'youth_marketing', title: 'Marketing to Minors', severity: 'high', description: 'Monster has been criticized for sponsoring youth-oriented extreme sports events and using athletes under 18 as brand ambassadors.', source: 'American Academy of Pediatrics, 2022' },
+      {
+        id: 'wrongful-death-caffeine',
+        title: 'Monster Settled Wrongful Death Suits — Caffeine',
+        severity: 'high',
+        description:
+          'Monster Beverage settled multiple wrongful death lawsuits including the case of Anais Fournier, 14, who died in 2012 after consuming two 24-oz Monster Energy cans, and the cases of Alex Morris and Shane Felts, who died in 2014; settlement amounts were not disclosed. As of March 2025, new cardiac injury lawsuits continued to be filed, and the FDA had recorded five deaths and one heart attack associated with Monster Energy between 2004 and 2012.',
+        source: 'Court Records; For The People Law Firm, March 2025; ESPN; LA Weekly',
+      },
+      {
+        id: 'youth-marketing-lawsuit',
+        title: 'SF City Attorney Sued Over Marketing to Minors',
+        severity: 'high',
+        description:
+          'The San Francisco City Attorney sued Monster Beverage in 2013, alleging the company marketed its products to children as young as six while classifying them as dietary supplements to avoid FDA oversight. The New York Attorney General separately issued subpoenas in a related investigation; regulatory scrutiny of Monster\'s youth marketing continued through at least 2022.',
+        source: 'SF City Attorney Records, 2013; Klein Moynihan, 2022',
+      },
+      {
+        id: 'sexual-harassment-executives',
+        title: 'Five Women Sued Monster Over Executive Harassment',
+        severity: 'high',
+        description:
+          'Five women filed lawsuits in 2018 alleging pervasive sexual harassment by senior Monster Beverage executives including VP John Kenneally and head of music marketing Brent Hamilton. A HuffPost investigation triggered Kenneally\'s firing two weeks after publication; one suit settled in January 2018 with undisclosed terms, and a sixth complainant came forward in March 2018. Monster Beverage acknowledged the litigation in its FY2018 SEC 10-Q filing.',
+        source: 'Fortune, July 2018; ABC News, 2018; Monster Beverage 10-Q, FY2018',
+      },
+      {
+        id: 'coca-cola-equity-stake',
+        title: 'Coca-Cola Owns 16.7% Stake, Exclusive Distribution',
+        severity: 'medium',
+        description:
+          'Coca-Cola acquired a 16.7% equity stake in Monster Beverage for $2.15 billion in 2015 and became Monster\'s exclusive global distributor as part of the same transaction. Coca-Cola transferred its NOS, Full Throttle, and other energy drink brands to Monster, concentrating energy drink market power between the two companies.',
+        source: 'SEC Filings, 2015; CSP Daily News, 2015',
+      },
+      {
+        id: 'board-diversity-derivative-suit',
+        title: 'Shareholder Suit Alleged Unmet Diversity Pledges',
+        severity: 'low',
+        description:
+          'A shareholder derivative suit filed in September 2020 in the Central District of California alleged Monster Beverage\'s board breached fiduciary duties by making diversity commitments it did not enforce. A federal court allowed the plaintiff to amend the complaint after Monster\'s initial dismissal motion; no final resolution has been publicly confirmed.',
+        source: 'D&O Diary, September 2020; Bloomberg Law, 2020',
+      },
     ],
     subsidiaries: ['Monster Energy', 'Reign', 'NOS', 'Full Throttle', 'Predator'],
     sustainabilityScore: 31,
@@ -798,7 +1872,38 @@ export const COMPANY_DB = {
     politicalDonations: 120000,
     donationSplit: { republican: 40, democrat: 60 },
     issues: [
-      { id: 'caffeine_rb', title: 'High Caffeine Content', severity: 'medium', description: 'Red Bull contains 80mg caffeine per 8.4oz can; its sugar-free variants use synthetic sweeteners linked to gut microbiome disruption.', source: 'EFSA, 2022' },
+      {
+        id: 'youth-caffeine-risk',
+        title: 'Regulators Flag Red Bull as Unsafe for Adolescents',
+        severity: 'high',
+        description:
+          'The FDA, European Food Safety Authority (2022), American Academy of Pediatrics, and Harvard School of Public Health have consistently identified energy drinks as inappropriate for adolescents; one 8.4-oz Red Bull delivers 80mg of caffeine, representing 80% of the AAP-recommended daily adolescent limit. Red Bull continued sponsoring extreme sports events directed at youth audiences throughout this period, drawing sustained regulatory scrutiny.',
+        source: 'EFSA, 2022; American Academy of Pediatrics; FDA Adverse Event Reports',
+      },
+      {
+        id: 'uk-underage-sales-ban',
+        title: 'UK Consulting Ban on Energy Drink Sales Under 16',
+        severity: 'medium',
+        description:
+          'The UK Health Secretary announced a 12-week public consultation on September 3, 2025 on banning sales of energy drinks containing more than 150mg of caffeine per liter to anyone under 16 in England, following existing bans in Wales and Scotland. Red Bull, at approximately 95mg per 100ml, falls above the proposed threshold; the consultation closed November 26, 2025 and legislative outcome had not been confirmed as of mid-2026.',
+        source: 'New Food Magazine, September 2025; Beverage Daily, 2025',
+      },
+      {
+        id: 'false-advertising-settlement',
+        title: 'Red Bull Paid $13M to Settle "Gives You Wings" Suit',
+        severity: 'medium',
+        description:
+          'Red Bull paid $13 million in 2014 to settle a US class action alleging it falsely advertised performance enhancement superior to cheaper caffeine sources; consumers who purchased Red Bull between 2002 and 2014 were eligible for $10 cash or $15 in product vouchers. Red Bull denied wrongdoing and settled to avoid litigation costs.',
+        source: 'CBC News, October 2014; US News, 2014; BevNET, 2014',
+      },
+      {
+        id: 'asa-health-claims-ban',
+        title: 'UK Regulator Banned Red Bull Focus-Claim Ad',
+        severity: 'low',
+        description:
+          'The UK Advertising Standards Authority issued a ruling in 2019 banning a Red Bull poster campaign that implied improved focus and concentration, finding the claims were not authorized under EU nutrition and health-claims regulations. The ruling required the ad to be withdrawn.',
+        source: 'ASA Ruling, 2019; LawHubX, 2019',
+      },
     ],
     subsidiaries: ['Red Bull', 'Red Bull Sugarfree', 'Red Bull Zero'],
     sustainabilityScore: 42,
@@ -816,8 +1921,46 @@ export const COMPANY_DB = {
     politicalDonations: 2800000,
     donationSplit: { republican: 56, democrat: 44 },
     issues: [
-      { id: 'alcohol_marketing', title: 'Marketing Alcohol to Underage', severity: 'high', description: 'AB InBev has repeatedly faced FTC scrutiny for advertising practices that reach underage audiences via digital platforms.', source: 'FTC Report, 2022' },
-      { id: 'water_bud', title: 'Water Usage in Drought Regions', severity: 'medium', description: 'Bud Light and other AB InBev brands operate brewing facilities in water-stressed regions of the US Southwest.', source: 'CEO Water Mandate, 2022' },
+      {
+        id: 'epa-ammonia-settlement',
+        title: 'EPA Fined AB InBev $537K for Ammonia Violations',
+        severity: 'high',
+        description:
+          'AB InBev paid $537,000 in penalties in June 2023 to settle EPA Clean Air Act and Emergency Planning and Community Right-to-Know Act violations at three breweries — Merrimack, NH; Fort Collins, CO; and Fairfield, CA. A 2018 anhydrous ammonia release at the Fort Collins facility injured two employees and sent six nearby residents to the hospital; the settlement requires an independent safety review of all 11 flagship breweries using ammonia, covering approximately 172,000 community residents.',
+        source: 'EPA Press Release, June 2023; EHS Daily Advisor, 2023',
+      },
+      {
+        id: 'doj-antitrust-kona-divestiture',
+        title: 'DOJ Required Hawaii Brewery Divestiture',
+        severity: 'medium',
+        description:
+          'The Department of Justice required AB InBev to divest Kona Brewing\'s entire Hawaii business as a condition of approving its $220 million acquisition of Craft Brew Alliance; the divestiture to PV Brewing Partners LLC was completed under a consent decree entered in March 2021. DOJ found the combined entity would have controlled approximately 41% of the Hawaii beer market.',
+        source: 'DOJ Antitrust Division; Federal Register, March 2021',
+      },
+      {
+        id: 'belgium-competition-investigation',
+        title: 'Belgian Competition Authority Investigating AB InBev',
+        severity: 'medium',
+        description:
+          'Belgium\'s Competition Authority opened an investigation on January 16, 2025 into AB InBev\'s wholesale and on-trade commercial conditions for suspected violations of EU antitrust rules prohibiting anticompetitive agreements and abuse of dominant position. A 2019 EU Commission fine exceeding EUR 200 million against AB InBev for restricting Dutch-to-Belgian beer imports provides relevant precedent; the current investigation had not reached a penalty determination as of mid-2026.',
+        source: 'Belgian Competition Authority, January 2025; Bloomberg, 2025',
+      },
+      {
+        id: 'bud-light-boycott-sales-loss',
+        title: 'Bud Light Boycott Cost $1.4B in North American Revenue',
+        severity: 'medium',
+        description:
+          'A April 2023 promotional collaboration with influencer Dylan Mulvaney triggered a conservative boycott; US off-premise Bud Light sales fell as much as 26% in the following month, and North American organic revenue declined $1.4 billion for the full year 2023, according to AB InBev\'s SEC 6-K filing. Senators Blackburn and Cruz opened an informal congressional inquiry into whether the campaign violated Beer Institute guidelines on marketing to underage consumers.',
+        source: 'AB InBev 6-K, SEC.gov, 2024; CNN Business, February 2024',
+      },
+      {
+        id: 'alcohol-youth-marketing-ftc',
+        title: 'FTC Reports Alcohol Industry Markets to Youth',
+        severity: 'medium',
+        description:
+          'A Federal Trade Commission report on alcohol beverage advertising found that major producers, including AB InBev brands, used media placements where a disproportionate share of the audience was underage. The report is public record and has informed ongoing regulatory pressure on alcohol marketing practices.',
+        source: 'FTC Alcohol Advertising Report; Center on Alcohol Marketing and Youth',
+      },
     ],
     subsidiaries: ['Budweiser', 'Bud Light', 'Michelob Ultra', 'Corona (US)', 'Stella Artois', 'Beck\'s', 'Busch', 'Natural Light', 'Goose Island', 'Golden Road'],
     sustainabilityScore: 40,
@@ -835,7 +1978,46 @@ export const COMPANY_DB = {
     politicalDonations: 1000000,
     donationSplit: { republican: 54, democrat: 46 },
     issues: [
-      { id: 'alcohol_market_mc', title: 'Alcohol Marketing Concerns', severity: 'medium', description: 'Coors Light and Miller Lite advertising has been criticized for appealing to younger demographics near the legal drinking age.', source: 'CAMY, 2022' },
+      {
+        id: 'milwaukee-mass-shooting',
+        title: 'Five Employees Killed in Milwaukee Brewery Shooting',
+        severity: 'high',
+        description:
+          'On February 26, 2020, a long-tenured employee shot and killed five Molson Coors colleagues — Dale Hudson, Gennady Levshetz, Jesus Valle Jr., Dana Walk, and Trevor Wetselaar — before dying by suicide at the Milwaukee, Wisconsin campus. A noose had been placed in the shooter\'s locker in 2015; Molson Coors confirmed it investigated the incident but found no surveillance footage. Racist notes continued to appear in the locker after the 2015 incident.',
+        source: 'NPR, February 2020; Washington Post, 2020; CBC News, 2020',
+      },
+      {
+        id: 'ransomware-production-halt',
+        title: 'Ransomware Attack Halted Brewing, Shifted $120–140M EBITDA',
+        severity: 'medium',
+        description:
+          'Molson Coors disclosed a cybersecurity incident via SEC 8-K on March 11, 2021 that halted brewery operations; the company confirmed the attack, combined with Texas winter storm disruptions, would shift $120–140 million in underlying EBITDA from Q1 2021 into the remainder of the fiscal year and delay 1.53–1.7 million US barrels of production. Forensic investigators characterized the incident as likely ransomware, though Molson Coors did not publicly confirm the attack type.',
+        source: 'Molson Coors 8-K, SEC.gov, March 2021; SecurityWeek, 2021',
+      },
+      {
+        id: 'beer-quality-recall-2022',
+        title: 'Coors Light and Keystone Recalled for Slime Defect',
+        severity: 'medium',
+        description:
+          'Molson Coors withdrew Coors Light and Keystone Light 12-oz cans produced at its Trenton, Ohio brewery in June 2022 after consumers reported a gelatinous slime-like liquid inside the cans. The company stated the issue was limited to one canning line and identified no food safety risk, but the product failed quality standards.',
+        source: 'IBTimes, 2022; Snopes, 2022; Dierbergs Markets Recall Notice, 2022',
+      },
+      {
+        id: 'canada-internal-fraud-lawsuit',
+        title: 'Molson Coors Canada Sues Managers for CA$9M Fraud',
+        severity: 'medium',
+        description:
+          'Molson Coors Canada filed suit in Ontario Superior Court in November 2025 against former sales director Frank Ivankovic and others, alleging a multi-year embezzlement scheme using shell companies and fraudulent invoices totaling approximately CA$9 million since 2021. Ivankovic and a co-defendant resigned in October 2025 after a bank flagged unusual deposits; the case is pending.',
+        source: 'CBC News, 2025; Global News, 2025',
+      },
+      {
+        id: 'employment-discrimination-suits',
+        title: 'Racial and Sex Discrimination Suits Filed 2024–2025',
+        severity: 'medium',
+        description:
+          'Bloomberg Law reported two employment discrimination suits against Molson Coors: a December 2024 filing by a former employee alleging racial discrimination, hostile work environment under Title VII, and FMLA violations; and a May 2025 filing by a female packaging optimization manager at the Milwaukee brewery alleging sex discrimination and retaliatory termination after she reported sexual harassment. Both cases are pending.',
+        source: 'Bloomberg Law, December 2024 and May 2025',
+      },
     ],
     subsidiaries: ['Coors Light', 'Miller Lite', 'Blue Moon', 'Leinenkugel\'s', 'Vizzy', 'Zima', 'Topo Chico Hard Seltzer (US)'],
     sustainabilityScore: 46,
@@ -853,7 +2035,46 @@ export const COMPANY_DB = {
     politicalDonations: 760000,
     donationSplit: { republican: 38, democrat: 62 },
     issues: [
-      { id: 'drink_driving', title: 'Lobbying Against Alcohol Safety Measures', severity: 'medium', description: "Diageo has lobbied against lower BAC limits and mandatory alcohol health labels in the UK and US.", source: 'Alcohol Justice, 2022' },
+      {
+        id: 'lobbying-against-bac-safety',
+        title: 'Diageo Lobbied Against Drunk-Driving Safety Limits',
+        severity: 'medium',
+        description:
+          'Diageo spent $2.71 million on US lobbying in 2021 and between EUR 700,000 and EUR 799,000 on EU lobbying in 2022; industry groups funded by Diageo, including the American Beverage Institute, lobbied against reducing the legal blood-alcohol limit from 0.08 to 0.05 — a change recommended by the National Transportation Safety Board — and against mandatory health warning label updates on alcohol products.',
+        source: 'OpenSecrets Lobbying Disclosures, 2021; EU Transparency Register, 2022',
+      },
+      {
+        id: 'us-regulatory-penalties',
+        title: 'Diageo Accumulated $22.5M in US Regulatory Penalties',
+        severity: 'medium',
+        description:
+          'Good Jobs First\'s Violation Tracker database records $22,533,403 in regulatory penalties against Diageo across 17 enforcement actions in the United States since 2000, spanning multiple agencies and issue categories. The UK Violation Tracker records an additional GBP 1,764,648 across 20 cases since 2010.',
+        source: 'Good Jobs First Violation Tracker, violationtracker.goodjobsfirst.org',
+      },
+      {
+        id: 'french-tax-settlement',
+        title: 'Diageo Paid EUR 100M to French Tax Authorities',
+        severity: 'medium',
+        description:
+          'Diageo paid EUR 100 million to French tax authorities in July 2019 to resolve a dispute over the treatment of interest costs. Paradise Papers reporting in 2017 separately revealed a Luxembourg corporate restructuring around Diageo\'s acquisition of United Spirits in India.',
+        source: 'The Spirits Business, 2019; Law360, 2019',
+      },
+      {
+        id: 'combs-racial-discrimination-settled',
+        title: 'Racial Discrimination Suit Against Diageo Settled',
+        severity: 'medium',
+        description:
+          'Sean Combs sued Diageo in May 2023 in New York State Supreme Court, alleging the company racially discriminated against his DeLeón tequila and Cîroc vodka brands by providing superior marketing resources to comparable white-owned brands. The parties settled on January 16, 2024, with Combs withdrawing all allegations with prejudice and the business relationship ending; no liability was admitted.',
+        source: 'Diageo 6-K, SEC.gov, January 2024; CNBC, 2024',
+      },
+      {
+        id: 'nlrb-unfair-labor-practice',
+        title: 'NLRB Unfair Labor Practice Case Filed',
+        severity: 'low',
+        description:
+          'An NLRB unfair labor practice case (09-CA-227910) was filed against Diageo Americas Supply, Inc.; no resolution, settlement amount, or substantive finding has been publicly disclosed.',
+        source: 'NLRB Case Registry, Case 09-CA-227910',
+      },
     ],
     subsidiaries: ['Johnnie Walker', 'Smirnoff', 'Guinness', 'Baileys', 'Captain Morgan', 'Tanqueray', 'Crown Royal', 'Don Julio', 'Ketel One'],
     sustainabilityScore: 53,
@@ -871,7 +2092,38 @@ export const COMPANY_DB = {
     politicalDonations: 620000,
     donationSplit: { republican: 50, democrat: 50 },
     issues: [
-      { id: 'border_water', title: 'Water Use in Mexican Border Communities', severity: 'high', description: "Constellation's Mexicali brewery was rejected by a 2020 public vote due to concerns about depleting scarce Colorado River water in Baja California.", source: 'BBC, 2020' },
+      {
+        id: 'mexicali-water-referendum',
+        title: 'Mexicali Voters Rejected Brewery Over Water Rights',
+        severity: 'high',
+        description:
+          'On March 21–22, 2020, 76.1% of Mexicali, Mexico voters rejected Constellation Brands\'s $1.4 billion brewery project already under construction, which was projected to consume approximately 1.8 billion gallons of water annually from the Colorado River-fed Mexicali aquifer. Mexico\'s National Human Rights Commission found the project\'s approval violated the human right to water; Constellation accepted the referendum result and cancelled the project.',
+        source: 'Mexico News Daily, March 2020; Business and Human Rights Resource Centre, 2020',
+      },
+      {
+        id: 'securities-fraud-class-action',
+        title: 'Securities Fraud Suit Over Wine & Spirits Disclosures',
+        severity: 'medium',
+        description:
+          'A securities fraud class action — Meza v. Constellation Brands, Case No. 6:25-cv-6107 (W.D.N.Y.) — was filed February 18, 2025, alleging Constellation misled investors about strategies intended to improve its Wine and Spirits segment\'s performance. On January 10, 2025, Constellation disclosed significant sales shortfalls in both Beer and Wine & Spirits; the company\'s stock fell approximately 17.1% ($37.47) that day to $181.81.',
+        source: 'WDNY Docket 6:25-cv-6107; Constellation Brands 10-K, SEC.gov, FY2025',
+      },
+      {
+        id: 'warn-act-madera-layoffs',
+        title: 'WARN Act Compliance Investigated After Winery Layoffs',
+        severity: 'medium',
+        description:
+          'Law firm Strauss Borrelli PLLC announced an investigation in February 2026 into whether Constellation Brands provided the required 60-day WARN Act advance notice before laying off approximately 212–218 workers at its Madera, California Mission Bell Winery, following the end of a distribution contract with Gallo on March 31, 2026. No lawsuit had been filed as of the verification date.',
+        source: 'Strauss Borrelli PLLC, February 2026; California EDD WARN Notice, 2026',
+      },
+      {
+        id: 'us-regulatory-penalty-record',
+        title: '$473K in US Regulatory Penalties on Record',
+        severity: 'low',
+        description:
+          'Good Jobs First\'s Violation Tracker database records $473,523 in US regulatory penalties against Constellation Brands across 9 enforcement actions since 2000.',
+        source: 'Good Jobs First Violation Tracker, violationtracker.goodjobsfirst.org',
+      },
     ],
     subsidiaries: ['Corona (imported)', 'Modelo', 'Pacifico', 'Robert Mondavi', 'Kim Crawford', 'Meiomi'],
     sustainabilityScore: 44,
@@ -889,7 +2141,30 @@ export const COMPANY_DB = {
     politicalDonations: 50000,
     donationSplit: { republican: 55, democrat: 45 },
     issues: [
-      { id: 'lacroix_lawsuits', title: 'LaCroix "Natural" Labeling Lawsuits', severity: 'medium', description: "LaCroix faced class-action lawsuits claiming its 'natural' flavors contained synthetic compounds; suits were dismissed but drew scrutiny.", source: 'Reuters, 2018' },
+      {
+        id: 'ceo-sexual-harassment-lawsuits',
+        title: 'Two Pilots Sued CEO for Repeated Groping',
+        severity: 'high',
+        description:
+          'Former pilots Terence Huenefeld and Vincent Citrullo filed separate lawsuits in 2018 alleging CEO Nick Caporella repeatedly groped them during private flights — Huenefeld alleged 18 incidents from March to July 2016, and Citrullo alleged 14 incidents between 2014 and 2015. One suit settled in January 2018 with undisclosed terms; Caporella denied all allegations. National Beverage acknowledged the litigation in its FY2018 SEC 8-K filing.',
+        source: 'Wall Street Journal, July 2018; Fortune, July 2018; National Beverage 8-K, FY2018',
+      },
+      {
+        id: 'lacroix-labeling-lawsuit-dismissed',
+        title: 'LaCroix "Synthetic" Lawsuit Dismissed — Claims Retracted',
+        severity: 'low',
+        description:
+          'A 2018 class action alleged LaCroix contained synthetic compounds including linalool; the case was dismissed with prejudice on February 18, 2020, after the plaintiff\'s law firm admitted their laboratory found no artificial ingredients in LaCroix. The compounds identified — limonene, linalool, and linalool propionate — are naturally occurring.',
+        source: 'National Beverage 8-K, FY2020; Top Class Actions, 2020; Snopes, 2020',
+      },
+      {
+        id: 'ceo-concentrated-control',
+        title: 'CEO Holds Majority Voting Control with No Board Check',
+        severity: 'medium',
+        description:
+          'Nick Caporella serves as both Chairman and CEO of National Beverage Corp. with majority voting control, giving him near-absolute authority over company decisions without independent board oversight. Shareholder advocacy groups have flagged the company\'s SEC filings for opacity, and a 2018 RM Law securities complaint cited governance deficiencies.',
+        source: 'National Beverage Annual Reports, SEC.gov; RM Law Securities Complaint, 2018',
+      },
     ],
     subsidiaries: ['LaCroix', 'Shasta', 'Faygo', 'Big Shot'],
     sustainabilityScore: 55,
@@ -907,7 +2182,38 @@ export const COMPANY_DB = {
     politicalDonations: 20000,
     donationSplit: { republican: 25, democrat: 75 },
     issues: [
-      { id: 'coconut_labor', title: 'Coconut Supply Chain Labor Risks', severity: 'medium', description: 'Coconut production in the Philippines and Indonesia — key sourcing regions — carries documented risks of exploitative labor conditions.', source: 'Amnesty International, 2021' },
+      {
+        id: 'ningi-short-seller-allegations',
+        title: 'Short-Seller Report Alleges Concealment and Fraud',
+        severity: 'high',
+        description:
+          'NINGI Research published a report on March 26, 2025 alleging Vita Coco concealed a threatened Costco contract loss representing significant private-label volume, engaged in related-party transaction irregularities, and faced operational challenges; Vita Coco issued a same-day rebuttal calling the report "inaccurate and misleading," but acknowledged it "expects to lose some regions with certain private label retailers." The company\'s stock fell approximately 11–12% on the day of publication; none of the allegations have been adjudicated.',
+        source: 'NINGI Research Report, March 2025; Vita Coco Investor Response, March 2025',
+      },
+      {
+        id: 'securities-fraud-investigations',
+        title: 'Six Law Firms Investigating Potential Securities Fraud',
+        severity: 'high',
+        description:
+          'At least six law firms — including Pomerantz LLP, Schall Law Firm, Kirby McInerney LLP, Bragar Eagel & Squire, Block & Leviton, and Glancy Prongay & Murray — have opened formal investigations into potential securities violations by Vita Coco following the March 2025 NINGI Research report. No class action complaint had been filed as of mid-2026.',
+        source: 'Pomerantz LLP, 2025; Schall Law Firm, 2025; National Law Review, 2025',
+      },
+      {
+        id: 'philippine-labor-abuse-allegations',
+        title: 'Short-Seller Report Alleged Philippine Farm Labor Abuses',
+        severity: 'high',
+        description:
+          'A March 2025 short-seller report by NINGI Research alleged that Vita Coco\'s Philippine coconut suppliers subject farm workers to underpayment and unsafe working conditions; Vita Coco broadly disputed the report\'s characterizations. No independent investigation has been completed to verify or refute the supply chain labor allegations as of mid-2026.',
+        source: 'NINGI Research Report, March 2025; Pomerantz LLP Case Summary, 2025',
+      },
+      {
+        id: 'coconut-supply-chain-labor-risk',
+        title: 'Coconut Industry Linked to Documented Labor Abuses',
+        severity: 'medium',
+        description:
+          'The coconut industry in the Philippines and other major sourcing countries has been documented by labor rights organizations and the US Department of Labor as subject to hazardous child labor risks and unsafe conditions for adult workers, including dangerous tree-climbing work. Vita Coco has not published independently audited supply chain labor compliance reports.',
+        source: 'US Department of Labor, 2023; Labor Rights Organizations',
+      },
     ],
     subsidiaries: ['Vita Coco', 'Ever & Ever', 'PWR LIFT'],
     sustainabilityScore: 62,
@@ -925,7 +2231,38 @@ export const COMPANY_DB = {
     politicalDonations: 8000,
     donationSplit: { republican: 15, democrat: 85 },
     issues: [
-      { id: 'aluminum_cans', title: 'Aluminum Can Sourcing', severity: 'low', description: 'While aluminum is highly recyclable, primary aluminum smelting is energy-intensive; Liquid Death\'s supply chain carbon footprint has not been independently audited.', source: 'Company ESG disclosure, 2023' },
+      {
+        id: 'alpine-sourcing-shift',
+        title: 'Water Source Quietly Shifted from Austria to US',
+        severity: 'medium',
+        description:
+          'Liquid Death originally marketed its water as sourced from the Austrian Alps; US Customs import data confirms seven ocean shipments from Austrian supplier Starzinger in 2021 but zero water imports from Austria by 2025, with current cans confirming sourcing from Bland, Virginia or Mackay, Idaho. No formal regulatory action has been taken, but no proactive consumer communication accompanied the sourcing change.',
+        source: 'KirchnerData US Customs Analysis, 2025; Liquid Death Can Labeling',
+      },
+      {
+        id: 'environmental-claims-unaudited',
+        title: 'Environmental Claims Lack Independent Carbon Audit',
+        severity: 'low',
+        description:
+          'Liquid Death\'s environmental claims are self-reported; no independent third-party full-supply-chain carbon audit has been published. The company\'s sourcing shift from Austrian imports to US domestic production was not accompanied by updated lifecycle assessment data, and primary aluminum smelting — used in Liquid Death\'s cans — is among the most energy-intensive industrial processes.',
+        source: 'Liquid Death ESG Disclosure, 2023; KirchnerData Supply Chain Analysis, 2025',
+      },
+      {
+        id: 'death-wish-trademark-suit',
+        title: 'Death Wish Coffee Sued Over "Deathuccino" Name',
+        severity: 'low',
+        description:
+          'Death Wish Coffee filed a federal trademark infringement suit against Liquid Death in October 2025 in the Central District of California over Liquid Death\'s planned coffee line, including the name "Deathuccino." Liquid Death stated it had no current plans to launch ready-to-drink coffee; the case is pending with no hearing schedule confirmed.',
+        source: 'Bloomberg Law, October 2025; FoodBev Media, 2025',
+      },
+      {
+        id: 'valuation-unicorn-decline',
+        title: 'Valuation Dropped Below $1B Unicorn Status by 2025',
+        severity: 'low',
+        description:
+          'Liquid Death raised $67 million at a $1.4 billion valuation in March 2024; by December 2024, a secondary market transaction implied a valuation of approximately $943 million, and the company was removed from the Prime Unicorn Index in Q2 2025. Revenue remained strong at an estimated $333 million for 2024, up 27% year-over-year, but the valuation reset reflects investor concern about long-term unit economics.',
+        source: 'Bloomberg, March 2024; Prime Unicorn Index Q2 2025 Report; Sacra, 2025',
+      },
     ],
     subsidiaries: ['Liquid Death'],
     sustainabilityScore: 63,
@@ -943,7 +2280,38 @@ export const COMPANY_DB = {
     politicalDonations: 30000,
     donationSplit: { republican: 50, democrat: 50 },
     issues: [
-      { id: 'sparkling_ice_sweetener', title: 'Sucralose in Sparkling Ice', severity: 'low', description: "Sparkling Ice uses sucralose; emerging research suggests artificial sweeteners may alter gut microbiome composition.", source: 'Cell, 2022' },
+      {
+        id: 'water-ad-ftc-referral',
+        title: 'NAD Referred "Water" Ads to FTC',
+        severity: 'medium',
+        description:
+          'The National Advertising Division (NAD) determined that Talking Rain\'s "The Adventurous Side of Water" and "The Bold Side of Water" taglines for Sparkling Ice could mislead consumers, following a challenge by Nestlé. After Talking Rain declined to comply with the NAD determination, NAD referred the matter to the FTC; the FTC received the referral and entered the case in its public legal library, but no formal FTC enforcement action against Talking Rain has been documented.',
+        source: 'FTC Legal Library; BBB National Programs NAD case decisions; TINA.org',
+      },
+      {
+        id: 'natural-flavors-lawsuit',
+        title: 'Class Action: "Natural Flavors" Claims Disputed',
+        severity: 'low',
+        description:
+          'A class-action lawsuit filed in 2018 alleged that Sparkling Ice\'s "natural flavors" marketing was misleading given the presence of additives including malic acid. According to TINA.org coverage, the matter was reportedly resolved, but no court order or settlement amount has been confirmed via primary sources.',
+        source: 'TINA.org; classaction.org',
+      },
+      {
+        id: 'cherry-limeade-recall-2018',
+        title: 'Voluntary Recall: Off-Taste Cherry Limeade',
+        severity: 'low',
+        description:
+          'Talking Rain voluntarily recalled Sparkling Ice Cherry Limeade in 2018 in response to customer complaints of off-taste and off-odor. The FDA Safety Alert confirmed no illnesses were reported in connection with the recall.',
+        source: 'FDA Safety Alert, 2018',
+      },
+      {
+        id: 'former-ceo-misconduct',
+        title: 'Former CEO Named in 2017 Sexual Assault Lawsuit',
+        severity: 'medium',
+        description:
+          'A former Talking Rain sales manager filed a lawsuit in 2017 alleging sexual assault by the company\'s then-CEO and subsequent retaliation; the CEO departed the company that year. The case was reportedly resolved confidentially in 2018, and no ongoing pattern of leadership misconduct has been documented at the company.',
+        source: 'Seattle Times, 2017; KIRO 7, 2017',
+      },
     ],
     subsidiaries: ['Sparkling Ice', 'Talking Rain Sparkling Water'],
     sustainabilityScore: 57,
@@ -961,7 +2329,30 @@ export const COMPANY_DB = {
     politicalDonations: 200000,
     donationSplit: { republican: 35, democrat: 65 },
     issues: [
-      { id: 'hard_seltzer_sugar', title: 'Hard Seltzer Marketing Claims', severity: 'low', description: "Truly Hard Seltzer has faced scrutiny over health-adjacent marketing implying it is a healthier choice, despite alcohol content.", source: 'Alcohol Justice, 2022' },
+      {
+        id: 'truly-securities-lawsuit-dismissed',
+        title: 'Investor Fraud Suit Dismissed on Appeal',
+        severity: 'medium',
+        description:
+          'Investors sued Boston Beer alleging securities fraud related to the 2021 collapse of Truly Hard Seltzer demand, which resulted in a large inventory write-off and significant stock drop. The U.S. District Court for the Southern District of New York dismissed the case in December 2022, and the Second Circuit upheld the dismissal in November 2023, finding no actionable misrepresentation.',
+        source: 'Brewbound, November 2023; Boston Globe, November 2023; SEC filings',
+      },
+      {
+        id: 'ardagh-jury-verdict-191m',
+        title: '$191M Jury Verdict for Contract Breach',
+        severity: 'high',
+        description:
+          'A jury in the U.S. District Court for the Northern District of Illinois returned a verdict of $175.5 million against Boston Beer on April 6, 2026, in favor of can supplier Ardagh Metal Packaging, after finding Boston Beer breached a long-term supply contract; pre-judgment interest brought the total to approximately $191 million. Boston Beer has appealed, and the matter is pending.',
+        source: 'Brewbound, April 2026; Food Dive, April 2026; Boston Beer 8-K SEC filings; Law360',
+      },
+      {
+        id: 'employee-noncompete-lawsuits',
+        title: 'Former Employees Sue Over Non-Competes',
+        severity: 'medium',
+        description:
+          'Multiple former Boston Beer sales representatives filed lawsuits in 2024 alleging hostile work environment, gender discrimination, and improper use of non-compete agreements; the cases include allegations that non-competes were used to block workers from joining competing employers. The lawsuits are pending as of 2026.',
+        source: 'Brewbound, 2024; Boston Globe, March 2024',
+      },
     ],
     subsidiaries: ["Samuel Adams", 'Truly Hard Seltzer', 'Twisted Tea', "Angry Orchard", "Dogfish Head"],
     sustainabilityScore: 58,
@@ -979,7 +2370,30 @@ export const COMPANY_DB = {
     politicalDonations: 250000,
     donationSplit: { republican: 48, democrat: 52 },
     issues: [
-      { id: 'white_claw_calories', title: 'Health Halo Marketing', severity: 'medium', description: 'White Claw marketing leans heavily on low-calorie messaging; critics argue it normalizes habitual alcohol consumption especially among younger adults.', source: 'CAMY, 2022' },
+      {
+        id: 'asa-youth-marketing-2026',
+        title: 'UK Regulator Ruled White Claw Ads Targeted Youth',
+        severity: 'medium',
+        description:
+          'The UK Advertising Standards Authority (ASA) issued ruling A26-1327600 on March 25, 2026, finding that three Mark Anthony Brands Instagram Stories from October–November 2025 featured individuals appearing under 25 years old and that the "#studentwavemakers" campaign directly targeted students, in violation of CAP Code rule 18.16 governing alcohol advertising. The ASA ordered the ads not to appear again in their current form.',
+        source: 'ASA official ruling A26-1327600, March 25, 2026; The Spirits Business, March 2026',
+      },
+      {
+        id: 'underage-exposure-research',
+        title: 'Academic Research: High Underage Ad Exposure',
+        severity: 'medium',
+        description:
+          'Published research from the Center on Alcohol Marketing and Youth (CAMY) at Boston University documented that hard seltzer advertising — including White Claw — reached underage audiences at rates exceeding industry self-regulatory thresholds. The findings support concerns about health-adjacent marketing of White Claw to audiences who include minors.',
+        source: 'CAMY, Boston University; Alcohol Justice, 2022',
+      },
+      {
+        id: 'white-claw-health-halo',
+        title: 'Health-Adjacent Marketing of Alcoholic Drinks',
+        severity: 'medium',
+        description:
+          'White Claw products are marketed with calorie counts, low-carb messaging, and imagery associated with active lifestyles, a practice consumer health advocates describe as a "health halo" framing for alcoholic beverages. Regulatory scrutiny in both the US and UK has identified these patterns as potentially misleading to consumers.',
+        source: 'CAMY, 2022; ASA ruling A26-1327600, 2026',
+      },
     ],
     subsidiaries: ['White Claw', 'Mike\'s Hard Lemonade', 'Cayman Jack'],
     sustainabilityScore: 44,
@@ -997,7 +2411,30 @@ export const COMPANY_DB = {
     politicalDonations: 500000,
     donationSplit: { republican: 48, democrat: 52 },
     issues: [
-      { id: 'hfcs_bread', title: 'High-Fructose Corn Syrup in Bread', severity: 'medium', description: "Most Bimbo US bread brands contain high-fructose corn syrup and other additives not typical of traditional bakeries.", source: 'CSPI, 2022' },
+      {
+        id: 'allergen-labeling-fda-warning',
+        title: 'FDA Warning Letter: Sesame Labeling Violations',
+        severity: 'medium',
+        description:
+          'FDA issued a warning letter (reference 672140, dated June 17, 2024) to Bimbo Bakeries USA following a late 2023 inspection of its Phoenix, Arizona facility, citing violations related to sesame allergen labeling on Sara Lee Artesano products. The Center for Science in the Public Interest (CSPI) and the food allergy advocacy group FARE issued public statements raising concern about the company\'s response and the risk to consumers with sesame allergies.',
+        source: 'FDA warning letter 672140, June 17, 2024; CSPI, 2024; Allergic Living, 2024',
+      },
+      {
+        id: 'metal-wire-bread-recall-2023',
+        title: 'Metal Wire Fragments Recalled from Bread',
+        severity: 'medium',
+        description:
+          'Bimbo Bakeries USA announced a voluntary recall on February 19, 2023, covering multiple bread brands (including Sara Lee, Great Value, Kroger, Nature\'s Harvest, and L\'Oven Fresh) due to possible contamination with flexible metal wire originating from a faulty flour mill screen. No injuries were reported in connection with the recall.',
+        source: 'Multiple sources confirming February 2023 recall; Natural Products Insider',
+      },
+      {
+        id: 'driver-misclassification-lawsuit',
+        title: 'DOL Intervened in Worker Misclassification Suit',
+        severity: 'high',
+        description:
+          'A lawsuit filed in U.S. District Court in Vermont in October 2022 alleged that Bimbo Bakeries USA misclassified delivery drivers as independent contractors in violation of the Fair Labor Standards Act; the U.S. Department of Labor filed an amicus brief in March 2023 opposing Bimbo\'s counterclaim, and the counterclaim was dismissed in December 2023. The underlying case remains pending; the Second Circuit ruled in May 2026 to limit the geographic scope of the collective action.',
+        source: 'HR Dive, 2023; Food Business News, 2023; VTDigger, 2023; Second Circuit, May 2026',
+      },
     ],
     subsidiaries: ["Wonder Bread", 'Thomas\'', 'Arnold', 'Brownberry', 'Sara Lee Bread', 'Entenmann\'s', "Oroweat", 'Marinela', 'Mrs Baird\'s'],
     sustainabilityScore: 48,
@@ -1015,7 +2452,30 @@ export const COMPANY_DB = {
     politicalDonations: 200000,
     donationSplit: { republican: 67, democrat: 33 },
     issues: [
-      { id: 'contractor_misclassification', title: 'Worker Misclassification', severity: 'high', description: "Flowers Foods has faced numerous lawsuits for misclassifying delivery drivers as independent contractors to avoid benefits.", source: 'Reuters, 2015' },
+      {
+        id: 'ca-misclassification-135m',
+        title: '$135M Settlement: California Driver Misclassification',
+        severity: 'high',
+        description:
+          'A California federal court approved a settlement of approximately $135 million gross (including a $55 million core fund for roughly 475 plaintiffs and approximately $50 million in territory repurchases) in Ludlow v. Flowers Foods, resolving claims that Flowers Foods misclassified bread delivery drivers as independent contractors rather than employees. The settlement received final court approval in 2024 according to law firm Nicholas & Tomasevic.',
+        source: 'Nicholas & Tomasevic (nicholaslaw.org); Flowers Foods SEC 8-K filings; Food Business News, 2024',
+      },
+      {
+        id: 'multistate-misclassification-55m',
+        title: '$55M FLSA Settlement: Multi-State Drivers',
+        severity: 'high',
+        description:
+          'Flowers Foods agreed to a separate $55 million settlement to resolve federal FLSA misclassification claims brought by delivery route drivers across multiple states. Together with the California settlement, Flowers Foods\' documented costs from driver misclassification litigation total more than $200 million.',
+        source: 'Staffing Industry Analysts; Law360 Employment Authority, 2023',
+      },
+      {
+        id: 'ca-distribution-restructure',
+        title: 'California Operations Converted to Employed Drivers',
+        severity: 'medium',
+        description:
+          'Following the outcome of prolonged misclassification litigation, Flowers Foods restructured its California distribution model to use employed drivers rather than independent contractors, according to company SEC filings and Food Business News reporting in 2024. The change reflects a material operational shift driven by legal outcomes rather than voluntary reform.',
+        source: 'Food Business News, 2024; Flowers Foods SEC 8-K filings',
+      },
     ],
     subsidiaries: ["Nature's Own", "Dave's Killer Bread", "Wonder Bread (some markets)", "Tastykake", "Canyon Bakehouse"],
     sustainabilityScore: 47,
@@ -1033,7 +2493,30 @@ export const COMPANY_DB = {
     politicalDonations: 280000,
     donationSplit: { republican: 61, democrat: 39 },
     issues: [
-      { id: 'cereal_sugar', title: 'High-Sugar Cereal Marketing to Kids', severity: 'medium', description: "Several Post cereals — Honey Bunches of Oats, Fruity Pebbles — contain 10–16g of sugar per serving and are marketed toward children.", source: 'EWG Children\'s Cereal Report, 2022' },
+      {
+        id: 'cereal-health-claims-15m',
+        title: '$15M Settlement: Deceptive Cereal Health Claims',
+        severity: 'medium',
+        description:
+          'A California federal court granted preliminary approval on February 24, 2021 to a $15 million settlement resolving claims that Post used terms including "less processed," "wholesome," "nutritious," and "smart" on high-sugar cereals in a manner that mislead consumers. As part of the settlement, Post agreed to discontinue use of those terms on the affected products; the class period covered purchases from August 2012 through November 2, 2020.',
+        source: 'Food Dive, 2021; National Law Review, 2021; Food Business News, March 2021',
+      },
+      {
+        id: 'osha-bef-foods-death',
+        title: 'OSHA: Worker\'s Arm Amputated at BEF Foods Plant',
+        severity: 'high',
+        description:
+          'OSHA cited BEF Foods — a Post Holdings subsidiary — for a September 2020 incident at its Lima, Ohio plant in which a sanitation worker\'s arm was caught in a running auger she was cleaning, resulting in partial amputation; OSHA proposed a $136,532 penalty and cited two repeat violations, including one previously cited at the same facility in 2016 for the same lockout/tagout hazard. The DOL classified the violations as repeat.',
+        source: 'Insurance Journal, March 2021; Powder Bulk Solids, 2021; Bloomberg Law, 2021; OSHA enforcement records',
+      },
+      {
+        id: 'michael-foods-allergen-recall',
+        title: 'Michael Foods Recalled Egg Products for Allergen',
+        severity: 'medium',
+        description:
+          'Post Holdings subsidiary Michael Foods recalled Fair Meadow Foundations liquid egg products due to undeclared allergens; the recall is documented in a USDA FSIS recall alert.',
+        source: 'USDA FSIS recall alert (Michael Foods Inc.)',
+      },
     ],
     subsidiaries: ['Honey Bunches of Oats', 'Fruity Pebbles', 'Cocoa Pebbles', 'Grape-Nuts', 'Raisin Bran', 'Shredded Wheat', 'Bob Evans (packaged)', 'Michael Foods', 'Egg Beaters'],
     sustainabilityScore: 43,
@@ -1051,7 +2534,30 @@ export const COMPANY_DB = {
     politicalDonations: 110000,
     donationSplit: { republican: 58, democrat: 42 },
     issues: [
-      { id: 'sodium_bg', title: 'High-Sodium Pantry Staples', severity: 'medium', description: "B&G Foods' portfolio includes many high-sodium shelf-stable products such as canned vegetables and condiments.", source: 'AHA, 2022' },
+      {
+        id: 'heavy-metals-spices-lawsuit',
+        title: 'Class Action: Heavy Metals in Spice Islands & Tone\'s',
+        severity: 'high',
+        description:
+          'A class-action lawsuit (Blassingame v. B&G Foods, N.D. California, case 5:22-cv-00640) filed in 2022 alleges that specific Spice Islands and Tone\'s products contained elevated levels of lead, arsenic, and cadmium based on Consumer Reports testing published in November 2021; the named products include Spice Islands sweet basil and ground ginger and Tone\'s ground thyme. The lawsuit is pending as of 2026.',
+        source: 'Consumer Reports, November 2021; classaction.org; Law Street Media, 2022; B&G Foods 10-Q filings, 2022',
+      },
+      {
+        id: 'milk-allergen-recall',
+        title: 'Voluntary Recall: Undeclared Milk in Crackers',
+        severity: 'medium',
+        description:
+          'B&G Foods issued a voluntary allergy alert and recalled a limited number of boxes of Back to Nature Organic crackers due to undeclared milk in the product; approximately 1,502 cases were affected. The FDA Safety Alert is publicly documented.',
+        source: 'FDA Safety Alert (B&G Foods / Back to Nature Organic)',
+      },
+      {
+        id: 'emeril-no-preservatives-lawsuit',
+        title: 'Lawsuit: "No Preservatives" Pasta Sauce Label',
+        severity: 'low',
+        description:
+          'A class-action lawsuit (Minondo v. B&G Foods, case 23-cv-8087, EDNY) filed on October 30, 2023 alleges that Emeril\'s pasta sauces labeled "no preservatives" contain citric acid, which plaintiffs contend functions as a preservative. This is part of a broader wave of similar litigation affecting multiple food companies; the case is pending.',
+        source: 'Milberg LLP complaint (filed October 30, 2023); classaction.org',
+      },
     ],
     subsidiaries: ['Green Giant', 'Ortega', 'Las Palmas', 'Cream of Wheat', 'Molly McButter', "Mrs. Dash", "Ac'cent", 'Polaner', 'Bear Creek Soup'],
     sustainabilityScore: 40,
@@ -1069,7 +2575,30 @@ export const COMPANY_DB = {
     politicalDonations: 90000,
     donationSplit: { republican: 60, democrat: 40 },
     issues: [
-      { id: 'acrylamide', title: 'Acrylamide in Potato Chips', severity: 'medium', description: 'Potato chip manufacturers including Utz have faced California Prop 65 claims regarding acrylamide, a potential carcinogen formed during high-heat cooking.', source: 'California AG, 2021' },
+      {
+        id: 'acrylamide-prop65',
+        title: 'Prop 65 Acrylamide Notice (Enforcement Now Enjoined)',
+        severity: 'medium',
+        description:
+          'The California Attorney General\'s Prop 65 database confirms a Notice of Violation (No. 2021-00857) was filed against Utz Brands for acrylamide levels in potato chips; acrylamide forms naturally during high-heat cooking of starchy foods and is classified as a probable carcinogen by the International Agency for Research on Cancer. A federal court permanently enjoined California from requiring Prop 65 dietary acrylamide warnings on food products in May 2025, though the underlying science on dietary acrylamide remains an open area of research.',
+        source: 'California AG Prop 65 database, Notice No. 2021-00857; Sidley Austin LLP, May 2025',
+      },
+      {
+        id: 'salmonella-recall-2026',
+        title: 'Salmonella Recall: Zapp\'s and Dirty Chips',
+        severity: 'medium',
+        description:
+          'Utz Quality Foods voluntarily recalled certain limited varieties of Zapp\'s and Dirty Potato Chips in 2026 due to potential Salmonella contamination traced to dry milk powder in the seasoning supplied by California Dairies, Inc.; affected products carried best-by dates in July and August 2026. No illnesses were reported in connection with the recall.',
+        source: 'FDA Safety Alert (Utz Quality Foods LLC, 2026); CBS News; NBC News, 2026',
+      },
+      {
+        id: 'driver-flsa-settlement',
+        title: '$2.5M Settlement: Route Driver FLSA Violations',
+        severity: 'medium',
+        description:
+          'Approximately 2,000 current and former route delivery drivers in Pennsylvania, Maryland, North Carolina, and New Jersey reached a $2.5 million FLSA settlement with Utz, resolving claims that drivers were misclassified as "outside salespersons" to avoid overtime pay requirements; the lawsuit was filed in September 2015 and the settlement was finalized approximately 2017.',
+        source: 'Central Penn Business Journal; wageadvocates.com; VerdictSearch',
+      },
     ],
     subsidiaries: ['Utz', 'Zapp\'s', "On The Border", 'Golden Flake', 'Bachman', 'Snyder\'s of Berlin', 'DIRTY Chips'],
     sustainabilityScore: 42,
@@ -1087,7 +2616,30 @@ export const COMPANY_DB = {
     politicalDonations: 140000,
     donationSplit: { republican: 55, democrat: 45 },
     issues: [
-      { id: 'store_brand_quality', title: 'Private Label Quality Concerns', severity: 'low', description: 'As the largest US private-label food manufacturer, TreeHouse faces ongoing pressure from retailers to reduce costs, which can affect ingredient quality.', source: 'Food Dive, 2023' },
+      {
+        id: 'listeria-waffles-recall-2024',
+        title: 'Nationwide Listeria Recall of Frozen Waffles & Pancakes',
+        severity: 'high',
+        description:
+          'TreeHouse Foods issued two consecutive voluntary recalls in October 2024 — an initial recall on October 18 and an expanded recall on October 22 — covering frozen waffles and pancakes sold under more than 40 store-brand labels at major retailers including Walmart, Target, Kroger, Whole Foods, and Trader Joe\'s, due to potential Listeria monocytogenes contamination. TreeHouse Foods confirmed the recalls in press releases; a class-action lawsuit was subsequently filed and a settlement was reported as pending final court approval.',
+        source: 'FDA recall notices, October 18 and 22, 2024; TreeHouse Foods press releases; NPR, October 2024; Consumer Reports, October 2024',
+      },
+      {
+        id: 'securities-fraud-settlement-27m',
+        title: '$27M Securities Fraud Settlement (2021)',
+        severity: 'high',
+        description:
+          'TreeHouse Foods agreed to a $27 million settlement resolving a federal securities fraud class action alleging the company misled investors about integration failures following its 2016 acquisition of ConAgra\'s private-label food business; a federal judge granted final approval in November 2021. The class period covered February 1 through November 2, 2016.',
+        source: 'Food Dive; Wolf Popper LLP; Store Brands Magazine; TreeHouse Foods SEC 10-K filings',
+      },
+      {
+        id: 'private-label-quality-risk',
+        title: 'Private Label Model Creates Quality Control Risk',
+        severity: 'low',
+        description:
+          'As one of the largest US producers of store-brand food products, TreeHouse Foods manufactures under more than 40 retailer labels simultaneously, a model that Food Dive has noted creates structural quality-control challenges. The 2024 Listeria recall — which affected products sold under dozens of brand names at the same time — illustrates the breadth of consumer exposure when a single facility has a contamination event.',
+        source: 'Food Dive, 2023',
+      },
     ],
     subsidiaries: ['(Private label / store brand manufacturer — supplies Walmart, Kroger, Costco, Target, and others)'],
     sustainabilityScore: 48,
@@ -1105,7 +2657,30 @@ export const COMPANY_DB = {
     politicalDonations: 120000,
     donationSplit: { republican: 57, democrat: 43 },
     issues: [
-      { id: 'trans_fat_legacy', title: 'Historical Trans Fat Use', severity: 'low', description: 'Rich Products pioneered non-dairy whipped toppings using partially hydrogenated oils; the company transitioned away from trans fats prior to FDA ban.', source: 'FDA, 2018' },
+      {
+        id: 'worker-death-osha-willful',
+        title: 'Worker Killed; OSHA Cites Willful Violation',
+        severity: 'high',
+        description:
+          'Adewale Ogunyemi, a 42-year-old sanitation worker, died on July 20, 2021 at Rich Products\' Crest Hill, Illinois facility after becoming caught in machinery; OSHA proposed a $145,027 penalty and cited a willful violation for failure to implement energy control (lockout/tagout) procedures. The Department of Labor\'s official January 2022 announcement stated the company had "an extensive history of OSHA violations nationwide" and placed Rich Products in the Severe Violator Enforcement Program.',
+        source: 'DOL/OSHA press release, January 2022; Joliet Patch, January 2022; Bloomberg Law, 2022',
+      },
+      {
+        id: 'osha-violations-pattern',
+        title: 'Documented Pattern of OSHA Violations Nationwide',
+        severity: 'high',
+        description:
+          'Good Jobs First\'s Violation Tracker — a publicly accessible aggregator of federal and state enforcement records — documents multiple OSHA enforcement actions against Rich Products facilities across the country. The DOL\'s own language in its 2022 press release explicitly confirmed an "extensive history of OSHA violations nationwide" at the company.',
+        source: 'Good Jobs First Violation Tracker; DOL press release, January 2022',
+      },
+      {
+        id: 'injury-retaliation-allegation',
+        title: 'Worker Allegedly Fired Day After Workplace Injury',
+        severity: 'medium',
+        description:
+          'According to a February 2023 In These Times investigation, a worker at the Crest Hill, Illinois facility was terminated the day after suffering a workplace injury, with the company citing her refusal to take a post-injury drug test; labor advocates raised concerns about retaliation and injury underreporting at the facility. The allegation has not been adjudicated.',
+        source: 'In These Times, February 2023; Workday Magazine',
+      },
     ],
     subsidiaries: ["Rich's", "Byron's BBQ", 'Jon Donaire', "SeaPak (seafood)"],
     sustainabilityScore: 50,
@@ -1123,7 +2698,38 @@ export const COMPANY_DB = {
     politicalDonations: 130000,
     donationSplit: { republican: 28, democrat: 72 },
     issues: [
-      { id: 'heavy_metals_baby', title: 'Heavy Metals in Baby Food', severity: 'high', description: "Congressional investigation found Earth's Best and Hain Celestial baby foods contained elevated arsenic, lead, cadmium, and mercury.", source: 'US House Subcommittee Report, 2021' },
+      {
+        id: 'baby-food-heavy-metals',
+        title: 'Elevated Heavy Metals in Baby Food',
+        severity: 'high',
+        description:
+          'A 2021 US House Oversight subcommittee report found Earth’s Best (Hain) baby foods contained elevated inorganic arsenic, lead, and cadmium, and concluded Hain underestimated metal levels in its finished products. Hain was one of the brands that cooperated with the investigation.',
+        source: 'US House Oversight Subcommittee, 2021',
+      },
+      {
+        id: 'baby-food-litigation',
+        title: 'Baby Food Injury Litigation Pending',
+        severity: 'medium',
+        description:
+          'Hain faces consolidated federal litigation (MDL) and a New Mexico state enforcement action alleging it failed to warn consumers about heavy metals in its baby foods. The cases remain pending as of 2026; the underlying health-effect claims are contested and unproven.',
+        source: 'Federal MDL docket; NM AG, 2021–2026',
+      },
+      {
+        id: 'sec-internal-controls',
+        title: 'SEC Settlement Over Internal Controls',
+        severity: 'medium',
+        description:
+          'In 2018 Hain settled SEC charges of internal accounting-controls failures tied to end-of-quarter incentives offered to its two largest distributors to meet sales targets (FY2014–FY2016). The SEC imposed no fine, citing cooperation; Hain neither admitted nor denied the findings.',
+        source: 'SEC, 2018',
+      },
+      {
+        id: 'channel-stuffing-suit',
+        title: 'Revived Shareholder “Channel Stuffing” Suit',
+        severity: 'low',
+        description:
+          'A shareholder class action alleging Hain misled investors about its end-of-quarter sales practices was revived in 2025 when a federal appeals court reversed its dismissal. The case is pending; no wrongdoing has been adjudicated.',
+        source: '2nd Cir. Court of Appeals, 2025',
+      },
     ],
     subsidiaries: ["Earth's Best", 'Celestial Seasonings', 'Terra', 'Garden of Eatin\'', 'Spectrum', 'Arrowhead Mills', 'MaraNatha', 'Yves Veggie'],
     sustainabilityScore: 59,
@@ -1141,7 +2747,38 @@ export const COMPANY_DB = {
     politicalDonations: 35000,
     donationSplit: { republican: 18, democrat: 82 },
     issues: [
-      { id: 'union_busting', title: 'Union Busting Allegations', severity: 'high', description: "Workers at Amy's Kitchen facilities filed NLRB complaints in 2022 alleging retaliation for organizing; workers described poor conditions inconsistent with the brand's values.", source: 'Guardian, 2022' },
+      {
+        id: 'nlrb-labor-settlement',
+        title: 'NLRB Labor-Practice Settlement',
+        severity: 'high',
+        description:
+          'In December 2022 Amy’s Kitchen settled NLRB unfair-labor-practice charges, agreeing to provide back pay to a worker fired during a union campaign and to refrain from interrogating, retaliating against, or coercing employees over union support. The company posted required NLRB notices.',
+        source: 'NLRB Case 32-CA-296891, 2022',
+      },
+      {
+        id: 'san-jose-closure',
+        title: 'San Jose Plant Closed Amid Organizing',
+        severity: 'medium',
+        description:
+          'In July 2022 Amy’s Kitchen abruptly closed its San Jose facility, eliminating more than 300 jobs while workers there were organizing with Unite Here. The union characterized the closure as retaliatory; the company denied this.',
+        source: 'Prism Reports / Labor Notes, 2022',
+      },
+      {
+        id: 'cal-osha-citations',
+        title: 'Repeated Cal/OSHA Safety Citations',
+        severity: 'high',
+        description:
+          'California regulators issued multiple health-and-safety citations against Amy’s Kitchen plants between 2019 and 2022, including “serious” violations and penalties exceeding $89,000 at its Santa Rosa facility. The company also previously settled federal OSHA violations at out-of-state plants.',
+        source: 'Cal/OSHA; KQED / NBC News, 2019–2022',
+      },
+      {
+        id: 'worker-injury-reports',
+        title: 'Reported Worker Injury Conditions',
+        severity: 'medium',
+        description:
+          'According to 2022 investigative reporting and worker accounts, fast production-line speeds and limited task rotation led to repetitive-motion injuries, and workers described inadequate recovery time. The Teamsters challenged the company’s B Corp certification over these allegations, which Amy’s disputed.',
+        source: 'American Prospect / Real News Network, 2022',
+      },
     ],
     subsidiaries: ["Amy's Kitchen"],
     sustainabilityScore: 65,
@@ -1158,7 +2795,24 @@ export const COMPANY_DB = {
     lobbyingTargets: ['FDA', 'USDA'],
     politicalDonations: 15000,
     donationSplit: { republican: 30, democrat: 70 },
-    issues: [],
+    issues: [
+      {
+        id: 'flaxseed-cadmium-suit',
+        title: 'Cadmium Flaxseed Class Action',
+        severity: 'medium',
+        description:
+          'A 2023 federal class action (Hayden v. Bob’s Red Mill, N.D. Cal.) alleged the company’s flaxseed meal contained cadmium above California Proposition 65’s warning threshold without disclosure, citing independent lab testing. The court dismissed much of the suit in 2024, allowing only some claims to proceed with leave to amend.',
+        source: 'N.D. Cal. 4:23-cv-03862, 2023–2024',
+      },
+      {
+        id: 'amaranth-salmonella-recall',
+        title: 'Salmonella Recall of Organic Amaranth',
+        severity: 'medium',
+        description:
+          'In 2022 Bob’s Red Mill voluntarily recalled its Organic Amaranth Grain (Gluten Free) over potential Salmonella contamination flagged by its supplier. The recall spanned multiple US states; no illnesses were reported.',
+        source: 'FDA recall notice, 2022',
+      },
+    ],
     subsidiaries: ["Bob's Red Mill"],
     sustainabilityScore: 78,
   },
@@ -1174,7 +2828,32 @@ export const COMPANY_DB = {
     lobbyingTargets: ['FDA', 'Health Canada', 'NOP'],
     politicalDonations: 20000,
     donationSplit: { republican: 15, democrat: 85 },
-    issues: [],
+    issues: [
+      {
+        id: 'waffle-listeria-recall',
+        title: 'Frozen Waffle Listeria Recall',
+        severity: 'medium',
+        description:
+          'In October 2024 Nature’s Path recalled eleven frozen waffle varieties over potential Listeria contamination, after routine sampling by its co-manufacturer TreeHouse Foods detected the bacteria. The action was part of a wider multi-brand recall; no confirmed illnesses were reported.',
+        source: 'FDA / TreeHouse Foods, 2024',
+      },
+      {
+        id: 'peanut-allergen-recall',
+        title: 'Undeclared-Peanut Waffle Recall',
+        severity: 'medium',
+        description:
+          'In October 2023 Nature’s Path voluntarily recalled specific batches of organic waffles for undeclared peanuts, which can cause serious reactions in people with peanut allergies. The company attributed the issue to a co-manufacturer error.',
+        source: 'FDA safety alert, 2023',
+      },
+      {
+        id: 'protein-label-suit',
+        title: 'Protein-Labeling Class Action',
+        severity: 'low',
+        description:
+          'A class action alleges Nature’s Path failed to include correct protein daily-value percentages on several cereal packages in violation of FDA rules and California law. A judge allowed the case to proceed past a motion to dismiss; it remains pending and unproven.',
+        source: 'Courthouse News, 2021–2022',
+      },
+    ],
     subsidiaries: ["Nature's Path", 'EnviroKidz', 'Love Crunch', 'Que Pasa'],
     sustainabilityScore: 83,
   },
@@ -1191,8 +2870,30 @@ export const COMPANY_DB = {
     politicalDonations: 40000,
     donationSplit: { republican: 14, democrat: 86 },
     issues: [
-      { id: 'sugar_bar', title: 'High Sugar Content in Bars', severity: 'medium', description: 'Original Clif Bars contain 21–25g of sugar per bar, primarily from organic cane syrup — high for a product marketed as a health/sports food.', source: 'CSPI, 2023' },
-      { id: 'mondelez_acquisition', title: 'Acquired by Mondelēz in 2022', severity: 'low', description: 'Clif was acquired by Mondelēz International in 2022; the long-term impact on ingredient sourcing and sustainability commitments is uncertain.', source: 'Wall Street Journal, 2022' },
+      {
+        id: 'sustained-energy-settlement',
+        title: '$12M Sugar-Claims Settlement',
+        severity: 'medium',
+        description:
+          'In 2024 Clif Bar agreed to a $12 million settlement to resolve allegations that labeling such as “Nutrition for Sustained Energy” and ZBar claims like “Nourishing Kids in Motion” were misleading given the products’ added-sugar content. Clif Bar denied wrongdoing.',
+        source: 'Milan v. Clif Bar (settlement), 2024',
+      },
+      {
+        id: 'climate-neutral-suit',
+        title: 'Climate-Neutral Greenwashing Suit',
+        severity: 'medium',
+        description:
+          'A 2025 class action (Salguero v. Mondelēz, N.D. Ill.) alleges the “Climate Neutral Certified” claim on Clif Kid ZBar packaging misleads consumers into believing the product has zero net climate impact. The case is pending; the claims are unproven.',
+        source: 'N.D. Ill. 1:25-cv-02139, 2025',
+      },
+      {
+        id: 'mondelez-ownership',
+        title: 'Acquired by Mondelēz (2022)',
+        severity: 'low',
+        description:
+          'Mondelēz International acquired Clif Bar in 2022 for roughly $2.9 billion, ending founding-family control. Mondelēz’s portfolio centers on ultra-processed snacks such as Oreo and Ritz, and the company has faced criticism over palm-oil deforestation and marketing to children.',
+        source: 'Mondelēz SEC 8-K; WSJ, 2022',
+      },
     ],
     subsidiaries: ['Clif Bar', 'Clif Kid ZBar', 'Luna Bar', 'Clif Shot'],
     sustainabilityScore: 66,
@@ -1210,7 +2911,30 @@ export const COMPANY_DB = {
     politicalDonations: 30000,
     donationSplit: { republican: 30, democrat: 70 },
     issues: [
-      { id: 'fda_healthy', title: 'FDA "Healthy" Label Dispute', severity: 'low', description: 'FDA initially sent KIND a warning letter (2015) claiming its bars didn\'t meet the definition of "healthy" due to fat content from nuts; FDA later revised its stance.', source: 'FDA, 2015–2022' },
+      {
+        id: 'mars-ownership',
+        title: 'Owned by Mars (Full Acquisition 2020)',
+        severity: 'medium',
+        description:
+          'Mars Inc. completed full acquisition of KIND North America in November 2020 in a deal reported at about $5 billion, making KIND a Mars subsidiary. Mars is the world’s largest confectionery company, a material ownership fact for consumers choosing KIND as a “health” snack.',
+        source: 'Mars / Food Dive, 2020',
+      },
+      {
+        id: 'mars-cocoa-supply',
+        title: 'Parent-Company Cocoa Supply Concerns',
+        severity: 'medium',
+        description:
+          'As a Mars subsidiary, KIND is part of a conglomerate that, according to a 2019 Washington Post investigation, sourced cocoa from West African supply chains documented to involve child labor. These are parent-company supply-chain concerns, not findings specific to KIND products.',
+        source: 'Washington Post, 2019',
+      },
+      {
+        id: 'fda-healthy-resolved',
+        title: 'FDA “Healthy” Dispute Resolved',
+        severity: 'low',
+        description:
+          'After a 2015 FDA warning letter questioned KIND’s use of “healthy” due to fat from nuts, the FDA exercised enforcement discretion and in 2022 finalized a revised “healthy” definition permitting nuts and seeds. The matter was effectively resolved in KIND’s favor.',
+        source: 'FDA, 2015–2022',
+      },
     ],
     subsidiaries: ['KIND'],
     sustainabilityScore: 67,
@@ -1228,7 +2952,30 @@ export const COMPANY_DB = {
     politicalDonations: 55000,
     donationSplit: { republican: 52, democrat: 48 },
     issues: [
-      { id: 'sweetener_load', title: 'Heavy Artificial Sweetener Use', severity: 'medium', description: 'Quest and Atkins products rely heavily on sucralose, erythritol, and other sugar alcohols; emerging research raises questions about long-term metabolic effects.', source: 'Nature Medicine, 2023' },
+      {
+        id: 'erythritol-study',
+        title: 'Study Links Erythritol to Heart Risk',
+        severity: 'medium',
+        description:
+          'A 2023 study in Nature Medicine reported an association between high blood levels of the sweetener erythritol and increased cardiovascular events in at-risk patients. Quest and Atkins products use erythritol extensively; the FDA has taken no regulatory action and industry groups dispute the study’s relevance to dietary intake.',
+        source: 'Nature Medicine, 2023',
+      },
+      {
+        id: 'atkins-listeria-recall',
+        title: 'Atkins Frozen Meal Listeria Recall',
+        severity: 'medium',
+        description:
+          'In 2024 specific lots of Atkins frozen meals, including Chicken Margherita and Chicken & Broccoli Alfredo, were recalled over potential Listeria contamination as part of a co-manufacturer recall. No illnesses were reported in connection with the recall.',
+        source: 'Recall notice, 2024',
+      },
+      {
+        id: 'quest-prop65-notice',
+        title: 'Quest Prop 65 Warning Notice',
+        severity: 'low',
+        description:
+          'A California Proposition 65 60-day notice was filed against Quest Nutrition in 2022 alleging the Cookies and Cream protein bars lacked a required warning label. A 60-day notice is a procedural allegation, not a finding of violation.',
+        source: 'California Prop 65 notice, 2022',
+      },
     ],
     subsidiaries: ['Quest Nutrition', 'Atkins', 'Quest Protein'],
     sustainabilityScore: 44,
@@ -1246,7 +2993,38 @@ export const COMPANY_DB = {
     politicalDonations: 50000,
     donationSplit: { republican: 18, democrat: 82 },
     issues: [
-      { id: 'processing_beyond', title: 'Ultra-Processed Ingredients', severity: 'medium', description: 'Despite a plant-based positioning, Beyond Meat products are ultra-processed with methylcellulose, modified starch, and high sodium.', source: 'NOVA food classification, 2023' },
+      {
+        id: 'protein-settlement',
+        title: '$7.5M Protein-Overstatement Settlement',
+        severity: 'medium',
+        description:
+          'In 2025 a federal court granted final approval of a $7.5 million class settlement over allegations that Beyond Meat overstated the protein content and quality of its products using improper testing methods. The settlement covered purchases from 2018 to 2024; Beyond Meat denied the allegations.',
+        source: 'N.D. Ill. (final approval), 2025',
+      },
+      {
+        id: 'securities-suits',
+        title: 'Pending Securities Class Actions',
+        severity: 'medium',
+        description:
+          'Beyond Meat faces securities class actions alleging executives made misleading statements — one about the company’s ability to produce at scale (2020–2022) and a later one about delayed disclosure of asset impairments (2025). Both are pending; the allegations are unproven.',
+        source: 'Federal securities dockets, 2023–2026',
+      },
+      {
+        id: 'pa-facility-reports',
+        title: 'Reported Plant Contamination Issues',
+        severity: 'medium',
+        description:
+          'According to internal documents leaked to the Spokesman-Review in 2022, Beyond Meat’s Pennsylvania facility logged Listeria, Salmonella, and mold incidents during 2021–2022. Beyond Meat disputed the reporting, noting state inspections that found no non-conformances.',
+        source: 'Spokesman-Review (leaked documents), 2022',
+      },
+      {
+        id: 'coo-conviction',
+        title: 'Former COO’s Assault Conviction',
+        severity: 'low',
+        description:
+          'Former COO Doug Ramsey was arrested in September 2022 after a road-rage altercation in which he bit a man during a parking-garage fight. He pleaded guilty in February 2023 to criminal mischief and disorderly conduct, receiving probation, a fine, and community service, and had left the company in 2022.',
+        source: 'Bloomberg / court records, 2022–2023',
+      },
     ],
     subsidiaries: ['Beyond Burger', 'Beyond Sausage', 'Beyond Chicken'],
     sustainabilityScore: 65,
@@ -1264,8 +3042,30 @@ export const COMPANY_DB = {
     politicalDonations: 40000,
     donationSplit: { republican: 12, democrat: 88 },
     issues: [
-      { id: 'gmo_soy', title: 'GMO Soy Heme', severity: 'medium', description: "Impossible Burger's key ingredient — soy leghemoglobin — is produced via genetically modified yeast; its long-term safety data is limited.", source: 'FDA GRAS Notice, 2019' },
-      { id: 'sodium_impossible', title: 'High Sodium Content', severity: 'medium', description: 'Impossible Burger contains 370mg sodium per 4oz patty, compared to ~80mg in lean ground beef.', source: 'CSPI, 2022' },
+      {
+        id: 'leghemoglobin-ruling',
+        title: 'Court Upheld GMO Heme Approval',
+        severity: 'medium',
+        description:
+          'In 2021 the 9th Circuit upheld the FDA’s approval of Impossible’s soy leghemoglobin (a GMO-derived color additive), rejecting a Center for Food Safety challenge. The challengers had pointed to preliminary animal-study findings, but the court held the FDA applied the correct standard; long-term human safety data remains limited.',
+        source: '9th Cir.; FDA GRAS/color-additive record, 2021',
+      },
+      {
+        id: 'sausage-metal-recall',
+        title: 'Aluminum Foreign-Material Recall',
+        severity: 'medium',
+        description:
+          'In 2024 Impossible Foods voluntarily recalled ground sausage products after aluminum packaging fasteners from a co-manufacturer were found in the raw product. Affected items were distributed between May and November 2024; no injuries were reported.',
+        source: 'FSIS / Newsweek, 2024',
+      },
+      {
+        id: 'sodium-content',
+        title: 'High Sodium per Serving',
+        severity: 'low',
+        description:
+          'The Impossible Burger contains roughly 370mg of sodium per 4oz patty, a notable amount for consumers managing blood pressure or sodium intake. This reflects the product’s formulation as a processed plant-based meat alternative.',
+        source: 'CSPI, 2022',
+      },
     ],
     subsidiaries: ['Impossible Burger', 'Impossible Sausage', 'Impossible Chicken Nuggets'],
     sustainabilityScore: 63,
@@ -1283,8 +3083,30 @@ export const COMPANY_DB = {
     politicalDonations: 20000,
     donationSplit: { republican: 10, democrat: 90 },
     issues: [
-      { id: 'rapeseed_oil', title: 'Rapeseed Oil & Processing', severity: 'medium', description: 'Oatly uses canola/rapeseed oil in its barista blends; despite the oat-focused marketing, the oil content raises processing concerns.', source: 'Vox, 2021' },
-      { id: 'blackstone_investment', title: 'Blackstone Investment Controversy', severity: 'medium', description: "Oatly's 2020 investment from Blackstone — a fund associated with Amazon deforestation financing — drew significant backlash from its core audience.", source: 'Guardian, 2020' },
+      {
+        id: 'securities-settlement',
+        title: '$9.25M Securities Settlement',
+        severity: 'high',
+        description:
+          'In 2024 a court approved a $9.25 million settlement resolving investor claims that Oatly overstated its sustainability, margins, and growth metrics following a 2021 short-seller report. Oatly settled without admitting wrongdoing.',
+        source: 'In re Oatly Securities Litigation, 2024',
+      },
+      {
+        id: 'asa-ad-ban',
+        title: 'UK Regulator Banned Misleading Ads',
+        severity: 'medium',
+        description:
+          'In January 2022 the UK Advertising Standards Authority banned several Oatly ads after 109 complaints, ruling that its “73% less CO2e vs milk” claim was misleading because it applied to only one product, and that a claim about dairy and meat emissions was overstated.',
+        source: 'UK ASA ruling, 2022',
+      },
+      {
+        id: 'blackstone-investment',
+        title: 'Blackstone Investment Backlash',
+        severity: 'medium',
+        description:
+          'In 2020 Oatly accepted a roughly $200 million investment from a Blackstone-led group, prompting boycotts because Blackstone held stakes in Brazilian firms linked to Amazon deforestation, and its CEO had donated to the 2020 Trump campaign. Oatly defended the deal as necessary growth capital.',
+        source: 'Guardian / CNBC, 2020',
+      },
     ],
     subsidiaries: ['Oatly'],
     sustainabilityScore: 61,
@@ -1302,7 +3124,38 @@ export const COMPANY_DB = {
     politicalDonations: 25000,
     donationSplit: { republican: 28, democrat: 72 },
     issues: [
-      { id: 'nestle_ownership', title: 'Nestlé Ownership Conflict', severity: 'low', description: 'Garden of Life was acquired by Nestlé Health Science in 2017; some consumers feel the brand\'s "whole food" positioning conflicts with its corporate parent.', source: 'Press Release, 2017' },
+      {
+        id: 'gol-lead-protein-2025',
+        title: 'Lead Detected in Plant-Based Protein',
+        severity: 'medium',
+        description:
+          'A 2025 Consumer Reports investigation reported elevated lead in Garden of Life Sport Organic Plant-Based Protein, above the level Consumer Reports considers safe per day. The FDA has set no enforceable lead limit for protein powders; the finding was not a recall.',
+        source: 'Consumer Reports, 2025',
+      },
+      {
+        id: 'gol-lead-class-action',
+        title: 'Class Action Over Protein Lead Claims',
+        severity: 'medium',
+        description:
+          'Garden of Life faces a consumer class-action alleging its organic plant-based protein was advertised as safe despite containing lead; pending as of 2025. The company states its products meet FDA, EPA, WHO and EFSA heavy-metal guidance.',
+        source: 'Top Class Actions (pending litigation), 2025',
+      },
+      {
+        id: 'gol-probiotic-potency',
+        title: 'Probiotic Potency Below Label',
+        severity: 'low',
+        description:
+          'According to 2024 independent testing by ConsumerLab, some Garden of Life probiotic batches measured below their labeled live-culture counts. This testing is not a regulatory adjudication.',
+        source: 'ConsumerLab, 2024',
+      },
+      {
+        id: 'gol-nestle-ownership',
+        title: 'Nestlé Ownership Conflict',
+        severity: 'low',
+        description:
+          'Garden of Life is owned by Nestlé, the world’s largest food company, which has faced ongoing scrutiny over supply-chain labor and sourcing practices. Buyers seeking independent brands should be aware of this ownership.',
+        source: 'Company ownership records',
+      },
     ],
     subsidiaries: ['Garden of Life', 'Raw Organic', 'mykind Organics'],
     sustainabilityScore: 71,
@@ -1319,7 +3172,24 @@ export const COMPANY_DB = {
     lobbyingTargets: ['FDA'],
     politicalDonations: 8000,
     donationSplit: { republican: 10, democrat: 90 },
-    issues: [],
+    issues: [
+      {
+        id: 'fyh-danone-ownership',
+        title: 'Owned by Danone Since 2021',
+        severity: 'low',
+        description:
+          'Follow Your Heart (Earth Island, maker of Vegenaise) was acquired by the multinational Danone in February 2021. The brand operates as a Danone subsidiary, so independent-brand claims should be weighed against corporate ownership.',
+        source: 'Danone / PR Newswire, 2021',
+      },
+      {
+        id: 'fyh-clean-record',
+        title: 'No Major Enforcement on Record',
+        severity: 'low',
+        description:
+          'FDA and FTC enforcement databases show no recalls, warning letters, or enforcement actions against Follow Your Heart during 2020–2026. This reflects a comparatively clean regulatory profile for the period reviewed.',
+        source: 'FDA / FTC databases, 2026',
+      },
+    ],
     subsidiaries: ['Follow Your Heart', 'Vegenaise', 'Vegan Gourmet'],
     sustainabilityScore: 74,
   },
@@ -1336,7 +3206,38 @@ export const COMPANY_DB = {
     politicalDonations: 10000,
     donationSplit: { republican: 25, democrat: 75 },
     issues: [
-      { id: 'rice_arsenic', title: 'Arsenic in Rice Products', severity: 'medium', description: 'Rice grown in California (like Lundberg\'s) naturally absorbs inorganic arsenic from soil; levels in some Lundberg rice cakes have been flagged by Consumer Reports.', source: 'Consumer Reports, 2022' },
+      {
+        id: 'lundberg-arsenic-rice',
+        title: 'Inorganic Arsenic in Rice Products',
+        severity: 'medium',
+        description:
+          'Consumer Reports and independent 2024 lab testing have found measurable inorganic arsenic in California rice, including Lundberg products, reflecting an industry-wide issue tied to legacy soil contamination. Lundberg’s own published testing reports levels below FDA and EU thresholds.',
+        source: 'Consumer Reports; independent lab testing, 2024',
+      },
+      {
+        id: 'lundberg-heavy-metals-byproducts',
+        title: 'Heavy Metals in Rice Byproducts',
+        severity: 'low',
+        description:
+          'Independent testing has reported trace lead and other heavy metals in rice bran and rice-polish byproducts, an endemic feature of rice agriculture rather than a Lundberg-specific finding. No regulatory action has been taken.',
+        source: 'Independent testing, 2024',
+      },
+      {
+        id: 'lundberg-water-use',
+        title: 'Water Use Amid California Drought',
+        severity: 'low',
+        description:
+          'Lundberg Family Farms relies on Sacramento Valley irrigation, a region affected by recurring drought and water-allocation pressures during 2021–2024. This is general agricultural context, not a regulatory violation.',
+        source: 'California water reporting, 2024',
+      },
+      {
+        id: 'lundberg-labor-clean',
+        title: 'No Labor Violations on Record',
+        severity: 'low',
+        description:
+          'OSHA and NLRB databases show no recorded violations against Lundberg Family Farms during 2020–2026, and the company holds Fair Trade certification on some organic rice lines. This reflects a clean labor record for the period.',
+        source: 'OSHA / NLRB databases, 2026',
+      },
     ],
     subsidiaries: ['Lundberg Family Farms'],
     sustainabilityScore: 77,
@@ -1354,7 +3255,30 @@ export const COMPANY_DB = {
     politicalDonations: 6000,
     donationSplit: { republican: 55, democrat: 45 },
     issues: [
-      { id: 'aca_lawsuit', title: 'ACA Contraception Lawsuit', severity: 'medium', description: 'Eden Foods CEO sued to avoid ACA contraception coverage for employees on religious grounds, alienating some of its health-conscious customer base.', source: 'Mother Jones, 2014' },
+      {
+        id: 'eden-aca-lawsuit',
+        title: 'Resolved Contraception Mandate Lawsuit',
+        severity: 'low',
+        description:
+          'In Eden Foods v. Sebelius (2013), the company challenged the Affordable Care Act contraception mandate on religious grounds; following the 2014 Hobby Lobby decision, a court entered a permanent injunction in Eden’s favor in 2015. The case is fully resolved but drew consumer boycotts.',
+        source: 'Civil Rights Litigation Clearinghouse, 2015',
+      },
+      {
+        id: 'eden-bpa-free-pioneer',
+        title: 'Early Adopter of BPA-Free Cans',
+        severity: 'low',
+        description:
+          'Eden Foods has used BPA-free can linings since 1999 and labels its cans as BPA, BPS and phthalate free, with tomatoes packed in amber glass. This is a notable positive on food-contact safety relative to many peers.',
+        source: 'Eden Foods company records',
+      },
+      {
+        id: 'eden-supply-transparency',
+        title: 'Limited Supply-Chain Disclosure',
+        severity: 'low',
+        description:
+          'As a small privately held company, Eden Foods publishes limited supply-chain documentation, and some organic-ingredient sourcing details are not independently verifiable. No misconduct has been established.',
+        source: 'Consumer review of public disclosures, 2024',
+      },
     ],
     subsidiaries: ['Eden Foods', 'Eden Organic'],
     sustainabilityScore: 73,
@@ -1371,7 +3295,32 @@ export const COMPANY_DB = {
     lobbyingTargets: ['FDA'],
     politicalDonations: 5000,
     donationSplit: { republican: 20, democrat: 80 },
-    issues: [],
+    issues: [
+      {
+        id: 'bragg-acv-claims',
+        title: 'Limited Evidence for ACV Benefits',
+        severity: 'low',
+        description:
+          'Bragg’s apple cider vinegar marketing emphasizes wellness and metabolic benefits for which scientific evidence remains limited. No FTC enforcement action has been taken against the company over these claims.',
+        source: 'FTC health-claim guidance, 2023',
+      },
+      {
+        id: 'bragg-liquid-aminos-sodium',
+        title: 'High Sodium in Liquid Aminos',
+        severity: 'low',
+        description:
+          'Bragg Liquid Aminos contains roughly 960 mg of sodium per tablespoon, among the highest of liquid seasonings, despite the product’s health-oriented positioning. The figure is verifiable from the product label.',
+        source: 'Product nutrition label',
+      },
+      {
+        id: 'bragg-clean-record',
+        title: 'No Major Enforcement on Record',
+        severity: 'low',
+        description:
+          'FDA, FTC and USDA databases show no recalls, warning letters, or enforcement actions against Bragg during 2020–2026. The company is privately held with limited public sustainability disclosure.',
+        source: 'FDA / FTC / USDA databases, 2026',
+      },
+    ],
     subsidiaries: ['Bragg', 'Bragg Liquid Aminos', 'Bragg Apple Cider Vinegar'],
     sustainabilityScore: 76,
   },
@@ -1388,8 +3337,30 @@ export const COMPANY_DB = {
     politicalDonations: 140000,
     donationSplit: { republican: 72, democrat: 28 },
     issues: [
-      { id: 'political_controversy', title: 'Political Controversy', severity: 'medium', description: "CEO's public endorsement of a political figure in 2020 sparked a boycott and counter-boycott, dividing the brand's core Hispanic consumer base.", source: 'New York Times, 2020' },
-      { id: 'sodium_canned', title: 'High Sodium in Canned Goods', severity: 'medium', description: "Goya canned beans and rice dishes are among the higher-sodium pantry staples in the Latino food category.", source: 'AHA, 2022' },
+      {
+        id: 'goya-political-2020',
+        title: 'CEO Endorsement Sparked Boycotts',
+        severity: 'medium',
+        description:
+          'In July 2020, CEO Robert Unanue praised President Trump at a White House event, prompting #BoycottGoya campaigns and a counter-boycott; a Cornell study found sales briefly rose then normalized. Unanue endorsed Trump again in 2024. This is reputational, not a regulatory matter.',
+        source: 'CNN, NBC News, 2020; Cornell study, 2022',
+      },
+      {
+        id: 'goya-sodium-canned',
+        title: 'High Sodium in Canned Goods',
+        severity: 'medium',
+        description:
+          'Nutrition analyses report that Goya canned beans and rice products carry several hundred milligrams of sodium per serving, a meaningful share of the recommended daily limit. The figures are verifiable from product labels.',
+        source: 'Nutrition label analysis, 2022',
+      },
+      {
+        id: 'goya-labor-clean',
+        title: 'No Major Facility Violations',
+        severity: 'low',
+        description:
+          'OSHA inspections of Goya facilities in New Jersey and Puerto Rico (2022–2023) found no major violations, and one NLRB wage complaint was withdrawn. This reflects a clean recent inspection record.',
+        source: 'OSHA / NLRB databases, 2026',
+      },
     ],
     subsidiaries: ['Goya'],
     sustainabilityScore: 45,
@@ -1407,7 +3378,38 @@ export const COMPANY_DB = {
     politicalDonations: 20000,
     donationSplit: { republican: 20, democrat: 80 },
     issues: [
-      { id: 'spice_lead_fc', title: 'Lead in Spices (Industry-Wide Issue)', severity: 'medium', description: 'Frontier Co-op spices, along with the broader industry, have been implicated in Consumer Reports testing for lead contamination.', source: 'Consumer Reports, 2023' },
+      {
+        id: 'frontier-spice-lead-context',
+        title: 'Lead in Spices: Industry-Wide Issue',
+        severity: 'low',
+        description:
+          'Heavy metals such as lead are an endemic, industry-wide concern in spices sourced from regions with contaminated soils. Independent ConsumerLab testing of Frontier turmeric in 2023 reported lead well below the FDA action level for spices.',
+        source: 'ConsumerLab, 2023; Consumer Reports spice testing, 2021',
+      },
+      {
+        id: 'frontier-supply-transparency',
+        title: 'Limited Sourcing Traceability',
+        severity: 'low',
+        description:
+          'Frontier Co-op sources from dozens of countries, with Fair Trade certification covering only part of its portfolio and batch-level origin documentation not publicly available. This is a transparency limitation rather than a proven violation.',
+        source: 'Frontier Co-op sustainability report, 2023',
+      },
+      {
+        id: 'frontier-supplier-labor-risk',
+        title: 'Labor Risks in Sourcing Regions',
+        severity: 'low',
+        description:
+          'Spices such as turmeric, cinnamon and cumin originate from regions where the ILO and Amnesty International have documented labor concerns industry-wide. These regional risks are not independently audited for Frontier’s specific supply chain.',
+        source: 'ILO / Amnesty International reporting, 2023',
+      },
+      {
+        id: 'frontier-clean-record',
+        title: 'No U.S. Enforcement on Record',
+        severity: 'low',
+        description:
+          'FDA, FTC, OSHA and NLRB databases show no recalls, warning letters, or major enforcement actions against Frontier Co-op’s U.S. operations during 2020–2026. This reflects a clean domestic regulatory record.',
+        source: 'FDA / FTC / OSHA / NLRB databases, 2026',
+      },
     ],
     subsidiaries: ['Frontier Co-op', 'Simply Organic', 'Aura Cacia'],
     sustainabilityScore: 75,
@@ -1425,7 +3427,38 @@ export const COMPANY_DB = {
     politicalDonations: 290000,
     donationSplit: { republican: 54, democrat: 46 },
     issues: [
-      { id: 'supplement_claims', title: 'Deceptive Health Claims', severity: 'high', description: "Nature's Bounty has settled FTC and state AG complaints over unsubstantiated health claims for supplements including echinacea and ginkgo biloba.", source: 'FTC, 2016' },
+      {
+        id: 'ftc-review-hijacking',
+        title: 'FTC Action: Amazon Review Hijacking',
+        severity: 'high',
+        description:
+          'The Bountiful Company, parent of Nature\'s Bounty, agreed to pay $600,000 to settle FTC charges that it manipulated Amazon\'s review system to attach established products\' ratings to new supplements. The FTC later distributed over $527,000 in refunds to deceived consumers.',
+        source: 'FTC, 2023',
+      },
+      {
+        id: 'nestle-ownership',
+        title: 'Core Brands Now Owned by Nestlé',
+        severity: 'medium',
+        description:
+          'In 2021, the core NBTY brands — Nature\'s Bounty, Solgar, Osteo Bi-Flex and Puritan\'s Pride — were sold to Nestlé Health Science for $5.75 billion, changing the corporate parent accountable to consumers.',
+        source: 'Nestlé / Bloomberg, 2021',
+      },
+      {
+        id: 'ginkgo-efficacy-suit',
+        title: 'Ginkgo Biloba Efficacy Lawsuit',
+        severity: 'medium',
+        description:
+          'A 2022 class action alleges Nature\'s Bounty ginkgo biloba products provide no cognitive benefit and that the claimed benefits are unsupported by evidence in healthy adults. The allegations have not been adjudicated.',
+        source: 'Class action filing, 2022',
+      },
+      {
+        id: 'prior-ftc-claims',
+        title: 'Prior FTC Deceptive-Claims History',
+        severity: 'medium',
+        description:
+          'Nature\'s Bounty has previously settled FTC and state allegations over unsubstantiated health claims for supplements such as echinacea and ginkgo biloba. The brand has faced repeated regulatory scrutiny of its marketing claims over time.',
+        source: 'FTC, 2016',
+      },
     ],
     subsidiaries: ["Nature's Bounty", 'Sundown', 'Solgar', 'Osteo Bi-Flex', 'Ester-C', 'Met-Rx'],
     sustainabilityScore: 43,
@@ -1443,7 +3476,30 @@ export const COMPANY_DB = {
     politicalDonations: 350000,
     donationSplit: { republican: 56, democrat: 44 },
     issues: [
-      { id: 'doping_products', title: 'Selling Products with Banned Substances', severity: 'high', description: "GNC settled a $2.25M multistate AG action in 2015 after tests found unlisted, potentially dangerous ingredients in GNC store-brand supplements.", source: 'New York AG, 2015' },
+      {
+        id: 'chinese-linked-ownership',
+        title: 'Owned by Chinese-State-Linked Firm',
+        severity: 'high',
+        description:
+          'After filing Chapter 11 bankruptcy in 2020, GNC was sold for roughly $770 million to Harbin Pharmaceutical Group, a Chinese drugmaker tied through CITIC to entities that media describe as state-linked. The sale was approved by a U.S. bankruptcy court and closed in October 2020.',
+        source: 'SEC filings / Bloomberg, 2020',
+      },
+      {
+        id: 'banned-substances-settlement',
+        title: 'Undisclosed Ingredients in Store Brands',
+        severity: 'high',
+        description:
+          'GNC settled a $2.25M multistate action in 2015 after testing found unlisted, potentially dangerous ingredients in GNC store-brand supplements, and agreed to a supplier-certification program. The underlying concern of selling third-party products it does not independently verify has been raised repeatedly.',
+        source: 'New York AG, 2015',
+      },
+      {
+        id: 'military-base-concerns',
+        title: 'National-Security Scrutiny on Bases',
+        severity: 'medium',
+        description:
+          'Members of Congress have raised concerns in 2024–2025 about Chinese-state-linked GNC operating stores on U.S. military bases and accessing service members’ purchase data. In 2024, protein products at base stores were reportedly pulled for containing hemp, banned for military personnel. These concerns are not adjudicated.',
+        source: 'Congressional statements / Bloomberg Gov, 2024',
+      },
     ],
     subsidiaries: ['GNC', 'Rite Aid Pharmacy Partner Brands'],
     sustainabilityScore: 34,
@@ -1460,7 +3516,32 @@ export const COMPANY_DB = {
     lobbyingTargets: ['FDA', 'FTC', 'CRN'],
     politicalDonations: 45000,
     donationSplit: { republican: 48, democrat: 52 },
-    issues: [],
+    issues: [
+      {
+        id: 'ginseng-pesticide-recall',
+        title: 'Ginseng Recalled Over Banned Pesticide',
+        severity: 'medium',
+        description:
+          'NOW Foods voluntarily recalled its American Ginseng products in 2023 after a lot was found contaminated with quintozene, a banned pesticide traced to a supplier’s raw material, and later received an FDA warning letter on the matter.',
+        source: 'FDA, 2023',
+      },
+      {
+        id: 'phosphatidyl-serine-recall',
+        title: 'Supplement Recalled for Low Potency',
+        severity: 'low',
+        description:
+          'In January 2024, NOW voluntarily recalled its Phosphatidyl Serine Extra Strength 300 mg softgels because they did not meet label-claim potency. No adverse events were reported.',
+        source: 'NOW / FDA, 2024',
+      },
+      {
+        id: 'salmonella-food-recalls',
+        title: 'Salmonella Recalls of Food Products',
+        severity: 'low',
+        description:
+          'NOW issued precautionary voluntary recalls of Real Food raw macadamia nuts (2020) and a sprouting mix over possible Salmonella contamination from supplier ingredients. No illnesses were reported in either recall.',
+        source: 'FDA recall notices, 2020–2021',
+      },
+    ],
     subsidiaries: ['NOW Foods', 'NOW Sports', 'NOW Solutions'],
     sustainabilityScore: 68,
   },
@@ -1477,7 +3558,38 @@ export const COMPANY_DB = {
     politicalDonations: 12000,
     donationSplit: { republican: 22, democrat: 78 },
     issues: [
-      { id: 'fish_sourcing', title: 'Sustainable Fish Sourcing', severity: 'low', description: "Nordic Naturals has strong third-party certifications for sustainable fishing, though omega-3 production's environmental impact remains under review.", source: 'MSC, 2023' },
+      {
+        id: 'baby-d3-recall',
+        title: 'Baby\'s Vitamin D3 Recalled, Superpotent',
+        severity: 'medium',
+        description:
+          'Nordic Naturals voluntarily recalled one lot of Baby\'s Vitamin D3 Liquid in February 2024 after a manufacturing error caused an elevated (superpotent) vitamin D3 dose. The recall covered roughly 3,800 units; no adverse events were reported and the FDA later terminated the recall.',
+        source: 'FDA, 2024',
+      },
+      {
+        id: 'heart-health-suit',
+        title: 'Fish Oil "Heart Health" Class Action',
+        severity: 'medium',
+        description:
+          'A federal class action (Clark v. Nordic Naturals, N.D. Cal.) filed in 2024 alleges the company misleadingly markets fish oil as supporting heart health, citing trials showing no cardiovascular benefit. A court preserved six claims in 2025; the case is pending as of 2026.',
+        source: 'N.D. Cal., 2024–2025',
+      },
+      {
+        id: 'zero-sugar-mislabel-recall',
+        title: 'Kids Gummies Recalled for Sugar Mislabel',
+        severity: 'medium',
+        description:
+          'In May 2025, Nordic Naturals recalled roughly 1,164 bottles of Zero Sugar Kids Multivitamin gummies after they were found to contain undisclosed sugar and fumaric acid not reflected on the label.',
+        source: 'ConsumerLab / company recall, 2025',
+      },
+      {
+        id: 'natural-labeling-suit',
+        title: '"Natural" Labeling Class Action',
+        severity: 'medium',
+        description:
+          'A 2024 class action alleges consumers were misled by "natural" branding because products contain synthetic excipients and synthetically derived vitamins; a court declined to dismiss it. The allegations remain unproven.',
+        source: 'Class action filing, 2024',
+      },
     ],
     subsidiaries: ['Nordic Naturals'],
     sustainabilityScore: 77,
@@ -1494,7 +3606,16 @@ export const COMPANY_DB = {
     lobbyingTargets: ['FDA', 'FTC'],
     politicalDonations: 10000,
     donationSplit: { republican: 40, democrat: 60 },
-    issues: [],
+    issues: [
+      {
+        id: 'clean-record-nsf',
+        title: 'Clean Record, NSF Sport Certified',
+        severity: 'low',
+        description:
+          'Thorne has no FDA warning letters, FTC actions, or major class-action settlements in the 2020–2026 period. Its manufacturing is NSF Certified for Sport, an independent quality program recognized by anti-doping authorities and used by many professional sports organizations.',
+        source: 'NSF / FDA records, 2026',
+      },
+    ],
     subsidiaries: ['Thorne'],
     sustainabilityScore: 72,
   },
@@ -1511,7 +3632,38 @@ export const COMPANY_DB = {
     politicalDonations: 1900000,
     donationSplit: { republican: 59, democrat: 41 },
     issues: [
-      { id: 'similac_recall', title: 'Infant Formula Recall & Shortage', severity: 'high', description: "Abbott's Sturgis, MI facility was linked to Cronobacter contamination; the FDA-ordered shutdown in 2022 caused a nationwide infant formula shortage.", source: 'FDA, 2022' },
+      {
+        id: 'sturgis-recall-consent-decree',
+        title: 'Formula Recall, Shortage & Consent Decree',
+        severity: 'high',
+        description:
+          'Abbott\'s Sturgis, Michigan plant was linked to Cronobacter contamination and unsanitary conditions; the 2022 shutdown caused a nationwide infant-formula shortage. Abbott entered a five-year consent decree with the FDA as a condition of reopening.',
+        source: 'FDA, 2022',
+      },
+      {
+        id: 'nec-verdicts',
+        title: 'Similac NEC Lawsuits and Verdicts',
+        severity: 'high',
+        description:
+          'Abbott faces hundreds of lawsuits alleging its cow’s-milk-based Similac Special Care formula for preterm infants causes necrotizing enterocolitis. A Missouri jury awarded $495 million in 2024 and an Illinois jury awarded $70 million in 2026; Abbott is challenging the verdicts, and many cases remain pending in a federal MDL.',
+        source: 'Missouri / Illinois courts, 2024–2026',
+      },
+      {
+        id: 'doj-criminal-investigation',
+        title: 'DOJ Investigation Into Sturgis Plant',
+        severity: 'medium',
+        description:
+          'In 2023, the U.S. Department of Justice opened a criminal investigation into conduct at the Sturgis plant following the recall, after the FDA reported falsified records and unsanitary conditions. The investigation has not resulted in charges as of 2026.',
+        source: 'DOJ / media reports, 2023',
+      },
+      {
+        id: 'sec-ftc-investigations',
+        title: 'SEC and FTC Investigations',
+        severity: 'medium',
+        description:
+          'In 2023, the SEC reportedly opened an inquiry into Abbott’s disclosures about its formula business, and the FTC began examining whether formula makers engaged in anticompetitive conduct in WIC program contracting. These are investigations, not findings of wrongdoing.',
+        source: 'SEC / FTC, 2023',
+      },
     ],
     subsidiaries: ['Ensure', 'Pedialyte', 'Similac', 'Glucerna', 'ZonePerfect', 'EAS Sports'],
     sustainabilityScore: 48,
@@ -1529,7 +3681,38 @@ export const COMPANY_DB = {
     politicalDonations: 850000,
     donationSplit: { republican: 42, democrat: 58 },
     issues: [
-      { id: 'enfamil_necrotizing', title: 'Enfamil NEC Lawsuits', severity: 'high', description: 'Reckitt faces thousands of lawsuits alleging Mead Johnson\'s Enfamil cow-milk formula caused necrotizing enterocolitis (NEC) in premature infants.', source: 'Reuters, 2023' },
+      {
+        id: 'enfamil-nec-litigation',
+        title: 'Enfamil NEC Lawsuits and Verdicts',
+        severity: 'high',
+        description:
+          'Reckitt\'s Mead Johnson faces hundreds of lawsuits alleging Enfamil cow-milk formula caused necrotizing enterocolitis in premature infants. An Illinois jury awarded $60 million in 2024 and a Missouri jury awarded $495 million jointly with Abbott; Reckitt is appealing, and a large federal MDL remains pending.',
+        source: 'Illinois / Missouri courts, 2024',
+      },
+      {
+        id: 'securities-class-action',
+        title: 'Investor Suit Over NEC Disclosures',
+        severity: 'medium',
+        description:
+          'A federal securities class action filed in 2025 alleges Reckitt misled investors about its financial exposure from the Enfamil NEC litigation. The allegations are pending and unproven.',
+        source: 'SDNY, 2025',
+      },
+      {
+        id: 'wic-antitrust-probe',
+        title: 'FTC WIC Contracting Investigation',
+        severity: 'medium',
+        description:
+          'Mead Johnson/Reckitt, alongside Abbott, is part of an FTC inquiry into whether exclusive WIC infant-formula contracts enabled anticompetitive coordination. This is an investigation, not a finding of wrongdoing.',
+        source: 'FTC, 2023',
+      },
+      {
+        id: 'phenylephrine-claims',
+        title: 'Oral Phenylephrine Efficacy Question',
+        severity: 'low',
+        description:
+          'An FDA advisory committee voted unanimously in 2023 that oral phenylephrine is not effective as a nasal decongestant. A related class action over Mucinex Sinus-Max was dismissed in 2024, but the finding raised questions about products containing the ingredient.',
+        source: 'FDA advisory committee, 2023',
+      },
     ],
     subsidiaries: ['Enfamil', 'Mead Johnson', 'Mucinex', 'Lysol', 'Dettol', 'Woosh', 'Finish'],
     sustainabilityScore: 45,
@@ -1547,7 +3730,38 @@ export const COMPANY_DB = {
     politicalDonations: 2100000,
     donationSplit: { republican: 47, democrat: 53 },
     issues: [
-      { id: 'roundup_bayer', title: 'Roundup Glyphosate Litigation', severity: 'high', description: "Bayer (via Monsanto acquisition) has paid over $10B to settle cancer lawsuits linked to Roundup's glyphosate herbicide.", source: 'Reuters, 2023' },
+      {
+        id: 'roundup-litigation',
+        title: 'Roundup Glyphosate Cancer Litigation',
+        severity: 'high',
+        description:
+          'Bayer (via its Monsanto acquisition) has paid over $10 billion settling Roundup cancer claims and proposed an additional $7.25 billion global settlement in 2026 to resolve current and future non-Hodgkin lymphoma claims. The proposed settlement received preliminary court approval, with a final-approval hearing set for 2026.',
+        source: 'Court filings / Bayer, 2026',
+      },
+      {
+        id: 'alka-seltzer-recalls',
+        title: 'Alka-Seltzer Plus Mislabeling Recalls',
+        severity: 'medium',
+        description:
+          'Bayer issued voluntary recalls of Alka-Seltzer Plus products in 2022–2023 after packaging listed active ingredients that did not match the contents, which the FDA flagged as posing risk to consumers relying on the label. One recall covered about 1.1 million cartons.',
+        source: 'FDA, 2022–2023',
+      },
+      {
+        id: 'flintstones-metals-testing',
+        title: 'Heavy-Metal Findings in Children’s Vitamins',
+        severity: 'medium',
+        description:
+          'According to 2024 independent testing by the advocacy group Lead Safe Mama, Flintstones Chewable Children’s Vitamins tested positive for lead and arsenic. The findings have not been confirmed by the FDA and have not resulted in a recall as of 2026.',
+        source: 'Lead Safe Mama (independent testing), 2024',
+      },
+      {
+        id: 'aspirin-divestiture',
+        title: 'Aspirin Brand Sold to Haleon',
+        severity: 'low',
+        description:
+          'In 2025, Bayer agreed to sell its Aspirin and Bepanthen consumer brands to Haleon for roughly €8.2 billion, a change relevant to consumers who associate Bayer with Aspirin. Aleve, Claritin, One A Day and Flintstones remain with Bayer.',
+        source: 'Company announcements, 2025',
+      },
     ],
     subsidiaries: ['One A Day', 'Flintstones Vitamins', 'Citracal', 'Claritin', 'Aleve', 'MiraLAX', 'Alka-Seltzer'],
     sustainabilityScore: 41,
@@ -1565,7 +3779,30 @@ export const COMPANY_DB = {
     politicalDonations: 1600000,
     donationSplit: { republican: 44, democrat: 56 },
     issues: [
-      { id: 'talc_litigation', title: 'Talc & Cancer Litigation', severity: 'high', description: "Johnson's Baby Powder talc (now Kenvue) has been linked to ovarian cancer in thousands of lawsuits; J&J spun out consumer products partly to isolate liability.", source: 'Wall Street Journal, 2023' },
+      {
+        id: 'talc-litigation',
+        title: 'Talc & Cancer Litigation',
+        severity: 'high',
+        description:
+          'Johnson\'s Baby Powder talc has been linked to cancer in thousands of lawsuits. J&J agreed in 2023 to retain all talc liabilities and indemnify Kenvue; a court rejected J&J\'s proposed $8.9 billion bankruptcy settlement in 2025, and a 2024 jury awarded $45 million in one mesothelioma case. Talc-based Johnson\'s Baby Powder was discontinued globally in 2023.',
+        source: 'Court filings / SEC, 2023–2025',
+      },
+      {
+        id: 'phenylephrine-claims',
+        title: 'Oral Phenylephrine Efficacy Question',
+        severity: 'low',
+        description:
+          'An FDA advisory committee voted unanimously in 2023 that oral phenylephrine is not effective as a nasal decongestant, the active ingredient in products such as Sudafed PE and Benadryl Allergy Plus Congestion. A related class action was dismissed in 2024, but the FDA finding raised questions about the products.',
+        source: 'FDA advisory committee, 2023',
+      },
+      {
+        id: 'ipo-securities-suit',
+        title: 'Securities Suit Over IPO Disclosures',
+        severity: 'medium',
+        description:
+          'A securities class action filed after Kenvue’s 2023 IPO alleges that IPO filings made misleading statements about talc liability exposure and the company’s outlook. The allegations are pending and unproven.',
+        source: 'Securities class action, 2023',
+      },
     ],
     subsidiaries: ['Tylenol', 'Neutrogena', 'Aveeno', 'Listerine', 'Band-Aid', 'Visine', "Johnson's Baby"],
     sustainabilityScore: 50,
@@ -1582,7 +3819,40 @@ export const COMPANY_DB = {
     lobbyingTargets: ['FDA', 'EPA', 'FTC'],
     politicalDonations: 210000,
     donationSplit: { republican: 52, democrat: 48 },
-    issues: [],
+    issues: [
+      {
+        id: 'vitafusion-mesh-recall',
+        title: 'Vitafusion Gummies Metal-Mesh Recall',
+        severity: 'medium',
+        description:
+          'Church & Dwight voluntarily recalled select Vitafusion gummy vitamins in 2021, including kids’ melatonin and multivitamin products, after consumer reports of possible metallic mesh contamination from manufacturing equipment. The company stated no injuries were reported at the time of the recall.',
+        source: 'FDA recall database, 2021',
+      },
+      {
+        id: 'nad-absorption-claim',
+        title: 'Dropped "Clinically Proven" Vitamin Claim',
+        severity: 'medium',
+        description:
+          'In 2020, the advertising self-regulatory body NAD found that "Clinically Proven Absorption" claims on Vitafusion and L’il Critters multivitamins could mislead consumers into thinking all nutrients were tested when only two were. Church & Dwight agreed to drop the claim.',
+        source: 'NAD (BBB National Programs), 2020',
+      },
+      {
+        id: 'greenwashing-suit',
+        title: 'Arm & Hammer "Eco-Friendly" Lawsuit',
+        severity: 'medium',
+        description:
+          'A 2023 class action alleges Church & Dwight markets Arm & Hammer Clean Burst laundry detergent as environmentally friendly while it contains 1,4-dioxane, a substance listed under California Prop 65. The greenwashing allegations are pending and unproven.',
+        source: 'Class action filing, 2023',
+      },
+      {
+        id: 'more-loads-claim-suit',
+        title: 'Arm & Hammer "2X More Loads" Lawsuit',
+        severity: 'low',
+        description:
+          'A 2022 class action alleges Arm & Hammer laundry detergent was advertised as providing "2X more loads" in a way that misled consumers about the comparison baseline. The allegations have not been adjudicated.',
+        source: 'Class action filing, 2022',
+      },
+    ],
     subsidiaries: ['Arm & Hammer', 'Vitafusion', 'L\'il Critters', 'Nair', 'OxiClean', 'Waterpik', 'Batiste'],
     sustainabilityScore: 58,
   },
@@ -1599,7 +3869,38 @@ export const COMPANY_DB = {
     politicalDonations: 1700000,
     donationSplit: { republican: 62, democrat: 38 },
     issues: [
-      { id: 'worker_wages', title: 'Worker Wages & Union Disputes', severity: 'high', description: 'Kroger workers in multiple states have gone on strike over wages and benefits; the company has closed stores rather than comply with local hazard pay mandates.', source: 'Guardian, 2021' },
+      {
+        id: 'kroger-albertsons-merger-blocked',
+        title: 'Albertsons Merger Blocked on Antitrust Grounds',
+        severity: 'high',
+        description:
+          'The FTC sued in 2024 to stop Kroger\'s ~$24.6B acquisition of Albertsons. In December 2024 a federal judge granted a preliminary injunction halting the deal, finding it likely to reduce grocery competition, and a Washington state court separately found it violated state consumer-protection law.',
+        source: 'FTC; U.S. District Court (D. Oregon), 2024',
+      },
+      {
+        id: 'kroger-fair-food-holdout',
+        title: 'Declines to Join Farmworker Fair Food Program',
+        severity: 'medium',
+        description:
+          'Kroger is one of the major grocers that has declined to join the Coalition of Immokalee Workers\' Fair Food Program, which sets wage and safety standards for tomato pickers. Farmworkers marched across Florida in March 2023 to pressure Kroger and Publix to participate.',
+        source: 'Coalition of Immokalee Workers, 2023',
+      },
+      {
+        id: 'kroger-socal-wage-dispute',
+        title: 'Southern California Grocery Wage Dispute',
+        severity: 'medium',
+        description:
+          'In 2022, UFCW members at Kroger-owned Ralphs and Food 4 Less held strike-authorization votes after contract talks broke down, with the union calling the company\'s wage offer below cost-of-living needs. The union has also alleged Kroger outsourced food preparation to non-union kitchens.',
+        source: 'UFCW; KPBS, 2022',
+      },
+      {
+        id: 'kroger-merger-store-closures',
+        title: 'Store Divestitures Tied to Failed Merger',
+        severity: 'medium',
+        description:
+          'In connection with the failed Albertsons merger, Kroger announced plans affecting numerous stores. Worker advocates raised concerns about layoffs and the adequacy of notice and severance, though the underlying labor claims have not been adjudicated.',
+        source: 'Labor advocacy reports, 2023-2024',
+      },
     ],
     subsidiaries: ['Kroger', 'Fred Meyer', 'King Soopers', 'Ralphs', 'Simple Truth', 'Private Selection', 'Smart Way'],
     sustainabilityScore: 47,
@@ -1617,8 +3918,46 @@ export const COMPANY_DB = {
     politicalDonations: 4300000,
     donationSplit: { republican: 65, democrat: 35 },
     issues: [
-      { id: 'worker_wages_walmart', title: 'Low Wages & Labor Practices', severity: 'high', description: "Walmart is the largest private employer in the US; workers regularly report wages near minimum wage and scheduling practices that make it difficult to qualify for benefits.", source: 'Economic Policy Institute, 2022' },
-      { id: 'supplier_pressure', title: 'Supplier Price Pressure', severity: 'medium', description: "Walmart's leverage over suppliers forces cost-cutting that critics link to reduced quality, food safety risks, and labor abuses in supply chains.", source: 'Harvard Business Review, 2021' },
+      {
+        id: 'walmart-ca-wage-hour-settlements',
+        title: 'Repeated California Wage-and-Hour Settlements',
+        severity: 'medium',
+        description:
+          'Walmart has settled multiple California wage-and-hour class actions, including a $65M settlement in 2019 over failure to provide cashier seating and a $5.2M settlement over unpaid COVID-19 screening time. The settlements resolved allegations without admissions of wrongdoing.',
+        source: 'California court dockets, 2019-2022',
+      },
+      {
+        id: 'walmart-osha-warehouse-safety',
+        title: 'OSHA Citations at Distribution Facilities',
+        severity: 'medium',
+        description:
+          'Walmart has been cited by OSHA for workplace-safety issues at distribution and warehouse facilities, including ergonomic and machine-guarding hazards. The company has paid penalties and agreed to corrective measures in past enforcement actions.',
+        source: 'OSHA records',
+      },
+      {
+        id: 'walmart-union-retaliation-allegations',
+        title: 'Allegations of Anti-Union Retaliation',
+        severity: 'medium',
+        description:
+          'Workers at multiple locations have filed NLRB charges alleging retaliation for union-organizing activity, including reduced scheduling and disciplinary actions. These complaints are unproven allegations pending before the labor board.',
+        source: 'NLRB charges; media reports, 2023-2024',
+      },
+      {
+        id: 'walmart-supplier-labor-concerns',
+        title: 'Overseas Supplier Labor Concerns',
+        severity: 'medium',
+        description:
+          'Labor and human-rights organizations have reported alleged wage and labor abuses among Walmart suppliers in South Asia, including below-subsistence wages. Walmart says it conducts supplier audits; the allegations have not been independently adjudicated.',
+        source: 'Human Rights Watch and labor-monitor reports, 2022-2024',
+      },
+      {
+        id: 'walmart-plastic-pledge-gap',
+        title: 'Plastic-Reduction Pledges Questioned',
+        severity: 'low',
+        description:
+          'Environmental groups report that Walmart\'s private-label packaging growth has outpaced its plastic-reduction commitments, alleging the company shifted packaging burden to suppliers. Walmart disputes these characterizations in its ESG reporting.',
+        source: 'Environment America; Earthworks, 2023',
+      },
     ],
     subsidiaries: ["Great Value", "Sam's Choice", "Marketside", "Parent's Choice", "Equate", "Sam's Club Member's Mark"],
     sustainabilityScore: 43,
@@ -1636,7 +3975,30 @@ export const COMPANY_DB = {
     politicalDonations: 820000,
     donationSplit: { republican: 40, democrat: 60 },
     issues: [
-      { id: 'chicken_welfare', title: 'Vertically Integrated Chicken Welfare', severity: 'medium', description: "Costco built its own chicken processing facility to protect its $4.99 rotisserie chicken price; conditions at supplier farms have drawn scrutiny.", source: 'Reuters, 2022' },
+      {
+        id: 'costco-chicken-welfare-suit',
+        title: 'Shareholder Suit Over Chicken Welfare',
+        severity: 'medium',
+        description:
+          'A 2022 shareholder derivative lawsuit alleges Costco\'s Lincoln Premium Poultry operation raised chickens that grew too large to stand, citing 2021 Mercy for Animals undercover footage. The claims are pending and unproven; Costco says it maintains high animal-welfare standards.',
+        source: 'Smith v. Vachris (King County, WA); CBS News, 2022',
+      },
+      {
+        id: 'costco-covid-safety-complaints',
+        title: 'Pandemic-Era Worker Safety Complaints',
+        severity: 'low',
+        description:
+          'During 2020-2021, some Costco warehouse workers filed OSHA complaints alleging inadequate ventilation, distancing, and PPE, and a few alleged retaliation for raising concerns. Costco agreed to enhanced safety measures; the allegations were not formally adjudicated.',
+        source: 'OSHA complaints; USA Today, 2020-2021',
+      },
+      {
+        id: 'costco-kirkland-sourcing-transparency',
+        title: 'Limited Kirkland Sourcing Disclosure',
+        severity: 'low',
+        description:
+          'Costco has expanded Kirkland-brand organic products with limited public disclosure of supplier sourcing. Third-party reviewers have noted organic-certification verification gaps, particularly for produce.',
+        source: 'Organic Integrity Database cross-checks, 2021-2023',
+      },
     ],
     subsidiaries: ['Kirkland Signature'],
     sustainabilityScore: 61,
@@ -1653,7 +4015,32 @@ export const COMPANY_DB = {
     lobbyingTargets: ['Congress', 'FTC', 'Labor Department'],
     politicalDonations: 990000,
     donationSplit: { republican: 45, democrat: 55 },
-    issues: [],
+    issues: [
+      {
+        id: 'target-2013-breach-settlement',
+        title: 'Settled Landmark Data-Breach Case',
+        severity: 'medium',
+        description:
+          'Target\'s 2013 data breach exposed roughly 41 million payment-card accounts and contact data for 60 million customers. In 2017, Target agreed to pay $18.5M to 47 states and the District of Columbia, then the largest multistate data-breach settlement, and to strengthen its security program.',
+        source: 'State Attorneys General settlement, 2017',
+      },
+      {
+        id: 'target-ca-scheduling-claims',
+        title: 'California Scheduling and Benefits Claims',
+        severity: 'low',
+        description:
+          'Target workers in California brought wage-and-hour claims alleging scheduling practices that limited benefits eligibility, which were resolved through settlement with back-wage payments and revised policies. Target did not admit wrongdoing.',
+        source: 'California labor court, 2021',
+      },
+      {
+        id: 'target-good-gather-supplier-audits',
+        title: 'Good & Gather Supplier Audit Concerns',
+        severity: 'low',
+        description:
+          'Social-audit reports have alleged labor violations and below-poverty wages among some overseas suppliers for Target\'s Good & Gather private label. Target says it pursues audit remediation; the allegations are unverified and supply-chain transparency remains limited.',
+        source: 'Social-accountability audit reports, 2022-2023',
+      },
+    ],
     subsidiaries: ['Good & Gather', 'Market Pantry', 'Favorite Day', 'Simply Balanced'],
     sustainabilityScore: 57,
   },
@@ -1670,7 +4057,30 @@ export const COMPANY_DB = {
     politicalDonations: 130000,
     donationSplit: { republican: 35, democrat: 65 },
     issues: [
-      { id: 'plastic_packaging_tj', title: 'Excess Plastic Packaging', severity: 'medium', description: "Trader Joe's has been cited repeatedly by environmental groups for using more single-use plastic packaging than competitors for produce and prepared foods.", source: 'Environment America, 2021' },
+      {
+        id: 'tj-nlrb-labor-violations',
+        title: 'Found to Have Violated Labor Law',
+        severity: 'medium',
+        description:
+          'In November 2024, an NLRB administrative law judge found the Trader Joe\'s store in Hadley, Massachusetts violated federal labor law by barring union pins and denying unionized workers retirement benefits offered to others. Workers there and in Minneapolis unionized in 2022 under Trader Joe\'s United.',
+        source: 'NLRB administrative law judge ruling, 2024',
+      },
+      {
+        id: 'tj-plastic-packaging',
+        title: 'Excess Single-Use Plastic Packaging',
+        severity: 'low',
+        description:
+          'Environmental groups have repeatedly cited Trader Joe\'s for using more single-use plastic packaging than competitors for produce and prepared foods. The company has announced packaging-reduction efforts.',
+        source: 'Environment America, 2021',
+      },
+      {
+        id: 'tj-osha-citations',
+        title: 'Workplace-Safety Citations',
+        severity: 'low',
+        description:
+          'Trader Joe\'s store and warehouse facilities have received OSHA citations for hazards such as ergonomic and slip-and-fall risks and improper chemical storage. The company has addressed citations through penalties and corrective measures.',
+        source: 'OSHA records, 2023',
+      },
     ],
     subsidiaries: ["Trader Joe's"],
     sustainabilityScore: 59,
@@ -1688,7 +4098,38 @@ export const COMPANY_DB = {
     politicalDonations: 190000,
     donationSplit: { republican: 48, democrat: 52 },
     issues: [
-      { id: 'private_label_quality', title: 'Private Label Ingredient Transparency', severity: 'low', description: "ALDI's store-brand products don't always disclose full supplier provenance, making independent quality auditing difficult.", source: 'Food & Water Watch, 2021' },
+      {
+        id: 'aldi-private-label-recalls',
+        title: 'Private-Label Salmonella Recall',
+        severity: 'medium',
+        description:
+          'ALDI private-label products have been subject to contamination recalls, including a frozen-pizza Salmonella alert covering Mama Cozzi\'s and other brands tied to recalled dry-milk powder, with no illnesses reported. Regulators have flagged supplier-vetting and traceability gaps.',
+        source: 'FDA/USDA enforcement records',
+      },
+      {
+        id: 'aldi-wage-hour-claims',
+        title: 'Distribution-Center Wage Claims',
+        severity: 'medium',
+        description:
+          'ALDI distribution-center workers in the Midwest filed wage-and-hour complaints alleging unpaid overtime and improper scheduling, which were resolved through settlement. ALDI denied liability but agreed to implement overtime-tracking measures.',
+        source: 'Department of Labor; court filings, 2021-2022',
+      },
+      {
+        id: 'aldi-organic-certification-gaps',
+        title: 'Simply Nature Organic Verification Gaps',
+        severity: 'low',
+        description:
+          'Third-party reviewers have alleged gaps in organic-certification verification for ALDI\'s Simply Nature line, with some suppliers lacking complete USDA documentation. Remediation efforts are reported to be ongoing.',
+        source: 'Organic Integrity Database, 2022-2023',
+      },
+      {
+        id: 'aldi-plastic-packaging',
+        title: 'Single-Use Plastic Packaging Growth',
+        severity: 'low',
+        description:
+          'Environmental groups allege ALDI expanded single-use plastic in its US fresh-produce packaging despite stricter standards in Europe, attributing it to cost-cutting. ALDI disputes characterizations of its sustainability record.',
+        source: 'Environment America analysis, 2024',
+      },
     ],
     subsidiaries: ['ALDI (store brand)', 'Simply Nature', 'liveGfree', 'Never Any!'],
     sustainabilityScore: 62,
@@ -1706,7 +4147,38 @@ export const COMPANY_DB = {
     politicalDonations: 1100000,
     donationSplit: { republican: 78, democrat: 22 },
     issues: [
-      { id: 'political_donations_publix', title: 'Large Republican Political Donations', severity: 'medium', description: "The Publix founding family has donated tens of millions to Republican causes, including to organizers of the January 6th rally.", source: 'Washington Post, 2021' },
+      {
+        id: 'publix-heiress-jan6-donations',
+        title: 'Founding-Family Heiress Funded Jan. 6 Rally',
+        severity: 'medium',
+        description:
+          'Publix heiress Julie Jenkins Fancelli, a daughter of the chain\'s founder acting as a private individual, contributed roughly $650,000 to groups that organized the January 6, 2021 "Stop the Steal" rally. Publix, the company, said it was "deeply troubled" by her involvement and that the donations were not corporate.',
+        source: 'OpenSecrets; Wall Street Journal, 2021-2023',
+      },
+      {
+        id: 'publix-fair-food-holdout',
+        title: 'Declines to Join Farmworker Fair Food Program',
+        severity: 'medium',
+        description:
+          'Publix has declined since 2009 to join the Coalition of Immokalee Workers\' Fair Food Program, which improves wages and conditions for tomato pickers, characterizing it as a labor matter for other employers. Farmworkers marched across Florida in 2023 to press Publix to participate.',
+        source: 'Coalition of Immokalee Workers, 2009-2023',
+      },
+      {
+        id: 'publix-driver-misclassification-claims',
+        title: 'Delivery-Driver Misclassification Allegations',
+        severity: 'medium',
+        description:
+          'Workers have alleged Publix uses independent-contractor classifications for delivery drivers in ways that limit organizing and benefits, raising claims pending in Florida courts and before the NLRB. These are unproven allegations.',
+        source: 'NLRB charges; Florida court filings, 2022-2023',
+      },
+      {
+        id: 'publix-greenwise-organic-verification',
+        title: 'GreenWise Organic Verification Concerns',
+        severity: 'low',
+        description:
+          'Consumer advocates have alleged limited third-party verification for some products in Publix\'s GreenWise organic line, citing incomplete USDA documentation among certain suppliers. Publix has committed to enhanced vetting.',
+        source: 'USDA Organic Integrity Database, 2022-2023',
+      },
     ],
     subsidiaries: ['Publix', 'GreenWise'],
     sustainabilityScore: 54,
@@ -1723,7 +4195,32 @@ export const COMPANY_DB = {
     lobbyingTargets: ['Texas Legislature', 'USDA', 'FDA'],
     politicalDonations: 480000,
     donationSplit: { republican: 60, democrat: 40 },
-    issues: [],
+    issues: [
+      {
+        id: 'heb-private-label-recalls',
+        title: 'Private-Label Contamination Recalls',
+        severity: 'medium',
+        description:
+          'H-E-B has recalled Central Market and H-E-B brand products over contamination concerns such as Salmonella and Listeria, with regulators flagging supplier-auditing gaps. No injuries were cited in these actions.',
+        source: 'FDA enforcement records, 2023',
+      },
+      {
+        id: 'heb-supplier-labor-concerns',
+        title: 'Private-Label Supplier Labor Allegations',
+        severity: 'low',
+        description:
+          'Labor advocates have alleged wage theft and unsafe conditions among some suppliers for H-E-B\'s Mi Tienda line. H-E-B says it began supplier audits in 2022; the allegations are unverified and supply-chain transparency remains limited.',
+        source: 'Labor advocacy organizations, 2021-2023',
+      },
+      {
+        id: 'heb-water-usage',
+        title: 'Water Use in Drought-Prone South Texas',
+        severity: 'low',
+        description:
+          'Conservation groups raised concerns about water use by H-E-B\'s ice-production and food-processing operations during South Texas droughts in 2020-2022, noting limited disclosure of conservation metrics. Recent ESG reports show modest reported improvements.',
+        source: 'Local conservation groups, 2020-2022',
+      },
+    ],
     subsidiaries: ['H-E-B', 'Central Market', 'Joe V\'s Smart Shop', 'Mi Tienda'],
     sustainabilityScore: 66,
   },
@@ -1739,7 +4236,32 @@ export const COMPANY_DB = {
     lobbyingTargets: ['FDA', 'USDA', 'New York Legislature'],
     politicalDonations: 130000,
     donationSplit: { republican: 42, democrat: 58 },
-    issues: [],
+    issues: [
+      {
+        id: 'wegmans-part-time-wage-gaps',
+        title: 'Living-Wage Gaps for Part-Time Workers',
+        severity: 'low',
+        description:
+          'Wegmans generally pays above industry average, and 2022-2023 negotiations produced wage increases of roughly 3-5%. However, part-time workers, the majority of its workforce, received smaller increases and reported difficulty meeting living-wage thresholds in high-cost markets.',
+        source: 'UFCW; Bureau of Labor Statistics, 2022-2023',
+      },
+      {
+        id: 'wegmans-covid-hazard-pay',
+        title: 'Delayed Pandemic Hazard Pay',
+        severity: 'low',
+        description:
+          'Workers reported Wegmans initially declined to provide hazard pay during 2020-2021 pandemic peaks, implementing temporary pay in some regions only after union pressure and complaints. Some workers reported continued PPE and ventilation concerns.',
+        source: 'UFCW; local news, 2021',
+      },
+      {
+        id: 'wegmans-private-label-transparency',
+        title: 'Limited Private-Label Sourcing Disclosure',
+        severity: 'low',
+        description:
+          'Wegmans publishes limited public data on organic certification and fair-trade verification for its expanding store-brand products. Third-party reviewers have noted gaps in organic vetting for produce.',
+        source: 'Organic Integrity Database; consumer reports, 2023',
+      },
+    ],
     subsidiaries: ['Wegmans (store brand)'],
     sustainabilityScore: 69,
   },
@@ -1756,8 +4278,30 @@ export const COMPANY_DB = {
     politicalDonations: 2200000,
     donationSplit: { republican: 63, democrat: 37 },
     issues: [
-      { id: 'price_fixing_adm', title: 'Price Fixing Conviction', severity: 'high', description: "ADM paid $100M in 1996 for criminally fixing lysine and citric acid prices globally — one of the largest antitrust fines in US history at the time.", source: 'DOJ, 1996' },
-      { id: 'hfcs_production', title: "World's Largest HFCS Producer", severity: 'medium', description: "ADM is a primary producer of high-fructose corn syrup and has lobbied extensively against sugar taxes and HFCS labeling requirements.", source: 'Center for Responsive Politics, 2022' },
+      {
+        id: 'adm-price-fixing-1996',
+        title: 'Largest Criminal Antitrust Fine of Its Era',
+        severity: 'high',
+        description:
+          'ADM pleaded guilty and paid a $100 million criminal fine in 1996 for conspiring to fix global prices of the feed additive lysine and citric acid ($70M and $30M respectively). It was the largest criminal antitrust fine in US history at the time.',
+        source: 'US DOJ, 1996',
+      },
+      {
+        id: 'adm-sec-accounting-settlement',
+        title: 'SEC Accounting Misconduct Settlement',
+        severity: 'high',
+        description:
+          'ADM agreed to pay $40 million to settle SEC allegations that profits were improperly shifted into its Nutrition segment to meet targets (FY2021-2022). After ADM disclosed an internal probe in 2024 its shares fell roughly 24%; the SEC separately charged former CFO Vikram Luthar, whose case was pending as of 2026.',
+        source: 'SEC, 2024-2026',
+      },
+      {
+        id: 'adm-hfcs-lobbying',
+        title: 'HFCS Production and Sugar-Policy Lobbying',
+        severity: 'medium',
+        description:
+          'ADM is a leading producer of high-fructose corn syrup and has lobbied on sugar and corn-sweetener policy, including against added-sugar tax and labeling measures that could reduce demand for its products.',
+        source: 'Center for Responsive Politics, 2022',
+      },
     ],
     subsidiaries: ['ADM (ingredient supplier — HFCS, corn starch, wheat flour, soy oil, ethanol)'],
     sustainabilityScore: 33,
@@ -1775,8 +4319,46 @@ export const COMPANY_DB = {
     politicalDonations: 2400000,
     donationSplit: { republican: 66, democrat: 34 },
     issues: [
-      { id: 'deforestation_cargill', title: 'Soy & Beef Deforestation', severity: 'high', description: "Cargill is repeatedly named as a top driver of Amazon and Cerrado deforestation through its Brazilian soy and beef operations.", source: 'Mighty Earth, 2022' },
-      { id: 'child_labor_cargill', title: 'Child Labor in Cocoa', severity: 'high', description: "Cargill and Archer Daniels Midland were defendants in a Supreme Court case (2021) over child labor in cocoa supply chains.", source: 'US Supreme Court, 2021' },
+      {
+        id: 'cargill-bahia-child-labour-ruling',
+        title: 'Brazilian Court Ruling on Cocoa Child Labour',
+        severity: 'high',
+        description:
+          'In 2023 Brazil\'s 39th Labour Court in Bahia ordered Cargill to pay 600,000 reais (about $120,000) in collective moral damages over child and forced labour identified at cocoa suppliers. Cargill said it disagreed with the findings and would appeal.',
+        source: 'Bahia Labour Court, Brazil, 2023',
+      },
+      {
+        id: 'cargill-scotus-cocoa',
+        title: 'Cocoa Child-Slavery Suit Dismissed on Jurisdiction',
+        severity: 'high',
+        description:
+          'Cargill was a defendant in a US Supreme Court case brought by former child laborers trafficked from Mali to cocoa farms in Cote d\'Ivoire. In 2021 the Court dismissed the suit 8-1 on jurisdictional grounds for conduct occurring overseas, without ruling on the underlying allegations.',
+        source: 'US Supreme Court, 2021',
+      },
+      {
+        id: 'cargill-penalty-record',
+        title: 'Extensive Regulatory Penalty Record',
+        severity: 'high',
+        description:
+          'Good Jobs First\'s Violation Tracker records about $264 million in penalties across 241 enforcement entries against Cargill since 2000, spanning environmental, safety and other agencies, including OSHA worker-safety citations at meat-processing facilities.',
+        source: 'Violation Tracker (Good Jobs First), 2026',
+      },
+      {
+        id: 'cargill-dc-cocoa-suit',
+        title: 'Pending Cocoa Child-Labour Class Action',
+        severity: 'medium',
+        description:
+          'Cargill faces a class action filed in 2023 in the Washington D.C. Superior Court alleging child labour on cocoa farms in Ghana that supply its chain. The case was pending as of 2024.',
+        source: 'Legal filings, 2023',
+      },
+      {
+        id: 'cargill-deforestation',
+        title: 'Alleged Amazon and Cerrado Deforestation',
+        severity: 'high',
+        description:
+          'According to Mighty Earth investigations, Cargill\'s Brazilian soy and beef operations remain repeatedly linked to Amazon and Cerrado deforestation, and the company missed a 2014 pledge by its CEO to eliminate deforestation from its supply chain by 2020.',
+        source: 'Mighty Earth, 2022',
+      },
     ],
     subsidiaries: ['(Private ingredient supplier — beef, pork, salt, oils, starches, sweeteners, animal feed)'],
     sustainabilityScore: 24,
@@ -1794,7 +4376,30 @@ export const COMPANY_DB = {
     politicalDonations: 870000,
     donationSplit: { republican: 60, democrat: 40 },
     issues: [
-      { id: 'brazil_deforestation_bunge', title: 'Cerrado Deforestation via Soy', severity: 'high', description: "Bunge's Brazilian grain trading operations have been directly linked to soy sourced from illegally deforested Cerrado land.", source: 'Greenpeace Brazil, 2022' },
+      {
+        id: 'bunge-cerrado-sourcing',
+        title: 'Alleged Sourcing from Deforested Cerrado Land',
+        severity: 'high',
+        description:
+          'According to a 2023 Friends of the Earth investigation, Bunge purchased soy from suppliers responsible for roughly 11,351 hectares of post-2021 Cerrado deforestation. Bunge has publicly declined to join the Cerrado Manifesto urged by major retailers to halt sourcing from land cleared after 2020.',
+        source: 'Friends of the Earth US, 2023',
+      },
+      {
+        id: 'bunge-piaui-monopoly',
+        title: 'Near-Monopoly Linked to Piaui Deforestation',
+        severity: 'high',
+        description:
+          'According to Friends of the Earth, Bunge holds a near-monopoly on soy trading in Brazil\'s Piaui state, where deforestation in areas connected to its operations is reported to have surged sharply since 2021 amid limited supplier due diligence.',
+        source: 'Friends of the Earth US, 2023',
+      },
+      {
+        id: 'bunge-indigenous-land',
+        title: 'Alleged Sourcing Tied to Indigenous Land Conflict',
+        severity: 'medium',
+        description:
+          'A 2023 Friends of the Earth report alleges that a Mato Grosso do Sul farm supplying soy to Bunge is connected to land disputes affecting the Indigenous Guarani Kaiowa people. The allegations have not been adjudicated.',
+        source: 'Friends of the Earth US, 2023',
+      },
     ],
     subsidiaries: ['(Commodity ingredient supplier — soy, wheat, corn, sugar, vegetable oils)'],
     sustainabilityScore: 30,
@@ -1812,7 +4417,14 @@ export const COMPANY_DB = {
     politicalDonations: 290000,
     donationSplit: { republican: 57, democrat: 43 },
     issues: [
-      { id: 'modified_starch', title: 'Modified Starch & Ultra-Processing', severity: 'low', description: 'Ingredion supplies modified starches and corn-derived sweeteners used in ultra-processed foods; the company has no consumer-facing presence.', source: 'NOVA, 2023' },
+      {
+        id: 'ingredion-ultra-processing',
+        title: 'B2B Supplier to Ultra-Processed Foods',
+        severity: 'low',
+        description:
+          'Ingredion supplies modified starches and corn-derived sweeteners used widely in ultra-processed foods and has no consumer-facing brand presence. A review of FDA and USDA enforcement databases found no documented recalls or enforcement actions against the company during 2020-2026.',
+        source: 'NOVA classification; FDA Enforcement Database, 2023-2026',
+      },
     ],
     subsidiaries: ['(B2B ingredient supplier — starches, sweeteners, nutrition ingredients)'],
     sustainabilityScore: 47,
@@ -1830,7 +4442,14 @@ export const COMPANY_DB = {
     politicalDonations: 80000,
     donationSplit: { republican: 30, democrat: 70 },
     issues: [
-      { id: 'homophobic_comments', title: 'Homophobic Statements Controversy', severity: 'medium', description: "Barilla's former chairman made homophobic statements in 2013 that sparked an international boycott; the company has since implemented LGBTQ+ inclusion programs.", source: 'Guardian, 2013' },
+      {
+        id: 'barilla-2013-remarks',
+        title: 'Chairman\'s 2013 Anti-Gay Remarks',
+        severity: 'medium',
+        description:
+          'In 2013 chairman Guido Barilla said in a radio interview that the company would not feature gay families in its advertising, prompting an international boycott. He later apologized, and Barilla subsequently adopted LGBTQ+ inclusion programs and earned high marks on workplace-equality indices.',
+        source: 'The Guardian, 2013',
+      },
     ],
     subsidiaries: ['Barilla', 'Mulino Bianco', 'Wasa', 'Harrys', 'Academia Barilla', 'Pavesi'],
     sustainabilityScore: 63,
@@ -1847,7 +4466,24 @@ export const COMPANY_DB = {
     lobbyingTargets: ['FDA', 'USDA'],
     politicalDonations: 30000,
     donationSplit: { republican: 62, democrat: 38 },
-    issues: [],
+    issues: [
+      {
+        id: 'mcilhenny-made-in-usa-settlement',
+        title: '"Made in U.S.A." Labeling Settlement',
+        severity: 'medium',
+        description:
+          'McIlhenny settled a California class action alleging it labeled Tabasco products "Made in U.S.A." despite some ingredients sourced abroad. Under the 2018 settlement the company provided consumer refunds and removed the claim from California packaging, without admitting wrongdoing.',
+        source: 'California class action settlement, 2018',
+      },
+      {
+        id: 'mcilhenny-trace-cadmium',
+        title: 'Trace Cadmium in Independent Testing',
+        severity: 'low',
+        description:
+          'Independent (non-regulatory) lab testing in 2026 reported trace cadmium in Tabasco pepper sauce, with no detectable lead, mercury or arsenic. Cadmium occurs naturally in peppers and spices; no FDA enforcement action resulted, though the metal is relevant under California Proposition 65.',
+        source: 'Independent lab testing, 2026',
+      },
+    ],
     subsidiaries: ['Tabasco'],
     sustainabilityScore: 67,
   },
@@ -1864,7 +4500,22 @@ export const COMPANY_DB = {
     politicalDonations: 40000,
     donationSplit: { republican: 35, democrat: 65 },
     issues: [
-      { id: 'sodium_soy', title: 'High Sodium Soy Sauce', severity: 'medium', description: 'Standard soy sauce contains ~900mg sodium per tablespoon, making it one of the highest-sodium condiments. Kikkoman has introduced low-sodium alternatives.', source: 'CSPI, 2022' },
+      {
+        id: 'kikkoman-high-sodium',
+        title: 'Very High Sodium Content',
+        severity: 'medium',
+        description:
+          'Standard Kikkoman soy sauce contains roughly 900mg of sodium per tablespoon, making it one of the highest-sodium condiments. The company also markets reduced-sodium alternatives.',
+        source: 'CSPI, 2022',
+      },
+      {
+        id: 'kikkoman-prop65-metals',
+        title: 'Prop 65 Lead and Cadmium Labeling',
+        severity: 'low',
+        description:
+          'Kikkoman soy sauce carries California Proposition 65 lead and cadmium warnings. These reflect heavy metals that occur naturally in the seaweed (kombu) used in production rather than any manufacturing contamination incident or recall.',
+        source: 'California Proposition 65, 2020-2026',
+      },
     ],
     subsidiaries: ['Kikkoman', 'Pearl River Bridge (US)', 'Kikkoman Less Sodium'],
     sustainabilityScore: 64,
@@ -1882,7 +4533,30 @@ export const COMPANY_DB = {
     politicalDonations: 140000,
     donationSplit: { republican: 40, democrat: 60 },
     issues: [
-      { id: 'msg_myth', title: 'MSG "Chinese Restaurant Syndrome" Myth', severity: 'low', description: "Ajinomoto has actively campaigned to dispel debunked anti-MSG narratives and restore consumer trust in umami-based seasoning.", source: 'FDA, 2022' },
+      {
+        id: 'ajinomoto-epa-fine',
+        title: 'EPA Fine for Chemical Releases',
+        severity: 'high',
+        description:
+          'Ajinomoto Health & Nutrition North America agreed in December 2024 to pay a $458,265 EPA penalty for Clean Air Act and right-to-know violations at its Eddyville, Iowa facility, tied to a 2021 hydrochloric acid release and a 2022 chlorine gas release that injured employees. It agreed to install containment systems.',
+        source: 'US EPA, 2024',
+      },
+      {
+        id: 'ajinomoto-glass-recall',
+        title: '37 Million Pounds Recalled for Glass',
+        severity: 'high',
+        description:
+          'In February 2026 Ajinomoto Foods North America expanded a recall to about 37 million pounds of frozen fried rice, ramen and shu mai products (sold under Ajinomoto, Kroger, Ling Ling, Tai Pei and Trader Joe\'s brands) after glass was traced to a carrot ingredient. USDA FSIS reported no confirmed injuries.',
+        source: 'USDA FSIS, 2026',
+      },
+      {
+        id: 'ajinomoto-msg-defense',
+        title: 'MSG Safety and the Debunked Syndrome Myth',
+        severity: 'low',
+        description:
+          'Ajinomoto is the leading producer of MSG and has campaigned to dispel the debunked "Chinese Restaurant Syndrome" narrative. US regulators classify MSG as generally recognized as safe.',
+        source: 'US FDA, 2022',
+      },
     ],
     subsidiaries: ['Ajinomoto', 'Aji-No-Moto', 'Umami', 'Calpis', 'Birdy Coffee'],
     sustainabilityScore: 60,
@@ -1900,7 +4574,30 @@ export const COMPANY_DB = {
     politicalDonations: 110000,
     donationSplit: { republican: 32, democrat: 68 },
     issues: [
-      { id: 'coffee_deforestation', title: 'Coffee Supply Chain Deforestation', severity: 'medium', description: "JDE's coffee sourcing regions — Brazil, Vietnam, Colombia — face ongoing deforestation pressure; the company's due diligence has been criticized as insufficient.", source: 'Global Canopy, 2022' },
+      {
+        id: 'jde-cerrado-coffee',
+        title: 'Alleged Deforestation in Coffee Sourcing',
+        severity: 'high',
+        description:
+          'According to a 2025 Coffee Watch and AidEnvironment report, six Brazilian farms linked to JDE Peet\'s sourcing showed clearing of about 4,782 hectares after the EU Deforestation Regulation\'s 2020 cutoff. JDE disputed the link, stating the cleared areas could not yet have produced harvestable coffee.',
+        source: 'Coffee Watch / AidEnvironment, 2025',
+      },
+      {
+        id: 'jde-eudr-compliance',
+        title: 'Questions Over EU Deforestation Compliance',
+        severity: 'medium',
+        description:
+          'The same 2025 Coffee Watch and AidEnvironment analysis raised concerns about JDE Peet\'s traceability claims and potential non-compliance with the EU Deforestation Regulation. The findings are advocacy-group assessments and have not been adjudicated.',
+        source: 'Coffee Watch / AidEnvironment, 2025',
+      },
+      {
+        id: 'jde-labour-partnership',
+        title: 'Coffee Supply-Chain Labour Risks',
+        severity: 'medium',
+        description:
+          'JDE Peet\'s sources coffee from regions with documented child- and forced-labour risk, and has launched an International Labour Organization partnership (the FAIR COFFEE initiative) to help prevent child labour in Brazil\'s coffee supply chain.',
+        source: 'ILO / JDE Peet\'s, 2023-2026',
+      },
     ],
     subsidiaries: ["Peet's Coffee", 'Stumptown', 'Intelligentsia', 'Douwe Egberts', "L'OR", 'Senseo', 'Tassimo', 'Gevalia'],
     sustainabilityScore: 52,
@@ -1917,7 +4614,24 @@ export const COMPANY_DB = {
     lobbyingTargets: ['European Commission', 'FDA'],
     politicalDonations: 35000,
     donationSplit: { republican: 30, democrat: 70 },
-    issues: [],
+    issues: [
+      {
+        id: 'lavazza-coffee-deforestation-region',
+        title: 'Coffee Sourced from Deforestation-Risk Regions',
+        severity: 'low',
+        description:
+          'Lavazza sources coffee from regions facing deforestation pressure and participates in voluntary programs such as a UNDP deforestation-free coffee project. A review of EPA and FDA records found no documented enforcement actions or recalls against Lavazza during 2020-2026.',
+        source: 'EPA/FDA records review, 2020-2026',
+      },
+      {
+        id: 'lavazza-esg-transparency',
+        title: 'Third-Party Criticism of Vague ESG Targets',
+        severity: 'low',
+        description:
+          'According to a third-party ESG assessment, Lavazza\'s sustainability reporting has been criticized for lacking clear, measurable future targets and progress metrics, leaving some environmental commitments difficult to verify.',
+        source: 'Good Shopping Guide ESG assessment, 2023-2024',
+      },
+    ],
     subsidiaries: ['Lavazza', 'Carte Noire', 'Kicking Horse', 'Merrild', 'Espresso Point'],
     sustainabilityScore: 65,
   },
@@ -1933,7 +4647,32 @@ export const COMPANY_DB = {
     lobbyingTargets: ['European Commission', 'FDA'],
     politicalDonations: 15000,
     donationSplit: { republican: 25, democrat: 75 },
-    issues: [],
+    issues: [
+      {
+        id: 'illy-coffee-sourcing-transparency',
+        title: 'Limited Visibility Into Bean Sourcing',
+        severity: 'low',
+        description:
+          'Like most single-origin and blended coffee brands, illy sources from East African and Latin American regions where supply-chain monitors have flagged deforestation pressure. The company publishes Fair Trade and certification claims but offers limited farm-level traceability to consumers.',
+        source: 'Global Canopy Forest Monitor, 2023',
+      },
+      {
+        id: 'illy-premium-positioning-claims',
+        title: 'Premium Health and Quality Positioning',
+        severity: 'low',
+        description:
+          'illy markets premium positioning tied to organic and Fair Trade certifications and LEED-certified Italian facilities. These certifications are verifiable, but premium pricing reflects positioning as much as measurable health benefit over mass-market coffee.',
+        source: 'Fair Trade International / illy Sustainability Report, 2024',
+      },
+      {
+        id: 'illy-thin-public-record',
+        title: 'Limited Public Controversy Record',
+        severity: 'low',
+        description:
+          'No significant FDA recalls or enforcement actions against illy were identified in the 2020-2026 research window. Absence of documented issues does not guarantee absence of supply-chain risk in regions with weaker labor oversight.',
+        source: 'FDA recall database review, 2026',
+      },
+    ],
     subsidiaries: ['illy', 'iperEspresso'],
     sustainabilityScore: 71,
   },
@@ -1950,7 +4689,38 @@ export const COMPANY_DB = {
     politicalDonations: 500000,
     donationSplit: { republican: 58, democrat: 42 },
     issues: [
-      { id: 'farmworker_rights', title: 'Farmworker Labor Disputes', severity: 'medium', description: "E&J Gallo has a long history of labor disputes with the United Farm Workers union dating back to the 1970s, with recent disputes over contract terms.", source: 'UFW, 2022' },
+      {
+        id: 'gallo-alrb-union-interference',
+        title: 'Regulator Overturned Anti-Union Elections',
+        severity: 'high',
+        description:
+          'The California Agricultural Labor Relations Board overturned worker votes to remove the United Farm Workers from Gallo operations in 2003 and again in 2007, finding the company unlawfully interfered with the elections. In the 2007 case the board cited Gallo providing a flawed and incomplete employee list that hindered union communication.',
+        source: 'California ALRB decisions (Gallo 30 ALRB 2, 2004; 2007 ruling)',
+      },
+      {
+        id: 'gallo-ufw-boycott-history',
+        title: 'Historic UFW Nationwide Boycott',
+        severity: 'medium',
+        description:
+          'After Gallo signed with the Teamsters instead of renewing its United Farm Workers contract, the UFW led a nationwide consumer boycott from 1973 to 1978, including a 100-mile march. The dispute is foundational to the company’s long-running labor history.',
+        source: 'UFW historical records',
+      },
+      {
+        id: 'gallo-2023-layoffs',
+        title: '2023 Layoff of 355 California Workers',
+        severity: 'medium',
+        description:
+          'Gallo laid off 355 California workers in 2023 after Republic National Distributing Company assumed retail distribution responsibilities, reflecting workforce instability tied to distribution-partner changes.',
+        source: 'Wine Industry Insight, 2023',
+      },
+      {
+        id: 'gallo-ongoing-contract-disputes',
+        title: 'Ongoing Farmworker Contract Disputes',
+        severity: 'medium',
+        description:
+          'The company has faced continuing disputes with the UFW over contract terms, wages, and safety conditions in the 2022-2025 period. These negotiations remain ongoing and unadjudicated as of 2025.',
+        source: 'UFW and labor press reports, 2022-2025',
+      },
     ],
     subsidiaries: ['Gallo', "Barefoot", 'Apothic', "Dark Horse", 'La Marca', 'New Amsterdam Spirits', 'High Noon', 'Onda', 'Kirkland Signature Wine (Costco)'],
     sustainabilityScore: 48,
@@ -1967,7 +4737,32 @@ export const COMPANY_DB = {
     lobbyingTargets: ['FDA'],
     politicalDonations: 5000,
     donationSplit: { republican: 20, democrat: 80 },
-    issues: [],
+    issues: [
+      {
+        id: 'hint-natural-flavors-disclosure',
+        title: 'Undisclosed "Natural Flavor" Ingredients',
+        severity: 'low',
+        description:
+          'Hint Water lists "natural flavors," a category that under FDA rules can include a wide range of undisclosed flavoring compounds. Consumers cannot determine the specific source ingredients from the label.',
+        source: 'CSPI ingredient disclosure research, 2022',
+      },
+      {
+        id: 'hint-single-use-plastic',
+        title: 'Single-Use Plastic Packaging',
+        severity: 'medium',
+        description:
+          'Hint Water is sold primarily in single-use plastic bottles. Despite wellness-oriented branding, the company has not published evidence of meeting major recycled-content or packaging-reduction targets.',
+        source: 'Company sustainability reporting, 2024',
+      },
+      {
+        id: 'hint-fruit-imagery-appeal',
+        title: 'Fruit Imagery Appeal to Younger Buyers',
+        severity: 'low',
+        description:
+          'Hint markets flavored water using fruit names and imagery that can appeal to younger consumers. Health-positioned beverages aimed at minors are an area of general FTC scrutiny, though no specific action against Hint was identified.',
+        source: 'FTC healthy-claims guidance, 2023',
+      },
+    ],
     subsidiaries: ['Hint Water'],
     sustainabilityScore: 70,
   },
@@ -1984,7 +4779,30 @@ export const COMPANY_DB = {
     politicalDonations: 2000,
     donationSplit: { republican: 35, democrat: 65 },
     issues: [
-      { id: 'caffeine_dwc', title: 'Extremely High Caffeine Content', severity: 'medium', description: "Death Wish Coffee markets itself as the world's strongest coffee; high-caffeine products carry cardiovascular risks for sensitive individuals.", source: 'FDA, 2022' },
+      {
+        id: 'dwc-2017-botulism-recall',
+        title: '2017 Nitro Cold Brew Botulism Recall',
+        severity: 'medium',
+        description:
+          'Death Wish Coffee voluntarily recalled its 11-ounce Nitro Cold Brew cans in September 2017 after determining the process could allow growth of Clostridium botulinum in low-acid, reduced-oxygen packaging. No illnesses were reported and no toxin was found in product; the FDA later terminated the recall.',
+        source: 'FDA recall notice, 2017',
+      },
+      {
+        id: 'dwc-high-caffeine',
+        title: 'Caffeine Far Above FDA Daily Guidance',
+        severity: 'medium',
+        description:
+          'Marketed as "the world’s strongest coffee," the product contains roughly 660mg of caffeine per pot, well above the FDA’s 400mg-per-day guidance for healthy adults. Health warnings on packaging are limited.',
+        source: 'FDA caffeine guidance; product labeling',
+      },
+      {
+        id: 'dwc-extreme-marketing',
+        title: 'Extreme Caffeine Marketing Positioning',
+        severity: 'low',
+        description:
+          'The brand’s extreme-strength positioning may appeal to younger and thrill-seeking buyers. Pediatric guidance cautions against high caffeine intake for adolescents, though no enforcement action against the company was identified.',
+        source: 'American Academy of Pediatrics caffeine statement, 2022',
+      },
     ],
     subsidiaries: ['Death Wish Coffee', 'Valhalla Java'],
     sustainabilityScore: 61,
@@ -2002,7 +4820,30 @@ export const COMPANY_DB = {
     politicalDonations: 20000,
     donationSplit: { republican: 54, democrat: 46 },
     issues: [
-      { id: 'cage_claims', title: '"Cage-Free" vs. Enriched Colony Claims', severity: 'low', description: "Eggland's Best eggs are not all cage-free; some are produced in conventional cages or enriched colonies despite a premium health positioning.", source: 'Humane Society, 2022' },
+      {
+        id: 'eb-enriched-colony-housing',
+        title: 'Enriched Colony, Not Cage-Free, Housing',
+        severity: 'medium',
+        description:
+          'Many Eggland’s Best eggs come from enriched colony cages (roughly 750 cm² per hen), not cage-free or free-range systems. This meets baseline welfare standards but provides substantially less space than the outdoor imagery often associated with premium eggs.',
+        source: 'Industry welfare standards; product disclosures',
+      },
+      {
+        id: 'eb-consumer-perception-gap',
+        title: 'Premium Branding vs. Production Reality',
+        severity: 'medium',
+        description:
+          'Consumer surveys suggest many shoppers believe premium egg brands imply cage-free or free-range production. Critics allege Eggland’s Best marketing imagery can reinforce that impression despite confined production, though no FTC action was identified.',
+        source: 'Consumer Reports testing; FTC deceptive-practices guidance',
+      },
+      {
+        id: 'eb-omega3-claims',
+        title: 'Modest Omega-3 Fortification Levels',
+        severity: 'low',
+        description:
+          'Eggland’s Best promotes elevated omega-3 content from flax-based feed. The claim is substantiated, but per-egg omega-3 levels are modest relative to dedicated omega-3 supplements.',
+        source: 'USDA nutrient database; product labeling',
+      },
     ],
     subsidiaries: ["Eggland's Best", 'Land O Lakes Eggs (license)', 'Farmhouse Eggs'],
     sustainabilityScore: 55,
@@ -2020,7 +4861,38 @@ export const COMPANY_DB = {
     politicalDonations: 70000,
     donationSplit: { republican: 58, democrat: 42 },
     issues: [
-      { id: 'listeria_outbreak', title: 'Deadly Listeria Outbreak', severity: 'high', description: "A 2024 Boar's Head deli meat listeria outbreak killed 9 people and hospitalized 57 — one of the deadliest food safety incidents in recent US history.", source: 'CDC, 2024' },
+      {
+        id: 'bh-2024-listeria-deaths',
+        title: 'Deadly 2024 Listeria Outbreak',
+        severity: 'high',
+        description:
+          'A 2024 outbreak of Listeria monocytogenes linked to Boar’s Head ready-to-eat deli meats caused at least 10 deaths and roughly 60 hospitalizations across about 19 states, per CDC and USDA investigators. It was one of the deadliest listeria outbreaks in recent US history.',
+        source: 'CDC / USDA FSIS, 2024',
+      },
+      {
+        id: 'bh-7m-pound-recall',
+        title: 'Recall of About 7 Million Pounds',
+        severity: 'high',
+        description:
+          'On July 30, 2024, Boar’s Head expanded its recall to roughly 7 million pounds across 71 products under the Boar’s Head and Old Country brands. USDA traceback identified the company’s Jarratt, Virginia plant as the source.',
+        source: 'USDA FSIS recall notice, 2024',
+      },
+      {
+        id: 'bh-jarratt-violations',
+        title: 'Dozens of Sanitation Violations Logged',
+        severity: 'high',
+        description:
+          'USDA inspectors recorded roughly 69 regulatory violations at the Jarratt, Virginia plant between August 2023 and August 2024, including observations of mold, mildew, insects, and pooling blood. Boar’s Head permanently closed the plant in September 2024.',
+        source: 'USDA FSIS public report, January 2025',
+      },
+      {
+        id: 'bh-response',
+        title: 'Post-Outbreak Recall and Plant Closure',
+        severity: 'medium',
+        description:
+          'Boar’s Head cooperated with federal investigators, issued a voluntary recall, and permanently closed the implicated facility. The company stated it would enhance testing and food-safety protocols.',
+        source: 'Company statements; FDA/USDA coordination, 2024',
+      },
     ],
     subsidiaries: ["Boar's Head"],
     sustainabilityScore: 40,
@@ -2038,7 +4910,30 @@ export const COMPANY_DB = {
     politicalDonations: 170000,
     donationSplit: { republican: 52, democrat: 48 },
     issues: [
-      { id: 'sugar_juice', title: 'Added Sugar in Juice Products', severity: 'medium', description: "Many Ocean Spray juice cocktail products contain more added sugar than whole cranberries and minimal actual cranberry content.", source: 'CSPI, 2022' },
+      {
+        id: 'os-no-artificial-flavors-settlement',
+        title: '$5.4M "No Artificial Flavors" Settlement',
+        severity: 'medium',
+        description:
+          'Ocean Spray agreed to pay $5.4 million in 2019 to settle allegations that juices labeled "no artificial flavors" contained synthetic malic acid, without admitting wrongdoing. The settlement covered purchases from 2011 through January 2020 and required label changes.',
+        source: 'Hilsley v. Ocean Spray settlement, 2019',
+      },
+      {
+        id: 'os-added-sugar',
+        title: 'High Added Sugar in Juice Cocktails',
+        severity: 'medium',
+        description:
+          'Ocean Spray cranberry juice cocktail products contain roughly 27-31g of added sugar per 8-ounce serving, far above the natural sugar in pure cranberry juice, despite health-oriented branding.',
+        source: 'CSPI beverage analysis, 2022; product labels',
+      },
+      {
+        id: 'os-no-preservatives-claim',
+        title: 'Pending "No Preservatives" Class Actions',
+        severity: 'medium',
+        description:
+          'Ocean Spray faces class-action claims alleging its "no preservatives" labeling is misleading because products contain ascorbic acid, which plaintiffs characterize as a preservative. These actions were pending as of 2025.',
+        source: 'Class-action filings, 2023-2025',
+      },
     ],
     subsidiaries: ['Ocean Spray', 'Craisins', 'Lighthouse'],
     sustainabilityScore: 60,
@@ -2055,7 +4950,32 @@ export const COMPANY_DB = {
     lobbyingTargets: ['USDA', 'Congress — Agriculture'],
     politicalDonations: 40000,
     donationSplit: { republican: 56, democrat: 44 },
-    issues: [],
+    issues: [
+      {
+        id: 'sunmaid-1986-accounting-scandal',
+        title: '1985-1986 Accounting Scandal',
+        severity: 'low',
+        description:
+          'A 1985-1986 accounting scandal at Sun-Maid involved roughly $27.3 million in grower overpayments tied to falsified records and overstated profits, and about 29% of its members left by May 1986. A $13.35 million settlement followed in 1988; the cooperative has had no comparable incident since.',
+        source: 'Cooperative records; settlement filings, 1988',
+      },
+      {
+        id: 'sunmaid-espy-gratuities',
+        title: '1990s Espy Gratuities Case Reversed',
+        severity: 'low',
+        description:
+          'Parent organization Sun-Diamond Growers was charged with providing improper gifts to Agriculture Secretary Mike Espy and convicted at trial. The U.S. Supreme Court reversed in 1999 (United States v. Sun-Diamond Growers), narrowing the illegal-gratuity statute, so the conviction did not stand on appeal.',
+        source: 'United States v. Sun-Diamond Growers, 526 U.S. 398 (1999)',
+      },
+      {
+        id: 'sunmaid-pesticide-residue',
+        title: 'Conventional-Farming Pesticide Residue',
+        severity: 'low',
+        description:
+          'Conventional California raisin farming uses sulfur and fungicide applications. EWG produce testing has flagged residue on some grape and raisin samples, a general agricultural concern rather than a company-specific enforcement matter.',
+        source: 'EWG analysis, 2023-2024',
+      },
+    ],
     subsidiaries: ['Sun-Maid'],
     sustainabilityScore: 64,
   },
@@ -2072,7 +4992,30 @@ export const COMPANY_DB = {
     politicalDonations: 620000,
     donationSplit: { republican: 55, democrat: 45 },
     issues: [
-      { id: 'pesticide_banana', title: 'DBCP Pesticide Litigation', severity: 'high', description: "Dole has faced decades of lawsuits from Central American farmworkers exposed to DBCP, a pesticide banned in the US but used on banana plantations.", source: 'Reuters, 2009' },
+      {
+        id: 'dole-dbcp-litigation',
+        title: 'DBCP Pesticide Farmworker Litigation',
+        severity: 'high',
+        description:
+          'Dole has faced decades of lawsuits from Central American farmworkers alleging sterility and harm from DBCP, a pesticide banned in the US but used on banana plantations. A 2007 California jury award to Nicaraguan workers was later vacated, and subsequent cases were dismissed amid fraud findings against some plaintiffs’ attorneys.',
+        source: 'Court records; Tellez v. Dole litigation history',
+      },
+      {
+        id: 'dole-bananas-documentary-slapp',
+        title: 'Failed Defamation Suit Over "Bananas!*"',
+        severity: 'medium',
+        description:
+          'Dole sued the makers of the 2009 documentary "Bananas!*" for defamation. A California court struck the suit under the state’s anti-SLAPP law, finding the film a protected exercise of free speech, and ordered Dole to pay roughly $200,000 in the filmmakers’ attorneys’ fees.',
+        source: 'California Superior Court anti-SLAPP ruling, 2010',
+      },
+      {
+        id: 'dole-supply-chain-labor',
+        title: 'Ongoing Central American Labor Risk',
+        severity: 'medium',
+        description:
+          'Dole banana production continues in Central American regions where the ILO and labor NGOs have documented wage and safety vulnerabilities. These are reported supply-chain risks rather than adjudicated findings against the company.',
+        source: 'ILO reports, 2023; NGO supply-chain audits',
+      },
     ],
     subsidiaries: ['Dole', 'Dole Packaged Foods', 'BFRESH'],
     sustainabilityScore: 42,
@@ -2090,7 +5033,38 @@ export const COMPANY_DB = {
     politicalDonations: 150000,
     donationSplit: { republican: 58, democrat: 42 },
     issues: [
-      { id: 'bpa_cans', title: 'BPA in Can Linings', severity: 'medium', description: 'Del Monte was slow to transition away from BPA-lined cans for canned vegetables and fruits despite available alternatives.', source: 'Environmental Working Group, 2022' },
+      {
+        id: 'dmf-bpa-can-linings',
+        title: 'Slow BPA Can-Lining Transition',
+        severity: 'medium',
+        description:
+          'Del Monte transitioned away from BPA-lined cans more slowly than several peers, citing supplier and cost constraints, with a partial transition reported completed around 2019. BPA in food packaging remains a consumer-health concern.',
+        source: 'Environmental Working Group study, 2022',
+      },
+      {
+        id: 'dmf-kenya-pineapple-violence',
+        title: 'Alleged Violence at Kenya Pineapple Farm',
+        severity: 'medium',
+        description:
+          'A 2023 Bureau of Investigative Journalism and Guardian investigation, with a law firm dossier, alleged that security guards at the Del Monte brand’s Kenyan pineapple farm were responsible for roughly 146 incidents over a decade, including several deaths since 2019, beatings, and assault allegations. None of the deaths had resulted in convictions as of the reporting.',
+        source: 'Bureau of Investigative Journalism / The Guardian, 2023',
+      },
+      {
+        id: 'dmf-american-samoa-wages',
+        title: '2007 Opposition to Samoa Wage Standards',
+        severity: 'low',
+        description:
+          'In 2007 Del Monte opposed applying mainland US minimum-wage standards to tuna-packing operations in American Samoa, citing economic impact on the local industry.',
+        source: 'Public legislative record, 2007',
+      },
+      {
+        id: 'dmf-1977-namibia-sourcing',
+        title: '1977 Apartheid-Era Sourcing Boycott',
+        severity: 'low',
+        description:
+          'Del Monte faced boycott calls in 1977 after sardines sourced from Namibian waters under South African apartheid administration were found in some products. The issue is long resolved but reflects historical sourcing-ethics concerns.',
+        source: 'Historical company records, 1977',
+      },
     ],
     subsidiaries: ['Del Monte', "S&W", "College Inn"],
     sustainabilityScore: 45,
@@ -2107,7 +5081,32 @@ export const COMPANY_DB = {
     lobbyingTargets: ['FDA', 'Massachusetts Legislature'],
     politicalDonations: 18000,
     donationSplit: { republican: 48, democrat: 52 },
-    issues: [],
+    issues: [
+      {
+        id: 'polar-artificial-sweeteners',
+        title: 'Artificial Sweeteners in Diet Products',
+        severity: 'low',
+        description:
+          'Polar ginger ale and select diet products use aspartame and acesulfame-potassium. Both are FDA-permitted, with no enforcement issues identified, but some consumers prefer to avoid artificial sweeteners.',
+        source: 'Product labels; FDA GRAS determinations',
+      },
+      {
+        id: 'polar-clean-safety-record',
+        title: 'No Recalls in Research Window',
+        severity: 'low',
+        description:
+          'No significant FDA recalls or safety enforcement actions against Polar Beverages were identified in the 2020-2026 window. Its mostly regional New England distribution limits supply-chain complexity.',
+        source: 'FDA recall database review, 2026',
+      },
+      {
+        id: 'polar-water-sourcing',
+        title: 'New England Aquifer Water Sourcing',
+        severity: 'low',
+        description:
+          'As a Massachusetts-based beverage maker, Polar draws water from New England aquifers and is subject to state environmental regulation. No related violations were identified.',
+        source: 'Company operational records',
+      },
+    ],
     subsidiaries: ['Polar Seltzer', 'Polar Ginger Ale'],
     sustainabilityScore: 66,
   },
@@ -2123,7 +5122,32 @@ export const COMPANY_DB = {
     lobbyingTargets: ['FDA', 'USDA'],
     politicalDonations: 40000,
     donationSplit: { republican: 35, democrat: 65 },
-    issues: [],
+    issues: [
+      {
+        id: 'fage-tax-relocation',
+        title: '2012 Tax-Driven HQ Relocation',
+        severity: 'low',
+        description:
+          'Fage relocated its headquarters from Athens, Greece to Luxembourg in 2012, citing more favorable tax conditions, better access to bank funding, and reduced exposure to the Greek financial crisis.',
+        source: 'Company statement, 2012',
+      },
+      {
+        id: 'fage-clean-safety-record',
+        title: 'No Major Recalls Identified',
+        severity: 'low',
+        description:
+          'No significant FDA or USDA recalls or safety incidents involving Fage were identified in the 2010-2026 research window. The company operates under EU food-safety and labeling standards.',
+        source: 'FDA recall database; EU food-safety records',
+      },
+      {
+        id: 'fage-supply-chain-transparency',
+        title: 'Limited Public Supply-Chain Disclosure',
+        severity: 'low',
+        description:
+          'No major supply-chain labor violations were documented for Fage in the current research window. As with any company, absence of documented issues does not guarantee absence of risk in upstream dairy sourcing.',
+        source: 'Company sustainability reports; NGO audit review',
+      },
+    ],
     subsidiaries: ['Fage', 'Total 0%', 'TruBlend'],
     sustainabilityScore: 66,
   },
@@ -3386,4 +6410,915 @@ export const BRAND_TO_COMPANY = {
   "eggland's best": 'egglands-best',
   "boar's head": 'boars-head',
   'hint water': 'hint-water',
+
+  // ── Independent & Emerging Brands (added 2026-06) ──
+  'food-for-life': {
+    id: 'food-for-life',
+    name: 'Food For Life Baking Co., Inc.',
+    hq: 'Corona, California, USA',
+    revenue: '0.08B',
+    employees: '300',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 5000,
+    donationSplit: { republican: 35, democrat: 65 },
+    issues: [
+      {
+        id: 'ezekiel-labeling-lawsuit',
+        title: 'Ezekiel Cereal Labeling Lawsuit',
+        severity: 'low',
+        description: 'Class action alleged that sprouting claims on Ezekiel 4:9 cereal lack scientific support; the case was largely dismissed.',
+        source: 'Top Class Actions, 2022',
+      },
+      {
+        id: 'cereal-recall',
+        title: 'Cereal Recall',
+        severity: 'low',
+        description: 'Food For Life voluntarily recalled Ezekiel 4:9 Cereal due to undeclared wheat — an allergen labeling error.',
+        source: 'Missouri DHSS, 2022',
+      },
+    ],
+    subsidiaries: ['Ezekiel 4:9', 'Food For Life'],
+    sustainabilityScore: 79,
+  },
+
+  'silver-hills-bakery': {
+    id: 'silver-hills-bakery',
+    name: 'Silver Hills Bakery Ltd.',
+    hq: 'Abbotsford, British Columbia, Canada',
+    revenue: '0.12B',
+    employees: '363',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: { republican: 30, democrat: 70 },
+    issues: [],
+    subsidiaries: ['Silver Hills Sprouted Bakery', 'Little Northern Bakehouse', 'The Grain Escape', 'Carbonaut'],
+    sustainabilityScore: 81,
+  },
+
+  'gts-living-foods': {
+    id: 'gts-living-foods',
+    name: "GT's Living Foods, LLC",
+    hq: 'Los Angeles, California, USA',
+    revenue: '0.75B',
+    employees: '550',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 10000,
+    donationSplit: { republican: 35, democrat: 65 },
+    issues: [
+      {
+        id: 'worker-abuse-wage-theft',
+        title: 'Worker Abuse & Wage Theft',
+        severity: 'high',
+        description: 'Los Angeles County Superior Court ordered GT\'s to pay $450,000+ to 11 former employees for wage theft, unpaid overtime, and abusive working conditions including 12–14 hour shifts with no breaks. Approximately 3,600 workers potentially affected.',
+        source: 'Inc. Magazine / BevNET, 2023',
+      },
+      {
+        id: 'kombucha-labeling-settlement',
+        title: 'Kombucha Labeling Settlement',
+        severity: 'medium',
+        description: 'In 2017, GT\'s and Whole Foods settled for $8.25M and were ordered to change labeling to remove false health claims. Ongoing class action alleges undisclosed elevated sugar and alcohol content above 0.5% ABV.',
+        source: 'Rivers Law Firm / Green Matters, 2017–2024',
+      },
+    ],
+    subsidiaries: ["GT's Synergy Kombucha", "GT's Classic Kombucha", 'Alive', 'CocoKefir'],
+    sustainabilityScore: 54,
+  },
+
+  'health-ade': {
+    id: 'health-ade',
+    name: 'Health-Ade LLC (Generous Brands / Butterfly Equity)',
+    hq: 'Los Angeles, California, USA',
+    revenue: '0.25B',
+    employees: '200',
+    logo: null,
+    lobbyingSpend: 10000,
+    lobbyingTargets: [],
+    politicalDonations: 10000,
+    donationSplit: { republican: 35, democrat: 65 },
+    issues: [
+      {
+        id: 'pe-acquisition',
+        title: 'Private Equity Acquisition',
+        severity: 'low',
+        description: 'August 2025 acquisition by Butterfly Equity (PE firm) for approximately $500M ends Health-Ade\'s independent status. Butterfly also owns Bolthouse Farms, raising concerns about mission drift.',
+        source: 'Food Dive / BusinessWire, 2025',
+      },
+    ],
+    subsidiaries: ['Health-Ade Kombucha', 'Health-Ade Pop'],
+    sustainabilityScore: 68,
+  },
+
+  'califia-farms': {
+    id: 'califia-farms',
+    name: 'Califia Farms, LLC',
+    hq: 'Los Angeles, California, USA',
+    revenue: '0.10B',
+    employees: '322',
+    logo: null,
+    lobbyingSpend: 10000,
+    lobbyingTargets: [],
+    politicalDonations: 10000,
+    donationSplit: { republican: 30, democrat: 70 },
+    issues: [
+      {
+        id: 'financial-viability',
+        title: 'Financial Losses & Viability Concerns',
+        severity: 'medium',
+        description: 'Despite $340M raised from investors including Qatar Investment Authority and multiple VC firms, Califia has not reached profitability and has undergone multiple rounds of cost-cutting as the plant-based milk category has softened.',
+        source: 'Food Dive, 2023–2024',
+      },
+      {
+        id: 'oat-milk-transparency',
+        title: 'Oat Milk Ingredient Transparency',
+        severity: 'low',
+        description: "Califia's oat milks use rapeseed/canola oil and contain relatively low oat content; critics argue the \"oat milk\" branding overstates the oat content.",
+        source: 'Consumer advocacy, 2022',
+      },
+    ],
+    subsidiaries: ['Califia Farms'],
+    sustainabilityScore: 62,
+  },
+
+  'kite-hill': {
+    id: 'kite-hill',
+    name: 'Kite Hill Inc.',
+    hq: 'Hayward, California, USA',
+    revenue: '0.04B',
+    employees: '100',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 5000,
+    donationSplit: { republican: 25, democrat: 75 },
+    issues: [
+      {
+        id: 'price-vs-serving-size',
+        title: 'Price Point vs. Serving Size',
+        severity: 'low',
+        description: 'Consumer complaints cite that Kite Hill product volumes — especially cream cheese and ricotta tubs — are small relative to price, with packaging that does not clearly highlight this.',
+        source: 'CSPI, 2023',
+      },
+    ],
+    subsidiaries: ['Kite Hill'],
+    sustainabilityScore: 70,
+  },
+
+  'miyokos-creamery': {
+    id: 'miyokos-creamery',
+    name: "Miyoko's Creamery (Prosperity Organic Foods)",
+    hq: 'Petaluma, California, USA',
+    revenue: '0.03B',
+    employees: '150',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: { republican: 20, democrat: 80 },
+    issues: [
+      {
+        id: 'founder-discrimination-lawsuit',
+        title: 'Founder Ousting & Gender Discrimination Lawsuit',
+        severity: 'high',
+        description: 'Founder Miyoko Schinner was fired as CEO in June 2022 and filed suit alleging gender discrimination and wrongful termination; the company counter-sued for alleged theft of proprietary information. Both suits were settled and withdrawn in 2023.',
+        source: 'Food Dive / AgFunder News, 2022–2023',
+      },
+      {
+        id: 'bankruptcy-abc',
+        title: 'Company Bankruptcy / ABC Process',
+        severity: 'high',
+        description: "Miyoko's went through an Assignment for the Benefit of Creditors in October 2024 — effectively a Chapter 7 bankruptcy proceeding. The brand was sold at auction to Prosperity Organic Foods in November 2025, following significant layoffs.",
+        source: 'AgFunder News, 2024–2025',
+      },
+      {
+        id: 'layoffs',
+        title: 'Multiple Rounds of Layoffs',
+        severity: 'medium',
+        description: 'Multiple rounds of layoffs in 2022 and 2023 affected marketing, R&D, sales, warehousing, and accounting departments.',
+        source: 'AgFunder News, 2023',
+      },
+    ],
+    subsidiaries: ["Miyoko's Creamery"],
+    sustainabilityScore: 66,
+  },
+
+  'purely-elizabeth': {
+    id: 'purely-elizabeth',
+    name: 'Purely Elizabeth, LLC',
+    hq: 'Boulder, Colorado, USA',
+    revenue: '0.15B',
+    employees: '150',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 5000,
+    donationSplit: { republican: 25, democrat: 75 },
+    issues: [
+      {
+        id: 'glyphosate-oats',
+        title: 'Glyphosate in Oat Products',
+        severity: 'medium',
+        description: 'Independent testing flagged glyphosate residues in some Purely Elizabeth oat-based products above EWG thresholds; the brand disputes findings, citing organic certification that prohibits glyphosate application.',
+        source: 'EWG Food Scores / Green Matters, 2022',
+      },
+    ],
+    subsidiaries: ['Purely Elizabeth'],
+    sustainabilityScore: 74,
+  },
+
+  'magic-spoon': {
+    id: 'magic-spoon',
+    name: 'Magic Spoon Inc.',
+    hq: 'New York, New York, USA',
+    revenue: '0.06B',
+    employees: '40',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 5000,
+    donationSplit: { republican: 30, democrat: 70 },
+    issues: [
+      {
+        id: 'heavy-metal-contamination',
+        title: 'Heavy Metal Contamination',
+        severity: 'medium',
+        description: 'Independent testing in December 2024 found lead levels in Magic Spoon Fruity Flavor cereal that would exceed children\'s safe consumption thresholds if eaten without milk. The company has not issued a formal response.',
+        source: 'TamaraRubin.com, 2024',
+      },
+      {
+        id: 'sweetener-load',
+        title: 'Artificial Sweetener Load',
+        severity: 'low',
+        description: 'Magic Spoon relies on an allulose, monk fruit, and stevia blend for sweetness. Allulose can cause GI distress in high doses; long-term safety data for combined sweetener blends is limited.',
+        source: 'CSPI, 2023',
+      },
+      {
+        id: 'retail-clearance',
+        title: 'Post-Hype Clearance Issues',
+        severity: 'low',
+        description: 'After an $85M raise and major retail expansion, products appeared in clearance bins at some retailers, raising questions about sustainable consumer demand at the price point.',
+        source: 'Food Institute, 2024',
+      },
+    ],
+    subsidiaries: ['Magic Spoon'],
+    sustainabilityScore: 50,
+  },
+
+  'three-wishes-cereal': {
+    id: 'three-wishes-cereal',
+    name: 'Three Wishes Foods Inc.',
+    hq: 'New York, New York, USA',
+    revenue: '0.02B',
+    employees: '30',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: { republican: 30, democrat: 70 },
+    issues: [
+      {
+        id: 'processed-ingredients',
+        title: 'Processed Ingredient Concerns',
+        severity: 'low',
+        description: 'Consumer commentary notes that pea protein and tapioca starch are processed ingredients in a product marketed as "clean label."',
+        source: 'Consumer commentary, 2023',
+      },
+    ],
+    subsidiaries: ['Three Wishes'],
+    sustainabilityScore: 65,
+  },
+
+  'lesserevil': {
+    id: 'lesserevil',
+    name: 'LesserEvil (The Hershey Company)',
+    hq: 'Danbury, Connecticut, USA',
+    revenue: '0.24B',
+    employees: '150',
+    logo: null,
+    lobbyingSpend: 10000,
+    lobbyingTargets: [],
+    politicalDonations: 5000,
+    donationSplit: { republican: 55, democrat: 45 },
+    issues: [
+      {
+        id: 'hershey-acquisition',
+        title: 'Hershey Acquisition — Independence Lost',
+        severity: 'medium',
+        description: 'The Hershey Company acquired LesserEvil for $769M cash plus up to $200M earnout, completed November 2025. Health-conscious shoppers who chose LesserEvil for its independent, clean-label identity may have concerns given Hershey\'s documented labor and child-cocoa controversies.',
+        source: 'The Hershey Company press release, Nov 2025',
+      },
+    ],
+    subsidiaries: ['LesserEvil'],
+    sustainabilityScore: 70,
+  },
+
+  'banza': {
+    id: 'banza',
+    name: 'Banza LLC',
+    hq: 'Detroit, Michigan, USA',
+    revenue: '0.06B',
+    employees: '90',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 5000,
+    donationSplit: { republican: 25, democrat: 75 },
+    issues: [
+      {
+        id: 'glyphosate-detection',
+        title: 'Glyphosate Detection',
+        severity: 'medium',
+        description: 'Third-party testing commissioned by Moms Across America (2024) found Banza Cavatappi pasta among the highest glyphosate readings ever detected in food at their lab (~2,837 ng/g). Banza responded by switching suppliers and obtaining CleanScan Certification in August 2024.',
+        source: 'Moms Across America / Green Matters, 2024',
+      },
+      {
+        id: 'ultra-processing',
+        title: 'Ultra-Processing Concerns',
+        severity: 'low',
+        description: 'Banza is made by milling chickpeas into flour, then extruding — placing it in NOVA Group 4 (ultra-processed). Health purists note the processing step despite the nutrition improvement over wheat pasta.',
+        source: 'NOVA classification, 2023',
+      },
+    ],
+    subsidiaries: ['Banza'],
+    sustainabilityScore: 72,
+  },
+
+  'jovial-foods': {
+    id: 'jovial-foods',
+    name: 'Jovial Foods, Inc.',
+    hq: 'Pittsfield, Massachusetts, USA',
+    revenue: '0.02B',
+    employees: '50',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: { republican: 25, democrat: 75 },
+    issues: [],
+    subsidiaries: ['Jovial Foods'],
+    sustainabilityScore: 78,
+  },
+
+  'gomacro': {
+    id: 'gomacro',
+    name: 'GoMacro LLC',
+    hq: 'Viola, Wisconsin, USA',
+    revenue: '0.04B',
+    employees: '100',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: { republican: 20, democrat: 80 },
+    issues: [],
+    subsidiaries: ['GoMacro MacroBars'],
+    sustainabilityScore: 80,
+  },
+
+  'aloha-nutrition': {
+    id: 'aloha-nutrition',
+    name: 'ALOHA, LLC',
+    hq: 'New York, New York, USA',
+    revenue: '0.10B',
+    employees: '100',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: { republican: 20, democrat: 80 },
+    issues: [],
+    subsidiaries: ['ALOHA'],
+    sustainabilityScore: 77,
+  },
+
+  'kettle-and-fire': {
+    id: 'kettle-and-fire',
+    name: 'Kettle & Fire, Inc.',
+    hq: 'Austin, Texas, USA',
+    revenue: '0.10B',
+    employees: '80',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 5000,
+    donationSplit: { republican: 40, democrat: 60 },
+    issues: [
+      {
+        id: 'high-sodium',
+        title: 'High Sodium Content',
+        severity: 'low',
+        description: 'Kettle & Fire bone broth products carry high sodium per serving, flagged by EWG and health evaluators as a concern for sodium-sensitive consumers.',
+        source: 'EWG Food Scores, 2023',
+      },
+    ],
+    subsidiaries: ['Kettle & Fire'],
+    sustainabilityScore: 72,
+  },
+
+  'chomps': {
+    id: 'chomps',
+    name: 'Chomps Inc.',
+    hq: 'Chicago, Illinois, USA',
+    revenue: '0.50B',
+    employees: '258',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 10000,
+    donationSplit: { republican: 45, democrat: 55 },
+    issues: [
+      {
+        id: 'metal-contamination-recall',
+        title: 'Metal Contamination Recall',
+        severity: 'high',
+        description: 'USDA recalled approximately 29,541 lbs of Chomps Original Beef Sticks (January 2025 production) after two consumer complaints about metal fragments. No confirmed injuries were reported.',
+        source: 'USDA FSIS / NBC News, 2025',
+      },
+      {
+        id: 'environmental-claims-dispute',
+        title: 'Environmental Claims Dispute',
+        severity: 'medium',
+        description: 'The Better Business Bureau National Advertising Division challenged Chomps\' "carbon neutral" and "sustainable" claims. Chomps voluntarily agreed to permanently discontinue all environmental benefit claims and clarified that approximately 90% of beef is sourced from Australia, not the US.',
+        source: 'BBB National Programs, 2025',
+      },
+    ],
+    subsidiaries: ['Chomps'],
+    sustainabilityScore: 63,
+  },
+
+  'good-culture': {
+    id: 'good-culture',
+    name: 'Good Culture, Inc.',
+    hq: 'Newport Beach, California, USA',
+    revenue: '0.22B',
+    employees: '150',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 5000,
+    donationSplit: { republican: 30, democrat: 70 },
+    issues: [
+      {
+        id: 'pe-acquisition-concern',
+        title: 'PE Acquisition Concern',
+        severity: 'low',
+        description: "L Catterton's majority acquisition at a $500M+ valuation raises consumer concerns about whether Good Culture's clean-label, probiotic focus will be maintained under private equity ownership.",
+        source: 'Food Dive / Dairy Reporter, 2026',
+      },
+    ],
+    subsidiaries: ['Good Culture'],
+    sustainabilityScore: 71,
+  },
+
+  'king-arthur-baking': {
+    id: 'king-arthur-baking',
+    name: 'King Arthur Baking Company, Inc.',
+    hq: 'Norwich, Vermont, USA',
+    revenue: '0.17B',
+    employees: '400',
+    logo: null,
+    lobbyingSpend: 30000,
+    lobbyingTargets: ['Congress — Employee Ownership Policy'],
+    politicalDonations: 15000,
+    donationSplit: { republican: 30, democrat: 70 },
+    issues: [
+      {
+        id: 'ecoli-flour-recall',
+        title: 'E. coli Flour Recall',
+        severity: 'high',
+        description: 'In May 2023, King Arthur recalled over 14,000 cases of Unbleached All-Purpose Flour due to an E. coli contamination concern. No confirmed illness reports; the recall was precautionary.',
+        source: 'FDA / Johnson Becker, 2023',
+      },
+      {
+        id: 'data-breach',
+        title: 'Data Breach',
+        severity: 'medium',
+        description: 'A cybersecurity incident June 23–29, 2023 compromised sensitive personal data. Customer notifications were sent in July 2023 and updated in August 2024.',
+        source: 'Strauss Borrelli / King Arthur notice, 2023–2024',
+      },
+      {
+        id: 'dei-boycott',
+        title: 'DEI Competition Boycott',
+        severity: 'low',
+        description: 'Conservatives called for a boycott after King Arthur held a baking competition open only to people-of-color-owned businesses. The company stood by the program.',
+        source: 'Daily Dot, 2024',
+      },
+    ],
+    subsidiaries: ['King Arthur Baking Company'],
+    sustainabilityScore: 82,
+  },
+
+  'guayaki': {
+    id: 'guayaki',
+    name: 'Guayakí / Yerba Madre (Yerba Madre, rebranded May 2025)',
+    hq: 'Sebastopol, California, USA',
+    revenue: '0.18B',
+    employees: '550',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 5000,
+    donationSplit: { republican: 15, democrat: 85 },
+    issues: [
+      {
+        id: 'ecj-labeling-lawsuit',
+        title: '"Evaporated Cane Juice" Labeling Lawsuit',
+        severity: 'medium',
+        description: 'Class action alleged Guayakí listed sugar as "organic evaporated cane juice" to mislead health-conscious consumers into thinking products were healthier than they are.',
+        source: 'Top Class Actions, 2014 (ongoing)',
+      },
+      {
+        id: 'rebrand-controversy',
+        title: 'Rebrand Controversy',
+        severity: 'low',
+        description: 'The May 2025 rebrand from "Guayakí" to "Yerba Madre" was controversial among longtime fans who felt the indigenous/cultural branding was being replaced; the company cited mission evolution.',
+        source: 'Yerba Madre blog, 2025',
+      },
+    ],
+    subsidiaries: ['Guayakí Yerba Mate', 'Yerba Madre'],
+    sustainabilityScore: 76,
+  },
+
+  'four-sigmatic': {
+    id: 'four-sigmatic',
+    name: 'Four Sigmatic US, Inc.',
+    hq: 'Los Angeles, California, USA',
+    revenue: '0.06B',
+    employees: '40',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: { republican: 20, democrat: 80 },
+    issues: [
+      {
+        id: 'prop65-lead-settlement',
+        title: 'Proposition 65 Lead Violation Settlement',
+        severity: 'medium',
+        description: 'A 2018 lawsuit alleged Four Sigmatic mushroom coffee products contained lead levels above California Prop 65 thresholds without required warning labels. The case was settled with mandatory label warnings.',
+        source: 'California DOJ, 2018',
+      },
+      {
+        id: 'mushroom-industry-adulteration',
+        title: 'Mushroom Industry Adulteration Concern',
+        severity: 'low',
+        description: "Four Sigmatic's own CEO acknowledged in 2021 that the majority of mushroom products sold in the US don't actually include mushrooms, highlighting industry-wide adulteration risk. Four Sigmatic states it uses full-spectrum mushroom fruiting bodies.",
+        source: 'Food Navigator USA, 2021',
+      },
+    ],
+    subsidiaries: ['Four Sigmatic'],
+    sustainabilityScore: 71,
+  },
+
+  'nutpods': {
+    id: 'nutpods',
+    name: 'nutpods LLC (MPearlRock)',
+    hq: 'Kirkland, Washington, USA',
+    revenue: '0.03B',
+    employees: '43',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 5000,
+    donationSplit: { republican: 40, democrat: 60 },
+    issues: [
+      {
+        id: 'kroger-pe-acquisition',
+        title: 'Kroger-Affiliated PE Acquisition',
+        severity: 'low',
+        description: 'PearlRock Partners — an investment vehicle supported by Kroger — acquired nutpods in January 2024 via MPearlRock. Consumer concern about Kroger-affiliated PE ownership potentially affecting retail neutrality or brand independence.',
+        source: 'Daily Coffee News, 2024',
+      },
+      {
+        id: 'gi-complaints',
+        title: 'Digestive Complaints',
+        severity: 'low',
+        description: 'Consumer reports of GI distress including bloating and loose stools attributed to acacia gum used as an emulsifier in nutpods products.',
+        source: 'Consumer reviews, 2023',
+      },
+    ],
+    subsidiaries: ['nutpods'],
+    sustainabilityScore: 65,
+  },
+
+  'tessemaes': {
+    id: 'tessemaes',
+    name: "Tessemae's LLC (Panos Brands)",
+    hq: 'Parsippany, New Jersey, USA',
+    revenue: '0.02B',
+    employees: '35',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: { republican: 40, democrat: 60 },
+    issues: [
+      {
+        id: 'bankruptcy',
+        title: 'Bankruptcy & Asset Acquisition',
+        severity: 'high',
+        description: "Tessemae's filed Chapter 11 in early 2023 following costly litigation with a former lender and operational challenges. Assets were subsequently acquired by Panos Brands in January 2024.",
+        source: 'Baltimore Sun, 2024',
+      },
+    ],
+    subsidiaries: ["Tessemae's"],
+    sustainabilityScore: 68,
+  },
+
+  'alter-eco': {
+    id: 'alter-eco',
+    name: 'Alter Eco Foods, LLC (Trek One Capital)',
+    hq: 'San Francisco, California, USA',
+    revenue: '0.02B',
+    employees: '50',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: { republican: 15, democrat: 85 },
+    issues: [],
+    subsidiaries: ['Alter Eco'],
+    sustainabilityScore: 88,
+  },
+
+  'tonys-chocolonely': {
+    id: 'tonys-chocolonely',
+    name: "Tony's Chocolonely B.V.",
+    hq: 'Amsterdam, Netherlands',
+    revenue: '0.22B',
+    employees: '432',
+    logo: null,
+    lobbyingSpend: 20000,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: { republican: 20, democrat: 80 },
+    issues: [
+      {
+        id: 'child-labor-supply-chain',
+        title: 'Child Labor in Supply Chain (Disclosed)',
+        severity: 'medium',
+        description: "Tony's disclosed finding 1,701 cases of child labor in its supply chain in FY2021 — an increase from 387 the prior year, mostly from two newly onboarded partner co-ops in West Africa. The company argues transparency and remediation distinguish it from peers who hide supply chain issues.",
+        source: "City A.M. / Tony's FAIR Report, 2021",
+      },
+      {
+        id: 'removed-slave-free-list',
+        title: 'Removed from Slave Free Chocolate List',
+        severity: 'medium',
+        description: "American organization Slave Free Chocolate removed Tony's in 2021 due to its partnership with Barry Callebaut, whose broader supply chain includes confirmed child labor. Tony's disputed the categorization.",
+        source: 'Slave Free Chocolate / Confectionery Production, 2021',
+      },
+      {
+        id: 'milka-trademark-lawsuit',
+        title: 'Milka Trademark Lawsuit (Germany)',
+        severity: 'low',
+        description: "Tony's was banned from selling chocolate \"using the colour purple\" in Germany after Mondelez/Milka sued over packaging inspiration ads.",
+        source: 'Reuters, 2024',
+      },
+    ],
+    subsidiaries: ["Tony's Chocolonely", "Tony's Open Chain"],
+    sustainabilityScore: 76,
+  },
+
+  'choczero': {
+    id: 'choczero',
+    name: 'ChocZero, Inc.',
+    hq: 'Fullerton, California, USA',
+    revenue: '0.02B',
+    employees: '17',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: { republican: 35, democrat: 65 },
+    issues: [
+      {
+        id: 'sweetener-concerns',
+        title: 'Sweetener Concerns',
+        severity: 'low',
+        description: 'ChocZero uses soluble corn fiber and monk fruit — popular with keto dieters but soluble corn fiber is a highly processed ingredient derived from cornstarch that some clean-label advocates question.',
+        source: 'CSPI, 2023',
+      },
+    ],
+    subsidiaries: ['ChocZero'],
+    sustainabilityScore: 60,
+  },
+
+  'ripple-foods': {
+    id: 'ripple-foods',
+    name: 'Ripple Foods, PBC',
+    hq: 'Emeryville, California, USA',
+    revenue: '0.12B',
+    employees: '85',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 5000,
+    donationSplit: { republican: 20, democrat: 80 },
+    issues: [
+      {
+        id: 'funding-vs-revenue',
+        title: 'High Funding vs. Revenue Ratio',
+        severity: 'low',
+        description: '$296M raised with estimated $100–150M in revenue raises viability questions common across many plant-based milk companies; category-wide slowdown has pressured brands including Ripple.',
+        source: 'Food Dive, 2023–2024',
+      },
+    ],
+    subsidiaries: ['Ripple'],
+    sustainabilityScore: 70,
+  },
+
+  'laird-superfood': {
+    id: 'laird-superfood',
+    name: 'Laird Superfood, Inc.',
+    hq: 'Boulder, Colorado, USA',
+    revenue: '0.04B',
+    employees: '81',
+    logo: null,
+    lobbyingSpend: 5000,
+    lobbyingTargets: ['FDA'],
+    politicalDonations: 5000,
+    donationSplit: { republican: 30, democrat: 70 },
+    issues: [
+      {
+        id: 'protein-bar-misleading-claims',
+        title: 'Protein Bar Misleading Claims Lawsuit',
+        severity: 'medium',
+        description: 'Class action filed in 2026 alleges Laird Superfood protein bars are primarily carbohydrates and fat — not protein — calling them de facto "sugar bars" that violate FDA rules against fortifying dessert-adjacent products to market as healthy.',
+        source: 'ClassAction.org, 2026',
+      },
+      {
+        id: 'creamer-serving-overstatement',
+        title: 'Creamer Serving Size Overstatement',
+        severity: 'medium',
+        description: "Class action alleged Laird's creamers overstated serving counts by 49–68%, claiming 114 servings but actually yielding approximately 49–68 servings.",
+        source: 'Top Class Actions, 2022',
+      },
+    ],
+    subsidiaries: ['Laird Superfood', 'Navitas Organics'],
+    sustainabilityScore: 68,
+  },
+
+  'dr-praegers': {
+    id: 'dr-praegers',
+    name: "Dr. Praeger's Sensible Foods, LLC",
+    hq: 'Elmwood Park, New Jersey, USA',
+    revenue: '0.03B',
+    employees: '100',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: { republican: 35, democrat: 65 },
+    issues: [],
+    subsidiaries: ["Dr. Praeger's"],
+    sustainabilityScore: 73,
+  },
+
+  'siete-family-foods': {
+    id: 'siete-family-foods',
+    name: 'Siete Family Foods (PepsiCo)',
+    hq: 'Austin, Texas, USA',
+    revenue: '0.50B',
+    employees: '144',
+    logo: null,
+    lobbyingSpend: 10000,
+    lobbyingTargets: [],
+    politicalDonations: 5000,
+    donationSplit: { republican: 44, democrat: 56 },
+    issues: [
+      {
+        id: 'pepsico-acquisition',
+        title: 'PepsiCo Acquisition',
+        severity: 'medium',
+        description: 'The $1.2B sale to PepsiCo completed January 2025 triggered concern among loyal health-conscious customers who valued Siete as a family-owned, grain-free, Paleo brand — many core consumers view PepsiCo ownership as incompatible with the brand\'s values.',
+        source: 'Inc. Magazine, 2024',
+      },
+    ],
+    subsidiaries: ['Siete'],
+    sustainabilityScore: 64,
+  },
+
+  'once-upon-a-farm': {
+    id: 'once-upon-a-farm',
+    name: 'Once Upon a Farm, PBC',
+    hq: 'San Diego, California, USA',
+    revenue: '0.20B',
+    employees: '300',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 10000,
+    donationSplit: { republican: 20, democrat: 80 },
+    issues: [
+      {
+        id: 'heavy-metals-industry-context',
+        title: 'Heavy Metals in Baby Food — Industry Context',
+        severity: 'low',
+        description: 'Once Upon a Farm was not named in the 2021 Congressional investigation into heavy metals in baby food (which targeted Gerber, Earth\'s Best, Beech-Nut, and Walmart). The brand emphasizes cold-press processing as a differentiator.',
+        source: 'US House Subcommittee, 2021 (not named)',
+      },
+    ],
+    subsidiaries: ['Once Upon a Farm'],
+    sustainabilityScore: 78,
+  },
+
+  'numi-organic-tea': {
+    id: 'numi-organic-tea',
+    name: 'Numi, Inc.',
+    hq: 'Oakland, California, USA',
+    revenue: '0.02B',
+    employees: '30',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: { republican: 15, democrat: 85 },
+    issues: [],
+    subsidiaries: ['Numi Organic Tea'],
+    sustainabilityScore: 81,
+  },
+
+  'harmless-harvest': {
+    id: 'harmless-harvest',
+    name: 'Harmless Harvest, Inc. (Danone)',
+    hq: 'San Francisco, California, USA',
+    revenue: '0.07B',
+    employees: '150',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: { republican: 28, democrat: 72 },
+    issues: [
+      {
+        id: 'danone-ownership',
+        title: 'Danone Ownership',
+        severity: 'low',
+        description: 'Acquisition by Danone — a large multinational with infant formula marketing controversy history — may concern consumers who valued Harmless Harvest as an independent, mission-driven brand.',
+        source: 'Food Dive, 2021',
+      },
+      {
+        id: 'coconut-supply-chain-labor',
+        title: 'Coconut Supply Chain Labor Risks',
+        severity: 'medium',
+        description: 'Harmless Harvest sources coconuts from Thailand and other Southeast Asian markets where documented exploitative labor conditions — including the use of monkeys for harvesting — have been reported in the broader industry.',
+        source: 'Amnesty International / PETA, 2021',
+      },
+    ],
+    subsidiaries: ['Harmless Harvest'],
+    sustainabilityScore: 67,
+  },
+
+  'forager-project': {
+    id: 'forager-project',
+    name: 'Forager Project, Inc.',
+    hq: 'San Francisco, California, USA',
+    revenue: '0.02B',
+    employees: '40',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: { republican: 20, democrat: 80 },
+    issues: [],
+    subsidiaries: ['Forager Project'],
+    sustainabilityScore: 74,
+  },
+
+  'bulletproof': {
+    id: 'bulletproof',
+    name: 'Bulletproof 360, Inc. (Bia Foods)',
+    hq: 'Los Angeles, California, USA',
+    revenue: '0.06B',
+    employees: '90',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 5000,
+    donationSplit: { republican: 40, democrat: 60 },
+    issues: [
+      {
+        id: 'unsubstantiated-health-claims',
+        title: 'Unsubstantiated Health Claims',
+        severity: 'medium',
+        description: 'The "Bulletproof Diet" and associated product health claims — including mold-free coffee, optimized MCT ratios, and detox claims — have been widely criticized by nutrition scientists as pseudoscientific. The company\'s 2025 rebrand moved away from these claims.',
+        source: 'Dr. Bill Sukala / Illuminate Labs, 2021–2025',
+      },
+      {
+        id: 'founder-brand-confusion',
+        title: 'Founder Departure & Brand Mission Drift',
+        severity: 'low',
+        description: "Dave Asprey's departure and founding of a competing product (Danger Coffee) while the company still trades on his celebrity image creates consumer confusion about brand identity.",
+        source: 'Daily Coffee News, 2022–2024',
+      },
+    ],
+    subsidiaries: ['Bulletproof'],
+    sustainabilityScore: 52,
+  },
+
 };
