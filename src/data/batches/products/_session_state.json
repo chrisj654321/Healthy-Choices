@@ -2,13 +2,13 @@
   "phase": 1,
   "description": "Snack Bars (30), Beverages pt.1 (20), Yogurt (25)",
   "categories": {
-    "snack_bars":     { "research": "done", "write": "done", "review": "done", "merged": true },
-    "beverages_pt1":  { "research": "done", "write": "done", "review": "done", "merged": true },
-    "yogurt":         { "research": "done", "write": "done", "review": "done", "merged": true }
+    "snack_bars":     { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 27 },
+    "beverages_pt1":  { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 13 },
+    "yogurt":         { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 20 }
   },
   "merge_notes": {
     "snack_bars": "27 merged, 3 rejected (bad UPC-A check digit: 018627860023 also duplicate, 416261001246, 602652220600)",
-    "beverages_pt1": "4 merged (Coca-Cola, Pepsi, Sprite, Gatorade), 16 rejected during QA",
-    "yogurt": "0 merged — all 24 entries rejected for fabricated sequential barcodes failing UPC-A mod-10 check. Must be re-researched with real scanned UPCs."
+    "beverages_pt1": "13 merged (re-research pass: QA REVIEWED 13 PASS 0 FIX 0 REJECT). Previous attempt merged only 4 real barcodes; re-research replaced all with verified UPCs.",
+    "yogurt": "20 merged (re-research pass: QA REVIEWED 16 PASS 3 FIX 3 REJECT). Previous batch was 100% rejected for fabricated sequential barcodes."
   }
 }

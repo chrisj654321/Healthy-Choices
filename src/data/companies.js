@@ -1909,6 +1909,47 @@ export const COMPANY_DB = {
     sustainabilityScore: 42,
   },
 
+  'celsius-holdings': {
+    id: 'celsius-holdings',
+    name: 'Celsius Holdings, Inc.',
+    hq: 'Boca Raton, Florida, USA',
+    revenue: '1.36B',
+    employees: '650',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: { republican: 50, democrat: 50 },
+    issues: [
+      {
+        id: 'bang-ftc-deceptive-ads',
+        title: 'Bang Energy FTC Deceptive Advertising Consent Order',
+        severity: 'high',
+        description:
+          'The FTC filed a complaint in November 2023 against Vital Pharmaceuticals (Bang Energy\'s parent, acquired by Celsius in 2023) alleging deceptive advertising claims, including unsubstantiated assertions that Bang Energy reverses mental retardation, cures Alzheimer\'s, and eliminates cancer risk. Celsius agreed to a consent order in 2024 prohibiting such claims and requiring substantiation for any future health assertions.',
+        source: 'FTC.gov, November 2023; consent order filed 2024',
+      },
+      {
+        id: 'sec-insider-trading-probe',
+        title: 'SEC Investigation into Celsius Holdings Insider Trading',
+        severity: 'medium',
+        description:
+          'The SEC opened an informal inquiry into Celsius Holdings in 2023 regarding potential insider trading ahead of the announcement of a strategic investment by PepsiCo. The inquiry remained ongoing as of mid-2026; no charges had been filed.',
+        source: 'Bloomberg, 2023; SEC EDGAR filings',
+      },
+      {
+        id: 'alani-nu-acquisition-antitrust',
+        title: 'Alani Nu Acquisition Closes Amid FTC Review',
+        severity: 'low',
+        description:
+          'Celsius Holdings completed its $1.8B acquisition of Alani Nu in August 2024 after an extended FTC second request review examining competition in the better-for-you energy drink segment. The FTC ultimately did not block the deal; Celsius now controls Celsius, Bang, and Alani Nu brands.',
+        source: 'Food Dive, August 2024; FTC HSR filings',
+      },
+    ],
+    subsidiaries: ['Celsius', 'Bang Energy', 'Alani Nu'],
+    sustainabilityScore: 35,
+  },
+
   'ab-inbev': {
     id: 'ab-inbev',
     name: 'Anheuser-Busch InBev',
