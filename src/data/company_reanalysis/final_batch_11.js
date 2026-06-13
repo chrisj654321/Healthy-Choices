@@ -1,0 +1,198 @@
+const REANALYZED_ISSUES = {
+  'adm': [
+    {
+      id: 'adm-price-fixing-1996',
+      title: 'Largest Criminal Antitrust Fine of Its Era',
+      severity: 'high',
+      description: 'ADM pleaded guilty and paid a $100 million criminal fine in 1996 for conspiring to fix global prices of the feed additive lysine and citric acid ($70M and $30M respectively). It was the largest criminal antitrust fine in US history at the time.',
+      source: 'US DOJ, 1996',
+    },
+    {
+      id: 'adm-sec-accounting-settlement',
+      title: 'SEC Accounting Misconduct Settlement',
+      severity: 'high',
+      description: 'ADM agreed to pay $40 million to settle SEC allegations that profits were improperly shifted into its Nutrition segment to meet targets (FY2021-2022). After ADM disclosed an internal probe in 2024 its shares fell roughly 24%; the SEC separately charged former CFO Vikram Luthar, whose case was pending as of 2026.',
+      source: 'SEC, 2024-2026',
+    },
+    {
+      id: 'adm-hfcs-lobbying',
+      title: 'HFCS Production and Sugar-Policy Lobbying',
+      severity: 'medium',
+      description: 'ADM is a leading producer of high-fructose corn syrup and has lobbied on sugar and corn-sweetener policy, including against added-sugar tax and labeling measures that could reduce demand for its products.',
+      source: 'Center for Responsive Politics, 2022',
+    },
+  ],
+  'cargill': [
+    {
+      id: 'cargill-bahia-child-labour-ruling',
+      title: 'Brazilian Court Ruling on Cocoa Child Labour',
+      severity: 'high',
+      description: 'In 2023 Brazil\'s 39th Labour Court in Bahia ordered Cargill to pay 600,000 reais (about $120,000) in collective moral damages over child and forced labour identified at cocoa suppliers. Cargill said it disagreed with the findings and would appeal.',
+      source: 'Bahia Labour Court, Brazil, 2023',
+    },
+    {
+      id: 'cargill-scotus-cocoa',
+      title: 'Cocoa Child-Slavery Suit Dismissed on Jurisdiction',
+      severity: 'high',
+      description: 'Cargill was a defendant in a US Supreme Court case brought by former child laborers trafficked from Mali to cocoa farms in Cote d\'Ivoire. In 2021 the Court dismissed the suit 8-1 on jurisdictional grounds for conduct occurring overseas, without ruling on the underlying allegations.',
+      source: 'US Supreme Court, 2021',
+    },
+    {
+      id: 'cargill-penalty-record',
+      title: 'Extensive Regulatory Penalty Record',
+      severity: 'high',
+      description: 'Good Jobs First\'s Violation Tracker records about $264 million in penalties across 241 enforcement entries against Cargill since 2000, spanning environmental, safety and other agencies, including OSHA worker-safety citations at meat-processing facilities.',
+      source: 'Violation Tracker (Good Jobs First), 2026',
+    },
+    {
+      id: 'cargill-dc-cocoa-suit',
+      title: 'Pending Cocoa Child-Labour Class Action',
+      severity: 'medium',
+      description: 'Cargill faces a class action filed in 2023 in the Washington D.C. Superior Court alleging child labour on cocoa farms in Ghana that supply its chain. The case was pending as of 2024.',
+      source: 'Legal filings, 2023',
+    },
+    {
+      id: 'cargill-deforestation',
+      title: 'Alleged Amazon and Cerrado Deforestation',
+      severity: 'high',
+      description: 'According to Mighty Earth investigations, Cargill\'s Brazilian soy and beef operations remain repeatedly linked to Amazon and Cerrado deforestation, and the company missed a 2014 pledge by its CEO to eliminate deforestation from its supply chain by 2020.',
+      source: 'Mighty Earth, 2022',
+    },
+  ],
+  'bunge': [
+    {
+      id: 'bunge-cerrado-sourcing',
+      title: 'Alleged Sourcing from Deforested Cerrado Land',
+      severity: 'high',
+      description: 'According to a 2023 Friends of the Earth investigation, Bunge purchased soy from suppliers responsible for roughly 11,351 hectares of post-2021 Cerrado deforestation. Bunge has publicly declined to join the Cerrado Manifesto urged by major retailers to halt sourcing from land cleared after 2020.',
+      source: 'Friends of the Earth US, 2023',
+    },
+    {
+      id: 'bunge-piaui-monopoly',
+      title: 'Near-Monopoly Linked to Piaui Deforestation',
+      severity: 'high',
+      description: 'According to Friends of the Earth, Bunge holds a near-monopoly on soy trading in Brazil\'s Piaui state, where deforestation in areas connected to its operations is reported to have surged sharply since 2021 amid limited supplier due diligence.',
+      source: 'Friends of the Earth US, 2023',
+    },
+    {
+      id: 'bunge-indigenous-land',
+      title: 'Alleged Sourcing Tied to Indigenous Land Conflict',
+      severity: 'medium',
+      description: 'A 2023 Friends of the Earth report alleges that a Mato Grosso do Sul farm supplying soy to Bunge is connected to land disputes affecting the Indigenous Guarani Kaiowa people. The allegations have not been adjudicated.',
+      source: 'Friends of the Earth US, 2023',
+    },
+  ],
+  'ingredion': [
+    {
+      id: 'ingredion-ultra-processing',
+      title: 'B2B Supplier to Ultra-Processed Foods',
+      severity: 'low',
+      description: 'Ingredion supplies modified starches and corn-derived sweeteners used widely in ultra-processed foods and has no consumer-facing brand presence. A review of FDA and USDA enforcement databases found no documented recalls or enforcement actions against the company during 2020-2026.',
+      source: 'NOVA classification; FDA Enforcement Database, 2023-2026',
+    },
+  ],
+  'barilla': [
+    {
+      id: 'barilla-2013-remarks',
+      title: 'Chairman\'s 2013 Anti-Gay Remarks',
+      severity: 'medium',
+      description: 'In 2013 chairman Guido Barilla said in a radio interview that the company would not feature gay families in its advertising, prompting an international boycott. He later apologized, and Barilla subsequently adopted LGBTQ+ inclusion programs and earned high marks on workplace-equality indices.',
+      source: 'The Guardian, 2013',
+    },
+  ],
+  'mcilhenny': [
+    {
+      id: 'mcilhenny-made-in-usa-settlement',
+      title: '"Made in U.S.A." Labeling Settlement',
+      severity: 'medium',
+      description: 'McIlhenny settled a California class action alleging it labeled Tabasco products "Made in U.S.A." despite some ingredients sourced abroad. Under the 2018 settlement the company provided consumer refunds and removed the claim from California packaging, without admitting wrongdoing.',
+      source: 'California class action settlement, 2018',
+    },
+    {
+      id: 'mcilhenny-trace-cadmium',
+      title: 'Trace Cadmium in Independent Testing',
+      severity: 'low',
+      description: 'Independent (non-regulatory) lab testing in 2026 reported trace cadmium in Tabasco pepper sauce, with no detectable lead, mercury or arsenic. Cadmium occurs naturally in peppers and spices; no FDA enforcement action resulted, though the metal is relevant under California Proposition 65.',
+      source: 'Independent lab testing, 2026',
+    },
+  ],
+  'kikkoman': [
+    {
+      id: 'kikkoman-high-sodium',
+      title: 'Very High Sodium Content',
+      severity: 'medium',
+      description: 'Standard Kikkoman soy sauce contains roughly 900mg of sodium per tablespoon, making it one of the highest-sodium condiments. The company also markets reduced-sodium alternatives.',
+      source: 'CSPI, 2022',
+    },
+    {
+      id: 'kikkoman-prop65-metals',
+      title: 'Prop 65 Lead and Cadmium Labeling',
+      severity: 'low',
+      description: 'Kikkoman soy sauce carries California Proposition 65 lead and cadmium warnings. These reflect heavy metals that occur naturally in the seaweed (kombu) used in production rather than any manufacturing contamination incident or recall.',
+      source: 'California Proposition 65, 2020-2026',
+    },
+  ],
+  'ajinomoto': [
+    {
+      id: 'ajinomoto-epa-fine',
+      title: 'EPA Fine for Chemical Releases',
+      severity: 'high',
+      description: 'Ajinomoto Health & Nutrition North America agreed in December 2024 to pay a $458,265 EPA penalty for Clean Air Act and right-to-know violations at its Eddyville, Iowa facility, tied to a 2021 hydrochloric acid release and a 2022 chlorine gas release that injured employees. It agreed to install containment systems.',
+      source: 'US EPA, 2024',
+    },
+    {
+      id: 'ajinomoto-glass-recall',
+      title: '37 Million Pounds Recalled for Glass',
+      severity: 'high',
+      description: 'In February 2026 Ajinomoto Foods North America expanded a recall to about 37 million pounds of frozen fried rice, ramen and shu mai products (sold under Ajinomoto, Kroger, Ling Ling, Tai Pei and Trader Joe\'s brands) after glass was traced to a carrot ingredient. USDA FSIS reported no confirmed injuries.',
+      source: 'USDA FSIS, 2026',
+    },
+    {
+      id: 'ajinomoto-msg-defense',
+      title: 'MSG Safety and the Debunked Syndrome Myth',
+      severity: 'low',
+      description: 'Ajinomoto is the leading producer of MSG and has campaigned to dispel the debunked "Chinese Restaurant Syndrome" narrative. US regulators classify MSG as generally recognized as safe.',
+      source: 'US FDA, 2022',
+    },
+  ],
+  'jde-peets': [
+    {
+      id: 'jde-cerrado-coffee',
+      title: 'Alleged Deforestation in Coffee Sourcing',
+      severity: 'high',
+      description: 'According to a 2025 Coffee Watch and AidEnvironment report, six Brazilian farms linked to JDE Peet\'s sourcing showed clearing of about 4,782 hectares after the EU Deforestation Regulation\'s 2020 cutoff. JDE disputed the link, stating the cleared areas could not yet have produced harvestable coffee.',
+      source: 'Coffee Watch / AidEnvironment, 2025',
+    },
+    {
+      id: 'jde-eudr-compliance',
+      title: 'Questions Over EU Deforestation Compliance',
+      severity: 'medium',
+      description: 'The same 2025 Coffee Watch and AidEnvironment analysis raised concerns about JDE Peet\'s traceability claims and potential non-compliance with the EU Deforestation Regulation. The findings are advocacy-group assessments and have not been adjudicated.',
+      source: 'Coffee Watch / AidEnvironment, 2025',
+    },
+    {
+      id: 'jde-labour-partnership',
+      title: 'Coffee Supply-Chain Labour Risks',
+      severity: 'medium',
+      description: 'JDE Peet\'s sources coffee from regions with documented child- and forced-labour risk, and has launched an International Labour Organization partnership (the FAIR COFFEE initiative) to help prevent child labour in Brazil\'s coffee supply chain.',
+      source: 'ILO / JDE Peet\'s, 2023-2026',
+    },
+  ],
+  'lavazza': [
+    {
+      id: 'lavazza-coffee-deforestation-region',
+      title: 'Coffee Sourced from Deforestation-Risk Regions',
+      severity: 'low',
+      description: 'Lavazza sources coffee from regions facing deforestation pressure and participates in voluntary programs such as a UNDP deforestation-free coffee project. A review of EPA and FDA records found no documented enforcement actions or recalls against Lavazza during 2020-2026.',
+      source: 'EPA/FDA records review, 2020-2026',
+    },
+    {
+      id: 'lavazza-esg-transparency',
+      title: 'Third-Party Criticism of Vague ESG Targets',
+      severity: 'low',
+      description: 'According to a third-party ESG assessment, Lavazza\'s sustainability reporting has been criticized for lacking clear, measurable future targets and progress metrics, leaving some environmental commitments difficult to verify.',
+      source: 'Good Shopping Guide ESG assessment, 2023-2024',
+    },
+  ],
+};
+module.exports = REANALYZED_ISSUES;

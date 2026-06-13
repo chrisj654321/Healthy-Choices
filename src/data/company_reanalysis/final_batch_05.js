@@ -1,0 +1,341 @@
+const REANALYZED_ISSUES = {
+  'keurig-dr-pepper': [
+    {
+      id: 'penafiel-arsenic-recall',
+      title: 'Peñafiel Water Recalled: Arsenic Above FDA Limit',
+      severity: 'high',
+      description: 'Keurig Dr Pepper withdrew all unflavored Peñafiel mineral spring water in June 2019 after independent lab testing found arsenic at approximately 16 ppb, exceeding the FDA limit of 10 ppb. Consumer Reports documented that FDA had data indicating elevated arsenic levels as far back as 2013, raising questions about the six-year delay before a recall was issued.',
+      source: 'FDA Safety Alert, June 2019; Consumer Reports, 2019',
+    },
+    {
+      id: 'sec-recyclability-greenwashing',
+      title: 'SEC Fines KDP $1.5M for K-Cup Recycling Claims',
+      severity: 'high',
+      description: 'The SEC charged Keurig Dr Pepper with making incomplete and inaccurate recyclability statements in its 2019 and 2020 annual reports, specifically by failing to disclose that two major recycling companies said they would not accept K-Cup pods. KDP paid a $1.5 million civil penalty to settle the enforcement order finalized September 10, 2024; internal testing dating to 2016 had shown pods were not commercially viable for curbside recycling.',
+      source: 'SEC Press Release 2024-122, September 2024',
+    },
+    {
+      id: 'kcup-antitrust-mdl',
+      title: 'K-Cup Antitrust MDL: $3B+ Claims, Appeal Pending',
+      severity: 'high',
+      description: 'A multidistrict antitrust litigation in the Southern District of New York consolidated cases alleging KDP used exclusive supplier agreements and technological locks to suppress competition, with direct purchasers claiming more than $3 billion in damages. Judge Vernon S. Broderick denied class certification on November 21, 2025; an appeal to the Second Circuit is pending.',
+      source: 'SDNY Docket 1:2014mc02542; Bloomberg Law, 2025',
+    },
+    {
+      id: 'mccafe-decaf-caffeine-recall',
+      title: 'McCafé Decaf K-Cups May Contain Caffeine',
+      severity: 'medium',
+      description: 'KDP voluntarily recalled approximately 80,640 McCafé Premium Roast Decaf K-Cup pods in December 2025 after discovering a production batch may have contained caffeinated coffee. The FDA classified the recall as Class II, meaning the product may cause temporary adverse health consequences; distribution was limited to Amazon customers in California, Indiana, and Nevada.',
+      source: 'FDA Recall Database, January 2026; NBC News, 2025',
+    },
+    {
+      id: 'kcup-recyclability-ftc-complaint',
+      title: 'FTC Complaint: Continued K-Cup Recycling Deception',
+      severity: 'medium',
+      description: 'Consumer advocacy group TINA.org filed a complaint with the FTC alleging KDP continued to mislead consumers about K-Cup recyclability after its 2019 and 2020 disclosures; as of mid-2026, the FTC had not taken formal enforcement action. The SEC separately fined KDP $1.5 million in September 2024 for the same underlying conduct, establishing a verified regulatory record of the recycling misrepresentation.',
+      source: 'TINA.org, 2023; SEC Press Release 2024-122',
+    },
+  ],
+
+  'monster-beverage': [
+    {
+      id: 'wrongful-death-caffeine',
+      title: 'Monster Settled Wrongful Death Suits — Caffeine',
+      severity: 'high',
+      description: 'Monster Beverage settled multiple wrongful death lawsuits including the case of Anais Fournier, 14, who died in 2012 after consuming two 24-oz Monster Energy cans, and the cases of Alex Morris and Shane Felts, who died in 2014; settlement amounts were not disclosed. As of March 2025, new cardiac injury lawsuits continued to be filed, and the FDA had recorded five deaths and one heart attack associated with Monster Energy between 2004 and 2012.',
+      source: 'Court Records; For The People Law Firm, March 2025; ESPN; LA Weekly',
+    },
+    {
+      id: 'youth-marketing-lawsuit',
+      title: 'SF City Attorney Sued Over Marketing to Minors',
+      severity: 'high',
+      description: 'The San Francisco City Attorney sued Monster Beverage in 2013, alleging the company marketed its products to children as young as six while classifying them as dietary supplements to avoid FDA oversight. The New York Attorney General separately issued subpoenas in a related investigation; regulatory scrutiny of Monster\'s youth marketing continued through at least 2022.',
+      source: 'SF City Attorney Records, 2013; Klein Moynihan, 2022',
+    },
+    {
+      id: 'sexual-harassment-executives',
+      title: 'Five Women Sued Monster Over Executive Harassment',
+      severity: 'high',
+      description: 'Five women filed lawsuits in 2018 alleging pervasive sexual harassment by senior Monster Beverage executives including VP John Kenneally and head of music marketing Brent Hamilton. A HuffPost investigation triggered Kenneally\'s firing two weeks after publication; one suit settled in January 2018 with undisclosed terms, and a sixth complainant came forward in March 2018. Monster Beverage acknowledged the litigation in its FY2018 SEC 10-Q filing.',
+      source: 'Fortune, July 2018; ABC News, 2018; Monster Beverage 10-Q, FY2018',
+    },
+    {
+      id: 'coca-cola-equity-stake',
+      title: 'Coca-Cola Owns 16.7% Stake, Exclusive Distribution',
+      severity: 'medium',
+      description: 'Coca-Cola acquired a 16.7% equity stake in Monster Beverage for $2.15 billion in 2015 and became Monster\'s exclusive global distributor as part of the same transaction. Coca-Cola transferred its NOS, Full Throttle, and other energy drink brands to Monster, concentrating energy drink market power between the two companies.',
+      source: 'SEC Filings, 2015; CSP Daily News, 2015',
+    },
+    {
+      id: 'board-diversity-derivative-suit',
+      title: 'Shareholder Suit Alleged Unmet Diversity Pledges',
+      severity: 'low',
+      description: 'A shareholder derivative suit filed in September 2020 in the Central District of California alleged Monster Beverage\'s board breached fiduciary duties by making diversity commitments it did not enforce. A federal court allowed the plaintiff to amend the complaint after Monster\'s initial dismissal motion; no final resolution has been publicly confirmed.',
+      source: 'D&O Diary, September 2020; Bloomberg Law, 2020',
+    },
+  ],
+
+  'red-bull': [
+    {
+      id: 'youth-caffeine-risk',
+      title: 'Regulators Flag Red Bull as Unsafe for Adolescents',
+      severity: 'high',
+      description: 'The FDA, European Food Safety Authority (2022), American Academy of Pediatrics, and Harvard School of Public Health have consistently identified energy drinks as inappropriate for adolescents; one 8.4-oz Red Bull delivers 80mg of caffeine, representing 80% of the AAP-recommended daily adolescent limit. Red Bull continued sponsoring extreme sports events directed at youth audiences throughout this period, drawing sustained regulatory scrutiny.',
+      source: 'EFSA, 2022; American Academy of Pediatrics; FDA Adverse Event Reports',
+    },
+    {
+      id: 'uk-underage-sales-ban',
+      title: 'UK Consulting Ban on Energy Drink Sales Under 16',
+      severity: 'medium',
+      description: 'The UK Health Secretary announced a 12-week public consultation on September 3, 2025 on banning sales of energy drinks containing more than 150mg of caffeine per liter to anyone under 16 in England, following existing bans in Wales and Scotland. Red Bull, at approximately 95mg per 100ml, falls above the proposed threshold; the consultation closed November 26, 2025 and legislative outcome had not been confirmed as of mid-2026.',
+      source: 'New Food Magazine, September 2025; Beverage Daily, 2025',
+    },
+    {
+      id: 'false-advertising-settlement',
+      title: 'Red Bull Paid $13M to Settle "Gives You Wings" Suit',
+      severity: 'medium',
+      description: 'Red Bull paid $13 million in 2014 to settle a US class action alleging it falsely advertised performance enhancement superior to cheaper caffeine sources; consumers who purchased Red Bull between 2002 and 2014 were eligible for $10 cash or $15 in product vouchers. Red Bull denied wrongdoing and settled to avoid litigation costs.',
+      source: 'CBC News, October 2014; US News, 2014; BevNET, 2014',
+    },
+    {
+      id: 'asa-health-claims-ban',
+      title: 'UK Regulator Banned Red Bull Focus-Claim Ad',
+      severity: 'low',
+      description: 'The UK Advertising Standards Authority issued a ruling in 2019 banning a Red Bull poster campaign that implied improved focus and concentration, finding the claims were not authorized under EU nutrition and health-claims regulations. The ruling required the ad to be withdrawn.',
+      source: 'ASA Ruling, 2019; LawHubX, 2019',
+    },
+  ],
+
+  'ab-inbev': [
+    {
+      id: 'epa-ammonia-settlement',
+      title: 'EPA Fined AB InBev $537K for Ammonia Violations',
+      severity: 'high',
+      description: 'AB InBev paid $537,000 in penalties in June 2023 to settle EPA Clean Air Act and Emergency Planning and Community Right-to-Know Act violations at three breweries — Merrimack, NH; Fort Collins, CO; and Fairfield, CA. A 2018 anhydrous ammonia release at the Fort Collins facility injured two employees and sent six nearby residents to the hospital; the settlement requires an independent safety review of all 11 flagship breweries using ammonia, covering approximately 172,000 community residents.',
+      source: 'EPA Press Release, June 2023; EHS Daily Advisor, 2023',
+    },
+    {
+      id: 'doj-antitrust-kona-divestiture',
+      title: 'DOJ Required Hawaii Brewery Divestiture',
+      severity: 'medium',
+      description: 'The Department of Justice required AB InBev to divest Kona Brewing\'s entire Hawaii business as a condition of approving its $220 million acquisition of Craft Brew Alliance; the divestiture to PV Brewing Partners LLC was completed under a consent decree entered in March 2021. DOJ found the combined entity would have controlled approximately 41% of the Hawaii beer market.',
+      source: 'DOJ Antitrust Division; Federal Register, March 2021',
+    },
+    {
+      id: 'belgium-competition-investigation',
+      title: 'Belgian Competition Authority Investigating AB InBev',
+      severity: 'medium',
+      description: 'Belgium\'s Competition Authority opened an investigation on January 16, 2025 into AB InBev\'s wholesale and on-trade commercial conditions for suspected violations of EU antitrust rules prohibiting anticompetitive agreements and abuse of dominant position. A 2019 EU Commission fine exceeding EUR 200 million against AB InBev for restricting Dutch-to-Belgian beer imports provides relevant precedent; the current investigation had not reached a penalty determination as of mid-2026.',
+      source: 'Belgian Competition Authority, January 2025; Bloomberg, 2025',
+    },
+    {
+      id: 'bud-light-boycott-sales-loss',
+      title: 'Bud Light Boycott Cost $1.4B in North American Revenue',
+      severity: 'medium',
+      description: 'A April 2023 promotional collaboration with influencer Dylan Mulvaney triggered a conservative boycott; US off-premise Bud Light sales fell as much as 26% in the following month, and North American organic revenue declined $1.4 billion for the full year 2023, according to AB InBev\'s SEC 6-K filing. Senators Blackburn and Cruz opened an informal congressional inquiry into whether the campaign violated Beer Institute guidelines on marketing to underage consumers.',
+      source: 'AB InBev 6-K, SEC.gov, 2024; CNN Business, February 2024',
+    },
+    {
+      id: 'alcohol-youth-marketing-ftc',
+      title: 'FTC Reports Alcohol Industry Markets to Youth',
+      severity: 'medium',
+      description: 'A Federal Trade Commission report on alcohol beverage advertising found that major producers, including AB InBev brands, used media placements where a disproportionate share of the audience was underage. The report is public record and has informed ongoing regulatory pressure on alcohol marketing practices.',
+      source: 'FTC Alcohol Advertising Report; Center on Alcohol Marketing and Youth',
+    },
+  ],
+
+  'molson-coors': [
+    {
+      id: 'milwaukee-mass-shooting',
+      title: 'Five Employees Killed in Milwaukee Brewery Shooting',
+      severity: 'high',
+      description: 'On February 26, 2020, a long-tenured employee shot and killed five Molson Coors colleagues — Dale Hudson, Gennady Levshetz, Jesus Valle Jr., Dana Walk, and Trevor Wetselaar — before dying by suicide at the Milwaukee, Wisconsin campus. A noose had been placed in the shooter\'s locker in 2015; Molson Coors confirmed it investigated the incident but found no surveillance footage. Racist notes continued to appear in the locker after the 2015 incident.',
+      source: 'NPR, February 2020; Washington Post, 2020; CBC News, 2020',
+    },
+    {
+      id: 'ransomware-production-halt',
+      title: 'Ransomware Attack Halted Brewing, Shifted $120–140M EBITDA',
+      severity: 'medium',
+      description: 'Molson Coors disclosed a cybersecurity incident via SEC 8-K on March 11, 2021 that halted brewery operations; the company confirmed the attack, combined with Texas winter storm disruptions, would shift $120–140 million in underlying EBITDA from Q1 2021 into the remainder of the fiscal year and delay 1.53–1.7 million US barrels of production. Forensic investigators characterized the incident as likely ransomware, though Molson Coors did not publicly confirm the attack type.',
+      source: 'Molson Coors 8-K, SEC.gov, March 2021; SecurityWeek, 2021',
+    },
+    {
+      id: 'beer-quality-recall-2022',
+      title: 'Coors Light and Keystone Recalled for Slime Defect',
+      severity: 'medium',
+      description: 'Molson Coors withdrew Coors Light and Keystone Light 12-oz cans produced at its Trenton, Ohio brewery in June 2022 after consumers reported a gelatinous slime-like liquid inside the cans. The company stated the issue was limited to one canning line and identified no food safety risk, but the product failed quality standards.',
+      source: 'IBTimes, 2022; Snopes, 2022; Dierbergs Markets Recall Notice, 2022',
+    },
+    {
+      id: 'canada-internal-fraud-lawsuit',
+      title: 'Molson Coors Canada Sues Managers for CA$9M Fraud',
+      severity: 'medium',
+      description: 'Molson Coors Canada filed suit in Ontario Superior Court in November 2025 against former sales director Frank Ivankovic and others, alleging a multi-year embezzlement scheme using shell companies and fraudulent invoices totaling approximately CA$9 million since 2021. Ivankovic and a co-defendant resigned in October 2025 after a bank flagged unusual deposits; the case is pending.',
+      source: 'CBC News, 2025; Global News, 2025',
+    },
+    {
+      id: 'employment-discrimination-suits',
+      title: 'Racial and Sex Discrimination Suits Filed 2024–2025',
+      severity: 'medium',
+      description: 'Bloomberg Law reported two employment discrimination suits against Molson Coors: a December 2024 filing by a former employee alleging racial discrimination, hostile work environment under Title VII, and FMLA violations; and a May 2025 filing by a female packaging optimization manager at the Milwaukee brewery alleging sex discrimination and retaliatory termination after she reported sexual harassment. Both cases are pending.',
+      source: 'Bloomberg Law, December 2024 and May 2025',
+    },
+  ],
+
+  'diageo': [
+    {
+      id: 'lobbying-against-bac-safety',
+      title: 'Diageo Lobbied Against Drunk-Driving Safety Limits',
+      severity: 'medium',
+      description: 'Diageo spent $2.71 million on US lobbying in 2021 and between EUR 700,000 and EUR 799,000 on EU lobbying in 2022; industry groups funded by Diageo, including the American Beverage Institute, lobbied against reducing the legal blood-alcohol limit from 0.08 to 0.05 — a change recommended by the National Transportation Safety Board — and against mandatory health warning label updates on alcohol products.',
+      source: 'OpenSecrets Lobbying Disclosures, 2021; EU Transparency Register, 2022',
+    },
+    {
+      id: 'us-regulatory-penalties',
+      title: 'Diageo Accumulated $22.5M in US Regulatory Penalties',
+      severity: 'medium',
+      description: 'Good Jobs First\'s Violation Tracker database records $22,533,403 in regulatory penalties against Diageo across 17 enforcement actions in the United States since 2000, spanning multiple agencies and issue categories. The UK Violation Tracker records an additional GBP 1,764,648 across 20 cases since 2010.',
+      source: 'Good Jobs First Violation Tracker, violationtracker.goodjobsfirst.org',
+    },
+    {
+      id: 'french-tax-settlement',
+      title: 'Diageo Paid EUR 100M to French Tax Authorities',
+      severity: 'medium',
+      description: 'Diageo paid EUR 100 million to French tax authorities in July 2019 to resolve a dispute over the treatment of interest costs. Paradise Papers reporting in 2017 separately revealed a Luxembourg corporate restructuring around Diageo\'s acquisition of United Spirits in India.',
+      source: 'The Spirits Business, 2019; Law360, 2019',
+    },
+    {
+      id: 'combs-racial-discrimination-settled',
+      title: 'Racial Discrimination Suit Against Diageo Settled',
+      severity: 'medium',
+      description: 'Sean Combs sued Diageo in May 2023 in New York State Supreme Court, alleging the company racially discriminated against his DeLeón tequila and Cîroc vodka brands by providing superior marketing resources to comparable white-owned brands. The parties settled on January 16, 2024, with Combs withdrawing all allegations with prejudice and the business relationship ending; no liability was admitted.',
+      source: 'Diageo 6-K, SEC.gov, January 2024; CNBC, 2024',
+    },
+    {
+      id: 'nlrb-unfair-labor-practice',
+      title: 'NLRB Unfair Labor Practice Case Filed',
+      severity: 'low',
+      description: 'An NLRB unfair labor practice case (09-CA-227910) was filed against Diageo Americas Supply, Inc.; no resolution, settlement amount, or substantive finding has been publicly disclosed.',
+      source: 'NLRB Case Registry, Case 09-CA-227910',
+    },
+  ],
+
+  'constellation-brands': [
+    {
+      id: 'mexicali-water-referendum',
+      title: 'Mexicali Voters Rejected Brewery Over Water Rights',
+      severity: 'high',
+      description: 'On March 21–22, 2020, 76.1% of Mexicali, Mexico voters rejected Constellation Brands\'s $1.4 billion brewery project already under construction, which was projected to consume approximately 1.8 billion gallons of water annually from the Colorado River-fed Mexicali aquifer. Mexico\'s National Human Rights Commission found the project\'s approval violated the human right to water; Constellation accepted the referendum result and cancelled the project.',
+      source: 'Mexico News Daily, March 2020; Business and Human Rights Resource Centre, 2020',
+    },
+    {
+      id: 'securities-fraud-class-action',
+      title: 'Securities Fraud Suit Over Wine & Spirits Disclosures',
+      severity: 'medium',
+      description: 'A securities fraud class action — Meza v. Constellation Brands, Case No. 6:25-cv-6107 (W.D.N.Y.) — was filed February 18, 2025, alleging Constellation misled investors about strategies intended to improve its Wine and Spirits segment\'s performance. On January 10, 2025, Constellation disclosed significant sales shortfalls in both Beer and Wine & Spirits; the company\'s stock fell approximately 17.1% ($37.47) that day to $181.81.',
+      source: 'WDNY Docket 6:25-cv-6107; Constellation Brands 10-K, SEC.gov, FY2025',
+    },
+    {
+      id: 'warn-act-madera-layoffs',
+      title: 'WARN Act Compliance Investigated After Winery Layoffs',
+      severity: 'medium',
+      description: 'Law firm Strauss Borrelli PLLC announced an investigation in February 2026 into whether Constellation Brands provided the required 60-day WARN Act advance notice before laying off approximately 212–218 workers at its Madera, California Mission Bell Winery, following the end of a distribution contract with Gallo on March 31, 2026. No lawsuit had been filed as of the verification date.',
+      source: 'Strauss Borrelli PLLC, February 2026; California EDD WARN Notice, 2026',
+    },
+    {
+      id: 'us-regulatory-penalty-record',
+      title: '$473K in US Regulatory Penalties on Record',
+      severity: 'low',
+      description: 'Good Jobs First\'s Violation Tracker database records $473,523 in US regulatory penalties against Constellation Brands across 9 enforcement actions since 2000.',
+      source: 'Good Jobs First Violation Tracker, violationtracker.goodjobsfirst.org',
+    },
+  ],
+
+  'national-beverage': [
+    {
+      id: 'ceo-sexual-harassment-lawsuits',
+      title: 'Two Pilots Sued CEO for Repeated Groping',
+      severity: 'high',
+      description: 'Former pilots Terence Huenefeld and Vincent Citrullo filed separate lawsuits in 2018 alleging CEO Nick Caporella repeatedly groped them during private flights — Huenefeld alleged 18 incidents from March to July 2016, and Citrullo alleged 14 incidents between 2014 and 2015. One suit settled in January 2018 with undisclosed terms; Caporella denied all allegations. National Beverage acknowledged the litigation in its FY2018 SEC 8-K filing.',
+      source: 'Wall Street Journal, July 2018; Fortune, July 2018; National Beverage 8-K, FY2018',
+    },
+    {
+      id: 'lacroix-labeling-lawsuit-dismissed',
+      title: 'LaCroix "Synthetic" Lawsuit Dismissed — Claims Retracted',
+      severity: 'low',
+      description: 'A 2018 class action alleged LaCroix contained synthetic compounds including linalool; the case was dismissed with prejudice on February 18, 2020, after the plaintiff\'s law firm admitted their laboratory found no artificial ingredients in LaCroix. The compounds identified — limonene, linalool, and linalool propionate — are naturally occurring.',
+      source: 'National Beverage 8-K, FY2020; Top Class Actions, 2020; Snopes, 2020',
+    },
+    {
+      id: 'ceo-concentrated-control',
+      title: 'CEO Holds Majority Voting Control with No Board Check',
+      severity: 'medium',
+      description: 'Nick Caporella serves as both Chairman and CEO of National Beverage Corp. with majority voting control, giving him near-absolute authority over company decisions without independent board oversight. Shareholder advocacy groups have flagged the company\'s SEC filings for opacity, and a 2018 RM Law securities complaint cited governance deficiencies.',
+      source: 'National Beverage Annual Reports, SEC.gov; RM Law Securities Complaint, 2018',
+    },
+  ],
+
+  'vita-coco': [
+    {
+      id: 'ningi-short-seller-allegations',
+      title: 'Short-Seller Report Alleges Concealment and Fraud',
+      severity: 'high',
+      description: 'NINGI Research published a report on March 26, 2025 alleging Vita Coco concealed a threatened Costco contract loss representing significant private-label volume, engaged in related-party transaction irregularities, and faced operational challenges; Vita Coco issued a same-day rebuttal calling the report "inaccurate and misleading," but acknowledged it "expects to lose some regions with certain private label retailers." The company\'s stock fell approximately 11–12% on the day of publication; none of the allegations have been adjudicated.',
+      source: 'NINGI Research Report, March 2025; Vita Coco Investor Response, March 2025',
+    },
+    {
+      id: 'securities-fraud-investigations',
+      title: 'Six Law Firms Investigating Potential Securities Fraud',
+      severity: 'high',
+      description: 'At least six law firms — including Pomerantz LLP, Schall Law Firm, Kirby McInerney LLP, Bragar Eagel & Squire, Block & Leviton, and Glancy Prongay & Murray — have opened formal investigations into potential securities violations by Vita Coco following the March 2025 NINGI Research report. No class action complaint had been filed as of mid-2026.',
+      source: 'Pomerantz LLP, 2025; Schall Law Firm, 2025; National Law Review, 2025',
+    },
+    {
+      id: 'philippine-labor-abuse-allegations',
+      title: 'Short-Seller Report Alleged Philippine Farm Labor Abuses',
+      severity: 'high',
+      description: 'A March 2025 short-seller report by NINGI Research alleged that Vita Coco\'s Philippine coconut suppliers subject farm workers to underpayment and unsafe working conditions; Vita Coco broadly disputed the report\'s characterizations. No independent investigation has been completed to verify or refute the supply chain labor allegations as of mid-2026.',
+      source: 'NINGI Research Report, March 2025; Pomerantz LLP Case Summary, 2025',
+    },
+    {
+      id: 'coconut-supply-chain-labor-risk',
+      title: 'Coconut Industry Linked to Documented Labor Abuses',
+      severity: 'medium',
+      description: 'The coconut industry in the Philippines and other major sourcing countries has been documented by labor rights organizations and the US Department of Labor as subject to hazardous child labor risks and unsafe conditions for adult workers, including dangerous tree-climbing work. Vita Coco has not published independently audited supply chain labor compliance reports.',
+      source: 'US Department of Labor, 2023; Labor Rights Organizations',
+    },
+  ],
+
+  'liquid-death': [
+    {
+      id: 'alpine-sourcing-shift',
+      title: 'Water Source Quietly Shifted from Austria to US',
+      severity: 'medium',
+      description: 'Liquid Death originally marketed its water as sourced from the Austrian Alps; US Customs import data confirms seven ocean shipments from Austrian supplier Starzinger in 2021 but zero water imports from Austria by 2025, with current cans confirming sourcing from Bland, Virginia or Mackay, Idaho. No formal regulatory action has been taken, but no proactive consumer communication accompanied the sourcing change.',
+      source: 'KirchnerData US Customs Analysis, 2025; Liquid Death Can Labeling',
+    },
+    {
+      id: 'environmental-claims-unaudited',
+      title: 'Environmental Claims Lack Independent Carbon Audit',
+      severity: 'low',
+      description: 'Liquid Death\'s environmental claims are self-reported; no independent third-party full-supply-chain carbon audit has been published. The company\'s sourcing shift from Austrian imports to US domestic production was not accompanied by updated lifecycle assessment data, and primary aluminum smelting — used in Liquid Death\'s cans — is among the most energy-intensive industrial processes.',
+      source: 'Liquid Death ESG Disclosure, 2023; KirchnerData Supply Chain Analysis, 2025',
+    },
+    {
+      id: 'death-wish-trademark-suit',
+      title: 'Death Wish Coffee Sued Over "Deathuccino" Name',
+      severity: 'low',
+      description: 'Death Wish Coffee filed a federal trademark infringement suit against Liquid Death in October 2025 in the Central District of California over Liquid Death\'s planned coffee line, including the name "Deathuccino." Liquid Death stated it had no current plans to launch ready-to-drink coffee; the case is pending with no hearing schedule confirmed.',
+      source: 'Bloomberg Law, October 2025; FoodBev Media, 2025',
+    },
+    {
+      id: 'valuation-unicorn-decline',
+      title: 'Valuation Dropped Below $1B Unicorn Status by 2025',
+      severity: 'low',
+      description: 'Liquid Death raised $67 million at a $1.4 billion valuation in March 2024; by December 2024, a secondary market transaction implied a valuation of approximately $943 million, and the company was removed from the Prime Unicorn Index in Q2 2025. Revenue remained strong at an estimated $333 million for 2024, up 27% year-over-year, but the valuation reset reflects investor concern about long-term unit economics.',
+      source: 'Bloomberg, March 2024; Prime Unicorn Index Q2 2025 Report; Sacra, 2025',
+    },
+  ],
+};
+
+module.exports = REANALYZED_ISSUES;
