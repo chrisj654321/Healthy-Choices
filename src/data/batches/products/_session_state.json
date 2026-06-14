@@ -1,14 +1,21 @@
 {
-  "phase": 1,
-  "description": "Snack Bars (30), Beverages pt.1 (20), Yogurt (25)",
+  "phase": 2,
+  "description": "Snack Bars (30), Beverages pt.1 (20), Yogurt (25), Beverages pt.2 (27), Chips & Crackers pt.1 (16), Bread pt.1 (11)",
   "categories": {
-    "snack_bars":     { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 27 },
-    "beverages_pt1":  { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 13 },
-    "yogurt":         { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 20 }
+    "snack_bars":          { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 27 },
+    "beverages_pt1":       { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 13 },
+    "yogurt":              { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 20 },
+    "beverages_pt2":       { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 27 },
+    "chips_crackers_pt1":  { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 16 },
+    "bread_pt1":           { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 11 }
   },
   "merge_notes": {
     "snack_bars": "27 merged, 3 rejected (bad UPC-A check digit: 018627860023 also duplicate, 416261001246, 602652220600)",
     "beverages_pt1": "13 merged (re-research pass: QA REVIEWED 13 PASS 0 FIX 0 REJECT). Previous attempt merged only 4 real barcodes; re-research replaced all with verified UPCs.",
-    "yogurt": "20 merged (re-research pass: QA REVIEWED 16 PASS 3 FIX 3 REJECT). Previous batch was 100% rejected for fabricated sequential barcodes."
-  }
+    "yogurt": "20 merged (re-research pass: QA REVIEWED 16 PASS 3 FIX 3 REJECT). Previous batch was 100% rejected for fabricated sequential barcodes.",
+    "beverages_pt2": "27 merged (QA REVIEWED 27 PASS 2 FIX 0 REJECT). FIX: Health-Ade companyId null -> 'health-ade'; vitaminwater name 'Acai' -> 'Açai'.",
+    "chips_crackers_pt1": "16 merged, 2 rejected: 028400516464 Doritos Nacho Cheese (duplicate in products.js), 856069005131 Simple Mills (companyId null).",
+    "bread_pt1": "11 merged, 3 rejected: 075185000046 Martin's Famous Potato Rolls, 073435000044 King's Hawaiian, 851921006547 Sola — all missing companyId in companies.js."
+  },
+  "total_manual_products": 168
 }
