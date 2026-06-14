@@ -1,13 +1,16 @@
 {
-  "phase": 2,
-  "description": "Snack Bars (30), Beverages pt.1 (20), Yogurt (25), Beverages pt.2 (27), Chips & Crackers pt.1 (16), Bread pt.1 (11)",
+  "phase": 3,
+  "description": "Snack Bars (30), Beverages pt.1 (20), Yogurt (25), Beverages pt.2 (27), Chips & Crackers pt.1 (16), Bread pt.1 (11), Chips & Crackers pt.2 (19), Bread pt.2 (8), PB & Nut Butters (14)",
   "categories": {
     "snack_bars":          { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 27 },
     "beverages_pt1":       { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 13 },
     "yogurt":              { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 20 },
     "beverages_pt2":       { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 27 },
     "chips_crackers_pt1":  { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 16 },
-    "bread_pt1":           { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 11 }
+    "bread_pt1":           { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 11 },
+    "chips_crackers_pt2":  { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 19 },
+    "bread_pt2":           { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 8  },
+    "pb_nut_butters":      { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 14 }
   },
   "merge_notes": {
     "snack_bars": "27 merged, 3 rejected (bad UPC-A check digit: 018627860023 also duplicate, 416261001246, 602652220600)",
@@ -15,7 +18,10 @@
     "yogurt": "20 merged (re-research pass: QA REVIEWED 16 PASS 3 FIX 3 REJECT). Previous batch was 100% rejected for fabricated sequential barcodes.",
     "beverages_pt2": "27 merged (QA REVIEWED 27 PASS 2 FIX 0 REJECT). FIX: Health-Ade companyId null -> 'health-ade'; vitaminwater name 'Acai' -> 'Açai'.",
     "chips_crackers_pt1": "16 merged, 2 rejected: 028400516464 Doritos Nacho Cheese (duplicate in products.js), 856069005131 Simple Mills (companyId null).",
-    "bread_pt1": "11 merged, 3 rejected: 075185000046 Martin's Famous Potato Rolls, 073435000044 King's Hawaiian, 851921006547 Sola — all missing companyId in companies.js."
+    "bread_pt1": "11 merged, 3 rejected: 075185000046 Martin's Famous Potato Rolls, 073435000044 King's Hawaiian, 851921006547 Sola — all missing companyId in companies.js.",
+    "chips_crackers_pt2": "19 merged (QA REVIEWED 17 PASS 2 FIX 1 REJECT). FIX: Siete companyId pepsico->siete-family-foods; Pirate's Booty companyId b-and-g-foods->hershey. REJECT: 081878001343 Angie's BOOMCHICKAPOP (invalid UPC-A check digit).",
+    "bread_pt2": "8 merged (QA REVIEWED 8 PASS 0 FIX 1 REJECT). REJECT: 698997809166 Udi's Gluten Free Whole Grain Sandwich Bread (duplicate barcode already in products.js).",
+    "pb_nut_butters": "14 merged (QA REVIEWED 14 PASS 0 FIX 1 REJECT). REJECT: 085354700376 Wild Friends Classic Creamy PB (invalid UPC-A check digit)."
   },
-  "total_manual_products": 168
+  "total_manual_products": 209
 }
