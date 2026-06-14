@@ -47,7 +47,8 @@
           "resizeMode": "cover",
           "backgroundColor": "#1D9E75"
         }
-      ]
+      ],
+      "expo-build-properties"
     ],
     "scheme": "healthychoices",
     "extra": {
