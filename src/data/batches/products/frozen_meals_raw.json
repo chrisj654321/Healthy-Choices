@@ -1,0 +1,293 @@
+{
+  "category": "frozen_meals",
+  "researched_at": "2026-06-15",
+  "products": [
+    {
+      "barcode": "042272013883",
+      "name": "Amy's Organic Black Bean & Cheese Burrito",
+      "brand": "Amy's Kitchen",
+      "company": "Amy's Kitchen",
+      "companyId_hint": "amys-kitchen",
+      "size": "6 oz",
+      "ingredients_verbatim": "ORGANIC UNBLEACHED WHEAT FLOUR, ORGANIC BLACK BEANS, FILTERED WATER, ORGANIC RICE, ORGANIC MONTEREY JACK CHEESE (ORGANIC PASTEURIZED MILK, CULTURE, SALT, ENZYMES [WITHOUT ANIMAL ENZYMES OR RENNET]), ORGANIC DICED TOMATOES, ORGANIC ONIONS, ORGANIC BELL PEPPERS, ORGANIC HIGH OLEIC SAFFLOWER AND/OR SUNFLOWER OIL, ORGANIC TOMATO PUREE, SEA SALT, ORGANIC CORNSTARCH, ORGANIC TAPIOCA STARCH, ORGANIC SPICES, ORGANIC SWEET RICE FLOUR, ORGANIC GARLIC, ORGANIC GREEN CHILES, ORGANIC JALAPENO PEPPERS.",
+      "off_verified": true,
+      "off_product_name": "BURRITO BLACK BEAN & CHEESE",
+      "off_url": "https://world.openfoodfacts.org/product/042272013883"
+    },
+    {
+      "barcode": "042272000654",
+      "name": "Amy's Light & Lean Pasta & Veggies",
+      "brand": "Amy's Kitchen",
+      "company": "Amy's Kitchen",
+      "companyId_hint": "amys-kitchen",
+      "size": "8 oz",
+      "ingredients_verbatim": "Organic pasta (organic semolina flour, water), organic diced tomatoes, organic asparagus, organic broccoli, organic tomato puree, shallots, parmesan cheese (pasteurized part-skim milk, culture, salt, enzymes [without animal enzymes or rennet]), organic basil, extra virgin olive oil, organic garlic, sea salt.",
+      "off_verified": true,
+      "off_product_name": "Pasta & veggies",
+      "off_url": "https://world.openfoodfacts.org/product/042272000654"
+    },
+    {
+      "barcode": "042272009244",
+      "name": "Amy's Thai Pad Thai",
+      "brand": "Amy's Kitchen",
+      "company": "Amy's Kitchen",
+      "companyId_hint": "amys-kitchen",
+      "size": "9.5 oz",
+      "ingredients_verbatim": "ORGANIC RICE NOODLES (ORGANIC RICE, FILTERED WATER, ORGANIC TAPIOCA STARCH), ORGANIC BROCCOLI, ORGANIC CANE SUGAR, ORGANIC TOFU (FILTERED WATER, ORGANIC SOYBEANS, MAGNESIUM CHLORIDE), ORGANIC CARROTS, FILTERED WATER, ORGANIC GREEN ONIONS, ORGANIC TAMARI (WATER, ORGANIC SOYBEANS, SALT, ORGANIC ALCOHOL). ORGANIC BROWN RICE VINEGAR (WATER, ORGANIC BROWN RICE), ORGANIC CASHEWS, EXPELLER PRESSED HIGH OLEIC SAFFLOWER AND/OR SUNFLOWER OIL, ORGANIC RED ONIONS, PAPRIKA, TAMARIND EXTRACT, SEA SALT, ORGANIC GARLIC, ORGANIC DISTILLED VINEGAR, BLACK PEPPER",
+      "off_verified": true,
+      "off_product_name": "THAI PAD THAI",
+      "off_url": "https://world.openfoodfacts.org/product/042272009244"
+    },
+    {
+      "barcode": "013800144065",
+      "name": "Lean Cuisine Butternut Squash Ravioli",
+      "brand": "Lean Cuisine",
+      "company": "Nestle",
+      "companyId_hint": "nestle",
+      "size": "9.875 oz",
+      "ingredients_verbatim": "Vegetables and sauce: skim milk, snap peas, carrots, water, yellow carrots, peas, red peppers, butter (cream, salt), corn starch, soybean oil, sea salt, celery, onions, mushroom juice concentrate, spices, dried onions, salt. cooked ravioli: butternut squash ravioli (enriched durum wheat flour [wheat flour, niacin, iron, thiamin mononitrate, riboflavin, folic acid], water, butternut squash puree, ricotta cheese [whey, milk, distilled vinegar, salt], onions, parmesan cheese [cultured part skim milk, salt, enzymes], eggs, less than 2% of butternut squash powder, spice, garlic powder, brown sugar, corn starch, salt).",
+      "off_verified": true,
+      "off_product_name": "BUTTERNUT SQUASH RAVIOLI",
+      "off_url": "https://world.openfoodfacts.org/product/013800144065"
+    },
+    {
+      "barcode": "013800440341",
+      "name": "Lean Cuisine Chicken Tikka Masala",
+      "brand": "Lean Cuisine",
+      "company": "Nestle",
+      "companyId_hint": "nestle",
+      "size": "9.5 oz",
+      "ingredients_verbatim": "Cooked enriched long grain rice (water, rice, iron, niacin, thiamin mononitrate, folic acid), cooked white meat chicken, tomato puree (water, tomato paste), water, skim milk, carrots, peas, 2% or less of salt, butter (cream, salt), sour cream (cultured cream, skim milk), sugar, spices, soybean oil, cornstarch, oat fiber, rice starch, tapioca starch, garlic, chicken stock, natural flavors, ginger, dried onions, lemon juice concentrate, turmeric, citric acid.",
+      "off_verified": true,
+      "off_product_name": "Chicken tikka masala tender white meat chicken, sweet peas, carrots & rice in a creamy tomato, indian-style sauce",
+      "off_url": "https://world.openfoodfacts.org/product/013800440341"
+    },
+    {
+      "barcode": "072655454583",
+      "name": "Healthy Choice Simply Steamers Unwrapped Burrito Bowl",
+      "brand": "Healthy Choice",
+      "company": "Conagra Brands",
+      "companyId_hint": "conagra-brands",
+      "size": "9 oz",
+      "ingredients_verbatim": "Cooked organic brown rice (water, organic brown rice). spicy tomatillo sauce (water, tomatillo puree [organic tomatillos], onions, serrano pepper puree, olive oil, cilantro, corn starch, organic cider vinegar, chardonnay wine, garlic, salt, sugar, canola oil). vegetables (organic corn, cooked organic black beans, cooked organic pinto beans, red bell peppers, scallions).",
+      "off_verified": true,
+      "off_product_name": "Unwrapped Burrito Bowl",
+      "off_url": "https://world.openfoodfacts.org/product/072655454583"
+    },
+    {
+      "barcode": "072655001800",
+      "name": "Healthy Choice Power Bowls Chicken Feta & Farro",
+      "brand": "Healthy Choice",
+      "company": "Conagra Brands",
+      "companyId_hint": "conagra-brands",
+      "size": "9.5 oz",
+      "ingredients_verbatim": "cooked farro, water, farro, wheat, seasoned cooked chicken, chicken breast, water, olive oil, brown sugar, sea salt, natural flavorings, water, cooked chickpeas, tomatoes, chard, kale, feta cheese, pasteurized milk, salt, cheese cultures, enzymes, spinach, chardonnay wine, onions, olive oil, corn starch, distilled vinegar, serrano pepper puree, garlic puree, chicken flavor, chicken broth, salt, chicken fat, garlic, natural flavorings, salt, lemon juice concentrate, canola oil, butter, cream, salt, oregano, sugar",
+      "off_verified": true,
+      "off_product_name": "Chicken feta & farro power bowls",
+      "off_url": "https://world.openfoodfacts.org/product/072655001800"
+    },
+    {
+      "barcode": "891627002955",
+      "name": "EVOL Truffle Parmesan Mac & Cheese",
+      "brand": "EVOL",
+      "company": "Boulder Brands (Pinnacle Foods)",
+      "companyId_hint": "pinnacle-foods",
+      "size": "8 oz",
+      "ingredients_verbatim": "Tubetti pasta (water , durum semolina wheat flour), whole milk (milk (milk, vitamin d3), cheddar cheese (milk, cheese cultures, salt, enzymes), heavy cream, water, unsalted butter (cream, natural flavor), truffle oil, (sunflower oil, white truffles, white truffle aroma), panko breadcrumbs (unbleached wheat flour, sugar, yeast, salt), truffle sauce (white mushrooms, extra virgin olive oil, sunflower oil, porcini mushrooms, summer truffle breakings, salt, natural flavor, parsley, garlic, lemon juice, balck pepper), parmesan cheese (milk, cheese cultures, salt, enzymes), onions, potato flour, rice starch, sea salt, canola oil, spices, extra virgin olive oil, parsley.",
+      "off_verified": true,
+      "off_product_name": "TRUFFLE PARMESAN MAC & CHEESE",
+      "off_url": "https://world.openfoodfacts.org/product/891627002955"
+    },
+    {
+      "barcode": "857063002003",
+      "name": "Saffron Road Chicken Tikka Masala with Basmati Rice",
+      "brand": "Saffron Road",
+      "company": "American Halal Company",
+      "companyId_hint": "american-halal-company",
+      "size": "10 oz",
+      "ingredients_verbatim": "BASMATI RICE (WATER, RICE), WATER, BONELESS WHITE MEAT CHICKEN (WHITE MEAT CHICKEN, NATIVE RICE STARCH, SEA SALT, EXPELLER PRESSED SUNFLOWER OIL), ONIONS, TOMATO PASTE, LOWFAT YOGURT (WHOLE MILK, NONFAT MILK, CULTURES). CONTAINS 2% OR LESS OF: CREAM, EXPELLER PRESSED SUNFLOWER OIL, GARLIC, GINGER, SEA SALT, CUMIN, CANE SUGAR, PAPRIKA, NATIVE CORN STARCH, CORIANDER SEED, SPICES, TURMERIC, FENUGREEK LEAVES. CONTAINS: MILK.",
+      "off_verified": true,
+      "off_product_name": "Chicken Tikka Masala",
+      "off_url": "https://world.openfoodfacts.org/product/857063002003"
+    },
+    {
+      "barcode": "857063002027",
+      "name": "Saffron Road Lamb Saag with Basmati Rice",
+      "brand": "Saffron Road",
+      "company": "American Halal Company",
+      "companyId_hint": "american-halal-company",
+      "size": "10 oz",
+      "ingredients_verbatim": "Spinach sauce: spinach, diced tomatoes (tomatoes, tomato juice), water, onions, cream, tomato paste, expeller pressed sunflower oil. contains 2% or less of: garlic, ginger, sea salt, cumin, spices, paprika, lemon juice concentrate, turmeric, xanthan gum. basmati rice: water, basmati rice, expeller pressed sunflower oil, ginger, garlic. lamb: boneless lamb, lowfat yogurt (cultured lowfat milk, nonfat milk solids), water, rice starch, ginger, sea salt, garlic, spices.",
+      "off_verified": true,
+      "off_product_name": "Lamb Saag Indian Recipe",
+      "off_url": "https://world.openfoodfacts.org/product/857063002027"
+    },
+    {
+      "barcode": "013800103406",
+      "name": "Stouffer's Macaroni & Cheese",
+      "brand": "Stouffer's",
+      "company": "Nestle",
+      "companyId_hint": "nestle",
+      "size": "12 oz",
+      "ingredients_verbatim": "Cheddar cheese sauce: skim milk, water, cheddar cheese (cultured milk, salt, enzymes, annatto color), cheddar club cheese (cheddar cheese [cultured milk, salt, enzymes], water, salt, annatto color), bleached wheat flour, margarine (soybean oil, water, vegetable mono & diglycerides, salt, natural flavor, vitamin a palmitate added, vitamin d3), soybean oil, salt, potassium chloride, xanthan gum, yeast extract, lactic acid, calcium lactate. cooked pasta: water, semolina wheat flour, wheat gluten.",
+      "off_verified": true,
+      "off_product_name": "MAC & CHEESE",
+      "off_url": "https://world.openfoodfacts.org/product/013800103406"
+    },
+    {
+      "barcode": "0899764001534",
+      "name": "Tattooed Chef Cauliflower Mac & Cheese Bowl",
+      "brand": "Tattooed Chef",
+      "company": "Tattooed Chef & Food Company",
+      "companyId_hint": "tattooed-chef",
+      "size": "10 oz",
+      "ingredients_verbatim": "cauliflower, whole milk (milk, vitamin d3), cheddar cheese (pasteurized milk, cheese cultures, salt, enzymes), breadcrumbs (wheat flour, cane sugar, yeast, salt), onions, enriched wheat flour (wheat flour, niacin, reduced iron, thiamine mononitrate, riboflavin, folic acid), unsalted butter (cream [milk]), garlic powder, tapioca starch, salt, black pepper, annatto (color)",
+      "off_verified": true,
+      "off_product_name": "Cauliflower Mac & Cheese Bowl",
+      "off_url": "https://world.openfoodfacts.org/product/0899764001534"
+    },
+    {
+      "barcode": "025155057051",
+      "name": "DEVOUR White Cheddar Mac & Cheese with Bacon",
+      "brand": "DEVOUR",
+      "company": "Kraft Heinz",
+      "companyId_hint": "kraft-heinz",
+      "size": "12 oz",
+      "ingredients_verbatim": "WATER, ENRICHED MACARONI PRODUCT (SEMOLINA WHEAT FLOUR, NIACIN, FERROUS SULFATE, THIAMIN MONONITRATE, RIBOFLAVIN, FOLIC ACID), CARRAGEENAN, SAUCE (WATER, PASTEURIZED PROCESS WHITE CHEDDAR CHEESE [CHEDDAR CHEESE (CULTURED MILK, SALT, ENZYMES), WATER, SODIUM PHOSPHATE, SALT], APPLEWOOD SMOKED BACON PIECES [CURED WITH WATER, SALT, SUGAR, SODIUM PHOSPHATE, SODIUM ERYTHORBATE, SODIUM NITRITE], SOYBEAN OIL, WHEY PROTEIN CONCENTRATE, NONFAT MILK, PARMESAN CHEESE [PART-SKIM MILK, CHEESE CULTURES, SALT, ENZYMES], MODIFIED CORNSTARCH, MODIFIED CELLULOSE, SPICES, POTASSIUM CHLORIDE, SODIUM PHOSPHATE, ENZYMES)",
+      "off_verified": true,
+      "off_product_name": "WHITE CHEDDAR MAC & CHEESE WITH BACON",
+      "off_url": "https://world.openfoodfacts.org/product/025155057051"
+    },
+    {
+      "barcode": "025800022403",
+      "name": "Smart Ones Macaroni & Cheese",
+      "brand": "Smart Ones",
+      "company": "Kraft Heinz",
+      "companyId_hint": "kraft-heinz",
+      "size": "9 oz",
+      "ingredients_verbatim": "COOKED ENRICHED PASTA PRODUCT (WATER, ENRICHED PASTA PRODUCT [SEMOLINA WHEAT FLOUR, WHOLE WHEAT FLOUR, MODIFIED WHEAT STARCH, NIACIN, IRON, THIAMINE MONONITRATE, RIBOFLAVIN, FOLIC ACID]), CHEESE SAUCE (WATER, NONFAT MILK, MODIFIED FOOD STARCH, WHEY, SALT, CHEESE POWDER [WHEY, NONFAT MILK, CHEDDAR CHEESE (MILK, CHEESE CULTURES, SALT, ENZYMES), SALT, LACTIC ACID, ANNATTO COLOR])",
+      "off_verified": true,
+      "off_product_name": "Macaroni & Cheese",
+      "off_url": "https://world.openfoodfacts.org/product/025800022403"
+    },
+    {
+      "barcode": "028989101082",
+      "name": "MorningStar Farms Chik'n Nuggets",
+      "brand": "MorningStar Farms",
+      "company": "Kellogg's",
+      "companyId_hint": "kelloggs",
+      "size": "10.5 oz",
+      "ingredients_verbatim": "water, wheat flour, soy flour, vegetable oil (corn, canola and/or sunflower oil), soy protein isolate, contains 2% or less of wheat gluten, wheat starch, yellow corn flour, methylcellulose, potato starch, cornstarch, yeast extract, sugar, salt, natural flavors, dextrose, spices, onion powder, yeast, potassium chloride, glutamic acid, paprika (color), leavening (sodium acid pyrophosphate, sodium bicarbonate), garlic powder, citric acid, xanthan gum, barley malt extract",
+      "off_verified": true,
+      "off_product_name": "CHIK'N NUGGETS",
+      "off_url": "https://world.openfoodfacts.org/product/028989101082"
+    },
+    {
+      "barcode": "852629004583",
+      "name": "Beyond Burger Plant-Based Patties",
+      "brand": "Beyond Meat",
+      "company": "Beyond Meat",
+      "companyId_hint": "beyond-meat",
+      "size": "8 oz (2 patties)",
+      "ingredients_verbatim": "WATER, YELLOW PEA PROTEIN, AVOCADO OIL, NATURAL FLAVORS, BROWN RICE PROTEIN, RED LENTIL PROTEIN, 2% OR LESS OF METHYLCELLULOSE, POTATO STARCH, PEA STARCH, POTASSIUM LACTATE (TO PRESERVE FRESHNESS), FABA BEAN PROTEIN, APPLE EXTRACT, POMEGRANATE CONCENTRATE, POTASSIUM SALT, SPICE, VINEGAR, VEGETABLE JUICE COLOR (WITH BEET).",
+      "off_verified": true,
+      "off_product_name": "PLANT-BASED PATTIES",
+      "off_url": "https://world.openfoodfacts.org/product/852629004583"
+    },
+    {
+      "barcode": "816697021019",
+      "name": "Impossible Burger Plant-Based Patties",
+      "brand": "Impossible Foods",
+      "company": "Impossible Foods",
+      "companyId_hint": "impossible-foods",
+      "size": "8 oz (2 patties)",
+      "ingredients_verbatim": "water, soy protein concentrate, sunflower oil, coconut oil, 2% or less of: natural flavors, methylcellulose, cultured dextrose, food starch modified, yeast extract, dextrose, soy leghemoglobin, salt, vitamin e (tocopherols), l-tryptophan, soy protein isolate, vitamins & minerals: zinc gluconate, thiamine hydrochloride (vitamin b1), niacin, pyridoxine hydrochloride (vitamin b6), riboflavin (vitamin b2), vitamin b12. contains: soy",
+      "off_verified": true,
+      "off_product_name": "BURGER PATTIES",
+      "off_url": "https://world.openfoodfacts.org/product/816697021019"
+    },
+    {
+      "barcode": "080868000336",
+      "name": "Dr. Praeger's All American Drive-Thru Veggie Burgers",
+      "brand": "Dr. Praeger's",
+      "company": "Dr. Praeger's Sensible Foods",
+      "companyId_hint": "dr-praegers",
+      "size": "8 oz (2 patties)",
+      "ingredients_verbatim": "Hydrated pea protein (water, pea protein), avocado oil, onions, sweet potato puree, butternut squash puree, carrot puree, natural flavors, methyl cellulose, fruit juice color, oat fiber, potato starch, roasted garlic, sea salt",
+      "off_verified": true,
+      "off_product_name": "Drive-Thru Burger",
+      "off_url": "https://world.openfoodfacts.org/product/080868000336"
+    },
+    {
+      "barcode": "862871000325",
+      "name": "Caulipower Margherita Cauliflower Crust Pizza",
+      "brand": "Caulipower",
+      "company": "Caulipower LLC",
+      "companyId_hint": "caulipower",
+      "size": "10.9 oz",
+      "ingredients_verbatim": "Crust (Cauliflower, Brown Rice Flour, White Rice Flour, Water, Corn Starch, Tapioca Starch, Vegetable Oil [Contains One or More of the Following: Canola Oil, Sunflower Oil, and/or Olive Oil], Egg, Baking Powder [Sodium Acid Pyrophosphate, Sodium Bicarbonate, Corn Starch, Monocalcium Phosphate], Xanthan Gum, Sugar, Yeast, Vinegar, Salt), Sauce (Water, Tomato Paste, Seasoning Blend [Granulated Garlic, Spices, Onion], Salt, Granulated Garlic, Basil), Low Moisture Part Skim Mozzarella Cheese (Pasteurized Part Skim Milk, Cheese Cultures, Salt, Enzymes), Tomatoes, Parmesan Cheese (Pasteurized Milk, Cheese Cultures, Salt, Enzymes), Basil. Contains: Egg, Milk.",
+      "off_verified": true,
+      "off_product_name": "MARGHERITA",
+      "off_url": "https://world.openfoodfacts.org/product/862871000325"
+    },
+    {
+      "barcode": "747479300056",
+      "name": "Rao's Made For Home Chicken Parmesan with Spaghetti",
+      "brand": "Rao's Homemade",
+      "company": "Campbell Soup Company",
+      "companyId_hint": "campbell-soup",
+      "size": "8.5 oz",
+      "ingredients_verbatim": "Italian Tomatoes (Italian Tomatoes, Tomato Puree), Chicken Breast, Water, Pasta (Durum Semolina), Soybean Oil, Cracker Crumbs (Wheat Flour, Garlic Powder, Parmesan and Romano Cheese [Cow's Milk, Cultures, Salt, Enzymes], Salt, Spices, Dehydrated Parsley, Unsalted Butter [Pasteurized Cream, Natural Flavor], Natural Flavor), Mozzarella Cheese (Pasteurized Milk, Cheese Culture, Salt, Enzymes), Onion, Egg, Wheat Flour (Wheat Flour, Malted Barley Flour), Salt, Parmesan Cheese (Pasteurized Part-Skim Cow's Milk, Cheese Cultures, Salt, Enzymes), Olive Oil, Food Starch, Garlic, Spices. CONTAINS: MILK, EGG, WHEAT",
+      "off_verified": true,
+      "off_product_name": "CHICKEN PARMESAN WITH SPAGHETTI",
+      "off_url": "https://world.openfoodfacts.org/product/747479300056"
+    }
+  ],
+  "could_not_verify": [
+    {
+      "name": "Healthy Choice Power Bowl Chicken Feta & Farro (original search)",
+      "barcode_attempted": "072655003026",
+      "reason": "Duplicate search — product verified under barcode 072655001800 instead"
+    },
+    {
+      "name": "Amy's Kitchen Indian Mattar Tofu",
+      "barcode_attempted": "042272002510",
+      "reason": "OFF returned 404 not found; retailer Kroger URL suggested this barcode but OFF does not have a record for it"
+    },
+    {
+      "name": "Banza Chickpea Mac & Cheese (shelf-stable)",
+      "barcode_attempted": "857183005137",
+      "reason": "Product is a shelf-stable dry pasta kit, not a frozen meal — outside category scope"
+    },
+    {
+      "name": "Caulipower Veggie Stone-Fired Cauliflower Crust Pizza",
+      "barcode_attempted": "086287100033",
+      "reason": "OFF returned 404 not found for this UPC; Margherita variety (862871000325) included instead"
+    },
+    {
+      "name": "Good Food Made Simple Bean & Cheese Burrito",
+      "barcode_attempted": null,
+      "reason": "Could not find verified UPC barcode from retailer sources"
+    },
+    {
+      "name": "Kashi Black Bean Mango Bowl",
+      "barcode_attempted": "018627490409",
+      "reason": "OFF returned 404 not found; no verified barcode found from retailer sources"
+    },
+    {
+      "name": "Feel Good Foods Pad Thai",
+      "barcode_attempted": null,
+      "reason": "Could not find verified UPC barcode from retailer sources; Feel Good Foods makes dumplings but Pad Thai UPC not found"
+    },
+    {
+      "name": "Green Giant Veggie Bowls Sweet Potato & Black Bean",
+      "barcode_attempted": null,
+      "reason": "Could not find verified UPC barcode from retailer sources"
+    },
+    {
+      "name": "Lean Cuisine Origins Chicken Tikka Masala",
+      "barcode_attempted": null,
+      "reason": "This sub-line ('Origins') does not appear to be a current distinct product; Lean Cuisine Chicken Tikka Masala (013800440341) included instead"
+    }
+  ]
+}
