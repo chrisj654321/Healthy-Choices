@@ -1,6 +1,6 @@
 {
-  "phase": 4,
-  "description": "Snack Bars (30), Beverages pt.1 (20), Yogurt (25), Beverages pt.2 (27), Chips & Crackers pt.1 (16), Bread pt.1 (11), Chips & Crackers pt.2 (19), Bread pt.2 (8), PB & Nut Butters (14), Condiments & Sauces (24), Frozen Meals (20), Frozen Breakfast (22)",
+  "phase": 5,
+  "description": "Snack Bars (30), Beverages pt.1 (20), Yogurt (25), Beverages pt.2 (27), Chips & Crackers pt.1 (16), Bread pt.1 (11), Chips & Crackers pt.2 (19), Bread pt.2 (8), PB & Nut Butters (14), Condiments & Sauces (24), Frozen Meals (20), Frozen Breakfast (22), Deli & Lunch (20), Baby Food (15), Canned Goods (20)",
   "categories": {
     "snack_bars":          { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 27 },
     "beverages_pt1":       { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 13 },
@@ -13,7 +13,10 @@
     "pb_nut_butters":      { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 14 },
     "condiments_sauces":   { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 24 },
     "frozen_meals":        { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 20 },
-    "frozen_breakfast":    { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 22 }
+    "frozen_breakfast":    { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 22 },
+    "deli_lunch":          { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 20 },
+    "baby_food":           { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 15 },
+    "canned_goods":        { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 20 }
   },
   "merge_notes": {
     "snack_bars": "27 merged, 3 rejected (bad UPC-A check digit: 018627860023 also duplicate, 416261001246, 602652220600)",
@@ -27,7 +30,10 @@
     "pb_nut_butters": "14 merged (QA REVIEWED 14 PASS 0 FIX 1 REJECT). REJECT: 085354700376 Wild Friends Classic Creamy PB (invalid UPC-A check digit).",
     "condiments_sauces": "24 merged (QA REVIEWED 24 PASS 0 REJECT). No duplicates. 6 entries carry null companyId with _missingCompany annotation.",
     "frozen_meals": "20 merged (QA REVIEWED 20 PASS 0 REJECT). No duplicates. 5 entries carry null companyId with _missingCompany annotation.",
-    "frozen_breakfast": "22 merged (QA REVIEWED 22 PASS 0 REJECT). No duplicates. 5 entries carry null companyId with _missingCompany annotation."
+    "frozen_breakfast": "22 merged (QA REVIEWED 22 PASS 0 REJECT). No duplicates. 5 entries carry null companyId with _missingCompany annotation.",
+    "deli_lunch": "20 merged (QA REVIEWED 20 PASS 0 REJECT). No duplicates. 5 entries carry null companyId with _missingCompany annotation.",
+    "baby_food": "15 merged (QA REVIEWED 15 PASS 0 REJECT). No duplicates. 1 entry carries null companyId with _missingCompany annotation.",
+    "canned_goods": "20 merged (QA REVIEWED 20 PASS 0 REJECT). No duplicates. 8 entries carry null companyId with _missingCompany annotation."
   },
-  "total_manual_products": 275
+  "total_manual_products": 330
 }
