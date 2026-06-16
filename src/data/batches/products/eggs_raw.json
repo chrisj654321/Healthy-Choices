@@ -1,0 +1,131 @@
+{
+  "category": "eggs",
+  "researched_at": "2026-06-16",
+  "products": [
+    {
+      "barcode": "861745000010",
+      "name": "Vital Farms Pasture-Raised Large Grade A Eggs",
+      "brand": "Vital Farms",
+      "company": "Vital Farms, Inc.",
+      "companyId_hint": "vital-farms",
+      "size": "12 ct",
+      "ingredients_verbatim": "Eggs.",
+      "off_verified": true,
+      "off_product_name": "PASTURE RAISED EGGS",
+      "off_url": "https://world.openfoodfacts.org/product/861745000010"
+    },
+    {
+      "barcode": "815652002148",
+      "name": "Pete & Gerry's Organic Free-Range Eggs Large",
+      "brand": "Pete & Gerry's",
+      "company": "Pete and Gerry's Organics LLC",
+      "companyId_hint": "pete-and-gerrys",
+      "size": "12 ct",
+      "ingredients_verbatim": "Eggs.",
+      "off_verified": true,
+      "off_product_name": "ORGANIC LARGE EGGS",
+      "off_url": "https://world.openfoodfacts.org/product/815652002148"
+    },
+    {
+      "barcode": "815652004180",
+      "name": "Nellie's Free Range Large Brown Eggs",
+      "brand": "Nellie's",
+      "company": "Pete and Gerry's Organics LLC",
+      "companyId_hint": "pete-and-gerrys",
+      "size": "12 ct",
+      "ingredients_verbatim": "Large grade A fresh brown eggs.",
+      "off_verified": true,
+      "off_product_name": "Free Range Eggs",
+      "off_url": "https://world.openfoodfacts.org/product/815652004180"
+    },
+    {
+      "barcode": "715141503494",
+      "name": "Eggland's Best Classic Large White Eggs Grade A",
+      "brand": "Eggland's Best",
+      "company": "Eggland's Best, Inc.",
+      "companyId_hint": "egglands-best",
+      "size": "12 ct",
+      "ingredients_verbatim": "Eggs.",
+      "off_verified": true,
+      "off_product_name": "EGGS",
+      "off_url": "https://world.openfoodfacts.org/product/715141503494"
+    },
+    {
+      "barcode": "887422000005",
+      "name": "The Happy Egg Co. Free Range Large Brown Grade A Eggs",
+      "brand": "The Happy Egg Co.",
+      "company": "Noble Foods Ltd.",
+      "companyId_hint": "happy-egg",
+      "size": "12 ct",
+      "ingredients_verbatim": "Eggs.",
+      "off_verified": true,
+      "off_product_name": "free range",
+      "off_url": "https://world.openfoodfacts.org/product/887422000005"
+    },
+    {
+      "barcode": "093966811704",
+      "name": "Organic Valley Large Brown Free Range Organic Eggs",
+      "brand": "Organic Valley",
+      "company": "CROPP Cooperative",
+      "companyId_hint": "organic-valley",
+      "size": "12 ct",
+      "ingredients_verbatim": "Organic eggs.",
+      "off_verified": true,
+      "off_product_name": "Organic large brown eggs free range grade a",
+      "off_url": "https://world.openfoodfacts.org/product/093966811704"
+    },
+    {
+      "barcode": "742365024115",
+      "name": "Horizon Organic Large Brown Grade A Eggs",
+      "brand": "Horizon Organic",
+      "company": "Danone S.A.",
+      "companyId_hint": "danone",
+      "size": "12 ct",
+      "ingredients_verbatim": "Organic eggs.",
+      "off_verified": true,
+      "off_product_name": "Organic Large Grade A Eggs",
+      "off_url": "https://world.openfoodfacts.org/product/742365024115"
+    },
+    {
+      "barcode": "095222134527",
+      "name": "Nature's Yoke Free-Range Organic Large Brown Eggs",
+      "brand": "Nature's Yoke",
+      "company": "Westfield Egg Farm (Nature's Yoke)",
+      "companyId_hint": "natures-yoke",
+      "size": "12 ct",
+      "ingredients_verbatim": "Organic eggs.",
+      "off_verified": true,
+      "off_product_name": "Free-Range Organic Large Brown Eggs",
+      "off_url": "https://world.openfoodfacts.org/product/095222134527"
+    },
+    {
+      "barcode": "736921300188",
+      "name": "Gold Circle Farms Grade A Large Brown Eggs",
+      "brand": "Gold Circle Farms",
+      "company": "Gold Circle Farms",
+      "companyId_hint": "gold-circle-farms",
+      "size": "12 ct",
+      "ingredients_verbatim": "Large-Grade A brown eggs.",
+      "off_verified": true,
+      "off_product_name": "Brown Egg",
+      "off_url": "https://world.openfoodfacts.org/product/736921300188"
+    },
+    {
+      "barcode": "075925000107",
+      "name": "Crystal Farms Grade AA Large White Eggs",
+      "brand": "Crystal Farms",
+      "company": "Crystal Farms Refrigerated Distribution Company",
+      "companyId_hint": "crystal-farms",
+      "size": "18 ct",
+      "ingredients_verbatim": "Eggs.",
+      "off_verified": false,
+      "off_product_name": null,
+      "off_url": null,
+      "retailer_source": "allergeninside.com — UPC 075925000107 confirmed for Crystal Farms Grade AA Large Eggs; size may be 18 ct"
+    }
+  ],
+  "could_not_verify": [
+    "Gold Circle Farms DHA Omega-3 Large Eggs 12 ct — UPC 025073700350 confirmed by Foodland retailer page but returns 404 in OFF; the regular 12-ct brown egg (736921300188) was used instead",
+    "Crystal Farms Grade A Large White Eggs 12 ct — no 12-ct-specific barcode confirmed; 075925000107 is the nearest confirmed barcode but allergeninside.com notes this may be the 18-ct carton variant; Crystal Farms eggs not present in Open Food Facts database"
+  ]
+}

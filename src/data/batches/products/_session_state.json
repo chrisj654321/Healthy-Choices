@@ -1,6 +1,6 @@
 {
-  "phase": 5,
-  "description": "Snack Bars (30), Beverages pt.1 (20), Yogurt (25), Beverages pt.2 (27), Chips & Crackers pt.1 (16), Bread pt.1 (11), Chips & Crackers pt.2 (19), Bread pt.2 (8), PB & Nut Butters (14), Condiments & Sauces (24), Frozen Meals (20), Frozen Breakfast (22), Deli & Lunch (20), Baby Food (15), Canned Goods (20)",
+  "phase": 6,
+  "description": "Snack Bars (30), Beverages pt.1 (20), Yogurt (25), Beverages pt.2 (27), Chips & Crackers pt.1 (16), Bread pt.1 (11), Chips & Crackers pt.2 (19), Bread pt.2 (8), PB & Nut Butters (14), Condiments & Sauces (24), Frozen Meals (20), Frozen Breakfast (22), Deli & Lunch (20), Baby Food (15), Canned Goods (20), Pasta & Grains (18), Cheese & Dairy (19), Nuts & Trail Mix (18), Eggs (10)",
   "categories": {
     "snack_bars":          { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 27 },
     "beverages_pt1":       { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 13 },
@@ -16,7 +16,11 @@
     "frozen_breakfast":    { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 22 },
     "deli_lunch":          { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 20 },
     "baby_food":           { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 15 },
-    "canned_goods":        { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 20 }
+    "canned_goods":        { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 20 },
+    "pasta_grains":        { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 18 },
+    "cheese_dairy":        { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 19 },
+    "nuts_trail_mix":      { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 18 },
+    "eggs":                { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 10 }
   },
   "merge_notes": {
     "snack_bars": "27 merged, 3 rejected (bad UPC-A check digit: 018627860023 also duplicate, 416261001246, 602652220600)",
@@ -33,7 +37,11 @@
     "frozen_breakfast": "22 merged (QA REVIEWED 22 PASS 0 REJECT). No duplicates. 5 entries carry null companyId with _missingCompany annotation.",
     "deli_lunch": "20 merged (QA REVIEWED 20 PASS 0 REJECT). No duplicates. 5 entries carry null companyId with _missingCompany annotation.",
     "baby_food": "15 merged (QA REVIEWED 15 PASS 0 REJECT). No duplicates. 1 entry carries null companyId with _missingCompany annotation.",
-    "canned_goods": "20 merged (QA REVIEWED 20 PASS 0 REJECT). No duplicates. 8 entries carry null companyId with _missingCompany annotation."
+    "canned_goods": "20 merged (QA REVIEWED 20 PASS 0 REJECT). No duplicates. 8 entries carry null companyId with _missingCompany annotation.",
+    "pasta_grains": "18 merged (QA REVIEWED 18 PASS 0 FIX 0 REJECT). No duplicates. 4 entries carry null companyId (Tinkyada, Minute Rice, De Cecco, Explore Cuisine).",
+    "cheese_dairy": "19 merged (QA REVIEWED 19 PASS 0 FIX 0 REJECT). No duplicates. 5 entries carry null companyId (Bel Brands, Daisy, Friendship, Ornua, Crystal Farms).",
+    "nuts_trail_mix": "18 merged (QA REVIEWED 18 PASS 0 FIX 0 REJECT). No duplicates. 7 entries carry null companyId (Blue Diamond, Wonderful, Sanfilippo, Back to Nature, Second Nature, Sunsweet, Dang).",
+    "eggs": "10 merged (QA REVIEWED 8 PASS 2 FIX 0 REJECT). FIX: Nellie's and Gold Circle Farms ingredient strings normalized to ['eggs']. 6 entries carry null companyId."
   },
-  "total_manual_products": 330
+  "total_manual_products": 395
 }

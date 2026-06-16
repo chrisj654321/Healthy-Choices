@@ -1,0 +1,254 @@
+{
+  "category": "pasta_grains",
+  "researched_at": "2026-06-16",
+  "products": [
+    {
+      "barcode": "076808280081",
+      "name": "Barilla Spaghetti No.5",
+      "brand": "Barilla",
+      "company": "Barilla Group",
+      "companyId_hint": "barilla",
+      "size": "16 oz",
+      "ingredients_verbatim": "Semolina (wheat), durum wheat flour.",
+      "off_verified": true,
+      "off_product_name": "SPAGHETTI",
+      "off_url": "https://world.openfoodfacts.org/product/076808280081"
+    },
+    {
+      "barcode": "076808280739",
+      "name": "Barilla Penne Rigate",
+      "brand": "Barilla",
+      "company": "Barilla Group",
+      "companyId_hint": "barilla",
+      "size": "16 oz",
+      "ingredients_verbatim": "Semolina (wheat), durum wheat flour, vitamins/minerals (vitamin b3 (niacin), iron (ferrous sulfate), vitamin b1 (thiamine mononitrate), vitamin b2 (riboflavin), folic acid).",
+      "off_verified": true,
+      "off_product_name": "Penne",
+      "off_url": "https://world.openfoodfacts.org/product/076808280739"
+    },
+    {
+      "barcode": "076808005851",
+      "name": "Barilla Whole Grain Penne",
+      "brand": "Barilla",
+      "company": "Barilla Group",
+      "companyId_hint": "barilla",
+      "size": "16 oz",
+      "ingredients_verbatim": "Whole grain durum wheat flour.",
+      "off_verified": true,
+      "off_product_name": "Whole Grain Penne",
+      "off_url": "https://world.openfoodfacts.org/product/076808005851"
+    },
+    {
+      "barcode": "076808006278",
+      "name": "Barilla Collezione Penne",
+      "brand": "Barilla",
+      "company": "Barilla Group",
+      "companyId_hint": "barilla",
+      "size": "16 oz",
+      "ingredients_verbatim": "Semolina (wheat), durum wheat flour. vitamins/minerals: vitamin b3 (niacin), iron (ferrous sulfate), vitamin b1 (thiamine mononitrate), vitamin b2 (riboflavin), folic acid.",
+      "off_verified": true,
+      "off_product_name": "Collezione Penne",
+      "off_url": "https://world.openfoodfacts.org/product/076808006278"
+    },
+    {
+      "barcode": "857183005007",
+      "name": "Banza Chickpea Pasta Penne",
+      "brand": "Banza",
+      "company": "Banza LLC",
+      "companyId_hint": "banza",
+      "size": "8 oz",
+      "ingredients_verbatim": "Chickpeas, Pea Starch, Tapioca, Xanthan Gum.",
+      "off_verified": true,
+      "off_product_name": "Banza Penne Made From Chickpeas",
+      "off_url": "https://world.openfoodfacts.org/product/857183005007"
+    },
+    {
+      "barcode": "0815421011234",
+      "name": "Jovial Organic Brown Rice Pasta Fusilli",
+      "brand": "Jovial",
+      "company": "Jovial Foods, Inc.",
+      "companyId_hint": "jovial-foods",
+      "size": "12 oz",
+      "ingredients_verbatim": "Organic Brown Rice Flour, Water.",
+      "off_verified": true,
+      "off_product_name": "gluten free fusilli",
+      "off_url": "https://world.openfoodfacts.org/product/0815421011234"
+    },
+    {
+      "barcode": "621683921156",
+      "name": "Tinkyada Brown Rice Pasta Penne",
+      "brand": "Tinkyada",
+      "company": "Tinkyada",
+      "companyId_hint": "tinkyada",
+      "size": "16 oz",
+      "ingredients_verbatim": "Brown rice, water.",
+      "off_verified": true,
+      "off_product_name": "BROWN RICE PASTA PENNE",
+      "off_url": "https://world.openfoodfacts.org/product/621683921156"
+    },
+    {
+      "barcode": "072251000504",
+      "name": "Near East Couscous Mix Original Plain",
+      "brand": "Near East",
+      "company": "PepsiCo, Inc.",
+      "companyId_hint": "pepsico",
+      "size": "10 oz",
+      "ingredients_verbatim": "Medium grain couscous.",
+      "off_verified": true,
+      "off_product_name": "Couscous Mix Original",
+      "off_url": "https://world.openfoodfacts.org/product/072251000504"
+    },
+    {
+      "barcode": "054800423347",
+      "name": "Ben's Original Ready Rice Whole Grain Brown",
+      "brand": "Ben's Original",
+      "company": "Mars, Incorporated",
+      "companyId_hint": "mars",
+      "size": "8.8 oz",
+      "ingredients_verbatim": "Water, parboiled long grain brown rice (less than 2% canola oil that adds a trivial amount of saturated fat), and bioengineered food ingredient.",
+      "off_verified": true,
+      "off_product_name": "Ready Rice Whole Grain Brown",
+      "off_url": "https://world.openfoodfacts.org/product/054800423347"
+    },
+    {
+      "barcode": "017400118457",
+      "name": "Minute Instant Brown Rice",
+      "brand": "Minute Rice",
+      "company": "Riviana Foods Inc. (Ebro Foods)",
+      "companyId_hint": "riviana-foods",
+      "size": "14 oz",
+      "ingredients_verbatim": "Precooked parboiled brown rice.",
+      "off_verified": true,
+      "off_product_name": "BROWN RICE",
+      "off_url": "https://world.openfoodfacts.org/product/017400118457"
+    },
+    {
+      "barcode": "073416197640",
+      "name": "Lundberg Organic Long Grain Brown Rice",
+      "brand": "Lundberg",
+      "company": "Lundberg Family Farms",
+      "companyId_hint": "lundberg",
+      "size": "32 oz",
+      "ingredients_verbatim": "Organic long grain brown rice.",
+      "off_verified": true,
+      "off_product_name": "ROC Long Grain Brown Rice",
+      "off_url": "https://world.openfoodfacts.org/product/073416197640"
+    },
+    {
+      "barcode": "073416197633",
+      "name": "Lundberg Organic Short Grain Brown Rice",
+      "brand": "Lundberg",
+      "company": "Lundberg Family Farms",
+      "companyId_hint": "lundberg",
+      "size": "32 oz",
+      "ingredients_verbatim": "Regenerative Organic Certified California Short Grain Brown Rice.",
+      "off_verified": true,
+      "off_product_name": "Short Grain Brown Rice",
+      "off_url": "https://world.openfoodfacts.org/product/073416197633"
+    },
+    {
+      "barcode": "748404287947",
+      "name": "Seeds of Change Organic Quinoa & Brown Rice with Garlic",
+      "brand": "Seeds of Change",
+      "company": "Mars, Incorporated",
+      "companyId_hint": "mars",
+      "size": "8.5 oz",
+      "ingredients_verbatim": "Water, whole grain brown rice, blend of whole grain quinoa (whole grain red quinoa, whole grain black quinoa), sunflower oil, sea salt, garlic powder, dehydrated garlic, onion powder, minced garlic, parsley, black pepper.",
+      "off_verified": true,
+      "off_product_name": "Organic Quinoa & Brown Rice with Garlic",
+      "off_url": "https://world.openfoodfacts.org/product/748404287947"
+    },
+    {
+      "barcode": "039978063236",
+      "name": "Bob's Red Mill Organic Whole Grain Quinoa",
+      "brand": "Bob's Red Mill",
+      "company": "Bob's Red Mill Natural Foods, Inc.",
+      "companyId_hint": "bobs-red-mill",
+      "size": "26 oz",
+      "ingredients_verbatim": "Organic whole grain quinoa.",
+      "off_verified": true,
+      "off_product_name": "Organic Whole Grain Quinoa",
+      "off_url": "https://world.openfoodfacts.org/product/039978063236"
+    },
+    {
+      "barcode": "041331026321",
+      "name": "Goya Canilla Extra Long Grain Rice",
+      "brand": "Goya",
+      "company": "Goya Foods, Inc.",
+      "companyId_hint": "goya-foods",
+      "size": "16 oz",
+      "ingredients_verbatim": "Long grain rice enriched with iron (ferric orthophosphate), niacin, thiamine (thiamine mononitrate) and folic acid.",
+      "off_verified": true,
+      "off_product_name": "Canilla, enriched rice",
+      "off_url": "https://world.openfoodfacts.org/product/041331026321"
+    },
+    {
+      "barcode": "024094070121",
+      "name": "De Cecco Spaghetti No.12",
+      "brand": "De Cecco",
+      "company": "De Cecco S.p.A.",
+      "companyId_hint": "de-cecco",
+      "size": "16 oz",
+      "ingredients_verbatim": "Durum (wheat) semolina, niacin, ferrous lactate, thiamine mononitrate, riboflavin, folic acid.",
+      "off_verified": true,
+      "off_product_name": "Spaghetti no. 12",
+      "off_url": "https://world.openfoodfacts.org/product/024094070121"
+    },
+    {
+      "barcode": "747479100069",
+      "name": "Rao's Homemade Penne Rigate",
+      "brand": "Rao's Homemade",
+      "company": "Campbell Soup Company",
+      "companyId_hint": "campbell",
+      "size": "16 oz",
+      "ingredients_verbatim": "Durum wheat semolina.",
+      "off_verified": true,
+      "off_product_name": "Penne Rigate",
+      "off_url": "https://world.openfoodfacts.org/product/747479100069"
+    },
+    {
+      "barcode": "854183006027",
+      "name": "Explore Cuisine Organic Edamame & Mung Bean Fettuccine",
+      "brand": "Explore Cuisine",
+      "company": "Explore Cuisine",
+      "companyId_hint": "explore-cuisine",
+      "size": "8 oz",
+      "ingredients_verbatim": "Organic edamame bean flour (green soybeans), organic mung bean flour.",
+      "off_verified": true,
+      "off_product_name": "Organic Edamame & Mung Bean Fettuccine",
+      "off_url": "https://world.openfoodfacts.org/product/854183006027"
+    }
+  ],
+  "could_not_verify": [
+    {
+      "name": "Ancient Harvest Organic Corn & Quinoa Elbow Pasta",
+      "brand": "Ancient Harvest",
+      "barcode_candidate": "008912522000",
+      "reason": "UPC confirmed at Kroger and Harris Teeter but OpenFoodFacts returns 404"
+    },
+    {
+      "name": "Tolerant Organic Red Lentil Penne",
+      "brand": "Tolerant",
+      "barcode_candidate": "083718600628",
+      "reason": "UPC confirmed at Kroger, Ralphs, Pick 'n Save, Harris Teeter but OpenFoodFacts returns 404"
+    },
+    {
+      "name": "Ronzoni Smart Taste Penne Rigate",
+      "brand": "Ronzoni",
+      "barcode_candidate": "007130005004",
+      "reason": "UPC confirmed at Kroger, Fry's, Mariano's but OpenFoodFacts returns 404"
+    },
+    {
+      "name": "RightRice Original Vegetable Based Rice",
+      "brand": "RightRice",
+      "barcode_candidate": "085000003900",
+      "reason": "UPC confirmed at Kroger but OpenFoodFacts returns 404"
+    },
+    {
+      "name": "Banza Chickpea Penne (Kroger/modern SKU)",
+      "brand": "Banza",
+      "barcode_candidate": "085718300500",
+      "reason": "Current Kroger/Ralphs/Harris Teeter UPC; OpenFoodFacts returns 404 — older UPC 857183005007 (same product) is verified above"
+    }
+  ]
+}
