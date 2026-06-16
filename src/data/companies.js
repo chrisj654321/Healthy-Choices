@@ -5192,6 +5192,362 @@ export const COMPANY_DB = {
     subsidiaries: ['Fage', 'Total 0%', 'TruBlend'],
     sustainabilityScore: 66,
   },
+
+  'simple-mills': {
+    id: 'simple-mills',
+    name: 'Simple Mills, Inc.',
+    hq: 'Chicago, Illinois, USA',
+    revenue: '240M',
+    employees: '179',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'flowers-foods-acquisition-2025',
+        title: 'Acquired by Flowers Foods — Mission Alignment Concerns',
+        severity: 'low',
+        description:
+          'Simple Mills was acquired by Flowers Foods (NYSE: FLO) in January 2025 for an undisclosed sum. Flowers Foods is a conventional industrial bakery company; consumer advocates and natural-food community members raised questions about whether the brand\'s clean-label and organic sourcing commitments would be maintained under large-scale conventional ownership.',
+        source: 'Food Dive, January 2025; Flowers Foods press release, 2025',
+      },
+    ],
+    subsidiaries: [],
+    sustainabilityScore: 70,
+  },
+
+  'martins-famous': {
+    id: 'martins-famous',
+    name: "Martin's Famous Pastry Shoppe, Inc.",
+    hq: 'Chambersburg, Pennsylvania, USA',
+    revenue: '270M',
+    employees: '750',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [],
+    subsidiaries: ["Martin's Famous Potato Rolls and Bread"],
+    sustainabilityScore: 60,
+  },
+
+  'kings-hawaiian': {
+    id: 'kings-hawaiian',
+    name: "King's Hawaiian Holding Co., Inc.",
+    hq: 'Gardena, California, USA',
+    revenue: '700M',
+    employees: '3,500',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'pretzel-microbial-recall-2022',
+        title: 'Pretzel Product Recall — Microbial Contamination Risk',
+        severity: 'medium',
+        description:
+          "In August 2022, King's Hawaiian voluntarily recalled Pretzel Slider Buns, Pretzel Hamburger Buns, and Pretzel Bites after an ingredient from supplier Lyons Magnus was recalled for potential microbial contamination, including Cronobacter sakazakii and Clostridium botulinum. No illnesses were reported and no pathogens were detected in any King's Hawaiian product; the FDA terminated the recall as completed.",
+        source: 'FDA.gov, August 2022; Fox Business, 2022',
+      },
+    ],
+    subsidiaries: [],
+    sustainabilityScore: 62,
+  },
+
+  'sola': {
+    id: 'sola',
+    name: 'The Sola Company',
+    hq: 'Houston, Texas, USA',
+    revenue: null,
+    employees: '11',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [],
+    subsidiaries: ['Sola Snacks'],
+    sustainabilityScore: 55,
+  },
+
+  'bel-brands': {
+    id: 'bel-brands',
+    name: 'Bel Group (Fromageries Bel S.A.)',
+    hq: 'Suresnes, France (US HQ: Chicago, Illinois)',
+    revenue: '4.0B',
+    employees: '10,900',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'gogosqueez-mold-recall-2021',
+        title: 'GoGo squeeZ Recall — Mold Contamination',
+        severity: 'medium',
+        description:
+          "In September 2021, Materne North America (maker of GoGo squeeZ apple sauce pouches, distributed under Bel Brands' portfolio) recalled approximately 2.1 million cases of apple sauce and fruit and veggie pouches after mold was discovered in a production facility. The voluntary recall affected product distributed nationwide; no serious illnesses were confirmed but the recall was among the largest snack pouch recalls in recent memory.",
+        source: 'FDA.gov, September 2021; CBS News, 2021',
+      },
+    ],
+    subsidiaries: ['The Laughing Cow', 'Babybel', 'Boursin', 'GoGo squeeZ', 'Kiri', 'Nurishh'],
+    sustainabilityScore: 55,
+  },
+
+  'blue-diamond': {
+    id: 'blue-diamond',
+    name: 'Blue Diamond Growers (Cooperative)',
+    hq: 'Sacramento, California, USA',
+    revenue: '1.3B',
+    employees: '1,800',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'almond-salmonella-recall-2022',
+        title: 'Almond Recall — Potential Salmonella Contamination',
+        severity: 'high',
+        description:
+          'In August 2022, Blue Diamond recalled over 347,600 pounds of whole almonds due to potential Salmonella contamination. The recall affected multiple SKUs distributed across the U.S. No confirmed illnesses were reported in connection with the recall.',
+        source: 'FDA.gov, August 2022',
+      },
+      {
+        id: 'wage-labor-lawsuit-2020',
+        title: 'Worker Wage & Labor Law Class Action',
+        severity: 'medium',
+        description:
+          'In 2020, employees at Blue Diamond\'s almond processing plants filed a class action lawsuit (Barajas v. Blue Diamond Growers, E.D. Cal. 1:2020cv00679) alleging systematic underpayment, failure to pay overtime and minimum wages, and denial of meal and rest breaks under federal and California labor law. A federal judge dismissed FLSA and California wage claims in April 2022 on procedural grounds; some state claims continued.',
+        source: 'Justia, E.D. Cal., 2022; Bloomberg Law, 2022',
+      },
+    ],
+    subsidiaries: ['Blue Diamond Almonds', 'Almond Breeze'],
+    sustainabilityScore: 65,
+  },
+
+  'wonderful-company': {
+    id: 'wonderful-company',
+    name: 'The Wonderful Company LLC',
+    hq: 'Los Angeles, California, USA',
+    revenue: '4.0B',
+    employees: '10,000',
+    logo: null,
+    lobbyingSpend: 350000,
+    lobbyingTargets: ['USDA', 'Congress — Agriculture', 'State water agencies'],
+    politicalDonations: 2800000,
+    donationSplit: { republican: 38, democrat: 62 },
+    issues: [
+      {
+        id: 'water-rights-controversy',
+        title: 'Private Control of California Public Water Bank',
+        severity: 'high',
+        description:
+          "The Wonderful Company (owned by billionaires Stewart and Lynda Resnick) owns a 57% stake in the Kern Water Bank, a publicly developed groundwater storage facility transferred to private control through the 1994 Monterey Agreement. The company's 175,000 acres of California farmland use an estimated 150 billion gallons of water per year. Environmentalists and neighboring water districts have filed lawsuits seeking an environmental review of the privatization; renewed criticism intensified during the 2025 Los Angeles wildfire crisis when local water availability came under scrutiny.",
+        source: 'Water Education Foundation; The Canary, January 2025; Fresh Fruit Portal, 2025',
+      },
+      {
+        id: 'farmworker-union-busting',
+        title: 'UFW Unionization Blocked — ALRB Complaint',
+        severity: 'high',
+        description:
+          'In 2023, the United Farm Workers won representation for over 600 Wonderful workers. The California Agricultural Labor Relations Board General Counsel issued a formal complaint alleging Wonderful coerced workers to attend anti-union meetings and assisted them in signing declarations to withdraw their union vote. Wonderful simultaneously filed suit challenging the constitutionality of the 2022–2023 state laws that facilitated the unionization. A judge granted a temporary halt to the UFW\'s organizing effort in 2024.',
+        source: 'ALRB, 2023–2024; AOL News, 2024',
+      },
+      {
+        id: 'alrb-wrongful-termination-2020',
+        title: 'ALRB: Wrongful Termination of Union-Active Workers',
+        severity: 'medium',
+        description:
+          "In April 2020, an Administrative Law Judge ruled that Wonderful Orchards violated the Agricultural Labor Relations Act by terminating a crew of eight agricultural employees in retaliation for protected union activity (ALRB No. 2, 46 ALRB).",
+        source: 'ALRB Decision and Order, April 2020',
+      },
+    ],
+    subsidiaries: ['Wonderful Pistachios', 'Wonderful Halos', 'POM Wonderful', 'FIJI Water', 'Teleflora', 'JUSTIN Wines'],
+    sustainabilityScore: 38,
+  },
+
+  'starkist': {
+    id: 'starkist',
+    name: 'StarKist Co.',
+    hq: 'Reston, Virginia, USA',
+    revenue: '210M',
+    employees: '800',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'tuna-price-fixing-criminal',
+        title: 'Tuna Price-Fixing — $100M Criminal Fine',
+        severity: 'high',
+        description:
+          'StarKist pleaded guilty in 2018 to fixing prices of canned tuna with Bumble Bee Foods and Chicken of the Sea from at least November 2011 through December 2013, affecting over $600 million in tuna sales. In 2019 a federal judge sentenced StarKist to pay a $100 million criminal fine. The U.S. Supreme Court declined to hear StarKist\'s appeal of the class action certification in 2022.',
+        source: 'DOJ press release, 2019; Reuters, 2022',
+      },
+      {
+        id: 'tuna-civil-settlement-2024',
+        title: '$216M Civil Settlement — Tuna Price-Fixing',
+        severity: 'high',
+        description:
+          'In December 2024, U.S. District Judge Dana Sabraw (S.D. Cal.) approved over $216 million in combined civil settlements from StarKist, Bumble Bee, and their parent companies to resolve class action claims by direct purchasers, commercial food preparers, and individual consumers. Washington State AG separately filed suit in 2020 against StarKist and Dongwon Industries; a state court found StarKist liable for price-fixing and Consumer Protection Act violations.',
+        source: 'Courthouse News Service, December 2024; WA AG press release, 2020',
+      },
+    ],
+    subsidiaries: [],
+    sustainabilityScore: 30,
+  },
+
+  'bumble-bee': {
+    id: 'bumble-bee',
+    name: 'Bumble Bee Foods, LLC',
+    hq: 'San Diego, California, USA',
+    revenue: '177M',
+    employees: '587',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'tuna-price-fixing-guilty-plea',
+        title: 'Tuna Price-Fixing — $25M Criminal Fine & CEO Imprisoned',
+        severity: 'high',
+        description:
+          'Bumble Bee Foods pleaded guilty in 2017 to participating in a multi-year price-fixing conspiracy with StarKist and Chicken of the Sea and was fined $25 million. Former President and CEO Christopher Lischewski was convicted at trial and sentenced to 40 months in federal prison. The price-fixing scheme drove Bumble Bee into Chapter 11 bankruptcy in November 2019; Taiwanese company FCF Co., Ltd. acquired the assets for approximately $925 million in early 2020.',
+        source: 'DOJ press release, 2017; Food Dive, 2019; SeafoodSource, 2020',
+      },
+      {
+        id: 'tuna-civil-settlement-2024',
+        title: '$216M Civil Settlement — Tuna Price-Fixing',
+        severity: 'high',
+        description:
+          "Bumble Bee and its former parent company Lion Capital were part of the $216 million civil settlement approved by U.S. District Judge Dana Sabraw in December 2024, resolving class action claims from direct purchasers, commercial food preparers, and individual consumers who were overcharged for packaged tuna during the price-fixing conspiracy period of 2011–2015.",
+        source: 'Courthouse News Service, December 2024; SeafoodSource, 2024',
+      },
+    ],
+    subsidiaries: ['Bumble Bee', 'Clover Leaf', "Snow's"],
+    sustainabilityScore: 28,
+  },
+
+  'bush-brothers': {
+    id: 'bush-brothers',
+    name: 'Bush Brothers & Company',
+    hq: 'Knoxville, Tennessee, USA',
+    revenue: '400M',
+    employees: '700',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'defective-can-recall-2017',
+        title: 'Baked Beans Recall — Defective Can Seams',
+        severity: 'medium',
+        description:
+          "In 2017, Bush Brothers & Company voluntarily recalled 28-ounce cans of Original, Country Style, and Brown Sugar Hickory Baked Beans after discovering defective side seams on certain cans that could allow the integrity of the can to be compromised and permit harmful bacteria to grow. No illnesses were reported. The issue was traced to a supplier and corrected.",
+        source: 'FDA.gov, 2017; CBS News, 2017',
+      },
+    ],
+    subsidiaries: ["Bush's Best"],
+    sustainabilityScore: 62,
+  },
+
+  'kodiak-cakes': {
+    id: 'kodiak-cakes',
+    name: 'Kodiak Cakes LLC',
+    hq: 'Park City, Utah, USA',
+    revenue: '300M',
+    employees: '200',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'waffle-plastic-recall-2024',
+        title: 'Power Waffles Recall — Soft Plastic Contamination',
+        severity: 'medium',
+        description:
+          'In August 2024, Kodiak Cakes recalled its 40-count Power Waffles (Sell By January 10, 2026) distributed across 13 states after soft plastic film was found in the product. No injuries were reported, but the FDA classified the contamination as a health hazard. A second recall followed in October 2024 for potential Listeria contamination in a separate waffle product, the second recall in four weeks.',
+        source: 'FDA.gov, August 2024; ABC4 News, October 2024',
+      },
+    ],
+    subsidiaries: ['Kodiak Power Waffles', 'Kodiak Protein Pancake Mix'],
+    sustainabilityScore: 60,
+  },
+
+  'johnsonville': {
+    id: 'johnsonville',
+    name: 'Johnsonville LLC',
+    hq: 'Sheboygan Falls, Wisconsin, USA',
+    revenue: '600M',
+    employees: '3,000',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'kielbasa-rubber-recall-2024',
+        title: 'Turkey Kielbasa Recall — Rubber Contamination',
+        severity: 'medium',
+        description:
+          'In March 2024, Salm Partners LLC (a co-manufacturing partner) recalled approximately 35,430 pounds of Johnsonville Polish Kielbasa Turkey Sausage products after rubber pieces were discovered in the product. The USDA FSIS issued the recall; no injuries were confirmed.',
+        source: 'USDA FSIS, March 2024',
+      },
+      {
+        id: 'bratwurst-plastic-recall-2025',
+        title: 'Cheddar Bratwurst Recall — Hard Plastic Contamination',
+        severity: 'medium',
+        description:
+          'In April 2025, Johnsonville LLC recalled approximately 22,672 pounds of Cheddar Bratwurst produced February 5, 2025 after two consumer complaints reported hard plastic material in the product. The USDA FSIS classified the recall as Class I, meaning a reasonable probability of serious adverse health consequences. No injuries were confirmed.',
+        source: 'USDA FSIS, April 2025',
+      },
+    ],
+    subsidiaries: ['Johnsonville Sausage'],
+    sustainabilityScore: 55,
+  },
+
+  'dietz-and-watson': {
+    id: 'dietz-and-watson',
+    name: 'Dietz & Watson, Inc.',
+    hq: 'Philadelphia, Pennsylvania, USA',
+    revenue: '500M',
+    employees: '1,000',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'charcuterie-salmonella-recall-2024',
+        title: 'Co-Packer Charcuterie Salmonella Recall',
+        severity: 'medium',
+        description:
+          'In February 2024, Albertsons Companies voluntarily recalled six store-made deli items containing Dietz & Watson charcuterie meat products produced by co-packer Fratelli Beretta due to possible Salmonella contamination. Dietz & Watson stated the recall involved a supplier\'s product, not items manufactured at its own facilities. No confirmed illnesses were attributed to Dietz & Watson-made product.',
+        source: 'Albertsons Companies press release, February 2024; Schmidt Law, 2024',
+      },
+    ],
+    subsidiaries: [],
+    sustainabilityScore: 62,
+  },
+
 };
 
 /**
@@ -6451,6 +6807,36 @@ export const BRAND_TO_COMPANY = {
   "eggland's best": 'egglands-best',
   "boar's head": 'boars-head',
   'hint water': 'hint-water',
+
+  // ── Brands added 2026-06 batch ──
+  'simple mills': 'simple-mills',
+  "martin's famous": 'martins-famous',
+  "martin's potato rolls": 'martins-famous',
+  "king's hawaiian": 'kings-hawaiian',
+  'kings hawaiian': 'kings-hawaiian',
+  'sola': 'sola',
+  'sola snacks': 'sola',
+  'the laughing cow': 'bel-brands',
+  'laughing cow': 'bel-brands',
+  'babybel': 'bel-brands',
+  'boursin': 'bel-brands',
+  'gogo squeez': 'bel-brands',
+  'blue diamond': 'blue-diamond',
+  'almond breeze': 'blue-diamond',
+  'wonderful pistachios': 'wonderful-company',
+  'wonderful halos': 'wonderful-company',
+  'pom wonderful': 'wonderful-company',
+  'fiji water': 'wonderful-company',
+  'starkist': 'starkist',
+  'star-kist': 'starkist',
+  'bumble bee': 'bumble-bee',
+  "bush's": 'bush-brothers',
+  "bush's best": 'bush-brothers',
+  'kodiak cakes': 'kodiak-cakes',
+  'kodiak': 'kodiak-cakes',
+  'johnsonville': 'johnsonville',
+  'dietz & watson': 'dietz-and-watson',
+  'dietz and watson': 'dietz-and-watson',
 
   // ── Independent & Emerging Brands (added 2026-06) ──
   'food-for-life': {
