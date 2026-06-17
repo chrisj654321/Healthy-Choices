@@ -358,7 +358,7 @@ export default function ProfileScreen({ navigation }) {
 
       {/* About */}
       <View style={styles.about}>
-        <Text style={styles.aboutText}>Healthy Choices v1.0</Text>
+        <Text style={styles.aboutText}>Shelf Exposé v1.0</Text>
         <Text style={styles.aboutSub}>
           Ingredient scoring, corporate transparency, and dietary personalization.
           Your scan history and preferences stay on your device.

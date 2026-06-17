@@ -1,6 +1,101 @@
 import { INGREDIENT_DB, FLAG_LEVELS } from '../data/ingredients';
 import { CACHED_INGREDIENT_ANALYSIS, riskToFlag } from '../data/ingredientCache';
 
+// ─── Unknown ingredient classifier ───────────────────────────────────────────
+
+// Single whole-food words that are inherently natural, unprocessed ingredients.
+// Used for word-level matching inside multi-word ingredient names.
+const WHOLE_FOOD_WORDS = new Set([
+  // Fruits
+  'apple','apricot','avocado','banana','blackberry','blueberry','cherry','coconut',
+  'cranberry','date','fig','grape','grapefruit','guava','kiwi','lemon','lime',
+  'mango','melon','nectarine','orange','papaya','peach','pear','pineapple','plum',
+  'pomegranate','raspberry','raisin','strawberry','tangerine','watermelon','prune',
+  'currant','elderberry','passionfruit','persimmon','tamarind','jackfruit',
+  // Vegetables
+  'artichoke','asparagus','beet','beetroot','broccoli','cabbage','carrot',
+  'cauliflower','celery','chard','collard','corn','cucumber','eggplant','fennel',
+  'garlic','ginger','kale','leek','lettuce','mushroom','onion','parsley',
+  'parsnip','pea','pepper','potato','pumpkin','radish','shallot','spinach',
+  'squash','tomato','turnip','yam','zucchini','jalapeño','jalapeno','turmeric',
+  'arugula','bok','choy','rutabaga','watercress','endive','radicchio','chive',
+  // Grains
+  'amaranth','barley','buckwheat','cornmeal','farro','millet','oat','oats',
+  'quinoa','rice','rye','sorghum','spelt','teff','wheat','triticale',
+  // Legumes
+  'bean','chickpea','edamame','lentil','soybean','peanut','lupin',
+  // Nuts & seeds
+  'almond','cashew','chia','flaxseed','flax','hazelnut','hemp','macadamia',
+  'pecan','pistachio','sesame','sunflower','walnut','poppy','pumpkinseed',
+  // Proteins
+  'beef','bison','chicken','egg','eggs','fish','lamb','pork','salmon',
+  'sardine','shrimp','tilapia','tuna','turkey','anchovy','herring','cod',
+  // Dairy
+  'butter','cheese','cream','ghee','milk','yogurt','whey','casein','lactose',
+  'colostrum',
+  // Pantry basics
+  'cacao','carob','cocoa','coffee','honey','molasses','oil','salt','sugar',
+  'tapioca','vanilla','vinegar','water','yeast','arrowroot','cornstarch',
+  'gelatin','flour','cocoa','chocolate','caramel',
+  // Spices & herbs
+  'allspice','anise','basil','cardamom','cayenne','cilantro','cinnamon','clove',
+  'coriander','cumin','dill','lavender','marjoram','mint','mustard','nutmeg',
+  'oregano','paprika','rosemary','saffron','sage','tarragon','thyme',
+  // Oils (standalone)
+  'rapeseed','sunflowerseed','flaxseed','cottonseed','canola',
+]);
+
+// Patterns that indicate synthetic/heavily processed ingredients
+const SYNTHETIC_PATTERNS = [
+  /\bhydrogenated\b/i,
+  /\bpartially\s+hydrogenated\b/i,
+  /\binteresterified\b/i,
+  /\bmodified\b/i,
+  /\bartificial\b/i,
+  /\bbleached\b/i,
+  /\bE\s?\d{3,4}\b/i,
+  /\b(mono|di|poly)glyceride/i,
+  /\bpolyglycerol\b/i,
+  /\bpolyricinoleate\b/i,
+  /\b(ethyl|methyl|propyl|butyl)\b/i,
+  /\b(xanthan|carrageenan|maltodextrin|cellulose)\b/i,
+  /\b(sucralose|aspartame|acesulfame|saccharin|neotame|advantame)\b/i,
+  /\b(phosphate|sulfite|nitrite|benzoate|sorbate)\b/i,
+  /\b(dextrin|maltitol|sorbitol|xylitol|erythritol)\b/i,
+  /\bemulsifier/i,
+  /\bstabilizer/i,
+  /\bantioxidant\b/i,
+  /\bpreservative/i,
+  /\bcolor(ing|ant)?\b/i,
+  /\bcolou?r(ing|ant)?\b/i,
+  /\bflavou?r(ing|s)?\b/i,
+];
+
+function classifyUnknown(name) {
+  const lower = name.toLowerCase().trim();
+  const words = lower.split(/[\s\-/]+/).filter(Boolean);
+
+  // Synthetic/chemical patterns take priority
+  if (SYNTHETIC_PATTERNS.some((p) => p.test(lower))) {
+    return { flag: 'caution', risk: 3 };
+  }
+
+  // If any significant word is a recognized whole food, treat as natural
+  const hasWholeFoodWord = words.some(
+    (w) => w.length > 3 && WHOLE_FOOD_WORDS.has(w)
+  );
+  if (hasWholeFoodWord) {
+    return { flag: 'ok', risk: 0 };
+  }
+
+  // Long complex multi-word names that aren't whole foods are suspicious
+  if (words.length > 5) {
+    return { flag: 'moderate', risk: 1 };
+  }
+
+  return { flag: 'ok', risk: 0 };
+}
+
 /**
  * Returns personalised warnings and flags based on user prefs.
  * Returns { allergenHits, dietaryConflicts, goalNote }
@@ -173,15 +268,20 @@ function analyzeIngredients(ingredients) {
           penalty,
         });
       } else {
+        const { flag, risk } = classifyUnknown(raw);
+        const penalty = flag === 'ok' ? 0 : risk * 2.5;
+        totalPenalty += penalty;
+        if (flag !== 'ok') flaggedCount++;
+        if (flag === 'avoid') avoidCount++;
         items.push({
           raw,
           label: formatIngredientLabel(raw),
-          risk: 0,
+          risk,
           category: 'unknown',
           note: null,
-          flag: 'ok',
-          flagInfo: FLAG_LEVELS['ok'],
-          penalty: 0,
+          flag,
+          flagInfo: FLAG_LEVELS[flag] || FLAG_LEVELS['ok'],
+          penalty,
         });
       }
     }

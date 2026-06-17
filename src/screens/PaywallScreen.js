@@ -59,7 +59,7 @@ function headlineCopy(feature) {
     case 'history':
       return { title: 'Your complete\nscan history.',   sub: 'Full history is a Pro feature.' };
     default:
-      return { title: 'Unlock\nHealthy Choices Pro.',   sub: 'Everything you need to eat better.' };
+      return { title: 'Unlock\nShelf Exposé Pro.',   sub: 'Everything you need to eat better.' };
   }
 }
 
@@ -326,13 +326,13 @@ export default function PaywallScreen({ route, navigation }) {
           </Text>
           <View style={s.legalLinks}>
             <TouchableOpacity
-              onPress={() => WebBrowser.openBrowserAsync('https://healthychoices.app/terms')}
+              onPress={() => WebBrowser.openBrowserAsync('https://fastidious-cuchufli-a0a96a.netlify.app/terms')}
             >
               <Text style={s.legalLink}>Terms of Use</Text>
             </TouchableOpacity>
             <Text style={s.footerSep}>·</Text>
             <TouchableOpacity
-              onPress={() => WebBrowser.openBrowserAsync('https://healthychoices.app/privacy')}
+              onPress={() => WebBrowser.openBrowserAsync('https://fastidious-cuchufli-a0a96a.netlify.app/privacy')}
             >
               <Text style={s.legalLink}>Privacy Policy</Text>
             </TouchableOpacity>

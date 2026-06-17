@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Healthy Choices",
+    "name": "Shelf Exposé",
     "slug": "healthychoices",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -10,7 +10,7 @@
       "supportsTablet": false,
       "bundleIdentifier": "com.jamesadventure.healthychoices",
       "infoPlist": {
-        "NSCameraUsageDescription": "Healthy Choices uses your camera to scan product barcodes.",
+        "NSCameraUsageDescription": "Shelf Exposé uses your camera to scan product barcodes.",
         "ITSAppUsesNonExemptEncryption": false
       }
     },
@@ -31,7 +31,7 @@
       [
         "expo-camera",
         {
-          "cameraPermission": "Healthy Choices uses your camera to scan product barcodes.",
+          "cameraPermission": "Shelf Exposé uses your camera to scan product barcodes.",
           "microphonePermission": false
         }
       ],

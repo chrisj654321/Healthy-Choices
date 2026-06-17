@@ -182,8 +182,8 @@ export default function AuthScreen() {
             <LinearGradient colors={[Colors.primary, Colors.primaryDark ?? '#157A5A']} style={s.logoWrap}>
               <Ionicons name="leaf" size={34} color="#fff" />
             </LinearGradient>
-            <Text style={s.appName}>Healthy Choices</Text>
-            <Text style={s.tagline}>Scan. Know. Choose better.</Text>
+            <Text style={s.appName}>Shelf Exposé</Text>
+            <Text style={s.tagline}>The truth behind your food.</Text>
           </View>
 
           {/* ── Tab switcher ── */}
@@ -314,11 +314,11 @@ export default function AuthScreen() {
           {/* ── Legal fine print ── */}
           <Text style={s.legal}>
             By continuing you agree to our{' '}
-            <Text style={s.legalLink} onPress={() => WebBrowser.openBrowserAsync('https://healthychoices.app/terms')}>
+            <Text style={s.legalLink} onPress={() => WebBrowser.openBrowserAsync('https://fastidious-cuchufli-a0a96a.netlify.app/terms')}>
               Terms of Service
             </Text>
             {' '}and{' '}
-            <Text style={s.legalLink} onPress={() => WebBrowser.openBrowserAsync('https://healthychoices.app/privacy')}>
+            <Text style={s.legalLink} onPress={() => WebBrowser.openBrowserAsync('https://fastidious-cuchufli-a0a96a.netlify.app/privacy')}>
               Privacy Policy
             </Text>.
           </Text>

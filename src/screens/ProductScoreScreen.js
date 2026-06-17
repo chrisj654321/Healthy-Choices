@@ -46,7 +46,7 @@ const CATEGORY_META = {
   cacao:            { emoji: '🍫', label: 'Cacao & Chocolate' },
   'sugar-alcohols': { emoji: '🍭', label: 'Sugar Alcohols' },
   vitamins:         { emoji: '💊', label: 'Vitamins & Minerals' },
-  unknown:          { emoji: '❓', label: 'Unknown' },
+  unknown:          { emoji: '❓', label: 'Unrecognized Ingredients' },
 };
 
 // ── Sub-components ────────────────────────────────────────────────────────────
@@ -178,7 +178,7 @@ export default function ProductScoreScreen({ route, navigation }) {
     }
     await Share.share({
       message:
-        `${product.name} scored ${result.grade} (${result.score}/100) on Healthy Choices.\n` +
+        `${product.name} scored ${result.grade} (${result.score}/100) on Shelf Exposé.\n` +
         (result.avoidCount > 0
           ? `⚠️ ${result.avoidCount} ingredient(s) to avoid.`
           : '✅ No major red-flag ingredients!'),
@@ -211,6 +211,8 @@ export default function ProductScoreScreen({ route, navigation }) {
     return acc;
   }, {});
   const sortedCats = Object.keys(grouped).sort((a, b) => {
+    if (a === 'unknown' && b !== 'unknown') return 1;
+    if (b === 'unknown' && a !== 'unknown') return -1;
     const badA = grouped[a].filter(isBad).length;
     const badB = grouped[b].filter(isBad).length;
     if (badB !== badA) return badB - badA;
@@ -291,7 +293,7 @@ export default function ProductScoreScreen({ route, navigation }) {
             <View style={[s.sayIcon, { backgroundColor: gradeCol + '22' }]}>
               <Ionicons name="leaf" size={13} color={gradeCol} />
             </View>
-            <Text style={[s.sayTitle, { color: gradeCol }]}>HealthyChoices Says</Text>
+            <Text style={[s.sayTitle, { color: gradeCol }]}>Shelf Exposé Says</Text>
           </View>
           <Text style={s.sayText}>{explanation}</Text>
         </View>

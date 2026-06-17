@@ -219,7 +219,7 @@ export default function ScannerScreen({ navigation }) {
         <Text style={s.permTitle}>Camera Access Required</Text>
         <Text style={s.permSub}>
           {canAsk
-            ? 'Healthy Choices needs your camera to scan product barcodes and analyze ingredients.'
+            ? 'Shelf Exposé needs your camera to scan product barcodes and analyze ingredients.'
             : 'Camera access was denied. Please enable it in your device Settings to scan barcodes.'}
         </Text>
         <TouchableOpacity
@@ -261,8 +261,8 @@ export default function ScannerScreen({ navigation }) {
       >
         <View style={s.topBar}>
           <View>
-            <Text style={s.appName}>Healthy Choices</Text>
-            <Text style={s.appTagline}>Know what you eat</Text>
+            <Text style={s.appName}>Shelf Exposé</Text>
+            <Text style={s.appTagline}>The truth behind your food</Text>
           </View>
           <TouchableOpacity style={s.iconBtn} onPress={() => setTorch((t) => !t)}>
             <Ionicons
