@@ -43,5 +43,5 @@
     "nuts_trail_mix": "18 merged (QA REVIEWED 18 PASS 0 FIX 0 REJECT). No duplicates. 7 entries carry null companyId (Blue Diamond, Wonderful, Sanfilippo, Back to Nature, Second Nature, Sunsweet, Dang).",
     "eggs": "10 merged (QA REVIEWED 8 PASS 2 FIX 0 REJECT). FIX: Nellie's and Gold Circle Farms ingredient strings normalized to ['eggs']. 6 entries carry null companyId."
   },
-  "total_manual_products": 395
+  "total_manual_products": 402
 }

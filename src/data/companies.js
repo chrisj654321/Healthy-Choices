@@ -5548,6 +5548,625 @@ export const COMPANY_DB = {
     sustainabilityScore: 62,
   },
 
+  // ── Phase 8: Missing Companies (added 2026-06) ──
+
+  'daisy-brand': {
+    id: 'daisy-brand',
+    name: 'Daisy Brand LLC',
+    hq: 'Dallas, Texas, USA',
+    revenue: '280M',
+    employees: '500',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'daisy-peta-supplier-abuse-2015',
+        title: 'PETA Investigation: Supplier Cow Abuse',
+        severity: 'high',
+        description:
+          'In October 2015, PETA released undercover footage from Daisy Farms in Paris, Texas — a milk supplier to Daisy Brand — showing workers kicking, beating, and stabbing pregnant cows, and calves having horn buds burned off hours after birth. Daisy Brand responded by committing to hire a third-party animal welfare auditor. No criminal charges were filed against the company itself, but the footage received wide national media coverage.',
+        source: 'PETA press release, 2015; CBS News, Texas Standard, 2015',
+      },
+      {
+        id: 'daisy-natural-label-lawsuit-2016',
+        title: '"Natural" Label Class Action — Dismissed',
+        severity: 'low',
+        description:
+          'In 2016, plaintiff John Newton filed a class action (Newton v. Kraft Heinz Foods & Daisy Brand LLC, EDNY) alleging the word "natural" on Daisy sour cream labels was misleading because cows may have consumed GMO feed. U.S. District Judge Raymond J. Dearie dismissed the case, ruling the claims were speculative and did not meet the reasonable consumer standard. No penalty or settlement resulted.',
+        source: 'Top Class Actions; Federal Court, 2016–2017',
+      },
+    ],
+    subsidiaries: [],
+    sustainabilityScore: 45,
+  },
+
+  'friendship-dairies': {
+    id: 'friendship-dairies',
+    name: 'Friendship Dairies LLC',
+    hq: 'Wellsville, New York, USA',
+    revenue: '85M',
+    employees: '250',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'friendship-dean-foods-bankruptcy-2019',
+        title: 'Parent Chain: Dean Foods Bankruptcy',
+        severity: 'medium',
+        description:
+          'Friendship Dairies was acquired by Dean Foods in 2007 for $130 million. Dean Foods filed for Chapter 11 bankruptcy in November 2019 — the largest-ever U.S. dairy bankruptcy — driven by declining milk consumption and retailer private-label competition. Canadian dairy giant Saputo Inc. subsequently acquired the Friendship Dairies brand and Wellsville, NY plant as part of the Dean Foods asset disposition.',
+        source: 'Buffalo News; Food Dive; Reuters, 2007–2020',
+      },
+      {
+        id: 'friendship-teamsters-strike-2021',
+        title: 'Teamsters Strike Over Healthcare Cuts',
+        severity: 'medium',
+        description:
+          'In November 2021, approximately 215 workers represented by Teamsters Local 264 went on strike at the Wellsville, NY plant after Saputo Inc. proposed cutting healthcare and seniority benefits. Workers had gone without a raise through the pandemic. The strike lasted 10 days before a new three-year contract was reached; the union declared victory, with Saputo withdrawing the most contentious cuts.',
+        source: 'Wellsville Sun; Spectrum News; Buffalo News, 2021',
+      },
+    ],
+    subsidiaries: [],
+    sustainabilityScore: 48,
+  },
+
+  'ornua': {
+    id: 'ornua',
+    name: 'Ornua Co-operative Limited',
+    hq: 'Dublin, Ireland',
+    revenue: '3.6B',
+    employees: '3,000',
+    logo: null,
+    lobbyingSpend: 80000,
+    lobbyingTargets: ['USDA', 'FDA', 'US Trade Representative'],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'kerrygold-pfas-packaging-recall-2023',
+        title: 'Kerrygold PFAS Packaging Recall (NY & CA)',
+        severity: 'high',
+        description:
+          'In early 2023, Ornua Foods North America recalled Kerrygold butter products sold in New York and California after those states passed laws banning PFAS (per- and polyfluoroalkyl substances, "forever chemicals") in food packaging. Ornua\'s butter wrappers contained PFAS and were pulled from shelves while compliant packaging was sourced — confirming that "pure Irish butter" branding coexisted with PFAS-containing wrappers.',
+        source: 'Green Matters; CIMA Law Blog; Food Safety Magazine, 2023',
+      },
+      {
+        id: 'kerrygold-class-action-pfas-2023',
+        title: 'Class Action: "Pure" Butter PFAS Misrepresentation',
+        severity: 'medium',
+        description:
+          'On February 14, 2023, plaintiff Carolyn Winans filed a class action (Winans v. Ornua Foods North America Inc., EDNY) alleging Kerrygold\'s "pure Irish butter" marketing was deceptive given PFAS contamination from packaging. In April 2024, U.S. District Judge Frederic Block denied Ornua\'s motion to dismiss. The case was ultimately dismissed with prejudice in August 2024 following a joint filing; settlement terms were not disclosed.',
+        source: 'ClassAction.org; Top Class Actions; lawgaze.com, 2023–2024',
+      },
+    ],
+    subsidiaries: ['Ornua Foods North America Inc.', 'Kerrygold (brand)'],
+    sustainabilityScore: 60,
+  },
+
+  'crystal-farms': {
+    id: 'crystal-farms',
+    name: 'Crystal Farms Refrigerated Distribution Co.',
+    hq: 'Lake Mills, Wisconsin, USA',
+    revenue: '600M',
+    employees: '1,200',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'crystal-farms-post-holdings-acquisition',
+        title: 'Acquired by Post Holdings via Michael Foods ($2.45B)',
+        severity: 'low',
+        description:
+          'Crystal Farms was first acquired by Michael Foods, which Post Holdings (NYSE: POST) then purchased in 2014 for $2.45 billion, consolidating Crystal Farms under a large publicly traded holding company whose portfolio also includes Bob Evans, Weetabix, and Post Consumer Brands.',
+        source: 'Post Holdings press release; FoodServiceDirector, 2014',
+      },
+      {
+        id: 'post-holdings-pssi-child-labor-2023',
+        title: 'Contractor Child Labor at Post Holdings Facilities',
+        severity: 'high',
+        description:
+          'In 2023, the U.S. Department of Labor found that Packers Sanitation Services Inc. (PSSI) — a cleaning contractor used at multiple Post Holdings food manufacturing facilities — illegally employed at least 102 children, some as young as 13, to clean dangerous equipment on overnight shifts. PSSI was fined $1.5 million. While Crystal Farms was not identified as a specific site in the DOL findings, the enforcement action encompassed the broader Post Holdings supply chain.',
+        source: 'DOL press release; Wikipedia — Packers Sanitation Services, 2023',
+      },
+    ],
+    subsidiaries: [],
+    sustainabilityScore: 47,
+  },
+
+  'tinkyada': {
+    id: 'tinkyada',
+    name: 'Food Directions Inc. (Tinkyada)',
+    hq: 'Toronto, Ontario, Canada',
+    revenue: '20M',
+    employees: '75',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [],
+    subsidiaries: [],
+    sustainabilityScore: 70,
+  },
+
+  'riviana-foods': {
+    id: 'riviana-foods',
+    name: 'Riviana Foods Inc.',
+    hq: 'Houston, Texas, USA',
+    revenue: '530M',
+    employees: '2,750',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'riviana-ronzoni-packaging-lawsuit-2017',
+        title: 'Ronzoni Net-Weight Class Action — Dismissed',
+        severity: 'low',
+        description:
+          'In August 2016, plaintiff Cynthia Stewart sued Riviana in the Southern District of New York, alleging that Ronzoni specialty pasta boxes were deceptively sized to appear to hold 16 oz when they held 12 oz. Judge Nelson Román dismissed the case on September 11, 2017, ruling the claims failed the reasonable consumer standard because the box clearly stated the net weight.',
+        source: 'Riviana Foods press release; PRNewswire, 2017',
+      },
+      {
+        id: 'riviana-mahatma-heavy-metals-2025',
+        title: 'Mahatma Brown Rice Heavy Metals Class Action',
+        severity: 'medium',
+        description:
+          'In 2025, plaintiff Everett Scott filed a class action in California federal court alleging independent testing found Mahatma Brown Whole Grain Rice contained 317 ppb arsenic and 11.6 ppb cadmium — above FDA action levels — and that Riviana failed to disclose these heavy metals to consumers. As of mid-2026, the case is active and ongoing.',
+        source: 'ClassAction.org; Top Class Actions; Mayer Brown Insights, 2025',
+      },
+    ],
+    subsidiaries: ['Success Rice', 'Carolina Rice', 'Mahatma Rice', 'WaterMaid', 'River'],
+    sustainabilityScore: 50,
+  },
+
+  'de-cecco': {
+    id: 'de-cecco',
+    name: 'F.lli De Cecco di Filippo — Fara San Martino S.p.A.',
+    hq: 'Fara San Martino, Chieti, Italy',
+    revenue: '700M',
+    employees: '465',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'de-cecco-bucatini-fda-2020',
+        title: 'FDA Enrichment Standard — Bucatini Pulled from US Shelves',
+        severity: 'low',
+        description:
+          'In 2020, De Cecco\'s bucatini pasta was pulled from U.S. shelves following an FDA action related to the pasta\'s failure to meet the "enriched macaroni product" standard of identity, which requires minimum levels of added iron and B vitamins. No safety risk was involved. De Cecco reformulated its bucatini to meet FDA requirements and reintroduced it to the U.S. market in 2021.',
+        source: 'NPR; FDA standards of identity, 2020–2021',
+      },
+    ],
+    subsidiaries: [],
+    sustainabilityScore: 68,
+  },
+
+  'explore-cuisine': {
+    id: 'explore-cuisine',
+    name: 'Explore Cuisine Inc.',
+    hq: 'Red Bank, New Jersey, USA',
+    revenue: '4M',
+    employees: '11',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'explore-cuisine-offshore-parent',
+        title: 'Offshore Parent Incorporated in Luxembourg',
+        severity: 'low',
+        description:
+          'Ethical Food Group SARL, the parent company of Explore Cuisine, is incorporated in Luxembourg — a jurisdiction commonly used for tax efficiency by European food groups. The Canadian founders operate the brand from North America, but financial disclosures are not publicly available. No regulatory actions have been identified.',
+        source: 'Ethical Food Group website; LeadIQ company profile, 2024',
+      },
+    ],
+    subsidiaries: [],
+    sustainabilityScore: 72,
+  },
+
+  'pete-and-gerrys': {
+    id: 'pete-and-gerrys',
+    name: "Pete and Gerry's Organics LLC",
+    hq: 'Monroe, New Hampshire, USA',
+    revenue: '230M',
+    employees: '400',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'pete-gerrys-nellies-free-range-lawsuit-2019',
+        title: "Nellie's 'Free Range' Humane-Washing Lawsuit",
+        severity: 'medium',
+        description:
+          "In March 2019, PETA Foundation attorneys filed a federal lawsuit alleging that Pete and Gerry's Nellie's Free Range brand misled consumers about outdoor hen access. Eyewitness footage showed approximately 20,000 hens confined in a single crowded shed with severely limited outdoor access. The case was settled and dismissed in May 2020; Pete and Gerry's agreed to changes but did not admit wrongdoing.",
+        source: 'PETA Foundation press releases, 2019–2020; Caledonian Record, 2020',
+      },
+      {
+        id: 'pete-gerrys-listeria-recall-2020',
+        title: 'Hard-Cooked Egg Listeria Recall (Almark Foods Co-Packer)',
+        severity: 'medium',
+        description:
+          "Pete and Gerry's recalled select hard-cooked egg products as part of a broader FDA recall linked to Listeria monocytogenes contamination at Almark Foods, a co-packer. The FDA reported 19 illness cases connected to the outbreak in 2019–2020. Pete and Gerry's shell egg products were not implicated.",
+        source: 'FDA Recall Notice; Food Safety News, 2020',
+      },
+      {
+        id: 'pete-gerrys-butterfly-equity-2021',
+        title: 'Private Equity Acquisition (Butterfly Equity)',
+        severity: 'low',
+        description:
+          'In May 2021, Los Angeles-based food-sector private equity firm Butterfly Equity acquired a majority stake in Pete and Gerry\'s Organics. The founding CEO Jesse Laflamme retained a minority stake. Critics of PE ownership in the food sector raise concerns about pressure to scale at the expense of animal welfare standards.',
+        source: 'WATTPoultry; Kirkland & Ellis press release, 2021',
+      },
+    ],
+    subsidiaries: ["Nellie's Free Range Eggs", 'Farmers Hen House (acquired Jan 2025)'],
+    sustainabilityScore: 65,
+  },
+
+  'happy-egg': {
+    id: 'happy-egg',
+    name: 'The Happy Egg Co. USA',
+    hq: 'Rogers, Arkansas, USA',
+    revenue: '35M',
+    employees: '130',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'happy-egg-oca-pasture-raised-2020',
+        title: "'Pasture Raised' False Advertising Lawsuit",
+        severity: 'high',
+        description:
+          "In March 2020, the Organic Consumers Association filed a consumer-protection lawsuit alleging Happy Egg Co. falsely marketed its eggs as pasture-raised when hens had only approximately 0.5 birds per acre of outdoor access — well below the American Humane Association's 2.5 acres per 1,000 hens standard. The case was resolved in April 2021; Happy Egg clarified its eggs are certified free-range, not pasture-raised.",
+        source: 'Organic Consumers Association press releases, 2020–2021',
+      },
+      {
+        id: 'happy-egg-class-action-cramped-conditions-2022',
+        title: "Class Action: Cramped Conditions Despite 'Happy' Branding",
+        severity: 'medium',
+        description:
+          "A separate class-action complaint filed in 2022 alleged that Happy Egg Co. falsely claimed its eggs were pasture raised and that hens were raised in cramped, stressful environments lacking meaningful access to roam and forage on pasture. The case was ongoing as of mid-2022.",
+        source: 'ClassAction.org, 2022',
+      },
+    ],
+    subsidiaries: ['Egg Innovations (merged Oct 2024)', 'Blue Sky Family Farms'],
+    sustainabilityScore: 58,
+  },
+
+  'natures-yoke': {
+    id: 'natures-yoke',
+    name: "Nature's Yoke (Westfield Egg Farm Inc.)",
+    hq: 'New Holland, Pennsylvania, USA',
+    revenue: '3M',
+    employees: '18',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [],
+    subsidiaries: ['Utopihen Farms', 'Rosies Farm Fresh'],
+    sustainabilityScore: 74,
+  },
+
+  'gold-circle-farms': {
+    id: 'gold-circle-farms',
+    name: 'Gold Circle Farms (Hidden Villa Ranch)',
+    hq: 'Fullerton, California, USA',
+    revenue: '50M',
+    employees: '35',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [],
+    subsidiaries: [],
+    sustainabilityScore: 55,
+  },
+
+  'vans-foods': {
+    id: 'vans-foods',
+    name: "Van's Foods",
+    hq: 'Phoenix, Arizona, USA',
+    revenue: '150M',
+    employees: '350',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'vans-all-natural-settlement-2015',
+        title: '"All Natural" False Advertising — $9M Settlement',
+        severity: 'medium',
+        description:
+          'Van\'s International Foods (then owned by Hillshire Brands / Tyson) settled a class-action lawsuit for up to $9 million in 2015. The lawsuit alleged that products marketed as "All Natural," "Totally Natural," or "Naturally Delicious" actually contained sodium acid pyrophosphate (SAPP), a synthetic leavening agent. Van\'s agreed to revise labeling and compensate affected purchasers.',
+        source: 'Food Dive; Just-Food; Food Business News, 2015',
+      },
+      {
+        id: 'vans-gluten-recall-2018',
+        title: 'Gluten-Free Waffle Recall — Undeclared Wheat & Milk',
+        severity: 'high',
+        description:
+          'In 2018, Van\'s Foods voluntarily recalled gluten-free waffles after a production error resulted in Belgian Waffle product (containing gluten, wheat, and milk) being packaged in Van\'s Gluten Free waffle boxes, posing a risk of serious or life-threatening allergic reactions. No illnesses were reported.',
+        source: 'FDA Recall Notice (ucm606033); Fox Business, 2018',
+      },
+      {
+        id: 'vans-gluten-recall-2023',
+        title: 'Second Gluten-Free Waffle Recall — Undeclared Wheat',
+        severity: 'high',
+        description:
+          'In July 2023, Van\'s International Foods issued another voluntary recall of Van\'s Gluten Free Original Waffles after wheat-containing product was distributed in gluten-free packaging due to a labeling mix-up at the manufacturing facility. No allergic reactions were reported, but the incident raised concerns about repeated allergen-control failures.',
+        source: 'FDA Recall Notice, July 2023; MANNA FoodBank recall notice',
+      },
+    ],
+    subsidiaries: [],
+    sustainabilityScore: 44,
+  },
+
+  'good-food-made-simple': {
+    id: 'good-food-made-simple',
+    name: 'Good Food Made Simple LLC',
+    hq: 'Louisville, Colorado, USA',
+    revenue: '30M',
+    employees: '75',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [],
+    subsidiaries: [],
+    sustainabilityScore: 68,
+  },
+
+  'land-o-frost': {
+    id: 'land-o-frost',
+    name: "Land O'Frost, Inc.",
+    hq: 'Munster, Indiana, USA',
+    revenue: '868M',
+    employees: '2,500',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 206,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'lof-ham-misbranding-recall-2018',
+        title: 'Ham Product Misbranding Recall',
+        severity: 'low',
+        description:
+          'In June 2018, Land O\'Frost recalled approximately 4,944 lbs of Land O\'Frost Premium Old World Style Black Forest Ham due to misbranding — the product was shipped to retail locations in Arizona, California, Oregon, Texas, and Washington with incorrect labeling. No adverse reactions were reported.',
+        source: "USDA FSIS Recall Notification Report 054-2018",
+      },
+      {
+        id: 'lof-epa-caa-2018',
+        title: 'EPA Clean Air Act Enforcement Case',
+        severity: 'low',
+        description:
+          "The EPA's Region 4 office filed a Clean Air Act enforcement case against Land O'Frost in March 2018. The case was closed in April 2018 with payment received, suggesting a minor administrative penalty was assessed. No specific penalty amount was publicly disclosed.",
+        source: 'EPA Enforcement Records, 2018',
+      },
+    ],
+    subsidiaries: [],
+    sustainabilityScore: 55,
+  },
+
+  'beech-nut': {
+    id: 'beech-nut',
+    name: 'Beech-Nut Nutrition Company',
+    hq: 'Amsterdam, New York, USA',
+    revenue: '131M',
+    employees: '350',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'beechnut-heavy-metals-congressional-2021',
+        title: 'Congressional Report: Toxic Heavy Metals in Baby Food',
+        severity: 'high',
+        description:
+          'A February 2021 U.S. House Subcommittee report found Beech-Nut baby foods contained alarming levels of arsenic, lead, cadmium, and mercury. Internal Beech-Nut documents revealed arsenic levels in some ingredients reached 913 ppb and lead up to 886 ppb. The company was testing only raw ingredients, not finished products, and its internal arsenic threshold of 100 ppb was far above what the FDA would eventually set as an action level.',
+        source: 'U.S. House Subcommittee on Economic and Consumer Policy, February 2021; Consumer Reports, 2021',
+      },
+      {
+        id: 'beechnut-rice-cereal-recall-2021',
+        title: 'Voluntary Rice Cereal Recall — Excess Arsenic',
+        severity: 'high',
+        description:
+          'On June 8, 2021, Beech-Nut voluntarily recalled its single-grain rice cereal after FDA testing confirmed inorganic arsenic levels exceeding 100 ppb. A September 2021 congressional follow-up report noted Beech-Nut had only recalled 2 of 6 products that tested over the FDA limit. Beech-Nut subsequently discontinued its entire infant rice cereal line effective March 1, 2025, citing inability to consistently source rice flour below the FDA limit.',
+        source: 'FDA Recall Announcement, June 2021; U.S. House Subcommittee Second Report, September 2021',
+      },
+      {
+        id: 'beechnut-class-action-mdl-2021',
+        title: 'Multi-District Litigation — Heavy Metals / Neurological Harm',
+        severity: 'high',
+        description:
+          'Multiple class action lawsuits filed in 2021 and subsequent years allege Beech-Nut misled consumers by labeling products as "organic," "natural," and "real food for babies" while internally knowing products contained or risked containing toxic heavy metals linked to neurological harm including autism and ADHD. Cases were consolidated into an MDL in the Northern District of California with 400+ pending actions as of mid-2026.',
+        source: 'FDLI In re Beech-Nut Baby Food Litigation, 2025; Wisner Baum, 2026',
+      },
+    ],
+    subsidiaries: [],
+    sustainabilityScore: 30,
+  },
+
+  'cedars': {
+    id: 'cedars',
+    name: "Cedar's Mediterranean Foods, Inc.",
+    hq: 'Ward Hill, Massachusetts, USA',
+    revenue: '85M',
+    employees: '350',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'cedars-pine-nut-allergen-recall-2021',
+        title: 'Undeclared Pine Nut Allergen Recall',
+        severity: 'medium',
+        description:
+          "In 2021, Cedar's recalled its Organic Mediterranean Hommus due to mislabeling — the product was packaged in labeling intended for Cedar's Organic Everything Hommus (which does not contain pine nuts). Pine nuts are classified as a tree nut allergen. The error occurred after an employee performed an unauthorized label changeover; no injuries were reported.",
+        source: 'FDA Recall Database, 2021; The Takeout, 2021',
+      },
+      {
+        id: 'cedars-foreign-objects-recall-2024',
+        title: 'Foreign Objects Found in Hummus — Class II Recall',
+        severity: 'medium',
+        description:
+          "On October 9, 2024, Cedar's voluntarily recalled 23,136 units of Member's Mark Roasted Red Pepper Hummus (32-oz, best-by November 21 and 23, 2024) after foreign objects were discovered in the product. The FDA classified the recall as Class II. The product was distributed to 10 states: NC, TX, OH, NY, GA, MN, IN, VA, MD, and LA.",
+        source: 'FDA Recall Database, October 2024; Newsweek, 2024',
+      },
+    ],
+    subsidiaries: [],
+    sustainabilityScore: 68,
+  },
+
+  'hope-foods': {
+    id: 'hope-foods',
+    name: 'Hope Foods LLC',
+    hq: 'Louisville, Colorado, USA',
+    revenue: '20M',
+    employees: '75',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'hope-foods-savencia-acquisition-2021',
+        title: 'Acquired by French Dairy Conglomerate Savencia (2021)',
+        severity: 'low',
+        description:
+          'In October 2021, Hope Foods LLC was acquired by Savencia Fromage & Dairy, a France-based cheese and dairy conglomerate with approximately €5.2 billion in annual revenue and 21,000 employees worldwide. Terms were not disclosed. Hope Foods had been the #1 organic hummus brand in the U.S., sold in over 6,200 stores, and retains its Louisville, CO manufacturing plant under Savencia ownership.',
+        source: 'DairyReporter, October 2021; Savencia Press Release, 2021; NOSH, 2021',
+      },
+    ],
+    subsidiaries: [],
+    sustainabilityScore: 62,
+  },
+
+  'edward-and-sons': {
+    id: 'edward-and-sons',
+    name: 'Edward & Sons Trading Co., Inc.',
+    hq: 'Carpinteria, California, USA',
+    revenue: '27M',
+    employees: '33',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'edward-sons-prop65-acrylamide-2020',
+        title: 'California Prop 65 Notice — Acrylamide in Brown Rice Snaps',
+        severity: 'low',
+        description:
+          'A California Proposition 65 60-day notice was filed citing detectable acrylamide — a probable human carcinogen formed when starchy foods are cooked at high temperatures — in Edward & Sons Brown Rice Snaps. The notice was ultimately withdrawn on June 28, 2021, with no enforcement action, fine, or product recall.',
+        source: 'California Office of the Attorney General Prop 65 Database, 2020–2021',
+      },
+    ],
+    subsidiaries: ["Let's Do Organic", 'Native Forest', 'Brown Rice Snaps'],
+    sustainabilityScore: 72,
+  },
+
+  'wild-planet': {
+    id: 'wild-planet',
+    name: 'Wild Planet Foods, Inc.',
+    hq: 'McKinleyville, California, USA',
+    revenue: '60M',
+    employees: '40',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'wild-planet-underfilling-settlement-2017',
+        title: 'Underfilled Tuna Cans — $1.7M Class Action Settlement',
+        severity: 'medium',
+        description:
+          'Two class action lawsuits filed in 2015–2016 alleged Wild Planet Foods systematically underfilled its 5-oz canned tuna cans by approximately 30% below the federally mandated minimum fill weight. NOAA testing confirmed the underfilling. A $1.7 million settlement was granted final approval on November 27, 2017, covering U.S. purchasers between November 2011 and May 2017.',
+        source: 'Top Class Actions, 2017; Food Processing Magazine, 2017',
+      },
+      {
+        id: 'wild-planet-bolton-acquisition-2021',
+        title: 'Acquired by Italian Conglomerate Bolton Group',
+        severity: 'low',
+        description:
+          'On August 30, 2021, Wild Planet Foods was acquired by Bologna-based Bolton Group, a family-owned Italian consumer goods company with nearly €3.5 billion in annual revenue. Bolton also owns Rio Mare and Saupiquet tuna brands. Wild Planet retains its brand name and sustainable sourcing practices under Bolton ownership.',
+        source: 'Bolton Group Press Release, August 2021; SeafoodSource, 2021',
+      },
+    ],
+    subsidiaries: [],
+    sustainabilityScore: 78,
+  },
+
+  'crown-prince': {
+    id: 'crown-prince',
+    name: 'Crown Prince, Inc.',
+    hq: 'City of Industry, California, USA',
+    revenue: '30M',
+    employees: '28',
+    logo: null,
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'crown-prince-pfas-recall-2022',
+        title: 'PFAS Contamination — Smoked Baby Clams Recall',
+        severity: 'high',
+        description:
+          'In July 2022, Crown Prince issued a voluntary recall of all lots of Crown Prince Natural Smoked Baby Clams in Olive Oil (3-oz cans) after FDA testing detected PFAS (per- and polyfluoroalkyl substances) at levels the FDA determined were likely a health concern. The product was distributed nationally to natural food stores, grocery stores, and online retailers. No illnesses were reported.',
+        source: 'FDA Recall Alert, July 2022; SeafoodSource, 2022; Food Safety News, 2022',
+      },
+      {
+        id: 'crown-prince-pfas-import-refusal-2024',
+        title: 'FDA Refused Entry — PFAS-Contaminated Clams',
+        severity: 'high',
+        description:
+          'In late 2024, the FDA refused entry to multiple shipments of Crown Prince canned clams imported from China, finding PFOA (perfluorooctanoic acid) levels of 6.59 parts per billion — among the highest detected in FDA\'s broader clam testing program. This repeated PFAS contamination from Chinese clam suppliers led to an FDA import alert.',
+        source: 'SeafoodSource, 2024; FDA PFAS Clam Testing Results, 2024',
+      },
+    ],
+    subsidiaries: ['Crown Prince Natural', 'Ocean Prince'],
+    sustainabilityScore: 42,
+  },
+
 };
 
 /**
@@ -6837,6 +7456,48 @@ export const BRAND_TO_COMPANY = {
   'johnsonville': 'johnsonville',
   'dietz & watson': 'dietz-and-watson',
   'dietz and watson': 'dietz-and-watson',
+
+  // ── Phase 8: Missing Companies (added 2026-06) ──
+  'daisy': 'daisy-brand',
+  'daisy brand': 'daisy-brand',
+  'friendship dairies': 'friendship-dairies',
+  'friendship': 'friendship-dairies',
+  'kerrygold': 'ornua',
+  'ornua': 'ornua',
+  'crystal farms': 'crystal-farms',
+  'tinkyada': 'tinkyada',
+  'riviana': 'riviana-foods',
+  'success rice': 'riviana-foods',
+  'carolina rice': 'riviana-foods',
+  'mahatma': 'riviana-foods',
+  'de cecco': 'de-cecco',
+  'explore cuisine': 'explore-cuisine',
+  "pete and gerry's": 'pete-and-gerrys',
+  'pete and gerrys': 'pete-and-gerrys',
+  "nellie's": 'pete-and-gerrys',
+  "nellie's free range": 'pete-and-gerrys',
+  'happy egg': 'happy-egg',
+  'the happy egg': 'happy-egg',
+  "nature's yoke": 'natures-yoke',
+  'natures yoke': 'natures-yoke',
+  'gold circle farms': 'gold-circle-farms',
+  "van's": 'vans-foods',
+  "van's foods": 'vans-foods',
+  'vans foods': 'vans-foods',
+  'good food made simple': 'good-food-made-simple',
+  "land o'frost": 'land-o-frost',
+  'land o frost': 'land-o-frost',
+  'beech-nut': 'beech-nut',
+  'beechnut': 'beech-nut',
+  "cedar's": 'cedars',
+  'cedars': 'cedars',
+  'cedar\'s hummus': 'cedars',
+  'hope foods': 'hope-foods',
+  'edward & sons': 'edward-and-sons',
+  "let's do organic": 'edward-and-sons',
+  'native forest': 'edward-and-sons',
+  'wild planet': 'wild-planet',
+  'crown prince': 'crown-prince',
 
   // ── Independent & Emerging Brands (added 2026-06) ──
   'food-for-life': {
