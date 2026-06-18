@@ -16,9 +16,9 @@ import { getLobbyingRiskLevel, formatCurrency } from '../utils/scorer';
 import { getUserPrefs } from '../utils/storage';
 
 export default function CompanyProfileScreen({ route, navigation }) {
-  const { company } = route?.params ?? {};
+  const { company, initialTab } = route?.params ?? {};
   const insets = useSafeAreaInsets();
-  const [activeTab, setActiveTab] = useState('overview');
+  const [activeTab, setActiveTab] = useState(initialTab ?? 'overview');
   const [prefs, setPrefs] = useState({ showLobbying: true, showDonations: true });
 
   useEffect(() => {
@@ -95,7 +95,7 @@ export default function CompanyProfileScreen({ route, navigation }) {
 
       {/* Tabs */}
       <View style={styles.tabs}>
-        {['overview', 'lobbying', 'brands'].map((tab) => (
+        {['overview', 'issues', 'brands'].map((tab) => (
           <TouchableOpacity
             key={tab}
             style={[styles.tab, activeTab === tab && styles.tabActive]}
@@ -111,6 +111,90 @@ export default function CompanyProfileScreen({ route, navigation }) {
       <ScrollView style={styles.body} contentContainerStyle={{ padding: 20, paddingBottom: 60 }}>
         {activeTab === 'overview' && (
           <View>
+            {/* Business Financials */}
+            <SectionHeader title="Business Financials" />
+            <View style={styles.financialsCard}>
+              <View style={styles.financialsRow}>
+                <View style={styles.financialStat}>
+                  <Ionicons name="trending-up-outline" size={18} color={Colors.primary} />
+                  <Text style={styles.financialValue}>${company.revenue}</Text>
+                  <Text style={styles.financialLabel}>Annual Revenue</Text>
+                </View>
+                <View style={styles.financialDivider} />
+                <View style={styles.financialStat}>
+                  <Ionicons name="people-outline" size={18} color={Colors.primary} />
+                  <Text style={styles.financialValue}>{company.employees}</Text>
+                  <Text style={styles.financialLabel}>Employees</Text>
+                </View>
+              </View>
+              {prefs.showLobbying !== false && company.lobbyingSpend != null && (
+                <>
+                  <View style={styles.financialsDividerH} />
+                  <View style={styles.financialsRow}>
+                    <View style={styles.financialStat}>
+                      <Ionicons name="megaphone-outline" size={18} color="#E67E22" />
+                      <Text style={[styles.financialValue, { color: '#E67E22' }]}>{formatCurrency(company.lobbyingSpend)}</Text>
+                      <Text style={styles.financialLabel}>Federal Lobbying / yr</Text>
+                    </View>
+                    {prefs.showDonations !== false && company.politicalDonations != null && (
+                      <>
+                        <View style={styles.financialDivider} />
+                        <View style={styles.financialStat}>
+                          <Ionicons name="flag-outline" size={18} color="#8E44AD" />
+                          <Text style={[styles.financialValue, { color: '#8E44AD' }]}>{formatCurrency(company.politicalDonations)}</Text>
+                          <Text style={styles.financialLabel}>Political Donations</Text>
+                        </View>
+                      </>
+                    )}
+                  </View>
+                </>
+              )}
+            </View>
+
+            {/* Political donation split */}
+            {prefs.showDonations !== false && company.politicalDonations != null && (
+              <>
+                <SectionHeader title="Donation Split" subtitle={`${company.donationSplitYear ?? ''} election cycle`} />
+                <View style={styles.donationCard}>
+                  <View style={styles.donationBarWrap}>
+                    <View style={[styles.donationRed, { flex: repPct }]} />
+                    <View style={[styles.donationBlue, { flex: demPct }]} />
+                  </View>
+                  <View style={styles.donationLegend}>
+                    <View style={styles.legendItem}>
+                      <View style={[styles.legendDot, { backgroundColor: '#C0392B' }]} />
+                      <Text style={styles.legendText}>Republican {repPct}%</Text>
+                    </View>
+                    <View style={styles.legendItem}>
+                      <View style={[styles.legendDot, { backgroundColor: '#2980B9' }]} />
+                      <Text style={styles.legendText}>Democrat {demPct}%</Text>
+                    </View>
+                  </View>
+                  {company.donationSplitSource && (
+                    <Text style={styles.sourceNote}>Source: {company.donationSplitSource}</Text>
+                  )}
+                </View>
+              </>
+            )}
+
+            {/* Lobbying targets */}
+            {prefs.showLobbying !== false && company.lobbyingTargets?.length > 0 && (
+              <>
+                <SectionHeader title="Lobbying Targets" />
+                <View style={styles.targetList}>
+                  {company.lobbyingTargets.map((t, i) => (
+                    <View key={i} style={styles.targetRow}>
+                      <Ionicons name="megaphone-outline" size={14} color={Colors.primary} />
+                      <Text style={styles.targetText}>{t}</Text>
+                    </View>
+                  ))}
+                  {company.lobbyingSource && (
+                    <Text style={[styles.sourceNote, { marginTop: 6 }]}>Source: {company.lobbyingSource}</Text>
+                  )}
+                </View>
+              </>
+            )}
+
             {/* Sustainability */}
             <SectionHeader title="Sustainability Score" />
             <View style={styles.sustainCard}>
@@ -132,48 +216,10 @@ export default function CompanyProfileScreen({ route, navigation }) {
                 </Text>
               </View>
             </View>
-
-            {/* Political donations — only shown when showDonations pref is on */}
-            {prefs.showDonations !== false && (
-              <>
-                <SectionHeader title="Political Donations" subtitle={`Total: ${formatCurrency(company.politicalDonations)}`} />
-                <View style={styles.donationCard}>
-                  <View style={styles.donationBarWrap}>
-                    <View style={[styles.donationRed, { flex: repPct }]} />
-                    <View style={[styles.donationBlue, { flex: demPct }]} />
-                  </View>
-                  <View style={styles.donationLegend}>
-                    <View style={styles.legendItem}>
-                      <View style={[styles.legendDot, { backgroundColor: '#C0392B' }]} />
-                      <Text style={styles.legendText}>Republican {repPct}%</Text>
-                    </View>
-                    <View style={styles.legendItem}>
-                      <View style={[styles.legendDot, { backgroundColor: '#2980B9' }]} />
-                      <Text style={styles.legendText}>Democrat {demPct}%</Text>
-                    </View>
-                  </View>
-                </View>
-              </>
-            )}
-
-            {/* Lobbying targets — only shown when showLobbying pref is on */}
-            {prefs.showLobbying !== false && (
-              <>
-                <SectionHeader title="Lobbying Targets" />
-                <View style={styles.targetList}>
-                  {company.lobbyingTargets?.map((t, i) => (
-                    <View key={i} style={styles.targetRow}>
-                      <Ionicons name="megaphone-outline" size={14} color={Colors.primary} />
-                      <Text style={styles.targetText}>{t}</Text>
-                    </View>
-                  ))}
-                </View>
-              </>
-            )}
           </View>
         )}
 
-        {activeTab === 'lobbying' && (
+        {activeTab === 'issues' && (
           <View>
             <SectionHeader
               title="Corporate Issues & Flags"
@@ -284,6 +330,15 @@ const styles = StyleSheet.create({
   sustainTrack: { height: 8, backgroundColor: Colors.border, borderRadius: 4, overflow: 'hidden', marginBottom: 8 },
   sustainFill: { height: '100%', borderRadius: 4 },
   sustainNote: { fontSize: Font.sizes.xs, color: Colors.textMuted },
+
+  financialsCard: { backgroundColor: Colors.white, borderRadius: 14, marginBottom: 20, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.06, shadowRadius: 8, elevation: 2, overflow: 'hidden' },
+  financialsRow: { flexDirection: 'row', paddingVertical: 16, paddingHorizontal: 16 },
+  financialStat: { flex: 1, alignItems: 'center', gap: 4 },
+  financialDivider: { width: 1, backgroundColor: Colors.border, marginVertical: 8 },
+  financialsDividerH: { height: 1, backgroundColor: Colors.border, marginHorizontal: 16 },
+  financialValue: { fontSize: Font.sizes.lg, fontWeight: Font.weights.heavy, color: Colors.textPrimary, marginTop: 4 },
+  financialLabel: { fontSize: Font.sizes.xs, color: Colors.textMuted, textAlign: 'center' },
+  sourceNote: { fontSize: Font.sizes.xs, color: Colors.textMuted, fontStyle: 'italic', marginTop: 4 },
 
   donationCard: { backgroundColor: Colors.white, borderRadius: 14, padding: 16, marginBottom: 20, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.06, shadowRadius: 8, elevation: 2 },
   donationBarWrap: { flexDirection: 'row', height: 16, borderRadius: 8, overflow: 'hidden', marginBottom: 10 },

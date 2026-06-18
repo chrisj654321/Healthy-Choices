@@ -24,6 +24,9 @@ const ADVISORY_PATTERNS = [
   /allerg/i, /may contain/i, /produced from/i, /see highlighted/i,
   /warning/i, /advice/i, /for all/i, /genetically modified/i,
   /^\s*and\s/i, /^\s*or\s/i,
+  /less than \d/i,          // "Less than 2% of:"
+  /contains \d+%/i,         // "Contains 2% or less of:"
+  /^\d+%\s*(or less)?\s*of/i,
 ];
 
 export function parseIngredients(p) {
@@ -65,16 +68,26 @@ export function parseIngredients(p) {
 // ─── Parse nutriments object → normalized nutrition ───────────────────────────
 
 export function parseNutrition(n = {}) {
+  // Prefer _serving values (true per-serving) over _100g when available.
+  // OpenFoodFacts provides both; _serving is more accurate for the user.
+  const hasServing = n['proteins_serving'] != null || n['fat_serving'] != null;
+
+  const v = (keyServing, key100g, scale = 1) => {
+    const raw = hasServing && n[keyServing] != null ? n[keyServing] : (n[key100g] ?? 0);
+    return Math.round(raw * scale * 10) / 10;
+  };
+
   return {
-    fat:          Math.round((n['fat_100g']            ?? 0) * 10) / 10,
-    saturatedFat: Math.round((n['saturated-fat_100g']  ?? 0) * 10) / 10,
-    sodium:       Math.round((n['sodium_100g']          ?? 0) * 1000),
-    carbs:        Math.round((n['carbohydrates_100g']   ?? 0) * 10) / 10,
-    sugars:       Math.round((n['sugars_100g']          ?? 0) * 10) / 10,
-    protein:      Math.round((n['proteins_100g']        ?? 0) * 10) / 10,
-    fiber:        n['fiber_100g'] != null
-      ? Math.round(n['fiber_100g'] * 10) / 10
+    fat:          v('fat_serving',                   'fat_100g'),
+    saturatedFat: v('saturated-fat_serving',         'saturated-fat_100g'),
+    sodium:       v('sodium_serving',                'sodium_100g', 1000),  // g → mg
+    carbs:        v('carbohydrates_serving',         'carbohydrates_100g'),
+    sugars:       v('sugars_serving',                'sugars_100g'),
+    protein:      v('proteins_serving',              'proteins_100g'),
+    fiber:        (hasServing ? n['fiber_serving'] : n['fiber_100g']) != null
+      ? v('fiber_serving', 'fiber_100g')
       : null,
+    perServing: hasServing,
   };
 }
 

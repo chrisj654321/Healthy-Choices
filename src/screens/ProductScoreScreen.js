@@ -200,6 +200,7 @@ export default function ProductScoreScreen({ route, navigation }) {
   const explanation = generateScoreExplanation(product, result);
   const { nutrition = {} } = product;
   const company = product.companyId ? COMPANY_DB[product.companyId] : null;
+  const hasHighSeverityIssues = company?.issues?.some((i) => i.severity === 'high');
 
   const totalBad = analyzedIngredients.filter(isBad).length;
   const totalOkay = analyzedIngredients.filter(isOkay).length;
@@ -306,9 +307,14 @@ export default function ProductScoreScreen({ route, navigation }) {
               style={[s.tab, activeTab === tab && s.tabActive]}
               onPress={() => setActiveTab(tab)}
             >
-              <Text style={[s.tabLabel, activeTab === tab && s.tabLabelActive]}>
-                {tab.charAt(0).toUpperCase() + tab.slice(1)}
-              </Text>
+              <View style={s.tabInner}>
+                <Text style={[s.tabLabel, activeTab === tab && s.tabLabelActive]}>
+                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                </Text>
+                {tab === 'company' && hasHighSeverityIssues && (
+                  <View style={s.tabDot} />
+                )}
+              </View>
             </TouchableOpacity>
           ))}
         </View>
@@ -389,8 +395,8 @@ export default function ProductScoreScreen({ route, navigation }) {
               <View style={s.nutHead}>
                 <Text style={s.nutTitle}>Nutrition Facts</Text>
                 <Text style={s.nutSub}>
-                  {product.servingSize
-                    ? `Per serving: ${product.servingSize} · ${product.calories ?? '—'} kcal`
+                  {nutrition.perServing
+                    ? `Per serving${product.servingSize ? `: ${product.servingSize}` : ''} · ${product.calories ?? '—'} kcal`
                     : `Per 100g · ${product.calories ?? '—'} kcal`}
                 </Text>
               </View>
@@ -421,12 +427,35 @@ export default function ProductScoreScreen({ route, navigation }) {
 
           {/* COMPANY TAB */}
           {activeTab === 'company' && !isPro && (
-            <ProGateCard
-              icon="business-outline"
-              title="Company Transparency"
-              desc="See lobbying spend, political donations, and controversies behind every brand you scan."
-              onUpgrade={() => navigation.navigate('Paywall', { feature: 'company' })}
-            />
+            <View>
+              {company && (
+                <View style={s.coTeaserWrap}>
+                  <Text style={s.coName}>{company.name}</Text>
+                  <Text style={s.coHQ}>{company.hq}</Text>
+                  {company.issues?.length > 0 ? (
+                    <View style={s.coTeaserAlert}>
+                      <Ionicons name="alert-circle" size={14} color="#D93B3B" />
+                      <Text style={s.coTeaserAlertText}>
+                        {company.issues.filter((i) => i.severity === 'high').length > 0
+                          ? `${company.issues.filter((i) => i.severity === 'high').length} high-severity issue${company.issues.filter((i) => i.severity === 'high').length > 1 ? 's' : ''} on record — unlock to see details`
+                          : `${company.issues.length} documented issue${company.issues.length > 1 ? 's' : ''} — unlock to see details`}
+                      </Text>
+                    </View>
+                  ) : (
+                    <View style={s.coTeaserClean}>
+                      <Ionicons name="checkmark-circle" size={14} color="#1D9E75" />
+                      <Text style={s.coTeaserCleanText}>No major issues on record</Text>
+                    </View>
+                  )}
+                </View>
+              )}
+              <ProGateCard
+                icon="business-outline"
+                title="Company Transparency"
+                desc="See lobbying spend, political donations, and full issue breakdowns behind every brand you scan."
+                onUpgrade={() => navigation.navigate('Paywall', { feature: 'company' })}
+              />
+            </View>
           )}
           {activeTab === 'company' && isPro && (
             <View>
@@ -451,13 +480,18 @@ export default function ProductScoreScreen({ route, navigation }) {
                   </View>
 
                   {company.issues?.length > 0 && (
-                    <View style={s.coAlert}>
+                    <TouchableOpacity
+                      style={s.coAlert}
+                      onPress={() => navigation.navigate('CompanyProfile', { company, initialTab: 'issues' })}
+                      activeOpacity={0.75}
+                    >
                       <Ionicons name="alert-circle" size={15} color="#D93B3B" />
                       <Text style={s.coAlertText}>
                         {company.issues.filter((i) => i.severity === 'high').length} high-severity &{' '}
                         {company.issues.filter((i) => i.severity === 'medium').length} medium issues documented.
                       </Text>
-                    </View>
+                      <Ionicons name="chevron-forward" size={14} color="#D93B3B" />
+                    </TouchableOpacity>
                   )}
 
                   <TouchableOpacity
@@ -657,8 +691,10 @@ const s = StyleSheet.create({
   },
   tab: { flex: 1, alignItems: 'center', paddingVertical: 13 },
   tabActive: { borderBottomWidth: 2.5, borderBottomColor: Colors.primary },
+  tabInner: { flexDirection: 'row', alignItems: 'center', gap: 5 },
   tabLabel: { fontSize: 13, color: '#9BB5AE', fontWeight: '500' },
   tabLabelActive: { color: Colors.primary, fontWeight: '700' },
+  tabDot: { width: 7, height: 7, borderRadius: 4, backgroundColor: '#D93B3B', marginTop: -6 },
 
   // Body
   body: { paddingHorizontal: 20, paddingTop: 18, paddingBottom: 80, backgroundColor: '#fff' },
@@ -706,6 +742,24 @@ const s = StyleSheet.create({
     backgroundColor: '#FDE8E8', borderRadius: 10, padding: 12, marginTop: 8,
   },
   nutAlertText: { flex: 1, fontSize: 12, color: '#D93B3B', lineHeight: 17 },
+
+  // Company teaser (free users)
+  coTeaserWrap: {
+    backgroundColor: '#fff', borderRadius: 14, padding: 16, marginBottom: 14,
+    borderWidth: 1, borderColor: '#EDF2F0',
+  },
+  coTeaserAlert: {
+    flexDirection: 'row', alignItems: 'center', gap: 7,
+    backgroundColor: '#FDE8E8', borderRadius: 8,
+    paddingHorizontal: 10, paddingVertical: 8, marginTop: 10,
+  },
+  coTeaserAlertText: { flex: 1, fontSize: 12, color: '#D93B3B', fontWeight: '600' },
+  coTeaserClean: {
+    flexDirection: 'row', alignItems: 'center', gap: 7,
+    backgroundColor: '#E8F7F2', borderRadius: 8,
+    paddingHorizontal: 10, paddingVertical: 8, marginTop: 10,
+  },
+  coTeaserCleanText: { fontSize: 12, color: '#1D9E75', fontWeight: '600' },
 
   // Company
   coHead: { marginBottom: 16 },

@@ -157,6 +157,62 @@ export const INGREDIENT_DB = {
   'soy': { risk: 2, category: 'proteins', label: 'Soy', note: 'Common allergen; often GMO.', flag: 'allergen' },
   'fish': { risk: 2, category: 'proteins', label: 'Fish', note: 'Major allergen.', flag: 'allergen' },
   'shellfish': { risk: 2, category: 'proteins', label: 'Shellfish', note: 'Major allergen.', flag: 'allergen' },
+
+  // ─── Flavor catch-alls ───
+  'natural flavor': {
+    risk: 4, category: 'flavor-enhancers',
+    label: 'Natural Flavor',
+    note: 'Umbrella term covering up to 100 undisclosed chemicals. Manufacturers aren\'t required to disclose individual compounds.',
+    flag: 'caution',
+  },
+  'natural flavors': {
+    risk: 4, category: 'flavor-enhancers',
+    label: 'Natural Flavors',
+    note: 'Umbrella term covering up to 100 undisclosed chemicals. Manufacturers aren\'t required to disclose individual compounds.',
+    flag: 'caution',
+  },
+  'artificial flavor': {
+    risk: 5, category: 'flavor-enhancers',
+    label: 'Artificial Flavor',
+    note: 'Umbrella term covering up to 100 undisclosed chemicals. Manufacturers aren\'t required to disclose individual compounds.',
+    flag: 'caution',
+  },
+  'artificial flavors': {
+    risk: 5, category: 'flavor-enhancers',
+    label: 'Artificial Flavors',
+    note: 'Umbrella term covering up to 100 undisclosed chemicals. Manufacturers aren\'t required to disclose individual compounds.',
+    flag: 'caution',
+  },
+  'natural and artificial flavor': {
+    risk: 5, category: 'flavor-enhancers',
+    label: 'Natural & Artificial Flavor',
+    note: 'Umbrella term covering up to 100 undisclosed chemicals. Manufacturers aren\'t required to disclose individual compounds.',
+    flag: 'caution',
+  },
+  'natural and artificial flavors': {
+    risk: 5, category: 'flavor-enhancers',
+    label: 'Natural & Artificial Flavors',
+    note: 'Umbrella term covering up to 100 undisclosed chemicals. Manufacturers aren\'t required to disclose individual compounds.',
+    flag: 'caution',
+  },
+  'natural & artificial flavors': {
+    risk: 5, category: 'flavor-enhancers',
+    label: 'Natural & Artificial Flavors',
+    note: 'Umbrella term covering up to 100 undisclosed chemicals. Manufacturers aren\'t required to disclose individual compounds.',
+    flag: 'caution',
+  },
+  'artificial flavoring': {
+    risk: 5, category: 'flavor-enhancers',
+    label: 'Artificial Flavoring',
+    note: 'Umbrella term covering up to 100 undisclosed chemicals. Manufacturers aren\'t required to disclose individual compounds.',
+    flag: 'caution',
+  },
+  'natural flavoring': {
+    risk: 4, category: 'flavor-enhancers',
+    label: 'Natural Flavoring',
+    note: 'Umbrella term covering up to 100 undisclosed chemicals. Manufacturers aren\'t required to disclose individual compounds.',
+    flag: 'caution',
+  },
 };
 
 export const FLAG_LEVELS = {
