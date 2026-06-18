@@ -10,6 +10,9 @@
 let generatedRaw = null;
 try { generatedRaw = require('./products_generated.json'); } catch (_) {}
 
+let productImages = {};
+try { productImages = require('./product_images.json'); } catch (_) {}
+
 const _generated = {};
 if (generatedRaw && Array.isArray(generatedRaw.products)) {
   for (const p of generatedRaw.products) {
@@ -9742,6 +9745,13 @@ const MANUAL_PRODUCTS = {
 
 // Merge: generated data is the base, manual entries always override
 export const PRODUCT_DB = { ..._generated, ...MANUAL_PRODUCTS };
+
+// Backfill images from product_images.json for entries that have no image
+for (const [barcode, entry] of Object.entries(PRODUCT_DB)) {
+  if (entry && !entry.image && productImages[barcode]) {
+    entry.image = productImages[barcode];
+  }
+}
 
 // Demo mode: returns a random product when barcode isn't found in DB
 export const DEMO_PRODUCTS = [

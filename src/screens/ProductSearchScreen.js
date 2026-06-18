@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import {
   View,
   Text,
@@ -20,16 +20,68 @@ import { buildProductFromRaw } from '../utils/productParser';
 import { scoreProduct, scoreToGrade, gradeToColor } from '../utils/scorer';
 import { PRODUCT_DB } from '../data/products';
 
-// ─── OpenFoodFacts search endpoint ────────────────────────────────────────────
+// ─── Endpoints ────────────────────────────────────────────────────────────────
 
-const OFF_SEARCH =
+const SAL_BASE =
+  'https://search.openfoodfacts.org/search' +
+  '?page_size=24&lang=en' +
+  '&fields=code,product_name,product_name_en,brands,categories_tags,labels_tags,' +
+  'nutriments,ingredients_text,ingredients,serving_size,image_front_url,image_url' +
+  '&q=';
+
+const OFF_BASE =
   'https://world.openfoodfacts.org/cgi/search.pl' +
   '?action=process&json=1&page_size=24' +
   '&fields=code,product_name,product_name_en,brands,categories_tags,labels_tags,' +
   'nutriments,ingredients_text,ingredients,serving_size,image_front_url,image_url' +
-  '&search_simple=1&search_terms=';
+  '&search_simple=1&lc=en&tagtype_0=countries&tag_contains_0=contains&tag_0=united-states' +
+  '&search_terms=';
 
-// ─── Search local PRODUCT_DB (manual + generated) by name/brand ───────────────
+const UA = { 'User-Agent': 'HealthyChoices/1.0 (support@healthychoices.app)' };
+
+// ─── Cycling loader phrases ───────────────────────────────────────────────────
+
+const LOADER_PHRASES = [
+  'Exposé incoming…',
+  'Researching more…',
+  'Deep dive finishing…',
+  'Digging deeper…',
+  'Following the trail…',
+];
+
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+
+/** Returns true if the string is mostly ASCII/Latin (≤30% non-ASCII letters). */
+function isMostlyLatin(str) {
+  if (!str) return false;
+  const letters = str.replace(/[^a-zA-ZÀ-ɏ]/g, '');
+  if (letters.length === 0) return true; // no letters at all — let it through
+  const nonAscii = letters.replace(/[a-zA-ZÀ-ɏ]/g, (c) =>
+    c.charCodeAt(0) > 127 ? c : ''
+  ).length;
+  // count chars > 0x024F as non-Latin
+  let nonLatin = 0;
+  for (const ch of letters) {
+    if (ch.charCodeAt(0) > 0x024f) nonLatin++;
+  }
+  return nonLatin / letters.length <= 0.3;
+}
+
+/** Normalized dedupe key: lowercased brand + '|' + first 24 chars of lowercased name. */
+function dedupeKey(product) {
+  const brand = (product.brand || '').toLowerCase().trim();
+  const name  = (product.name  || '').toLowerCase().trim().slice(0, 24);
+  return `${brand}|${name}`;
+}
+
+/** True when the product has essentially no useful data. */
+function isThinData(product) {
+  const hasIngredients = product.ingredients && product.ingredients.length > 0;
+  const hasNutriments  = product.calories > 0 || product.protein > 0 || product.fat > 0;
+  return !hasIngredients && !hasNutriments;
+}
+
+// ─── Search local PRODUCT_DB ──────────────────────────────────────────────────
 
 function searchLocal(query) {
   const q = query.toLowerCase().trim();
@@ -42,18 +94,39 @@ function searchLocal(query) {
     .slice(0, 6);
 }
 
-// ─── Fetch from OpenFoodFacts ─────────────────────────────────────────────────
+// ─── Fetch from Search-a-licious (primary) with OFF legacy fallback ───────────
 
 async function fetchFromOFF(query) {
-  const url = OFF_SEARCH + encodeURIComponent(query);
-  const resp = await fetch(url, {
-    headers: { 'User-Agent': 'HealthyChoices/1.0 (support@healthychoices.app)' },
-  });
-  if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-  const data = await resp.json();
-  return (data.products || [])
-    .filter((p) => p.product_name || p.product_name_en)
-    .map((p) => buildProductFromRaw(p.code || null, p));
+  const encoded = encodeURIComponent(query);
+  let products = [];
+
+  // Primary: Search-a-licious
+  try {
+    const resp = await fetch(SAL_BASE + encoded, { headers: UA });
+    if (resp.ok) {
+      const data = await resp.json();
+      const hits = data.hits || [];
+      if (hits.length > 0) {
+        products = hits
+          .filter((p) => p.product_name || p.product_name_en)
+          .map((p) => buildProductFromRaw(p.code || null, p));
+      }
+    }
+  } catch (_) {
+    // fall through to legacy
+  }
+
+  // Fallback: legacy endpoint with US/EN filter
+  if (products.length === 0) {
+    const resp = await fetch(OFF_BASE + encoded, { headers: UA });
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const data = await resp.json();
+    products = (data.products || [])
+      .filter((p) => p.product_name || p.product_name_en)
+      .map((p) => buildProductFromRaw(p.code || null, p));
+  }
+
+  return products;
 }
 
 // ─── Screen ───────────────────────────────────────────────────────────────────
@@ -62,14 +135,29 @@ export default function ProductSearchScreen({ navigation }) {
   const insets = useSafeAreaInsets();
   const { isPro } = useProStatus();
 
-  const [query,   setQuery]   = useState('');
-  const [results, setResults] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error,   setError]   = useState(null);
-  const [searched, setSearched] = useState(false);
+  const [query,       setQuery]       = useState('');
+  const [curatedHits, setCuratedHits] = useState([]);   // local/verified products
+  const [liveHits,    setLiveHits]    = useState([]);   // web results
+  const [liveLoading, setLiveLoading] = useState(false);
+  const [error,       setError]       = useState(null);
+  const [searched,    setSearched]    = useState(false);
+
+  // Cycling phrase index for inline loader
+  const [phraseIdx, setPhraseIdx] = useState(0);
 
   const debounceTimer = useRef(null);
   const inputRef      = useRef(null);
+  // Track the current search so stale responses don't overwrite newer ones
+  const searchGen = useRef(0);
+
+  // Cycle loader text while liveLoading is true
+  useEffect(() => {
+    if (!liveLoading) return;
+    const id = setInterval(() => {
+      setPhraseIdx((i) => (i + 1) % LOADER_PHRASES.length);
+    }, 1200);
+    return () => clearInterval(id);
+  }, [liveLoading]);
 
   // Clear search when leaving screen
   useFocusEffect(
@@ -83,40 +171,69 @@ export default function ProductSearchScreen({ navigation }) {
   const runSearch = useCallback(async (text) => {
     const q = text.trim();
     if (!q) {
-      setResults([]);
+      setCuratedHits([]);
+      setLiveHits([]);
       setSearched(false);
       setError(null);
+      setLiveLoading(false);
       return;
     }
 
-    setLoading(true);
+    // Bump generation so any in-flight fetch can be discarded
+    const gen = ++searchGen.current;
+
     setError(null);
     setSearched(true);
+    setLiveLoading(true);
+    setPhraseIdx(0);
 
+    // ── 1. Show curated results IMMEDIATELY (synchronous) ──────────────────
+    const localHits = searchLocal(q);
+    if (gen !== searchGen.current) return;
+    setCuratedHits(localHits);
+    setLiveHits([]);
+
+    // Build a set of known barcodes + dedupe keys from curated hits
+    const curatedBarcodes = new Set(localHits.map((p) => p.barcode).filter(Boolean));
+    const curatedKeys     = new Set(localHits.map(dedupeKey));
+
+    // ── 2. Kick off live fetch in the background ────────────────────────────
     try {
-      // Run local + remote in parallel
-      const localHits = searchLocal(q);
-      const remoteHits = await fetchFromOFF(q);
+      const remoteRaw = await fetchFromOFF(q);
+      if (gen !== searchGen.current) return; // stale — discard
 
-      // Merge: local results first, then dedupe remote by barcode
-      const seen = new Set(localHits.map((p) => p.barcode).filter(Boolean));
-      const deduped = remoteHits.filter((p) => {
-        if (!p.barcode || seen.has(p.barcode)) return false;
-        seen.add(p.barcode);
-        return true;
-      });
+      // Filter + dedupe
+      const seenKeys = new Set(curatedKeys);
+      const filtered = [];
 
-      setResults([...localHits, ...deduped]);
+      for (const p of remoteRaw) {
+        // Drop if duplicates a curated item by barcode
+        if (p.barcode && curatedBarcodes.has(p.barcode)) continue;
+
+        // Drop if foreign name
+        const name = p.name || '';
+        if (!isMostlyLatin(name)) continue;
+
+        // Drop thin data
+        if (isThinData(p)) continue;
+
+        // Dedupe by brand|name key
+        const key = dedupeKey(p);
+        if (seenKeys.has(key)) continue;
+        seenKeys.add(key);
+
+        filtered.push(p);
+      }
+
+      setLiveHits(filtered);
     } catch (e) {
       console.warn('[Search] fetch error:', e);
-      // Fall back to local-only results on network error
-      const localHits = searchLocal(q);
-      setResults(localHits);
+      if (gen !== searchGen.current) return;
       if (localHits.length === 0) {
         setError('Could not reach the product database. Check your connection.');
       }
     } finally {
-      setLoading(false);
+      if (gen === searchGen.current) setLiveLoading(false);
     }
   }, []);
 
@@ -128,9 +245,11 @@ export default function ProductSearchScreen({ navigation }) {
 
   const handleClear = () => {
     setQuery('');
-    setResults([]);
+    setCuratedHits([]);
+    setLiveHits([]);
     setSearched(false);
     setError(null);
+    setLiveLoading(false);
     inputRef.current?.focus();
   };
 
@@ -178,6 +297,56 @@ export default function ProductSearchScreen({ navigation }) {
 
   // ── Main search UI ───────────────────────────────────────────────────────────
 
+  const hasResults     = curatedHits.length > 0 || liveHits.length > 0;
+  const showLiveTier   = liveHits.length > 0 || liveLoading;
+  const noResults      = searched && !hasResults && !liveLoading;
+
+  // Build a flat typed array for FlatList so we can insert divider + loader rows
+  const listData = [];
+
+  // Curated section
+  for (const p of curatedHits) {
+    listData.push({ type: 'item', product: p, id: p.barcode || `curated-${p.name}` });
+  }
+
+  // Divider + live section
+  if (showLiveTier) {
+    listData.push({ type: 'divider', id: '__divider__' });
+    for (const p of liveHits) {
+      listData.push({ type: 'item', product: p, id: p.barcode || `live-${p.name}` });
+    }
+    if (liveLoading) {
+      listData.push({ type: 'loader', id: '__loader__' });
+    }
+  }
+
+  const renderRow = ({ item }) => {
+    if (item.type === 'divider') {
+      return (
+        <View style={styles.dividerRow}>
+          <View style={styles.dividerLine} />
+          <Text style={styles.dividerLabel}>More results from the web</Text>
+          <View style={styles.dividerLine} />
+        </View>
+      );
+    }
+    if (item.type === 'loader') {
+      return (
+        <View style={styles.inlineLoader}>
+          <ActivityIndicator size="small" color={Colors.primary} />
+          <Text style={styles.inlineLoaderText}>{LOADER_PHRASES[phraseIdx]}</Text>
+        </View>
+      );
+    }
+    // type === 'item'
+    return (
+      <ResultCard
+        product={item.product}
+        onPress={() => handleSelect(item.product)}
+      />
+    );
+  };
+
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
       {/* Header */}
@@ -208,15 +377,8 @@ export default function ProductSearchScreen({ navigation }) {
         )}
       </View>
 
-      {/* States */}
-      {loading && (
-        <View style={styles.centerState}>
-          <ActivityIndicator size="large" color={Colors.primary} />
-          <Text style={styles.loadingText}>Searching…</Text>
-        </View>
-      )}
-
-      {!loading && error && (
+      {/* Error state */}
+      {!hasResults && !liveLoading && error && (
         <View style={styles.centerState}>
           <Ionicons name="wifi-outline" size={44} color={Colors.textMuted} />
           <Text style={styles.errorText}>{error}</Text>
@@ -226,7 +388,8 @@ export default function ProductSearchScreen({ navigation }) {
         </View>
       )}
 
-      {!loading && !error && searched && results.length === 0 && (
+      {/* Empty state */}
+      {noResults && !error && (
         <View style={styles.centerState}>
           <Ionicons name="cube-outline" size={44} color={Colors.textMuted} />
           <Text style={styles.emptyTitle}>No results for "{query}"</Text>
@@ -234,7 +397,8 @@ export default function ProductSearchScreen({ navigation }) {
         </View>
       )}
 
-      {!loading && !searched && (
+      {/* Hint state */}
+      {!searched && (
         <View style={styles.centerState}>
           <Ionicons name="search-outline" size={44} color={Colors.primaryLight} />
           <Text style={styles.hintTitle}>Find any food product</Text>
@@ -244,15 +408,21 @@ export default function ProductSearchScreen({ navigation }) {
         </View>
       )}
 
-      {/* Results list */}
-      {!loading && results.length > 0 && (
+      {/* Results list — shown as soon as there's anything to show OR while live is loading */}
+      {(hasResults || (searched && liveLoading)) && (
         <FlatList
-          data={results}
-          keyExtractor={(item, i) => item.barcode || String(i)}
+          data={listData}
+          keyExtractor={(item) => item.id}
           contentContainerStyle={styles.listContent}
           keyboardDismissMode="on-drag"
-          renderItem={({ item }) => <ResultCard product={item} onPress={() => handleSelect(item)} />}
-          ItemSeparatorComponent={() => <View style={styles.separator} />}
+          renderItem={renderRow}
+          ItemSeparatorComponent={({ leadingItem }) => {
+            // Don't put a separator before/after divider or loader rows
+            if (leadingItem && (leadingItem.type === 'divider' || leadingItem.type === 'loader')) {
+              return null;
+            }
+            return <View style={styles.separator} />;
+          }}
         />
       )}
     </View>
@@ -263,12 +433,18 @@ export default function ProductSearchScreen({ navigation }) {
 
 function ResultCard({ product, onPress }) {
   const result = scoreProduct(product);
-  const grade  = result.grade;
-  const color  = gradeToColor(grade);
+
+  // Contract A: support displayGrade + insufficientData if scorer provides it
+  const displayGrade = result.displayGrade ?? result.grade;
+  const color        = gradeToColor(displayGrade);
+  const isInsufficient = result.insufficientData ?? false;
 
   const categoryLabel = product.category
     ? product.category.replace(/\ben:/g, '').replace(/-/g, ' ')
     : null;
+
+  // Branded tile fallback: show first letter of brand when no image
+  const hasBrand = product.brand && product.brand !== 'Unknown Brand';
 
   return (
     <TouchableOpacity style={styles.resultCard} onPress={onPress} activeOpacity={0.75}>
@@ -276,6 +452,12 @@ function ResultCard({ product, onPress }) {
       <View style={styles.thumbWrap}>
         {product.image ? (
           <Image source={{ uri: product.image }} style={styles.thumb} resizeMode="contain" />
+        ) : hasBrand ? (
+          <View style={styles.thumbBrandTile}>
+            <Text style={styles.thumbBrandLetter}>
+              {product.brand.charAt(0).toUpperCase()}
+            </Text>
+          </View>
         ) : (
           <View style={styles.thumbFallback}>
             <Ionicons name="cube-outline" size={26} color={Colors.textMuted} />
@@ -296,7 +478,7 @@ function ResultCard({ product, onPress }) {
 
       {/* Grade badge */}
       <View style={[styles.gradeBadge, { borderColor: color }]}>
-        <Text style={[styles.gradeText, { color }]}>{grade}</Text>
+        <Text style={[styles.gradeText, { color }]}>{displayGrade}</Text>
       </View>
 
       <Ionicons name="chevron-forward" size={16} color={Colors.textMuted} style={{ marginLeft: 4 }} />
@@ -342,7 +524,6 @@ const styles = StyleSheet.create({
     flex: 1, alignItems: 'center', justifyContent: 'center',
     paddingHorizontal: 40, gap: 12,
   },
-  loadingText: { fontSize: Font.sizes.sm, color: Colors.textSecondary, marginTop: 4 },
   errorText:   { fontSize: Font.sizes.base, color: Colors.textSecondary, textAlign: 'center' },
   retryBtn:    { marginTop: 8, paddingHorizontal: 24, paddingVertical: 10, backgroundColor: Colors.primary, borderRadius: 10 },
   retryText:   { color: Colors.white, fontWeight: Font.weights.semibold },
@@ -361,9 +542,17 @@ const styles = StyleSheet.create({
     shadowColor: '#000', shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.05, shadowRadius: 4, elevation: 1,
   },
-  thumbWrap:    { width: 52, height: 52, borderRadius: 10, overflow: 'hidden', marginRight: 12, backgroundColor: Colors.primaryLight },
-  thumb:        { width: '100%', height: '100%' },
-  thumbFallback:{ flex: 1, alignItems: 'center', justifyContent: 'center' },
+  thumbWrap:      { width: 52, height: 52, borderRadius: 10, overflow: 'hidden', marginRight: 12, backgroundColor: Colors.primaryLight },
+  thumb:          { width: '100%', height: '100%' },
+  thumbFallback:  { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  // Branded tile: green-light bg, brand initial in primary green
+  thumbBrandTile: {
+    flex: 1, alignItems: 'center', justifyContent: 'center',
+    backgroundColor: Colors.primaryLight,
+  },
+  thumbBrandLetter: {
+    fontSize: 22, fontWeight: 'bold', color: Colors.primary,
+  },
   resultInfo:   { flex: 1 },
   resultName:   { fontSize: Font.sizes.base, fontWeight: Font.weights.semibold, color: Colors.textPrimary, lineHeight: 20 },
   resultBrand:  { fontSize: Font.sizes.sm, color: Colors.textSecondary, marginTop: 2 },
@@ -373,6 +562,28 @@ const styles = StyleSheet.create({
     alignItems: 'center', justifyContent: 'center', marginLeft: 8,
   },
   gradeText:    { fontSize: Font.sizes.md, fontWeight: Font.weights.heavy },
+
+  // Divider between curated and live tiers
+  dividerRow: {
+    flexDirection: 'row', alignItems: 'center',
+    marginHorizontal: 4, marginVertical: 8,
+  },
+  dividerLine:  { flex: 1, height: 1, backgroundColor: Colors.border },
+  dividerLabel: {
+    fontSize: Font.sizes.xs, color: Colors.textMuted,
+    fontWeight: Font.weights.semibold,
+    marginHorizontal: 10, textTransform: 'uppercase', letterSpacing: 0.5,
+  },
+
+  // Inline loader row at bottom of live tier
+  inlineLoader: {
+    flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+    paddingVertical: 14, gap: 10,
+  },
+  inlineLoaderText: {
+    fontSize: Font.sizes.sm, color: Colors.textSecondary,
+    fontStyle: 'italic',
+  },
 
   // Pro gate
   gateWrap:      { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 32 },

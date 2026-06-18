@@ -200,6 +200,8 @@ export function getPersonalisedWarnings(analyzedIngredients, product, prefs) {
 export function scoreProduct(product) {
   const { ingredients = [], nutrition = {}, certifications = [] } = product;
 
+  const insufficientData = (ingredients?.length ?? 0) === 0;
+
   const analyzed = analyzeIngredients(ingredients);
   const nutritionPenalty = calcNutritionPenalty(nutrition);
   const certBonus = certifications.length * 3;
@@ -211,15 +213,19 @@ export function scoreProduct(product) {
   score += certBonus;
   score = Math.max(0, Math.min(100, Math.round(score)));
 
+  const grade = scoreToGrade(score);
+
   return {
     score,
-    grade: scoreToGrade(score),
-    gradeColor: gradeToColor(scoreToGrade(score)),
+    grade,
+    displayGrade: insufficientData ? '?' : grade,
+    gradeColor: gradeToColor(insufficientData ? '?' : grade),
     analyzedIngredients: analyzed.items,
     flaggedCount: analyzed.flaggedCount,
     avoidCount: analyzed.avoidCount,
     nutritionPenalty,
     certBonus,
+    insufficientData,
   };
 }
 
@@ -314,7 +320,7 @@ export function scoreToGrade(score) {
 }
 
 export function gradeToColor(grade) {
-  const map = { A: '#1D9E75', B: '#6DBE47', C: '#F5A623', D: '#F06A25', F: '#D93B3B' };
+  const map = { A: '#1D9E75', B: '#6DBE47', C: '#F5A623', D: '#F06A25', F: '#D93B3B', '?': '#9BB5AE' };
   return map[grade] || '#9BB5AE';
 }
 
@@ -339,7 +345,7 @@ export function formatCurrency(amount) {
 }
 
 export function scoreToVerdict(grade) {
-  const map = { A: 'Excellent', B: 'Good', C: 'Fair', D: 'Poor', F: 'Avoid' };
+  const map = { A: 'Excellent', B: 'Good', C: 'Fair', D: 'Poor', F: 'Avoid', '?': 'Unscored' };
   return map[grade] || 'Unknown';
 }
 

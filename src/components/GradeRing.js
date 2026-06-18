@@ -6,10 +6,14 @@ export default function GradeRing({ score, grade, color, size = 120 }) {
   const fontSize = size * 0.38;
   const subFontSize = size * 0.16;
 
+  const isUnscored = grade === '?';
+
   return (
     <View style={[styles.ring, { width: size, height: size, borderRadius: size / 2, borderColor: color }]}>
       <Text style={[styles.grade, { fontSize, color }]}>{grade}</Text>
-      <Text style={[styles.score, { fontSize: subFontSize, color }]}>{score}/100</Text>
+      <Text style={[styles.score, { fontSize: isUnscored ? subFontSize * 0.85 : subFontSize, color }]}>
+        {isUnscored ? 'No data' : `${score}/100`}
+      </Text>
     </View>
   );
 }

@@ -12,6 +12,7 @@ import {
   scoreProduct, gradeToColor, scoreToVerdict, generateScoreExplanation, getPersonalisedWarnings,
 } from '../utils/scorer';
 import { addScanToHistory, getUserPrefs } from '../utils/storage';
+import { logProductRequest } from '../utils/productRequests';
 import { useProStatus } from '../utils/subscription';
 import { COMPANY_DB } from '../data/companies';
 import IngredientRow from '../components/IngredientRow';
@@ -154,6 +155,8 @@ export default function ProductScoreScreen({ route, navigation }) {
   const [activeTab, setActiveTab] = useState('ingredients');
   const [collapsedCats, setCollapsedCats] = useState(new Set());
   const [prefs, setPrefs] = useState({ showLobbying: true, showDonations: true });
+  // 'idle' | 'loading' | 'done'
+  const [requestState, setRequestState] = useState('idle');
 
   useEffect(() => {
     if (!product) return;
@@ -194,10 +197,10 @@ export default function ProductScoreScreen({ route, navigation }) {
     );
   }
 
-  const { score, grade, analyzedIngredients } = result;
-  const gradeCol = gradeToColor(grade);
-  const verdict = scoreToVerdict(grade);
-  const explanation = generateScoreExplanation(product, result);
+  const { score, grade, displayGrade, analyzedIngredients, insufficientData } = result;
+  const gradeCol = gradeToColor(displayGrade);
+  const verdict = scoreToVerdict(displayGrade);
+  const explanation = insufficientData ? null : generateScoreExplanation(product, result);
   const { nutrition = {} } = product;
   const company = product.companyId ? COMPANY_DB[product.companyId] : null;
   const hasHighSeverityIssues = company?.issues?.some((i) => i.severity === 'high');
@@ -245,7 +248,7 @@ export default function ProductScoreScreen({ route, navigation }) {
             <Image source={{ uri: product.image }} style={s.heroImg} resizeMode="cover" />
           ) : (
             <View style={[s.heroPlaceholder, { backgroundColor: gradeCol }]}>
-              <Text style={s.heroGrade}>{grade}</Text>
+              <Text style={s.heroGrade}>{displayGrade}</Text>
             </View>
           )}
           <LinearGradient
@@ -270,12 +273,12 @@ export default function ProductScoreScreen({ route, navigation }) {
           </Text>
 
           <View style={s.scoreRow}>
-            <GradeRing score={score} grade={grade} color={gradeCol} size={88} />
+            <GradeRing score={insufficientData ? 0 : score} grade={displayGrade} color={gradeCol} size={88} />
             <View style={s.scoreRight}>
               <View style={[s.verdictBadge, { backgroundColor: gradeCol + '1C' }]}>
                 <Text style={[s.verdictText, { color: gradeCol }]}>{verdict}</Text>
               </View>
-              <Text style={s.scoreSubLabel}>out of 100</Text>
+              <Text style={s.scoreSubLabel}>{insufficientData ? 'Not enough data to score' : 'out of 100'}</Text>
             </View>
           </View>
 
@@ -288,7 +291,7 @@ export default function ProductScoreScreen({ route, navigation }) {
           )}
         </View>
 
-        {/* ── 2: HealthyChoices Says ── */}
+        {/* ── 2: Shelf Exposé Says ── */}
         <View style={[s.sayCard, { borderLeftColor: gradeCol }]}>
           <View style={s.sayHeader}>
             <View style={[s.sayIcon, { backgroundColor: gradeCol + '22' }]}>
@@ -296,8 +299,50 @@ export default function ProductScoreScreen({ route, navigation }) {
             </View>
             <Text style={[s.sayTitle, { color: gradeCol }]}>Shelf Exposé Says</Text>
           </View>
-          <Text style={s.sayText}>{explanation}</Text>
+          {insufficientData ? (
+            <Text style={s.sayText}>
+              We don't have verified data on this product yet. We've flagged it for investigation — we'll research it and add a full score soon.
+            </Text>
+          ) : (
+            <Text style={s.sayText}>{explanation}</Text>
+          )}
         </View>
+
+        {/* ── 2b: Request card (insufficient data only) ── */}
+        {insufficientData && (
+          <View style={s.requestCard}>
+            {requestState === 'done' ? (
+              <View style={s.requestConfirm}>
+                <Ionicons name="checkmark-circle" size={20} color={Colors.primary} />
+                <Text style={s.requestConfirmText}>Got it — added to our research list.</Text>
+              </View>
+            ) : (
+              <>
+                <Text style={s.requestPrompt}>Want this one scored?</Text>
+                <TouchableOpacity
+                  style={[s.requestBtn, requestState === 'loading' && s.requestBtnDisabled]}
+                  disabled={requestState === 'loading'}
+                  activeOpacity={0.82}
+                  onPress={async () => {
+                    setRequestState('loading');
+                    try {
+                      await logProductRequest(product);
+                    } catch (_) {
+                      // silently swallow errors
+                    }
+                    setRequestState('done');
+                  }}
+                >
+                  {requestState === 'loading' ? (
+                    <ActivityIndicator size="small" color="#fff" />
+                  ) : (
+                    <Text style={s.requestBtnText}>Request a full exposé 🔍</Text>
+                  )}
+                </TouchableOpacity>
+              </>
+            )}
+          </View>
+        )}
 
         {/* ── 3: Tabs (sticky) ── */}
         <View style={s.tabBar}>
@@ -356,24 +401,34 @@ export default function ProductScoreScreen({ route, navigation }) {
               {/* Summary row */}
               <IngredientSummaryRow totalBad={totalBad} totalOkay={totalOkay} totalGood={totalGood} />
 
-              {/* All clear banner */}
-              {totalBad === 0 && totalOkay === 0 && (
-                <View style={s.allClear}>
-                  <Ionicons name="checkmark-circle" size={22} color="#1D9E75" />
-                  <Text style={s.allClearText}>No concerning ingredients found</Text>
+              {/* No ingredient data note (insufficient data path) */}
+              {analyzedIngredients.length === 0 ? (
+                <View style={s.noIngredientNote}>
+                  <Ionicons name="information-circle-outline" size={20} color="#9BB5AE" />
+                  <Text style={s.noIngredientNoteText}>No ingredient data available for this product.</Text>
                 </View>
-              )}
+              ) : (
+                <>
+                  {/* All clear banner */}
+                  {totalBad === 0 && totalOkay === 0 && (
+                    <View style={s.allClear}>
+                      <Ionicons name="checkmark-circle" size={22} color="#1D9E75" />
+                      <Text style={s.allClearText}>No concerning ingredients found</Text>
+                    </View>
+                  )}
 
-              {/* Category sections */}
-              {sortedCats.map((key) => (
-                <CategorySection
-                  key={key}
-                  catKey={key}
-                  items={grouped[key]}
-                  collapsed={collapsedCats.has(key)}
-                  onToggle={() => toggleCat(key)}
-                />
-              ))}
+                  {/* Category sections */}
+                  {sortedCats.map((key) => (
+                    <CategorySection
+                      key={key}
+                      catKey={key}
+                      items={grouped[key]}
+                      collapsed={collapsedCats.has(key)}
+                      onToggle={() => toggleCat(key)}
+                    />
+                  ))}
+                </>
+              )}
 
               {/* Certifications */}
               {product.certifications?.length > 0 && (
@@ -784,4 +839,35 @@ const s = StyleSheet.create({
   noCo: { alignItems: 'center', paddingVertical: 40, gap: 12 },
   noCoTitle: { fontSize: 18, fontWeight: '700', color: '#1A2E28' },
   noCoSub: { fontSize: 14, color: '#8AA49E', textAlign: 'center', lineHeight: 21 },
+
+  // Request card (insufficient data)
+  requestCard: {
+    marginHorizontal: 16, marginTop: 10, marginBottom: 4,
+    backgroundColor: '#F7FAF8', borderRadius: 14,
+    padding: 16, borderWidth: 1, borderColor: '#EDF2F0',
+    alignItems: 'flex-start',
+  },
+  requestPrompt: { fontSize: 14, fontWeight: '600', color: '#1A2E28', marginBottom: 12 },
+  requestBtn: {
+    flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+    backgroundColor: Colors.primary,
+    paddingHorizontal: 20, paddingVertical: 11, borderRadius: 50,
+    shadowColor: Colors.primary, shadowOpacity: 0.30, shadowRadius: 6,
+    shadowOffset: { width: 0, height: 3 }, elevation: 3,
+    minWidth: 200,
+  },
+  requestBtnDisabled: { opacity: 0.65 },
+  requestBtnText: { fontSize: 14, fontWeight: '700', color: '#fff' },
+  requestConfirm: {
+    flexDirection: 'row', alignItems: 'center', gap: 8,
+  },
+  requestConfirmText: { fontSize: 14, fontWeight: '600', color: Colors.primary },
+
+  // No ingredient data note
+  noIngredientNote: {
+    flexDirection: 'row', alignItems: 'center', gap: 8,
+    backgroundColor: '#F4F8F6', borderRadius: 12,
+    paddingHorizontal: 16, paddingVertical: 12, marginBottom: 18,
+  },
+  noIngredientNoteText: { fontSize: 14, color: '#9BB5AE', fontWeight: '500' },
 });
