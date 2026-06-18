@@ -30,24 +30,6 @@ const BAD_PRODUCTS = [
   { name: 'Eggo Waffles',     brand: 'Kellanova',     tag: 'TBHQ + dyes',        score: 27, color: '#E05252', emoji: '🧇' },
 ];
 
-const ALTERNATIVES = [
-  {
-    bad: { name: 'Cheerios', brand: 'General Mills', score: 28, tag: 'Ultra-processed' },
-    good: [
-      { name: 'Rolled Oats',       brand: "Bob's Red Mill",  score: 92, tag: 'Whole grain, clean' },
-      { name: 'Heritage Flakes',   brand: "Nature's Path",   score: 84, tag: 'Organic flakes' },
-      { name: 'Granola',           brand: "Bob's Red Mill",  score: 80, tag: 'Organic, no additives' },
-    ],
-  },
-  {
-    bad: { name: 'Doritos', brand: 'PepsiCo', score: 25, tag: 'MSG + artificial dyes' },
-    good: [
-      { name: 'Siete Chips',       brand: 'Siete Foods',     score: 81, tag: 'Grain-free, avocado oil' },
-      { name: 'Late July Tortilla', brand: 'Late July',      score: 78, tag: 'Organic, sunflower oil' },
-      { name: "Jackson's Chips",   brand: "Jackson's",       score: 76, tag: 'Sweet potato, clean' },
-    ],
-  },
-];
 
 const COMPANY_SPOTLIGHT = {
   name: 'PepsiCo, Inc.',
@@ -61,7 +43,7 @@ const COMPANY_SPOTLIGHT = {
 
 // ─── Steps ────────────────────────────────────────────────────────────────────
 
-const STEPS = ['hook', 'reveal', 'better', 'transparency', 'allergens', 'dietary', 'goal', 'ready'];
+const STEPS = ['hook', 'reveal', 'transparency', 'allergens', 'dietary', 'goal', 'ready'];
 
 const ALLERGEN_OPTIONS = [
   { id: 'peanuts',   label: 'Peanuts',        icon: 'alert-circle-outline' },
@@ -89,8 +71,7 @@ const DIETARY_OPTIONS = [
 
 export default function OnboardingScreen({ onComplete }) {
   const insets = useSafeAreaInsets();
-  const [step, setStep]   = useState(0);
-  const [altIdx, setAltIdx] = useState(0);
+  const [step, setStep] = useState(0);
   const [prefs, setPrefs] = useState({ ...DEFAULT_PREFS });
   const scrollRef = useRef(null);
   const fadeAnim  = useRef(new Animated.Value(1)).current;
@@ -123,14 +104,6 @@ export default function OnboardingScreen({ onComplete }) {
       onComplete();
       return;
     }
-    if (currentStep === 'better') {
-      // cycle through alternatives if tapping Next on the same step
-      if (altIdx < ALTERNATIVES.length - 1) {
-        setAltIdx((i) => i + 1);
-        return;
-      }
-      setAltIdx(0);
-    }
     goToStep(step + 1);
   };
 
@@ -143,12 +116,11 @@ export default function OnboardingScreen({ onComplete }) {
     });
   };
 
-  const showSkip = !isLast && !['hook', 'reveal', 'better', 'transparency', 'ready'].includes(currentStep);
+  const showSkip = !isLast && !['hook', 'reveal', 'transparency', 'ready'].includes(currentStep);
 
   const nextLabel = () => {
     if (currentStep === 'hook')         return 'Show Me';
-    if (currentStep === 'reveal')       return 'So what can I do?';
-    if (currentStep === 'better')       return altIdx < ALTERNATIVES.length - 1 ? 'See Another' : 'How does this work?';
+    if (currentStep === 'reveal')       return 'How does this work?';
     if (currentStep === 'transparency') return 'Set Up My Profile';
     if (isLast)                         return 'Start Scanning';
     return 'Continue';
@@ -173,7 +145,6 @@ export default function OnboardingScreen({ onComplete }) {
         <Animated.View style={{ opacity: fadeAnim, transform: [{ translateY: slideAnim }] }}>
           {currentStep === 'hook'         && <HookStep />}
           {currentStep === 'reveal'       && <RevealStep />}
-          {currentStep === 'better'       && <BetterStep alt={ALTERNATIVES[altIdx]} />}
           {currentStep === 'transparency' && <TransparencyStep />}
           {currentStep === 'allergens'    && (
             <SelectStep
@@ -386,106 +357,6 @@ const pc = StyleSheet.create({
   tagText:    { fontSize: 10, fontWeight: '700', color: Colors.flagRed },
 });
 
-// ─── Step: Better ─────────────────────────────────────────────────────────────
-
-function BetterStep({ alt }) {
-  return (
-    <View style={bt.wrap}>
-      <Text style={bt.eyebrow}>THE SOLUTION</Text>
-      <Text style={bt.title}>
-        For every bad product,{'\n'}
-        <Text style={{ color: Colors.primary }}>we find 3 better ones.</Text>
-      </Text>
-      <Text style={bt.sub}>
-        We don't just flag problems — we show you cleaner alternatives already in stores.
-      </Text>
-
-      {/* Bad product */}
-      <View style={bt.sectionLabel}>
-        <View style={bt.avoidPill}>
-          <Text style={bt.avoidText}>AVOID · {alt.bad.score}</Text>
-        </View>
-      </View>
-      <View style={bt.badRow}>
-        <View style={bt.badLeft}>
-          <Text style={bt.badName}>{alt.bad.name}</Text>
-          <Text style={bt.badBrand}>{alt.bad.brand}</Text>
-          <View style={bt.badTag}>
-            <Text style={bt.badTagText}>{alt.bad.tag}</Text>
-          </View>
-        </View>
-        <Ionicons name="close-circle" size={28} color={Colors.flagRed} />
-      </View>
-
-      {/* Divider */}
-      <View style={bt.divider}>
-        <View style={bt.dividerLine} />
-        <Text style={bt.dividerText}>Better options</Text>
-        <View style={bt.dividerLine} />
-      </View>
-
-      {/* Good alternatives */}
-      {alt.good.map((g) => (
-        <View key={g.name} style={bt.goodRow}>
-          <View style={bt.goodLeft}>
-            <Text style={bt.goodName}>{g.name}</Text>
-            <Text style={bt.goodBrand}>{g.brand}</Text>
-            <View style={bt.goodTag}>
-              <Ionicons name="checkmark-circle" size={11} color={Colors.primary} />
-              <Text style={bt.goodTagText}>{g.tag}</Text>
-            </View>
-          </View>
-          <View style={bt.scoreBubble}>
-            <Text style={bt.scoreBubbleText}>{g.score}</Text>
-          </View>
-        </View>
-      ))}
-    </View>
-  );
-}
-
-const bt = StyleSheet.create({
-  wrap:        { paddingBottom: 8 },
-  eyebrow:     { fontSize: 11, fontWeight: '800', color: Colors.primary, letterSpacing: 1.4, marginBottom: 8 },
-  title:       { fontSize: 28, fontWeight: '800', color: Colors.textPrimary, lineHeight: 36, marginBottom: 12 },
-  sub:         { fontSize: 15, color: Colors.textSecondary, lineHeight: 22, marginBottom: 24 },
-  sectionLabel:{ flexDirection: 'row', marginBottom: 8 },
-  avoidPill:   { backgroundColor: Colors.flagRed, borderRadius: 20, paddingHorizontal: 10, paddingVertical: 4 },
-  avoidText:   { fontSize: 11, fontWeight: '800', color: '#fff', letterSpacing: 0.5 },
-  badRow:      {
-    flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
-    backgroundColor: Colors.dangerLight, borderRadius: 14, padding: 14,
-    borderWidth: 1, borderColor: '#F5CECE', marginBottom: 20,
-  },
-  badLeft:     { flex: 1 },
-  badName:     { fontSize: 16, fontWeight: '700', color: Colors.textPrimary, marginBottom: 2 },
-  badBrand:    { fontSize: 12, color: Colors.textMuted, marginBottom: 6 },
-  badTag:      { backgroundColor: '#fff', borderRadius: 6, paddingHorizontal: 7, paddingVertical: 3, alignSelf: 'flex-start' },
-  badTagText:  { fontSize: 11, fontWeight: '600', color: Colors.flagRed },
-  divider:     { flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 16 },
-  dividerLine: { flex: 1, height: 1, backgroundColor: Colors.border },
-  dividerText: { fontSize: 12, fontWeight: '600', color: Colors.textMuted },
-  goodRow:     {
-    flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
-    backgroundColor: '#fff', borderRadius: 14, padding: 14,
-    borderWidth: 1, borderColor: Colors.border, marginBottom: 10,
-    shadowColor: Colors.primary, shadowOpacity: 0.06, shadowRadius: 6,
-    shadowOffset: { width: 0, height: 2 }, elevation: 1,
-  },
-  goodLeft:    { flex: 1 },
-  goodName:    { fontSize: 15, fontWeight: '700', color: Colors.textPrimary, marginBottom: 2 },
-  goodBrand:   { fontSize: 12, color: Colors.textMuted, marginBottom: 5 },
-  goodTag:     { flexDirection: 'row', alignItems: 'center', gap: 4 },
-  goodTagText: { fontSize: 11, fontWeight: '600', color: Colors.primary },
-  scoreBubble: {
-    width: 44, height: 44, borderRadius: 22,
-    backgroundColor: Colors.primary,
-    alignItems: 'center', justifyContent: 'center',
-    shadowColor: Colors.primary, shadowOpacity: 0.35, shadowRadius: 8,
-    shadowOffset: { width: 0, height: 3 }, elevation: 4,
-  },
-  scoreBubbleText: { fontSize: 16, fontWeight: '800', color: '#fff' },
-});
 
 // ─── Step: Transparency ───────────────────────────────────────────────────────
 
