@@ -366,7 +366,15 @@ export default function ProductSearchScreen({ navigation }) {
     <View style={[styles.container, { paddingTop: insets.top }]}>
       {/* Header */}
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Search Products</Text>
+        <View style={styles.headerRow}>
+          <TouchableOpacity
+            style={styles.headerBack}
+            onPress={() => navigation.getParent()?.navigate('Scan')}
+          >
+            <Ionicons name="chevron-back" size={22} color={Colors.primary} />
+          </TouchableOpacity>
+          <Text style={styles.headerTitle}>Search Products</Text>
+        </View>
         <Text style={styles.headerSub}>Search millions of products by name or brand</Text>
       </View>
 
@@ -520,6 +528,8 @@ const GATE_FEATURES = [
 const styles = StyleSheet.create({
   container:   { flex: 1, backgroundColor: Colors.background },
   header:      { paddingHorizontal: 20, paddingTop: 16, paddingBottom: 12 },
+  headerRow:   { flexDirection: 'row', alignItems: 'center', gap: 6 },
+  headerBack:  { padding: 2, marginLeft: -4 },
   headerTitle: { fontSize: Font.sizes.xl, fontWeight: Font.weights.heavy, color: Colors.textPrimary },
   headerSub:   { fontSize: Font.sizes.sm, color: Colors.textSecondary, marginTop: 2 },
 

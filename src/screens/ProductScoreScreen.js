@@ -346,6 +346,9 @@ export default function ProductScoreScreen({ route, navigation }) {
 
         {/* ── 3: Tabs (sticky) ── */}
         <View style={s.tabBar}>
+          <TouchableOpacity style={s.tabBack} onPress={() => navigation.goBack()}>
+            <Ionicons name="chevron-back" size={20} color={Colors.primary} />
+          </TouchableOpacity>
           {TABS.map((tab) => (
             <TouchableOpacity
               key={tab}
@@ -745,6 +748,7 @@ const s = StyleSheet.create({
     borderBottomWidth: 1, borderBottomColor: '#EDF2F0',
   },
   tab: { flex: 1, alignItems: 'center', paddingVertical: 13 },
+  tabBack: { width: 44, alignItems: 'center', justifyContent: 'center', paddingVertical: 13, paddingLeft: 4 },
   tabActive: { borderBottomWidth: 2.5, borderBottomColor: Colors.primary },
   tabInner: { flexDirection: 'row', alignItems: 'center', gap: 5 },
   tabLabel: { fontSize: 13, color: '#9BB5AE', fontWeight: '500' },
