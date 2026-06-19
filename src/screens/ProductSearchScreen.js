@@ -84,12 +84,12 @@ function isThinData(product) {
 // ─── Featured products shown on empty search state ───────────────────────────
 
 const FEATURED_BARCODES = [
-  '016000275287', // Cheerios Original
-  '602652177514', // KIND Dark Chocolate Nuts & Sea Salt
   '894700010045', // Chobani Strawberry Greek Yogurt
-  '028400064057', // Lay's Classic Potato Chips
-  '038000845024', // Kellogg's Frosted Flakes
-  '021000658831', // Kraft Macaroni & Cheese
+  '857777004195', // RXBar Blueberry Protein Bar
+  '602652177514', // KIND Dark Chocolate Nuts & Sea Salt
+  '013764014060', // Dave's Killer Bread 21 Whole Grains
+  '857843003002', // Purely Elizabeth Original Superfood Granola
+  '850397004217', // That's It Apple + Strawberry Fruit Bar
 ];
 
 const FEATURED_PRODUCTS = FEATURED_BARCODES
