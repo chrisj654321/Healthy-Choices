@@ -1,6 +1,188 @@
 import { INGREDIENT_DB, FLAG_LEVELS } from '../data/ingredients';
 import { CACHED_INGREDIENT_ANALYSIS, riskToFlag } from '../data/ingredientCache';
 
+// ─── Ingredient lookup: normalization + smart-matching ────────────────────────
+
+/**
+ * normalize(s): lowercase; remove parentheticals; replace [._*]+ and other
+ * punctuation with spaces; collapse whitespace; trim.
+ */
+function normalize(s) {
+  if (!s) return '';
+  return s
+    .toLowerCase()
+    .replace(/\([^)]*\)/g, ' ')      // remove (...) parentheticals
+    .replace(/\[[^\]]*\]/g, ' ')     // remove [...] bracket groups
+    .replace(/[._*]+/g, ' ')         // dots, underscores, asterisks -> space
+    .replace(/[^a-z0-9&\- ]+/g, ' ') // strip remaining punctuation
+    .replace(/\s+/g, ' ')            // collapse whitespace
+    .trim();
+}
+
+/**
+ * singularize(token): if token.length > 4 and ends with 's' but not 'ss',
+ * drop the trailing 's'.
+ */
+function singularize(token) {
+  if (token.length > 4 && token.endsWith('s') && !token.endsWith('ss')) {
+    return token.slice(0, -1);
+  }
+  return token;
+}
+
+/**
+ * Tokens that, by themselves, may NOT trigger a fuzzy/token match.
+ */
+const WEAK_TOKENS = new Set([
+  'salt','milk','water','sugar','oil','acid','calcium','sodium','potassium',
+  'magnesium','iron','zinc','color','colour','flavor','flavour','flavoring',
+  'flavouring','natural','artificial','extract','powder','concentrate','juice',
+  'syrup','starch','protein','vitamin','mineral','blend','organic','dried',
+  'ground','whole','and','or','of','with','less','than','contains','modified',
+  'enriched','refined',
+]);
+
+/**
+ * Returns the significant tokens of a normalized string:
+ * tokens of length > 3, not in WEAK_TOKENS, each singularized.
+ */
+function significantTokens(normalized) {
+  return normalized
+    .split(' ')
+    .map(singularize)
+    .filter((t) => t.length > 3 && !WEAK_TOKENS.has(t));
+}
+
+// ─── Build indexes at module load ─────────────────────────────────────────────
+//
+// Each index value is: { entry, source }
+//   source === 'db'    => entry has shape { risk, label, category, note, flag }
+//   source === 'cache' => entry has shape { risk, category, explanation }
+
+const indexExact = new Map(); // normalize(key) -> { entry, source }
+const indexToken = new Map(); // singularized token -> { entry, source, keyTokenCount }
+
+// Populate indexExact: cache first, then db overwrites on collision (db is authoritative)
+(function buildIndexes() {
+  // 1. Cache entries (lower priority)
+  for (const [key, entry] of Object.entries(CACHED_INGREDIENT_ANALYSIS)) {
+    const n = normalize(key);
+    if (n) {
+      indexExact.set(n, { entry, source: 'cache' });
+    }
+  }
+  // 2. DB entries overwrite cache on collision
+  for (const [key, entry] of Object.entries(INGREDIENT_DB)) {
+    const n = normalize(key);
+    if (n) {
+      indexExact.set(n, { entry, source: 'db' });
+    }
+  }
+
+  // Build indexToken from the same two sources.
+  // On collision: keep the entry whose key has FEWER significant tokens
+  // (more specific/canonical). DB preferred over cache at same token count.
+
+  function addToTokenIndex(key, entry, source) {
+    const n = normalize(key);
+    if (!n) return;
+    const tokens = significantTokens(n);
+    if (tokens.length === 0) return;
+    const keyTokenCount = tokens.length;
+    for (const token of tokens) {
+      const existing = indexToken.get(token);
+      if (!existing) {
+        indexToken.set(token, { entry, source, keyTokenCount });
+      } else {
+        // Prefer fewer tokens (more specific); on tie, prefer db over cache
+        const existingIsDb = existing.source === 'db';
+        const newIsDb = source === 'db';
+        const fewerTokens = keyTokenCount < existing.keyTokenCount;
+        const sameCount = keyTokenCount === existing.keyTokenCount;
+        if (fewerTokens || (sameCount && newIsDb && !existingIsDb)) {
+          indexToken.set(token, { entry, source, keyTokenCount });
+        }
+      }
+    }
+  }
+
+  // Cache first (lower priority), then db (higher priority)
+  for (const [key, entry] of Object.entries(CACHED_INGREDIENT_ANALYSIS)) {
+    addToTokenIndex(key, entry, 'cache');
+  }
+  for (const [key, entry] of Object.entries(INGREDIENT_DB)) {
+    addToTokenIndex(key, entry, 'db');
+  }
+})();
+
+/**
+ * lookupIngredient(raw): returns { entry, source } or null.
+ *
+ * source === 'db'    -> entry fields: .risk .label .category .note .flag
+ * source === 'cache' -> entry fields: .risk .category .explanation
+ */
+export function lookupIngredient(raw) {
+  // a. Normalize
+  const n = normalize(raw);
+  if (!n) return null;
+
+  // b. Exact lookup on full normalized string
+  if (indexExact.has(n)) return indexExact.get(n);
+
+  // Singularize last word and retry
+  const words = n.split(' ');
+  const lastSingular = singularize(words[words.length - 1]);
+  if (lastSingular !== words[words.length - 1]) {
+    const variant = [...words.slice(0, -1), lastSingular].join(' ');
+    if (indexExact.has(variant)) return indexExact.get(variant);
+  }
+
+  // Singularize whole string word-by-word and retry
+  const allSingular = words.map(singularize).join(' ');
+  if (allSingular !== n && indexExact.has(allSingular)) {
+    return indexExact.get(allSingular);
+  }
+
+  // c. Token fallback
+  const sigTokens = significantTokens(n);
+  if (sigTokens.length === 0) return null;
+
+  // Gather candidates: { entry, source, keyTokenCount } keyed by the entry reference
+  const candidateMap = new Map(); // entry object -> { hit, sharedCount }
+  for (const token of sigTokens) {
+    const hit = indexToken.get(token);
+    if (!hit) continue;
+    const existing = candidateMap.get(hit.entry);
+    if (existing) {
+      existing.sharedCount += 1;
+    } else {
+      candidateMap.set(hit.entry, { hit, sharedCount: 1 });
+    }
+  }
+
+  if (candidateMap.size === 0) return null;
+
+  // Find the candidate sharing the most significant tokens with n
+  let bestShared = 0;
+  let bestHit = null;
+  let ambiguous = false;
+
+  for (const { hit, sharedCount } of candidateMap.values()) {
+    if (sharedCount > bestShared) {
+      bestShared = sharedCount;
+      bestHit = hit;
+      ambiguous = false;
+    } else if (sharedCount === bestShared) {
+      ambiguous = true;
+    }
+  }
+
+  // Require at least ONE shared non-weak token and a clear winner
+  if (!bestHit || bestShared < 1 || ambiguous) return null;
+
+  return bestHit;
+}
+
 // ─── Unknown ingredient classifier ───────────────────────────────────────────
 
 // Single whole-food words that are inherently natural, unprocessed ingredients.
@@ -236,10 +418,10 @@ function analyzeIngredients(ingredients) {
   const items = [];
 
   ingredients.forEach((raw) => {
-    const key = raw.toLowerCase().trim();
-    const data = INGREDIENT_DB[key];
+    const hit = lookupIngredient(raw);
 
-    if (data) {
+    if (hit && hit.source === 'db') {
+      const data = hit.entry;
       const penalty = data.risk * 2.5;
       totalPenalty += penalty;
       flaggedCount++;
@@ -255,41 +437,39 @@ function analyzeIngredients(ingredients) {
         flagInfo: FLAG_LEVELS[data.flag],
         penalty,
       });
+    } else if (hit && hit.source === 'cache') {
+      const cached = hit.entry;
+      const flag = riskToFlag(cached.risk);
+      const penalty = flag === 'ok' ? 0 : cached.risk * 2.5;
+      totalPenalty += penalty;
+      if (flag !== 'ok') flaggedCount++;
+      if (flag === 'avoid') avoidCount++;
+      items.push({
+        raw,
+        label: formatIngredientLabel(raw),
+        risk: cached.risk,
+        category: cached.category || 'unknown',
+        note: cached.explanation,
+        flag,
+        flagInfo: FLAG_LEVELS[flag] || FLAG_LEVELS['ok'],
+        penalty,
+      });
     } else {
-      const cached = CACHED_INGREDIENT_ANALYSIS[key];
-      if (cached) {
-        const flag = riskToFlag(cached.risk);
-        const penalty = flag === 'ok' ? 0 : cached.risk * 2.5;
-        totalPenalty += penalty;
-        if (flag !== 'ok') flaggedCount++;
-        if (flag === 'avoid') avoidCount++;
-        items.push({
-          raw,
-          label: formatIngredientLabel(raw),
-          risk: cached.risk,
-          category: cached.category || 'unknown',
-          note: cached.explanation,
-          flag,
-          flagInfo: FLAG_LEVELS[flag] || FLAG_LEVELS['ok'],
-          penalty,
-        });
-      } else {
-        const { flag, risk } = classifyUnknown(raw);
-        const penalty = flag === 'ok' ? 0 : risk * 2.5;
-        totalPenalty += penalty;
-        if (flag !== 'ok') flaggedCount++;
-        if (flag === 'avoid') avoidCount++;
-        items.push({
-          raw,
-          label: formatIngredientLabel(raw),
-          risk,
-          category: 'unknown',
-          note: null,
-          flag,
-          flagInfo: FLAG_LEVELS[flag] || FLAG_LEVELS['ok'],
-          penalty,
-        });
-      }
+      const { flag, risk } = classifyUnknown(raw);
+      const penalty = flag === 'ok' ? 0 : risk * 2.5;
+      totalPenalty += penalty;
+      if (flag !== 'ok') flaggedCount++;
+      if (flag === 'avoid') avoidCount++;
+      items.push({
+        raw,
+        label: formatIngredientLabel(raw),
+        risk,
+        category: 'unknown',
+        note: null,
+        flag,
+        flagInfo: FLAG_LEVELS[flag] || FLAG_LEVELS['ok'],
+        penalty,
+      });
     }
   });
 
