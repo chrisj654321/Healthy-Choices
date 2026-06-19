@@ -37,6 +37,9 @@ const ADVISORY_PATTERNS = [
   /^an?\s+(preservative|natural\s+(mold|color|colour|flavou?r)|milk\s+derivative|artificial\s+flavou?r$)/i,
   /\bmold inhibitor\b/i,    // "a natural mold inhibitor"
   /^ingredients?\b/i,       // "ingredients water" parsing artifact
+  /[€£¥]\s*\d/,             // price strings like "€40"
+  /\b20\d{2}[\/\-]\d{2}/,  // date fragments like "2025/7/18"
+  /^t&c\b/i,                // "T&c apply" label garbage
 ];
 
 export function parseIngredients(p) {

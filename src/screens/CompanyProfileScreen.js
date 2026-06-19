@@ -78,17 +78,17 @@ export default function CompanyProfileScreen({ route, navigation }) {
               <Text style={[styles.riskLevel, { color: lobbyRisk.color }]}>{lobbyRisk.label}</Text>
             </View>
             <View style={styles.riskRight}>
+              {highSeverityCount > 0 && (
+                <View style={styles.highFlag}>
+                  <Ionicons name="alert-circle" size={14} color={Colors.flagRed} />
+                  <Text style={styles.highFlagText}>{highSeverityCount} high-severity issue{highSeverityCount > 1 ? 's' : ''}</Text>
+                </View>
+              )}
               <Text style={[styles.riskAmount, { color: lobbyRisk.color }]}>
                 {formatCurrency(company.lobbyingSpend)}/yr
               </Text>
               <Text style={[styles.riskSub, { color: lobbyRisk.color }]}>Federal lobbying</Text>
             </View>
-            {highSeverityCount > 0 && (
-              <View style={styles.highFlag}>
-                <Ionicons name="alert-circle" size={14} color={Colors.flagRed} />
-                <Text style={styles.highFlagText}>{highSeverityCount} high-severity issue{highSeverityCount > 1 ? 's' : ''}</Text>
-              </View>
-            )}
           </View>
         )}
       </LinearGradient>
@@ -309,10 +309,10 @@ const styles = StyleSheet.create({
   riskLeft: { flex: 1 },
   riskLabel: { fontSize: Font.sizes.xs, fontWeight: Font.weights.medium },
   riskLevel: { fontSize: Font.sizes.lg, fontWeight: Font.weights.heavy, marginTop: 2 },
-  riskRight: { alignItems: 'flex-end' },
+  riskRight: { alignItems: 'flex-end', gap: 2 },
   riskAmount: { fontSize: Font.sizes.md, fontWeight: Font.weights.bold },
-  riskSub: { fontSize: Font.sizes.xs, marginTop: 2 },
-  highFlag: { position: 'absolute', top: 8, right: 8, flexDirection: 'row', alignItems: 'center', gap: 3 },
+  riskSub: { fontSize: Font.sizes.xs },
+  highFlag: { flexDirection: 'row', alignItems: 'center', gap: 3, marginBottom: 4 },
   highFlagText: { fontSize: Font.sizes.xs, color: Colors.flagRed, fontWeight: Font.weights.medium },
 
   tabs: { flexDirection: 'row', backgroundColor: Colors.white, borderBottomWidth: 1, borderBottomColor: Colors.border },

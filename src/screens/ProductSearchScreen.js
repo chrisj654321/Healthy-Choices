@@ -81,6 +81,21 @@ function isThinData(product) {
   return !hasIngredients && !hasNutriments;
 }
 
+// ─── Featured products shown on empty search state ───────────────────────────
+
+const FEATURED_BARCODES = [
+  '016000275287', // Cheerios Original
+  '602652177514', // KIND Dark Chocolate Nuts & Sea Salt
+  '894700010045', // Chobani Strawberry Greek Yogurt
+  '028400064057', // Lay's Classic Potato Chips
+  '038000845024', // Kellogg's Frosted Flakes
+  '021000658831', // Kraft Macaroni & Cheese
+];
+
+const FEATURED_PRODUCTS = FEATURED_BARCODES
+  .map((bc) => PRODUCT_DB[bc])
+  .filter(Boolean);
+
 // ─── Search local PRODUCT_DB ──────────────────────────────────────────────────
 
 function searchLocal(query) {
@@ -361,7 +376,7 @@ export default function ProductSearchScreen({ navigation }) {
         <TextInput
           ref={inputRef}
           style={styles.searchInput}
-          placeholder="e.g. Cheerios, Oreos, Greek yogurt…"
+          placeholder="e.g. Cheerios, Lay's, Greek yogurt…"
           placeholderTextColor={Colors.textMuted}
           value={query}
           onChangeText={handleChangeText}
@@ -397,15 +412,20 @@ export default function ProductSearchScreen({ navigation }) {
         </View>
       )}
 
-      {/* Hint state */}
+      {/* Featured products — shown before any search */}
       {!searched && (
-        <View style={styles.centerState}>
-          <Ionicons name="search-outline" size={44} color={Colors.primaryLight} />
-          <Text style={styles.hintTitle}>Find any food product</Text>
-          <Text style={styles.hintSub}>
-            Type a product name, brand, or category above to get instant health scores.
-          </Text>
-        </View>
+        <FlatList
+          data={FEATURED_PRODUCTS}
+          keyExtractor={(item) => item.barcode || item.name}
+          contentContainerStyle={styles.listContent}
+          ListHeaderComponent={
+            <Text style={styles.featuredLabel}>Featured Products</Text>
+          }
+          renderItem={({ item }) => (
+            <ResultCard product={item} onPress={() => handleSelect(item)} />
+          )}
+          ItemSeparatorComponent={() => <View style={styles.separator} />}
+        />
       )}
 
       {/* Results list — shown as soon as there's anything to show OR while live is loading */}
@@ -531,6 +551,7 @@ const styles = StyleSheet.create({
   emptySub:    { fontSize: Font.sizes.sm, color: Colors.textSecondary, textAlign: 'center' },
   hintTitle:   { fontSize: Font.sizes.lg, fontWeight: Font.weights.bold, color: Colors.textPrimary, textAlign: 'center' },
   hintSub:     { fontSize: Font.sizes.sm, color: Colors.textSecondary, textAlign: 'center', lineHeight: 20 },
+  featuredLabel: { fontSize: Font.sizes.sm, fontWeight: Font.weights.semibold, color: Colors.textMuted, textTransform: 'uppercase', letterSpacing: 0.8, paddingHorizontal: 16, paddingTop: 16, paddingBottom: 8 },
 
   // Results
   listContent: { paddingHorizontal: 16, paddingBottom: 40 },
