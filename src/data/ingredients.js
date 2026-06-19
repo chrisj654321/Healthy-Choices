@@ -213,6 +213,98 @@ export const INGREDIENT_DB = {
     note: 'Umbrella term covering up to 100 undisclosed chemicals. Manufacturers aren\'t required to disclose individual compounds.',
     flag: 'caution',
   },
+
+  // ─── Phase 2: artificial dyes & flagged additives (sourced from FDA/EFSA) ───
+  'red 3': {
+    risk: 9, category: 'dyes', label: 'Red 3 (Erythrosine)',
+    note: 'Synthetic dye the FDA banned from food in January 2025 after it was shown to cause cancer in animals. Already barred from cosmetics since 1990.',
+    flag: 'avoid',
+  },
+  'fd&c red 3': {
+    risk: 9, category: 'dyes', label: 'FD&C Red No. 3',
+    note: 'Synthetic dye the FDA banned from food in January 2025 after it was shown to cause cancer in animals.',
+    flag: 'avoid',
+  },
+  'erythrosine': {
+    risk: 9, category: 'dyes', label: 'Erythrosine (Red 3)',
+    note: 'Synthetic dye the FDA banned from food in January 2025 after cancer findings in animal studies.',
+    flag: 'avoid',
+  },
+  'red 40': {
+    risk: 6, category: 'dyes', label: 'Red 40 (Allura Red)',
+    note: 'Synthetic petroleum-derived dye linked to hyperactivity in some children; the EU requires a warning label on foods that contain it.',
+    flag: 'caution',
+  },
+  'fd&c red 40': {
+    risk: 6, category: 'dyes', label: 'FD&C Red No. 40',
+    note: 'Synthetic dye linked to hyperactivity in some children; carries a mandatory warning label in the EU.',
+    flag: 'caution',
+  },
+  'allura red': {
+    risk: 6, category: 'dyes', label: 'Allura Red (Red 40)',
+    note: 'Synthetic dye linked to hyperactivity in some children; carries a mandatory warning label in the EU.',
+    flag: 'caution',
+  },
+  'yellow 5': {
+    risk: 6, category: 'dyes', label: 'Yellow 5 (Tartrazine)',
+    note: 'Synthetic dye linked to hyperactivity and allergic-type reactions in sensitive people; carries a mandatory warning label in the EU.',
+    flag: 'caution',
+  },
+  'tartrazine': {
+    risk: 6, category: 'dyes', label: 'Tartrazine (Yellow 5)',
+    note: 'Synthetic dye linked to hyperactivity and allergic-type reactions in sensitive people; EU warning label required.',
+    flag: 'caution',
+  },
+  'yellow 6': {
+    risk: 6, category: 'dyes', label: 'Yellow 6 (Sunset Yellow)',
+    note: 'Synthetic dye linked to hyperactivity in some children; carries a mandatory warning label in the EU.',
+    flag: 'caution',
+  },
+  'blue 1': {
+    risk: 5, category: 'dyes', label: 'Blue 1 (Brilliant Blue)',
+    note: 'Synthetic petroleum-derived dye; among the artificial colors linked to hyperactivity in children in some studies.',
+    flag: 'caution',
+  },
+  'artificial color': {
+    risk: 5, category: 'dyes', label: 'Artificial Color',
+    note: 'Synthetic petroleum-derived coloring with no nutritional value; several common dyes are linked to hyperactivity in children.',
+    flag: 'caution',
+  },
+  'pgpr': {
+    risk: 4, category: 'emulsifiers', label: 'PGPR (Polyglycerol Polyricinoleate)',
+    note: 'Synthetic emulsifier used to cut cocoa-butter cost in chocolate; FDA-permitted but a heavily processed industrial additive.',
+    flag: 'caution',
+  },
+  'polyglycerol polyricinoleate': {
+    risk: 4, category: 'emulsifiers', label: 'Polyglycerol Polyricinoleate (PGPR)',
+    note: 'Synthetic emulsifier used to reduce cocoa-butter content in chocolate; FDA-permitted but heavily processed.',
+    flag: 'caution',
+  },
+  'sodium silicoaluminate': {
+    risk: 4, category: 'additives', label: 'Sodium Silicoaluminate',
+    note: 'Aluminum-based anti-caking agent; FDA-permitted, though some consumers prefer to limit added-aluminum intake.',
+    flag: 'caution',
+  },
+  'sodium aluminosilicate': {
+    risk: 4, category: 'additives', label: 'Sodium Aluminosilicate',
+    note: 'Aluminum-based anti-caking agent; FDA-permitted, though some consumers prefer to limit added-aluminum intake.',
+    flag: 'caution',
+  },
+  'confectioners glaze': {
+    risk: 3, category: 'additives', label: 'Confectioner\'s Glaze (Shellac)',
+    note: 'A resin secreted by the lac insect, used to shine candies; safe to eat but not vegan or vegetarian.',
+    flag: 'moderate',
+  },
+  'shellac': {
+    risk: 3, category: 'additives', label: 'Shellac (Confectioner\'s Glaze)',
+    note: 'A resin secreted by the lac insect, used as a glaze; safe to eat but not vegan or vegetarian.',
+    flag: 'moderate',
+  },
+  'apocarotenal': {
+    risk: 3, category: 'dyes', label: 'Apocarotenal',
+    note: 'A synthetic orange-red carotenoid coloring (E160e); FDA- and EFSA-approved and considered low concern.',
+    flag: 'moderate',
+  },
 };
 
 export const FLAG_LEVELS = {

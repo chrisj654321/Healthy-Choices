@@ -19,14 +19,24 @@ function decodeHtmlEntities(str) {
     .replace(/&#\d+;/gi, '');
 }
 
-// Phrases that are advisory text, not ingredients — filter after splitting
+// Phrases that are advisory text or purpose descriptors, not ingredients —
+// filter after splitting. No real ingredient name starts with to/for/as/contains,
+// so anchoring those to the start is safe.
 const ADVISORY_PATTERNS = [
   /allerg/i, /may contain/i, /produced from/i, /see highlighted/i,
   /warning/i, /advice/i, /for all/i, /genetically modified/i,
   /^\s*and\s/i, /^\s*or\s/i,
   /less than \d/i,          // "Less than 2% of:"
   /contains \d+%/i,         // "Contains 2% or less of:"
-  /^\d+%\s*(or less)?\s*of/i,
+  /^\d+%?\s*(or less)?\s*of/i,
+  /^to\s/i,                 // "to prevent caking", "to protect flavor/color"
+  /^for\s/i,                // "for color", "for tartness", "for freshness"
+  /^as\s/i,                 // "as a preservative", "as preservatives"
+  /^contains\b/i,           // "contains milk", "contains 2 or less of salt"
+  /\bor\s+less\b/i,         // "2 or less of salt", "less than 2 or less"
+  /^an?\s+(preservative|natural\s+(mold|color|colour|flavou?r)|milk\s+derivative|artificial\s+flavou?r$)/i,
+  /\bmold inhibitor\b/i,    // "a natural mold inhibitor"
+  /^ingredients?\b/i,       // "ingredients water" parsing artifact
 ];
 
 export function parseIngredients(p) {

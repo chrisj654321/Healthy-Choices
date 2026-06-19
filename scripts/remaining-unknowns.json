@@ -1,9 +1,5 @@
 [
   {
-    "ingredient": "modified food starch",
-    "count": 9073
-  },
-  {
     "ingredient": "color",
     "count": 7378
   },
@@ -16,32 +12,12 @@
     "count": 3583
   },
   {
-    "ingredient": "gum arabic",
-    "count": 3157
-  },
-  {
     "ingredient": "for color",
     "count": 2289
   },
   {
     "ingredient": "milk fat",
     "count": 2213
-  },
-  {
-    "ingredient": "confectioner s glaze",
-    "count": 2078
-  },
-  {
-    "ingredient": "food starch-modified",
-    "count": 2078
-  },
-  {
-    "ingredient": "artificial color",
-    "count": 1832
-  },
-  {
-    "ingredient": "red 3",
-    "count": 1820
   },
   {
     "ingredient": "flavorings",
@@ -60,28 +36,12 @@
     "count": 1209
   },
   {
-    "ingredient": "rennet",
-    "count": 1156
-  },
-  {
     "ingredient": "flavor",
     "count": 1037
   },
   {
-    "ingredient": "glycerine",
-    "count": 973
-  },
-  {
-    "ingredient": "margarine",
-    "count": 873
-  },
-  {
     "ingredient": "isolated soy protein",
     "count": 797
-  },
-  {
-    "ingredient": "pgpr",
-    "count": 756
   },
   {
     "ingredient": "natural & artificial flavor",
@@ -128,16 +88,8 @@
     "count": 537
   },
   {
-    "ingredient": "s thermophilus",
-    "count": 533
-  },
-  {
     "ingredient": "contains less than 2 of salt",
     "count": 528
-  },
-  {
-    "ingredient": "ferric orthophosphate",
-    "count": 523
   },
   {
     "ingredient": "milk powder",
@@ -150,10 +102,6 @@
   {
     "ingredient": "non-fat dry milk",
     "count": 496
-  },
-  {
-    "ingredient": "sodium molybdate",
-    "count": 482
   },
   {
     "ingredient": "mayonnaise",
@@ -172,14 +120,6 @@
     "count": 467
   },
   {
-    "ingredient": "vitamin a",
-    "count": 445
-  },
-  {
-    "ingredient": "confectioners glaze",
-    "count": 445
-  },
-  {
     "ingredient": "protein blend",
     "count": 429
   },
@@ -190,10 +130,6 @@
   {
     "ingredient": "less than 2 salt",
     "count": 422
-  },
-  {
-    "ingredient": "vitamin b",
-    "count": 384
   },
   {
     "ingredient": "organic natural flavor",
@@ -212,10 +148,6 @@
     "count": 371
   },
   {
-    "ingredient": "food starch",
-    "count": 363
-  },
-  {
     "ingredient": "potassium salt",
     "count": 358
   },
@@ -224,20 +156,12 @@
     "count": 358
   },
   {
-    "ingredient": "beeswax",
-    "count": 327
-  },
-  {
     "ingredient": "anti-caking agent",
     "count": 326
   },
   {
     "ingredient": "organic natural flavors",
     "count": 324
-  },
-  {
-    "ingredient": "bifidus",
-    "count": 290
   },
   {
     "ingredient": "granulated sugar",
@@ -256,10 +180,6 @@
     "count": 267
   },
   {
-    "ingredient": "food starch modified",
-    "count": 264
-  },
-  {
     "ingredient": "enriched macaroni product",
     "count": 263
   },
@@ -272,19 +192,11 @@
     "count": 259
   },
   {
-    "ingredient": "arabic gum",
-    "count": 256
-  },
-  {
     "ingredient": "non-fat milk",
     "count": 249
   },
   {
     "ingredient": "jalapenos",
-    "count": 235
-  },
-  {
-    "ingredient": "a b vitamin",
     "count": 235
   },
   {
@@ -298,14 +210,6 @@
   {
     "ingredient": "ingredients water",
     "count": 221
-  },
-  {
-    "ingredient": "b2",
-    "count": 221
-  },
-  {
-    "ingredient": "glucono delta lactone",
-    "count": 217
   },
   {
     "ingredient": "carbohydrate gum",
@@ -340,31 +244,15 @@
     "count": 201
   },
   {
-    "ingredient": "sodium silicoaluminate",
-    "count": 200
-  },
-  {
     "ingredient": "boneless",
     "count": 199
-  },
-  {
-    "ingredient": "agar-agar",
-    "count": 196
   },
   {
     "ingredient": "a milk derivative",
     "count": 196
   },
   {
-    "ingredient": "mineral oil",
-    "count": 192
-  },
-  {
     "ingredient": "herbs",
-    "count": 191
-  },
-  {
-    "ingredient": "food starch - modified",
     "count": 191
   },
   {
@@ -380,10 +268,6 @@
     "count": 184
   },
   {
-    "ingredient": "b1",
-    "count": 177
-  },
-  {
     "ingredient": "anticaking agent",
     "count": 177
   },
@@ -396,20 +280,8 @@
     "count": 174
   },
   {
-    "ingredient": "riboflavin-b2",
-    "count": 171
-  },
-  {
     "ingredient": "natural color",
     "count": 171
-  },
-  {
-    "ingredient": "b6",
-    "count": 168
-  },
-  {
-    "ingredient": "pantothenic acid",
-    "count": 168
   },
   {
     "ingredient": "2 or less of salt",
@@ -440,14 +312,6 @@
     "count": 152
   },
   {
-    "ingredient": "apocarotenal color",
-    "count": 151
-  },
-  {
-    "ingredient": "iron and zinc mineral nutrients",
-    "count": 150
-  },
-  {
     "ingredient": "dried",
     "count": 150
   },
@@ -472,28 +336,12 @@
     "count": 145
   },
   {
-    "ingredient": "phytonadione",
-    "count": 145
-  },
-  {
     "ingredient": "organic flavor",
     "count": 142
   },
   {
-    "ingredient": "mono-diglycerides",
-    "count": 141
-  },
-  {
     "ingredient": "flavor enhancer",
     "count": 141
-  },
-  {
-    "ingredient": "glucono delta-lactone",
-    "count": 140
-  },
-  {
-    "ingredient": "bacillus coagulans gbi-30 6086",
-    "count": 138
   },
   {
     "ingredient": "to maintain color",
@@ -508,14 +356,6 @@
     "count": 130
   },
   {
-    "ingredient": "vitamin k1",
-    "count": 129
-  },
-  {
-    "ingredient": "koji",
-    "count": 129
-  },
-  {
     "ingredient": "artificial color red 40",
     "count": 127
   },
@@ -526,10 +366,6 @@
   {
     "ingredient": "hops",
     "count": 124
-  },
-  {
-    "ingredient": "apocarotenal",
-    "count": 123
   },
   {
     "ingredient": "grill flavor",
@@ -552,20 +388,12 @@
     "count": 116
   },
   {
-    "ingredient": "penicillium roqueforti",
-    "count": 116
-  },
-  {
     "ingredient": "filberts",
     "count": 113
   },
   {
     "ingredient": "mizuna",
     "count": 112
-  },
-  {
-    "ingredient": "b12",
-    "count": 111
   },
   {
     "ingredient": "artificial and natural flavor",
@@ -592,11 +420,183 @@
     "count": 108
   },
   {
-    "ingredient": "sodium carboxymethylcellulose",
+    "ingredient": "natural mold inhibitor",
     "count": 108
   },
   {
-    "ingredient": "phylloquinone",
-    "count": 108
+    "ingredient": "jalapeno powder",
+    "count": 107
+  },
+  {
+    "ingredient": "capers",
+    "count": 107
+  },
+  {
+    "ingredient": "oligofructose",
+    "count": 106
+  },
+  {
+    "ingredient": "as preservative",
+    "count": 106
+  },
+  {
+    "ingredient": "mold inhibitor",
+    "count": 106
+  },
+  {
+    "ingredient": "xantham gum",
+    "count": 105
+  },
+  {
+    "ingredient": "calcium",
+    "count": 104
+  },
+  {
+    "ingredient": "sugars",
+    "count": 104
+  },
+  {
+    "ingredient": "sodium metabisulphite",
+    "count": 101
+  },
+  {
+    "ingredient": "vitamin b9",
+    "count": 101
+  },
+  {
+    "ingredient": "frisee",
+    "count": 100
+  },
+  {
+    "ingredient": "natural flavor milk",
+    "count": 100
+  },
+  {
+    "ingredient": "to retard spoilage",
+    "count": 100
+  },
+  {
+    "ingredient": "mct oil",
+    "count": 99
+  },
+  {
+    "ingredient": "pollock",
+    "count": 98
+  },
+  {
+    "ingredient": "colored with",
+    "count": 98
+  },
+  {
+    "ingredient": "vitamin and mineral blend",
+    "count": 98
+  },
+  {
+    "ingredient": "ergocalciferol",
+    "count": 96
+  },
+  {
+    "ingredient": "tango",
+    "count": 96
+  },
+  {
+    "ingredient": "contains less than 2 of natural flavor",
+    "count": 95
+  },
+  {
+    "ingredient": "natural flavours",
+    "count": 95
+  },
+  {
+    "ingredient": "prevents caking",
+    "count": 94
+  },
+  {
+    "ingredient": "with salt",
+    "count": 94
+  },
+  {
+    "ingredient": "vitamins and minerals",
+    "count": 93
+  },
+  {
+    "ingredient": "galangal",
+    "count": 93
+  },
+  {
+    "ingredient": "flavor enhancers",
+    "count": 92
+  },
+  {
+    "ingredient": "anchovy",
+    "count": 90
+  },
+  {
+    "ingredient": "vit b6",
+    "count": 90
+  },
+  {
+    "ingredient": "contains 2 or less of water",
+    "count": 89
+  },
+  {
+    "ingredient": "sodium",
+    "count": 89
+  },
+  {
+    "ingredient": "anti-caking",
+    "count": 88
+  },
+  {
+    "ingredient": "gum blend",
+    "count": 88
+  },
+  {
+    "ingredient": "ingredients sugar",
+    "count": 87
+  },
+  {
+    "ingredient": "processing aid",
+    "count": 87
+  },
+  {
+    "ingredient": "dressing",
+    "count": 87
+  },
+  {
+    "ingredient": "fudge swirl",
+    "count": 87
+  },
+  {
+    "ingredient": "vit b3",
+    "count": 87
+  },
+  {
+    "ingredient": "batter",
+    "count": 86
+  },
+  {
+    "ingredient": "egg albumen",
+    "count": 85
+  },
+  {
+    "ingredient": "l paracasei",
+    "count": 84
+  },
+  {
+    "ingredient": "salt sugar",
+    "count": 84
+  },
+  {
+    "ingredient": "b3",
+    "count": 83
+  },
+  {
+    "ingredient": "slat",
+    "count": 83
+  },
+  {
+    "ingredient": "tumeric",
+    "count": 83
   }
 ]
