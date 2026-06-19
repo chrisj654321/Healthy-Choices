@@ -314,11 +314,11 @@ export default function AuthScreen() {
           {/* ── Legal fine print ── */}
           <Text style={s.legal}>
             By continuing you agree to our{' '}
-            <Text style={s.legalLink} onPress={() => WebBrowser.openBrowserAsync('https://fastidious-cuchufli-a0a96a.netlify.app/terms')}>
+            <Text style={s.legalLink} onPress={() => WebBrowser.openBrowserAsync('https://shelfexpose.netlify.app/terms')}>
               Terms of Service
             </Text>
             {' '}and{' '}
-            <Text style={s.legalLink} onPress={() => WebBrowser.openBrowserAsync('https://fastidious-cuchufli-a0a96a.netlify.app/privacy')}>
+            <Text style={s.legalLink} onPress={() => WebBrowser.openBrowserAsync('https://shelfexpose.netlify.app/privacy')}>
               Privacy Policy
             </Text>.
           </Text>
