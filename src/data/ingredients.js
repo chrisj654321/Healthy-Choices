@@ -1,18 +1,21 @@
 export const INGREDIENT_DB = {
   // ─── Sweeteners ───
   'high fructose corn syrup': {
+    evidence: "FDA affirms high fructose corn syrup as GRAS (21 CFR 184.1866) and considers it comparable in safety to table sugar; the WHO recommends limiting all free sugars, including HFCS, to under 10% of daily calories (WHO, 2015).",
     risk: 9, category: 'sweeteners',
     label: 'High Fructose Corn Syrup',
     note: 'Highly processed sweetener; many nutritionists and health databases recommend limiting intake.',
     flag: 'avoid',
   },
   'aspartame': {
+    evidence: "IARC classified aspartame as possibly carcinogenic to humans (Group 2B), based on limited evidence for liver cancer (2023); in the same review JECFA reaffirmed an acceptable daily intake of 40 mg/kg body weight (WHO, 2023).",
     risk: 7, category: 'sweeteners',
     label: 'Aspartame',
     note: 'Controversial artificial sweetener; some animal studies at very high doses raised questions — mainstream regulatory bodies consider it safe at typical consumption levels.',
     flag: 'caution',
   },
   'sucralose': {
+    evidence: "FDA approved sucralose as a food additive in 1998; in 2023 the WHO issued a guideline advising against using non-sugar sweeteners, including sucralose, for weight control, citing no long-term weight benefit and possible associations with type 2 diabetes (WHO, 2023).",
     risk: 5, category: 'sweeteners',
     label: 'Sucralose',
     note: 'Alters gut microbiome; heat-stable but generates chlorinated compounds when cooked.',
@@ -25,12 +28,14 @@ export const INGREDIENT_DB = {
     flag: 'ok',
   },
   'cane sugar': {
+    evidence: "The WHO recommends limiting free sugars - those added to foods plus sugars in syrups and juices - to under 10% of total daily calories, and ideally under 5% (WHO, 2015).",
     risk: 4, category: 'sweeteners',
     label: 'Cane Sugar',
     note: 'Natural sugar; moderate consumption is fine.',
     flag: 'moderate',
   },
   'sugar': {
+    evidence: "The WHO recommends limiting free sugars - those added to foods plus sugars in syrups and juices - to under 10% of total daily calories, and ideally under 5% (WHO, 2015).",
     risk: 4, category: 'sweeteners',
     label: 'Sugar',
     note: 'Natural sugar; excessive consumption linked to metabolic issues.',
@@ -39,18 +44,21 @@ export const INGREDIENT_DB = {
 
   // ─── Preservatives ───
   'sodium benzoate': {
+    evidence: "FDA permits sodium benzoate as a preservative (21 CFR 184.1733) but recognizes it can react with ascorbic acid (vitamin C) in beverages to form trace benzene, a carcinogen; FDA confirmed this in some soft drinks in 2006 and worked with industry to reformulate (FDA, 2006).",
     risk: 8, category: 'preservatives',
     label: 'Sodium Benzoate',
     note: 'May react with vitamin C under certain conditions; the FDA and several health databases recommend minimizing intake.',
     flag: 'avoid',
   },
   'bha': {
+    evidence: "The US National Toxicology Program has listed BHA as 'reasonably anticipated to be a human carcinogen' since 1991, based on forestomach tumors in rodents; IARC classified it as possibly carcinogenic to humans (Group 2B) in 1986. It is also listed under California Prop 65.",
     risk: 7, category: 'preservatives',
     label: 'BHA (Butylated Hydroxyanisole)',
     note: 'Listed on California Prop 65; classified by the National Toxicology Program as reasonably anticipated to be a human carcinogen based on animal studies.',
     flag: 'avoid',
   },
   'bht': {
+    evidence: "FDA classifies BHT as GRAS (21 CFR 182.3173); IARC found only limited animal evidence and could not classify its carcinogenicity in humans (Group 3, 1986); animal studies have shown mixed tumor-promoting and protective effects.",
     risk: 6, category: 'preservatives',
     label: 'BHT (Butylated Hydroxytoluene)',
     note: 'Endocrine disruptor concerns raised in some animal studies at high doses.',
@@ -71,24 +79,28 @@ export const INGREDIENT_DB = {
 
   // ─── Colorants / Dyes ───
   'red 40': {
+    evidence: "After a 2007 University of Southampton study (The Lancet) linked mixtures of synthetic dyes including Red 40 to increased hyperactivity in children, the EU required foods containing it to carry the label 'may have an adverse effect on activity and attention in children' (EU, effective 2010).",
     risk: 8, category: 'dyes',
     label: 'Red 40 (Allura Red)',
     note: 'Subject to EU mandatory warning labeling; some studies associate it with hyperactivity in sensitive children.',
     flag: 'avoid',
   },
   'yellow 5': {
+    evidence: "After the 2007 University of Southampton study (The Lancet) linked synthetic dye mixtures including tartrazine to increased hyperactivity in children, the EU required foods containing Yellow 5 to carry the warning 'may have an adverse effect on activity and attention in children' (EU, effective 2010).",
     risk: 7, category: 'dyes',
     label: 'Yellow 5 (Tartrazine)',
     note: 'Subject to EU warning labeling; some studies associate it with hyperactivity in sensitive individuals. Potential allergen for some.',
     flag: 'avoid',
   },
   'yellow 6': {
+    evidence: "After the 2007 University of Southampton study (The Lancet) linked synthetic dye mixtures including Sunset Yellow to increased hyperactivity in children, the EU required foods containing Yellow 6 to carry the warning 'may have an adverse effect on activity and attention in children' (EU, effective 2010).",
     risk: 7, category: 'dyes',
     label: 'Yellow 6 (Sunset Yellow)',
     note: 'Subject to EU warning labeling; some studies associate it with hyperactivity in sensitive individuals.',
     flag: 'avoid',
   },
   'caramel color': {
+    evidence: "California OEHHA listed 4-methylimidazole (4-MEI) - a byproduct formed in Class III and IV caramel coloring - as a carcinogen under Proposition 65 in 2011, based on NTP findings of lung tumors in mice, setting a no-significant-risk level of 29 ug/day above which a warning is required (California OEHHA, 2011).",
     risk: 6, category: 'dyes',
     label: 'Caramel Color (Class IV)',
     note: 'Class IV caramel color contains 4-methylimidazole (4-MEI), listed on California Prop 65 as a possible carcinogen based on animal studies.',
@@ -103,24 +115,28 @@ export const INGREDIENT_DB = {
 
   // ─── Flavor Enhancers ───
   'monosodium glutamate': {
+    evidence: "FDA classifies MSG as GRAS and requires it to be declared by name on labels (21 CFR 182.1); a double-blind, placebo-controlled study in the Journal of Nutrition (2000) found no persistent or serious effects and that reported reactions in self-identified sensitive people were not reproducible on retesting.",
     risk: 6, category: 'flavor-enhancers',
     label: 'MSG (Monosodium Glutamate)',
     note: 'Causes sensitivity reactions in some individuals.',
     flag: 'caution',
   },
   'msg': {
+    evidence: "FDA classifies MSG as GRAS and requires it to be declared by name on labels (21 CFR 182.1); a double-blind, placebo-controlled study in the Journal of Nutrition (2000) found no persistent or serious effects and that reported reactions in self-identified sensitive people were not reproducible on retesting.",
     risk: 6, category: 'flavor-enhancers',
     label: 'MSG',
     note: 'Causes sensitivity reactions in some individuals.',
     flag: 'caution',
   },
   'natural flavors': {
+    evidence: "Under FDA regulation 21 CFR 101.22, 'natural flavor' must be declared on the label, but manufacturers are not required to disclose the specific constituent chemicals in the flavor blend, which may be treated as trade secrets (FDA, 21 CFR 101.22).",
     risk: 3, category: 'flavor-enhancers',
     label: 'Natural Flavors',
     note: 'Vague term — can include hundreds of chemicals derived from natural sources.',
     flag: 'moderate',
   },
   'artificial flavors': {
+    evidence: "Under FDA regulation 21 CFR 101.22, 'artificial flavor' covers flavoring not derived from a natural source; it must be declared on the label, but the specific chemical constituents need not be individually disclosed (FDA, 21 CFR 101.22).",
     risk: 5, category: 'flavor-enhancers',
     label: 'Artificial Flavors',
     note: 'Synthetic chemicals; limited long-term safety data.',
@@ -129,6 +145,7 @@ export const INGREDIENT_DB = {
 
   // ─── Emulsifiers & Stabilizers ───
   'carrageenan': {
+    evidence: "In a 2018 re-evaluation, EFSA judged carrageenan (E407) safe at current EU use levels but made its acceptable daily intake (75 mg/kg) temporary, citing toxicological data gaps and an inability to rule out intestinal inflammation in sensitive people (EFSA, 2018).",
     risk: 6, category: 'emulsifiers',
     label: 'Carrageenan',
     note: 'Derived from seaweed; linked to gut inflammation.',
@@ -160,54 +177,63 @@ export const INGREDIENT_DB = {
 
   // ─── Flavor catch-alls ───
   'natural flavor': {
+    evidence: "Under FDA regulation 21 CFR 101.22, 'natural flavor' must be declared on the label, but manufacturers are not required to disclose the specific constituent chemicals in the flavor blend, which may be treated as trade secrets (FDA, 21 CFR 101.22).",
     risk: 4, category: 'flavor-enhancers',
     label: 'Natural Flavor',
     note: 'Umbrella term covering up to 100 undisclosed chemicals. Manufacturers aren\'t required to disclose individual compounds.',
     flag: 'caution',
   },
   'natural flavors': {
+    evidence: "Under FDA regulation 21 CFR 101.22, 'natural flavor' must be declared on the label, but manufacturers are not required to disclose the specific constituent chemicals in the flavor blend, which may be treated as trade secrets (FDA, 21 CFR 101.22).",
     risk: 4, category: 'flavor-enhancers',
     label: 'Natural Flavors',
     note: 'Umbrella term covering up to 100 undisclosed chemicals. Manufacturers aren\'t required to disclose individual compounds.',
     flag: 'caution',
   },
   'artificial flavor': {
+    evidence: "Under FDA regulation 21 CFR 101.22, 'artificial flavor' covers flavoring not derived from a natural source; it must be declared on the label, but the specific chemical constituents need not be individually disclosed (FDA, 21 CFR 101.22).",
     risk: 5, category: 'flavor-enhancers',
     label: 'Artificial Flavor',
     note: 'Umbrella term covering up to 100 undisclosed chemicals. Manufacturers aren\'t required to disclose individual compounds.',
     flag: 'caution',
   },
   'artificial flavors': {
+    evidence: "Under FDA regulation 21 CFR 101.22, 'artificial flavor' covers flavoring not derived from a natural source; it must be declared on the label, but the specific chemical constituents need not be individually disclosed (FDA, 21 CFR 101.22).",
     risk: 5, category: 'flavor-enhancers',
     label: 'Artificial Flavors',
     note: 'Umbrella term covering up to 100 undisclosed chemicals. Manufacturers aren\'t required to disclose individual compounds.',
     flag: 'caution',
   },
   'natural and artificial flavor': {
+    evidence: "Under FDA regulation 21 CFR 101.22, both natural and artificial flavors must be declared on the label, but the specific constituent chemicals within a flavor blend need not be individually disclosed (FDA, 21 CFR 101.22).",
     risk: 5, category: 'flavor-enhancers',
     label: 'Natural & Artificial Flavor',
     note: 'Umbrella term covering up to 100 undisclosed chemicals. Manufacturers aren\'t required to disclose individual compounds.',
     flag: 'caution',
   },
   'natural and artificial flavors': {
+    evidence: "Under FDA regulation 21 CFR 101.22, both natural and artificial flavors must be declared on the label, but the specific constituent chemicals within a flavor blend need not be individually disclosed (FDA, 21 CFR 101.22).",
     risk: 5, category: 'flavor-enhancers',
     label: 'Natural & Artificial Flavors',
     note: 'Umbrella term covering up to 100 undisclosed chemicals. Manufacturers aren\'t required to disclose individual compounds.',
     flag: 'caution',
   },
   'natural & artificial flavors': {
+    evidence: "Under FDA regulation 21 CFR 101.22, both natural and artificial flavors must be declared on the label, but the specific constituent chemicals within a flavor blend need not be individually disclosed (FDA, 21 CFR 101.22).",
     risk: 5, category: 'flavor-enhancers',
     label: 'Natural & Artificial Flavors',
     note: 'Umbrella term covering up to 100 undisclosed chemicals. Manufacturers aren\'t required to disclose individual compounds.',
     flag: 'caution',
   },
   'artificial flavoring': {
+    evidence: "Under FDA regulation 21 CFR 101.22, 'artificial flavor' covers flavoring not derived from a natural source; it must be declared on the label, but the specific chemical constituents need not be individually disclosed (FDA, 21 CFR 101.22).",
     risk: 5, category: 'flavor-enhancers',
     label: 'Artificial Flavoring',
     note: 'Umbrella term covering up to 100 undisclosed chemicals. Manufacturers aren\'t required to disclose individual compounds.',
     flag: 'caution',
   },
   'natural flavoring': {
+    evidence: "Under FDA regulation 21 CFR 101.22, 'natural flavor' must be declared on the label, but manufacturers are not required to disclose the specific constituent chemicals in the flavor blend, which may be treated as trade secrets (FDA, 21 CFR 101.22).",
     risk: 4, category: 'flavor-enhancers',
     label: 'Natural Flavoring',
     note: 'Umbrella term covering up to 100 undisclosed chemicals. Manufacturers aren\'t required to disclose individual compounds.',
@@ -216,91 +242,109 @@ export const INGREDIENT_DB = {
 
   // ─── Phase 2: artificial dyes & flagged additives (sourced from FDA/EFSA) ───
   'red 3': {
+    evidence: "On January 15, 2025, the FDA revoked authorization for FD&C Red No. 3 in food, citing the Delaney Clause after studies showed it causes thyroid cancer in male rats at high doses; it had been barred from cosmetics since 1990. Manufacturers have until January 2027 to reformulate (FDA, 2025).",
     risk: 9, category: 'dyes', label: 'Red 3 (Erythrosine)',
     note: 'Synthetic dye the FDA banned from food in January 2025 after it was shown to cause cancer in animals. Already barred from cosmetics since 1990.',
     flag: 'avoid',
   },
   'fd&c red 3': {
+    evidence: "On January 15, 2025, the FDA revoked authorization for FD&C Red No. 3 in food, citing the Delaney Clause after studies showed it causes thyroid cancer in male rats at high doses; it had been barred from cosmetics since 1990. Manufacturers have until January 2027 to reformulate (FDA, 2025).",
     risk: 9, category: 'dyes', label: 'FD&C Red No. 3',
     note: 'Synthetic dye the FDA banned from food in January 2025 after it was shown to cause cancer in animals.',
     flag: 'avoid',
   },
   'erythrosine': {
+    evidence: "On January 15, 2025, the FDA revoked authorization for FD&C Red No. 3 in food, citing the Delaney Clause after studies showed it causes thyroid cancer in male rats at high doses; it had been barred from cosmetics since 1990. Manufacturers have until January 2027 to reformulate (FDA, 2025).",
     risk: 9, category: 'dyes', label: 'Erythrosine (Red 3)',
     note: 'Synthetic dye the FDA banned from food in January 2025 after cancer findings in animal studies.',
     flag: 'avoid',
   },
   'red 40': {
+    evidence: "After a 2007 University of Southampton study (The Lancet) linked mixtures of synthetic dyes including Red 40 to increased hyperactivity in children, the EU required foods containing it to carry the label 'may have an adverse effect on activity and attention in children' (EU, effective 2010).",
     risk: 6, category: 'dyes', label: 'Red 40 (Allura Red)',
     note: 'Synthetic petroleum-derived dye linked to hyperactivity in some children; the EU requires a warning label on foods that contain it.',
     flag: 'caution',
   },
   'fd&c red 40': {
+    evidence: "After a 2007 University of Southampton study (The Lancet) linked mixtures of synthetic dyes including Red 40 to increased hyperactivity in children, the EU required foods containing it to carry the label 'may have an adverse effect on activity and attention in children' (EU, effective 2010).",
     risk: 6, category: 'dyes', label: 'FD&C Red No. 40',
     note: 'Synthetic dye linked to hyperactivity in some children; carries a mandatory warning label in the EU.',
     flag: 'caution',
   },
   'allura red': {
+    evidence: "After a 2007 University of Southampton study (The Lancet) linked mixtures of synthetic dyes including Red 40 to increased hyperactivity in children, the EU required foods containing it to carry the label 'may have an adverse effect on activity and attention in children' (EU, effective 2010).",
     risk: 6, category: 'dyes', label: 'Allura Red (Red 40)',
     note: 'Synthetic dye linked to hyperactivity in some children; carries a mandatory warning label in the EU.',
     flag: 'caution',
   },
   'yellow 5': {
+    evidence: "After the 2007 University of Southampton study (The Lancet) linked synthetic dye mixtures including tartrazine to increased hyperactivity in children, the EU required foods containing Yellow 5 to carry the warning 'may have an adverse effect on activity and attention in children' (EU, effective 2010).",
     risk: 6, category: 'dyes', label: 'Yellow 5 (Tartrazine)',
     note: 'Synthetic dye linked to hyperactivity and allergic-type reactions in sensitive people; carries a mandatory warning label in the EU.',
     flag: 'caution',
   },
   'tartrazine': {
+    evidence: "After the 2007 University of Southampton study (The Lancet) linked synthetic dye mixtures including tartrazine to increased hyperactivity in children, the EU required foods containing Yellow 5 to carry the warning 'may have an adverse effect on activity and attention in children' (EU, effective 2010).",
     risk: 6, category: 'dyes', label: 'Tartrazine (Yellow 5)',
     note: 'Synthetic dye linked to hyperactivity and allergic-type reactions in sensitive people; EU warning label required.',
     flag: 'caution',
   },
   'yellow 6': {
+    evidence: "After the 2007 University of Southampton study (The Lancet) linked synthetic dye mixtures including Sunset Yellow to increased hyperactivity in children, the EU required foods containing Yellow 6 to carry the warning 'may have an adverse effect on activity and attention in children' (EU, effective 2010).",
     risk: 6, category: 'dyes', label: 'Yellow 6 (Sunset Yellow)',
     note: 'Synthetic dye linked to hyperactivity in some children; carries a mandatory warning label in the EU.',
     flag: 'caution',
   },
   'blue 1': {
+    evidence: "FDA approved FD&C Blue No. 1 for food use in 1969; California OEHHA's 2021 review associated widely used synthetic dyes, including Blue 1, with neurobehavioral effects in some children (California OEHHA, 2021).",
     risk: 5, category: 'dyes', label: 'Blue 1 (Brilliant Blue)',
     note: 'Synthetic petroleum-derived dye; among the artificial colors linked to hyperactivity in children in some studies.',
     flag: 'caution',
   },
   'artificial color': {
+    evidence: "California OEHHA concluded in a 2021 assessment that synthetic food dyes are associated with adverse neurobehavioral outcomes in children and that current federal intake levels may not sufficiently protect children's behavioral health, covering seven FDA-approved dyes (California OEHHA, 2021).",
     risk: 5, category: 'dyes', label: 'Artificial Color',
     note: 'Synthetic petroleum-derived coloring with no nutritional value; several common dyes are linked to hyperactivity in children.',
     flag: 'caution',
   },
   'pgpr': {
+    evidence: "EFSA re-evaluated PGPR (E476) in 2017, found no genotoxicity or carcinogenicity concern, and set an acceptable daily intake of 25 mg/kg body weight; FDA permits it as an emulsifier in chocolate-type products up to 0.3% (EFSA, 2017; FDA).",
     risk: 4, category: 'emulsifiers', label: 'PGPR (Polyglycerol Polyricinoleate)',
     note: 'Synthetic emulsifier used to cut cocoa-butter cost in chocolate; FDA-permitted but a heavily processed industrial additive.',
     flag: 'caution',
   },
   'polyglycerol polyricinoleate': {
+    evidence: "EFSA re-evaluated PGPR (E476) in 2017, found no genotoxicity or carcinogenicity concern, and set an acceptable daily intake of 25 mg/kg body weight; FDA permits it as an emulsifier in chocolate-type products up to 0.3% (EFSA, 2017; FDA).",
     risk: 4, category: 'emulsifiers', label: 'Polyglycerol Polyricinoleate (PGPR)',
     note: 'Synthetic emulsifier used to reduce cocoa-butter content in chocolate; FDA-permitted but heavily processed.',
     flag: 'caution',
   },
   'sodium silicoaluminate': {
+    evidence: "FDA lists sodium aluminosilicate as GRAS for use as an anti-caking agent up to 2% (21 CFR 582.2727); the EU authorizes it as additive E554; both consider it safe at approved levels (FDA; EU Reg. 231/2012).",
     risk: 4, category: 'additives', label: 'Sodium Silicoaluminate',
     note: 'Aluminum-based anti-caking agent; FDA-permitted, though some consumers prefer to limit added-aluminum intake.',
     flag: 'caution',
   },
   'sodium aluminosilicate': {
+    evidence: "FDA lists sodium aluminosilicate as GRAS for use as an anti-caking agent up to 2% (21 CFR 582.2727); the EU authorizes it as additive E554; both consider it safe at approved levels (FDA; EU Reg. 231/2012).",
     risk: 4, category: 'additives', label: 'Sodium Aluminosilicate',
     note: 'Aluminum-based anti-caking agent; FDA-permitted, though some consumers prefer to limit added-aluminum intake.',
     flag: 'caution',
   },
   'confectioners glaze': {
+    evidence: "FDA classifies purified shellac (the basis of confectioner's glaze) as GRAS for food use; JECFA and EFSA set an acceptable daily intake of 0-2.5 mg/kg; it is not absorbed intact and is considered low-risk at authorized levels (FDA; WHO/JECFA).",
     risk: 3, category: 'additives', label: 'Confectioner\'s Glaze (Shellac)',
     note: 'A resin secreted by the lac insect, used to shine candies; safe to eat but not vegan or vegetarian.',
     flag: 'moderate',
   },
   'shellac': {
+    evidence: "FDA classifies purified shellac (the basis of confectioner's glaze) as GRAS for food use; JECFA and EFSA set an acceptable daily intake of 0-2.5 mg/kg; it is not absorbed intact and is considered low-risk at authorized levels (FDA; WHO/JECFA).",
     risk: 3, category: 'additives', label: 'Shellac (Confectioner\'s Glaze)',
     note: 'A resin secreted by the lac insect, used as a glaze; safe to eat but not vegan or vegetarian.',
     flag: 'moderate',
   },
   'apocarotenal': {
+    evidence: "FDA approved beta-apo-8'-carotenal as a food color additive in 1963 (21 CFR 73.90); EFSA re-evaluated it in 2012 and reaffirmed it as safe, setting an acceptable daily intake of 0.05 mg/kg (EFSA, 2012).",
     risk: 3, category: 'dyes', label: 'Apocarotenal',
     note: 'A synthetic orange-red carotenoid coloring (E160e); FDA- and EFSA-approved and considered low concern.',
     flag: 'moderate',
