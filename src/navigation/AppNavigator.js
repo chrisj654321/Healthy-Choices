@@ -9,6 +9,9 @@ import { Font } from '../constants/typography';
 import { isOnboardingDone } from '../utils/storage';
 import { useAuth } from '../context/AuthContext';
 
+import HomeScreen             from '../screens/HomeScreen';
+import HealthyCategoryScreen  from '../screens/HealthyCategoryScreen';
+import CompanyListScreen      from '../screens/CompanyListScreen';
 import ScannerScreen          from '../screens/ScannerScreen';
 import ProductScoreScreen     from '../screens/ProductScoreScreen';
 import CompanyProfileScreen   from '../screens/CompanyProfileScreen';
@@ -23,6 +26,18 @@ const Tab   = createBottomTabNavigator();
 const Stack = createStackNavigator();
 const Root  = createStackNavigator();
 
+function HomeStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Home"           component={HomeScreen} />
+      <Stack.Screen name="History"        component={ScanHistoryScreen} />
+      <Stack.Screen name="HealthyCategory" component={HealthyCategoryScreen} />
+      <Stack.Screen name="ProductScore"   component={ProductScoreScreen} />
+      <Stack.Screen name="CompanyProfile" component={CompanyProfileScreen} />
+    </Stack.Navigator>
+  );
+}
+
 function ScanStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -33,12 +48,12 @@ function ScanStack() {
   );
 }
 
-function HistoryStack() {
+function CompaniesStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="History"        component={ScanHistoryScreen} />
-      <Stack.Screen name="ProductScore"   component={ProductScoreScreen} />
+      <Stack.Screen name="CompanyList"    component={CompanyListScreen} />
       <Stack.Screen name="CompanyProfile" component={CompanyProfileScreen} />
+      <Stack.Screen name="ProductScore"   component={ProductScoreScreen} />
     </Stack.Navigator>
   );
 }
@@ -64,10 +79,11 @@ function MainTabs() {
         tabBarLabelStyle: styles.tabLabel,
         tabBarIcon: ({ focused, color, size }) => {
           const icons = {
-            Scan:    focused ? 'scan'        : 'scan-outline',
-            Search:  focused ? 'search'      : 'search-outline',
-            History: focused ? 'time'        : 'time-outline',
-            Profile: focused ? 'person'      : 'person-outline',
+            Home:      focused ? 'home'     : 'home-outline',
+            Search:    focused ? 'search'   : 'search-outline',
+            Scan:      focused ? 'scan'      : 'scan-outline',
+            Companies: focused ? 'business' : 'business-outline',
+            Profile:   focused ? 'person'   : 'person-outline',
           };
           const iconName = icons[route.name];
           if (route.name === 'Scan') {
@@ -81,10 +97,11 @@ function MainTabs() {
         },
       })}
     >
-      <Tab.Screen name="Scan"    component={ScanStack}    options={{ title: 'Scan' }} />
-      <Tab.Screen name="Search"  component={SearchStack}  options={{ title: 'Search' }} />
-      <Tab.Screen name="History" component={HistoryStack} options={{ title: 'History' }} />
-      <Tab.Screen name="Profile" component={ProfileScreen} options={{ title: 'Profile' }} />
+      <Tab.Screen name="Home"      component={HomeStack}      options={{ title: 'Home' }} />
+      <Tab.Screen name="Search"    component={SearchStack}    options={{ title: 'Search' }} />
+      <Tab.Screen name="Scan"      component={ScanStack}      options={{ title: 'Scan' }} />
+      <Tab.Screen name="Companies" component={CompaniesStack} options={{ title: 'Companies' }} />
+      <Tab.Screen name="Profile"   component={ProfileScreen}  options={{ title: 'Profile' }} />
     </Tab.Navigator>
   );
 }

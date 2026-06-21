@@ -64,7 +64,14 @@ export default function ProfileScreen({ navigation }) {
   };
 
   const updatePref = async (key, value) => {
-    const updated = { ...prefs, [key]: value };
+    // Editing a setup section also marks it reviewed (clears the Home nudge).
+    const reviewKey = {
+      allergens: 'allergensReviewed',
+      dietaryFlags: 'dietaryReviewed',
+      dietStyle: 'dietaryReviewed',
+      primaryGoal: 'goalReviewed',
+    }[key];
+    const updated = { ...prefs, [key]: value, ...(reviewKey ? { [reviewKey]: true } : {}) };
     setPrefs(updated);
     await saveUserPrefs(updated);
   };
@@ -238,6 +245,17 @@ export default function ProfileScreen({ navigation }) {
       {/* Allergens */}
       <SectionHeader title="Allergen Alerts" subtitle="Get warnings when these are detected" />
       <View style={styles.allergenList}>
+        <TouchableOpacity
+          style={styles.allergenRow}
+          onPress={() => updatePref('allergens', [])}
+        >
+          <View style={styles.allergenLeft}>
+            <View style={[styles.allergenCheck, (prefs.allergens?.length ?? 0) === 0 && styles.allergenCheckActive]}>
+              {(prefs.allergens?.length ?? 0) === 0 && <Ionicons name="checkmark" size={12} color={Colors.white} />}
+            </View>
+            <Text style={styles.allergenLabel}>No allergies</Text>
+          </View>
+        </TouchableOpacity>
         {ALLERGEN_OPTIONS.map((opt) => {
           const active = prefs.allergens?.includes(opt.id);
           return (

@@ -98,8 +98,13 @@ export default function OnboardingScreen({ onComplete }) {
   };
 
   const handleNext = async () => {
+    // Continuing past a setup step counts as reviewing it (Skip does not).
+    const reviewKey = { allergens: 'allergensReviewed', dietary: 'dietaryReviewed', goal: 'goalReviewed' }[currentStep];
+    const nextPrefs = reviewKey ? { ...prefs, [reviewKey]: true } : prefs;
+    if (reviewKey) setPrefs(nextPrefs);
+
     if (isLast) {
-      await saveUserPrefs(prefs);
+      await saveUserPrefs(nextPrefs);
       await markOnboardingDone();
       onComplete();
       return;
@@ -153,6 +158,8 @@ export default function OnboardingScreen({ onComplete }) {
               options={ALLERGEN_OPTIONS}
               selected={prefs.allergens}
               onToggle={(id) => toggleArray('allergens', id)}
+              noneLabel="No allergies"
+              onNone={() => setPrefs((p) => ({ ...p, allergens: [] }))}
             />
           )}
           {currentStep === 'dietary' && (
@@ -487,12 +494,23 @@ const tr = StyleSheet.create({
 
 // ─── Step: SelectStep (allergens / dietary / goal) ────────────────────────────
 
-function SelectStep({ title, subtitle, options, selected, onToggle, single = false }) {
+function SelectStep({ title, subtitle, options, selected, onToggle, single = false, noneLabel, onNone }) {
+  const noneActive = noneLabel && selected.length === 0;
   return (
     <View style={ss.wrap}>
       <Text style={ss.title}>{title}</Text>
       <Text style={ss.sub}>{subtitle}</Text>
       <View style={ss.grid}>
+        {noneLabel && (
+          <TouchableOpacity
+            style={[ss.chip, ss.chipFull, noneActive && ss.chipActive]}
+            onPress={onNone}
+            activeOpacity={0.75}
+          >
+            <Ionicons name="checkmark-circle-outline" size={14} color={noneActive ? '#fff' : Colors.primary} />
+            <Text style={[ss.chipText, noneActive && ss.chipTextActive]}>{noneLabel}</Text>
+          </TouchableOpacity>
+        )}
         {options.map((opt) => {
           const active = selected.includes(opt.id);
           return (

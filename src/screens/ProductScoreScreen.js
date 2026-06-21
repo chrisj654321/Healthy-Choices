@@ -293,19 +293,26 @@ export default function ProductScoreScreen({ route, navigation }) {
 
         {/* ── 2: Shelf Exposé Says ── */}
         <View style={[s.sayCard, { borderLeftColor: gradeCol }]}>
-          <View style={s.sayHeader}>
-            <View style={[s.sayIcon, { backgroundColor: gradeCol + '22' }]}>
-              <Ionicons name="leaf" size={13} color={gradeCol} />
+          <View style={s.sayMain}>
+            <View style={s.sayHeader}>
+              <View style={[s.sayIcon, { backgroundColor: gradeCol + '22' }]}>
+                <Ionicons name="search" size={13} color={gradeCol} />
+              </View>
+              <Text style={[s.sayTitle, { color: gradeCol }]}>Shelf Exposé Says</Text>
             </View>
-            <Text style={[s.sayTitle, { color: gradeCol }]}>Shelf Exposé Says</Text>
+            {insufficientData ? (
+              <Text style={s.sayText}>
+                We don't have verified data on this product yet. We've flagged it for investigation — we'll research it and add a full score soon.
+              </Text>
+            ) : (
+              <Text style={s.sayText}>{explanation}</Text>
+            )}
           </View>
-          {insufficientData ? (
-            <Text style={s.sayText}>
-              We don't have verified data on this product yet. We've flagged it for investigation — we'll research it and add a full score soon.
-            </Text>
-          ) : (
-            <Text style={s.sayText}>{explanation}</Text>
-          )}
+          <Image
+            source={require('../../assets/detective.png')}
+            style={s.sayDetective}
+            resizeMode="contain"
+          />
         </View>
 
         {/* ── 2b: Request card (insufficient data only) ── */}
@@ -736,7 +743,10 @@ const s = StyleSheet.create({
     marginHorizontal: 16, marginTop: 14, marginBottom: 4,
     backgroundColor: '#F7FAF8', borderRadius: 14,
     padding: 16, borderLeftWidth: 3,
+    flexDirection: 'row', alignItems: 'center',
   },
+  sayMain: { flex: 1 },
+  sayDetective: { width: 46, height: 108, marginLeft: 12, alignSelf: 'flex-end' },
   sayHeader: { flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 9 },
   sayIcon: { width: 26, height: 26, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
   sayTitle: { fontSize: 13, fontWeight: '700' },

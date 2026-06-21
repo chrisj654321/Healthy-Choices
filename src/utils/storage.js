@@ -107,11 +107,36 @@ export const DEFAULT_PREFS = {
   favoriteStores: [],
   dietStyle: [],
   primaryGoal: null,
+  // Whether the user has explicitly reviewed each setup section (vs. skipped it
+  // during onboarding). Drives the "finish setting up your profile" Home card.
+  allergensReviewed: false,
+  dietaryReviewed: false,
+  goalReviewed: false,
   showLobbying: true,
   showDonations: true,
   notifyNewFlags: true,
   unit: 'imperial',
 };
+
+/**
+ * Which initial-signup sections the user still hasn't completed. A section
+ * counts as done if it was explicitly reviewed OR already has data (covers
+ * users who set things up before the review flags existed).
+ * Returns { complete, missing: ['allergens'|'dietary'|'goal'] }.
+ */
+export function getProfileSetup(prefs = {}) {
+  const allergensDone = prefs.allergensReviewed || (prefs.allergens?.length > 0);
+  const dietaryDone =
+    prefs.dietaryReviewed || (prefs.dietaryFlags?.length > 0) || (prefs.dietStyle?.length > 0);
+  const goalDone = prefs.goalReviewed || prefs.primaryGoal != null;
+
+  const missing = [];
+  if (!allergensDone) missing.push('allergens');
+  if (!dietaryDone) missing.push('dietary');
+  if (!goalDone) missing.push('goal');
+
+  return { complete: missing.length === 0, missing };
+}
 
 export async function getUserPrefs() {
   try {
