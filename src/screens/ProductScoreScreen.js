@@ -9,7 +9,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
 import {
-  scoreProduct, gradeToColor, scoreToVerdict, generateScoreExplanation, getPersonalisedWarnings,
+  scoreProduct, scoreToColor, scoreToVerdict, generateScoreExplanation, getPersonalisedWarnings,
 } from '../utils/scorer';
 import { addScanToHistory, getUserPrefs } from '../utils/storage';
 import { logProductRequest } from '../utils/productRequests';
@@ -181,7 +181,7 @@ export default function ProductScoreScreen({ route, navigation }) {
     }
     await Share.share({
       message:
-        `${product.name} scored ${result.grade} (${result.score}/100) on Shelf Exposé.\n` +
+        `${product.name} scored ${result.score}/100 on Shelf Exposé.\n` +
         (result.avoidCount > 0
           ? `⚠️ ${result.avoidCount} ingredient(s) to avoid.`
           : '✅ No major red-flag ingredients!'),
@@ -198,7 +198,7 @@ export default function ProductScoreScreen({ route, navigation }) {
   }
 
   const { score, grade, displayGrade, analyzedIngredients, insufficientData } = result;
-  const gradeCol = gradeToColor(displayGrade);
+  const gradeCol = insufficientData ? '#9BB5AE' : scoreToColor(score);
   const verdict = scoreToVerdict(displayGrade);
   const explanation = insufficientData ? null : generateScoreExplanation(product, result);
   const { nutrition = {} } = product;
@@ -247,8 +247,8 @@ export default function ProductScoreScreen({ route, navigation }) {
           {product.image ? (
             <Image source={{ uri: product.image }} style={s.heroImg} resizeMode="cover" />
           ) : (
-            <View style={[s.heroPlaceholder, { backgroundColor: gradeCol }]}>
-              <Text style={s.heroGrade}>{displayGrade}</Text>
+            <View style={s.heroPlaceholder}>
+              <Image source={require('../../assets/icon.png')} style={s.heroLogo} resizeMode="contain" />
             </View>
           )}
           <LinearGradient
@@ -703,8 +703,8 @@ const s = StyleSheet.create({
   // Hero
   heroWrap: { height: HERO_H, overflow: 'hidden', backgroundColor: '#D5EAE3' },
   heroImg: { width: '100%', height: '100%' },
-  heroPlaceholder: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-  heroGrade: { fontSize: 90, fontWeight: '900', color: 'rgba(255,255,255,0.30)' },
+  heroPlaceholder: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#D5EAE3' },
+  heroLogo: { width: HERO_H * 0.5, height: HERO_H * 0.5, opacity: 0.85 },
   heroOverlay: {
     ...StyleSheet.absoluteFillObject,
     flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start',

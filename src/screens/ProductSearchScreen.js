@@ -17,7 +17,7 @@ import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
 import { useProStatus } from '../utils/subscription';
 import { buildProductFromRaw } from '../utils/productParser';
-import { scoreProduct, scoreToGrade, gradeToColor } from '../utils/scorer';
+import { scoreProduct, scoreToColor } from '../utils/scorer';
 import { PRODUCT_DB } from '../data/products';
 
 // ─── Endpoints ────────────────────────────────────────────────────────────────
@@ -462,10 +462,8 @@ export default function ProductSearchScreen({ navigation }) {
 function ResultCard({ product, onPress }) {
   const result = scoreProduct(product);
 
-  // Contract A: support displayGrade + insufficientData if scorer provides it
-  const displayGrade = result.displayGrade ?? result.grade;
-  const color        = gradeToColor(displayGrade);
   const isInsufficient = result.insufficientData ?? false;
+  const color        = isInsufficient ? '#9BB5AE' : scoreToColor(result.score);
 
   const categoryLabel = product.category
     ? product.category.replace(/\ben:/g, '').replace(/-/g, ' ')
@@ -504,9 +502,9 @@ function ResultCard({ product, onPress }) {
         )}
       </View>
 
-      {/* Grade badge */}
+      {/* Score badge */}
       <View style={[styles.gradeBadge, { borderColor: color }]}>
-        <Text style={[styles.gradeText, { color }]}>{displayGrade}</Text>
+        <Text style={[styles.gradeText, { color }]}>{isInsufficient ? '?' : result.score}</Text>
       </View>
 
       <Ionicons name="chevron-forward" size={16} color={Colors.textMuted} style={{ marginLeft: 4 }} />
@@ -589,8 +587,8 @@ const styles = StyleSheet.create({
   resultBrand:  { fontSize: Font.sizes.sm, color: Colors.textSecondary, marginTop: 2 },
   resultCal:    { fontSize: Font.sizes.xs, color: Colors.textMuted, marginTop: 2 },
   gradeBadge:   {
-    width: 36, height: 36, borderRadius: 10, borderWidth: 2,
-    alignItems: 'center', justifyContent: 'center', marginLeft: 8,
+    minWidth: 40, height: 40, borderRadius: 20, borderWidth: 2,
+    alignItems: 'center', justifyContent: 'center', marginLeft: 8, paddingHorizontal: 5,
   },
   gradeText:    { fontSize: Font.sizes.md, fontWeight: Font.weights.heavy },
 

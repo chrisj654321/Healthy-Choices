@@ -379,6 +379,22 @@ export function getPersonalisedWarnings(analyzedIngredients, product, prefs) {
 /**
  * Scores a product's ingredients and returns a health score (0-100) and grade (A-F).
  */
+/**
+ * Processing ceiling: the heavier a product's weighted marker load, the lower
+ * its score may climb — structurally enforcing "ultra-processed food can't top
+ * out." It's a smooth curve (not a tiered cliff) so a single mild marker costs
+ * only a few points, while a stack of severe ones bottoms out near the floor.
+ * Penalties still operate *under* the ceiling so products stay spread out.
+ *
+ * markerLoad is a weighted sum (see markerWeight): ~0.4 per mild marker (natural
+ * flavors), 0.7 moderate, 1.0 severe (trans fat, HFCS, dyes).
+ *   load 0.4 → ~91   load 1.0 → ~78   load 2.0 → ~56   load 2.7+ → 40 (floor)
+ */
+export function upfCeiling(markerLoad) {
+  if (markerLoad <= 0) return 100;
+  return Math.max(40, Math.round(100 - markerLoad * 22));
+}
+
 export function scoreProduct(product) {
   const { ingredients = [], nutrition = {}, certifications = [] } = product;
 
@@ -387,12 +403,26 @@ export function scoreProduct(product) {
   const analyzed = analyzeIngredients(ingredients);
   const nutritionPenalty = calcNutritionPenalty(nutrition);
   const certBonus = certifications.length * 3;
+  const markerCount = analyzed.markerCount;
+  const markerLoad = analyzed.markerLoad;
+  const ceiling = upfCeiling(markerLoad);
 
-  // Base score starts at 100, subtract penalties
-  let score = 100;
-  score -= analyzed.totalPenalty;
-  score -= nutritionPenalty;
-  score += certBonus;
+  // "Whole-food clean": zero ultra-processing markers and nothing flagged
+  // moderate/caution/avoid. The sugars and fats in a whole food are intrinsic,
+  // so we waive almost all of the nutrition penalty — pure blackberries, raw
+  // almonds, plain raisins all land at/near 100.
+  const hasConcern = analyzed.items.some(
+    (i) => i.flag === 'moderate' || i.flag === 'caution' || i.flag === 'avoid'
+  );
+  const wholeFoodClean = !insufficientData && markerCount === 0 && !hasConcern;
+
+  let score;
+  if (wholeFoodClean) {
+    score = 100 - Math.min(nutritionPenalty * 0.25, 5) + certBonus;
+  } else {
+    score = 100 - analyzed.totalPenalty - nutritionPenalty + certBonus;
+    score = Math.min(score, ceiling);
+  }
   score = Math.max(0, Math.min(100, Math.round(score)));
 
   const grade = scoreToGrade(score);
@@ -405,16 +435,64 @@ export function scoreProduct(product) {
     analyzedIngredients: analyzed.items,
     flaggedCount: analyzed.flaggedCount,
     avoidCount: analyzed.avoidCount,
+    markerCount,
+    markerLoad,
+    upfCeiling: ceiling,
     nutritionPenalty,
     certBonus,
+    wholeFoodClean,
     insufficientData,
   };
+}
+
+/**
+ * Decide whether a resolved DB entry counts as an ULTRA-PROCESSING MARKER for
+ * the processing-ceiling logic.
+ *
+ * New entries carry an explicit `upfMarker` boolean — that always wins.
+ * Legacy entries (no boolean) are derived from category + flag so we don't have
+ * to hand-edit dozens of rows:
+ *   - refined oils → always a marker
+ *   - dyes / flavor-enhancers / emulsifiers → marker unless the entry is a
+ *     benign natural one (flagged 'ok', e.g. annatto, soy lecithin, xanthan gum)
+ *   - additives / preservatives / proteins / sweeteners → marker only when the
+ *     entry itself is concerning (flag 'avoid'/'caution'), which excludes plain
+ *     sugar, citric acid, and allergen-flagged whole foods
+ */
+function dbEntryIsMarker(entry) {
+  if (!entry) return false;
+  if (entry.upfMarker === true) return true;
+  if (entry.upfMarker === false) return false;
+  const c = entry.category;
+  if (c === 'oils') return true;
+  if (c === 'dyes' || c === 'flavor-enhancers' || c === 'emulsifiers') {
+    return entry.flag !== 'ok';
+  }
+  if (c === 'additives' || c === 'preservatives' || c === 'proteins' || c === 'sweeteners') {
+    return entry.flag === 'avoid' || entry.flag === 'caution';
+  }
+  return false;
+}
+
+/**
+ * How heavily a single marker pulls the processing ceiling down, by severity.
+ * A mild marker (natural flavors, refined oil, modified starch — risk ≤4)
+ * costs far less than a severe one (trans fat, HFCS, nitrites, dyes — risk ≥7).
+ * This is what keeps a lone "natural flavors" from imposing a flat 25-pt cliff.
+ */
+function markerWeight(entry) {
+  const r = entry?.risk ?? 4;
+  if (r >= 7) return 1.0;   // severe
+  if (r >= 5) return 0.7;   // moderate
+  return 0.4;               // mild (e.g. natural flavors)
 }
 
 function analyzeIngredients(ingredients) {
   let totalPenalty = 0;
   let flaggedCount = 0;
   let avoidCount = 0;
+  let markerCount = 0;
+  let markerLoad = 0;
   const items = [];
 
   ingredients.forEach((raw) => {
@@ -426,6 +504,8 @@ function analyzeIngredients(ingredients) {
       totalPenalty += penalty;
       flaggedCount++;
       if (data.flag === 'avoid') avoidCount++;
+      const isMarker = dbEntryIsMarker(data);
+      if (isMarker) { markerCount++; markerLoad += markerWeight(data); }
 
       items.push({
         raw,
@@ -433,9 +513,11 @@ function analyzeIngredients(ingredients) {
         risk: data.risk,
         category: data.category,
         note: data.note,
+        evidence: data.evidence ?? null,
         flag: data.flag,
         flagInfo: FLAG_LEVELS[data.flag],
         penalty,
+        isMarker,
       });
     } else if (hit && hit.source === 'cache') {
       const cached = hit.entry;
@@ -473,7 +555,7 @@ function analyzeIngredients(ingredients) {
     }
   });
 
-  return { items, totalPenalty: Math.min(totalPenalty, 80), flaggedCount, avoidCount };
+  return { items, totalPenalty: Math.min(totalPenalty, 80), flaggedCount, avoidCount, markerCount, markerLoad };
 }
 
 function calcNutritionPenalty(nutrition) {
@@ -491,12 +573,25 @@ function calcNutritionPenalty(nutrition) {
   return Math.min(penalty, 20);
 }
 
+// NOTE: letter grades are no longer shown in the UI — we display the 0–100
+// score directly. scoreToGrade is retained only to drive score color and the
+// verdict word, and now uses standard academic bands.
 export function scoreToGrade(score) {
-  if (score >= 80) return 'A';
-  if (score >= 65) return 'B';
-  if (score >= 50) return 'C';
-  if (score >= 35) return 'D';
+  if (score >= 90) return 'A';
+  if (score >= 80) return 'B';
+  if (score >= 70) return 'C';
+  if (score >= 60) return 'D';
   return 'F';
+}
+
+// Score → color, independent of any displayed letter.
+export function scoreToColor(score) {
+  if (score == null) return '#9BB5AE';
+  if (score >= 90) return '#1D9E75';
+  if (score >= 80) return '#6DBE47';
+  if (score >= 70) return '#F5A623';
+  if (score >= 50) return '#F06A25';
+  return '#D93B3B';
 }
 
 export function gradeToColor(grade) {

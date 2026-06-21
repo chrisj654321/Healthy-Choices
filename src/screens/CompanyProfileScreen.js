@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   View,
   Text,
   ScrollView,
   StyleSheet,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -12,8 +13,9 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
 import LobbyingFlagCard from '../components/LobbyingFlagCard';
-import { getLobbyingRiskLevel, formatCurrency } from '../utils/scorer';
+import { getLobbyingRiskLevel, formatCurrency, scoreProduct, scoreToColor } from '../utils/scorer';
 import { getUserPrefs } from '../utils/storage';
+import { PRODUCT_DB } from '../data/products';
 
 export default function CompanyProfileScreen({ route, navigation }) {
   const { company, initialTab } = route?.params ?? {};
@@ -31,6 +33,11 @@ export default function CompanyProfileScreen({ route, navigation }) {
   const repPct = company.donationSplit?.republican ?? 50;
   const demPct = company.donationSplit?.democrat ?? 50;
   const highSeverityCount = company.issues?.filter((i) => i.severity === 'high').length ?? 0;
+
+  const companyProducts = useMemo(() =>
+    Object.values(PRODUCT_DB).filter((p) => p.companyId === company.id),
+    [company.id]
+  );
 
   const sustainColor =
     company.sustainabilityScore >= 70
@@ -95,7 +102,7 @@ export default function CompanyProfileScreen({ route, navigation }) {
 
       {/* Tabs */}
       <View style={styles.tabs}>
-        {['overview', 'issues', 'brands'].map((tab) => (
+        {['overview', 'issues', 'brands', 'products'].map((tab) => (
           <TouchableOpacity
             key={tab}
             style={[styles.tab, activeTab === tab && styles.tabActive]}
@@ -249,6 +256,47 @@ export default function CompanyProfileScreen({ route, navigation }) {
             </View>
           </View>
         )}
+
+        {activeTab === 'products' && (
+          <View>
+            <SectionHeader
+              title="Products"
+              subtitle={`${companyProducts.length} product${companyProducts.length !== 1 ? 's' : ''} in database`}
+            />
+            {companyProducts.length > 0 ? (
+              companyProducts.map((product, i) => {
+                const result = scoreProduct(product);
+                const scoreColor = result.insufficientData ? '#9BB5AE' : scoreToColor(result.score);
+                return (
+                  <TouchableOpacity
+                    key={product.barcode ?? i}
+                    style={styles.productRow}
+                    onPress={() => navigation.navigate('ProductScore', { product })}
+                  >
+                    {product.image ? (
+                      <Image source={{ uri: product.image }} style={styles.productImage} />
+                    ) : (
+                      <View style={styles.productImagePlaceholder}>
+                        <Image source={require('../../assets/icon.png')} style={styles.productLogo} resizeMode="contain" />
+                      </View>
+                    )}
+                    <View style={styles.productInfo}>
+                      <Text style={styles.productName} numberOfLines={2}>{product.name}</Text>
+                      <Text style={styles.productBrand}>{product.brand} · {product.category}</Text>
+                    </View>
+                    <View style={[styles.productScore, { borderColor: scoreColor }]}>
+                      <Text style={[styles.productScoreNum, { color: scoreColor }]}>
+                        {result.insufficientData ? '?' : result.score}
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                );
+              })
+            ) : (
+              <EmptyState icon="cube-outline" text="No products in the database for this company yet." />
+            )}
+          </View>
+        )}
       </ScrollView>
     </View>
   );
@@ -356,4 +404,13 @@ const styles = StyleSheet.create({
   brandsGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
   brandCard: { flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: Colors.white, borderRadius: 10, paddingHorizontal: 12, paddingVertical: 8, shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.05, shadowRadius: 4, elevation: 1 },
   brandName: { fontSize: Font.sizes.sm, fontWeight: Font.weights.medium, color: Colors.textPrimary },
+  productRow: { flexDirection: 'row', alignItems: 'center', backgroundColor: Colors.white, borderRadius: 12, padding: 12, marginBottom: 10, shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.05, shadowRadius: 4, elevation: 1 },
+  productImage: { width: 52, height: 52, borderRadius: 8, marginRight: 12, resizeMode: 'contain' },
+  productImagePlaceholder: { width: 52, height: 52, borderRadius: 8, marginRight: 12, backgroundColor: '#D5EAE3', alignItems: 'center', justifyContent: 'center' },
+  productLogo: { width: 34, height: 34, opacity: 0.85 },
+  productScore: { minWidth: 44, height: 44, borderRadius: 22, borderWidth: 2, alignItems: 'center', justifyContent: 'center', marginLeft: 8, paddingHorizontal: 6 },
+  productScoreNum: { fontSize: Font.sizes.md, fontWeight: Font.weights.bold },
+  productInfo: { flex: 1 },
+  productName: { fontSize: Font.sizes.sm, fontWeight: Font.weights.semibold, color: Colors.textPrimary },
+  productBrand: { fontSize: Font.sizes.xs, color: Colors.textMuted, marginTop: 2 },
 });
