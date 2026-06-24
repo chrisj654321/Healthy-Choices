@@ -23,7 +23,9 @@
     "eggs":                { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 10 },
     "cooking_oils_vinegars": { "research": "done", "write": "done", "review": "done", "merged": true, "mergedCount": 14 },
     "plant_milk":            { "research": "done", "write": "done", "review": "done", "merged": true, "mergedCount": 14 },
-    "frozen_veg_fruit":      { "research": "done", "write": "done", "review": "done", "merged": true, "mergedCount": 14 }
+    "frozen_veg_fruit":      { "research": "done", "write": "done", "review": "done", "merged": true, "mergedCount": 14 },
+    "coffee_creamers":       { "research": "done", "write": "done", "review": "done", "merged": true, "mergedCount": 14 },
+    "pasta_sauce_pt1":       { "research": "done", "write": "done", "review": "done", "merged": true, "mergedCount": 13 }
   },
   "merge_notes": {
     "snack_bars": "27 merged, 3 rejected (bad UPC-A check digit: 018627860023 also duplicate, 416261001246, 602652220600)",
@@ -47,7 +49,9 @@
     "eggs": "10 merged (QA REVIEWED 8 PASS 2 FIX 0 REJECT). FIX: Nellie's and Gold Circle Farms ingredient strings normalized to ['eggs']. 6 entries carry null companyId.",
     "cooking_oils_vinegars": "14 merged (QA REVIEWED 14 PASS 0 FIX 0 REJECT). No duplicates. 7 entries carry null companyId (California Olive Ranch LLC, Colavita USA, Pompeian Inc., Salov Group, Amazon/Whole Foods, Nutiva Inc., La Tourangelle Inc.).",
     "plant_milk": "14 merged (QA REVIEWED 14 PASS 0 FIX 0 REJECT). No duplicates. 6 entries carry null companyId (HP Hood LLC, Elmhurst 1925 x2, Minor Figures Ltd., Malk Organics, Three Trees Foods).",
-    "frozen_veg_fruit": "14 merged (QA REVIEWED 14 PASS 0 FIX 0 REJECT). No duplicates. 0 entries carry null companyId (all assigned: conagra, b-and-g-foods, general-mills)."
+    "frozen_veg_fruit": "14 merged (QA REVIEWED 14 PASS 0 FIX 0 REJECT). No duplicates. 0 entries carry null companyId (all assigned: conagra, b-and-g-foods, general-mills).",
+    "coffee_creamers": "14 merged (QA REVIEWED 14 PASS 0 FIX 0 REJECT). No duplicates. 0 null companyIds (nestle x6, danone x4, califia-farms, nutpods, chobani, laird-superfood).",
+    "pasta_sauce_pt1": "13 merged (QA REVIEWED 11 PASS 2 FIX 0 REJECT). FIX: Newman's Own null -> 'newmans-own'; Barilla null -> 'barilla'. 3 null companyIds remain (Rienzi & Sons, Mizkan America x2)."
   },
-  "total_manual_products": 444
+  "total_manual_products": 471
 }
