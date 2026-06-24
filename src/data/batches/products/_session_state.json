@@ -20,7 +20,10 @@
     "pasta_grains":        { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 18 },
     "cheese_dairy":        { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 19 },
     "nuts_trail_mix":      { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 18 },
-    "eggs":                { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 10 }
+    "eggs":                { "research": "done", "write": "done", "review": "done", "merged": true,  "mergedCount": 10 },
+    "cooking_oils_vinegars": { "research": "done", "write": "done", "review": "done", "merged": true, "mergedCount": 14 },
+    "plant_milk":            { "research": "done", "write": "done", "review": "done", "merged": true, "mergedCount": 14 },
+    "frozen_veg_fruit":      { "research": "done", "write": "done", "review": "done", "merged": true, "mergedCount": 14 }
   },
   "merge_notes": {
     "snack_bars": "27 merged, 3 rejected (bad UPC-A check digit: 018627860023 also duplicate, 416261001246, 602652220600)",
@@ -41,7 +44,10 @@
     "pasta_grains": "18 merged (QA REVIEWED 18 PASS 0 FIX 0 REJECT). No duplicates. 4 entries carry null companyId (Tinkyada, Minute Rice, De Cecco, Explore Cuisine).",
     "cheese_dairy": "19 merged (QA REVIEWED 19 PASS 0 FIX 0 REJECT). No duplicates. 5 entries carry null companyId (Bel Brands, Daisy, Friendship, Ornua, Crystal Farms).",
     "nuts_trail_mix": "18 merged (QA REVIEWED 18 PASS 0 FIX 0 REJECT). No duplicates. 7 entries carry null companyId (Blue Diamond, Wonderful, Sanfilippo, Back to Nature, Second Nature, Sunsweet, Dang).",
-    "eggs": "10 merged (QA REVIEWED 8 PASS 2 FIX 0 REJECT). FIX: Nellie's and Gold Circle Farms ingredient strings normalized to ['eggs']. 6 entries carry null companyId."
+    "eggs": "10 merged (QA REVIEWED 8 PASS 2 FIX 0 REJECT). FIX: Nellie's and Gold Circle Farms ingredient strings normalized to ['eggs']. 6 entries carry null companyId.",
+    "cooking_oils_vinegars": "14 merged (QA REVIEWED 14 PASS 0 FIX 0 REJECT). No duplicates. 7 entries carry null companyId (California Olive Ranch LLC, Colavita USA, Pompeian Inc., Salov Group, Amazon/Whole Foods, Nutiva Inc., La Tourangelle Inc.).",
+    "plant_milk": "14 merged (QA REVIEWED 14 PASS 0 FIX 0 REJECT). No duplicates. 6 entries carry null companyId (HP Hood LLC, Elmhurst 1925 x2, Minor Figures Ltd., Malk Organics, Three Trees Foods).",
+    "frozen_veg_fruit": "14 merged (QA REVIEWED 14 PASS 0 FIX 0 REJECT). No duplicates. 0 entries carry null companyId (all assigned: conagra, b-and-g-foods, general-mills)."
   },
-  "total_manual_products": 402
+  "total_manual_products": 444
 }
