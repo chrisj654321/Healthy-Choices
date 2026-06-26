@@ -7,8 +7,9 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "ios": {
-      "supportsTablet": false,
+      "supportsTablet": true,
       "bundleIdentifier": "com.jamesadventure.healthychoices",
+      "usesAppleSignIn": true,
       "infoPlist": {
         "NSCameraUsageDescription": "Shelf Exposé uses your camera to scan product barcodes.",
         "ITSAppUsesNonExemptEncryption": false

@@ -39,5 +39,6 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
     autoRefreshToken:   true,
     persistSession:     true,
     detectSessionInUrl: false,   // Required for React Native
+    flowType:           'pkce',  // Google OAuth handler uses exchangeCodeForSession()
   },
 });

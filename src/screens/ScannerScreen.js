@@ -227,7 +227,7 @@ export default function ScannerScreen({ navigation }) {
           onPress={canAsk ? requestPermission : () => Linking.openSettings()}
         >
           <Text style={s.permBtnText}>
-            {canAsk ? 'Grant Camera Access' : 'Open Settings'}
+            {canAsk ? 'Continue' : 'Open Settings'}
           </Text>
         </TouchableOpacity>
       </View>

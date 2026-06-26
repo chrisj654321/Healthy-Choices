@@ -147,14 +147,8 @@ export default function AuthScreen() {
       const result = await WebBrowser.openAuthSessionAsync(data?.url, redirectUrl);
 
       if (result.type === 'success') {
-        const url = new URL(result.url);
-        const params = new URLSearchParams(url.hash.slice(1));
-        const accessToken  = params.get('access_token');
-        const refreshToken = params.get('refresh_token');
-
-        if (accessToken) {
-          await supabase.auth.setSession({ access_token: accessToken, refresh_token: refreshToken });
-        }
+        const { error: sessionError } = await supabase.auth.exchangeCodeForSession(result.url);
+        if (sessionError) { setLoading(false); Alert.alert('Google Sign In Error', sessionError.message); return; }
       }
 
       setLoading(false);

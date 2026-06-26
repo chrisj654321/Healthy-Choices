@@ -37,7 +37,10 @@ Deno.serve(async (req) => {
   );
   const { error: deleteError } = await adminClient.auth.admin.deleteUser(user.id);
   if (deleteError) {
-    return json({ error: deleteError.message }, 500);
+    // Log the full error server-side (visible in Edge Function logs only);
+    // never return the raw provider message to the client.
+    console.error("delete-account failed for user", user.id, deleteError);
+    return json({ error: "Could not delete account. Please try again." }, 500);
   }
 
   return json({ success: true });
