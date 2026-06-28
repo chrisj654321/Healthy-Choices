@@ -5,16 +5,48 @@
  * stay healthy and grow automatically as more products are added.
  *
  * `productCategories` are matched against product.category (case-insensitive).
+ * Icons use MaterialCommunityIcons (bundled in @expo/vector-icons).
  */
+import { categoryAccents } from '../constants/colors';
+
+// One tile per shopping aisle, ordered roughly by how many products we carry.
+// `icon` is a MaterialCommunityIcons name (fallback shown only when an aisle has
+// no photographed product yet); the hero is otherwise the best-scoring product
+// photo in that aisle. Accent colors live in categoryAccents (colors.js).
+const C = categoryAccents;
+const tile = (id, label, icon, productCategories) => ({
+  id, label, icon,
+  color: C[id].color,
+  lightColor: C[id].light,
+  productCategories,
+});
+
 export const HEALTHY_CATEGORIES = [
-  { id: 'yogurt',      label: 'Yogurt',          icon: 'ice-cream-outline',  productCategories: ['Yogurt'] },
-  { id: 'snack-bars',  label: 'Snack Bars',      icon: 'fast-food-outline',  productCategories: ['Snack Bars'] },
-  { id: 'granola',     label: 'Granola',         icon: 'cafe-outline',       productCategories: ['Granola', 'Cereals', 'Hot Cereal'] },
-  { id: 'bread',       label: 'Bread',           icon: 'restaurant-outline', productCategories: ['Bread'] },
-  { id: 'nut-butters', label: 'Nut Butters',     icon: 'pin-outline',        productCategories: ['Nut Butters', 'Peanut Butter'] },
-  { id: 'nuts',        label: 'Nuts & Trail Mix',icon: 'leaf-outline',       productCategories: ['Nuts & Trail Mix'] },
-  { id: 'eggs',        label: 'Eggs',            icon: 'egg-outline',        productCategories: ['Eggs'] },
-  { id: 'cheese',      label: 'Cheese & Dairy',  icon: 'square-outline',     productCategories: ['Cheese & Dairy'] },
+  tile('beverages',        'Beverages',          'bottle-soda',       ['Beverages']),
+  tile('chips-crackers',   'Chips & Crackers',   'cookie',            ['Chips & Crackers', 'Chips', 'Crackers']),
+  tile('snack-bars',       'Snack Bars',         'food-variant',      ['Snack Bars']),
+  tile('frozen-veg',       'Frozen Veg & Fruit', 'carrot',            ['Frozen Vegetables & Fruit']),
+  tile('cooking-oils',     'Oils & Vinegars',    'oil',               ['Cooking Oils & Vinegars']),
+  tile('plant-milk',       'Plant-Based Milk',   'cup',               ['Plant-Based Milk']),
+  tile('bread',            'Bread',              'bread-slice',       ['Bread']),
+  tile('condiments',       'Condiments & Sauces','bottle-tonic-plus', ['Condiments & Sauces']),
+  tile('yogurt',           'Yogurt',             'bowl-mix',          ['Yogurt']),
+  tile('frozen-breakfast', 'Frozen Breakfast',   'food-croissant',    ['Frozen Breakfast']),
+  tile('cereal',           'Cereal',             'bowl',              ['Cereals', 'Hot Cereal']),
+  tile('frozen-meals',     'Frozen Meals',       'microwave',         ['Frozen Meals', 'Packaged Meals']),
+  tile('deli-lunch',       'Deli & Lunch',       'sausage',           ['Deli & Lunch', 'Deli Meat', 'Kids Lunch']),
+  tile('canned-goods',     'Canned Goods',       'food',              ['Canned Goods']),
+  tile('cheese',           'Cheese & Dairy',     'cheese',            ['Cheese & Dairy']),
+  tile('pasta-grains',     'Pasta & Grains',     'pasta',             ['Pasta & Grains']),
+  tile('nuts',             'Nuts & Trail Mix',   'peanut-outline',    ['Nuts & Trail Mix']),
+  tile('baby-food',        'Baby Food',          'baby-bottle',       ['Baby Food']),
+  tile('coffee-creamer',   'Coffee Creamer',     'coffee',            ['Coffee Creamer']),
+  tile('nut-butters',      'Nut Butters',        'peanut',            ['Nut Butters', 'Peanut Butter']),
+  tile('pasta-sauce',      'Pasta Sauce',        'pot-mix',           ['Pasta Sauce & Cooking Sauces']),
+  tile('soups',            'Soups & Broths',     'pot-steam',         ['Soups & Broths']),
+  tile('coffee-tea',       'Coffee & Tea',       'tea',               ['Coffee & Tea']),
+  tile('eggs',             'Eggs',               'egg',               ['Eggs']),
+  tile('granola',          'Granola',            'barley',            ['Granola']),
 ];
 
 /**
@@ -40,4 +72,15 @@ export function countForCategory(category, PRODUCT_DB) {
     if (p.category && wanted.has(String(p.category).toLowerCase())) n++;
   }
   return n;
+}
+
+/**
+ * Returns the image URL of the first product (by score, best-first) in a
+ * category that has a truthy image. Returns null when none have photos.
+ * Scoring is injected to avoid a circular import.
+ */
+export function heroImageForCategory(category, PRODUCT_DB, scoreProduct) {
+  const scored = productsForCategory(category, PRODUCT_DB, scoreProduct);
+  const found = scored.find((entry) => entry.product.image);
+  return found ? found.product.image : null;
 }

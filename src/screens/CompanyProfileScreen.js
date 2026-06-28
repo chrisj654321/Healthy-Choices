@@ -15,29 +15,39 @@ import { Font } from '../constants/typography';
 import LobbyingFlagCard from '../components/LobbyingFlagCard';
 import { getLobbyingRiskLevel, formatCurrency, scoreProduct, scoreToColor } from '../utils/scorer';
 import { getUserPrefs } from '../utils/storage';
+import { useProStatus } from '../utils/subscription';
+import { getSpotlightCompany } from '../utils/spotlight';
 import { PRODUCT_DB } from '../data/products';
 
 export default function CompanyProfileScreen({ route, navigation }) {
-  const { company, initialTab } = route?.params ?? {};
+  const { company, initialTab, spotlight } = route?.params ?? {};
   const insets = useSafeAreaInsets();
   const [activeTab, setActiveTab] = useState(initialTab ?? 'overview');
   const [prefs, setPrefs] = useState({ showLobbying: true, showDonations: true });
+  const { isPro } = useProStatus();
 
   useEffect(() => {
     getUserPrefs().then(setPrefs);
   }, []);
 
+  // Hooks must run before any early return — guard the body for the null case.
+  const companyProducts = useMemo(() =>
+    company ? Object.values(PRODUCT_DB).filter((p) => p.companyId === company.id) : [],
+    [company?.id]
+  );
+  // This week's free-unlock company is viewable in full even for free users.
+  const spotlightCompany = useMemo(() => getSpotlightCompany(), []);
+
   if (!company) return null;
+
+  // Company money-trail data is a Pro feature; the weekly spotlight company is exempt.
+  const unlocked = isPro || spotlightCompany?.company?.id === company.id;
+  const goPaywall = () => navigation.navigate('Paywall', { feature: 'company' });
 
   const lobbyRisk = getLobbyingRiskLevel(company.lobbyingSpend);
   const repPct = company.donationSplit?.republican ?? 50;
   const demPct = company.donationSplit?.democrat ?? 50;
   const highSeverityCount = company.issues?.filter((i) => i.severity === 'high').length ?? 0;
-
-  const companyProducts = useMemo(() =>
-    Object.values(PRODUCT_DB).filter((p) => p.companyId === company.id),
-    [company.id]
-  );
 
   const sustainColor =
     company.sustainabilityScore >= 70
@@ -77,8 +87,8 @@ export default function CompanyProfileScreen({ route, navigation }) {
           </View>
         </View>
 
-        {/* Risk banner — only shown when showLobbying pref is on */}
-        {prefs.showLobbying !== false && (
+        {/* Risk banner — lobbying spend is Pro-gated */}
+        {prefs.showLobbying !== false && unlocked && (
           <View style={[styles.riskBanner, { backgroundColor: lobbyRisk.bg }]}>
             <View style={styles.riskLeft}>
               <Text style={[styles.riskLabel, { color: lobbyRisk.color }]}>Lobbying Risk</Text>
@@ -97,6 +107,17 @@ export default function CompanyProfileScreen({ route, navigation }) {
               <Text style={[styles.riskSub, { color: lobbyRisk.color }]}>Federal lobbying</Text>
             </View>
           </View>
+        )}
+
+        {/* Locked teaser for free users */}
+        {prefs.showLobbying !== false && !unlocked && (
+          <TouchableOpacity style={styles.riskLocked} activeOpacity={0.85} onPress={goPaywall}>
+            <Ionicons name="lock-closed" size={15} color={Colors.white} />
+            <Text style={styles.riskLockedText}>Lobbying spend & political influence</Text>
+            <View style={styles.riskLockedBtn}>
+              <Text style={styles.riskLockedBtnText}>Unlock</Text>
+            </View>
+          </TouchableOpacity>
         )}
       </LinearGradient>
 
@@ -134,7 +155,7 @@ export default function CompanyProfileScreen({ route, navigation }) {
                   <Text style={styles.financialLabel}>Employees</Text>
                 </View>
               </View>
-              {prefs.showLobbying !== false && company.lobbyingSpend != null && (
+              {unlocked && prefs.showLobbying !== false && company.lobbyingSpend != null && (
                 <>
                   <View style={styles.financialsDividerH} />
                   <View style={styles.financialsRow}>
@@ -159,7 +180,7 @@ export default function CompanyProfileScreen({ route, navigation }) {
             </View>
 
             {/* Political donation split */}
-            {prefs.showDonations !== false && company.politicalDonations != null && (
+            {unlocked && prefs.showDonations !== false && company.politicalDonations != null && (
               <>
                 <SectionHeader title="Donation Split" subtitle={`${company.donationSplitYear ?? ''} election cycle`} />
                 <View style={styles.donationCard}>
@@ -185,7 +206,7 @@ export default function CompanyProfileScreen({ route, navigation }) {
             )}
 
             {/* Lobbying targets */}
-            {prefs.showLobbying !== false && company.lobbyingTargets?.length > 0 && (
+            {unlocked && prefs.showLobbying !== false && company.lobbyingTargets?.length > 0 && (
               <>
                 <SectionHeader title="Lobbying Targets" />
                 <View style={styles.targetList}>
@@ -200,6 +221,15 @@ export default function CompanyProfileScreen({ route, navigation }) {
                   )}
                 </View>
               </>
+            )}
+
+            {/* Money-trail data is Pro-gated (free for the weekly spotlight company) */}
+            {!unlocked && (
+              <LockedTeaser
+                title="Lobbying & political donations"
+                subtitle="See federal lobbying spend, the R/D donation split, and who they fund."
+                onPress={goPaywall}
+              />
             )}
 
             {/* Sustainability */}
@@ -232,7 +262,13 @@ export default function CompanyProfileScreen({ route, navigation }) {
               title="Corporate Issues & Flags"
               subtitle={`${company.issues?.length ?? 0} documented concerns`}
             />
-            {company.issues?.length > 0 ? (
+            {!unlocked ? (
+              <LockedTeaser
+                title="Unlock documented issues"
+                subtitle={`${company.issues?.length ?? 0} concern${(company.issues?.length ?? 0) !== 1 ? 's' : ''} — recalls, lawsuits, and controversies.`}
+                onPress={goPaywall}
+              />
+            ) : company.issues?.length > 0 ? (
               company.issues.map((issue, i) => <LobbyingFlagCard key={i} issue={issue} />)
             ) : (
               <EmptyState icon="checkmark-circle-outline" text="No documented issues found for this company." />
@@ -298,6 +334,22 @@ export default function CompanyProfileScreen({ route, navigation }) {
           </View>
         )}
       </ScrollView>
+
+      {/* Upgrade CTA — shown only to free users */}
+      {!isPro && (
+        <TouchableOpacity
+          style={styles.upgradeBanner}
+          activeOpacity={0.85}
+          onPress={() => navigation.navigate('Paywall', { feature: 'company' })}
+        >
+          <Text style={styles.upgradeBannerText}>
+            {spotlight
+              ? 'Enjoying the money trail? Unlock every company'
+              : "Unlock every company’s money trail"}
+          </Text>
+          <Ionicons name="chevron-forward" size={16} color={Colors.primary} />
+        </TouchableOpacity>
+      )}
     </View>
   );
 }
@@ -342,6 +394,39 @@ const esStyles = StyleSheet.create({
   text: { fontSize: Font.sizes.base, color: Colors.textMuted, textAlign: 'center' },
 });
 
+function LockedTeaser({ title, subtitle, onPress }) {
+  return (
+    <TouchableOpacity style={ltStyles.card} activeOpacity={0.85} onPress={onPress}>
+      <View style={ltStyles.lockCircle}>
+        <Ionicons name="lock-closed" size={20} color={Colors.primary} />
+      </View>
+      <View style={{ flex: 1 }}>
+        <Text style={ltStyles.title}>{title}</Text>
+        <Text style={ltStyles.sub}>{subtitle}</Text>
+      </View>
+      <View style={ltStyles.btn}>
+        <Text style={ltStyles.btnText}>Unlock</Text>
+      </View>
+    </TouchableOpacity>
+  );
+}
+const ltStyles = StyleSheet.create({
+  card: {
+    flexDirection: 'row', alignItems: 'center', gap: 12,
+    backgroundColor: Colors.white, borderRadius: 14, padding: 16, marginBottom: 20,
+    borderWidth: 1, borderColor: Colors.border,
+    shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.06, shadowRadius: 8, elevation: 2,
+  },
+  lockCircle: {
+    width: 44, height: 44, borderRadius: 22, backgroundColor: Colors.primaryLight,
+    alignItems: 'center', justifyContent: 'center',
+  },
+  title: { fontSize: Font.sizes.sm, fontWeight: Font.weights.bold, color: Colors.textPrimary },
+  sub: { fontSize: Font.sizes.xs, color: Colors.textSecondary, marginTop: 2, lineHeight: 16 },
+  btn: { backgroundColor: Colors.primary, borderRadius: 10, paddingHorizontal: 14, paddingVertical: 8 },
+  btnText: { fontSize: Font.sizes.sm, fontWeight: Font.weights.bold, color: '#fff' },
+});
+
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: Colors.background },
   header: { paddingHorizontal: 20, paddingBottom: 16 },
@@ -362,6 +447,14 @@ const styles = StyleSheet.create({
   riskSub: { fontSize: Font.sizes.xs },
   highFlag: { flexDirection: 'row', alignItems: 'center', gap: 3, marginBottom: 4 },
   highFlagText: { fontSize: Font.sizes.xs, color: Colors.flagRed, fontWeight: Font.weights.medium },
+
+  riskLocked: {
+    flexDirection: 'row', alignItems: 'center', gap: 10,
+    backgroundColor: 'rgba(255,255,255,0.12)', borderRadius: 14, padding: 14,
+  },
+  riskLockedText: { flex: 1, fontSize: Font.sizes.sm, fontWeight: Font.weights.semibold, color: Colors.white },
+  riskLockedBtn: { backgroundColor: Colors.primary, borderRadius: 10, paddingHorizontal: 14, paddingVertical: 7 },
+  riskLockedBtnText: { fontSize: Font.sizes.sm, fontWeight: Font.weights.bold, color: '#fff' },
 
   tabs: { flexDirection: 'row', backgroundColor: Colors.white, borderBottomWidth: 1, borderBottomColor: Colors.border },
   tab: { flex: 1, alignItems: 'center', paddingVertical: 12 },
@@ -413,4 +506,11 @@ const styles = StyleSheet.create({
   productInfo: { flex: 1 },
   productName: { fontSize: Font.sizes.sm, fontWeight: Font.weights.semibold, color: Colors.textPrimary },
   productBrand: { fontSize: Font.sizes.xs, color: Colors.textMuted, marginTop: 2 },
+
+  upgradeBanner: {
+    flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
+    backgroundColor: Colors.primaryLight, borderTopWidth: 1, borderTopColor: Colors.border,
+    paddingHorizontal: 20, paddingVertical: 14,
+  },
+  upgradeBannerText: { fontSize: Font.sizes.sm, fontWeight: Font.weights.semibold, color: Colors.primaryDark, flex: 1 },
 });
