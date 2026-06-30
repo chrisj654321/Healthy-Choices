@@ -37,3 +37,5 @@ retailer_images_batch_*.json
 .agents/
 .netlify/
 web/launch.html
+debug.log
+tmp-runway-*
