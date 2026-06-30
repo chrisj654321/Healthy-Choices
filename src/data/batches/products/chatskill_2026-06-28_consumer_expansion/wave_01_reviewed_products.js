@@ -204,7 +204,7 @@ export const WAVE_01_REVIEWED_PRODUCTS = {
     brand: 'JENNIE-O',
     companyId: 'hormel',
     category: 'Meat & Seafood / Primary Proteins',
-    image: null,
+    image: 'https://images.openfoodfacts.org/images/products/004/222/230/2005/front_en.26.400.jpg',
     servingSize: '112 g',
     calories: 170,
     ingredients: [
@@ -257,7 +257,7 @@ export const WAVE_01_REVIEWED_PRODUCTS = {
     brand: 'Aidells',
     companyId: 'tyson',
     category: 'Meat & Seafood / Primary Proteins',
-    image: null,
+    image: 'https://images.openfoodfacts.org/images/products/076/401/420/8059/front_en.107.400.jpg',
     servingSize: '1 link (85 g)',
     calories: 160,
     ingredients: [

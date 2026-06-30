@@ -1,0 +1,821 @@
+{
+  "createdAt": "2026-06-29",
+  "count": 22,
+  "notes": [
+    {
+      "q": "Philadelphia cream cheese",
+      "issue": {
+        "products": [],
+        "status": 503,
+        "issue": "non-json"
+      }
+    },
+    {
+      "q": "Swanson chicken broth",
+      "issue": {
+        "products": [],
+        "status": 503,
+        "issue": "non-json"
+      }
+    },
+    {
+      "q": "Birds Eye frozen vegetables",
+      "issue": {
+        "products": [],
+        "status": 503,
+        "issue": "non-json"
+      }
+    },
+    {
+      "q": "Duncan Hines cake mix",
+      "issue": {
+        "products": [],
+        "status": 503,
+        "issue": "non-json"
+      }
+    }
+  ],
+  "products": [
+    {
+      "barcode": "0029000076501",
+      "name": "Dry Roasted Lightly Salted Peanuts",
+      "brand": "PLANTERS",
+      "companyId": "kraft-heinz",
+      "category": "Nuts & Trail Mix",
+      "image": "https://images.openfoodfacts.org/images/products/002/900/007/6501/front_en.33.400.jpg",
+      "servingSize": "1 portion (28 g)",
+      "calories": 170,
+      "ingredients": [
+        "peanuts",
+        "sea salt"
+      ],
+      "nutrition": {
+        "fat": 14,
+        "saturatedFat": 2,
+        "sodium": 75,
+        "carbs": 5,
+        "sugars": 1,
+        "protein": 7
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": false,
+      "sourceQuery": "Planters peanuts"
+    },
+    {
+      "barcode": "0029000073258",
+      "name": "Dry Roasted Salted Peanuts",
+      "brand": "Planters",
+      "companyId": "kraft-heinz",
+      "category": "Nuts & Trail Mix",
+      "image": "https://images.openfoodfacts.org/images/products/002/900/007/3258/front_en.62.400.jpg",
+      "servingSize": "39 pleces (28 g)",
+      "calories": 170,
+      "ingredients": [
+        "peanuts",
+        "contains 2% or less of sea salt",
+        "spices",
+        "dried onion",
+        "dried garlic",
+        "paprika",
+        "natural flavor sugar",
+        "cornstarch",
+        "gelatin",
+        "torula yeast",
+        "maltodextrin",
+        "dried corn syrup"
+      ],
+      "nutrition": {
+        "fat": 3.92,
+        "saturatedFat": 0.56,
+        "sodium": 42,
+        "carbs": 1.4,
+        "sugars": 0.56,
+        "protein": 1.96
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": false,
+      "sourceQuery": "Planters peanuts"
+    },
+    {
+      "barcode": "0029000072107",
+      "name": "Cocktail Peanuts",
+      "brand": "Planters",
+      "companyId": "kraft-heinz",
+      "category": "Nuts & Trail Mix",
+      "image": "https://images.openfoodfacts.org/images/products/002/900/007/2107/front_en.25.400.jpg",
+      "servingSize": "35 pieces (1 oz / 28 g)",
+      "calories": 170,
+      "ingredients": [
+        "peanuts",
+        "peanut oil",
+        "sea salt."
+      ],
+      "nutrition": {
+        "fat": 14,
+        "saturatedFat": 2,
+        "sodium": 95,
+        "carbs": 0,
+        "sugars": 1,
+        "protein": 7
+      },
+      "certifications": [
+        "kosher",
+        "orthodox-union-kosher"
+      ],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": false,
+      "sourceQuery": "Planters peanuts"
+    },
+    {
+      "barcode": "0029000073456",
+      "name": "Honey Roasted Peanuts",
+      "brand": "Planters",
+      "companyId": "kraft-heinz",
+      "category": "Nuts & Trail Mix",
+      "image": "https://images.openfoodfacts.org/images/products/002/900/007/3456/front_en.44.400.jpg",
+      "servingSize": "39 pieces (1 oz / 28 g)",
+      "calories": 160,
+      "ingredients": [
+        "peanuts",
+        "sugar",
+        "peanut oil",
+        "honey",
+        "corn syrup",
+        "sea salt",
+        "fructose",
+        "corn starch",
+        "xanthan gum."
+      ],
+      "nutrition": {
+        "fat": 13,
+        "saturatedFat": 2,
+        "sodium": 85,
+        "carbs": 0,
+        "sugars": 4,
+        "protein": 7
+      },
+      "certifications": [
+        "kosher"
+      ],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": false,
+      "sourceQuery": "Planters peanuts"
+    },
+    {
+      "barcode": "0029000073241",
+      "name": "Dry Roasted Unsalted Peanuts",
+      "brand": "PLANTERS",
+      "companyId": "kraft-heinz",
+      "category": "Nuts & Trail Mix",
+      "image": "https://images.openfoodfacts.org/images/products/002/900/007/3241/front_en.13.400.jpg",
+      "servingSize": "1 ONZ (28 g)",
+      "calories": 170,
+      "ingredients": [
+        "peanuts."
+      ],
+      "nutrition": {
+        "fat": 14,
+        "saturatedFat": 2,
+        "sodium": 4,
+        "carbs": 5,
+        "sugars": 1,
+        "protein": 8
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": false,
+      "sourceQuery": "Planters peanuts"
+    },
+    {
+      "barcode": "0029000016699",
+      "name": "Lightly Salted Mixed Nuts Peanuts, Almonds, Cashews Brazil Nuts & Pecans",
+      "brand": "Planters",
+      "companyId": "kraft-heinz",
+      "category": "Nuts & Trail Mix",
+      "image": "https://images.openfoodfacts.org/images/products/002/900/001/6699/front_en.15.400.jpg",
+      "servingSize": "1 ONZ (28 g)",
+      "calories": 170,
+      "ingredients": [
+        "peanuts",
+        "almonds",
+        "cashews",
+        "brazil nuts",
+        "pecans",
+        "peanut oil",
+        "sea salt contains: peanut",
+        "almond",
+        "cashew",
+        "brazil nut",
+        "pecan. may contain: other tree nuts."
+      ],
+      "nutrition": {
+        "fat": 15,
+        "saturatedFat": 2,
+        "sodium": 40,
+        "carbs": 5,
+        "sugars": 1,
+        "protein": 6
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": false,
+      "sourceQuery": "Planters peanuts"
+    },
+    {
+      "barcode": "0029000016651",
+      "name": "Mixed Nuts",
+      "brand": "Planters",
+      "companyId": "kraft-heinz",
+      "category": "Nuts & Trail Mix",
+      "image": "https://images.openfoodfacts.org/images/products/002/900/001/6651/front_en.33.400.jpg",
+      "servingSize": "32 pieces (28 g)",
+      "calories": 170,
+      "ingredients": [
+        "peanuts",
+        "almonds",
+        "cashews",
+        "hazelnuts",
+        "pecans",
+        "peanut oil",
+        "sea salt."
+      ],
+      "nutrition": {
+        "fat": 15,
+        "saturatedFat": 2,
+        "sodium": 90,
+        "carbs": 0,
+        "sugars": 1,
+        "protein": 6
+      },
+      "certifications": [
+        "kosher",
+        "orthodox-union-kosher"
+      ],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": false,
+      "sourceQuery": "Planters peanuts"
+    },
+    {
+      "barcode": "0029000072121",
+      "name": "Salted Cocktail Peanuts",
+      "brand": "Planters",
+      "companyId": "kraft-heinz",
+      "category": "Nuts & Trail Mix",
+      "image": "https://images.openfoodfacts.org/images/products/002/900/007/2121/front_en.14.400.jpg",
+      "servingSize": "35 pieces (28 g)",
+      "calories": 170,
+      "ingredients": [
+        "peanuts",
+        "peanut oil",
+        "sea salt"
+      ],
+      "nutrition": {
+        "fat": 14,
+        "saturatedFat": 2,
+        "sodium": 100,
+        "carbs": 5,
+        "sugars": 1,
+        "protein": 7
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": false,
+      "sourceQuery": "Planters peanuts"
+    },
+    {
+      "barcode": "0070470004303",
+      "name": "Yoplait Original Strawberry",
+      "brand": "Yoplait",
+      "companyId": "general-mills",
+      "category": "Yogurt",
+      "image": "https://images.openfoodfacts.org/images/products/007/047/000/4303/front_en.84.400.jpg",
+      "servingSize": "170 g",
+      "calories": 130,
+      "ingredients": [
+        "cultured grade a low fat milk",
+        "sugar",
+        "modified corn starch",
+        "contains 1% less or less of: corn starch",
+        "citric acid",
+        "vegetable juice",
+        "natural flavor",
+        "potassium sorbate added to maintain freshness",
+        "vitamin a acetate",
+        "vitamin d3."
+      ],
+      "nutrition": {
+        "fat": 1,
+        "saturatedFat": 0.5,
+        "sodium": 80,
+        "carbs": 31,
+        "sugars": 22,
+        "protein": 5
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": false,
+      "sourceQuery": "Yoplait yogurt"
+    },
+    {
+      "barcode": "0070470496467",
+      "name": "Whole Milk French Style Yogurt Vanilla Blended",
+      "brand": "Oui by Yoplait",
+      "companyId": "general-mills",
+      "category": "Yogurt",
+      "image": "https://images.openfoodfacts.org/images/products/007/047/049/6467/front_en.28.400.jpg",
+      "servingSize": "1 jar (141 g)",
+      "calories": 140,
+      "ingredients": [
+        "pasteurized grade a milk",
+        "cane sugar",
+        "yogurt cultures (l. bulgaricus",
+        "s. thermophilus)",
+        "vanilla extract."
+      ],
+      "nutrition": {
+        "fat": 8,
+        "saturatedFat": 5,
+        "sodium": 85,
+        "carbs": 20,
+        "sugars": 19,
+        "protein": 5
+      },
+      "certifications": [
+        "non-gmo-project"
+      ],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": false,
+      "sourceQuery": "Yoplait yogurt"
+    },
+    {
+      "barcode": "0070470496474",
+      "name": "Whole Milk French Style Yogurt",
+      "brand": "Oui by Yoplait",
+      "companyId": "general-mills",
+      "category": "Yogurt",
+      "image": "https://images.openfoodfacts.org/images/products/007/047/049/6474/front_en.49.400.jpg",
+      "servingSize": "1 portion (141 g)",
+      "calories": 170,
+      "ingredients": [
+        "pasteurized grade a milk",
+        "cane sugar",
+        "strawberries",
+        "pectin",
+        "carrot juice",
+        "natural flavor",
+        "yogurt cultures (l. bulgaricus",
+        "s. thermophilus)."
+      ],
+      "nutrition": {
+        "fat": 7,
+        "saturatedFat": 4.5,
+        "sodium": 75,
+        "carbs": 22,
+        "sugars": 19,
+        "protein": 5
+      },
+      "certifications": [
+        "kosher",
+        "organized-kashrut-kosher"
+      ],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": false,
+      "sourceQuery": "Yoplait yogurt"
+    },
+    {
+      "barcode": "0056920124043",
+      "name": "Vanilla Yogurt",
+      "brand": "Yoplait Source",
+      "companyId": "general-mills",
+      "category": "Yogurt",
+      "image": "https://images.openfoodfacts.org/images/products/005/692/012/4043/front_en.24.400.jpg",
+      "servingSize": "0.5 cup (115 g)",
+      "calories": 45,
+      "ingredients": [
+        "skim milk (skim milk",
+        "vitamin a palmitate",
+        "vitamin d3)",
+        "water",
+        "whey proteins",
+        "modified corn starch",
+        "gelatin",
+        "natural and artificial flavour",
+        "pectin",
+        "active bacterial culture",
+        "lactic acid",
+        "sucralose",
+        "potassium sorbate",
+        "tricalcium phosphate",
+        "&quot",
+        "may contain milk protein",
+        "modified tapioca starch",
+        "agar"
+      ],
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": 0,
+        "sodium": 65,
+        "carbs": 7,
+        "sugars": 5,
+        "protein": 4
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": false,
+      "sourceQuery": "Yoplait yogurt"
+    },
+    {
+      "barcode": "0051000012920",
+      "name": "Original 100% Vegetable Juice",
+      "brand": "V8",
+      "companyId": "campbell",
+      "category": "Beverages",
+      "image": "https://images.openfoodfacts.org/images/products/005/100/001/2920/front_en.66.400.jpg",
+      "servingSize": "1 can (11.5 fl oz)",
+      "calories": 204,
+      "ingredients": [
+        "vegetable juice (water and concentrated juices of tomatoes",
+        "carrots",
+        "celery",
+        "beets",
+        "parsley",
+        "lettuce",
+        "watercress",
+        "spinach)",
+        "salt",
+        "natural flavoring",
+        "vitamin c",
+        "beta carotene",
+        "citric acid."
+      ],
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": 0,
+        "sodium": 3130,
+        "carbs": 44.2,
+        "sugars": 34,
+        "protein": 10.2
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": false,
+      "sourceQuery": "V8 juice"
+    },
+    {
+      "barcode": "0051000152787",
+      "name": "Low Sodium Vegetable Juice",
+      "brand": "V8",
+      "companyId": "campbell",
+      "category": "Beverages",
+      "image": "https://images.openfoodfacts.org/images/products/005/100/015/2787/front_en.19.400.jpg",
+      "servingSize": "8 h. oz. (240 ml)",
+      "calories": 45,
+      "ingredients": [
+        "vegetable juice (water and concentrated juices of tomatoes",
+        "carrots",
+        "celery",
+        "beets",
+        "parsley",
+        "lettuce",
+        "watercress",
+        "spinach)",
+        "potassium chloride",
+        "salt",
+        "vitamin c",
+        "natural flavoring",
+        "beta carotene",
+        "citric acid."
+      ],
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": 0,
+        "sodium": 140,
+        "carbs": 9,
+        "sugars": 7,
+        "protein": 2
+      },
+      "certifications": [
+        "kosher",
+        "orthodox-union-kosher"
+      ],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": false,
+      "sourceQuery": "V8 juice"
+    },
+    {
+      "barcode": "0051000170859",
+      "name": "100% vegetable juice",
+      "brand": "V8",
+      "companyId": "campbell",
+      "category": "Beverages",
+      "image": "https://images.openfoodfacts.org/images/products/005/100/017/0859/front_en.36.400.jpg",
+      "servingSize": "1 can (341 g)",
+      "calories": 205,
+      "ingredients": [
+        "vegetable juice (water and concentrated juices of tomatoes",
+        "carots",
+        "celery",
+        "beets",
+        "parsley",
+        "lettuce",
+        "watercress",
+        "spinach)",
+        "potassium chloride",
+        "salt",
+        "vitamin c",
+        "natural flavoring",
+        "beta carotene",
+        "citric acid."
+      ],
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": 0,
+        "sodium": 683,
+        "carbs": 44.3,
+        "sugars": 34.1,
+        "protein": 10.2
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": false,
+      "sourceQuery": "V8 juice"
+    },
+    {
+      "barcode": "0051000000675",
+      "name": "Low Sodium 100% Vegetable Juice",
+      "brand": "V8",
+      "companyId": "campbell",
+      "category": "Beverages",
+      "image": "https://images.openfoodfacts.org/images/products/005/100/000/0675/front_en.43.400.jpg",
+      "servingSize": "1 can (163 ml)",
+      "calories": 30,
+      "ingredients": [
+        "vegetable juice (water and concentrated juices of tomatoes",
+        "carrots",
+        "celery",
+        "beets",
+        "parsley",
+        "lettuce",
+        "watercress",
+        "spinách)",
+        "potassium chloride",
+        "salt",
+        "vitamin c",
+        "natural flavoring",
+        "beta carotene",
+        "citric acid."
+      ],
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": 0,
+        "sodium": 95,
+        "carbs": 6,
+        "sugars": 5,
+        "protein": 1
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": true,
+      "isGlutenFree": false,
+      "sourceQuery": "V8 juice"
+    },
+    {
+      "barcode": "0051000286055",
+      "name": "Deliciously Green 100% Juice",
+      "brand": "V8",
+      "companyId": "campbell",
+      "category": "Beverages",
+      "image": "https://images.openfoodfacts.org/images/products/005/100/028/6055/front_en.14.400.jpg",
+      "servingSize": "8 f. oz. (236 ml)",
+      "calories": 89.7,
+      "ingredients": [
+        "vegetable juice (water and concentrated juices of sweet potatoes",
+        "yellow carrots",
+        "spinach",
+        "cucumber",
+        "celery",
+        "kale",
+        "romaine lettuce",
+        "green pepper)",
+        "fruit juice (water and concentrated juices of apples",
+        "pineapple",
+        "limes)",
+        "water",
+        "citric acid",
+        "natural flavoring",
+        "banana puree",
+        "spinach puree (spinach",
+        "water)",
+        "vitamin c",
+        "beet juice concentrate",
+        "watermelon juice concentrate",
+        "beta carotene",
+        "zinc gluconate"
+      ],
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": 0,
+        "sodium": 55,
+        "carbs": 21,
+        "sugars": 18,
+        "protein": 0.991
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": false,
+      "sourceQuery": "V8 juice"
+    },
+    {
+      "barcode": "0051000169839",
+      "name": "Promegranate Blueberry 100 % Juice",
+      "brand": "V8",
+      "companyId": "campbell",
+      "category": "Beverages",
+      "image": "https://images.openfoodfacts.org/images/products/005/100/016/9839/front_en.23.400.jpg",
+      "servingSize": "8 f. oz. (240 ml)",
+      "calories": 90,
+      "ingredients": [
+        "vegetable juice fitered water and concentrated juices of serving size 8 fl. oz. carrots)",
+        "fruit juice (filtered water and concentrated juices of apples",
+        "white about & servings per container sweet potatoes",
+        "purple carrots grapes",
+        "blueberries",
+        "pomegranates malic acid",
+        "vitamin c imount per serving calories 10o natural flavoring",
+        "beta carotene."
+      ],
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": 0,
+        "sodium": 95,
+        "carbs": 22,
+        "sugars": 19,
+        "protein": 1
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": false,
+      "sourceQuery": "V8 juice"
+    },
+    {
+      "barcode": "0051000008039",
+      "name": "V8 100% vegetable juice",
+      "brand": "V8",
+      "companyId": "campbell",
+      "category": "Beverages",
+      "image": "https://images.openfoodfacts.org/images/products/005/100/000/8039/front_en.16.400.jpg",
+      "servingSize": "1 portion (240 ml)",
+      "calories": 45,
+      "ingredients": [
+        "vegetable juice ( water and concentrated juices of tomatoes",
+        "carrots",
+        "celery",
+        "beets",
+        "parsley",
+        "lettuce",
+        "watercress",
+        "spinach )",
+        "salt",
+        "vitamin c",
+        "natural flavoring",
+        "beta carotene",
+        "citric acid."
+      ],
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": 0,
+        "sodium": 640,
+        "carbs": 9,
+        "sugars": 7,
+        "protein": 2
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": false,
+      "sourceQuery": "V8 juice"
+    },
+    {
+      "barcode": "0051000153395",
+      "name": "V8  100% juice",
+      "brand": "V8",
+      "companyId": "campbell",
+      "category": "Beverages",
+      "image": "https://images.openfoodfacts.org/images/products/005/100/015/3395/front_en.12.400.jpg",
+      "servingSize": "1 portion (240 ml)",
+      "calories": 90,
+      "ingredients": [
+        "vegetable juice (filtered water and concentrated juices of sweet potatoes",
+        "carrots",
+        "beets)",
+        "fruit juice (filtered water and concentrated juices of apples",
+        "white grapes",
+        "strawberries",
+        "bananas)",
+        "natural flavoring",
+        "banana puree",
+        "malic acid",
+        "citric acid",
+        "beta carotene",
+        "vitamin c"
+      ],
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": 0,
+        "sodium": 90,
+        "carbs": 22,
+        "sugars": 18,
+        "protein": 1
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": false,
+      "sourceQuery": "V8 juice"
+    },
+    {
+      "barcode": "04348803",
+      "name": "Cafe Vienna",
+      "brand": "Maxwell House",
+      "companyId": "kraft-heinz",
+      "category": "Coffee & Tea",
+      "image": "https://images.openfoodfacts.org/images/products/000/000/434/8803/front_en.4.400.jpg",
+      "servingSize": "1 1/3 Tbsp (16 g)",
+      "calories": 71.7,
+      "ingredients": [
+        "sugar",
+        "nondairy creamer [corn syrup solids",
+        "hydrogenated coconut oil",
+        "sodium caseinate",
+        "dipotassium phosphate",
+        "mono - and diglycerides",
+        "artificial flavor]",
+        "instant coffee",
+        "sodium citrate",
+        "contains less than 2% of cinnamon oil",
+        "natural and artificial flavor",
+        "silicon dioxide."
+      ],
+      "nutrition": {
+        "fat": 1.93,
+        "saturatedFat": 1.93,
+        "sodium": 110,
+        "carbs": 12.7,
+        "sugars": 9.38,
+        "protein": 0.552
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": false,
+      "sourceQuery": "Maxwell House coffee"
+    },
+    {
+      "barcode": "4050010124100",
+      "name": "Ground Master Blend Coffee",
+      "brand": "Maxwell House",
+      "companyId": "kraft-heinz",
+      "category": "Coffee & Tea",
+      "image": "https://images.openfoodfacts.org/images/products/405/001/012/4100/front_en.3.400.jpg",
+      "servingSize": "12 fl oz.",
+      "calories": 5,
+      "ingredients": [
+        "100% pure coffee"
+      ],
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": 0,
+        "sodium": 10,
+        "carbs": 0,
+        "sugars": 0,
+        "protein": 0
+      },
+      "certifications": [
+        "kosher"
+      ],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": false,
+      "sourceQuery": "Maxwell House coffee"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "batch": "chatskill_2026-06-28_consumer_expansion",
+  "reviewedAt": "2026-06-29",
+  "method": "Existing product images were preserved. Missing images were queried by exact barcode through Open Food Facts and visually reviewed before merge.",
+  "summary": {
+    "batchCandidatesChecked": 34,
+    "productsPresentInDatabase": 34,
+    "alreadyHadImages": 32,
+    "newImagesAccepted": 2,
+    "remainingMissingImages": 0
+  },
+  "accepted": {
+    "042222302005": {
+      "name": "JENNIE-O Lean Ground Turkey",
+      "brand": "JENNIE-O",
+      "source": "openfoodfacts",
+      "matchedName": "fresh ground turkey",
+      "image": "https://images.openfoodfacts.org/images/products/004/222/230/2005/front_en.26.400.jpg",
+      "review": "accept",
+      "reason": "Exact barcode record; front package image shows Jennie-O 93% lean / 7% fat fresh ground turkey."
+    },
+    "764014208059": {
+      "name": "Aidells Smoked Chicken & Apple Sausage 12oz",
+      "brand": "Aidells",
+      "source": "openfoodfacts",
+      "matchedName": "CHICKEN & APPLE SMOKED CHICKEN SAUSAGE",
+      "image": "https://images.openfoodfacts.org/images/products/076/401/420/8059/front_en.107.400.jpg",
+      "review": "accept",
+      "reason": "Exact barcode record; front package image shows Aidells Chicken & Apple Smoked Chicken Sausage, 12 oz."
+    }
+  }
+}
