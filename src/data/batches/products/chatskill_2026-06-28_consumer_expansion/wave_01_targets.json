@@ -1,0 +1,46 @@
+{
+  "run": "chatskill_2026-06-28_consumer_expansion",
+  "wave": 1,
+  "status": "targets_selected",
+  "createdAt": "2026-06-28",
+  "goal": "Research 20 high-priority grocery products for later HealthyChoices onboarding. This wave is raw research only; no product schema writing or app code edits.",
+  "categories": [
+    {
+      "category": "Packaged Meals / Family Staples",
+      "rationale": "Current curated manual coverage is very low for shelf-stable family meals despite high grocery relevance and strong ingredient/nutrition decision value.",
+      "targets": [
+        { "slot": 1, "brand": "Velveeta", "product": "Shells & Cheese Original", "expectedSizeOrVariant": "12 oz box", "notes": "Kraft Heinz parent expected; verify exact UPC and nutrition." },
+        { "slot": 2, "brand": "Annie's", "product": "Organic Shells & Real Aged Cheddar Macaroni & Cheese", "expectedSizeOrVariant": "6 oz box", "notes": "General Mills parent expected; verify organic certification and ingredients." },
+        { "slot": 3, "brand": "Kraft", "product": "Deluxe Original Cheddar Macaroni & Cheese Dinner", "expectedSizeOrVariant": "14 oz box", "notes": "Avoid duplicate with existing Kraft Original Macaroni & Cheese." },
+        { "slot": 4, "brand": "Hamburger Helper", "product": "Cheeseburger Macaroni", "expectedSizeOrVariant": "5.5-6.6 oz box", "notes": "General Mills parent expected; verify current package size." },
+        { "slot": 5, "brand": "Rice-A-Roni", "product": "Chicken Flavor Rice", "expectedSizeOrVariant": "6.9 oz box", "notes": "Quaker/PepsiCo ownership expected; verify parent and UPC." },
+        { "slot": 6, "brand": "Knorr", "product": "Pasta Sides Alfredo", "expectedSizeOrVariant": "4.4 oz pouch", "notes": "Unilever parent expected; verify exact variant and serving nutrition." },
+        { "slot": 7, "brand": "Chef Boyardee", "product": "Beef Ravioli", "expectedSizeOrVariant": "15 oz can", "notes": "Conagra parent expected; common pantry meal." },
+        { "slot": 8, "brand": "Hormel Compleats", "product": "Chicken Alfredo", "expectedSizeOrVariant": "10 oz tray", "notes": "Hormel parent expected; verify shelf-stable tray." },
+        { "slot": 9, "brand": "Tasty Bite", "product": "Madras Lentils", "expectedSizeOrVariant": "10 oz pouch", "notes": "Mars/Food & Life parent may apply; verify current ownership." },
+        { "slot": 10, "brand": "Ben's Original", "product": "Ready Rice Jasmine", "expectedSizeOrVariant": "8.5 oz pouch", "notes": "Mars parent expected; avoid duplicate with existing brown rice item." }
+      ]
+    },
+    {
+      "category": "Meat & Seafood / Primary Proteins",
+      "rationale": "Primary proteins are frequent grocery purchases and a current coverage gap; prioritize barcodeable packaged/frozen items with clear ingredients and parent ownership.",
+      "targets": [
+        { "slot": 11, "brand": "Tyson", "product": "Boneless Skinless Chicken Breast Tenderloins", "expectedSizeOrVariant": "frozen bag", "notes": "Tyson parent expected; verify exact UPC and size." },
+        { "slot": 12, "brand": "Perdue", "product": "Short Cuts Carved Chicken Breast Original Roasted", "expectedSizeOrVariant": "9 oz refrigerated pack", "notes": "Perdue parent expected; verify ingredients and sodium." },
+        { "slot": 13, "brand": "Butterball", "product": "All Natural Ground Turkey 93% Lean / 7% Fat", "expectedSizeOrVariant": "16 oz pack", "notes": "Butterball parent expected; verify exact package UPC." },
+        { "slot": 14, "brand": "Jennie-O", "product": "93% Lean Ground Turkey", "expectedSizeOrVariant": "16 oz pack", "notes": "Hormel parent expected; verify parent and nutrition." },
+        { "slot": 15, "brand": "Hillshire Farm", "product": "Polska Kielbasa Smoked Sausage", "expectedSizeOrVariant": "14 oz rope", "notes": "Tyson parent expected; processed meat with useful ingredient review." },
+        { "slot": 16, "brand": "Aidells", "product": "Chicken & Apple Smoked Chicken Sausage", "expectedSizeOrVariant": "12 oz pack", "notes": "Tyson parent expected; verify brand ownership." },
+        { "slot": 17, "brand": "Applegate", "product": "Naturals Chicken & Apple Breakfast Sausage", "expectedSizeOrVariant": "7 oz box or pack", "notes": "Hormel parent expected; verify exact product format." },
+        { "slot": 18, "brand": "SeaPak", "product": "Jumbo Butterfly Shrimp", "expectedSizeOrVariant": "20 oz frozen box", "notes": "Rich Products parent expected; verify ingredients and UPC." },
+        { "slot": 19, "brand": "Trident Seafoods", "product": "Alaskan Salmon Burgers", "expectedSizeOrVariant": "11.2 oz box", "notes": "Independent/private expected; verify exact variant." },
+        { "slot": 20, "brand": "Gorton's", "product": "Beer Battered Fish Fillets", "expectedSizeOrVariant": "18.2 oz frozen box", "notes": "Nissui ownership expected; verify parent and nutrition." }
+      ]
+    }
+  ],
+  "nextCheckpoints": [
+    "wave_01_raw_research.json",
+    "wave_01_company_resolution.md",
+    "wave_01_image_candidates.json"
+  ]
+}

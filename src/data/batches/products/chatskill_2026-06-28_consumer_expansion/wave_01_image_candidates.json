@@ -1,0 +1,117 @@
+{
+  "run": "chatskill_2026-06-28_consumer_expansion",
+  "wave": 1,
+  "status": "candidate_images_extracted_from_raw_research",
+  "note": "These are candidates only. Non-OFF images and multi-variant products still need visual review before writing to product.image.",
+  "images": {
+    "021000654925": {
+      "slot": 1,
+      "productIdentity": "Velveeta Shells & Cheese Original, 12 oz box",
+      "image_url": "https://images.openfoodfacts.net/images/products/002/100/065/4925/front_en.7.400.jpg",
+      "source": "openfoodfacts",
+      "reviewStatus": "needs_visual_or_source_review"
+    },
+    "013562300983": {
+      "slot": 2,
+      "productIdentity": "Annie's Organic Shells & Real Aged Cheddar Macaroni & Cheese, 6 oz box",
+      "image_url": "https://images.openfoodfacts.net/images/products/001/356/230/0983/front_en.14.400.jpg",
+      "source": "openfoodfacts",
+      "reviewStatus": "needs_visual_or_source_review"
+    },
+    "021000658862": {
+      "slot": 3,
+      "productIdentity": "Kraft Deluxe Original Cheddar Macaroni & Cheese Dinner, 14 oz box",
+      "image_url": "https://images.openfoodfacts.net/images/products/002/100/065/8862/front_en.29.400.jpg",
+      "source": "openfoodfacts",
+      "reviewStatus": "blocked_until_product_data_resolved"
+    },
+    "016000402126": {
+      "slot": 4,
+      "productIdentity": "Hamburger Helper Cheeseburger Macaroni Pasta Meal, 6.6 oz / 187 g box",
+      "image_url": "https://images.openfoodfacts.net/images/products/001/600/040/2126/front_en.18.400.jpg",
+      "source": "openfoodfacts",
+      "reviewStatus": "blocked_until_company_resolved"
+    },
+    "015300430235": {
+      "slot": 5,
+      "productIdentity": "Rice-A-Roni Chicken Flavor Rice, 6.9 oz box",
+      "image_url": "https://images.openfoodfacts.net/images/products/001/530/043/0235/front_en.70.400.jpg",
+      "source": "openfoodfacts",
+      "reviewStatus": "needs_visual_or_source_review"
+    },
+    "041000022531": {
+      "slot": 6,
+      "productIdentity": "Knorr Pasta Sides Alfredo / Fettuccine Alfredo, 4.4 oz pouch",
+      "image_url": "https://assets.unileversolutions.com/v1/107342245.png",
+      "source": "brand_site",
+      "reviewStatus": "blocked_until_nutrition_resolved"
+    },
+    "064144043156": {
+      "slot": 7,
+      "productIdentity": "Chef Boyardee Beef Ravioli in Pasta Sauce, 15 oz can",
+      "image_url": "https://images.openfoodfacts.net/images/products/006/414/404/3156/front_en.115.400.jpg",
+      "source": "openfoodfacts",
+      "reviewStatus": "needs_visual_or_source_review"
+    },
+    "037600833233": {
+      "slot": 8,
+      "productIdentity": "Hormel Compleats Chicken Alfredo, 10 oz shelf-stable tray",
+      "image_url": "https://images.openfoodfacts.net/images/products/003/760/083/3233/front_en.4.400.jpg",
+      "source": "openfoodfacts",
+      "reviewStatus": "needs_visual_or_source_review"
+    },
+    "782733000020": {
+      "slot": 9,
+      "productIdentity": "Tasty Bite Madras Lentils, 10 oz / 285 g pouch",
+      "image_url": "https://images.openfoodfacts.net/images/products/078/273/300/0020/front_en.147.400.jpg",
+      "source": "openfoodfacts",
+      "reviewStatus": "needs_us_market_label_review"
+    },
+    "054800423392": {
+      "slot": 10,
+      "productIdentity": "Ben's Original Ready Rice Jasmine Rice, 8.5 oz pouch",
+      "image_url": "https://images.openfoodfacts.net/images/products/005/480/042/3392/front_en.99.400.jpg",
+      "source": "openfoodfacts",
+      "reviewStatus": "needs_visual_or_source_review"
+    },
+    "PERDUE-81221": {
+      "slot": 12,
+      "productIdentity": "PERDUE SHORT CUTS Carved Chicken Breast Original Roasted",
+      "image_url": "https://www.perdue.com/sites/default/files/81221_FTPK_Perdue_Short_Cuts_Roasted_Strips_26oz_640x640.jpg",
+      "source": "brand_site",
+      "reviewStatus": "blocked_until_barcode_and_size_resolved"
+    },
+    "025317005920": {
+      "slot": 17,
+      "productIdentity": "Applegate Naturals Chicken & Apple Breakfast Sausage",
+      "image_url": "https://dylzm7u8zqclv.cloudfront.net/2024/08/20/18/52/25/2ba070b7-aeb1-446d-8291-04a22448cdef/Applegate Natural Chicken and Apple Breakfast Sausage On_Front_Shot.png",
+      "source": "brand_site",
+      "reviewStatus": "blocked_until_nutrition_resolved"
+    },
+    "041322109002": {
+      "slot": 18,
+      "productIdentity": "SeaPak Jumbo Butterfly Shrimp",
+      "image_url": "https://seapak.com/wp-content/uploads/2025/02/23SEAP3770_10949_JumboButterflyShrimp_PKG_WEB_v3.webp",
+      "source": "brand_site",
+      "reviewStatus": "blocked_until_size_conflict_resolved"
+    },
+    "028029597103": {
+      "slot": 19,
+      "productIdentity": "Trident Seafoods Alaskan Salmon Burgers",
+      "image_url": [
+        "https://i5.walmartimages.com/asr/01dfaffb-cdc7-4227-ab2e-898ba6697103.91eee311adf6fbff026db7fadf7025e3.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff",
+        "https://target.scene7.com/is/image/Target/GUEST_1fd91291-fb9d-4b52-b0e0-834f622eaec6?wid=1000&hei=1000"
+      ],
+      "source": "retailer_candidates",
+      "reviewStatus": "blocked_until_brand_page_nutrition_company_resolved"
+    }
+  },
+  "missingImages": [
+    { "slot": 11, "productIdentity": "Tyson Boneless Skinless Chicken Breast Tenderloins", "reason": "product unresolved" },
+    { "slot": 13, "productIdentity": "Butterball Fresh All Natural Ground Turkey 93/7", "reason": "barcode/image unresolved" },
+    { "slot": 14, "productIdentity": "JENNIE-O Lean Ground Turkey", "reason": "image not found in partial research" },
+    { "slot": 15, "productIdentity": "Hillshire Farm Polska Kielbasa", "reason": "image not found in partial research" },
+    { "slot": 16, "productIdentity": "Aidells Smoked Chicken and Apple Sausage", "reason": "image not found in partial research" },
+    { "slot": 20, "productIdentity": "Gorton's Beer Battered Whole Fish Fillets", "reason": "image not found in partial research" }
+  ]
+}

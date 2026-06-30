@@ -1,0 +1,349 @@
+{
+  "run": "chatskill_2026-06-28_consumer_expansion",
+  "wave": 1,
+  "status": "followup_research_complete",
+  "createdAt": "2026-06-28",
+  "note": "Scoped follow-up facts from separate product researchers. Writer may use PASS/FIX entries only after applying company-gate exclusions.",
+  "products": [
+    {
+      "slot": 3,
+      "status": "FIX",
+      "exactUpc": "021000658862",
+      "gtin": "0021000658862",
+      "productIdentity": "Kraft Deluxe Original Cheddar Macaroni & Cheese Dinner, 14 oz box",
+      "servingSize": "3.5 oz (98 g/about 1/4 box), makes about 1 cup",
+      "calories": 320,
+      "nutritionPerServing": {
+        "totalFatG": 11,
+        "saturatedFatG": 3,
+        "transFatG": 0,
+        "cholesterolMg": 15,
+        "sodiumMg": 900,
+        "totalCarbohydrateG": 41,
+        "dietaryFiberG": 1,
+        "totalSugarsG": 4,
+        "addedSugarsG": 0,
+        "proteinG": 12,
+        "vitaminDMcg": 0,
+        "calciumMg": 170,
+        "ironMg": 2.6,
+        "potassiumMg": 190
+      },
+      "ingredientsAsListed": "ENRICHED MACARONI PRODUCT (WHEAT FLOUR, NIACIN, FERROUS SULFATE [IRON], THIAMIN MONONITRATE [VITAMIN B1], RIBOFLAVIN [VITAMIN B2], FOLIC ACID), CHEESE SAUCE (WHEY, MILK, CANOLA OIL, MILK PROTEIN CONCENTRATE, SODIUM PHOSPHATE, SALT, WHEY PROTEIN CONCENTRATE, CONTAINS LESS THAN 2% OF LACTIC ACID, SODIUM ALGINATE, SORBIC ACID AS A PRESERVATIVE, MILKFAT, ANNATTO EXTRACT [COLOR], NATURAL FLAVOR, OLEORESIN PAPRIKA [COLOR], ENZYMES, CHEESE CULTURE).",
+      "imageUrl": "https://images.openfoodfacts.net/images/products/002/100/065/8862/front_en.29.400.jpg",
+      "sourceUrls": [
+        "https://us.openfoodfacts.net/api/v2/product/0021000658862.json",
+        "https://fdc.nal.usda.gov/food-details/2594784/nutrients",
+        "https://images.openfoodfacts.net/images/products/002/100/065/8862/nutrition_en.31.400.jpg"
+      ],
+      "safeToWrite": true,
+      "notes": "Exact GTIN confirmed. Use these fixed label/FDC facts instead of incomplete raw nutrition and truncated OCR ingredients."
+    },
+    {
+      "slot": 4,
+      "status": "FIX",
+      "exactUpc": "016000402126",
+      "gtin": "00016000402126",
+      "productIdentity": "Hamburger Helper Cheeseburger Macaroni Pasta Meal, 6.6 oz / 187 g box",
+      "servingSize": "1/3 cup as packaged (34 g)",
+      "calories": 120,
+      "nutritionPerServing": {
+        "totalFatG": 0.5,
+        "saturatedFatG": 0,
+        "transFatG": 0,
+        "cholesterolMg": 0,
+        "sodiumMg": 630,
+        "totalCarbohydrateG": 25,
+        "dietaryFiberG": 1,
+        "totalSugarsG": 3,
+        "addedSugarsG": 1,
+        "proteinG": 3,
+        "vitaminDMcg": 0,
+        "calciumMg": 0,
+        "ironMg": 0.9,
+        "potassiumMg": 110
+      },
+      "ingredientsAsListed": "Enriched Macaroni (wheat flour, niacin, ferrous sulfate, thiamin mononitrate, riboflavin, folic acid), Corn Starch, Salt, Modified Whey, Sugar. Contains 2% or less of: Tomato*, Onion*, Vegetable Oil (canola, soybean, and/or sunflower oil), Citric Acid, Whey, Maltodextrin, Garlic*, Spice, Cheddar Cheese* (cultured milk, salt, enzymes), Color (yellows 5 & 6, yellow lakes 5 & 6, annatto & turmeric extract), Monoglycerides, Yeast Extract, Nonfat Milk*, Gum Arabic, Natural Flavor, Sodium Phosphate, Blue Cheese* (cultured milk, salt, enzymes), Silicon Dioxide (anticaking agent). *DRIED",
+      "imageUrl": "https://images.openfoodfacts.net/images/products/001/600/040/2126/front_en.18.400.jpg",
+      "sourceUrls": [
+        "https://us.openfoodfacts.net/api/v2/product/00016000402126.json",
+        "https://fdc.nal.usda.gov/food-details/2593979/nutrients",
+        "https://investors.generalmills.com/press-releases/press-release-details/2022/General-Mills-Completes-Sale-of-Helper-and-Suddenly-Salad-Businesses/default.aspx"
+      ],
+      "safeToWrite": false,
+      "blockedBy": "Missing companyId eagle-family-foods in companies.js.",
+      "notes": "Product facts are exact-GTIN supported, but current ownership is Eagle Family Foods Group, not General Mills."
+    },
+    {
+      "slot": 6,
+      "status": "FIX",
+      "exactUpc": "041000022531",
+      "gtin": "00041000022531",
+      "productIdentity": "Knorr Pasta Sides Fettuccine Alfredo, 4.4 oz pouch",
+      "servingSize": "2/3 cup dry mix (64 g)",
+      "calories": 230,
+      "nutritionPerServing": {
+        "totalFatG": 2,
+        "saturatedFatG": 1,
+        "transFatG": 0,
+        "cholesterolMg": 5,
+        "sodiumMg": 630,
+        "totalCarbohydrateG": 45,
+        "dietaryFiberG": 2,
+        "totalSugarsG": 4,
+        "addedSugarsG": 1,
+        "proteinG": 8,
+        "vitaminDMcg": 0,
+        "calciumMg": 50,
+        "ironMg": 2.2,
+        "potassiumMg": 60
+      },
+      "ingredientsAsListed": "PASTA (DURUM AND SEMOLINA FLOUR [WHEAT]), WHEY, CREAM CHEESE (CREAM, PASTEURIZED MILK, SALT, CAROB BEAN GUM, CHEESE CULTURES), MALTODEXTRIN, CORN STARCH, PARMESAN AND ROMANO CHEESES (PASTEURIZED MILK, CHEESE CULTURES, SALT, ENZYMES), LESS THAN 2% OF: SALT, SODIUM CITRATE, POTASSIUM CHLORIDE, NATURAL FLAVORS, DISODIUM INOSINATE, DISODIUM GUANYLATE, ONION POWDER, LACTIC ACID. VITAMINS AND MINERALS: NIACIN, FERROUS SULFATE (IRON), THIAMIN MONONITRATE (VITAMIN B1), RIBOFLAVIN (VITAMIN B2), FOLIC ACID. MAY CONTAIN SOY AND SULFITES.",
+      "imageUrl": "https://images.openfoodfacts.net/images/products/004/100/002/2531/front_en.49.400.jpg",
+      "sourceUrls": [
+        "https://us.openfoodfacts.net/api/v2/product/0041000022531.json",
+        "https://images.openfoodfacts.net/images/products/004/100/002/2531/nutrition_en.51.400.jpg",
+        "https://images.openfoodfacts.net/images/products/004/100/002/2531/ingredients_en.23.400.jpg"
+      ],
+      "safeToWrite": true,
+      "notes": "Use these label-image facts instead of the erroneous raw serving size and older extracted ingredients."
+    },
+    {
+      "slot": 9,
+      "status": "FIX",
+      "exactUpc": "782733000020",
+      "gtin": "00782733000020",
+      "productIdentity": "Tasty Bite Organic Original Madras Lentils, 10 oz / 285 g pouch",
+      "servingSize": "2/3 cup (140 g)",
+      "calories": 150,
+      "nutritionPerServing": {
+        "totalFatG": 6,
+        "saturatedFatG": 3,
+        "transFatG": 0,
+        "cholesterolMg": 10,
+        "sodiumMg": 510,
+        "totalCarbohydrateG": 17,
+        "dietaryFiberG": 6,
+        "totalSugarsG": 4,
+        "addedSugarsG": 0,
+        "proteinG": 6,
+        "vitaminDMcg": 0,
+        "calciumMg": 60,
+        "ironMg": 1.2,
+        "potassiumMg": 250
+      },
+      "ingredientsAsListed": "WATER, ORGANIC BLACK LENTILS, ORGANIC KIDNEY BEANS, ORGANIC CREAM, TOMATO PASTE, ORGANIC ONION, ORGANIC BUTTER, SALT, ORGANIC SUNFLOWER OIL, ORGANIC CUMIN POWDER, ORGANIC CHILI PEPPER POWDER, ORGANIC GINGER.",
+      "imageUrl": "https://images.openfoodfacts.net/images/products/078/273/300/0020/front_en.147.400.jpg",
+      "sourceUrls": [
+        "https://us.openfoodfacts.net/api/v2/product/00782733000020.json",
+        "https://fdc.nal.usda.gov/fdc-app.html#/food-details/2666918",
+        "https://images.openfoodfacts.net/images/products/078/273/300/0020/front_en.147.400.jpg",
+        "https://images.openfoodfacts.net/images/products/078/273/300/0020/nutrition_en.142.400.jpg"
+      ],
+      "safeToWrite": true,
+      "notes": "US-market label support found. Keep USDA Organic and Non-GMO Project only; do not carry unsupported halal/kosher claims."
+    },
+    {
+      "slot": 11,
+      "status": "REJECT",
+      "exactUpc": null,
+      "productIdentity": "Tyson Boneless Skinless Chicken Breast Tenderloins, frozen bag",
+      "sourceUrls": ["https://www.upcitemdb.com/upc/023700045133"],
+      "safeToWrite": false,
+      "notes": "Plausible 6 lb replacement UPC found, but no complete verified nutrition panel or ingredients from a strong source."
+    },
+    {
+      "slot": 12,
+      "status": "FIX",
+      "exactUpc": "072745002212",
+      "productIdentity": "Perdue Short Cuts Original Roasted Carved Chicken Breast, 9 oz",
+      "servingSize": "1 serving (71 g)",
+      "calories": 90,
+      "nutritionPerServing": {
+        "totalFatG": 2,
+        "saturatedFatG": null,
+        "transFatG": null,
+        "cholesterolMg": 55,
+        "sodiumMg": 400,
+        "totalCarbohydrateG": 1,
+        "dietaryFiberG": null,
+        "totalSugarsG": null,
+        "proteinG": 16
+      },
+      "ingredientsAsListed": "Boneless skinless chicken breast with rib meat, water, contains 2% or less of lemon juice concentrate, soy protein concentrate, salt, vinegar, maltodextrin, spices, garlic powder, onion powder, soybean oil.",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/007/274/500/2212/front_en.3.400.jpg",
+      "sourceUrls": [
+        "https://www.upcitemdb.com/upc/072745002212",
+        "https://world.openfoodfacts.org/product/0072745002212"
+      ],
+      "safeToWrite": false,
+      "notes": "Use this 9 oz UPC record only after missing saturated fat, sugars, and fiber are resolved or intentionally documented."
+    },
+    {
+      "slot": 13,
+      "status": "REJECT",
+      "exactUpc": null,
+      "productIdentity": "Butterball Fresh All Natural Ground Turkey 93/7, 1 lb",
+      "servingSize": "4 oz (112 g)",
+      "calories": 160,
+      "nutritionPerServing": {
+        "totalFatG": 8,
+        "saturatedFatG": 3,
+        "transFatG": 0,
+        "cholesterolMg": 85,
+        "sodiumMg": 85,
+        "totalCarbohydrateG": 0,
+        "dietaryFiberG": 0,
+        "totalSugarsG": 0,
+        "proteinG": 22
+      },
+      "ingredientsAsListed": "Turkey, Rosemary Extract.",
+      "imageUrl": null,
+      "sourceUrls": ["https://www.butterball.com/products/ground-turkey/all-natural-93-7"],
+      "safeToWrite": false,
+      "notes": "Nutrition/identity are verified, but no valid UPC was exposed."
+    },
+    {
+      "slot": 15,
+      "status": "PASS",
+      "exactUpc": "044500341225",
+      "productIdentity": "Hillshire Farm Polska Kielbasa, 14 oz",
+      "servingSize": "2 oz (56 g)",
+      "calories": 170,
+      "nutritionPerServing": {
+        "totalFatG": 14,
+        "saturatedFatG": 5,
+        "transFatG": 0,
+        "cholesterolMg": 30,
+        "sodiumMg": 490,
+        "totalCarbohydrateG": 3,
+        "dietaryFiberG": 1,
+        "totalSugarsG": 1,
+        "addedSugarsG": 1,
+        "proteinG": 7
+      },
+      "ingredientsAsListed": "Meat ingredients (pork, beef), mechanically separated turkey, water, corn syrup, contains 2% or less: natural flavors, salt, dextrose, oat fiber, sodium phosphate, monosodium glutamate, natural hardwood smoked sugar, sodium erythorbate, yeast extract, sodium nitrite.; made with beef collagen casing.",
+      "imageUrl": "https://images.salsify.com/image/upload/s--cWePZiTx--/q_auto/148a4375cb2851c1b4507e86f7665f4fa6933d04.webp",
+      "sourceUrls": [
+        "https://www.hillshirefarm.com/products/smoked-sausages/00044500341225",
+        "https://world.openfoodfacts.org/product/0044500341225"
+      ],
+      "safeToWrite": true,
+      "notes": "Raw research is safe after adding protein and brand image."
+    },
+    {
+      "slot": 17,
+      "status": "FIX",
+      "exactUpc": "025317006958",
+      "productIdentity": "Applegate Naturals Chicken & Apple Breakfast Sausage, 7 oz",
+      "servingSize": "3 links (59 g)",
+      "calories": 120,
+      "nutritionPerServing": {
+        "totalFatG": 7,
+        "saturatedFatG": 2,
+        "transFatG": 0,
+        "cholesterolMg": 40,
+        "sodiumMg": 360,
+        "totalCarbohydrateG": 3,
+        "dietaryFiberG": 0,
+        "totalSugarsG": 2,
+        "addedSugarsG": 2,
+        "proteinG": 9
+      },
+      "ingredientsAsListed": "Chicken, dried apples, water. Contains less than 2% of the following: honey, salt, spices, parsley.",
+      "imageUrl": "https://dylzm7u8zqclv.cloudfront.net/2024/08/20/18/52/25/2ba070b7-aeb1-446d-8291-04a22448cdef/Applegate Natural Chicken and Apple Breakfast Sausage On_Front_Shot.png",
+      "sourceUrls": [
+        "https://applegate.com/products/natural-chicken-and-apple-breakfast-sausage--2",
+        "https://world.openfoodfacts.org/product/0025317006958"
+      ],
+      "safeToWrite": true,
+      "notes": "Raw UPC 025317005920 is wrong; use 025317006958."
+    },
+    {
+      "slot": 18,
+      "status": "FIX",
+      "exactUpc": "041322109002",
+      "productIdentity": "SeaPak Jumbo Butterfly Shrimp, 9 oz",
+      "servingSize": "about 4 shrimp (3 oz/84 g)",
+      "calories": 220,
+      "nutritionPerServing": {
+        "totalFatG": 11,
+        "saturatedFatG": 2,
+        "transFatG": 0,
+        "cholesterolMg": 70,
+        "sodiumMg": 340,
+        "totalCarbohydrateG": 17,
+        "dietaryFiberG": 1,
+        "totalSugarsG": 0,
+        "addedSugarsG": 0,
+        "proteinG": 12
+      },
+      "ingredientsAsListed": "Shrimp, bleached wheat flour, soybean oil, enriched wheat flour, water, wheat flour, contains 2% or less of citric acid, dextrose, disodium inosinate and disodium guanylate, garlic powder, guar gum, leavening, methylcellulose, modified cornstarch, paprika oleoresin, rice starch, salt, sodium alginate, sodium bisulfite, sodium tripolyphosphate, sugar, tapioca starch, whey powder, xanthan gum, yeast, yellow corn flour.",
+      "imageUrl": "https://seapak.com/wp-content/uploads/2025/02/23SEAP3770_10949_JumboButterflyShrimp_PKG_WEB_v3.webp",
+      "sourceUrls": [
+        "https://seapak.com/product/jumbo-butterfly-shrimp/",
+        "https://world.openfoodfacts.org/product/0041322109002"
+      ],
+      "safeToWrite": true,
+      "notes": "Verified product is 9 oz. Treat 20 oz target as unresolved if size is mandatory."
+    },
+    {
+      "slot": 19,
+      "status": "FIX",
+      "exactUpc": "028029597103",
+      "productIdentity": "Trident Seafoods Alaskan Salmon Burgers",
+      "servingSize": "2.8 oz (79 g)",
+      "calories": 130,
+      "nutritionPerServing": {
+        "totalFatG": 7,
+        "saturatedFatG": 1,
+        "transFatG": 0,
+        "cholesterolMg": 45,
+        "sodiumMg": 230,
+        "totalCarbohydrateG": 1,
+        "dietaryFiberG": 0,
+        "totalSugarsG": 0,
+        "proteinG": 14
+      },
+      "ingredientsAsListed": "Pink and/or keta salmon, vegetable oil (canola and/or soybean), water, ground onion, salt, potato extract, garlic powder, mustard flour, white pepper, beet juice (color), annatto (color), rosemary extract, mesquite smoked flavor, lemon juice concentrate.",
+      "imageUrl": "https://images.openfoodfacts.org/images/products/002/802/959/7103/front_en.3.400.jpg",
+      "sourceUrls": [
+        "https://www.tridentseafoods.com/product/alaskan-salmon-burgers/",
+        "https://world.openfoodfacts.org/product/0028029597103"
+      ],
+      "safeToWrite": false,
+      "blockedBy": "Missing companyId trident-seafoods in companies.js.",
+      "notes": "Product page confirms identity and OFF/USDA-derived record confirms nutrition. Do not map to Trident gum/Mondelez."
+    },
+    {
+      "slot": 20,
+      "status": "PASS",
+      "exactUpc": "044400153508",
+      "productIdentity": "Gorton's Beer Battered Fish Fillets, 18.2 oz",
+      "servingSize": "2 fillets (103 g)",
+      "calories": 240,
+      "nutritionPerServing": {
+        "totalFatG": 14,
+        "saturatedFatG": 1,
+        "transFatG": 0,
+        "cholesterolMg": 25,
+        "sodiumMg": 450,
+        "totalCarbohydrateG": 18,
+        "dietaryFiberG": 1,
+        "totalSugarsG": 0,
+        "addedSugarsG": 0,
+        "proteinG": 10
+      },
+      "ingredientsAsListed": "Alaska Pollock fillets, batter coating, vegetable oil. Alaska Pollock fillets: Alaska Pollock, sodium tripolyphosphate. Batter coating: rice flour, water, wheat flour, beer, tapioca dextrin, modified corn starch, salt, whey, dextrose, baking powder, sunflower lecithin, xanthan gum, natural flavor. Vegetable oil: canola and/or soybean oil.",
+      "imageUrl": "https://www.gortons.com/wp-content/uploads/2024/09/beer-battered-fillets-updated-scaled.webp",
+      "sourceUrls": [
+        "https://www.gortons.com/products/beer-battered-fillets/",
+        "https://www.upcitemdb.com/upc/044400153508",
+        "https://world.openfoodfacts.org/product/0044400153508"
+      ],
+      "safeToWrite": false,
+      "blockedBy": "Missing companyId nissui in companies.js.",
+      "notes": "Raw research is safe after filling package size, nutrition, and image, but parent company entry still needs to exist."
+    }
+  ]
+}
