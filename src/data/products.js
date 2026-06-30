@@ -10232,7 +10232,7 @@ const MANUAL_PRODUCTS = {
 
   '018944001021': {
     barcode: '018944001021',
-    name: 'Elmhurst 1925 Milked Almonds Original 32oz',
+    name: 'Elmhurst 1925 Unsweetened Milked Almonds 32oz',
     brand: 'Elmhurst 1925',
     companyId: 'elmhurst-1925',
     category: 'Plant-Based Milk',
@@ -10301,7 +10301,7 @@ const MANUAL_PRODUCTS = {
 
   '859918004255': {
     barcode: '859918004255',
-    name: 'Three Trees Organic Original Almondmilk 28oz',
+    name: 'Three Trees Organic Unsweetened Almondmilk 28oz',
     brand: 'Three Trees',
     companyId: 'three-trees',
     category: 'Plant-Based Milk',
@@ -10549,7 +10549,7 @@ const MANUAL_PRODUCTS = {
 
   '860002036205': {
     barcode: '860002036205',
-    name: "Willa's Organic Oat Milk Creamy 32oz",
+    name: "Willa's Organic Oat Milk Creamer 32oz",
     brand: "Willa's",
     companyId: 'willas',
     category: 'Plant-Based Milk',
@@ -10829,7 +10829,7 @@ const MANUAL_PRODUCTS = {
 
   '020000273389': {
     barcode: '020000273389',
-    name: 'Green Giant Valley Fresh Steamers Sweet Peas 12oz',
+    name: 'Green Giant Simply Steam Sweet Peas 10oz',
     brand: 'Green Giant',
     companyId: 'b-and-g-foods',
     category: 'Frozen Vegetables & Fruit',
@@ -10867,7 +10867,7 @@ const MANUAL_PRODUCTS = {
 
   '021908503356': {
     barcode: '021908503356',
-    name: 'Cascadian Farm Organic Premium Broccoli Florets 16oz',
+    name: 'Cascadian Farm Organic Premium Broccoli Florets 10oz',
     brand: 'Cascadian Farm Organic',
     companyId: 'general-mills',
     category: 'Frozen Vegetables & Fruit',
@@ -12342,7 +12342,7 @@ const MANUAL_PRODUCTS = {
 
   '071202117902': {
     barcode: '071202117902',
-    name: 'Dole Frozen Blueberries 16oz',
+    name: 'Dole Frozen Blueberries 48oz',
     brand: 'Dole',
     companyId: 'dole-food',
     category: 'Frozen Vegetables & Fruit',
@@ -12361,7 +12361,7 @@ const MANUAL_PRODUCTS = {
 
   '071202171430': {
     barcode: '071202171430',
-    name: 'Dole Frozen Sliced Strawberries 16oz',
+    name: 'Dole Frozen Sliced Strawberries 14oz',
     brand: 'Dole',
     companyId: 'dole-food',
     category: 'Frozen Vegetables & Fruit',
@@ -12620,7 +12620,7 @@ const MANUAL_PRODUCTS = {
 
   '024284297109': {
     barcode: '024284297109',
-    name: 'Sno Pac Organic Butternut Squash 12oz',
+    name: 'Sno Pac Organic Butternut Squash 10oz',
     brand: 'Sno Pac',
     companyId: 'sno-pac',
     category: 'Frozen Vegetables & Fruit',
@@ -12879,7 +12879,7 @@ const MANUAL_PRODUCTS = {
 
   '786969010112': {
     barcode: '786969010112',
-    name: 'Napa Valley Naturals Reserve Extra Virgin Olive Oil 12.7oz',
+    name: 'Napa Valley Naturals Organic Extra Virgin Olive Oil 12.7oz',
     brand: 'Napa Valley Naturals',
     companyId: 'spruce-foods',
     category: 'Cooking Oils & Vinegars',
