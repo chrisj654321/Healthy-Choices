@@ -72,8 +72,12 @@ export default function CompanyProfileScreen({ route, navigation }) {
         </View>
 
         <View style={styles.companyMeta}>
-          <View style={styles.companyIconWrap}>
-            <Ionicons name="business" size={36} color={Colors.primary} />
+          <View style={[styles.companyIconWrap, company.logo && styles.companyIconWhite]}>
+            {company.logo ? (
+              <Image source={{ uri: company.logo }} style={styles.companyLogoImg} resizeMode="contain" />
+            ) : (
+              <Ionicons name="business" size={36} color={Colors.primary} />
+            )}
           </View>
           <View style={{ flex: 1 }}>
             <Text style={styles.companyName}>{company.name}</Text>
@@ -433,7 +437,9 @@ const styles = StyleSheet.create({
   headerTop: { marginBottom: 16 },
   backBtn: { padding: 4 },
   companyMeta: { flexDirection: 'row', alignItems: 'flex-start', gap: 14, marginBottom: 16 },
-  companyIconWrap: { width: 64, height: 64, borderRadius: 16, backgroundColor: 'rgba(255,255,255,0.1)', alignItems: 'center', justifyContent: 'center' },
+  companyIconWrap: { width: 64, height: 64, borderRadius: 16, backgroundColor: 'rgba(255,255,255,0.1)', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
+  companyIconWhite: { backgroundColor: '#fff' },
+  companyLogoImg: { width: 46, height: 46 },
   companyName: { fontSize: Font.sizes.lg, fontWeight: Font.weights.bold, color: Colors.white, lineHeight: 26 },
   companyHq: { fontSize: Font.sizes.sm, color: 'rgba(255,255,255,0.65)', marginTop: 2 },
   metaRow: { flexDirection: 'row', marginTop: 6 },

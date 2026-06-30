@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   TextInput,
+  Image,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -96,8 +97,12 @@ export default function CompanyListScreen({ navigation }) {
               activeOpacity={0.8}
               onPress={() => navigation.navigate('CompanyProfile', { company })}
             >
-              <View style={s.logo}>
-                <Text style={s.logoText}>{company.name.charAt(0)}</Text>
+              <View style={[s.logo, company.logo && s.logoWhite]}>
+                {company.logo ? (
+                  <Image source={{ uri: company.logo }} style={s.logoImg} resizeMode="contain" />
+                ) : (
+                  <Text style={s.logoText}>{company.name.charAt(0)}</Text>
+                )}
               </View>
               <View style={s.info}>
                 <Text style={s.name} numberOfLines={1}>{company.name}</Text>
@@ -144,8 +149,10 @@ const s = StyleSheet.create({
   },
   logo: {
     width: 44, height: 44, borderRadius: 12, backgroundColor: Colors.primaryLight,
-    alignItems: 'center', justifyContent: 'center', marginRight: 12,
+    alignItems: 'center', justifyContent: 'center', marginRight: 12, overflow: 'hidden',
   },
+  logoWhite: { backgroundColor: Colors.white, borderWidth: 1, borderColor: Colors.border },
+  logoImg: { width: 30, height: 30 },
   logoText: { fontSize: Font.sizes.lg, fontWeight: Font.weights.heavy, color: Colors.primary },
   info: { flex: 1 },
   name: { fontSize: Font.sizes.base, fontWeight: Font.weights.semibold, color: Colors.textPrimary },
