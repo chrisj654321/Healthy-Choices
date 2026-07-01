@@ -116,7 +116,7 @@ export default function HomeScreen({ navigation }) {
             </TouchableOpacity>
           </View>
           <View style={s.heroBadge}>
-            <Text style={s.heroBadgeNum}>540+</Text>
+            <Text style={s.heroBadgeNum}>700+</Text>
             <Text style={s.heroBadgeLabel}>products{'\n'}graded</Text>
           </View>
         </LinearGradient>
@@ -186,6 +186,38 @@ export default function HomeScreen({ navigation }) {
           </View>
         )}
 
+        {/* Company spotlight — this week's free unlock (sits directly below recent scans) */}
+        {spotlight != null && (
+          <View style={s.section}>
+            <Text style={s.sectionTitle}>This week's free unlock</Text>
+            <TouchableOpacity
+              style={s.spotlightCard}
+              activeOpacity={0.85}
+              onPress={() => navigation.navigate('CompanyProfile', { company: spotlight.company, spotlight: true })}
+            >
+              <View style={s.spotlightBadge}>
+                <Ionicons name="lock-open-outline" size={13} color={Colors.primary} />
+                <Text style={s.spotlightBadgeText}>Free company unlock</Text>
+              </View>
+              <View style={s.spotlightHead}>
+                <View style={[s.spotlightLogoWrap, spotlight.company.logo && s.spotlightLogoWhite]}>
+                  {spotlight.company.logo ? (
+                    <Image source={{ uri: spotlight.company.logo }} style={s.spotlightLogoImg} resizeMode="contain" />
+                  ) : (
+                    <Text style={s.spotlightLogoLetter}>{spotlight.company.name.charAt(0)}</Text>
+                  )}
+                </View>
+                <Text style={s.spotlightCompany} numberOfLines={2}>{spotlight.company.name}</Text>
+              </View>
+              <Text style={s.spotlightIssue} numberOfLines={2}>{spotlight.issue.title}</Text>
+              <View style={s.spotlightCta}>
+                <Text style={s.spotlightCtaText}>See the money trail</Text>
+                <Ionicons name="arrow-forward" size={14} color={Colors.primary} />
+              </View>
+            </TouchableOpacity>
+          </View>
+        )}
+
         {/* Eat better by category */}
         <View style={s.section}>
           <Text style={s.sectionTitle}>Eat better by category</Text>
@@ -220,28 +252,6 @@ export default function HomeScreen({ navigation }) {
           </View>
         </View>
 
-        {/* Company spotlight */}
-        {spotlight != null && (
-          <View style={s.section}>
-            <Text style={s.sectionTitle}>This week's free unlock</Text>
-            <TouchableOpacity
-              style={s.spotlightCard}
-              activeOpacity={0.85}
-              onPress={() => navigation.navigate('CompanyProfile', { company: spotlight.company, spotlight: true })}
-            >
-              <View style={s.spotlightBadge}>
-                <Ionicons name="lock-open-outline" size={13} color={Colors.primary} />
-                <Text style={s.spotlightBadgeText}>Free company unlock</Text>
-              </View>
-              <Text style={s.spotlightCompany}>{spotlight.company.name}</Text>
-              <Text style={s.spotlightIssue} numberOfLines={2}>{spotlight.issue.title}</Text>
-              <View style={s.spotlightCta}>
-                <Text style={s.spotlightCtaText}>See the money trail</Text>
-                <Ionicons name="arrow-forward" size={14} color={Colors.primary} />
-              </View>
-            </TouchableOpacity>
-          </View>
-        )}
       </ScrollView>
     </View>
   );
@@ -358,7 +368,17 @@ const s = StyleSheet.create({
     borderRadius: 8, paddingHorizontal: 10, paddingVertical: 4, marginBottom: 10,
   },
   spotlightBadgeText: { fontSize: Font.sizes.xs, fontWeight: Font.weights.semibold, color: Colors.primary },
-  spotlightCompany: { fontSize: Font.sizes.md, fontWeight: Font.weights.bold, color: Colors.textPrimary, marginBottom: 4 },
+  spotlightHead: { flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 10 },
+  spotlightLogoWrap: {
+    width: 52, height: 52, borderRadius: 13, overflow: 'hidden',
+    alignItems: 'center', justifyContent: 'center', backgroundColor: Colors.primaryLight,
+  },
+  spotlightLogoWhite: {
+    backgroundColor: Colors.white, borderWidth: 1, borderColor: Colors.border,
+  },
+  spotlightLogoImg: { width: 42, height: 42 },
+  spotlightLogoLetter: { fontSize: 22, fontWeight: Font.weights.heavy, color: Colors.primary },
+  spotlightCompany: { flex: 1, fontSize: Font.sizes.md, fontWeight: Font.weights.bold, color: Colors.textPrimary },
   spotlightIssue: { fontSize: Font.sizes.sm, color: Colors.textSecondary, lineHeight: 19, marginBottom: 14 },
   spotlightCta: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   spotlightCtaText: { fontSize: Font.sizes.sm, fontWeight: Font.weights.semibold, color: Colors.primary },

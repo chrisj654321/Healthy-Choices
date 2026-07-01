@@ -407,6 +407,15 @@ export default function ProductScoreScreen({ route, navigation }) {
                   <Text style={s.warnBannerBlueText}>{warnings.goalNote}</Text>
                 </View>
               ) : null}
+              {result.packagingConcern ? (
+                <View style={s.warnBannerOrange}>
+                  <Ionicons name="cube-outline" size={18} color="#C05621" />
+                  <Text style={s.warnBannerOrangeText}>
+                    <Text style={{ fontWeight: '800' }}>Packaging note: </Text>
+                    {result.packagingConcern.note}
+                  </Text>
+                </View>
+              ) : null}
 
               {/* Summary row */}
               <IngredientSummaryRow totalBad={totalBad} totalOkay={totalOkay} totalGood={totalGood} />
@@ -785,6 +794,11 @@ const s = StyleSheet.create({
     backgroundColor: '#EFF6FF', borderRadius: 12, padding: 12, marginBottom: 10,
   },
   warnBannerBlueText: { flex: 1, fontSize: 13, color: '#1D4ED8', lineHeight: 18 },
+  warnBannerOrange: {
+    flexDirection: 'row', alignItems: 'flex-start', gap: 10,
+    backgroundColor: '#FFF4E8', borderRadius: 12, padding: 12, marginBottom: 10,
+  },
+  warnBannerOrangeText: { flex: 1, fontSize: 13, color: '#9A4B12', lineHeight: 18 },
 
   // All clear
   allClear: {

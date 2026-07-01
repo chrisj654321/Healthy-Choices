@@ -163,5 +163,46 @@ export function buildProductFromRaw(barcode, p) {
       0
     ),
     image: p.image_front_url || p.image_url || null,
+    packaging: detectPackagingConcern(p),
+  };
+}
+
+function detectPackagingConcern(p = {}) {
+  const packagingText = [
+    p.packaging,
+    p.packaging_text,
+    ...(Array.isArray(p.packaging_tags) ? p.packaging_tags : []),
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .toLowerCase();
+
+  const prepText = [
+    p.preparation,
+    p.preparation_text,
+    p.cooking_instructions,
+    p.instructions,
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .toLowerCase();
+
+  const combined = `${packagingText} ${prepText}`;
+  if (!combined.includes('plastic') && !/(steam|microwave).{0,24}(bag|pouch|tray)|\b(bag|pouch|tray)\b/.test(combined)) {
+    return null;
+  }
+
+  const isMicrowave = combined.includes('microwave');
+  const isSteamBag = combined.includes('steam') && combined.includes('bag');
+  const format = isSteamBag ? 'steam-bag' : (combined.includes('pouch') ? 'pouch' : (combined.includes('tray') ? 'tray' : 'plastic-bag'));
+
+  return {
+    material: 'plastic',
+    format,
+    heatUse: isMicrowave || isSteamBag ? 'microwave' : 'unknown',
+    concernLevel: isMicrowave || isSteamBag ? 'high' : 'low',
+    concerns: isMicrowave || isSteamBag
+      ? ['microplastics', 'heated-plastic-contact']
+      : ['microplastics', 'plastic-food-contact'],
   };
 }

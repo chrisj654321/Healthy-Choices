@@ -406,6 +406,8 @@ export function scoreProduct(product) {
   const markerCount = analyzed.markerCount;
   const markerLoad = analyzed.markerLoad;
   const ceiling = upfCeiling(markerLoad);
+  const packagingConcern = analyzePackagingConcern(product);
+  const packagingPenalty = packagingConcern?.penalty ?? 0;
 
   // "Whole-food clean": zero ultra-processing markers and nothing flagged
   // moderate/caution/avoid. The sugars and fats in a whole food are intrinsic,
@@ -418,9 +420,9 @@ export function scoreProduct(product) {
 
   let score;
   if (wholeFoodClean) {
-    score = 100 - Math.min(nutritionPenalty * 0.25, 5) + certBonus;
+    score = 100 - Math.min(nutritionPenalty * 0.25, 5) - packagingPenalty + certBonus;
   } else {
-    score = 100 - analyzed.totalPenalty - nutritionPenalty + certBonus;
+    score = 100 - analyzed.totalPenalty - nutritionPenalty - packagingPenalty + certBonus;
     score = Math.min(score, ceiling);
   }
   score = Math.max(0, Math.min(100, Math.round(score)));
@@ -439,9 +441,58 @@ export function scoreProduct(product) {
     markerLoad,
     upfCeiling: ceiling,
     nutritionPenalty,
+    packagingPenalty,
+    packagingConcern,
     certBonus,
     wholeFoodClean,
     insufficientData,
+  };
+}
+
+function analyzePackagingConcern(product = {}) {
+  const packaging = product.packaging;
+  if (!packaging) return null;
+
+  const material = String(packaging.material || '').toLowerCase();
+  const format = String(packaging.format || '').toLowerCase();
+  const heatUse = String(packaging.heatUse || '').toLowerCase();
+  const concernLevel = String(packaging.concernLevel || '').toLowerCase();
+  const concerns = Array.isArray(packaging.concerns) ? packaging.concerns.map(String) : [];
+
+  const isPlastic = material.includes('plastic') || concerns.some((c) => c.includes('plastic'));
+  const isDirectContactFormat = format.includes('bag') || format.includes('pouch') || format.includes('tray');
+  if (!isPlastic && !isDirectContactFormat) return null;
+
+  let penalty = 0;
+  if (concernLevel === 'high') penalty = 6;
+  else if (concernLevel === 'moderate') penalty = 3;
+  else if (concernLevel === 'low') penalty = 2;
+  else if (isDirectContactFormat) penalty = 2;
+
+  if (heatUse === 'microwave' || format.includes('steam')) penalty += 2;
+  if (concerns.includes('heated-plastic-contact')) penalty += 1;
+  if (concerns.includes('fatty-food-contact') || concerns.includes('oily-food-contact')) penalty += 1;
+
+  penalty = Math.min(10, penalty);
+  if (penalty <= 0) return null;
+
+  const isHeated = heatUse === 'microwave' || format.includes('steam');
+  const title = isHeated ? 'Microwave plastic packaging' : 'Plastic food-contact packaging';
+  const note = packaging.note || (
+    isHeated
+      ? 'Prepared by heating food in plastic packaging. We reduce the score because Shelf Expose prioritizes lower heated-plastic food contact where practical.'
+      : 'Packaged in direct-contact plastic. We apply a small score reduction for consumers trying to reduce plastic food-contact exposure.'
+  );
+
+  return {
+    title,
+    note,
+    penalty,
+    material: packaging.material || 'plastic',
+    format: packaging.format || null,
+    heatUse: packaging.heatUse || null,
+    concernLevel: packaging.concernLevel || null,
+    concerns,
   };
 }
 
@@ -625,9 +676,14 @@ export function scoreToVerdict(grade) {
 }
 
 export function generateScoreExplanation(product, result) {
-  const { grade, flaggedCount, nutritionPenalty, certBonus, analyzedIngredients } = result;
+  const { grade, flaggedCount, nutritionPenalty, packagingPenalty, packagingConcern, certBonus, analyzedIngredients } = result;
   const avoidList = analyzedIngredients.filter((i) => i.flag === 'avoid');
   const cautionList = analyzedIngredients.filter((i) => i.flag === 'caution' || i.flag === 'moderate');
+  const cleanPackagingNote = packagingPenalty > 0 && packagingConcern && flaggedCount === 0;
+
+  if (cleanPackagingNote && grade !== 'A') {
+    return `${product.name} has clean ingredients, but ${packagingConcern.title.toLowerCase()} lowers the score as a packaging-exposure concern.`;
+  }
 
   if (grade === 'A') {
     if (certBonus > 0 && product.certifications?.length > 0) {

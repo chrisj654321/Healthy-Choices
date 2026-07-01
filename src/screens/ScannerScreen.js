@@ -95,7 +95,7 @@ export default function ScannerScreen({ navigation }) {
       setLoadingMsg('Looking up product…');
       const res = await fetch(
         `${OFF_API}/${encodeURIComponent(barcode)}?fields=product_name,product_name_en,brands,` +
-          `ingredients_text,ingredients,nutriments,categories_tags,labels_tags,` +
+          `ingredients_text,ingredients,nutriments,categories_tags,labels_tags,packaging,packaging_text,packaging_tags,preparation,preparation_text,cooking_instructions,instructions,` +
           `serving_size,image_front_url`,
         { headers: { 'User-Agent': 'HealthyChoices/1.0 (support@healthychoices.app)' } }
       );

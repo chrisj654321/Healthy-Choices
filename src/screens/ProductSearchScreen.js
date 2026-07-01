@@ -26,14 +26,14 @@ const SAL_BASE =
   'https://search.openfoodfacts.org/search' +
   '?page_size=24&lang=en' +
   '&fields=code,product_name,product_name_en,brands,categories_tags,labels_tags,' +
-  'nutriments,ingredients_text,ingredients,serving_size,image_front_url,image_url' +
+  'nutriments,ingredients_text,ingredients,serving_size,image_front_url,image_url,packaging,packaging_text,packaging_tags,preparation,preparation_text,cooking_instructions,instructions' +
   '&q=';
 
 const OFF_BASE =
   'https://world.openfoodfacts.org/cgi/search.pl' +
   '?action=process&json=1&page_size=24' +
   '&fields=code,product_name,product_name_en,brands,categories_tags,labels_tags,' +
-  'nutriments,ingredients_text,ingredients,serving_size,image_front_url,image_url' +
+  'nutriments,ingredients_text,ingredients,serving_size,image_front_url,image_url,packaging,packaging_text,packaging_tags,preparation,preparation_text,cooking_instructions,instructions' +
   '&search_simple=1&lc=en&tagtype_0=countries&tag_contains_0=contains&tag_0=united-states' +
   '&search_terms=';
 
