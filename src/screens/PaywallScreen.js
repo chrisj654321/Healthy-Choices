@@ -13,6 +13,7 @@ import {
   extractPackages,
   purchaseRCPackage,
   restorePurchases,
+  getProStatus,
   PRO_FEATURES,
 } from '../utils/subscription';
 
@@ -30,20 +31,57 @@ const FEATURES = [
 // ─── Fallback prices (shown if RC offerings haven't loaded yet) ───────────────
 
 const FALLBACK_PRICES = {
-  yearly:  { price: '$27.99', period: '/year',  monthly: '$2.33/mo' },
-  monthly: { price: '$3.99',  period: '/month', monthly: null },
+  yearly:  { price: '$49.99', period: '/year',  monthly: '$4.17/mo' },
+  monthly: { price: '$7.99',  period: '/month', monthly: null },
 };
 
-// Build a "3 Days Free" style label from a confirmed FREE intro offer.
-// Returns null unless App Store Connect actually has a $0 intro price,
-// so trial copy can never advertise a trial that doesn't exist.
-function trialLabel(introPrice) {
-  if (!introPrice || introPrice.price !== 0) return null;
+// Build intro-offer copy from a confirmed App Store Connect introductory price.
+// Handles BOTH a free trial (price 0) and a discounted intro (e.g. 50% off the
+// first year). Returns null when there is no intro offer, so the copy can never
+// advertise an offer the store doesn't actually have. `periodLabel` is the
+// display suffix for the plan (e.g. '/year').
+function introOffer(pkg, periodLabel) {
+  const introPrice = pkg?.product?.introPrice;
+  if (!introPrice) return null;
   const n = introPrice.periodNumberOfUnits;
   const unit = (introPrice.periodUnit || '').toLowerCase();
   if (!n || !unit) return null;
-  const unitLabel = unit.charAt(0).toUpperCase() + unit.slice(1) + (n > 1 ? 's' : '');
-  return `${n} ${unitLabel} Free`;
+  const regular = pkg.product.priceString;
+
+  // Total length of the intro = unit × count × number of billing cycles. This lets a
+  // monthly plan whose intro runs 12 cycles read as "first year" (not "first month").
+  const cycles = introPrice.cycles ?? introPrice.numberOfPeriods ?? 1;
+  const unitMonths = { day: 1 / 30, week: 0.25, month: 1, year: 12 }[unit] || 1;
+  const totalMonths = unitMonths * n * cycles;
+  const spanLabel =
+    totalMonths >= 11.5 && totalMonths < 23 ? 'year'
+    : totalMonths >= 23 ? `${Math.round(totalMonths / 12)} years`
+    : totalMonths >= 1.5 ? `${Math.round(totalMonths)} months`
+    : n > 1 ? `${n} ${unit}s` : unit;
+
+  // Free trial
+  if (introPrice.price === 0) {
+    const unitLabel = unit.charAt(0).toUpperCase() + unit.slice(1) + (n > 1 ? 's' : '');
+    const label = `${n} ${unitLabel} Free`;
+    return { pill: label, cta: `Start ${label}`, fine: `${label}, then ${regular}${periodLabel || ''}` };
+  }
+
+  // Discounted intro (e.g. 50% off the first year — on either the monthly or yearly plan)
+  const introStr = introPrice.priceString || `$${Number(introPrice.price).toFixed(2)}`;
+  const full = pkg.product.price;
+  let pill = `Intro ${introStr}`;
+  if (full > 0 && introPrice.price < full) {
+    const pct = Math.round((1 - introPrice.price / full) * 100);
+    if (pct > 0) pill = `${pct}% off first ${spanLabel}`;
+  }
+  // A multi-cycle intro (e.g. monthly at 50% off for 12 months) charges per period, so
+  // show the period suffix. A single-period intro (a year paid up front) already covers it.
+  const introPer = cycles > 1 && periodLabel ? periodLabel : '';
+  return {
+    pill,
+    cta: 'Unlock Pro Now',
+    fine: `${introStr}${introPer} for your first ${spanLabel}, then ${regular}${periodLabel || ''}`,
+  };
 }
 
 // ─── Headline copy per triggering feature ─────────────────────────────────────
@@ -147,9 +185,21 @@ export default function PaywallScreen({ route, navigation }) {
 
     setLoading(true);
     try {
-      const isPro = await purchaseRCPackage(pkg);
+      let isPro = await purchaseRCPackage(pkg);
+      // Defensive re-check: if the purchase completed but the entitlement isn't
+      // reported active yet, verify once more against RevenueCat before deciding.
+      // This is the exact failure Apple hit — a charge with no unlock — so surface
+      // a clear next step instead of silently leaving the user on the paywall.
+      if (!isPro) isPro = await getProStatus();
       setLoading(false);
-      if (isPro) navigation.goBack();
+      if (isPro) {
+        navigation.goBack();
+      } else {
+        Alert.alert(
+          'Purchase received',
+          'Your purchase went through, but Pro hasn\'t unlocked yet. Tap "Restore purchase" to sync it — or contact support if it keeps happening.'
+        );
+      }
     } catch (e) {
       setLoading(false);
       if (!e.userCancelled) {
@@ -175,10 +225,11 @@ export default function PaywallScreen({ route, navigation }) {
   const handleSkip = () => navigation.goBack();
 
   const plan = prices[selectedPlan];
-  // Trial copy only appears when App Store Connect confirms a free intro offer
-  const yearlyTrial = trialLabel(rcPackages.yearly?.product?.introPrice);
-  const monthlyTrial = trialLabel(rcPackages.monthly?.product?.introPrice);
-  const planTrial = selectedPlan === 'yearly' ? yearlyTrial : monthlyTrial;
+  // Intro/offer copy is derived only from real App Store Connect introPrice data,
+  // so it can never advertise an offer the store doesn't actually have.
+  const yearlyOffer = introOffer(rcPackages.yearly, prices.yearly.period);
+  const monthlyOffer = introOffer(rcPackages.monthly, prices.monthly.period);
+  const planOffer = selectedPlan === 'yearly' ? yearlyOffer : monthlyOffer;
 
   return (
     <View style={[s.container, { paddingTop: insets.top }]}>
@@ -201,7 +252,7 @@ export default function PaywallScreen({ route, navigation }) {
             <View style={s.logoWrap}>
               <Ionicons name="leaf" size={32} color={Colors.primary} />
             </View>
-            <Text style={s.appLabel}>HEALTHY CHOICES PRO</Text>
+            <Text style={s.appLabel}>SHELF EXPOSÉ PRO</Text>
             <Text style={s.headline}>{title}</Text>
             {sub ? <Text style={s.headlineSub}>{sub}</Text> : null}
           </View>
@@ -252,9 +303,11 @@ export default function PaywallScreen({ route, navigation }) {
                         <Text style={[s.planLabel, selected && s.planLabelSelected]}>
                           {planId.toUpperCase()}
                         </Text>
-                        {isYearly && yearlyTrial && (
+                        {(planId === 'yearly' ? yearlyOffer : monthlyOffer) && (
                           <View style={s.trialPill}>
-                            <Text style={s.trialText}>{yearlyTrial}</Text>
+                            <Text style={s.trialText}>
+                              {(planId === 'yearly' ? yearlyOffer : monthlyOffer).pill}
+                            </Text>
                           </View>
                         )}
                       </View>
@@ -294,7 +347,7 @@ export default function PaywallScreen({ route, navigation }) {
             ) : (
               <>
                 <Text style={s.ctaText}>
-                  {planTrial ? `Start ${planTrial}` : 'Unlock Pro Now'}
+                  {planOffer ? planOffer.cta : 'Unlock Pro Now'}
                 </Text>
                 <Ionicons name="arrow-forward" size={17} color="#fff" />
               </>
@@ -303,9 +356,7 @@ export default function PaywallScreen({ route, navigation }) {
 
           {/* Fine print */}
           <Text style={s.finePrint}>
-            {planTrial
-              ? `${planTrial}, then ${plan.price}${plan.period}`
-              : `${plan.price}${plan.period} — cancel anytime`}
+            {planOffer ? planOffer.fine : `${plan.price}${plan.period} — cancel anytime`}
           </Text>
 
           {/* Continue free / Restore */}
