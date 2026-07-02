@@ -21,15 +21,15 @@ import StatBar from '../components/StatBar';
 
 // ── Flag utils ────────────────────────────────────────────────────────────────
 
-const FLAG_RANK = { avoid: 0, caution: 1, allergen: 1, moderate: 2, ok: 3 };
+const FLAG_RANK = { avoid: 0, caution: 1, moderate: 2, ok: 3, allergen: 3 };
 function sortIngredients(a, b) {
   const rank = (x) => x.category === 'unknown' ? 4 : (FLAG_RANK[x.flag] ?? 3);
   return rank(a) - rank(b);
 }
 
-const isBad = (item) => item.flag === 'avoid' || item.flag === 'caution' || item.flag === 'allergen';
+const isBad = (item) => item.flag === 'avoid' || item.flag === 'caution';
 const isOkay = (item) => item.flag === 'moderate';
-const isGood = (item) => item.flag === 'ok';
+const isGood = (item) => item.flag === 'ok' || item.flag === 'allergen';
 
 const CATEGORY_META = {
   grains:           { emoji: '🌾', label: 'Grains & Flours' },
@@ -84,12 +84,18 @@ const sumS = StyleSheet.create({
   label: { fontSize: 12, fontWeight: '600' },
 });
 
-function CategorySection({ catKey, items, collapsed, onToggle }) {
+const ALLERGEN_NEUTRAL_INFO = { color: '#5C7A72', bg: '#EDF2F0', label: 'Common allergen' };
+
+function CategorySection({ catKey, items, collapsed, onToggle, personalAllergenLabels }) {
   const meta = CATEGORY_META[catKey] ?? CATEGORY_META.unknown;
   const badCount = items.filter(isBad).length;
   const okayCount = items.filter(isOkay).length;
   const goodCount = items.filter(isGood).length;
-  const sorted = [...items].sort(sortIngredients);
+  const sorted = [...items].sort(sortIngredients).map((item) => {
+    if (item.flag !== 'allergen') return item;
+    const isPersonalHit = personalAllergenLabels?.has(item.label);
+    return isPersonalHit ? item : { ...item, flagInfo: ALLERGEN_NEUTRAL_INFO };
+  });
 
   return (
     <View style={catS.wrap}>
@@ -205,6 +211,10 @@ export default function ProductScoreScreen({ route, navigation }) {
   const company = product.companyId ? COMPANY_DB[product.companyId] : null;
   const hasHighSeverityIssues = company?.issues?.some((i) => i.severity === 'high');
 
+  const personalAllergenLabels = new Set(
+    (warnings?.allergenHits ?? []).flatMap(({ ingredients }) => ingredients.map((i) => i.label))
+  );
+
   const totalBad = analyzedIngredients.filter(isBad).length;
   const totalOkay = analyzedIngredients.filter(isOkay).length;
   const totalGood = analyzedIngredients.filter(isGood).length;
@@ -240,7 +250,7 @@ export default function ProductScoreScreen({ route, navigation }) {
       <ScrollView
         bounces
         showsVerticalScrollIndicator={false}
-        stickyHeaderIndices={[3]}
+        stickyHeaderIndices={[insufficientData ? 4 : 3]}
       >
         {/* ── 0: Hero image ── */}
         <View style={s.heroWrap}>
@@ -352,26 +362,28 @@ export default function ProductScoreScreen({ route, navigation }) {
         )}
 
         {/* ── 3: Tabs (sticky) ── */}
-        <View style={s.tabBar}>
-          <TouchableOpacity style={s.tabBack} onPress={() => navigation.goBack()}>
-            <Ionicons name="chevron-back" size={20} color={Colors.primary} />
-          </TouchableOpacity>
-          {TABS.map((tab) => (
-            <TouchableOpacity
-              key={tab}
-              style={[s.tab, activeTab === tab && s.tabActive]}
-              onPress={() => setActiveTab(tab)}
-            >
-              <View style={s.tabInner}>
-                <Text style={[s.tabLabel, activeTab === tab && s.tabLabelActive]}>
-                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
-                </Text>
-                {tab === 'company' && hasHighSeverityIssues && (
-                  <View style={s.tabDot} />
-                )}
-              </View>
+        <View style={s.tabBarSticky}>
+          <View style={s.tabBar}>
+            <TouchableOpacity style={s.tabBack} onPress={() => navigation.goBack()}>
+              <Ionicons name="chevron-back" size={20} color={Colors.primary} />
             </TouchableOpacity>
-          ))}
+            {TABS.map((tab) => (
+              <TouchableOpacity
+                key={tab}
+                style={[s.tab, activeTab === tab && s.tabActive]}
+                onPress={() => setActiveTab(tab)}
+              >
+                <View style={s.tabInner}>
+                  <Text style={[s.tabLabel, activeTab === tab && s.tabLabelActive]}>
+                    {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                  </Text>
+                  {tab === 'company' && hasHighSeverityIssues && (
+                    <View style={s.tabDot} />
+                  )}
+                </View>
+              </TouchableOpacity>
+            ))}
+          </View>
         </View>
 
         {/* ── 4: Tab body ── */}
@@ -444,6 +456,7 @@ export default function ProductScoreScreen({ route, navigation }) {
                       items={grouped[key]}
                       collapsed={collapsedCats.has(key)}
                       onToggle={() => toggleCat(key)}
+                      personalAllergenLabels={personalAllergenLabels}
                     />
                   ))}
                 </>
@@ -762,6 +775,7 @@ const s = StyleSheet.create({
   sayText: { fontSize: 14, color: '#2D4A42', lineHeight: 22 },
 
   // Tabs (sticky)
+  tabBarSticky: { backgroundColor: '#fff' },
   tabBar: {
     flexDirection: 'row', backgroundColor: '#fff',
     borderBottomWidth: 1, borderBottomColor: '#EDF2F0',

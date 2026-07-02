@@ -93,23 +93,25 @@ export default function CompanyProfileScreen({ route, navigation }) {
 
         {/* Risk banner — lobbying spend is Pro-gated */}
         {prefs.showLobbying !== false && unlocked && (
-          <View style={[styles.riskBanner, { backgroundColor: lobbyRisk.bg }]}>
-            <View style={styles.riskLeft}>
-              <Text style={[styles.riskLabel, { color: lobbyRisk.color }]}>Lobbying Risk</Text>
-              <Text style={[styles.riskLevel, { color: lobbyRisk.color }]}>{lobbyRisk.label}</Text>
+          <View style={styles.riskBanner}>
+            <View style={styles.riskTopRow}>
+              <View style={[styles.riskPill, { backgroundColor: lobbyRisk.bg }]}>
+                <Text style={[styles.riskPillLabel, { color: lobbyRisk.color }]}>Lobbying Risk</Text>
+                <Text style={[styles.riskPillLevel, { color: lobbyRisk.color }]}>{lobbyRisk.label}</Text>
+              </View>
+              <View style={styles.riskRight}>
+                <Text style={styles.riskAmount}>
+                  {formatCurrency(company.lobbyingSpend)}/yr
+                </Text>
+                <Text style={styles.riskSub}>Federal lobbying</Text>
+              </View>
             </View>
-            <View style={styles.riskRight}>
-              {highSeverityCount > 0 && (
-                <View style={styles.highFlag}>
-                  <Ionicons name="alert-circle" size={14} color={Colors.flagRed} />
-                  <Text style={styles.highFlagText}>{highSeverityCount} high-severity issue{highSeverityCount > 1 ? 's' : ''}</Text>
-                </View>
-              )}
-              <Text style={[styles.riskAmount, { color: lobbyRisk.color }]}>
-                {formatCurrency(company.lobbyingSpend)}/yr
-              </Text>
-              <Text style={[styles.riskSub, { color: lobbyRisk.color }]}>Federal lobbying</Text>
-            </View>
+            {highSeverityCount > 0 && (
+              <View style={styles.highFlag}>
+                <Ionicons name="alert-circle" size={14} color={Colors.flagRed} />
+                <Text style={styles.highFlagText}>{highSeverityCount} high-severity issue{highSeverityCount > 1 ? 's' : ''}</Text>
+              </View>
+            )}
           </View>
         )}
 
@@ -444,14 +446,15 @@ const styles = StyleSheet.create({
   companyHq: { fontSize: Font.sizes.sm, color: 'rgba(255,255,255,0.65)', marginTop: 2 },
   metaRow: { flexDirection: 'row', marginTop: 6 },
 
-  riskBanner: { borderRadius: 14, padding: 14, flexDirection: 'row', alignItems: 'center', gap: 12 },
-  riskLeft: { flex: 1 },
-  riskLabel: { fontSize: Font.sizes.xs, fontWeight: Font.weights.medium },
-  riskLevel: { fontSize: Font.sizes.lg, fontWeight: Font.weights.heavy, marginTop: 2 },
+  riskBanner: { borderRadius: 14, padding: 14, backgroundColor: Colors.white, borderWidth: 1, borderColor: Colors.border },
+  riskTopRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
+  riskPill: { flex: 1, borderRadius: 10, paddingHorizontal: 12, paddingVertical: 8 },
+  riskPillLabel: { fontSize: Font.sizes.xs, fontWeight: Font.weights.medium },
+  riskPillLevel: { fontSize: Font.sizes.lg, fontWeight: Font.weights.heavy, marginTop: 2 },
   riskRight: { alignItems: 'flex-end', gap: 2 },
-  riskAmount: { fontSize: Font.sizes.md, fontWeight: Font.weights.bold },
-  riskSub: { fontSize: Font.sizes.xs },
-  highFlag: { flexDirection: 'row', alignItems: 'center', gap: 3, marginBottom: 4 },
+  riskAmount: { fontSize: Font.sizes.md, fontWeight: Font.weights.bold, color: Colors.textPrimary },
+  riskSub: { fontSize: Font.sizes.xs, color: Colors.textSecondary },
+  highFlag: { flexDirection: 'row', alignItems: 'center', gap: 5, marginTop: 10, paddingTop: 10, borderTopWidth: 1, borderTopColor: Colors.border },
   highFlagText: { fontSize: Font.sizes.xs, color: Colors.flagRed, fontWeight: Font.weights.medium },
 
   riskLocked: {

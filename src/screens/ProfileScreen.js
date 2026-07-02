@@ -172,23 +172,8 @@ export default function ProfileScreen({ navigation }) {
             <Text style={styles.proBadgeText}>PRO</Text>
           </View>
         )}
-        <Text style={styles.profileSub}>{scanCount} products scanned</Text>
+        <Text style={styles.profileSub}>{scanCount} product{scanCount !== 1 ? 's' : ''} scanned</Text>
       </View>
-
-      {/* Sign out */}
-      <TouchableOpacity
-        style={styles.signOutBtn}
-        onPress={() =>
-          Alert.alert('Sign Out', 'Are you sure you want to sign out?', [
-            { text: 'Cancel', style: 'cancel' },
-            { text: 'Sign Out', style: 'destructive', onPress: signOut },
-          ])
-        }
-        activeOpacity={0.75}
-      >
-        <Ionicons name="log-out-outline" size={18} color="#D93B3B" />
-        <Text style={styles.signOutText}>Sign Out</Text>
-      </TouchableOpacity>
 
       {/* Dietary preferences */}
       <SectionHeader title="Dietary Preferences" subtitle="Used to personalize ingredient flags" />
@@ -374,6 +359,21 @@ export default function ProfileScreen({ navigation }) {
         </TouchableOpacity>
       </View>
 
+      {/* Sign out */}
+      <TouchableOpacity
+        style={styles.signOutBtn}
+        onPress={() =>
+          Alert.alert('Sign Out', 'Are you sure you want to sign out?', [
+            { text: 'Cancel', style: 'cancel' },
+            { text: 'Sign Out', style: 'destructive', onPress: signOut },
+          ])
+        }
+        activeOpacity={0.75}
+      >
+        <Ionicons name="log-out-outline" size={18} color="#D93B3B" />
+        <Text style={styles.signOutText}>Sign Out</Text>
+      </TouchableOpacity>
+
       {/* About */}
       <View style={styles.about}>
         <Text style={styles.aboutText}>Shelf Exposé v1.0</Text>
@@ -435,7 +435,7 @@ const styles = StyleSheet.create({
   profileSub:   { fontSize: Font.sizes.sm, color: Colors.textSecondary, marginTop: 4 },
   signOutBtn:   {
     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 7,
-    marginHorizontal: 24, marginBottom: 10, paddingVertical: 12,
+    marginHorizontal: 24, marginTop: 24, marginBottom: 10, paddingVertical: 12,
     borderRadius: 12, backgroundColor: '#FEF0F0',
     borderWidth: 1, borderColor: '#FBDADA',
   },

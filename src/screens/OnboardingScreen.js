@@ -9,6 +9,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
 import { DEFAULT_PREFS, saveUserPrefs, markOnboardingDone } from '../utils/storage';
+import { maybeRequestAppReview } from '../utils/reviewPrompt';
 import { PRIMARY_GOAL_OPTIONS } from '../data/preferences';
 
 const { width: SCREEN_W } = Dimensions.get('window');
@@ -106,6 +107,7 @@ export default function OnboardingScreen({ onComplete }) {
     if (isLast) {
       await saveUserPrefs(nextPrefs);
       await markOnboardingDone();
+      await maybeRequestAppReview('onboarding');
       onComplete();
       return;
     }

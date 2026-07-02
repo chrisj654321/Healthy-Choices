@@ -14,8 +14,8 @@ import {
   purchaseRCPackage,
   restorePurchases,
   getProStatus,
-  PRO_FEATURES,
 } from '../utils/subscription';
+import { maybeRequestAppReview } from '../utils/reviewPrompt';
 
 // ─── Static feature list ──────────────────────────────────────────────────────
 
@@ -193,6 +193,7 @@ export default function PaywallScreen({ route, navigation }) {
       if (!isPro) isPro = await getProStatus();
       setLoading(false);
       if (isPro) {
+        await maybeRequestAppReview('subscription');
         navigation.goBack();
       } else {
         Alert.alert(
@@ -256,14 +257,6 @@ export default function PaywallScreen({ route, navigation }) {
             <Text style={s.headline}>{title}</Text>
             {sub ? <Text style={s.headlineSub}>{sub}</Text> : null}
           </View>
-
-          {/* ── Feature triggered banner ── */}
-          {feature && PRO_FEATURES[feature] && (
-            <View style={s.featureBanner}>
-              <Ionicons name={PRO_FEATURES[feature].icon} size={18} color={Colors.primary} />
-              <Text style={s.featureBannerText}>{PRO_FEATURES[feature].title} is a Pro feature</Text>
-            </View>
-          )}
 
           {/* ── Feature list ── */}
           <View style={s.featureList}>
@@ -417,15 +410,6 @@ const s = StyleSheet.create({
   appLabel:    { fontSize: 11, fontWeight: '800', color: Colors.primary, letterSpacing: 1.6, marginBottom: 10 },
   headline:    { fontSize: 34, fontWeight: '800', color: Colors.textPrimary, textAlign: 'center', lineHeight: 42, marginBottom: 6 },
   headlineSub: { fontSize: 14, color: Colors.textMuted, textAlign: 'center' },
-
-  // Feature triggered banner
-  featureBanner: {
-    flexDirection: 'row', alignItems: 'center', gap: 8,
-    backgroundColor: Colors.primaryLight,
-    borderRadius: 10, paddingHorizontal: 14, paddingVertical: 9,
-    marginBottom: 20,
-  },
-  featureBannerText: { fontSize: 13, fontWeight: '600', color: Colors.primary, flex: 1 },
 
   // Feature list
   featureList: {

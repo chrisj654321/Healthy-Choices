@@ -39,3 +39,4 @@ retailer_images_batch_*.json
 web/launch.html
 debug.log
 tmp-runway-*
+src/data/batches/products/_cache/

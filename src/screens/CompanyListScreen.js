@@ -13,7 +13,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
 import { COMPANY_DB } from '../data/companies';
-import { formatCurrency, getLobbyingRiskLevel } from '../utils/scorer';
+import { formatCurrency } from '../utils/scorer';
 import { useProStatus } from '../utils/subscription';
 
 export default function CompanyListScreen({ navigation }) {
@@ -88,8 +88,9 @@ export default function CompanyListScreen({ navigation }) {
 
       <ScrollView contentContainerStyle={{ padding: 16, paddingTop: 4, paddingBottom: 40 }}>
         {filtered.map((company) => {
-          const risk = company.lobbyingSpend != null ? getLobbyingRiskLevel(company.lobbyingSpend) : null;
           const flags = company.issues?.length ?? 0;
+          const hasHighSeverity = company.issues?.some((i) => i.severity === 'high') ?? false;
+          const flagColor = hasHighSeverity ? Colors.flagRed : Colors.flagOrange;
           return (
             <TouchableOpacity
               key={company.id}
@@ -108,12 +109,12 @@ export default function CompanyListScreen({ navigation }) {
                 <Text style={s.name} numberOfLines={1}>{company.name}</Text>
                 <View style={s.metaRow}>
                   {company.lobbyingSpend != null && (
-                    <Text style={[s.meta, risk && { color: risk.color }]}>
+                    <Text style={s.meta}>
                       {formatCurrency(company.lobbyingSpend)}/yr lobbying
                     </Text>
                   )}
                   {flags > 0 && (
-                    <Text style={s.flagMeta}>· {flags} flag{flags !== 1 ? 's' : ''}</Text>
+                    <Text style={[s.flagMeta, { color: flagColor }]}>· {flags} flag{flags !== 1 ? 's' : ''}</Text>
                   )}
                 </View>
               </View>

@@ -26,6 +26,7 @@ import { Font } from '../constants/typography';
 import { PRODUCT_DB } from '../data/products';
 import { useProStatus } from '../utils/subscription';
 import { buildProduct, findCompanyId } from '../utils/productParser';
+import { maybeRequestAppReview } from '../utils/reviewPrompt';
 
 const OFF_API = 'https://world.openfoodfacts.org/api/v2/product';
 
@@ -78,6 +79,12 @@ export default function ScannerScreen({ navigation }) {
     setManualMode(false);
     setManualBarcode('');
     handleBarCodeScanned({ data: code });
+  };
+
+  const promptForReviewAfterScan = () => {
+    setTimeout(() => {
+      maybeRequestAppReview('firstScan').catch(() => {});
+    }, 900);
   };
 
   const handleBarCodeScanned = async ({ data: barcode }) => {
@@ -135,6 +142,7 @@ export default function ScannerScreen({ navigation }) {
           setLoading(false);
           Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
           navigation.navigate('ProductScore', { product: local });
+          promptForReviewAfterScan();
           return;
         }
         setLoading(false);
@@ -181,6 +189,7 @@ export default function ScannerScreen({ navigation }) {
       setLoading(false);
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
       navigation.navigate('ProductScore', { product });
+      promptForReviewAfterScan();
     } catch (err) {
       console.warn('[Scanner] scan error:', err);
       const local = PRODUCT_DB[barcode];
@@ -188,6 +197,7 @@ export default function ScannerScreen({ navigation }) {
         setLoading(false);
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
         navigation.navigate('ProductScore', { product: local });
+        promptForReviewAfterScan();
         return;
       }
       setLoading(false);

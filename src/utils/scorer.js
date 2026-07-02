@@ -551,7 +551,7 @@ function analyzeIngredients(ingredients) {
 
     if (hit && hit.source === 'db') {
       const data = hit.entry;
-      const penalty = data.risk * 2.5;
+      const penalty = data.flag === 'allergen' ? 0 : data.risk * 2.5;
       totalPenalty += penalty;
       flaggedCount++;
       if (data.flag === 'avoid') avoidCount++;
@@ -573,7 +573,7 @@ function analyzeIngredients(ingredients) {
     } else if (hit && hit.source === 'cache') {
       const cached = hit.entry;
       const flag = riskToFlag(cached.risk);
-      const penalty = flag === 'ok' ? 0 : cached.risk * 2.5;
+      const penalty = (flag === 'ok' || flag === 'allergen') ? 0 : cached.risk * 2.5;
       totalPenalty += penalty;
       if (flag !== 'ok') flaggedCount++;
       if (flag === 'avoid') avoidCount++;

@@ -235,7 +235,9 @@ export default function HomeScreen({ navigation }) {
                 >
                   {/* Hero: real product photo OR colored icon circle */}
                   {heroImage ? (
-                    <Image source={{ uri: heroImage }} style={s.catHeroImage} />
+                    <View style={s.catHeroWrap}>
+                      <Image source={{ uri: heroImage }} style={s.catHeroImage} />
+                    </View>
                   ) : (
                     <View style={[s.catIconCircle, { backgroundColor: cat.lightColor }]}>
                       <MaterialCommunityIcons name={cat.icon} size={30} color={cat.color} />
@@ -347,7 +349,10 @@ const s = StyleSheet.create({
     borderWidth: 1.5,
     shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.07, shadowRadius: 6, elevation: 2,
   },
-  catHeroImage: { width: '100%', height: 104, resizeMode: 'cover' },
+  catHeroWrap: {
+    width: '100%', height: 104, padding: 10, backgroundColor: '#FFFFFF',
+  },
+  catHeroImage: { width: '100%', height: '100%', resizeMode: 'contain' },
   catIconCircle: {
     width: '100%', height: 104, alignItems: 'center', justifyContent: 'center',
   },
