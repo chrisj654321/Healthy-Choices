@@ -4,6 +4,9 @@
 
 ---
 
+## 2026-07-01 (late) — Token budget constraint
+Fable/Opus has ~50% of the founder's weekly usage remaining; after that it's API pricing. Standing implication: Fable plans/reviews ONLY; Sonnet (or the main session on /model sonnet) does building, commits, and routine work. Auto-routing tasks to the cheapest capable model is on the founder's top to-do list (see context/backlog.md ⚙️ Workflow).
+
 ## 2026-07-01 — Business snapshot (seed entry)
 
 **Situation:** Build 26 rejected by Apple (4 findings — all root-caused and fixed; see context/decision-log.md). Build 27 pending: screenshots + IAP review screenshot + sandbox purchase test, then resubmit. RevenueCat entitlement mapping was the purchase-bug root cause (no products attached) — founder fixed in dashboard.

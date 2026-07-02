@@ -4,6 +4,7 @@ _Running record: decision → why → outcome. Newest first. Add an entry for ev
 
 | Date | Decision | Why | Outcome |
 |---|---|---|---|
+| 2026-07-02 | Efficiency doctrine + model routing (instructions/efficiency.md): manager plans/delegates/reviews only; Sonnet default for sessions; scripts for determinism; Chad task board for bulk work; **manager role hands to Opus Jul 7** | Fable at ~50% weekly budget; grunt work on manager models is pure waste | Active |
 | 2026-07-01 | Created `context/`, `memory/`, `instructions/` + CLAUDE.md as the project's operating system | Persist business context across sessions and AIs | Active |
 | 2026-07-01 | Cicero agent for all social writing; trained on X + LinkedIn voices; journal pipeline at `marketing/journal/` | One permanent voice identity beats re-briefing every spawn | Created; shakedown pending |
 | 2026-07-01 | Octavius: script-first product pipeline (fetch chain OFF→OFF-search→USDA→UPCItemDB, agent for misses only) | Old flow was 4–8 agents/product; unaffordable at 2,000-product scale; single-source (OFF) fragility | ~80% token cut; verified live on 5-product test incl. OFF 503s absorbed |

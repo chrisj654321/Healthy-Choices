@@ -32,6 +32,10 @@ Research pass first (verified sources only) → guide content files → simple G
 
 7. **Dark mode** — **overhaul.** Colors is a static constant used across ~20 screens; real dark mode means a theme context + dynamic palette everywhere + asset audits. High polish value, real cost. Profile already has a Display Settings section to house the toggle. Don't start this in a batch-work session.
 
+## ⚙️ Workflow (founder's top to-do, saved 2026-07-01 — not started)
+
+**Auto-route work to the cheapest capable model.** Fable/Opus has ~50% of weekly usage left (then API rates) — it should never do grunt work. Wanted: when the founder gives a task, it auto-assigns to the right tier (Haiku: never research, OK for trivial mechanical text; Sonnet: building, agents, commits, routine sessions; Fable/Opus: planning, review, strategy only). Investigate: Claude Code hooks/settings for model routing, `/model sonnet` as default for grunt sessions, and making "spawn a Sonnet agent" the reflex for anything self-contained. Note: a `git commit` itself is one cheap tool call — the real cost is which model carries the session context, so the win is routing whole tasks, not the commit step.
+
 ## 📦 Saved for later (founder-flagged: needs curated data, build over time)
 
 8. **Store-specific guides** — Aldi / Costco / Target / Whole Foods swipeable guides.

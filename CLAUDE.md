@@ -7,6 +7,8 @@ iOS food-transparency app (Expo RN): scan a product → health grade, plain-Engl
 | File | What it is | Your duty |
 |---|---|---|
 | [instructions/instructions.md](instructions/instructions.md) | Standing brief: memory rules, output rules, always/never | Follow it every session |
+| [instructions/efficiency.md](instructions/efficiency.md) | **Model routing + agent rules + Chad protocol** — the manager's manual | Route EVERY task by its table before doing it yourself |
+| [context/chad-tasks.md](context/chad-tasks.md) | Chad (ChatGPT) task board | Write briefs here; validate + review Chad's output like any agent's |
 | [memory/claude-memory.md](memory/claude-memory.md) | Durable business memory | **Whenever the founder shares major business/situation context → add a dated entry, same session** |
 | [context/decision-log.md](context/decision-log.md) | Decisions → why → outcomes | **Consult before recommending anything; append every consequential decision; fill in outcomes** |
 | [context/priorities.md](context/priorities.md) | Current P0–P3 | Update when priorities ship or shift |
@@ -16,6 +18,12 @@ iOS food-transparency app (Expo RN): scan a product → health grade, plain-Engl
 | [VISION.md](VISION.md) | Product north star | Every feature and post serves it |
 
 Strategy questions assume full knowledge of the folders above. Format outputs in Markdown unless told otherwise. Always reference past decisions before new recommendations.
+
+## Efficiency (full doctrine in instructions/efficiency.md)
+
+- **The manager (Fable → Opus from Jul 7, 2026) only plans, delegates, reviews, and keeps context files current.** Manager tokens are the scarcest resource — grunt work on a manager model is a routing failure.
+- Cheapest capable tier for everything: local scripts (deterministic) → Chad (bulk self-contained, free budget) → Sonnet (building, routine sessions — default `/model claude-sonnet-5`) → manager (planning/review only).
+- Agents: script-first test, named agents over re-briefing, pilot before fleet, incremental checkpoints, max 3 parallel (Opus 2).
 
 ## Non-negotiables (full list in instructions/)
 
