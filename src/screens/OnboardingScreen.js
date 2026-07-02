@@ -11,6 +11,8 @@ import { Font } from '../constants/typography';
 import { DEFAULT_PREFS, saveUserPrefs, markOnboardingDone } from '../utils/storage';
 import { maybeRequestAppReview } from '../utils/reviewPrompt';
 import { PRIMARY_GOAL_OPTIONS } from '../data/preferences';
+import { STORES } from '../data/stores';
+import { StoreLogo } from './ProfileScreen';
 
 const { width: SCREEN_W } = Dimensions.get('window');
 
@@ -44,7 +46,7 @@ const COMPANY_SPOTLIGHT = {
 
 // ─── Steps ────────────────────────────────────────────────────────────────────
 
-const STEPS = ['hook', 'reveal', 'transparency', 'allergens', 'dietary', 'goal', 'ready'];
+const STEPS = ['hook', 'reveal', 'transparency', 'allergens', 'dietary', 'goal', 'stores', 'ready'];
 
 const ALLERGEN_OPTIONS = [
   { id: 'peanuts',   label: 'Peanuts',        icon: 'alert-circle-outline' },
@@ -181,6 +183,12 @@ export default function OnboardingScreen({ onComplete }) {
               selected={prefs.primaryGoal ? [prefs.primaryGoal] : []}
               onToggle={(id) => setPrefs((p) => ({ ...p, primaryGoal: p.primaryGoal === id ? null : id }))}
               single
+            />
+          )}
+          {currentStep === 'stores' && (
+            <StoresStep
+              selected={prefs.favoriteStores}
+              onToggle={(id) => toggleArray('favoriteStores', id)}
             />
           )}
           {currentStep === 'ready' && <ReadyStep />}
@@ -550,6 +558,62 @@ const ss = StyleSheet.create({
   chipFull:      { width: '100%' },
   chipText:      { fontSize: 14, fontWeight: '600', color: Colors.primary },
   chipTextActive:{ color: '#fff' },
+});
+
+// ─── Step: StoresStep (favorite stores) ───────────────────────────────────────
+
+function StoresStep({ selected, onToggle }) {
+  return (
+    <View style={st.wrap}>
+      <Text style={st.title}>Where do you shop?</Text>
+      <Text style={st.sub}>Pick your favorite stores — we'll tailor shopping guides around them.</Text>
+      <View style={st.grid}>
+        {STORES.map((item) => {
+          const active = selected.includes(item.id);
+          return (
+            <TouchableOpacity
+              key={item.id}
+              style={[st.card, active && st.cardActive]}
+              onPress={() => onToggle(item.id)}
+              activeOpacity={0.75}
+            >
+              <StoreLogo storeId={item.id} label={item.label} size={38} />
+              <Text style={[st.cardLabel, active && st.cardLabelActive]} numberOfLines={1}>
+                {item.label}
+              </Text>
+              {active && (
+                <View style={st.check}>
+                  <Ionicons name="checkmark" size={11} color="#fff" />
+                </View>
+              )}
+            </TouchableOpacity>
+          );
+        })}
+      </View>
+    </View>
+  );
+}
+
+const st = StyleSheet.create({
+  wrap:          { paddingBottom: 16 },
+  title:         { fontSize: 26, fontWeight: '800', color: Colors.textPrimary, marginBottom: 8, lineHeight: 33 },
+  sub:           { fontSize: 15, color: Colors.textSecondary, lineHeight: 22, marginBottom: 24 },
+  grid:          { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
+  card:          {
+    width: (SCREEN_W - 48 - 20) / 3,
+    alignItems: 'center', justifyContent: 'center', gap: 5,
+    paddingVertical: 12, paddingHorizontal: 6,
+    borderRadius: 14, borderWidth: 1.5, borderColor: Colors.border,
+    backgroundColor: '#fff',
+  },
+  cardActive:    { borderColor: Colors.primary, backgroundColor: Colors.primaryLight },
+  cardLabel:     { fontSize: 12, fontWeight: '600', color: Colors.textSecondary, textAlign: 'center' },
+  cardLabelActive: { color: Colors.primary },
+  check:         {
+    position: 'absolute', top: 6, right: 6,
+    width: 16, height: 16, borderRadius: 8,
+    backgroundColor: Colors.primary, alignItems: 'center', justifyContent: 'center',
+  },
 });
 
 // ─── Step: Ready ──────────────────────────────────────────────────────────────

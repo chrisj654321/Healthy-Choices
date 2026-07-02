@@ -4,9 +4,8 @@ _Founder brain-dump triaged 2026-07-01. Completed ideas get deleted; shipped ite
 
 ## 🔥 High impact — do first
 
-### 1. Ingredients tab: verdict-first regroup — **feature (one screen)** · biggest UX win on the list
-Redesign ProductScoreScreen's ingredients tab from category-grouped to verdict-grouped: **Bad/Caution → Moderate → Good**, top to bottom, as collapsible sections that open to explain what each ingredient does. Glanceable in 2 seconds, explorable on tap. **Unrecognized ingredients move to the very bottom of Moderate** (not their own scary bucket).
-- Companion data campaign: **eliminate "unrecognized"** — pull every ingredient currently unmatched by `ingredientCache.js` across the DB, categorize them in batches (Octavius-style script → review → cache additions). Ongoing; shrink to zero over time.
+### 1. Unrecognized-ingredient elimination — **data campaign (ongoing)**
+_UI regroup SHIPPED 2026-07-02 (verdict-first Bad→Moderate→Good sections, unrecognized at bottom of Moderate)._ Remaining: **eliminate "unrecognized"** — pull every ingredient currently unmatched by `ingredientCache.js` across the DB, categorize them in batches (Octavius-style script → review → cache additions). Ongoing; shrink to zero over time.
 
 ### 2. Notifications: permission ask + encouraging streak — **feature** · the retention lever
 - "Allow notifications?" step at signup (expo-notifications, local scheduling).
@@ -24,8 +23,6 @@ Research pass first (verified sources only) → guide content files → simple G
 
 ## 🟢 Quick wins — batch these tweaks together
 
-4. **My Stores logos** — **tweak.** Profile "My Stores" should show retailer logos; walmart/kroger/amazon-whole-foods already exist in companies.js with logos — wire the same logo component in.
-5. **"Favorite stores" at signup** — **tweak/small feature.** Add a store-picker step to onboarding (feeds future store guides + personalization). Already on the home-page roadmap.
 6. **Top-10 unexpected food facts** — **content task.** Research (verified) → feeds both a possible in-app "did you know" surface and Cicero's content bank.
 
 ## 🟠 Big swings — schedule deliberately
@@ -43,4 +40,4 @@ Research pass first (verified sources only) → guide content files → simple G
 10. **Shop Smart by Aisle** — aisle-by-aisle companion mode (home-page roadmap).
 
 ## ✅ Done → deleted from backlog (see decision-log)
-- Real company logos (254/269, 2026-07-01) · Homepage photo-forward redesign (in build 27 — re-evaluate live)
+- Real company logos (254/269) · Homepage redesign (build 27) · Ingredients verdict-regroup UI (2026-07-02) · My Stores logos — 10 retailers real, 6 letter-fallback (2026-07-02) · Favorite-stores signup step (2026-07-02) · 212MB catalog analysis done → context/research-catalog-rearchitecture.md (SQLite productStore, 5 phases)

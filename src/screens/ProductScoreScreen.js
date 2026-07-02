@@ -22,33 +22,10 @@ import StatBar from '../components/StatBar';
 // ── Flag utils ────────────────────────────────────────────────────────────────
 
 const FLAG_RANK = { avoid: 0, caution: 1, moderate: 2, ok: 3, allergen: 3 };
-function sortIngredients(a, b) {
-  const rank = (x) => x.category === 'unknown' ? 4 : (FLAG_RANK[x.flag] ?? 3);
-  return rank(a) - rank(b);
-}
 
 const isBad = (item) => item.flag === 'avoid' || item.flag === 'caution';
 const isOkay = (item) => item.flag === 'moderate';
 const isGood = (item) => item.flag === 'ok' || item.flag === 'allergen';
-
-const CATEGORY_META = {
-  grains:           { emoji: '🌾', label: 'Grains & Flours' },
-  sweeteners:       { emoji: '🍬', label: 'Sweeteners' },
-  fats:             { emoji: '🫒', label: 'Fats & Oils' },
-  dyes:             { emoji: '🎨', label: 'Artificial Dyes' },
-  preservatives:    { emoji: '🧪', label: 'Preservatives' },
-  emulsifiers:      { emoji: '⚗️', label: 'Emulsifiers & Stabilizers' },
-  'flavor-enhancers': { emoji: '✨', label: 'Flavor Enhancers' },
-  dairy:            { emoji: '🥛', label: 'Dairy & Alternatives' },
-  proteins:         { emoji: '🥩', label: 'Proteins & Legumes' },
-  spices:           { emoji: '🌿', label: 'Spices & Herbs' },
-  additives:        { emoji: '🔬', label: 'Additives & Processing Aids' },
-  probiotics:       { emoji: '🦠', label: 'Probiotics & Fermented' },
-  cacao:            { emoji: '🍫', label: 'Cacao & Chocolate' },
-  'sugar-alcohols': { emoji: '🍭', label: 'Sugar Alcohols' },
-  vitamins:         { emoji: '💊', label: 'Vitamins & Minerals' },
-  unknown:          { emoji: '❓', label: 'Unrecognized Ingredients' },
-};
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 
@@ -86,38 +63,59 @@ const sumS = StyleSheet.create({
 
 const ALLERGEN_NEUTRAL_INFO = { color: '#5C7A72', bg: '#EDF2F0', label: 'Common allergen' };
 
-function CategorySection({ catKey, items, collapsed, onToggle, personalAllergenLabels }) {
-  const meta = CATEGORY_META[catKey] ?? CATEGORY_META.unknown;
-  const badCount = items.filter(isBad).length;
-  const okayCount = items.filter(isOkay).length;
-  const goodCount = items.filter(isGood).length;
-  const sorted = [...items].sort(sortIngredients).map((item) => {
-    if (item.flag !== 'allergen') return item;
-    const isPersonalHit = personalAllergenLabels?.has(item.label);
-    return isPersonalHit ? item : { ...item, flagInfo: ALLERGEN_NEUTRAL_INFO };
+const VERDICT_META = {
+  bad:      { label: 'Avoid & Caution', color: '#D93B3B', bg: '#FDE8E8' },
+  okay:     { label: 'Moderate',        color: '#F5A623', bg: '#FEF9E7' },
+  good:     { label: 'Good',            color: '#1D9E75', bg: '#E8F7F2' },
+};
+
+function sortWithinVerdict(a, b) {
+  if (a.category === 'unknown' && b.category !== 'unknown') return 1;
+  if (b.category === 'unknown' && a.category !== 'unknown') return -1;
+  const rank = (x) => FLAG_RANK[x.flag] ?? 3;
+  const r = rank(a) - rank(b);
+  if (r !== 0) return r;
+  return (a.label ?? '').localeCompare(b.label ?? '');
+}
+
+function groupByVerdict(analyzedIngredients, personalAllergenLabels) {
+  const bad = [];
+  const okay = [];
+  const good = [];
+
+  analyzedIngredients.forEach((item) => {
+    if (item.flag === 'allergen') {
+      const isPersonalHit = personalAllergenLabels?.has(item.label);
+      if (isPersonalHit) {
+        bad.push(item);
+      } else {
+        good.push({ ...item, flagInfo: ALLERGEN_NEUTRAL_INFO });
+      }
+      return;
+    }
+    if (isBad(item)) bad.push(item);
+    else if (isOkay(item)) okay.push(item);
+    else good.push(item);
   });
+
+  bad.sort(sortWithinVerdict);
+  okay.sort(sortWithinVerdict);
+  good.sort(sortWithinVerdict);
+
+  return { bad, okay, good };
+}
+
+function VerdictSection({ verdictKey, items, collapsed, onToggle }) {
+  const meta = VERDICT_META[verdictKey];
 
   return (
     <View style={catS.wrap}>
       <TouchableOpacity style={catS.header} onPress={onToggle} activeOpacity={0.7}>
-        <Text style={catS.emoji}>{meta.emoji}</Text>
         <Text style={catS.name}>{meta.label}</Text>
         <View style={catS.right}>
-          {badCount > 0 && (
-            <View style={[catS.pill, catS.pillBad]}>
-              <Text style={[catS.pillText, catS.pillTextBad]}>{badCount} bad</Text>
-            </View>
-          )}
-          {okayCount > 0 && (
-            <View style={[catS.pill, catS.pillOkay]}>
-              <Text style={[catS.pillText, catS.pillTextOkay]}>{okayCount} okay</Text>
-            </View>
-          )}
-          {goodCount > 0 && badCount === 0 && okayCount === 0 && (
-            <View style={[catS.pill, catS.pillGood]}>
-              <Text style={[catS.pillText, catS.pillTextGood]}>{goodCount} good</Text>
-            </View>
-          )}
+          <View style={[catS.pill, { backgroundColor: meta.bg }]}>
+            <Text style={[catS.pillText, { color: meta.color }]}>{items.length}</Text>
+          </View>
           <Ionicons
             name={collapsed ? 'chevron-down' : 'chevron-up'}
             size={14}
@@ -127,7 +125,7 @@ function CategorySection({ catKey, items, collapsed, onToggle, personalAllergenL
       </TouchableOpacity>
       {!collapsed && (
         <View style={catS.body}>
-          {sorted.map((item, i) => <IngredientRow key={i} item={item} />)}
+          {items.map((item, i) => <IngredientRow key={i} item={item} />)}
         </View>
       )}
     </View>
@@ -159,7 +157,7 @@ export default function ProductScoreScreen({ route, navigation }) {
   const [result, setResult] = useState(null);
   const [warnings, setWarnings] = useState(null);
   const [activeTab, setActiveTab] = useState('ingredients');
-  const [collapsedCats, setCollapsedCats] = useState(new Set());
+  const [collapsedCats, setCollapsedCats] = useState(new Set(['bad', 'okay', 'good']));
   const [prefs, setPrefs] = useState({ showLobbying: true, showDonations: true });
   // 'idle' | 'loading' | 'done'
   const [requestState, setRequestState] = useState('idle');
@@ -215,23 +213,18 @@ export default function ProductScoreScreen({ route, navigation }) {
     (warnings?.allergenHits ?? []).flatMap(({ ingredients }) => ingredients.map((i) => i.label))
   );
 
-  const totalBad = analyzedIngredients.filter(isBad).length;
-  const totalOkay = analyzedIngredients.filter(isOkay).length;
-  const totalGood = analyzedIngredients.filter(isGood).length;
+  const { bad: verdictBad, okay: verdictOkay, good: verdictGood } =
+    groupByVerdict(analyzedIngredients, personalAllergenLabels);
 
-  const grouped = analyzedIngredients.reduce((acc, item) => {
-    const key = item.category || 'unknown';
-    (acc[key] = acc[key] || []).push(item);
-    return acc;
-  }, {});
-  const sortedCats = Object.keys(grouped).sort((a, b) => {
-    if (a === 'unknown' && b !== 'unknown') return 1;
-    if (b === 'unknown' && a !== 'unknown') return -1;
-    const badA = grouped[a].filter(isBad).length;
-    const badB = grouped[b].filter(isBad).length;
-    if (badB !== badA) return badB - badA;
-    return grouped[b].length - grouped[a].length;
-  });
+  const totalBad = verdictBad.length;
+  const totalOkay = verdictOkay.length;
+  const totalGood = verdictGood.length;
+
+  const VERDICT_SECTIONS = [
+    { key: 'bad', items: verdictBad },
+    { key: 'okay', items: verdictOkay },
+    { key: 'good', items: verdictGood },
+  ].filter((sec) => sec.items.length > 0);
 
   const toggleCat = (key) => {
     setCollapsedCats((prev) => {
@@ -448,15 +441,14 @@ export default function ProductScoreScreen({ route, navigation }) {
                     </View>
                   )}
 
-                  {/* Category sections */}
-                  {sortedCats.map((key) => (
-                    <CategorySection
+                  {/* Verdict sections */}
+                  {VERDICT_SECTIONS.map(({ key, items }) => (
+                    <VerdictSection
                       key={key}
-                      catKey={key}
-                      items={grouped[key]}
+                      verdictKey={key}
+                      items={items}
                       collapsed={collapsedCats.has(key)}
                       onToggle={() => toggleCat(key)}
-                      personalAllergenLabels={personalAllergenLabels}
                     />
                   ))}
                 </>

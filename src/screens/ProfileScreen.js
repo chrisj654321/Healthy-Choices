@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 import {
   View,
   Text,
+  Image,
   ScrollView,
   StyleSheet,
   TouchableOpacity,
@@ -16,11 +17,78 @@ import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
 import { getUserPrefs, saveUserPrefs, clearScanHistory, getScanHistory } from '../utils/storage';
 import { STORES } from '../data/stores';
+import { COMPANY_DB } from '../data/companies';
 import { DIET_PREFERENCE_OPTIONS, PRIMARY_GOAL_OPTIONS } from '../data/preferences';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../utils/supabase';
 import { useProStatus, restorePurchases } from '../utils/subscription';
 import RevenueCatUI from 'react-native-purchases-ui';
+
+// Store id (src/data/stores.js) → companies.js key, for the retailers that
+// already have a `logo` entry in COMPANY_DB. Stores not listed here (and any
+// whose companies.js entry has no logo) fall back to a letter tile.
+// Shared with OnboardingScreen's "favorite stores" step — single source of truth.
+export const STORE_LOGO_MAP = {
+  walmart: 'walmart',
+  kroger: 'kroger',
+  costco: 'costco',
+  target: 'target',
+  'trader-joes': 'trader-joes',
+  aldi: 'aldi',
+  publix: 'publix',
+  heb: 'heb',
+  wegmans: 'wegmans',
+  'whole-foods': 'amazon',
+};
+
+export function StoreLogo({ storeId, label, size = 40 }) {
+  const companyKey = STORE_LOGO_MAP[storeId];
+  const logoUri = companyKey ? COMPANY_DB[companyKey]?.logo : null;
+  const tileStyle = [
+    logoStyles.tile,
+    { width: size, height: size, borderRadius: size * 0.28 },
+    logoUri && logoStyles.tileWithLogo,
+  ];
+  if (logoUri) {
+    return (
+      <View style={tileStyle}>
+        <Image
+          source={{ uri: logoUri }}
+          style={{ width: size * 0.68, height: size * 0.68 }}
+          resizeMode="contain"
+        />
+      </View>
+    );
+  }
+  return (
+    <View style={[tileStyle, logoStyles.tileFallback]}>
+      <Text style={[logoStyles.fallbackText, { fontSize: size * 0.4 }]}>
+        {(label || '?').charAt(0).toUpperCase()}
+      </Text>
+    </View>
+  );
+}
+
+const logoStyles = StyleSheet.create({
+  tile: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    marginBottom: 5,
+  },
+  tileWithLogo: {
+    backgroundColor: Colors.white,
+    borderWidth: 1,
+    borderColor: Colors.border,
+  },
+  tileFallback: {
+    backgroundColor: Colors.primaryLight,
+  },
+  fallbackText: {
+    fontWeight: Font.weights.heavy,
+    color: Colors.primary,
+  },
+});
 
 const DIETARY_OPTIONS = [
   { id: 'vegan', label: 'Vegan', icon: 'leaf' },
@@ -282,7 +350,7 @@ export default function ProfileScreen({ navigation }) {
               onPress={() => toggleArrayPref('favoriteStores', item.id)}
               activeOpacity={0.75}
             >
-              <Text style={styles.storeEmoji}>{item.emoji}</Text>
+              <StoreLogo storeId={item.id} label={item.label} size={40} />
               <Text style={[styles.storeLabel, active && styles.storeLabelActive]}>
                 {item.label}
               </Text>
@@ -478,7 +546,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primaryLight,
     borderColor: Colors.primary,
   },
-  storeEmoji: { fontSize: 22 },
   storeLabel: { fontSize: Font.sizes.xs, fontWeight: Font.weights.medium, color: Colors.textSecondary, textAlign: 'center' },
   storeLabelActive: { color: Colors.primary },
 
