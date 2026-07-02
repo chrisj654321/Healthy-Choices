@@ -4,6 +4,7 @@ _Running record: decision → why → outcome. Newest first. Add an entry for ev
 
 | Date | Decision | Why | Outcome |
 |---|---|---|---|
+| 2026-07-02 | Haiku ban refined: never GENERATES facts (no search-and-report/barcodes/money/legal/user-facing); may classify, extract-from-given-text, reformat — always behind a validator or Sonnet+ review | Barcode fabrication was a confabulation-under-absence failure, not a research failure; gpt-5.5 covers most cheap-bulk anyway | Doctrine updated |
 | 2026-07-02 | gpt-5.5 integrated via Codex CLI (`codex exec`, ChatGPT sub) — bulk/mechanical/investigation lane; model ranking table (cost/intelligence/taste) + standing escalation permission adopted | Founder ChatGPT sub = effectively free capacity; Fable budget scarce | Verified working (smoke test 2026-07-02) |
 | 2026-07-02 | Efficiency doctrine + model routing (instructions/efficiency.md): manager plans/delegates/reviews only; Sonnet default for sessions; scripts for determinism; Chad task board for bulk work; **manager role hands to Opus Jul 7** | Fable at ~50% weekly budget; grunt work on manager models is pure waste | Active |
 | 2026-07-01 | Created `context/`, `memory/`, `instructions/` + CLAUDE.md as the project's operating system | Persist business context across sessions and AIs | Active |

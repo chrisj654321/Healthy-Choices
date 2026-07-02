@@ -32,7 +32,7 @@ Strategy questions assume full knowledge of the folders above. Format outputs in
 - Creator ≠ reviewer: Sonnet builds, Opus/Fable reviews, the human commits. Agents never commit.
 - EAS builds are metered — validate with logic checks; the founder decides when to build.
 - Check `git status` before editing `src/data/` (Chad, a parallel ChatGPT session, runs product waves there); staging files; commit by explicit path.
-- Scripts for bulk HTTP, agents for judgment. Haiku banned from research.
+- Scripts for bulk HTTP, agents for judgment. Haiku never generates facts — transform-only (classify/extract/reformat) behind validators.
 
 ## Key machinery
 

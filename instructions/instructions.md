@@ -30,7 +30,7 @@ _This is the standard brief for any AI session working in this repo (Claude, Cha
 - Never fabricate: barcodes, ingredients, stats, studies, screenshots, headlines. `could_not_verify` is a success state.
 - Never make medical-causation claims ("causes cancer") — regulatory facts only ("banned in the EU").
 - Never let an agent commit, or an author approve its own work.
-- Never use Haiku for research.
+- Haiku never generates facts (no search-and-report, no barcodes/money/legal, nothing user-facing); classify/extract-from-given-text/reformat only, always behind a script validator or Sonnet+ review.
 - Never suggest "just do an EAS build to check" — logic-check instead.
 - Never default lobbying/donation figures to 0 (null = not found; 0 = confirmed zero).
 - Never post/publish anything externally without explicit founder approval.

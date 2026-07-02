@@ -25,7 +25,7 @@ Higher = better. Cost 9 = effectively free to us (founder's ChatGPT sub has gene
 - **Bulk/mechanical** (clear-spec implementation, data analysis, migrations, investigation): **gpt-5.5** — it's effectively free.
 - **Anything user-facing** (UI, copy, API design) needs **taste ≥ 7** → Sonnet minimum; Opus/Fable for the final pass. GPT never writes final user-facing copy.
 - **Reviews of plans/implementations:** Fable or Opus; optionally gpt-5.5 as an extra independent perspective (a THIRD set of eyes is nearly free).
-- **Never Haiku** (fabricates under uncertainty — permanent ban).
+- **Haiku never generates facts** (no search-and-report, no barcodes/money/legal, nothing user-facing). Haiku may classify, extract-from-given-text, and reformat — always behind a script validator or Sonnet+ review.
 - **Local scripts still beat every model** for deterministic work (bulk HTTP, parsing, validation, merges).
 
 | Task | Route to |
