@@ -8,18 +8,43 @@ The manager does exactly four things: **plan** (plan mode, architecture, triage)
 
 **Handoff note (Jul 7):** switching the manager to Opus requires zero migration — CLAUDE.md + instructions/ + context/ ARE the manager's brain. A new manager's first act: read those, confirm the priorities file is current, carry on.
 
-## Model routing table — every task gets the cheapest capable tier
+## Model rankings — cost reflects what WE actually pay, not list price
 
-| Task | Route to | Never |
-|---|---|---|
-| Strategy, plans, architecture, final review, legal/brand judgment | **Manager** (Fable → Opus) | Delegate these down |
-| Building code, scoped multi-file changes, product batches, content drafts | **Sonnet agents** (Octavius, Cicero, ad-hoc builders) | Manager doing it inline |
-| Routine sessions (commits, small fixes, running scripts, batch chores) | **Main session on `/model claude-sonnet-5`** | Running these on Fable/Opus |
-| Bulk HTTP, parsing, validation, dedup, merges — anything deterministic | **Local scripts** (free) | Any model doing loops of identical calls |
-| Bulk self-contained research/drafting with file deliverables | **Chad** (ChatGPT sub — separate budget = free to us) | Tasks needing repo-wide context |
-| Anything | — | **Haiku for research/data** (fabricates under uncertainty — permanent ban) |
+Higher = better. Cost 9 = effectively free to us (founder's ChatGPT sub has generous limits); Fable cost 2 = the scarcest thing in the office. Intelligence = how hard a problem it handles unsupervised. Taste = UI/UX, copy, API design, code quality.
+
+| model | cost | intelligence | taste |
+|---|---|---|---|
+| gpt-5.5 (via Codex CLI) | 9 | 8 | 5 |
+| sonnet-5 | 5 | 5 | 7 |
+| opus-4.8 | 4 | 7 | 8 |
+| fable-5 | 2 | 9 | 9 |
+
+**How to apply:**
+- These are defaults, not limits. **Standing permission to escalate:** if a cheaper model's output doesn't meet the bar, rerun with a smarter model without asking. Judge the output, not the price tag — escalating costs less than shipping mediocre work.
+- Cost is a tie-breaker only; for anything that ships: **intelligence > taste > cost**.
+- **Bulk/mechanical** (clear-spec implementation, data analysis, migrations, investigation): **gpt-5.5** — it's effectively free.
+- **Anything user-facing** (UI, copy, API design) needs **taste ≥ 7** → Sonnet minimum; Opus/Fable for the final pass. GPT never writes final user-facing copy.
+- **Reviews of plans/implementations:** Fable or Opus; optionally gpt-5.5 as an extra independent perspective (a THIRD set of eyes is nearly free).
+- **Never Haiku** (fabricates under uncertainty — permanent ban).
+- **Local scripts still beat every model** for deterministic work (bulk HTTP, parsing, validation, merges).
+
+| Task | Route to |
+|---|---|
+| Strategy, architecture, final review, legal/brand judgment | **Manager** (Fable → Opus from Jul 7) |
+| User-facing building: UI code, marketing copy (Cicero), product data (Octavius) | **Sonnet agents** |
+| Bulk/mechanical: clear-spec implementation, data analysis, investigation, migrations | **gpt-5.5 via `codex exec`** |
+| Routine sessions (commits, small fixes, running scripts) | Main session on `/model claude-sonnet-5` |
+| Deterministic anything | **Local scripts** (free) |
 
 Commit note: `git commit` is one cheap tool call — the cost is which model carries the session. Route the *session*, not the commit.
+
+## Codex CLI mechanics (gpt-5.5 — VERIFIED WORKING 2026-07-02)
+
+- Binary (not on PATH): `C:/Users/chris/AppData/Local/OpenAI/Codex/bin/aec6b7c6fcdfb66a/codex.exe` · logged in via the founder's ChatGPT sub · `~/.codex/config.toml` defaults to gpt-5.5, high reasoning.
+- **Investigation / analysis (read-only):** `codex exec -s read-only "<self-contained prompt>"` from the repo root — it reads the repo itself; don't paste file contents.
+- **Implementation:** `codex exec "<prompt>"` (workspace-write sandbox). Treat its output like any agent's: validate with scripts, review before merge, it never commits.
+- **Inside agent flows:** the Agent model parameter only takes Claude models — to use gpt-5.5 from a workflow, spawn a thin Sonnet wrapper agent whose prompt is: write a self-contained codex prompt, run `codex exec` via Bash, return the result.
+- Smoke test on record: repo-aware Q&A, 7.8k tokens, correct answer, zero Claude spend.
 
 ## Agent-spawning rules (what we learned the expensive way)
 
@@ -43,7 +68,9 @@ Commit note: `git commit` is one cheap tool call — the cost is which model car
 
 ## Chad orchestration (ChatGPT subscription = free parallel capacity)
 
-Chad can't be spawned by Claude — **the founder is the bridge.** Protocol:
+**Two lanes now:**
+- **Programmatic (primary):** gpt-5.5 via `codex exec` — Claude spawns it directly (see Codex CLI mechanics above). Use for anything bulk/mechanical/investigative that a session can wait on.
+- **Paste-bridge (for big async waves):** the ChatGPT app, with **the founder as the bridge** — right for multi-hour product waves and work Chad runs while Claude does something else. Protocol:
 
 1. **Claude writes the brief** in [context/chad-tasks.md](../context/chad-tasks.md): self-contained, exact output file paths, schema/format spec, validation criteria, and the concurrency rule (which files Chad owns for the run).
 2. **Founder pastes** the brief into ChatGPT; Chad works and writes outputs into the repo (his established pattern: `src/data/batches/products/chatskill_*` waves).

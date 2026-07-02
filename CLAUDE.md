@@ -22,7 +22,7 @@ Strategy questions assume full knowledge of the folders above. Format outputs in
 ## Efficiency (full doctrine in instructions/efficiency.md)
 
 - **The manager (Fable → Opus from Jul 7, 2026) only plans, delegates, reviews, and keeps context files current.** Manager tokens are the scarcest resource — grunt work on a manager model is a routing failure.
-- Cheapest capable tier for everything: local scripts (deterministic) → Chad (bulk self-contained, free budget) → Sonnet (building, routine sessions — default `/model claude-sonnet-5`) → manager (planning/review only).
+- Cheapest capable tier for everything: local scripts (deterministic) → **gpt-5.5 via `codex exec`** (bulk/mechanical/investigation — founder's ChatGPT sub = effectively free; binary path + mechanics in efficiency.md) → Sonnet (user-facing building, routine sessions — default `/model claude-sonnet-5`) → manager (planning/review only). Escalate without asking when output misses the bar; for anything that ships, intelligence > taste > cost; user-facing needs taste ≥ 7 (Sonnet+).
 - Agents: script-first test, named agents over re-briefing, pilot before fleet, incremental checkpoints, max 3 parallel (Opus 2).
 
 ## Non-negotiables (full list in instructions/)
