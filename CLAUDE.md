@@ -27,7 +27,7 @@ Strategy questions assume full knowledge of the folders above. Format outputs in
 
 ## Non-negotiables (full list in instructions/)
 
-- **Never** use the founder's military status in marketing (JER/DoDD 1344.10).
+- Military mentions in marketing: biographical context is FINE ("I'm in the Army at AIT, building in scarce hours"); what's prohibited is using position/rank/uniform to PROMOTE, implying Army/DoD endorsement, or implying the business runs on duty time/resources. Test: is the affiliation doing the selling, or setting the scene? (JER)
 - Never fabricate data (barcodes, stats, studies); no medical-causation claims — regulatory facts only.
 - Creator ≠ reviewer: Sonnet builds, Opus/Fable reviews, the human commits. Agents never commit.
 - EAS builds are metered — validate with logic checks; the founder decides when to build.

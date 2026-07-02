@@ -26,7 +26,7 @@ _This is the standard brief for any AI session working in this repo (Claude, Cha
 
 ## Never
 
-- **Never use the founder's military status in any marketing** (rank, uniform, school, deployment) — JER/DoDD 1344.10.
+- **Military-mention rule (refined 2026-07-02):** biographical military context in marketing is allowed (being in the Army, at AIT, location, limited WiFi/time — his real story). PROHIBITED: using position/rank/title/uniform to promote or as a credibility pitch, uniform photos in marketing, implying Army/DoD endorsement, or implying the business is built on duty time or government resources. Per-post test: is the affiliation doing the SELLING, or setting the scene? Optional insurance on affiliation-forward posts: "views my own, not DoD's."
 - Never fabricate: barcodes, ingredients, stats, studies, screenshots, headlines. `could_not_verify` is a success state.
 - Never make medical-causation claims ("causes cancer") — regulatory facts only ("banned in the EU").
 - Never let an agent commit, or an author approve its own work.
