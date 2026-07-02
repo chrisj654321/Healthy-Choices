@@ -5,7 +5,7 @@
 ---
 
 ## 2026-07-02 — Military-mention rule refined (founder correction)
-Biographical military context in marketing is fine and is part of his story (Army, AIT at Fort Leonard Wood, ~3 hrs/wk WiFi). Prohibited only: position/rank/uniform used to promote, uniform photos, implied Army/DoD endorsement, implied building on duty time/government resources. He is comfortable naming unit/location — not classified. Per-post test: affiliation selling vs. setting the scene.
+Biographical military context in marketing is fine and is part of his story (Army, AIT at Fort Leonard Wood; WiFi only at the USO — the military rest spot, the one place on base with WiFi — weekends only, ~5 hrs/week). Prohibited only: position/rank/uniform used to promote, uniform photos, implied Army/DoD endorsement, implied building on duty time/government resources. He is comfortable naming unit/location — not classified. Per-post test: affiliation selling vs. setting the scene.
 
 ## 2026-07-01 (late) — Token budget constraint
 Fable/Opus has ~50% of the founder's weekly usage remaining; after that it's API pricing. Standing implication: Fable plans/reviews ONLY; Sonnet (or the main session on /model sonnet) does building, commits, and routine work. Auto-routing tasks to the cheapest capable model is on the founder's top to-do list (see context/backlog.md ⚙️ Workflow).
