@@ -4,6 +4,9 @@
 
 ---
 
+## 2026-07-02 — Exit vision + data strategy
+Founder pictures selling the app to an aggregate-scan-data buyer (market-research/CPG demand-signals style). Decision after pushback: NEVER track users or sell PII (brand = trust; bad money anyway); build the anonymous aggregate analytics asset from day one (scan_events, zero identity). He initially floated declaring tracking now to enable later data sales — talked through why that fails legally (ATT timing, CCPA, FTC deception) and financially (pennies/user vs. sub revenue; PII is diligence liability). He agreed; posture locked.
+
 ## 2026-07-02 — Military-mention rule refined (founder correction)
 Biographical military context in marketing is fine and is part of his story (Army, AIT at Fort Leonard Wood; WiFi only at the USO — the military rest spot, the one place on base with WiFi — weekends only, ~5 hrs/week). Prohibited only: position/rank/uniform used to promote, uniform photos, implied Army/DoD endorsement, implied building on duty time/government resources. He is comfortable naming unit/location — not classified. Per-post test: affiliation selling vs. setting the scene.
 

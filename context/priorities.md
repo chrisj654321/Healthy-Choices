@@ -3,7 +3,7 @@
 _Last updated: 2026-07-01 — update whenever a priority ships or shifts._
 
 ## P0 — Get approved and live
-Build 26 rejected 2026-07-01 (4 findings). All code fixes done; remaining before build 27 resubmit:
+Build 27 rejected 2026-07-02 (5.1.2i — privacy label marked collected data as "used for tracking"; app has NO tracking). Fix: flip "Used to Track" to No on all data types in ASC App Privacy + reply in Resolution Center (drafted) + resubmit same binary. Prior build-26 items:
 - [x] Paid Apps Agreement Active · IAPs selected for the version · Terms in description · privacy data types
 - [x] RevenueCat: attach `monthly` + `yearly` products to the `Healthy Choices Pro` entitlement (was EMPTY — root cause of "purchase didn't unlock")
 - [ ] New iPhone + iPad screenshots from build 27
