@@ -8,7 +8,7 @@ Build 28 submitted 2026-07-02 (privacy-label fix + analytics layer + ingredients
 - [x] RevenueCat: attach monthly + yearly products to the Healthy Choices Pro entitlement
 - [x] Privacy label toggles corrected (Used to Track = No on Email/User ID/Purchases)
 - [x] IAP App Review screenshot per subscription (must have been attached — ASC accepted the submission)
-- [ ] **Unconfirmed: did a sandbox purchase actually unlock Pro before this submission?** This is the one true test of the RevenueCat entitlement fix — verify on TestFlight/sandbox if not already done
+- [x] Sandbox purchase tested — confirmed unlocking Pro (founder-verified 2026-07-02)
 - [ ] New iPhone + iPad screenshots — confirm these were updated for this submission (not carried over stale from build 26)
 - [ ] Confirm build 28 is APPROVED (check ASC for review outcome)
 - [ ] IF approved: run supabase/analytics_setup.sql once, add Product Interaction (not linked) to privacy label WITH the next build
