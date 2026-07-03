@@ -3,12 +3,13 @@
 _Last updated: 2026-07-01 — update whenever a priority ships or shifts._
 
 ## P0 — Get approved and live
-Build 27 rejected 2026-07-02 (5.1.2i — privacy label marked collected data as "used for tracking"; app has NO tracking). Fix: flip "Used to Track" to No on all data types in ASC App Privacy + reply in Resolution Center (drafted) + resubmit same binary. Prior build-26 items:
+Build 28 submitted 2026-07-02 (privacy-label fix + analytics layer + ingredients regroup + store logos). Awaiting Apple review.
 - [x] Paid Apps Agreement Active · IAPs selected for the version · Terms in description · privacy data types
-- [x] RevenueCat: attach `monthly` + `yearly` products to the `Healthy Choices Pro` entitlement (was EMPTY — root cause of "purchase didn't unlock")
-- [ ] New iPhone + iPad screenshots from build 27
-- [ ] IAP App Review screenshot per subscription
-- [ ] Build 27 → sandbox-test a purchase actually unlocks Pro → resubmit
+- [x] RevenueCat: attach monthly + yearly products to the Healthy Choices Pro entitlement
+- [x] Privacy label toggles corrected (Used to Track = No on Email/User ID/Purchases)
+- [ ] Confirm build 28 is APPROVED (check ASC for review outcome)
+- [ ] IF approved: run supabase/analytics_setup.sql once, add Product Interaction (not linked) to privacy label WITH the next build
+- [ ] New iPhone + iPad screenshots (still needed if not yet done for this submission)
 
 ## P1 — Launch marketing engine (30-day plan → $1,000/mo)
 Plan: `marketing/30-day-launch-plan.md`. Math: $1k/mo ≈ 40 annual subs ≈ 1,300–5,000 downloads ≈ 40–150k short-form views.
