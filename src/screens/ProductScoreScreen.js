@@ -13,6 +13,7 @@ import {
 } from '../utils/scorer';
 import { addScanToHistory, getUserPrefs } from '../utils/storage';
 import { logProductRequest } from '../utils/productRequests';
+import { logProductEvent } from '../utils/scanAnalytics';
 import { useProStatus } from '../utils/subscription';
 import { COMPANY_DB } from '../data/companies';
 import IngredientRow from '../components/IngredientRow';
@@ -171,6 +172,13 @@ export default function ProductScoreScreen({ route, navigation }) {
     if (!route?.params?.fromHistory) {
       addScanToHistory(product, r);
     }
+    logProductEvent({
+      barcode: product.barcode,
+      category: product.category || null,
+      score: typeof r.score === 'number' ? r.score : null,
+      grade: r.displayGrade || r.grade || null,
+      source: route?.params?.source || 'scan',
+    }).catch(() => {});
     getUserPrefs().then((userPrefs) => {
       setPrefs(userPrefs);
       setWarnings(getPersonalisedWarnings(r.analyzedIngredients, product, userPrefs));
