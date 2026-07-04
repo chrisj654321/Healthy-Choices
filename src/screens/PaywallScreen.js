@@ -7,6 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as WebBrowser from 'expo-web-browser';
+import * as Haptics from 'expo-haptics';
 import { Colors } from '../constants/colors';
 import {
   getCurrentOffering,
@@ -96,6 +97,8 @@ function headlineCopy(feature) {
       return { title: 'Find any\nproduct instantly.',   sub: 'Product search is a Pro feature.' };
     case 'history':
       return { title: 'Your complete\nscan history.',   sub: 'Full history is a Pro feature.' };
+    case 'alternatives':
+      return { title: 'See every\ncleaner option.',     sub: 'Full better-picks lists are a Pro feature.' };
     default:
       return { title: 'Unlock\nShelf Exposé Pro.',   sub: 'Everything you need to eat better.' };
   }
@@ -193,6 +196,7 @@ export default function PaywallScreen({ route, navigation }) {
       if (!isPro) isPro = await getProStatus();
       setLoading(false);
       if (isPro) {
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
         await maybeRequestAppReview('subscription');
         navigation.goBack();
       } else {

@@ -1,9 +1,10 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import {
   View, Text, ScrollView, StyleSheet, TouchableOpacity,
-  Share, StatusBar, Image, ActivityIndicator,
+  Share, StatusBar, Image, ActivityIndicator, Animated,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import * as Haptics from 'expo-haptics';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '../constants/colors';
@@ -15,6 +16,7 @@ import { addScanToHistory, getUserPrefs } from '../utils/storage';
 import { logProductRequest } from '../utils/productRequests';
 import { logProductEvent } from '../utils/scanAnalytics';
 import { useProStatus } from '../utils/subscription';
+import { getAlternatives } from '../utils/alternatives';
 import { COMPANY_DB } from '../data/companies';
 import IngredientRow from '../components/IngredientRow';
 import GradeRing from '../components/GradeRing';
@@ -149,6 +151,144 @@ const catS = StyleSheet.create({
   body: { paddingHorizontal: 14 },
 });
 
+// ── Better picks (alternatives) ────────────────────────────────────────────────
+
+function AlternativeCard({ item, onPress }) {
+  const color = scoreToColor(item._score);
+  const hasBrand = item.brand && item.brand !== 'Unknown Brand';
+
+  return (
+    <TouchableOpacity style={altS.card} onPress={onPress} activeOpacity={0.75}>
+      <View style={altS.thumbWrap}>
+        {item.image ? (
+          <Image source={{ uri: item.image }} style={altS.thumb} resizeMode="contain" />
+        ) : hasBrand ? (
+          <View style={altS.thumbBrandTile}>
+            <Text style={altS.thumbBrandLetter}>{item.brand.charAt(0).toUpperCase()}</Text>
+          </View>
+        ) : (
+          <View style={altS.thumbFallback}>
+            <Ionicons name="cube-outline" size={22} color="#B8C8C3" />
+          </View>
+        )}
+        {/* Score number, not letter — the UI never shows letter grades. */}
+        <View style={[altS.gradeBadge, { backgroundColor: color }]}>
+          <Text style={altS.gradeBadgeText}>{item._score}</Text>
+        </View>
+      </View>
+      <Text style={altS.name} numberOfLines={2}>{item.name}</Text>
+      <Text style={altS.brand} numberOfLines={1}>{item.brand}</Text>
+    </TouchableOpacity>
+  );
+}
+const altS = StyleSheet.create({
+  card: { width: 132, marginRight: 12 },
+  thumbWrap: {
+    width: 132, height: 100, borderRadius: 12, backgroundColor: '#F4F8F6',
+    alignItems: 'center', justifyContent: 'center', overflow: 'hidden',
+    borderWidth: 1, borderColor: '#EDF2F0',
+  },
+  thumb: { width: '80%', height: '80%' },
+  thumbBrandTile: { width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center', backgroundColor: '#E8F7F2' },
+  thumbBrandLetter: { fontSize: 30, fontWeight: '800', color: Colors.primary },
+  thumbFallback: { width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' },
+  gradeBadge: {
+    position: 'absolute', top: 6, right: 6,
+    minWidth: 22, height: 22, borderRadius: 11, paddingHorizontal: 5,
+    alignItems: 'center', justifyContent: 'center',
+  },
+  gradeBadgeText: { fontSize: 11, fontWeight: '800', color: '#fff' },
+  name: { fontSize: 13, fontWeight: '700', color: '#1A2E28', marginTop: 8, lineHeight: 17 },
+  brand: { fontSize: 11, color: '#8AA49E', marginTop: 2 },
+});
+
+function BetterPicksSection({ product, alternatives, isPro, altShowAll, setAltShowAll, navigation }) {
+  if (!alternatives || alternatives.length === 0) return null;
+
+  const FREE_VISIBLE = 2;
+  const PRO_VISIBLE = 6;
+
+  const onCardPress = (alt) => {
+    Haptics.selectionAsync().catch(() => {});
+    navigation.push('ProductScore', { product: alt });
+  };
+
+  if (!isPro) {
+    const visible = alternatives.slice(0, FREE_VISIBLE);
+    const remaining = alternatives.length - visible.length;
+    return (
+      <View style={bpS.wrap}>
+        <Text style={bpS.header}>Better picks in {product.category}</Text>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={bpS.row}>
+          {visible.map((alt) => (
+            <AlternativeCard key={alt.barcode} item={alt} onPress={() => onCardPress(alt)} />
+          ))}
+        </ScrollView>
+        {remaining > 0 && (
+          <TouchableOpacity
+            style={bpS.seeAllRow}
+            activeOpacity={0.75}
+            onPress={() => {
+              Haptics.selectionAsync().catch(() => {});
+              navigation.navigate('Paywall', { feature: 'alternatives' });
+            }}
+          >
+            <Text style={bpS.seeAllText}>See all {alternatives.length} cleaner options</Text>
+            <Ionicons name="chevron-forward" size={16} color={Colors.primary} />
+          </TouchableOpacity>
+        )}
+      </View>
+    );
+  }
+
+  // Pro: show up to PRO_VISIBLE, with a show-more expander for the rest.
+  const visible = altShowAll ? alternatives : alternatives.slice(0, PRO_VISIBLE);
+  const hasMore = alternatives.length > PRO_VISIBLE;
+
+  return (
+    <View style={bpS.wrap}>
+      <Text style={bpS.header}>Better picks in {product.category}</Text>
+      <View style={bpS.grid}>
+        {visible.map((alt) => (
+          <AlternativeCard key={alt.barcode} item={alt} onPress={() => onCardPress(alt)} />
+        ))}
+      </View>
+      {hasMore && (
+        <TouchableOpacity
+          style={bpS.showMoreRow}
+          activeOpacity={0.75}
+          onPress={() => {
+            Haptics.selectionAsync().catch(() => {});
+            setAltShowAll((v) => !v);
+          }}
+        >
+          <Text style={bpS.showMoreText}>
+            {altShowAll ? 'Show less' : `Show ${alternatives.length - PRO_VISIBLE} more`}
+          </Text>
+          <Ionicons name={altShowAll ? 'chevron-up' : 'chevron-down'} size={16} color={Colors.primary} />
+        </TouchableOpacity>
+      )}
+    </View>
+  );
+}
+const bpS = StyleSheet.create({
+  wrap: { marginHorizontal: 16, marginTop: 14, marginBottom: 4 },
+  header: { fontSize: 15, fontWeight: '700', color: '#1A2E28', marginBottom: 12 },
+  row: { paddingRight: 4 },
+  grid: { flexDirection: 'row', flexWrap: 'wrap', gap: 12 },
+  seeAllRow: {
+    flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6,
+    marginTop: 12, paddingVertical: 12, borderRadius: 12,
+    backgroundColor: '#E8F7F2',
+  },
+  seeAllText: { fontSize: 13, fontWeight: '700', color: Colors.primary },
+  showMoreRow: {
+    flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6,
+    marginTop: 12, paddingVertical: 10,
+  },
+  showMoreText: { fontSize: 13, fontWeight: '700', color: Colors.primary },
+});
+
 // ── Screen ────────────────────────────────────────────────────────────────────
 
 export default function ProductScoreScreen({ route, navigation }) {
@@ -162,11 +302,23 @@ export default function ProductScoreScreen({ route, navigation }) {
   const [prefs, setPrefs] = useState({ showLobbying: true, showDonations: true });
   // 'idle' | 'loading' | 'done'
   const [requestState, setRequestState] = useState('idle');
+  const [alternatives, setAlternatives] = useState([]);
+  const [altShowAll, setAltShowAll] = useState(false);
+  const gradeAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     if (!product) return;
     const r = scoreProduct(product);
     setResult(r);
+    setAlternatives([]);
+    setAltShowAll(false);
+
+    const grade = r.displayGrade || r.grade;
+    if (grade === 'D' || grade === 'F') {
+      getAlternatives(product, { limit: 12 })
+        .then(({ alternatives: alts }) => setAlternatives(alts))
+        .catch(() => setAlternatives([]));
+    }
     // Only add to history when navigating from the scanner, not when
     // viewing a past scan from the history list.
     if (!route?.params?.fromHistory) {
@@ -183,6 +335,23 @@ export default function ProductScoreScreen({ route, navigation }) {
       setPrefs(userPrefs);
       setWarnings(getPersonalisedWarnings(r.analyzedIngredients, product, userPrefs));
     });
+
+    // Grade-reveal: haptic keyed to the grade, fired as the entrance animation starts.
+    // Unscored products ('?', insufficient data) skip the haptic — it's not a bad grade.
+    if (grade === 'A' || grade === 'B') {
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
+    } else if (grade === 'C') {
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning).catch(() => {});
+    } else if (grade === 'D' || grade === 'F') {
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error).catch(() => {});
+    }
+    gradeAnim.setValue(0);
+    Animated.spring(gradeAnim, {
+      toValue: 1,
+      friction: 6,
+      tension: 60,
+      useNativeDriver: true,
+    }).start();
   }, [product]);
 
   const handleShare = useCallback(async () => {
@@ -244,6 +413,12 @@ export default function ProductScoreScreen({ route, navigation }) {
 
   const TABS = ['ingredients', 'nutrition', 'company'];
 
+  const showBetterPicks = (displayGrade === 'D' || displayGrade === 'F') && alternatives.length > 0;
+  // Children before the sticky tab bar: 0 hero, 1 infoCard, 2 sayCard,
+  // optionally 2b request card (insufficientData) or 2c better-picks (D/F),
+  // then the sticky tab bar itself.
+  const stickyIndex = 3 + (insufficientData || showBetterPicks ? 1 : 0);
+
   return (
     <View style={s.container}>
       <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
@@ -251,7 +426,7 @@ export default function ProductScoreScreen({ route, navigation }) {
       <ScrollView
         bounces
         showsVerticalScrollIndicator={false}
-        stickyHeaderIndices={[insufficientData ? 4 : 3]}
+        stickyHeaderIndices={[stickyIndex]}
       >
         {/* ── 0: Hero image ── */}
         <View style={s.heroWrap}>
@@ -284,7 +459,16 @@ export default function ProductScoreScreen({ route, navigation }) {
           </Text>
 
           <View style={s.scoreRow}>
-            <GradeRing score={insufficientData ? 0 : score} grade={displayGrade} color={gradeCol} size={88} />
+            <Animated.View
+              style={{
+                opacity: gradeAnim,
+                transform: [{
+                  scale: gradeAnim.interpolate({ inputRange: [0, 1], outputRange: [0.5, 1] }),
+                }],
+              }}
+            >
+              <GradeRing score={insufficientData ? 0 : score} grade={displayGrade} color={gradeCol} size={88} />
+            </Animated.View>
             <View style={s.scoreRight}>
               <View style={[s.verdictBadge, { backgroundColor: gradeCol + '1C' }]}>
                 <Text style={[s.verdictText, { color: gradeCol }]}>{verdict}</Text>
@@ -360,6 +544,18 @@ export default function ProductScoreScreen({ route, navigation }) {
               </>
             )}
           </View>
+        )}
+
+        {/* ── 2c: Better picks (D/F grades only) ── */}
+        {showBetterPicks && (
+          <BetterPicksSection
+            product={product}
+            alternatives={alternatives}
+            isPro={isPro}
+            altShowAll={altShowAll}
+            setAltShowAll={setAltShowAll}
+            navigation={navigation}
+          />
         )}
 
         {/* ── 3: Tabs (sticky) ── */}

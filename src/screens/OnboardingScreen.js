@@ -3,18 +3,25 @@ import {
   View, Text, StyleSheet, TouchableOpacity, ScrollView,
   StatusBar, Animated, Dimensions,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
 import { DEFAULT_PREFS, saveUserPrefs, markOnboardingDone } from '../utils/storage';
-import { maybeRequestAppReview } from '../utils/reviewPrompt';
+import { optInToNotifications, declineNotificationPriming } from '../utils/notifications';
 import { PRIMARY_GOAL_OPTIONS } from '../data/preferences';
 import { STORES } from '../data/stores';
 import { StoreLogo } from './ProfileScreen';
 
 const { width: SCREEN_W } = Dimensions.get('window');
+
+// Set right before onComplete() on the final "ready" step, cleared by
+// AppNavigator the first time it's read. Survives the Auth screen (which
+// sits between onboarding and the main tabs) because it's persisted storage,
+// not React state — lets us land the user straight on the Scan tab post-auth.
+const SCAN_AFTER_ONBOARDING_KEY = '@hc_scan_after_onboarding';
 
 // ─── Static data for value-building screens ───────────────────────────────────
 
@@ -46,7 +53,7 @@ const COMPANY_SPOTLIGHT = {
 
 // ─── Steps ────────────────────────────────────────────────────────────────────
 
-const STEPS = ['hook', 'reveal', 'transparency', 'allergens', 'dietary', 'goal', 'stores', 'ready'];
+const STEPS = ['hook', 'reveal', 'transparency', 'allergens', 'dietary', 'goal', 'stores', 'notify', 'ready'];
 
 const ALLERGEN_OPTIONS = [
   { id: 'peanuts',   label: 'Peanuts',        icon: 'alert-circle-outline' },
@@ -109,7 +116,11 @@ export default function OnboardingScreen({ onComplete }) {
     if (isLast) {
       await saveUserPrefs(nextPrefs);
       await markOnboardingDone();
-      await maybeRequestAppReview('onboarding');
+      try {
+        await AsyncStorage.setItem(SCAN_AFTER_ONBOARDING_KEY, 'true');
+      } catch (e) {
+        console.warn('[Onboarding] failed to set scan-after-onboarding flag:', e?.message ?? e);
+      }
       onComplete();
       return;
     }
@@ -125,7 +136,7 @@ export default function OnboardingScreen({ onComplete }) {
     });
   };
 
-  const showSkip = !isLast && !['hook', 'reveal', 'transparency', 'ready'].includes(currentStep);
+  const showSkip = !isLast && !['hook', 'reveal', 'transparency', 'notify', 'ready'].includes(currentStep);
 
   const nextLabel = () => {
     if (currentStep === 'hook')         return 'Show Me';
@@ -133,6 +144,18 @@ export default function OnboardingScreen({ onComplete }) {
     if (currentStep === 'transparency') return 'Set Up My Profile';
     if (isLast)                         return 'Start Scanning';
     return 'Continue';
+  };
+
+  // The notify step has its own two buttons ("Sure, remind me" / "Not now")
+  // instead of the shared footer — both just advance to the next step after
+  // recording the choice.
+  const handleNotifyChoice = async (accepted) => {
+    if (accepted) {
+      await optInToNotifications();
+    } else {
+      await declineNotificationPriming();
+    }
+    goToStep(step + 1);
   };
 
   return (
@@ -191,22 +214,42 @@ export default function OnboardingScreen({ onComplete }) {
               onToggle={(id) => toggleArray('favoriteStores', id)}
             />
           )}
+          {currentStep === 'notify' && <NotifyStep />}
           {currentStep === 'ready' && <ReadyStep />}
         </Animated.View>
       </ScrollView>
 
       {/* ── Footer ── */}
-      <View style={[s.footer, { paddingBottom: insets.bottom + 12 }]}>
-        {showSkip && (
-          <TouchableOpacity style={s.skipBtn} onPress={handleSkip}>
-            <Text style={s.skipText}>Skip</Text>
+      {currentStep === 'notify' ? (
+        <View style={[s.footer, { paddingBottom: insets.bottom + 12 }]}>
+          <TouchableOpacity
+            style={s.skipBtn}
+            onPress={() => handleNotifyChoice(false)}
+          >
+            <Text style={s.skipText}>Not now</Text>
           </TouchableOpacity>
-        )}
-        <TouchableOpacity style={s.nextBtn} onPress={handleNext} activeOpacity={0.85}>
-          <Text style={s.nextText}>{nextLabel()}</Text>
-          <Ionicons name="arrow-forward" size={17} color="#fff" />
-        </TouchableOpacity>
-      </View>
+          <TouchableOpacity
+            style={s.nextBtn}
+            onPress={() => handleNotifyChoice(true)}
+            activeOpacity={0.85}
+          >
+            <Text style={s.nextText}>Sure, remind me</Text>
+            <Ionicons name="notifications" size={17} color="#fff" />
+          </TouchableOpacity>
+        </View>
+      ) : (
+        <View style={[s.footer, { paddingBottom: insets.bottom + 12 }]}>
+          {showSkip && (
+            <TouchableOpacity style={s.skipBtn} onPress={handleSkip}>
+              <Text style={s.skipText}>Skip</Text>
+            </TouchableOpacity>
+          )}
+          <TouchableOpacity style={s.nextBtn} onPress={handleNext} activeOpacity={0.85}>
+            <Text style={s.nextText}>{nextLabel()}</Text>
+            <Ionicons name="arrow-forward" size={17} color="#fff" />
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 }
@@ -613,6 +656,40 @@ const st = StyleSheet.create({
     position: 'absolute', top: 6, right: 6,
     width: 16, height: 16, borderRadius: 8,
     backgroundColor: Colors.primary, alignItems: 'center', justifyContent: 'center',
+  },
+});
+
+// ─── Step: NotifyStep (notification opt-in priming) ───────────────────────────
+
+function NotifyStep() {
+  return (
+    <View style={nt.wrap}>
+      <View style={nt.iconWrap}>
+        <Ionicons name="notifications-outline" size={44} color={Colors.primary} />
+      </View>
+      <Text style={nt.title}>Want gentle reminders{'\n'}to decode your pantry?</Text>
+      <Text style={nt.sub}>
+        We'll nudge you here and there — never anything pushy, and you can turn
+        it off anytime in your profile.
+      </Text>
+    </View>
+  );
+}
+
+const nt = StyleSheet.create({
+  wrap:     { alignItems: 'center', paddingTop: 24, paddingBottom: 12 },
+  iconWrap: {
+    width: 96, height: 96, borderRadius: 28,
+    backgroundColor: Colors.primaryLight,
+    alignItems: 'center', justifyContent: 'center', marginBottom: 28,
+  },
+  title:    {
+    fontSize: 26, fontWeight: '800', color: Colors.textPrimary,
+    textAlign: 'center', lineHeight: 34, marginBottom: 14,
+  },
+  sub:      {
+    fontSize: 15, color: Colors.textSecondary, textAlign: 'center',
+    lineHeight: 22, paddingHorizontal: 8,
   },
 });
 

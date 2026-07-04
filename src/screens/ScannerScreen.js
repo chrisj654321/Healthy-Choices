@@ -26,7 +26,8 @@ import { Font } from '../constants/typography';
 import { PRODUCT_DB } from '../data/products';
 import { useProStatus } from '../utils/subscription';
 import { buildProduct, findCompanyId } from '../utils/productParser';
-import { maybeRequestAppReview } from '../utils/reviewPrompt';
+import { maybeRequestAppReview, recordSuccessfulScanForReview } from '../utils/reviewPrompt';
+import { addRequest } from '../utils/productRequests';
 
 const OFF_API = 'https://world.openfoodfacts.org/api/v2/product';
 
@@ -83,8 +84,31 @@ export default function ScannerScreen({ navigation }) {
 
   const promptForReviewAfterScan = () => {
     setTimeout(() => {
-      maybeRequestAppReview('firstScan').catch(() => {});
+      recordSuccessfulScanForReview()
+        .then((shouldPrompt) => {
+          if (shouldPrompt) return maybeRequestAppReview('firstScan');
+        })
+        .catch(() => {});
     }, 900);
+  };
+
+  // "Request this product" from the Product Not Found dead-end. Saves
+  // locally (always succeeds) and best-effort syncs to Supabase; offline
+  // requests are retried automatically the next time productRequests.js
+  // is used (see retryPendingSyncs in that module).
+  const handleRequestProduct = async (barcode) => {
+    try {
+      await addRequest(barcode);
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
+      Alert.alert(
+        'Got it',
+        'We\'ve added this to your requests — check My Requests in your Profile for status.',
+        [{ text: 'OK', onPress: reset }]
+      );
+    } catch (e) {
+      console.warn('[Scanner] request failed:', e?.message ?? e);
+      reset();
+    }
   };
 
   const handleBarCodeScanned = async ({ data: barcode }) => {
@@ -118,6 +142,7 @@ export default function ScannerScreen({ navigation }) {
             const { allowed, remaining } = await checkAndIncrementDailyScan();
             if (!allowed) {
               setLoading(false);
+              Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error).catch(() => {});
               Alert.alert(
                 "Daily Limit Reached",
                 "Free accounts can scan 5 products per day. Upgrade to Pro for unlimited scans.",
@@ -146,10 +171,14 @@ export default function ScannerScreen({ navigation }) {
           return;
         }
         setLoading(false);
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error).catch(() => {});
         Alert.alert(
           'Product Not Found',
           `Barcode ${barcode} isn't in our database yet.\n\nTry scanning another product or check back after we update our data.`,
-          [{ text: 'OK', onPress: reset }]
+          [
+            { text: 'OK', style: 'cancel', onPress: reset },
+            { text: 'Request this product', onPress: () => handleRequestProduct(barcode) },
+          ]
         );
         return;
       }
@@ -159,6 +188,7 @@ export default function ScannerScreen({ navigation }) {
         const { allowed, remaining } = await checkAndIncrementDailyScan();
         if (!allowed) {
           setLoading(false);
+          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error).catch(() => {});
           Alert.alert(
             "Daily Limit Reached",
             "Free accounts can scan 5 products per day. Upgrade to Pro for unlimited scans.",

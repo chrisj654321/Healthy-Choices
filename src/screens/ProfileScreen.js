@@ -9,13 +9,27 @@ import {
   Switch,
   Alert,
   ActivityIndicator,
+  Linking,
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
+import * as Haptics from 'expo-haptics';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
 import { getUserPrefs, saveUserPrefs, clearScanHistory, getScanHistory } from '../utils/storage';
+import { getRequests } from '../utils/productRequests';
+import { getPantryStats } from '../utils/pantryStats';
+import { scoreToColor } from '../utils/scorer';
+import {
+  getPermissionStatus,
+  isOptedIn,
+  isWeeklyEnabled,
+  optInToNotifications,
+  optBackIntoNotifications,
+  optOutOfNotifications,
+  setWeeklyReminders,
+} from '../utils/notifications';
 import { STORES } from '../data/stores';
 import { COMPANY_DB } from '../data/companies';
 import { DIET_PREFERENCE_OPTIONS, PRIMARY_GOAL_OPTIONS } from '../data/preferences';
@@ -118,6 +132,9 @@ export default function ProfileScreen({ navigation }) {
   const { isPro } = useProStatus();
   const [prefs,     setPrefs]     = useState(null);
   const [scanCount, setScanCount] = useState(0);
+  const [notifStatus, setNotifStatus] = useState({ permission: 'undetermined', optedIn: false, weekly: true });
+  const [requestCount, setRequestCount] = useState(0);
+  const [pantryStats, setPantryStats] = useState(null);
 
   useFocusEffect(
     useCallback(() => {
@@ -126,9 +143,54 @@ export default function ProfileScreen({ navigation }) {
   );
 
   const loadData = async () => {
-    const [p, history] = await Promise.all([getUserPrefs(), getScanHistory()]);
+    const [p, history, permission, optedIn, weekly, requests, stats] = await Promise.all([
+      getUserPrefs(),
+      getScanHistory(),
+      getPermissionStatus(),
+      isOptedIn(),
+      isWeeklyEnabled(),
+      getRequests(),
+      getPantryStats(),
+    ]);
     setPrefs(p);
     setScanCount(history.length);
+    setNotifStatus({ permission, optedIn, weekly });
+    setRequestCount(requests.length);
+    setPantryStats(stats);
+  };
+
+  const handleSeeBetterPicks = () => {
+    Haptics.selectionAsync().catch(() => {});
+    navigation.navigate('ProductScore', { product: pantryStats.lowestProduct.product });
+  };
+
+  // Master toggle reflects "OS permission granted AND user opted in".
+  const notifMasterOn = notifStatus.permission === 'granted' && notifStatus.optedIn;
+
+  const handleNotifMasterToggle = async (value) => {
+    if (value) {
+      if (notifStatus.permission === 'denied') {
+        // Can't re-prompt the system dialog once denied — send the user to Settings.
+        Linking.openSettings();
+        return;
+      }
+      if (notifStatus.permission === 'undetermined') {
+        const granted = await optInToNotifications();
+        setNotifStatus((s) => ({ ...s, permission: granted ? 'granted' : 'denied', optedIn: granted }));
+        return;
+      }
+      // Already granted at the OS level — just resume our own schedule.
+      await optBackIntoNotifications();
+      setNotifStatus((s) => ({ ...s, optedIn: true }));
+    } else {
+      await optOutOfNotifications();
+      setNotifStatus((s) => ({ ...s, optedIn: false }));
+    }
+  };
+
+  const handleWeeklyToggle = async (value) => {
+    await setWeeklyReminders(value);
+    setNotifStatus((s) => ({ ...s, weekly: value }));
   };
 
   const updatePref = async (key, value) => {
@@ -145,6 +207,7 @@ export default function ProfileScreen({ navigation }) {
   };
 
   const toggleArrayPref = async (key, id) => {
+    Haptics.selectionAsync().catch(() => {});
     const current = prefs[key] ?? [];
     const updated = current.includes(id) ? current.filter((x) => x !== id) : [...current, id];
     await updatePref(key, updated);
@@ -359,6 +422,77 @@ export default function ProfileScreen({ navigation }) {
         })}
       </ScrollView>
 
+      {/* Pantry Report Card */}
+      {pantryStats && (
+        <>
+          <SectionHeader title="Your Pantry Report Card" subtitle="A quick look at what you've scanned so far" />
+          <View style={styles.settingsCard}>
+            <View style={styles.pantryScoreRow}>
+              <View>
+                <Text style={styles.pantryScanCount}>
+                  {pantryStats.totalScans} product{pantryStats.totalScans !== 1 ? 's' : ''} scanned
+                </Text>
+                {pantryStats.scansThisWeek > 0 && (
+                  <Text style={styles.pantryScanSub}>{pantryStats.scansThisWeek} this week</Text>
+                )}
+              </View>
+              <View style={styles.pantryAverageWrap}>
+                <Text style={[styles.pantryAverageNumber, { color: scoreToColor(pantryStats.averageScore) }]}>
+                  {pantryStats.averageScore}
+                </Text>
+                <Text style={styles.pantryAverageLabel}>avg score</Text>
+              </View>
+            </View>
+
+            <View style={styles.pantryDivider} />
+
+            <View style={styles.pantryHighlightRow}>
+              <Ionicons name="trophy-outline" size={16} color={Colors.primary} />
+              <Text style={styles.pantryHighlightText}>
+                Your best pick: <Text style={styles.pantryHighlightStrong}>{pantryStats.bestProduct.name}</Text>{' '}
+                ({pantryStats.bestProduct.score})
+              </Text>
+            </View>
+
+            {pantryStats.lowestProduct?.product && (
+              <TouchableOpacity style={styles.pantryHighlightRowTappable} onPress={handleSeeBetterPicks}>
+                <Ionicons name="trending-up-outline" size={16} color={Colors.textSecondary} />
+                <View style={{ flex: 1 }}>
+                  <Text style={styles.pantryHighlightText}>
+                    Room to improve: <Text style={styles.pantryHighlightStrong}>{pantryStats.lowestProduct.name}</Text>{' '}
+                    ({pantryStats.lowestProduct.score})
+                  </Text>
+                </View>
+                <Ionicons name="chevron-forward" size={16} color={Colors.textMuted} />
+              </TouchableOpacity>
+            )}
+          </View>
+        </>
+      )}
+
+      {/* Notifications */}
+      <SectionHeader title="Notifications" subtitle="Gentle nudges — never required, always optional" />
+      <View style={styles.settingsCard}>
+        <ToggleRow
+          label="Reminders"
+          sublabel={
+            notifStatus.permission === 'denied'
+              ? 'Blocked in iOS Settings — tap to open'
+              : 'Occasional nudges to check your pantry'
+          }
+          value={notifMasterOn}
+          onToggle={handleNotifMasterToggle}
+        />
+        <ToggleRow
+          label="Weekly reminders"
+          sublabel="One reminder on Saturday morning, grocery-run timing"
+          value={notifMasterOn && notifStatus.weekly}
+          onToggle={handleWeeklyToggle}
+          disabled={!notifMasterOn}
+          last
+        />
+      </View>
+
       {/* App settings */}
       <SectionHeader title="Display Settings" />
       <View style={styles.settingsCard}>
@@ -409,6 +543,19 @@ export default function ProfileScreen({ navigation }) {
             <Ionicons name="chevron-forward" size={16} color={Colors.textMuted} />
           </TouchableOpacity>
         )}
+        <TouchableOpacity
+          style={styles.manageRow}
+          onPress={() => navigation.navigate('MyRequests')}
+        >
+          <Ionicons name="file-tray-outline" size={18} color={Colors.primary} />
+          <View style={{ flex: 1 }}>
+            <Text style={styles.manageLabel}>My Requests</Text>
+            <Text style={styles.manageSub}>
+              {requestCount === 0 ? 'Products you\'ve asked us to add' : `${requestCount} product${requestCount !== 1 ? 's' : ''} requested`}
+            </Text>
+          </View>
+          <Ionicons name="chevron-forward" size={16} color={Colors.textMuted} />
+        </TouchableOpacity>
         <TouchableOpacity style={styles.dangerRow} onPress={handleClearHistory}>
           <Ionicons name="trash-outline" size={18} color={Colors.flagRed} />
           <View style={{ flex: 1 }}>
@@ -550,6 +697,21 @@ const styles = StyleSheet.create({
   storeLabelActive: { color: Colors.primary },
 
   settingsCard: { backgroundColor: Colors.white, borderRadius: 14, paddingHorizontal: 16, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.06, shadowRadius: 8, elevation: 2 },
+
+  pantryScoreRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 16 },
+  pantryScanCount: { fontSize: Font.sizes.base, fontWeight: Font.weights.bold, color: Colors.textPrimary },
+  pantryScanSub: { fontSize: Font.sizes.xs, color: Colors.textMuted, marginTop: 2 },
+  pantryAverageWrap: { alignItems: 'center' },
+  pantryAverageNumber: { fontSize: 32, fontWeight: Font.weights.heavy, lineHeight: 36 },
+  pantryAverageLabel: { fontSize: Font.sizes.xs, color: Colors.textMuted, marginTop: 2 },
+  pantryDivider: { height: 1, backgroundColor: Colors.border },
+  pantryHighlightRow: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 14 },
+  pantryHighlightRowTappable: {
+    flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 14,
+    borderTopWidth: 1, borderTopColor: Colors.border,
+  },
+  pantryHighlightText: { flex: 1, fontSize: Font.sizes.sm, color: Colors.textSecondary },
+  pantryHighlightStrong: { color: Colors.textPrimary, fontWeight: Font.weights.medium },
 
   proBadge: {
     flexDirection: 'row', alignItems: 'center', gap: 4,

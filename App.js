@@ -4,9 +4,28 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import * as Notifications from 'expo-notifications';
 import { AuthProvider } from './src/context/AuthContext';
 import AppNavigator from './src/navigation/AppNavigator';
 import { initRevenueCat } from './src/utils/subscription';
+import { initSentry, captureException } from './src/utils/sentry';
+
+// Foreground behavior for local notifications — show them even while the app
+// is open (banner + list), no sound. Must be set once at module scope, before
+// any notification could fire.
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowBanner: true,
+    shouldShowList: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
+
+// Crash/error reporting (JS layer only — see src/utils/sentry.js for scope
+// notes). Must run at module scope, before the component tree renders, so
+// errors during initial render are still captured.
+initSentry();
 
 // ── Error Boundary ────────────────────────────────────────────────────────────
 class ErrorBoundary extends Component {
@@ -21,6 +40,7 @@ class ErrorBoundary extends Component {
 
   componentDidCatch(error, info) {
     console.error('[ErrorBoundary] Caught error:', error, info);
+    captureException(error, { componentStack: info && info.componentStack });
   }
 
   render() {

@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
+import * as Haptics from 'expo-haptics';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
@@ -149,10 +150,14 @@ export default function ScanHistoryScreen({ navigation }) {
             <TouchableOpacity
               key={f}
               style={[styles.filterPill, filter === f && styles.filterPillActive]}
-              onPress={() => setFilter(f)}
+              onPress={() => {
+                Haptics.selectionAsync().catch(() => {});
+                setFilter(f);
+              }}
             >
               <Text style={[styles.filterText, filter === f && styles.filterTextActive]}>
-                {f === 'all' ? 'All' : f}
+                {/* UI shows 0–100 score ranges; internal filter values stay letter-banded. */}
+                {{ all: 'All', A: '90+', B: '80s', C: '70s', D: '60s', F: '<60' }[f]}
               </Text>
             </TouchableOpacity>
           ))}

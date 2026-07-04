@@ -26,3 +26,13 @@ Fable/Opus has ~50% of the founder's weekly usage remaining; after that it's API
 **Product state:** 873 curated products (+135k generated scan catalog), ~86% photo coverage, 269 companies (254 with logos), freemium paywall on company transparency. Target: 2,000 products via Octavius pipeline.
 
 **Distribution state:** X account ~3,000 followers but flat (~10 impressions/post) — being rebuilt with the growth-batch voice. No TikTok yet (cold start planned). LinkedIn = founder story series (10 posts written) + build-in-public pillar. Waitlist + launch burst strategy queued for approval day.
+
+## 2026-07-04 — Infrastructure: domain + transactional email live
+
+**Domain:** shelfexpose.app purchased (founder, 2026-07-04). Production email domain + future web home.
+
+**Email:** Resend connected as Supabase custom SMTP (free tier: 3,000/mo, 100/day, 1 verified domain). Replaces Supabase built-in sender (2/hr, non-production) — was a silent launch-blocker since the app requires account creation. Founder completed DNS verification + Supabase integration + rate-limit raise; password-reset email tested working. Resend API key lives in .env (gitignored, verified).
+
+**Error tracking:** Sentry chosen (free 5k errors/mo, Expo-supported); wiring pending founder DSN. Config must stay identity-free (no PII, no user IDs) per the 2026-07-02 no-tracking decision; next build's privacy label needs "Crash Data — not linked" added.
+
+**Stack audit verdict (X-post 12-tool list):** only Resend + Sentry were real gaps. Rejected: Stripe (Apple IAP mandatory on iOS), Clerk (Supabase Auth shipped), PostHog (conflicts with no-tracking stance; in-house anonymous analytics in build 28), Vercel (Netlify serves), Upstash/Pinecone (no fit yet).
