@@ -40,3 +40,6 @@ web/launch.html
 debug.log
 tmp-runway-*
 src/data/batches/products/_cache/
+
+# ── Generated SQLite catalog (Wave 1) — reproducible from build-products-sqlite.js ──
+assets/db/*.db
