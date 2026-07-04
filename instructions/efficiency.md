@@ -49,7 +49,7 @@ Commit note: `git commit` is one cheap tool call — the cost is which model car
 ## Agent-spawning rules (what we learned the expensive way)
 
 1. **Script-first test:** would the agent make ≥10 similar HTTP calls or file ops? Write a local script instead. (The photo pipeline went from 400 agent tool-calls to one script run.)
-2. **Named agents over re-briefing:** Octavius and Cicero carry their identity, rules, and voice in `.claude/agents/` — a spawn costs one short pointer prompt, not a 2,000-word brief. Create a named agent the second time you write the same long brief.
+2. **Named agents over re-briefing:** Octavius (products), Cicero (marketing), and **Hadrian (all general app code — screens/components/navigation/utils)** carry their identity, rules, and voice in `.claude/agents/` — a spawn costs one short pointer prompt, not a 2,000-word brief. Hadrian is the standing answer to "who builds the UI/feature code" — spawn it by name instead of re-writing the Sonnet-builder constraints (no commits, no builds, Babel-parse validation, disjoint file ownership) every time.
 3. **Pilot before fleet:** one scoped agent on ~20 items to measure hit rate BEFORE launching 6 more. (The 7-agent retailer run died at session limit and produced zero output files.)
 4. **Checkpoint early, checkpoint often:** agents write output files incrementally — an agent killed mid-run should leave salvageable work, never nothing. STEP-0 guard (>500 bytes = done) makes resumes free.
 5. **Concurrency caps:** max 3 agents parallel, Opus max 2, ~10/session. Don't launch fleets within an hour of known session-limit walls; `resumeFromRunId` after a limit, never restart.
