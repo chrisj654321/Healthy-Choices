@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
-  View, Text, StyleSheet, TouchableOpacity, ScrollView,
+  View, Text, Image, StyleSheet, TouchableOpacity, ScrollView,
   StatusBar, Animated, Dimensions,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -13,6 +13,7 @@ import { DEFAULT_PREFS, saveUserPrefs, markOnboardingDone } from '../utils/stora
 import { optInToNotifications, declineNotificationPriming } from '../utils/notifications';
 import { PRIMARY_GOAL_OPTIONS } from '../data/preferences';
 import { STORES } from '../data/stores';
+import { PRODUCT_IMAGES, COMPANY_LOGOS } from '../data/onboardingAssets';
 import { StoreLogo } from './ProfileScreen';
 
 const { width: SCREEN_W } = Dimensions.get('window');
@@ -26,18 +27,18 @@ const SCAN_AFTER_ONBOARDING_KEY = '@hc_scan_after_onboarding';
 // ─── Static data for value-building screens ───────────────────────────────────
 
 const BAD_PRODUCTS = [
-  { name: 'Cheerios',         brand: 'General Mills', tag: 'Ultra-processed',    score: 28, color: '#E05252', emoji: '🌾' },
-  { name: 'Doritos',          brand: 'PepsiCo',       tag: 'MSG + dyes',         score: 25, color: '#E05252', emoji: '🔺' },
-  { name: 'Wonder Bread',     brand: 'Bimbo',         tag: 'HFCS + refined',     score: 18, color: '#D93B3B', emoji: '🍞' },
-  { name: 'Pop-Tarts',        brand: 'Kellanova',     tag: 'Dyes + HFCS',        score: 20, color: '#D93B3B', emoji: '🍓' },
-  { name: 'Coca-Cola',        brand: 'Coca-Cola Co.', tag: '39g sugar / can',    score: 22, color: '#E05252', emoji: '🥤' },
-  { name: 'Lunchables',       brand: 'Kraft Heinz',   tag: 'Nitrites + sodium',  score: 24, color: '#E05252', emoji: '🧃' },
-  { name: 'Oreos',            brand: 'Mondelēz',      tag: 'HFCS + palm oil',    score: 22, color: '#E05252', emoji: '🍪' },
-  { name: 'Cheetos',          brand: 'PepsiCo',       tag: 'Yellow 6 + MSG',     score: 24, color: '#E05252', emoji: '🧀' },
-  { name: 'Mountain Dew',     brand: 'PepsiCo',       tag: 'Yellow 5 + 46g sugar', score: 21, color: '#D93B3B', emoji: '💚' },
-  { name: 'Kraft Mac & Cheese', brand: 'Kraft Heinz', tag: 'Yellow 5 & 6',       score: 26, color: '#E05252', emoji: '🧀' },
-  { name: 'Hot Pockets',      brand: 'Nestlé',        tag: 'TBHQ + nitrites',    score: 23, color: '#D93B3B', emoji: '🌮' },
-  { name: 'Eggo Waffles',     brand: 'Kellanova',     tag: 'TBHQ + dyes',        score: 27, color: '#E05252', emoji: '🧇' },
+  { name: 'Cheerios',         slug: 'cheerios',     brand: 'General Mills', tag: 'Ultra-processed',    score: 28, color: '#E05252', emoji: '🌾' },
+  { name: 'Doritos',          slug: 'doritos',      brand: 'PepsiCo',       tag: 'MSG + dyes',         score: 25, color: '#E05252', emoji: '🔺' },
+  { name: 'Wonder Bread',     slug: 'wonder-bread', brand: 'Bimbo',         tag: 'HFCS + refined',     score: 18, color: '#D93B3B', emoji: '🍞' },
+  { name: 'Pop-Tarts',        slug: 'pop-tarts',    brand: 'Kellanova',     tag: 'Dyes + HFCS',        score: 20, color: '#D93B3B', emoji: '🍓' },
+  { name: 'Coca-Cola',        slug: 'coca-cola',    brand: 'Coca-Cola Co.', tag: '39g sugar / can',    score: 22, color: '#E05252', emoji: '🥤' },
+  { name: 'Lunchables',       slug: 'lunchables',   brand: 'Kraft Heinz',   tag: 'Nitrites + sodium',  score: 24, color: '#E05252', emoji: '🧃' },
+  { name: 'Oreos',            slug: 'oreos',        brand: 'Mondelēz',      tag: 'HFCS + palm oil',    score: 22, color: '#E05252', emoji: '🍪' },
+  { name: 'Cheetos',          slug: 'cheetos',      brand: 'PepsiCo',       tag: 'Yellow 6 + MSG',     score: 24, color: '#E05252', emoji: '🧀' },
+  { name: 'Mountain Dew',     slug: 'mountain-dew', brand: 'PepsiCo',       tag: 'Yellow 5 + 46g sugar', score: 21, color: '#D93B3B', emoji: '💚' },
+  { name: 'Kraft Mac & Cheese', slug: 'kraft-mac',  brand: 'Kraft Heinz',   tag: 'Yellow 5 & 6',       score: 26, color: '#E05252', emoji: '🧀' },
+  { name: 'Hot Pockets',      slug: 'hot-pockets',  brand: 'Nestlé',        tag: 'TBHQ + nitrites',    score: 23, color: '#D93B3B', emoji: '🌮' },
+  { name: 'Eggo Waffles',     slug: 'eggo',         brand: 'Kellanova',     tag: 'TBHQ + dyes',        score: 27, color: '#E05252', emoji: '🧇' },
 ];
 
 
@@ -362,16 +363,23 @@ function RevealStep() {
 }
 
 function ProductBadCard({ product: p }) {
+  const image = PRODUCT_IMAGES[p.slug];
   return (
     <View style={pc.card}>
-      {/* Score badge */}
+      {/* Score badge — sits above the image tile */}
       <View style={pc.scoreBadge}>
         <Text style={pc.scoreText}>{p.score}</Text>
       </View>
-      {/* Emoji avatar */}
-      <View style={pc.emojiWrap}>
-        <Text style={pc.emoji}>{p.emoji}</Text>
-      </View>
+      {/* Product image, falling back to the emoji avatar if unmapped */}
+      {image ? (
+        <View style={pc.imageWrap}>
+          <Image source={image} style={pc.image} resizeMode="contain" />
+        </View>
+      ) : (
+        <View style={pc.emojiWrap}>
+          <Text style={pc.emoji}>{p.emoji}</Text>
+        </View>
+      )}
       <Text style={pc.name} numberOfLines={2}>{p.name}</Text>
       <Text style={pc.brand} numberOfLines={1}>{p.brand}</Text>
       {/* Concern tag */}
@@ -401,12 +409,16 @@ const pc = StyleSheet.create({
     overflow: 'hidden',
   },
   scoreBadge: {
-    position: 'absolute', top: 8, right: 8,
+    position: 'absolute', top: 8, right: 8, zIndex: 2, elevation: 2,
     width: 30, height: 30, borderRadius: 15,
     backgroundColor: Colors.flagRed,
     alignItems: 'center', justifyContent: 'center',
   },
   scoreText:  { fontSize: 11, fontWeight: '800', color: '#fff' },
+  imageWrap:  { width: '100%', height: 72, borderRadius: 10, backgroundColor: '#fff',
+                borderWidth: 1, borderColor: Colors.border,
+                alignItems: 'center', justifyContent: 'center', marginBottom: 8, overflow: 'hidden' },
+  image:      { width: '100%', height: '100%' },
   emojiWrap:  { width: 40, height: 40, borderRadius: 10, backgroundColor: Colors.dangerLight,
                 alignItems: 'center', justifyContent: 'center', marginBottom: 8 },
   emoji:      { fontSize: 22 },
@@ -442,7 +454,11 @@ function TransparencyStep() {
         {/* Header */}
         <View style={tr.cardHeader}>
           <View style={tr.logoPlaceholder}>
-            <Text style={tr.logoText}>P</Text>
+            {COMPANY_LOGOS?.pepsico ? (
+              <Image source={COMPANY_LOGOS.pepsico} style={tr.logoImage} resizeMode="contain" />
+            ) : (
+              <Text style={tr.logoText}>P</Text>
+            )}
           </View>
           <View style={{ flex: 1 }}>
             <Text style={tr.companyName}>{c.name}</Text>
@@ -517,9 +533,11 @@ const tr = StyleSheet.create({
   cardHeader:      { flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 14 },
   logoPlaceholder: {
     width: 48, height: 48, borderRadius: 14,
-    backgroundColor: Colors.primaryLight,
-    alignItems: 'center', justifyContent: 'center',
+    backgroundColor: '#fff',
+    borderWidth: 1, borderColor: Colors.border,
+    alignItems: 'center', justifyContent: 'center', overflow: 'hidden',
   },
+  logoImage:       { width: '100%', height: '100%' },
   logoText:        { fontSize: 24, fontWeight: '800', color: Colors.primary },
   companyName:     { fontSize: 16, fontWeight: '700', color: Colors.textPrimary },
   companyHq:       { fontSize: 12, color: Colors.textMuted, marginTop: 2 },

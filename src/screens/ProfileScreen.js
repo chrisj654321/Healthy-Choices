@@ -32,6 +32,7 @@ import {
 } from '../utils/notifications';
 import { STORES } from '../data/stores';
 import { COMPANY_DB } from '../data/companies';
+import { STORE_LOGOS } from '../data/onboardingAssets';
 import { DIET_PREFERENCE_OPTIONS, PRIMARY_GOAL_OPTIONS } from '../data/preferences';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../utils/supabase';
@@ -56,13 +57,25 @@ export const STORE_LOGO_MAP = {
 };
 
 export function StoreLogo({ storeId, label, size = 40 }) {
+  const localLogo = STORE_LOGOS[storeId];
   const companyKey = STORE_LOGO_MAP[storeId];
   const logoUri = companyKey ? COMPANY_DB[companyKey]?.logo : null;
   const tileStyle = [
     logoStyles.tile,
     { width: size, height: size, borderRadius: size * 0.28 },
-    logoUri && logoStyles.tileWithLogo,
+    (localLogo || logoUri) && logoStyles.tileWithLogo,
   ];
+  if (localLogo) {
+    return (
+      <View style={tileStyle}>
+        <Image
+          source={localLogo}
+          style={{ width: size * 0.68, height: size * 0.68 }}
+          resizeMode="contain"
+        />
+      </View>
+    );
+  }
   if (logoUri) {
     return (
       <View style={tileStyle}>
