@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import {
   View,
   Text,
@@ -14,9 +14,9 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
 import { getUserPrefs, getScanHistory, getProfileSetup } from '../utils/storage';
-import { HEALTHY_CATEGORIES, countForCategory, heroImageForCategory } from '../data/healthyCategories';
-import { PRODUCT_DB } from '../data/products';
-import { scoreToColor, scoreProduct } from '../utils/scorer';
+import { HEALTHY_CATEGORIES } from '../data/healthyCategories';
+import { getCategoryCounts, getHeroImagesByCategory } from '../data/productStore';
+import { scoreToColor } from '../utils/scorer';
 import { getSpotlightCompany } from '../utils/spotlight';
 
 const MISSING_LABEL = {
@@ -37,6 +37,9 @@ export default function HomeScreen({ navigation }) {
   const [setup, setSetup] = useState({ complete: true, missing: [] });
   const [recent, setRecent] = useState([]);
   const [userName, setUserName] = useState(null);
+  const [categoryCounts, setCategoryCounts] = useState({});
+  const [catHeroImages, setCatHeroImages] = useState({});
+  const [spotlight, setSpotlight] = useState(null);
 
   useFocusEffect(
     useCallback(() => {
@@ -52,28 +55,36 @@ export default function HomeScreen({ navigation }) {
     }, [])
   );
 
-  const missingText = setup.missing.map((m) => MISSING_LABEL[m]).filter(Boolean);
-
-  // Tile counts computed once (PRODUCT_DB is large — don't recompute per render).
-  const catCounts = useMemo(
-    () => HEALTHY_CATEGORIES.map((cat) => ({ cat, count: countForCategory(cat, PRODUCT_DB) })),
-    []
-  );
-
-  // Hero images computed once — requires scoring, but only once.
-  const catHeroImages = useMemo(
-    () => {
-      const map = {};
-      for (const cat of HEALTHY_CATEGORIES) {
-        map[cat.id] = heroImageForCategory(cat, PRODUCT_DB, scoreProduct);
-      }
-      return map;
-    },
-    []
-  );
+  // Tile counts + hero images — precomputed SQLite summary tables, loaded once.
+  useEffect(() => {
+    let active = true;
+    (async () => {
+      const [counts, heroImages] = await Promise.all([
+        getCategoryCounts(),
+        getHeroImagesByCategory(),
+      ]);
+      if (!active) return;
+      setCategoryCounts(counts);
+      setCatHeroImages(heroImages);
+    })();
+    return () => { active = false; };
+  }, []);
 
   // Weekly company spotlight — stable for the entire render cycle.
-  const spotlight = useMemo(() => getSpotlightCompany(), []);
+  useEffect(() => {
+    let active = true;
+    getSpotlightCompany().then((result) => {
+      if (active) setSpotlight(result);
+    });
+    return () => { active = false; };
+  }, []);
+
+  const missingText = setup.missing.map((m) => MISSING_LABEL[m]).filter(Boolean);
+
+  const catCounts = useMemo(
+    () => HEALTHY_CATEGORIES.map((cat) => ({ cat, count: categoryCounts[cat.id] || 0 })),
+    [categoryCounts]
+  );
 
   return (
     <View style={s.container}>

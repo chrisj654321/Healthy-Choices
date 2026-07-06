@@ -15,6 +15,17 @@ const path = require('path');
 // DATA LOADING
 // ─────────────────────────────────────────────────────────────────────────
 
+// Confirmed unclassifiable across Wave 1 (2026-07-05) and Wave 2 (2026-07-05) —
+// OCR noise, bare numeric fragments, and parser artifacts with no verifiable
+// ingredient identity. Both waves independently punted these to
+// `could_not_verify` rather than force-classify them, and they resurface at
+// the top of every fresh top-150 list purely because they're high-occurrence
+// junk, wasting a Chad classification slot each round on the same non-answer.
+// Excluded permanently so future waves work on genuinely new territory.
+const PERMANENTLY_UNCLASSIFIABLE = new Set([
+  'slat', '5', '1', '', '3', 'ntss 31', '4', '8',
+]);
+
 let INGREDIENT_DB = {};
 let CACHED_INGREDIENT_ANALYSIS = {};
 let products = [];
@@ -305,6 +316,7 @@ console.log('='.repeat(70));
 
 const unknownsList = Array.from(unknownsByNormalized.entries())
   .map(([ingredient, count]) => ({ ingredient, count }))
+  .filter(({ ingredient }) => !PERMANENTLY_UNCLASSIFIABLE.has(ingredient))
   .sort((a, b) => b.count - a.count)
   .slice(0, 150);
 

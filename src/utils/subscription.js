@@ -16,6 +16,7 @@
 import Purchases, { LOG_LEVEL, PACKAGE_TYPE } from 'react-native-purchases';
 import { useState, useEffect, useCallback } from 'react';
 import { Platform } from 'react-native';
+import { captureException } from './sentry';
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 
@@ -53,10 +54,12 @@ export async function initRevenueCat(userId) {
         await Purchases.logIn(userId);
       } catch (e) {
         console.warn('[RC] logIn during init:', e.message);
+        captureException(e, { function: 'initRevenueCat', step: 'logIn', userId });
       }
     }
   } catch (e) {
     console.warn('[RC] configure failed:', e.message);
+    captureException(e, { function: 'initRevenueCat', step: 'configure' });
   }
 }
 
@@ -72,6 +75,7 @@ export async function identifyRCUser(userId) {
     return customerInfo;
   } catch (e) {
     console.warn('[RC] identifyRCUser:', e.message);
+    captureException(e, { function: 'identifyRCUser', userId });
     return null;
   }
 }
@@ -86,6 +90,7 @@ export async function resetRCUser() {
     // logOut throws if already anonymous — safe to ignore
     if (!e.message?.includes('anonymous')) {
       console.warn('[RC] resetRCUser:', e.message);
+      captureException(e, { function: 'resetRCUser' });
     }
   }
 }
@@ -102,6 +107,7 @@ export async function getProStatus() {
     return info.entitlements.active[ENTITLEMENT_ID] !== undefined;
   } catch (e) {
     console.warn('[RC] getProStatus:', e.message);
+    captureException(e, { function: 'getProStatus' });
     return false;
   }
 }
@@ -113,7 +119,8 @@ export async function getProStatus() {
 export async function getCustomerInfo() {
   try {
     return await Purchases.getCustomerInfo();
-  } catch {
+  } catch (e) {
+    captureException(e, { function: 'getCustomerInfo' });
     return null;
   }
 }
@@ -136,6 +143,7 @@ export async function getCurrentOffering() {
     return offerings.current ?? null;
   } catch (e) {
     console.warn('[RC] getOfferings:', e.message);
+    captureException(e, { function: 'getCurrentOffering' });
     return null;
   }
 }
@@ -176,8 +184,15 @@ export function extractPackages(offering) {
  * Check e.userCancelled === true to detect user backing out (no error toast needed).
  */
 export async function purchaseRCPackage(rcPackage) {
-  const { customerInfo } = await Purchases.purchasePackage(rcPackage);
-  return customerInfo.entitlements.active[ENTITLEMENT_ID] !== undefined;
+  try {
+    const { customerInfo } = await Purchases.purchasePackage(rcPackage);
+    return customerInfo.entitlements.active[ENTITLEMENT_ID] !== undefined;
+  } catch (e) {
+    if (!e.userCancelled) {
+      captureException(e, { function: 'purchaseRCPackage', packageId: rcPackage?.identifier });
+    }
+    throw e;
+  }
 }
 
 /**
@@ -190,6 +205,7 @@ export async function restorePurchases() {
     return info.entitlements.active[ENTITLEMENT_ID] !== undefined;
   } catch (e) {
     console.warn('[RC] restorePurchases:', e.message);
+    captureException(e, { function: 'restorePurchases' });
     return false;
   }
 }
@@ -229,6 +245,7 @@ export function useProStatus() {
       Purchases.addCustomerInfoUpdateListener(listener);
     } catch (e) {
       console.warn('[RC] addCustomerInfoUpdateListener:', e.message);
+      captureException(e, { function: 'useProStatus', step: 'addCustomerInfoUpdateListener' });
     }
 
     return () => {
@@ -236,6 +253,7 @@ export function useProStatus() {
         Purchases.removeCustomerInfoUpdateListener(listener);
       } catch (e) {
         console.warn('[RC] removeCustomerInfoUpdateListener:', e.message);
+        captureException(e, { function: 'useProStatus', step: 'removeCustomerInfoUpdateListener' });
       }
     };
   }, [refresh]);

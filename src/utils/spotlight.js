@@ -1,28 +1,23 @@
 import { COMPANY_DB } from '../data/companies';
-import { PRODUCT_DB } from '../data/products';
+import { getSpotlightEligibleCompanies } from '../data/productStore';
 
 /**
  * Returns a { company, issue } object for the weekly company spotlight card,
- * or null when no eligible company exists.
- *
- * Eligible = company has at least one high-severity issue AND at least one
- * product in PRODUCT_DB (so the "explore" link is meaningful).
+ * or null when no eligible company exists. Async — reads the eligible
+ * company list from productStore's precomputed spotlight_company_ids
+ * summary table (already filtered to companies with at least one
+ * high-severity issue AND at least one product) instead of scanning
+ * PRODUCT_DB in JS.
  *
  * Weekly rotation: stable all week, changes each Monday.
  * // Weekly rotation. To switch to daily later, divide by (1000*60*60*24).
  */
-export function getSpotlightCompany() {
-  const productCompanyIds = new Set(
-    Object.values(PRODUCT_DB)
-      .map((p) => p.companyId)
-      .filter(Boolean)
-  );
+export async function getSpotlightCompany() {
+  const eligibleRows = await getSpotlightEligibleCompanies();
 
-  const eligible = Object.values(COMPANY_DB).filter((company) => {
-    const hasHighIssue = company.issues?.some((i) => i.severity === 'high');
-    const hasProducts = productCompanyIds.has(company.id);
-    return hasHighIssue && hasProducts;
-  });
+  const eligible = eligibleRows
+    .map((row) => COMPANY_DB[row.companyId])
+    .filter(Boolean);
 
   if (eligible.length === 0) return null;
 

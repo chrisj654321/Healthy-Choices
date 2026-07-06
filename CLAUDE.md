@@ -29,8 +29,8 @@ Strategy questions assume full knowledge of the folders above. Format outputs in
 
 - Military mentions in marketing: biographical context is FINE ("I'm in the Army at AIT, building in scarce hours"); what's prohibited is using position/rank/uniform to PROMOTE, implying Army/DoD endorsement, or implying the business runs on duty time/resources. Test: is the affiliation doing the selling, or setting the scene? (JER)
 - Never fabricate data (barcodes, stats, studies); no medical-causation claims — regulatory facts only.
-- Creator ≠ reviewer: Sonnet builds, Opus/Fable reviews, the human commits. Agents never commit.
-- EAS builds are metered — validate with logic checks; the founder decides when to build.
+- Creator ≠ reviewer: Sonnet builds, Opus/Fable reviews, Claude (this session) commits to GitHub when asked. Worker agents (Hadrian, Octavius, Cicero) never commit — their output only reaches a commit after being reviewed here.
+- EAS builds and submissions are metered/consequential and stay with the founder — Claude never runs `eas build`/`eas submit`; validate with logic checks and hand off exact commands instead.
 - Check `git status` before editing `src/data/` (Chad, a parallel ChatGPT session, runs product waves there); staging files; commit by explicit path.
 - Scripts for bulk HTTP, agents for judgment. Haiku never generates facts — transform-only (classify/extract/reformat) behind validators.
 

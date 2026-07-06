@@ -5,16 +5,11 @@ _Founder brain-dump triaged 2026-07-01. Completed ideas get deleted; shipped ite
 ## 🔥 High impact — do first
 
 ### 1. Unrecognized-ingredient elimination — **data campaign (ongoing)**
-_UI regroup SHIPPED 2026-07-02 (verdict-first Bad→Moderate→Good sections, unrecognized at bottom of Moderate)._ Remaining: **eliminate "unrecognized"** — pull every ingredient currently unmatched by `ingredientCache.js` across the DB, categorize them in batches (Octavius-style script → review → cache additions). Ongoing; shrink to zero over time.
+_UI regroup SHIPPED 2026-07-02 (verdict-first Bad→Moderate→Good sections, unrecognized at bottom of Moderate)._ Remaining: **eliminate "unrecognized"** — pull every ingredient currently unmatched by `ingredientCache.js` across the DB, categorize them in batches (Chad via `codex exec` → dual validation → cache additions). Waves 1-3 done 2026-07-05 (coverage 98.10%→99.22%, gains per wave: +0.80pp, +0.21pp, +0.11pp — clearly diminishing).
 
-### 2. Notifications: permission ask + encouraging streak — **feature** · the retention lever
-- "Allow notifications?" step at signup (expo-notifications, local scheduling).
-- **Daily pantry-audit reminder for the first 3 days** post-signup.
-- Tone: positive and encouraging — or playful "the app misses you / your pantry has secrets left" energy. Never guilt.
-- Wanted: a real stat linking pantry audits → health outcomes. **Must be verified research — if no credible stat exists, use honest adjacent framing ("people who track eat better") or none. Never fabricate.**
-- _Compliance notes (researched 2026-07-04):_ local notifications only (no APNs server needed); expo-notifications rides the NEXT planned build. System permission prompt fires **once ever** → show our own priming screen first (allowed & recommended), only trigger the system prompt on "Yes". Guideline 4.5.4: engagement reminders fine; anything promotional needs explicit opt-in language + an in-app opt-out toggle (add Notifications section to Profile settings). Copy bank drafted in session 2026-07-04 — every factual claim must be verified before shipping.
+**Stopping rule (set 2026-07-06): stop running waves once a single wave's coverage gain drops below 0.05 percentage points.** `ingredientCache.js` is a static import in `scorer.js` (eagerly bundled, same category of thing as the 212MB products file that needed a SQLite fix — just currently ~700KB, nowhere near urgent). Flat per-wave file-size cost against shrinking per-wave coverage gain is real bloat risk if run to zero; this rule caps it before that happens. Check the coverage delta after each wave's Hadrian validation step before deciding to run the next one. If growth continues past this threshold being useful, the real fix is moving ingredient risk data into the existing SQLite store (like the product catalog already did) rather than keeping the cache growing eager JS forever — not urgent today, revisit if this ever gets picked back up after being capped.
 
-### 3. Shopping guides hub v1 — **feature + research** · start of the Guides pillar
+### 2. Shopping guides hub v1 — **feature + research** · start of the Guides pillar
 Scientifically-supported best practices, each claim sourced:
 - **General rules** — shop the perimeter (produce/meat/dairy on the walls; aisles = processed; note the bakery exception), read serving sizes first, the 4-number check (already our content).
 - **Fruits** — picking, ripeness, wax/coatings, wash practices (baking-soda wash evidence exists).
@@ -22,24 +17,21 @@ Scientifically-supported best practices, each claim sourced:
 - **Produce barcodes/PLU codes** — 4-digit conventional, 9-prefix organic; what stickers actually tell you.
 Research pass first (verified sources only) → guide content files → simple Guides screen (reuse category-tile pattern). Doubles as marketing ammo (each guide = posts/scripts for Cicero).
 
-### 4. "Buy this instead" — better-graded alternatives on D/F scores — **feature** · growth + Pro upsell
-When a product grades poorly, show 2–3 higher-graded products from the same category (data exists: 873 curated w/ categories+grades). Flips the app from judge to guide; strongest un-built Pro surface ("see all N cleaner options"). Added 2026-07-04.
+### 3. Marketing website — **overhaul** · founder-flagged "really important," added 2026-07-05
+Domain (`shelfexpose.app`) already bought and DNS-verified (2026-07-04); Netlify already auto-deploys on GitHub push and currently serves only `privacy.html`/`terms.html`. This is the REAL marketing site: landing page, App Store badge/link, waitlist signup (already an open P1 item in `priorities.md` — "waitlist page" was named but never built), pulls from the same brand assets as the app (icon, green palette, VISION.md copy). Reuses existing Netlify infra — not starting from zero. Schedule deliberately, don't fold into a batch session.
 
-### 5. Product-not-found request loop — **feature (small)** · plugs the highest-intent leak
-Miss screen currently dead-ends ("check back later"). Add "Request this product" → product_requests table (exists; RLS still pending, P3) + a "My requests" status list. Misses become engagement; the queue becomes Octavius's demand-ranked worklist. Added 2026-07-04.
+### 4. Mascot design + animation — **feature/creative pipeline** · founder-flagged, added 2026-07-05
+A branded character for marketing video — ties directly into the LOCKED video strategy in `memory/marketing-plan.md`: synthetic AI actors only, no founder face, recurring cast currently Parent/Spouse/Child/Aisle Shopper per `marketing/ai-video-style-guide.md`. A mascot would extend that cast list, not replace the no-founder-face rule. Needs: character design (visual identity, consistent with the shelf+magnifying-glass icon/green palette), a reference sheet for consistent AI-video generation (same discipline as the existing cast), and short animation tests before committing to it as a recurring video presence. Consult `ai-video-style-guide.md` before designing so it slots into the existing visual world instead of clashing with it.
 
 ## 🟢 Quick wins — batch these tweaks together
 
-5c. **Pantry report card** — **tweak/feature.** "You've scanned N, pantry average B−, worst offender X" personal stats surface; feeds positive-progress notifications (shipped 2026-07-04) and, with a designed share-card image, turns users into the marketing channel. Added 2026-07-04.
-
-5d. **Scan-during-onboarding final step** — **tweak.** Replace/augment the "Ready" step with "scan something near you right now" — compresses time-to-first-aha to zero. Added 2026-07-04.
-
-5b. **App-feel polish pack** — **tweak batch** (found 2026-07-04):
-- **Review-prompt compliance fix (do before next submission):** `src/utils/reviewPrompt.js` wraps `StoreReview.requestReview()` in a custom Alert pre-prompt — Guideline 5.6.1 disallows custom review prompts. Remove the Alert, call `requestReview()` directly at good moments (after 2nd–3rd successful scan, after subscribe); drop the `onboarding` moment (Apple: never on first run). Keep the AsyncStorage throttle; system caps at 3/365 days anyway.
-- **Haptics expansion:** today only scan-success fires a haptic (ScannerScreen). Add: error haptic on product-not-found + daily-limit; warning/success haptic keyed to grade on ProductScore reveal; selection haptics on tab switches, filter chips, favorite/store toggles; success haptic on purchase complete. No permissions needed.
-- **Grade-reveal animation:** ProductScoreScreen has zero Animated usage — a short scale/count-up on the grade + matching haptic is the single biggest "feels like a real app" win.
+5. **Scan-during-onboarding final step** — **tweak.** Replace/augment the "Ready" step with "scan something near you right now" — compresses time-to-first-aha to zero. Added 2026-07-04.
 
 6. **Top-10 unexpected food facts** — **content task.** Research (verified) → feeds both a possible in-app "did you know" surface and Cicero's content bank.
+
+7. **Native Google Sign-In SDK** — **feature.** Current flow bridges through Supabase's web-based OAuth (`ASWebAuthenticationSession`), which shows iOS's generic "app wants to use huvxeaegygaeotomdqpc.supabase.co to sign in" dialog — normal for any Supabase/Firebase-style backend auth, not a bug, but not polished. Swapping to `@react-native-google-signin/google-signin` would show Google's clean native account picker instead, with no backend domain visible. Needs a new native module, a Google iOS OAuth client (reversed-client-id URL scheme), and a new EAS build — not a quick tweak. Added 2026-07-06 during the 2.1(a) rejection fix.
+
+8. **One-time dev-client build** — **tweak (one metered build, ongoing payoff).** `eas.json` already has a `development` build profile (`developmentClient: true`) — nothing's been built from it yet. A dev client is a custom-built app like TestFlight, but it stays connected to Metro (`npx expo start --dev-client`) and reloads JS changes live, same as Expo Go but with this project's native modules (RevenueCat, Apple/Google Sign-In, expo-sqlite) actually included — Expo Go can't run this project at all because of those. Right now every JS-only fix requires a full TestFlight build to verify; one dev-client build would remove that requirement for all future JS-only iteration (only new native dependencies would still need a rebuild). Added 2026-07-06 after burning a full build cycle re-verifying auth fixes that were pure JS changes.
 
 ## 🟠 Big swings — schedule deliberately
 
@@ -56,4 +48,4 @@ Miss screen currently dead-ends ("check back later"). Add "Request this product"
 10. **Shop Smart by Aisle** — aisle-by-aisle companion mode (home-page roadmap).
 
 ## ✅ Done → deleted from backlog (see decision-log)
-- Real company logos (254/269) · Homepage redesign (build 27) · Ingredients verdict-regroup UI (2026-07-02) · My Stores logos — 10 retailers real, 6 letter-fallback (2026-07-02) · Favorite-stores signup step (2026-07-02) · 212MB catalog analysis done → context/research-catalog-rearchitecture.md (SQLite productStore, 5 phases)
+- Real company logos (254/269) · Homepage redesign (build 27) · Ingredients verdict-regroup UI (2026-07-02) · My Stores logos — 10 retailers real, 6 letter-fallback (2026-07-02) · Favorite-stores signup step (2026-07-02) · 212MB catalog analysis done → context/research-catalog-rearchitecture.md (SQLite productStore, 5 phases) · Product-not-found request loop (shipped 2026-07-04; RLS prepared 2026-07-05, see priorities.md P3) · Product-catalog re-architecture Waves 1-3 (complete 2026-07-05) · Notifications v1 — permission priming + 3-day welcome drip + weekly reminder (shipped 2026-07-04, verified wired in AppNavigator/Onboarding/Profile 2026-07-05) · "Buy this instead" alternatives surface (shipped 2026-07-04, verified wired in ProductScoreScreen 2026-07-05, backend migrated to SQLite in Wave 3) · App-feel polish pack — review-prompt 5.6.1 fix, haptics expansion, grade-reveal animation (shipped 2026-07-04, verified 2026-07-05) · Pantry report card (shipped 2026-07-04, verified wired in ProfileScreen 2026-07-05)

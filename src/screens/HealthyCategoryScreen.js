@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -11,18 +11,25 @@ import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
-import { PRODUCT_DB } from '../data/products';
-import { productsForCategory } from '../data/healthyCategories';
-import { scoreProduct, scoreToColor } from '../utils/scorer';
+import { getProductsByCategory } from '../data/productStore';
+import { scoreToColor } from '../utils/scorer';
 
 export default function HealthyCategoryScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
   const { category } = route?.params ?? {};
+  const [items, setItems] = useState([]);
 
-  const items = useMemo(
-    () => (category ? productsForCategory(category, PRODUCT_DB, scoreProduct) : []),
-    [category]
-  );
+  useEffect(() => {
+    let active = true;
+    if (!category) {
+      setItems([]);
+      return;
+    }
+    getProductsByCategory(category).then((results) => {
+      if (active) setItems(results);
+    });
+    return () => { active = false; };
+  }, [category]);
 
   if (!category) return null;
 

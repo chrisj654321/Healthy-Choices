@@ -142,6 +142,10 @@ function comparableDbRow(row) {
     nutrition: parseJson(row.nutrition_json, {}),
     certifications: parseJson(row.certifications_json, []),
     flags: parseJson(row.flags_json, {}),
+    packaging: parseJson(row.packaging_json, null),
+    isOrganic: !!row.isOrganic,
+    isVegan: !!row.isVegan,
+    isGlutenFree: !!row.isGlutenFree,
   };
 }
 
@@ -160,6 +164,10 @@ function comparableProduct(product, productImages) {
     nutrition: product.nutrition || {},
     certifications: product.certifications || [],
     flags: product.flags || {},
+    packaging: product.packaging ?? null,
+    isOrganic: !!product.isOrganic,
+    isVegan: !!product.isVegan,
+    isGlutenFree: !!product.isGlutenFree,
   };
 }
 
@@ -240,6 +248,41 @@ function main() {
       `generated spot check ${barcode}`,
       row?.source === 'generated' && sameJson(dbComparable, sourceComparable),
       row ? `${row.name}` : 'missing'
+    ) && allOk;
+  }
+
+  // Dedicated spot checks for the new packaging/diet-flag columns (Wave 2
+  // schema gap fix): a manual product known to carry real packaging data,
+  // and a generated product known to have neither field.
+  const packagingBarcode = '014500021830'; // Birds Eye Steamfresh Pure & Simple Broccoli Florets
+  const packagingRow = productQuery.get(packagingBarcode);
+  const packagingSource = manualProducts[packagingBarcode];
+  allOk = check(
+    `manual packaging_json populated ${packagingBarcode}`,
+    !!packagingRow
+      && sameJson(parseJson(packagingRow.packaging_json, null), packagingSource?.packaging ?? null)
+      && packagingRow.packaging_json != null,
+    packagingRow ? `${packagingRow.name}` : 'missing'
+  ) && allOk;
+  allOk = check(
+    `manual diet flags populated ${packagingBarcode}`,
+    !!packagingRow
+      && !!packagingRow.isVegan === !!packagingSource?.isVegan
+      && !!packagingRow.isGlutenFree === !!packagingSource?.isGlutenFree
+      && !!packagingRow.isOrganic === !!packagingSource?.isOrganic,
+    packagingRow
+      ? `isOrganic=${packagingRow.isOrganic}, isVegan=${packagingRow.isVegan}, isGlutenFree=${packagingRow.isGlutenFree}`
+      : 'missing'
+  ) && allOk;
+
+  const noPackagingGeneratedSample = generatedSamples[0];
+  if (noPackagingGeneratedSample) {
+    const barcode = String(noPackagingGeneratedSample.barcode);
+    const row = productQuery.get(barcode);
+    allOk = check(
+      `generated product has null/0 packaging + diet flags ${barcode}`,
+      !!row && row.packaging_json == null && !row.isOrganic && !row.isVegan && !row.isGlutenFree,
+      row ? `packaging_json=${row.packaging_json}, isOrganic=${row.isOrganic}, isVegan=${row.isVegan}, isGlutenFree=${row.isGlutenFree}` : 'missing'
     ) && allOk;
   }
 

@@ -10,7 +10,7 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { supabase } from './supabase';
-import { PRODUCT_DB } from '../data/products';
+import { getProductByBarcode } from '../data/productStore';
 
 const REQUESTS_KEY = '@hc_product_requests';
 
@@ -165,8 +165,10 @@ export async function retryPendingSyncs() {
 export async function getRequests() {
   retryPendingSyncs().catch(() => {});
   const list = await readLocalRequests();
-  return list.map((entry) => {
-    const product = PRODUCT_DB[entry.barcode] || null;
-    return { ...entry, resolved: !!product, product };
-  });
+  return Promise.all(
+    list.map(async (entry) => {
+      const product = await getProductByBarcode(entry.barcode);
+      return { ...entry, resolved: !!product, product };
+    })
+  );
 }

@@ -23,7 +23,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { checkAndIncrementDailyScan } from '../utils/storage';
 import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
-import { PRODUCT_DB } from '../data/products';
+import { getProductByBarcode } from '../data/productStore';
 import { useProStatus } from '../utils/subscription';
 import { buildProduct, findCompanyId } from '../utils/productParser';
 import { maybeRequestAppReview, recordSuccessfulScanForReview } from '../utils/reviewPrompt';
@@ -135,7 +135,7 @@ export default function ScannerScreen({ navigation }) {
       const data = await res.json();
 
       if (data.status === 0 || !data.product) {
-        const local = PRODUCT_DB[barcode];
+        const local = await getProductByBarcode(barcode);
         if (local) {
           // ── Daily scan limit check (only on successful lookup) ───────────────
           if (!isPro) {
@@ -222,7 +222,7 @@ export default function ScannerScreen({ navigation }) {
       promptForReviewAfterScan();
     } catch (err) {
       console.warn('[Scanner] scan error:', err);
-      const local = PRODUCT_DB[barcode];
+      const local = await getProductByBarcode(barcode);
       if (local) {
         setLoading(false);
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});

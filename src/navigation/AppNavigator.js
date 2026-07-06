@@ -26,6 +26,7 @@ import MyRequestsScreen       from '../screens/MyRequestsScreen';
 import OnboardingScreen       from '../screens/OnboardingScreen';
 import PaywallScreen          from '../screens/PaywallScreen';
 import AuthScreen             from '../screens/AuthScreen';
+import ResetPasswordScreen    from '../screens/ResetPasswordScreen';
 
 const Tab   = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -138,7 +139,7 @@ function MainTabs() {
 
 // ─── Root app with auth + onboarding gate ─────────────────────────────────────
 export default function AppNavigator() {
-  const { user, authLoading } = useAuth();
+  const { user, authLoading, passwordRecovery } = useAuth();
   const [onboardingDone, setOnboardingDone] = useState(null);
 
   useEffect(() => {
@@ -207,6 +208,14 @@ export default function AppNavigator() {
         <ActivityIndicator color={Colors.primary} size="large" />
       </View>
     );
+  }
+
+  // A password-recovery link establishes a real (but purpose-limited)
+  // session, so `user` is truthy here — without this check the branches
+  // below would just drop the user into onboarding/the main app instead of
+  // letting them set a new password.
+  if (passwordRecovery) {
+    return <ResetPasswordScreen />;
   }
 
   // Step 1: Onboarding (first launch only)

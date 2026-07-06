@@ -3,26 +3,17 @@
  * higher-graded alternatives for a scanned product.
  *
  * ARCHITECTURE NOTE: this module owns all lookup logic and exposes a single
- * async function. The implementation today is synchronous under the hood
- * (in-memory PRODUCT_DB), but a SQLite productStore migration (Wave 2, in
- * progress separately) will replace the internals with real async queries.
- * Screens must always call getAlternatives() — never scan PRODUCT_DB or any
- * other product source directly — so that swap-in is invisible to callers.
+ * async function. The internals are backed by productStore.js's async SQLite
+ * queries (Wave 4 of the product-catalog re-architecture) — the curated,
+ * grade-A/B cut now happens in SQL via getCuratedGradeABCandidates(), using
+ * the precomputed `grade` column, so no client-side scoreProduct() call is
+ * needed here at all. Screens must always call getAlternatives() — never
+ * query productStore.js or any other product source directly — so that any
+ * future internals swap stays invisible to callers.
  */
-import { PRODUCT_DB } from '../data/products';
-import { scoreProduct } from './scorer';
+import { getCuratedGradeABCandidates } from '../data/productStore';
 
 const DEFAULT_LIMIT = 12;
-
-/**
- * A product counts as "curated" (vs. generated-catalog junk) when it has a
- * real photo and a resolvable company — the two signals that distinguish
- * hand-entered MANUAL_PRODUCTS from the bulk products_generated.json import,
- * without needing to import the private MANUAL_PRODUCTS map itself.
- */
-function isCurated(product) {
-  return Boolean(product.image) && Boolean(product.companyId);
-}
 
 /**
  * Normalizes a category string for comparison. Generated-catalog categories
@@ -68,34 +59,22 @@ export async function getAlternatives(product, { limit = DEFAULT_LIMIT } = {}) {
 
   const scannedBarcode = product.barcode != null ? String(product.barcode) : null;
 
-  const candidates = [];
+  // Curated + grade A/B is already guaranteed by the SQL query — recommending
+  // an alternative is an endorsement, and only hand-curated products with a
+  // real photo, resolvable company, and a non-insufficient-data A/B grade
+  // clear that bar. Only the category match (regex-based normalization, not
+  // worth re-deriving in SQL) and the scanned-barcode exclusion happen here.
+  const candidatePool = await getCuratedGradeABCandidates();
 
-  // Curated-only, and curation is checked BEFORE scoring: isCurated is a
-  // cheap field test that cuts ~136k catalog entries down to the ~900
-  // curated ones, so scoreProduct (expensive) runs on at most that many.
-  // Recommending an alternative is an endorsement — only hand-curated
-  // products with a real photo and company clear that bar anyway.
-  for (const entry of Object.values(PRODUCT_DB)) {
+  const candidates = [];
+  for (const { product: entry, score, grade } of candidatePool) {
     if (!entry || !entry.barcode) continue;
-    if (!isCurated(entry)) continue;
     if (scannedBarcode && String(entry.barcode) === scannedBarcode) continue;
 
     const entryCategory = normalizeCategory(entry.category);
     if (!entryCategory || entryCategory !== targetCategory) continue;
 
-    // Need ingredient/nutrition data to score at all.
-    let scored;
-    try {
-      scored = scoreProduct(entry);
-    } catch (_) {
-      continue;
-    }
-    if (scored.insufficientData) continue;
-
-    const grade = scored.displayGrade || scored.grade;
-    if (grade !== 'A' && grade !== 'B') continue;
-
-    candidates.push({ entry, score: scored.score, grade });
+    candidates.push({ entry, score, grade });
   }
 
   if (candidates.length === 0) {

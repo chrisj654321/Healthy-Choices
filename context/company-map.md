@@ -1,6 +1,6 @@
 # Company map — who and what runs Shelf Exposé
 
-_Last updated: 2026-07-01_
+_Last updated: 2026-07-05_
 
 ## The business
 

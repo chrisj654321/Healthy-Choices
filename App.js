@@ -8,6 +8,7 @@ import * as Notifications from 'expo-notifications';
 import { AuthProvider } from './src/context/AuthContext';
 import AppNavigator from './src/navigation/AppNavigator';
 import { initRevenueCat } from './src/utils/subscription';
+import { initProductStore } from './src/data/productStore';
 import { initSentry, captureException } from './src/utils/sentry';
 
 // Foreground behavior for local notifications — show them even while the app
@@ -80,6 +81,12 @@ export default function App() {
     initRevenueCat().catch((e) =>
       console.warn('[RC] init failed:', e.message)
     );
+
+    // Initialize the SQLite product store at startup — non-blocking, same
+    // pattern as RevenueCat above. Failures are non-fatal: ScannerScreen's
+    // local lookups just fall back to "not found locally" if this never
+    // completes successfully (see src/data/productStore.js).
+    initProductStore().catch((e) => console.warn('[ProductStore] init failed:', e.message));
   }, []);
 
   return (

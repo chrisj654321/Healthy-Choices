@@ -5,19 +5,42 @@
  */
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import * as Linking from 'expo-linking';
 import { supabase } from '../utils/supabase';
 import { identifyRCUser, resetRCUser } from '../utils/subscription';
 
 const AuthContext = createContext({
-  user:        null,
-  session:     null,
-  authLoading: true,
-  signOut:     async () => {},
+  user:             null,
+  session:          null,
+  authLoading:      true,
+  passwordRecovery: false,
+  clearPasswordRecovery: () => {},
+  signOut:          async () => {},
 });
 
+// Magic links (password recovery, signup confirmation) open the app via a
+// plain OS deep link rather than the in-app browser session Google sign-in
+// uses, so nothing else in the app observes them. detectSessionInUrl is off
+// (required for React Native — see supabase.js), so we have to pull the
+// PKCE `code` out of the incoming URL ourselves and exchange it manually.
+async function handleIncomingAuthUrl(url) {
+  if (!url) return;
+  let code;
+  try {
+    code = new URL(url).searchParams.get('code');
+  } catch {
+    return;
+  }
+  if (!code) return;
+
+  const { error } = await supabase.auth.exchangeCodeForSession(code);
+  if (error) console.warn('[Auth] deep-link code exchange failed:', error.message);
+}
+
 export function AuthProvider({ children }) {
-  const [session,     setSession]     = useState(null);
-  const [authLoading, setAuthLoading] = useState(true);
+  const [session,          setSession]          = useState(null);
+  const [authLoading,      setAuthLoading]      = useState(true);
+  const [passwordRecovery, setPasswordRecovery] = useState(false);
 
   useEffect(() => {
     // Load existing session on mount
@@ -47,14 +70,27 @@ export function AuthProvider({ children }) {
           identifyRCUser(session.user.id);
         }
 
+        if (event === 'PASSWORD_RECOVERY') {
+          setPasswordRecovery(true);
+        }
+
         if (event === 'SIGNED_OUT') {
           // Reset RC to anonymous so the next user starts clean.
           resetRCUser();
+          setPasswordRecovery(false);
         }
       }
     );
 
-    return () => subscription.unsubscribe();
+    // Catch a magic link that cold-launched the app...
+    Linking.getInitialURL().then(handleIncomingAuthUrl);
+    // ...or one tapped while the app was already running/backgrounded.
+    const linkingSub = Linking.addEventListener('url', ({ url }) => handleIncomingAuthUrl(url));
+
+    return () => {
+      subscription.unsubscribe();
+      linkingSub.remove();
+    };
   }, []);
 
   const signOut = async () => {
@@ -65,9 +101,11 @@ export function AuthProvider({ children }) {
   return (
     <AuthContext.Provider
       value={{
-        user:        session?.user ?? null,
+        user:             session?.user ?? null,
         session,
         authLoading,
+        passwordRecovery,
+        clearPasswordRecovery: () => setPasswordRecovery(false),
         signOut,
       }}
     >

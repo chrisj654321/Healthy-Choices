@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -17,7 +17,7 @@ import { getLobbyingRiskLevel, formatCurrency, scoreProduct, scoreToColor } from
 import { getUserPrefs } from '../utils/storage';
 import { useProStatus } from '../utils/subscription';
 import { getSpotlightCompany } from '../utils/spotlight';
-import { PRODUCT_DB } from '../data/products';
+import { getProductsByCompany } from '../data/productStore';
 
 export default function CompanyProfileScreen({ route, navigation }) {
   const { company, initialTab, spotlight } = route?.params ?? {};
@@ -31,12 +31,28 @@ export default function CompanyProfileScreen({ route, navigation }) {
   }, []);
 
   // Hooks must run before any early return — guard the body for the null case.
-  const companyProducts = useMemo(() =>
-    company ? Object.values(PRODUCT_DB).filter((p) => p.companyId === company.id) : [],
-    [company?.id]
-  );
+  const [companyProducts, setCompanyProducts] = useState([]);
+  useEffect(() => {
+    let active = true;
+    if (!company) {
+      setCompanyProducts([]);
+      return;
+    }
+    getProductsByCompany(company.id).then((results) => {
+      if (active) setCompanyProducts(results);
+    });
+    return () => { active = false; };
+  }, [company?.id]);
+
   // This week's free-unlock company is viewable in full even for free users.
-  const spotlightCompany = useMemo(() => getSpotlightCompany(), []);
+  const [spotlightCompany, setSpotlightCompany] = useState(null);
+  useEffect(() => {
+    let active = true;
+    getSpotlightCompany().then((result) => {
+      if (active) setSpotlightCompany(result);
+    });
+    return () => { active = false; };
+  }, []);
 
   if (!company) return null;
 

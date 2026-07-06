@@ -203,6 +203,10 @@ function rowFromProduct(product, source, productImages, scoreProduct) {
     nutrition_json: jsonOrNull(product.nutrition || {}),
     certifications_json: jsonOrNull(product.certifications || []),
     flags_json: jsonOrNull(product.flags || {}),
+    packaging_json: jsonOrNull(product.packaging ?? null),
+    isOrganic: product.isOrganic ? 1 : 0,
+    isVegan: product.isVegan ? 1 : 0,
+    isGlutenFree: product.isGlutenFree ? 1 : 0,
     source,
     score,
     grade,
@@ -224,6 +228,10 @@ function insertProduct(stmt, row) {
     row.nutrition_json,
     row.certifications_json,
     row.flags_json,
+    row.packaging_json,
+    row.isOrganic,
+    row.isVegan,
+    row.isGlutenFree,
     row.source,
     row.score,
     row.grade,
@@ -251,6 +259,10 @@ function createSchema(db) {
       nutrition_json TEXT,
       certifications_json TEXT,
       flags_json TEXT,
+      packaging_json TEXT,
+      isOrganic INTEGER,
+      isVegan INTEGER,
+      isGlutenFree INTEGER,
       source TEXT,
       score INTEGER,
       grade TEXT,
@@ -414,8 +426,9 @@ function main() {
     INSERT INTO products (
       barcode, name, brand, companyId, category, image, servingSize, calories,
       ingredients_json, nutrition_json, certifications_json, flags_json,
+      packaging_json, isOrganic, isVegan, isGlutenFree,
       source, score, grade, search_text
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `);
 
   let generatedInserted = 0;

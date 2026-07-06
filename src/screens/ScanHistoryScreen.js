@@ -17,7 +17,7 @@ import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
 import ScanHistoryItem from '../components/ScanHistoryItem';
 import { getScanHistory, removeScanEntry, clearScanHistory, FREE_HISTORY_LIMIT } from '../utils/storage';
-import { PRODUCT_DB } from '../data/products';
+import { getProductByBarcode } from '../data/productStore';
 import { useProStatus } from '../utils/subscription';
 
 export default function ScanHistoryScreen({ navigation }) {
@@ -70,8 +70,8 @@ export default function ScanHistoryScreen({ navigation }) {
     ]);
   };
 
-  const handlePress = (item) => {
-    const product = item.product || PRODUCT_DB[item.barcode];
+  const handlePress = async (item) => {
+    const product = item.product || (await getProductByBarcode(item.barcode));
     if (!product) {
       Alert.alert('Unavailable', 'Full details for this scan are no longer available. Scan the product again to reload it.');
       return;

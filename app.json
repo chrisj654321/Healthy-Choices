@@ -56,7 +56,9 @@
           "backgroundColor": "#1D9E75"
         }
       ],
-      "expo-build-properties"
+      "expo-build-properties",
+      "expo-sqlite",
+      "expo-asset"
     ],
     "scheme": "healthychoices",
     "extra": {

@@ -18,7 +18,7 @@ import { Font } from '../constants/typography';
 import { useProStatus } from '../utils/subscription';
 import { buildProductFromRaw } from '../utils/productParser';
 import { scoreProduct, scoreToColor } from '../utils/scorer';
-import { PRODUCT_DB } from '../data/products';
+import { searchProductsLocal, getFeaturedProducts } from '../data/productStore';
 
 // ─── Endpoints ────────────────────────────────────────────────────────────────
 
@@ -92,23 +92,6 @@ const FEATURED_BARCODES = [
   '850397004217', // That's It Apple + Strawberry Fruit Bar
 ];
 
-const FEATURED_PRODUCTS = FEATURED_BARCODES
-  .map((bc) => PRODUCT_DB[bc])
-  .filter(Boolean);
-
-// ─── Search local PRODUCT_DB ──────────────────────────────────────────────────
-
-function searchLocal(query) {
-  const q = query.toLowerCase().trim();
-  return Object.values(PRODUCT_DB)
-    .filter((p) => {
-      const name  = (p.name  || '').toLowerCase();
-      const brand = (p.brand || '').toLowerCase();
-      return name.includes(q) || brand.includes(q);
-    })
-    .slice(0, 6);
-}
-
 // ─── Fetch from Search-a-licious (primary) with OFF legacy fallback ───────────
 
 async function fetchFromOFF(query) {
@@ -156,6 +139,7 @@ export default function ProductSearchScreen({ navigation }) {
   const [liveLoading, setLiveLoading] = useState(false);
   const [error,       setError]       = useState(null);
   const [searched,    setSearched]    = useState(false);
+  const [featuredProducts, setFeaturedProducts] = useState([]);
 
   // Cycling phrase index for inline loader
   const [phraseIdx, setPhraseIdx] = useState(0);
@@ -164,6 +148,17 @@ export default function ProductSearchScreen({ navigation }) {
   const inputRef      = useRef(null);
   // Track the current search so stale responses don't overwrite newer ones
   const searchGen = useRef(0);
+
+  // Featured products shown on the empty search state — loaded once, async
+  // (module-load-time PRODUCT_DB lookup can't be done anymore since the
+  // store is opened async).
+  useEffect(() => {
+    let active = true;
+    getFeaturedProducts(FEATURED_BARCODES).then((results) => {
+      if (active) setFeaturedProducts(results);
+    });
+    return () => { active = false; };
+  }, []);
 
   // Cycle loader text while liveLoading is true
   useEffect(() => {
@@ -202,8 +197,8 @@ export default function ProductSearchScreen({ navigation }) {
     setLiveLoading(true);
     setPhraseIdx(0);
 
-    // ── 1. Show curated results IMMEDIATELY (synchronous) ──────────────────
-    const localHits = searchLocal(q);
+    // ── 1. Show curated results as soon as the local SQLite query resolves ──
+    const localHits = await searchProductsLocal(q, 6);
     if (gen !== searchGen.current) return;
     setCuratedHits(localHits);
     setLiveHits([]);
@@ -423,7 +418,7 @@ export default function ProductSearchScreen({ navigation }) {
       {/* Featured products — shown before any search */}
       {!searched && (
         <FlatList
-          data={FEATURED_PRODUCTS}
+          data={featuredProducts}
           keyExtractor={(item) => item.barcode || item.name}
           contentContainerStyle={styles.listContent}
           ListHeaderComponent={

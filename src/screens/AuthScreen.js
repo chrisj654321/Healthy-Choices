@@ -68,7 +68,7 @@ export default function AuthScreen() {
     }
 
     setLoading(true);
-    const { error } =
+    const { data, error } =
       tab === 'Sign In'
         ? await supabase.auth.signInWithPassword({ email: email.trim(), password })
         : await supabase.auth.signUp({ email: email.trim(), password });
@@ -78,10 +78,21 @@ export default function AuthScreen() {
     if (error) {
       Alert.alert('Error', error.message);
     } else if (tab === 'Create Account') {
-      Alert.alert(
-        'Check your email ✉️',
-        'We sent a confirmation link to ' + email.trim() + '. Click it to activate your account.',
-      );
+      // Supabase returns a 200 with no error for an existing confirmed email
+      // (anti-enumeration at the API level) but sets identities to an empty
+      // array as the documented signal to detect this case client-side —
+      // no confirmation email is actually sent in that case.
+      if (data?.user?.identities?.length === 0) {
+        Alert.alert(
+          'Account already exists',
+          'An account with this email already exists. Try signing in, or use Forgot Password if you don\'t remember your password.',
+        );
+      } else {
+        Alert.alert(
+          'Check your email ✉️',
+          'We sent a confirmation link to ' + email.trim() + '. Click it to activate your account.',
+        );
+      }
     }
   };
 
@@ -92,7 +103,8 @@ export default function AuthScreen() {
       return;
     }
     setLoading(true);
-    const { error } = await supabase.auth.resetPasswordForEmail(email.trim());
+    const redirectUrl = AuthSession.makeRedirectUri({ scheme: 'healthychoices', path: 'auth/callback' });
+    const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), { redirectTo: redirectUrl });
     setLoading(false);
     if (error) {
       Alert.alert('Error', error.message);
@@ -147,7 +159,15 @@ export default function AuthScreen() {
       const result = await WebBrowser.openAuthSessionAsync(data?.url, redirectUrl);
 
       if (result.type === 'success') {
-        const { error: sessionError } = await supabase.auth.exchangeCodeForSession(result.url);
+        const callbackUrl = new URL(result.url);
+        const oauthError = callbackUrl.searchParams.get('error_description') || callbackUrl.searchParams.get('error');
+        const code = callbackUrl.searchParams.get('code');
+
+        if (oauthError) { setLoading(false); Alert.alert('Google Sign In Error', oauthError); return; }
+        if (!code) { setLoading(false); Alert.alert('Google Sign In Error', 'No authorization code returned.'); return; }
+
+        // exchangeCodeForSession expects the bare code, not the full callback URL.
+        const { error: sessionError } = await supabase.auth.exchangeCodeForSession(code);
         if (sessionError) { setLoading(false); Alert.alert('Google Sign In Error', sessionError.message); return; }
       }
 
@@ -288,19 +308,30 @@ export default function AuthScreen() {
             )}
 
             {/* Sign in with Google */}
-            <TouchableOpacity style={s.googleBtn} onPress={handleGoogleSignIn} activeOpacity={0.85}>
-              {/* Google logo — four-colour G per brand guidelines */}
-              <View style={s.googleIconWrap}>
-                <Text style={s.googleG}>
-                  <Text style={{ color: '#4285F4' }}>G</Text>
-                  <Text style={{ color: '#EA4335' }}>o</Text>
-                  <Text style={{ color: '#FBBC05' }}>o</Text>
-                  <Text style={{ color: '#4285F4' }}>g</Text>
-                  <Text style={{ color: '#34A853' }}>l</Text>
-                  <Text style={{ color: '#EA4335' }}>e</Text>
-                </Text>
-              </View>
-              <Text style={s.googleText}>Continue with Google</Text>
+            <TouchableOpacity
+              style={[s.googleBtn, loading && { opacity: 0.7 }]}
+              onPress={handleGoogleSignIn}
+              activeOpacity={0.85}
+              disabled={loading}
+            >
+              {loading ? (
+                <ActivityIndicator color={Colors.textPrimary} size="small" />
+              ) : (
+                <>
+                  {/* Google logo — four-colour G per brand guidelines */}
+                  <View style={s.googleIconWrap}>
+                    <Text style={s.googleG}>
+                      <Text style={{ color: '#4285F4' }}>G</Text>
+                      <Text style={{ color: '#EA4335' }}>o</Text>
+                      <Text style={{ color: '#FBBC05' }}>o</Text>
+                      <Text style={{ color: '#4285F4' }}>g</Text>
+                      <Text style={{ color: '#34A853' }}>l</Text>
+                      <Text style={{ color: '#EA4335' }}>e</Text>
+                    </Text>
+                  </View>
+                  <Text style={s.googleText}>Continue with Google</Text>
+                </>
+              )}
             </TouchableOpacity>
 
           </View>

@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { captureException } from './sentry';
 
 const HISTORY_KEY     = '@hc_scan_history';
 const PREFS_KEY       = '@hc_user_prefs';
@@ -20,7 +21,25 @@ export async function checkAndIncrementDailyScan() {
   try {
     const today = new Date().toDateString();
     const raw   = await AsyncStorage.getItem(DAILY_SCAN_KEY);
-    const data  = raw ? JSON.parse(raw) : { date: today, count: 0 };
+
+    let data;
+    if (!raw) {
+      data = { date: today, count: 0 };
+    } else {
+      try {
+        data = JSON.parse(raw);
+      } catch (parseError) {
+        // Corrupted data — self-heal instead of failing open indefinitely.
+        // Treat exactly like "no data yet" so this call proceeds through the
+        // normal increment/save logic below and overwrites the bad entry
+        // with valid data (rather than returning unlimited scans forever).
+        captureException(parseError, {
+          function: 'checkAndIncrementDailyScan',
+          reason: 'corrupted DAILY_SCAN_KEY data',
+        });
+        data = { date: today, count: 0 };
+      }
+    }
 
     // New day — reset counter
     if (data.date !== today) {
@@ -35,7 +54,8 @@ export async function checkAndIncrementDailyScan() {
     }
 
     return { allowed, scansToday: data.count, remaining: FREE_DAILY_LIMIT - data.count };
-  } catch {
+  } catch (error) {
+    captureException(error, { function: 'checkAndIncrementDailyScan' });
     return { allowed: true, scansToday: 0, remaining: FREE_DAILY_LIMIT };
   }
 }
@@ -75,6 +95,7 @@ export async function addScanToHistory(product, scoreResult) {
     return entry;
   } catch (e) {
     console.error('Failed to save scan history:', e);
+    captureException(e, { function: 'addScanToHistory', barcode: product?.barcode });
   }
 }
 
@@ -83,6 +104,7 @@ export async function getScanHistory() {
     const raw = await AsyncStorage.getItem(HISTORY_KEY);
     return raw ? JSON.parse(raw) : [];
   } catch (e) {
+    captureException(e, { function: 'getScanHistory', reason: 'corrupted HISTORY_KEY data or read failure' });
     return [];
   }
 }
@@ -143,6 +165,7 @@ export async function getUserPrefs() {
     const raw = await AsyncStorage.getItem(PREFS_KEY);
     return raw ? { ...DEFAULT_PREFS, ...JSON.parse(raw) } : DEFAULT_PREFS;
   } catch (e) {
+    captureException(e, { function: 'getUserPrefs', reason: 'corrupted PREFS_KEY data or read failure' });
     return DEFAULT_PREFS;
   }
 }

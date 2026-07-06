@@ -128,21 +128,6 @@ export const INGREDIENT_DB = {
     note: 'Causes sensitivity reactions in some individuals.',
     flag: 'caution',
   },
-  'natural flavors': {
-    evidence: "Under FDA regulation 21 CFR 101.22, 'natural flavor' must be declared on the label, but manufacturers are not required to disclose the specific constituent chemicals in the flavor blend, which may be treated as trade secrets (FDA, 21 CFR 101.22).",
-    risk: 3, category: 'flavor-enhancers',
-    label: 'Natural Flavors',
-    note: 'Vague term — can include hundreds of chemicals derived from natural sources.',
-    flag: 'moderate',
-  },
-  'artificial flavors': {
-    evidence: "Under FDA regulation 21 CFR 101.22, 'artificial flavor' covers flavoring not derived from a natural source; it must be declared on the label, but the specific chemical constituents need not be individually disclosed (FDA, 21 CFR 101.22).",
-    risk: 5, category: 'flavor-enhancers',
-    label: 'Artificial Flavors',
-    note: 'Synthetic chemicals; limited long-term safety data.',
-    flag: 'caution',
-  },
-
   // ─── Emulsifiers & Stabilizers ───
   'carrageenan': {
     evidence: "In a 2018 re-evaluation, EFSA judged carrageenan (E407) safe at current EU use levels but made its acceptable daily intake (75 mg/kg) temporary, citing toxicological data gaps and an inability to rule out intestinal inflammation in sensitive people (EFSA, 2018).",
@@ -259,41 +244,23 @@ export const INGREDIENT_DB = {
     note: 'Synthetic dye the FDA banned from food in January 2025 after cancer findings in animal studies.',
     flag: 'avoid',
   },
-  'red 40': {
-    evidence: "After a 2007 University of Southampton study (The Lancet) linked mixtures of synthetic dyes including Red 40 to increased hyperactivity in children, the EU required foods containing it to carry the label 'may have an adverse effect on activity and attention in children' (EU, effective 2010).",
-    risk: 6, category: 'dyes', label: 'Red 40 (Allura Red)',
-    note: 'Synthetic petroleum-derived dye linked to hyperactivity in some children; the EU requires a warning label on foods that contain it.',
-    flag: 'caution',
-  },
   'fd&c red 40': {
     evidence: "After a 2007 University of Southampton study (The Lancet) linked mixtures of synthetic dyes including Red 40 to increased hyperactivity in children, the EU required foods containing it to carry the label 'may have an adverse effect on activity and attention in children' (EU, effective 2010).",
-    risk: 6, category: 'dyes', label: 'FD&C Red No. 40',
-    note: 'Synthetic dye linked to hyperactivity in some children; carries a mandatory warning label in the EU.',
-    flag: 'caution',
+    risk: 8, category: 'dyes', label: 'FD&C Red No. 40',
+    note: 'Subject to EU mandatory warning labeling; some studies associate it with hyperactivity in sensitive children.',
+    flag: 'avoid',
   },
   'allura red': {
     evidence: "After a 2007 University of Southampton study (The Lancet) linked mixtures of synthetic dyes including Red 40 to increased hyperactivity in children, the EU required foods containing it to carry the label 'may have an adverse effect on activity and attention in children' (EU, effective 2010).",
-    risk: 6, category: 'dyes', label: 'Allura Red (Red 40)',
-    note: 'Synthetic dye linked to hyperactivity in some children; carries a mandatory warning label in the EU.',
-    flag: 'caution',
-  },
-  'yellow 5': {
-    evidence: "After the 2007 University of Southampton study (The Lancet) linked synthetic dye mixtures including tartrazine to increased hyperactivity in children, the EU required foods containing Yellow 5 to carry the warning 'may have an adverse effect on activity and attention in children' (EU, effective 2010).",
-    risk: 6, category: 'dyes', label: 'Yellow 5 (Tartrazine)',
-    note: 'Synthetic dye linked to hyperactivity and allergic-type reactions in sensitive people; carries a mandatory warning label in the EU.',
-    flag: 'caution',
+    risk: 8, category: 'dyes', label: 'Allura Red (Red 40)',
+    note: 'Subject to EU mandatory warning labeling; some studies associate it with hyperactivity in sensitive children.',
+    flag: 'avoid',
   },
   'tartrazine': {
     evidence: "After the 2007 University of Southampton study (The Lancet) linked synthetic dye mixtures including tartrazine to increased hyperactivity in children, the EU required foods containing Yellow 5 to carry the warning 'may have an adverse effect on activity and attention in children' (EU, effective 2010).",
-    risk: 6, category: 'dyes', label: 'Tartrazine (Yellow 5)',
-    note: 'Synthetic dye linked to hyperactivity and allergic-type reactions in sensitive people; EU warning label required.',
-    flag: 'caution',
-  },
-  'yellow 6': {
-    evidence: "After the 2007 University of Southampton study (The Lancet) linked synthetic dye mixtures including Sunset Yellow to increased hyperactivity in children, the EU required foods containing Yellow 6 to carry the warning 'may have an adverse effect on activity and attention in children' (EU, effective 2010).",
-    risk: 6, category: 'dyes', label: 'Yellow 6 (Sunset Yellow)',
-    note: 'Synthetic dye linked to hyperactivity in some children; carries a mandatory warning label in the EU.',
-    flag: 'caution',
+    risk: 7, category: 'dyes', label: 'Tartrazine (Yellow 5)',
+    note: 'Subject to EU warning labeling; some studies associate it with hyperactivity in sensitive individuals. Potential allergen for some.',
+    flag: 'avoid',
   },
   'blue 1': {
     evidence: "FDA approved FD&C Blue No. 1 for food use in 1969; California OEHHA's 2021 review associated widely used synthetic dyes, including Blue 1, with neurobehavioral effects in some children (California OEHHA, 2021).",
