@@ -103,7 +103,7 @@ export default function AuthScreen() {
       return;
     }
     setLoading(true);
-    const redirectUrl = AuthSession.makeRedirectUri({ scheme: 'healthychoices', path: 'auth/callback' });
+    const redirectUrl = AuthSession.makeRedirectUri({ scheme: 'healthychoices', path: 'reset-password' });
     const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), { redirectTo: redirectUrl });
     setLoading(false);
     if (error) {
