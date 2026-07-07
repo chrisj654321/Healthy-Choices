@@ -115,6 +115,92 @@ const indexToken = new Map(); // singularized token -> { entry, source, keyToken
   }
 })();
 
+const LEADING_LABEL_NOISE = new Set([
+  'ingredient', 'ingredients', 'leavening', 'humectant', 'seasoning',
+]);
+
+const TRAILING_LABEL_NOISE = new Set([
+  'preservative', 'preservatives', 'emulsifier', 'color', 'colour', 'added',
+]);
+
+function lookupExactWithSingulars(normalized) {
+  if (indexExact.has(normalized)) return indexExact.get(normalized);
+
+  const words = normalized.split(' ');
+  const lastSingular = singularize(words[words.length - 1]);
+  if (lastSingular !== words[words.length - 1]) {
+    const variant = [...words.slice(0, -1), lastSingular].join(' ');
+    if (indexExact.has(variant)) return indexExact.get(variant);
+  }
+
+  const allSingular = words.map(singularize).join(' ');
+  if (allSingular !== normalized && indexExact.has(allSingular)) {
+    return indexExact.get(allSingular);
+  }
+
+  return null;
+}
+
+function pushVariant(variants, seen, words) {
+  const cleaned = words
+    .filter(Boolean)
+    .join(' ')
+    .trim();
+  if (cleaned && !seen.has(cleaned)) {
+    seen.add(cleaned);
+    variants.push(cleaned);
+  }
+}
+
+function cleanedPhraseVariants(normalized) {
+  const originalWords = normalized.split(' ').filter(Boolean);
+  const variants = [];
+  const seen = new Set();
+
+  const noNumbers = originalWords.filter((word) => !/^\d+$/.test(word));
+  pushVariant(variants, seen, noNumbers);
+
+  let leadingTrimmed = [...noNumbers];
+  while (leadingTrimmed.length > 1 && LEADING_LABEL_NOISE.has(leadingTrimmed[0])) {
+    leadingTrimmed = leadingTrimmed.slice(1);
+    pushVariant(variants, seen, leadingTrimmed);
+  }
+
+  let trailingTrimmed = [...noNumbers];
+  while (trailingTrimmed.length > 1 && TRAILING_LABEL_NOISE.has(trailingTrimmed[trailingTrimmed.length - 1])) {
+    trailingTrimmed = trailingTrimmed.slice(0, -1);
+    pushVariant(variants, seen, trailingTrimmed);
+  }
+
+  const containsIndex = noNumbers.indexOf('contains');
+  if (containsIndex > 0) {
+    pushVariant(variants, seen, noNumbers.slice(0, containsIndex));
+    pushVariant(variants, seen, noNumbers.slice(containsIndex + 1));
+  }
+
+  // Try meaningful contiguous phrases before one-token fuzz. This catches
+  // parser fragments like "roasted peanuts 39" without adding every count.
+  for (let size = Math.min(5, noNumbers.length); size >= 2; size--) {
+    for (let start = 0; start <= noNumbers.length - size; start++) {
+      const window = noNumbers.slice(start, start + size);
+      const first = window[0];
+      const last = window[window.length - 1];
+      if (WEAK_TOKENS.has(first) || WEAK_TOKENS.has(last)) continue;
+      pushVariant(variants, seen, window);
+    }
+  }
+
+  return variants;
+}
+
+function lookupCleanedPhrase(rawNormalized) {
+  for (const variant of cleanedPhraseVariants(rawNormalized)) {
+    const hit = lookupExactWithSingulars(variant);
+    if (hit) return hit;
+  }
+  return null;
+}
+
 /**
  * lookupIngredient(raw): returns { entry, source } or null.
  *
@@ -127,21 +213,11 @@ export function lookupIngredient(raw) {
   if (!n) return null;
 
   // b. Exact lookup on full normalized string
-  if (indexExact.has(n)) return indexExact.get(n);
+  const exactHit = lookupExactWithSingulars(n);
+  if (exactHit) return exactHit;
 
-  // Singularize last word and retry
-  const words = n.split(' ');
-  const lastSingular = singularize(words[words.length - 1]);
-  if (lastSingular !== words[words.length - 1]) {
-    const variant = [...words.slice(0, -1), lastSingular].join(' ');
-    if (indexExact.has(variant)) return indexExact.get(variant);
-  }
-
-  // Singularize whole string word-by-word and retry
-  const allSingular = words.map(singularize).join(' ');
-  if (allSingular !== n && indexExact.has(allSingular)) {
-    return indexExact.get(allSingular);
-  }
+  const cleanedHit = lookupCleanedPhrase(n);
+  if (cleanedHit) return cleanedHit;
 
   // c. Token fallback
   const sigTokens = significantTokens(n);

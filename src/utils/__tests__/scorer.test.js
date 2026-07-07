@@ -225,6 +225,41 @@ describe('lookupIngredient', () => {
     expect(hit.entry.label).toBe('Interesterified Fat');
   });
 
+  test('cleaned phrase fallback strips quantity fragments before lookup (roasted peanuts 39% -> roasted peanuts)', () => {
+    const hit = lookupIngredient('roasted peanuts 39%');
+    expect(hit).not.toBeNull();
+    expect(hit.source).toBe('cache');
+    expect(hit.entry.category).toBe('nuts');
+  });
+
+  test('cleaned phrase fallback strips parser headings before lookup (Ingredients: Soy Protein Isolate)', () => {
+    const hit = lookupIngredient('Ingredients: Soy Protein Isolate');
+    expect(hit).not.toBeNull();
+    expect(hit.source).toBe('db');
+    expect(hit.entry.label).toBe('Soy Protein Isolate');
+  });
+
+  test('cleaned phrase fallback strips percent counts from known phrases (Peanut Butter 2%)', () => {
+    const hit = lookupIngredient('Peanut Butter 2%');
+    expect(hit).not.toBeNull();
+    expect(hit.source).toBe('cache');
+    expect(hit.entry.category).toBe('nuts');
+  });
+
+  test('cleaned phrase fallback strips purpose words before lookup (Humectant Glycerol)', () => {
+    const hit = lookupIngredient('Humectant Glycerol');
+    expect(hit).not.toBeNull();
+    expect(hit.source).toBe('cache');
+    expect(hit.entry.category).toBe('additives');
+  });
+
+  test('cleaned phrase fallback strips purpose words before lookup (Leavening Sodium Acid Pyrophosphate)', () => {
+    const hit = lookupIngredient('Leavening Sodium Acid Pyrophosphate');
+    expect(hit).not.toBeNull();
+    expect(hit.source).toBe('cache');
+    expect(hit.entry.category).toBe('additives');
+  });
+
   test('ambiguity: two equally-specific single-token candidates with no clear winner -> null', () => {
     // 'nitrite' alone resolves to Sodium Nitrite, 'nitrate' alone resolves to
     // Sodium Nitrate. Together, each contributes exactly one shared token to a
@@ -294,9 +329,9 @@ describe('classifyUnknown (via scoreProduct on unmatched ingredients)', () => {
     expect(item.category).toBe('unknown');
   });
 
-  test('a whole-food word inside a multi-word name passes as ok/risk 0 ("dried mango puree")', () => {
-    expect(lookupIngredient('dried mango puree')).toBeNull();
-    const result = scoreProduct({ ingredients: ['dried mango puree'], nutrition: {} });
+  test('a whole-food word inside a multi-word name passes as ok/risk 0 ("dried rutabaga puree")', () => {
+    expect(lookupIngredient('dried rutabaga puree')).toBeNull();
+    const result = scoreProduct({ ingredients: ['dried rutabaga puree'], nutrition: {} });
     const item = result.analyzedIngredients[0];
     expect(item.flag).toBe('ok');
     expect(item.risk).toBe(0);

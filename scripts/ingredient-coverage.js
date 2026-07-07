@@ -135,45 +135,142 @@ const WEAK_TOKENS = new Set([
   'of', 'with', 'less', 'than', 'contains', 'modified', 'enriched', 'refined'
 ]);
 
+function significantTokens(normalized) {
+  return normalized
+    .split(' ')
+    .map(singularize)
+    .filter(t => t.length > 3 && !WEAK_TOKENS.has(t));
+}
+
 // Build indexes from CACHED first, then INGREDIENT_DB (overwrites)
 const indexExact = new Map();
 const indexToken = new Map();
 
-// Add from CACHED_INGREDIENT_ANALYSIS
-for (const key of Object.keys(CACHED_INGREDIENT_ANALYSIS)) {
+function addToExactIndex(key, entry, source) {
   const n = normalize(key);
   if (n) {
-    indexExact.set(n, true);
-    // Extract significant tokens
-    const tokens = n.split(' ')
-      .map(singularize)
-      .filter(t => t.length > 3 && !WEAK_TOKENS.has(t));
-    for (const token of tokens) {
-      if (!indexToken.has(token)) {
-        indexToken.set(token, true);
+    indexExact.set(n, { entry, source });
+  }
+}
+
+function addToTokenIndex(key, entry, source) {
+  const n = normalize(key);
+  if (!n) return;
+  const tokens = significantTokens(n);
+  if (tokens.length === 0) return;
+  const keyTokenCount = tokens.length;
+
+  for (const token of tokens) {
+    const existing = indexToken.get(token);
+    if (!existing) {
+      indexToken.set(token, { entry, source, keyTokenCount });
+    } else {
+      const existingIsDb = existing.source === 'db';
+      const newIsDb = source === 'db';
+      const fewerTokens = keyTokenCount < existing.keyTokenCount;
+      const sameCount = keyTokenCount === existing.keyTokenCount;
+      if (fewerTokens || (sameCount && newIsDb && !existingIsDb)) {
+        indexToken.set(token, { entry, source, keyTokenCount });
       }
     }
   }
 }
 
-// Add from INGREDIENT_DB
-for (const key of Object.keys(INGREDIENT_DB)) {
-  const n = normalize(key);
-  if (n) {
-    indexExact.set(n, true);
-    // Extract significant tokens
-    const tokens = n.split(' ')
-      .map(singularize)
-      .filter(t => t.length > 3 && !WEAK_TOKENS.has(t));
-    for (const token of tokens) {
-      if (!indexToken.has(token)) {
-        indexToken.set(token, true);
-      }
-    }
-  }
+for (const [key, entry] of Object.entries(CACHED_INGREDIENT_ANALYSIS)) {
+  addToExactIndex(key, entry, 'cache');
+}
+for (const [key, entry] of Object.entries(INGREDIENT_DB)) {
+  addToExactIndex(key, entry, 'db');
+}
+for (const [key, entry] of Object.entries(CACHED_INGREDIENT_ANALYSIS)) {
+  addToTokenIndex(key, entry, 'cache');
+}
+for (const [key, entry] of Object.entries(INGREDIENT_DB)) {
+  addToTokenIndex(key, entry, 'db');
 }
 
 console.log(`✓ Built indexes: ${indexExact.size} exact matches, ${indexToken.size} significant tokens`);
+
+const LEADING_LABEL_NOISE = new Set([
+  'ingredient', 'ingredients', 'leavening', 'humectant', 'seasoning',
+]);
+
+const TRAILING_LABEL_NOISE = new Set([
+  'preservative', 'preservatives', 'emulsifier', 'color', 'colour', 'added',
+]);
+
+function lookupExactWithSingulars(normalized) {
+  if (indexExact.has(normalized)) return indexExact.get(normalized);
+
+  const words = normalized.split(' ');
+  const lastSingular = singularize(words[words.length - 1]);
+  if (lastSingular !== words[words.length - 1]) {
+    const variant = [...words.slice(0, -1), lastSingular].join(' ');
+    if (indexExact.has(variant)) return indexExact.get(variant);
+  }
+
+  const allSingular = words.map(singularize).join(' ');
+  if (allSingular !== normalized && indexExact.has(allSingular)) {
+    return indexExact.get(allSingular);
+  }
+
+  return null;
+}
+
+function pushVariant(variants, seen, words) {
+  const cleaned = words.filter(Boolean).join(' ').trim();
+  if (cleaned && !seen.has(cleaned)) {
+    seen.add(cleaned);
+    variants.push(cleaned);
+  }
+}
+
+function cleanedPhraseVariants(normalized) {
+  const originalWords = normalized.split(' ').filter(Boolean);
+  const variants = [];
+  const seen = new Set();
+
+  const noNumbers = originalWords.filter(word => !/^\d+$/.test(word));
+  pushVariant(variants, seen, noNumbers);
+
+  let leadingTrimmed = [...noNumbers];
+  while (leadingTrimmed.length > 1 && LEADING_LABEL_NOISE.has(leadingTrimmed[0])) {
+    leadingTrimmed = leadingTrimmed.slice(1);
+    pushVariant(variants, seen, leadingTrimmed);
+  }
+
+  let trailingTrimmed = [...noNumbers];
+  while (trailingTrimmed.length > 1 && TRAILING_LABEL_NOISE.has(trailingTrimmed[trailingTrimmed.length - 1])) {
+    trailingTrimmed = trailingTrimmed.slice(0, -1);
+    pushVariant(variants, seen, trailingTrimmed);
+  }
+
+  const containsIndex = noNumbers.indexOf('contains');
+  if (containsIndex > 0) {
+    pushVariant(variants, seen, noNumbers.slice(0, containsIndex));
+    pushVariant(variants, seen, noNumbers.slice(containsIndex + 1));
+  }
+
+  for (let size = Math.min(5, noNumbers.length); size >= 2; size--) {
+    for (let start = 0; start <= noNumbers.length - size; start++) {
+      const window = noNumbers.slice(start, start + size);
+      const first = window[0];
+      const last = window[window.length - 1];
+      if (WEAK_TOKENS.has(first) || WEAK_TOKENS.has(last)) continue;
+      pushVariant(variants, seen, window);
+    }
+  }
+
+  return variants;
+}
+
+function lookupCleanedPhrase(rawNormalized) {
+  for (const variant of cleanedPhraseVariants(rawNormalized)) {
+    const hit = lookupExactWithSingulars(variant);
+    if (hit) return hit;
+  }
+  return null;
+}
 
 // Pre-build Set of all lowercase keys for fast OLD lookup
 const cachedKeysLower = new Set(Object.keys(CACHED_INGREDIENT_ANALYSIS).map(k => k.toLowerCase()));
@@ -193,22 +290,49 @@ function lookupNew(raw) {
   if (!n) return 'empty';
 
   // Exact match
-  if (indexExact.has(n)) {
+  if (lookupExactWithSingulars(n)) {
     return 'exact';
   }
 
-  // Token match
-  const tokens = n.split(' ')
-    .map(singularize)
-    .filter(t => t.length > 3 && !WEAK_TOKENS.has(t));
+  if (lookupCleanedPhrase(n)) {
+    return 'cleaned';
+  }
 
+  // Token match, mirrored from src/utils/scorer.js.
+  const tokens = significantTokens(n);
+  if (tokens.length === 0) return 'unknown';
+
+  const candidateMap = new Map();
   for (const token of tokens) {
-    if (indexToken.has(token)) {
-      return 'token';
+    const hit = indexToken.get(token);
+    if (!hit) continue;
+    const existing = candidateMap.get(hit.entry);
+    if (existing) {
+      existing.sharedCount += 1;
+    } else {
+      candidateMap.set(hit.entry, { hit, sharedCount: 1 });
     }
   }
 
-  return 'unknown';
+  if (candidateMap.size === 0) return 'unknown';
+
+  let bestShared = 0;
+  let bestHit = null;
+  let ambiguous = false;
+
+  for (const { hit, sharedCount } of candidateMap.values()) {
+    if (sharedCount > bestShared) {
+      bestShared = sharedCount;
+      bestHit = hit;
+      ambiguous = false;
+    } else if (sharedCount === bestShared) {
+      ambiguous = true;
+    }
+  }
+
+  if (!bestHit || bestShared < 1 || ambiguous) return 'unknown';
+
+  return 'token';
 }
 
 /**
@@ -273,6 +397,7 @@ const timeOld = Date.now() - startOld;
 // Measure NEW behavior
 let newMatched = 0;
 let newUnknown = 0;
+const newMatchKinds = { exact: 0, cleaned: 0, token: 0 };
 const unknownsByNormalized = new Map(); // normalized -> count
 
 const startNew = Date.now();
@@ -284,6 +409,9 @@ for (const ing of corpusIngredients) {
     unknownsByNormalized.set(n, (unknownsByNormalized.get(n) || 0) + 1);
   } else {
     newMatched++;
+    if (newMatchKinds[result] !== undefined) {
+      newMatchKinds[result]++;
+    }
   }
 }
 const timeNew = Date.now() - startNew;
@@ -303,9 +431,12 @@ console.log(`Total occurrences:        ${corpusIngredients.length}`);
 console.log(`\nOLD behavior (exact only):`);
 console.log(`  Matched:                ${oldMatched} (${((oldMatched / corpusIngredients.length) * 100).toFixed(2)}%)`);
 console.log(`  Unknown:                ${oldUnknown} (${((oldUnknown / corpusIngredients.length) * 100).toFixed(2)}%)`);
-console.log(`\nNEW behavior (exact + token):`);
+console.log(`\nNEW behavior (exact + cleaned phrase + token):`);
 console.log(`  Matched:                ${newMatched} (${((newMatched / corpusIngredients.length) * 100).toFixed(2)}%)`);
 console.log(`  Unknown:                ${newUnknown} (${((newUnknown / corpusIngredients.length) * 100).toFixed(2)}%)`);
+console.log(`  Exact matches:          ${newMatchKinds.exact}`);
+console.log(`  Cleaned phrase matches: ${newMatchKinds.cleaned}`);
+console.log(`  Token matches:          ${newMatchKinds.token}`);
 console.log(`\nRECOVERY:`);
 console.log(`  Newly matched:          ${recovered} (${recoveredPct}% of total)`);
 console.log('='.repeat(70));
