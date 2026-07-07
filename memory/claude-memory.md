@@ -36,3 +36,11 @@ Fable/Opus has ~50% of the founder's weekly usage remaining; after that it's API
 **Error tracking:** Sentry chosen (free 5k errors/mo, Expo-supported); wiring pending founder DSN. Config must stay identity-free (no PII, no user IDs) per the 2026-07-02 no-tracking decision; next build's privacy label needs "Crash Data — not linked" added.
 
 **Stack audit verdict (X-post 12-tool list):** only Resend + Sentry were real gaps. Rejected: Stripe (Apple IAP mandatory on iOS), Clerk (Supabase Auth shipped), PostHog (conflicts with no-tracking stance; in-house anonymous analytics in build 28), Vercel (Netlify serves), Upstash/Pinecone (no fit yet).
+
+## 2026-07-06 — APPROVED. Shelf Exposé is LIVE on the App Store. 🚀
+
+Apple approved the resubmission (the build carrying the 5.6.3 rating-prompt fix, the 2.1(a) Google Sign-In fix, password reset, SQLite catalog, Sentry, and the onboarding image upgrade). Listing verified live: **https://apps.apple.com/app/id6776718186** — "Shelf Exposé," free + IAP ($7.99/mo, $49.99/yr, 50% off first year), Health & Fitness, 13+, iOS 16.4+. Rejection history closed: builds 26 (IAP/icon/terms), 27 (privacy label), 28 (5.6.3 + Google sign-in) → approved 2026-07-06.
+
+Launch context: ~13 months from dining-room table to shipped product, ~28 days before the founder's Aug 3 availability cliff. P0 shifts from "get approved" to "launch burst + revenue" ($1k/mo goal ≈ 40 annual subs). The launch-day marketing burst (P1) is now unblocked and time-critical.
+
+Same-day: shelfexpose.app marketing site went live on Cloudflare→Netlify DNS, and the new Higgsfield-built two-act site (dark detective investigation → bright food world) deployed to its preview URL awaiting founder review + motion pass. The site's "Coming to the App Store" copy is now outdated — needs the real App Store link.

@@ -1,18 +1,18 @@
 # Current priorities
 
-_Last updated: 2026-07-05 — update whenever a priority ships or shifts._
+_Last updated: 2026-07-06 — update whenever a priority ships or shifts._
 
-## P0 — Get approved and live
-Build 28 submitted 2026-07-02 (privacy-label fix + analytics layer + ingredients regroup + store logos). Still awaiting Apple review as of 2026-07-05 — App Store Connect showing the old (pre-fix) icon in the Apps list is a confirmed dashboard-cache display quirk, not a real binary issue (verified by decoding the actual submitted .ipa's icon).
-- [x] Paid Apps Agreement Active · IAPs selected for the version · Terms in description · privacy data types
-- [x] RevenueCat: attach monthly + yearly products to the Healthy Choices Pro entitlement
-- [x] Privacy label toggles corrected (Used to Track = No on Email/User ID/Purchases)
-- [x] IAP App Review screenshot per subscription (must have been attached — ASC accepted the submission)
-- [x] Sandbox purchase tested — confirmed unlocking Pro (founder-verified 2026-07-02)
-- [x] New iPhone + iPad screenshots confirmed current (founder-verified 2026-07-05)
-- [ ] Confirm build 28 is APPROVED (check ASC for review outcome)
-- [ ] IF approved: run supabase/analytics_setup.sql once, add Product Interaction (not linked) to privacy label WITH the next build
-- [ ] New: `submission-preflight` skill now exists (`.claude/skills/submission-preflight/`) — run it before build 29/next submission, not the old ad-hoc checklist
+## ✅ SHIPPED — Shelf Exposé is LIVE on the App Store (2026-07-06)
+**https://apps.apple.com/app/id6776718186** — free + IAP, $7.99/mo / $49.99/yr, 50% off first year. Approved after the 5.6.3 + 2.1(a) fix resubmission. Rejection era over.
+
+## P0 — Launch burst + first revenue (was P1; now unblocked and time-critical)
+~28 days to the Aug 3 availability cliff. Goal: $1k/mo ≈ 40 annual subs ≈ 1,300–5,000 downloads.
+- [ ] Launch-day content burst (Cicero) — the "it's live" moment only happens once
+- [ ] Update marketing site: swap "Coming to the App Store" → real App Store link/badge (both the live Netlify pages if applicable and the new Higgsfield site's Reward + Waitlist sections)
+- [ ] Waitlist emails (D1) → launch announcement once there are any signups
+- [ ] Run supabase/analytics_setup.sql once; add "Product Interaction (not linked)" + "Crash Data (not linked)" to the privacy label WITH the next build
+- [ ] Watch Sentry + App Store reviews daily for launch-week crashes/complaints
+- [ ] Next submission: run the `submission-preflight` skill, not ad-hoc checklists
 
 ## P1 — Launch marketing engine (30-day plan → $1,000/mo)
 Plan: `marketing/30-day-launch-plan.md`. Math: $1k/mo ≈ 40 annual subs ≈ 1,300–5,000 downloads ≈ 40–150k short-form views.
