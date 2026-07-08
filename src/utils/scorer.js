@@ -53,7 +53,7 @@ function significantTokens(normalized) {
     .filter((t) => t.length > 3 && !WEAK_TOKENS.has(t));
 }
 
-// ─── Build indexes at module load ─────────────────────────────────────────────
+// ─── Ingredient indexes (built lazily on first lookup) ───────────────────────
 //
 // Each index value is: { entry, source }
 //   source === 'db'    => entry has shape { risk, label, category, note, flag }
@@ -62,8 +62,20 @@ function significantTokens(normalized) {
 const indexExact = new Map(); // normalize(key) -> { entry, source }
 const indexToken = new Map(); // singularized token -> { entry, source, keyTokenCount }
 
-// Populate indexExact: cache first, then db overwrites on collision (db is authoritative)
-(function buildIndexes() {
+// Build the exact/token indexes LAZILY — on the first ingredient lookup, not at
+// module import. This was previously an IIFE that ran the instant scorer.js was
+// evaluated. Because AppNavigator statically imports HomeScreen (and other
+// screens) which import scorer.js only for cheap helpers like gradeToColor, the
+// full regex-heavy index build over the ~3k-entry ingredient cache + INGREDIENT_DB
+// ran synchronously on the JS thread during COLD START — contributing to a Sentry
+// "App Hanging" (ANR) at launch. Deferring it to the first real lookupIngredient()
+// call (i.e. when a product is actually scored, off the launch path) removes that
+// work from startup. ensureIndexes() is idempotent and memoized via _indexesBuilt,
+// so after the first build it costs a single boolean check.
+let _indexesBuilt = false;
+function ensureIndexes() {
+  if (_indexesBuilt) return;
+
   // 1. Cache entries (lower priority)
   for (const [key, entry] of Object.entries(CACHED_INGREDIENT_ANALYSIS)) {
     const n = normalize(key);
@@ -113,7 +125,9 @@ const indexToken = new Map(); // singularized token -> { entry, source, keyToken
   for (const [key, entry] of Object.entries(INGREDIENT_DB)) {
     addToTokenIndex(key, entry, 'db');
   }
-})();
+
+  _indexesBuilt = true;
+}
 
 const LEADING_LABEL_NOISE = new Set([
   'ingredient', 'ingredients', 'leavening', 'humectant', 'seasoning',
@@ -124,6 +138,7 @@ const TRAILING_LABEL_NOISE = new Set([
 ]);
 
 function lookupExactWithSingulars(normalized) {
+  ensureIndexes();
   if (indexExact.has(normalized)) return indexExact.get(normalized);
 
   const words = normalized.split(' ');
@@ -208,6 +223,8 @@ function lookupCleanedPhrase(rawNormalized) {
  * source === 'cache' -> entry fields: .risk .category .explanation
  */
 export function lookupIngredient(raw) {
+  ensureIndexes();
+
   // a. Normalize
   const n = normalize(raw);
   if (!n) return null;
