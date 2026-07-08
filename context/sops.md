@@ -19,7 +19,7 @@ Bulk = local script always first. Misses → Octavius, small scoped batches. Eve
 4-role legal separation (researcher → fact-checker → legal writer → legal reviewer), never collapsed. VERIFIED/UNVERIFIED/DISPUTED/STALE flag mapping. Forbidden language list applies. `null` = not found; `0` = confirmed zero — never default to 0.
 
 ## Social content → Cicero (+ content-sprint monthly)
-Cicero drafts (voice exemplars: `marketing/x-posts-growth-batch.md`, `linkedin_posts.md`), separate Opus evaluator judges, human approves/posts. Ordering: shock first → 5 checkable products → why → CTA. Accuracy is the only rail — name names, never fabricate, no medical causation, no military identifiers, pre-launch framing until live.
+Cicero drafts (voice exemplars: `marketing/x-posts-growth-batch.md`, `marketing/2026-07/linkedin-2026-07.md`), separate Opus evaluator judges, human approves/posts. Ordering: shock first → 5 checkable products → why → CTA. Accuracy is the only rail — name names, never fabricate, no medical causation, no military identifiers, pre-launch framing until live.
 
 ## App Store submissions
 Before every resubmit: IAPs attached to the version + review screenshots; metadata has Terms link + Privacy URL; sandbox-test that a purchase unlocks Pro; reviewer notes (demo login, what's Pro-gated, IAP test path). Screenshots: 6.9"/6.7" iPhone required, 13" iPad since `supportsTablet`. Apple reviews on iPad Air — check the app there when it matters.

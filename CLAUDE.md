@@ -37,7 +37,7 @@ Strategy questions assume full knowledge of the folders above. Format outputs in
 ## Key machinery
 
 - **Product adds:** `octavius` skill (script-first fetch chain → Octavius agent → Opus review → script merge).
-- **Social content:** Cicero agent (voice exemplars: `marketing/x-posts-growth-batch.md`, `marketing/linkedin_posts.md`); monthly packs via `content-sprint`; separate Opus evaluator always.
+- **Social content:** Cicero agent (voice exemplars: `marketing/x-posts-growth-batch.md`, `marketing/2026-07/linkedin-2026-07.md`); monthly packs via `content-sprint`; separate Opus evaluator always.
 - **Company political data:** `/political-analysis` — 4-role legal-separation pipeline, never collapsed.
 - **Photos:** `product-photo-lookup` skill.
 - `marketing/` is gitignored (content, plans, founder journal at `marketing/journal/`).
