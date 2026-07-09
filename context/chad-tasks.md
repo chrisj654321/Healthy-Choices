@@ -56,7 +56,7 @@ Topics:
 **Validation (Claude runs after):** every URL spot-checked reachable and actually supporting its claim (sampled by Opus review); zero medical-causation claims (regulatory/observational facts only); every claim tagged; `could_not_verify` entries preserved, not silently dropped. Founder approves before any claim moves toward app copy.
 **Rules:** no fabrication (could_not_verify is success) — a shorter honest document beats a complete padded one; no fabricated studies/stats/quotes; source everything to primary sources where they exist; write research notes, NOT app copy (plain-English rewriting happens later under separate review); don't touch files outside your list.
 
-### PRODUCT CANDIDATE RESEARCH — PUSH TO 1,000+ — status: DRAFTED (2026-07-09)
+### PRODUCT CANDIDATE RESEARCH — PUSH TO 1,000+ — status: VALIDATED (2026-07-09, run via `codex exec`, no founder paste needed)
 **Goal:** Research real, verifiable candidate products (real barcode + name + brand) NOT currently in `src/data/products.js`, prioritizing the DB's thinnest categories, to feed the Octavius pipeline toward 1,000+ total products (current count: 892, verified 2026-07-09).
 **Output files (Chad owns these for the run):** ONE new CSV, `src/data/batches/products/candidates-2026-07-09.csv`, columns exactly `Barcode,Product Name,Brand,Category` — no other files.
 **Format/schema:**
@@ -66,6 +66,7 @@ Topics:
 - Do not attempt ingredients, nutrition, scoring, or company data — that's the Octavius pipeline's job (Stages 1–4), not this brief's.
 **Validation (Claude runs after):** dedupe check against every barcode already in `products.js`; drop rows whose barcode is a mod-10 (UPC/EAN check-digit) failure; spot-check a sample of blank-barcode rows are real, findable products (not invented); hand the surviving CSV to the `octavius` skill's Stage 0 pre-flight as a normal batch.
 **Rules:** no fabrication (a shorter, honest list beats a padded one — `could_not_verify`/blank-barcode is a fine outcome); real products only, no discontinued/regional-only items presented as mainstream; don't touch files outside your list; this is a candidate list ONLY — nothing here merges into the app without going through the full Octavius Stage 1–4 verification pipeline.
+**Result:** `candidates-2026-07-09.csv` — 187 rows, distributed Kids Lunch (16), Deli Meat (21), Peanut Butter (20), Chips (20), Crackers (20), Eggs (15), Hot Cereal (18), Granola (16), Pasta Sauce & Cooking Sauces (20), Coffee & Tea (21). Every barcode left blank (gpt-5.5 chose not to guess any — fully conservative, exactly as instructed). Claude's validation pass: 0 duplicates against existing `products.js` entries by brand+name; spot-checked realistic, no fabricated-looking entries. Ready for Octavius Stage 0 whenever the founder wants to run the batch (not auto-triggered — that's a separate agent-cost decision).
 
 ## Completed
 

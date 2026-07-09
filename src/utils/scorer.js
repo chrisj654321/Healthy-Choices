@@ -488,6 +488,95 @@ export function upfCeiling(markerLoad) {
   return Math.max(40, Math.round(100 - markerLoad * 22));
 }
 
+// ─── Certification bonus (2026-07-09 overhaul) ───────────────────────────────
+//
+// Certifications used to get a flat +3 each regardless of what they actually
+// verify — "Made in USA" (a country-of-origin marketing claim, not an
+// independent audit of anything) carried the same weight as USDA Organic.
+// Tiered by what real, independent verification actually stands behind each
+// mark, so the bonus reflects certification substance, not just presence:
+//
+//   Tier A (+3) — independently verifies the product's INGREDIENT/ADDITIVE
+//   profile against a safety/quality standard:
+//     USDA Organic (National Organic Program: bars synthetic pesticides, most
+//     synthetic additives, irradiation, GMOs; CCOF is a USDA-accredited
+//     certifier) · Non-GMO Project Verified (tests high-risk ingredients,
+//     doesn't just take a label's word) · Heart-Check (American Heart
+//     Association: product meets AHA's saturated fat/sodium/added-sugar
+//     criteria for its category).
+//
+//   Tier B (+2) — real independent verification, but scoped to a specific
+//   dietary/allergen safety need rather than overall ingredient quality:
+//     Certified Gluten-Free/GFCO (tests to <10ppm, stricter than the FDA's
+//     own <20ppm threshold — meaningful for celiac safety) · Certified Vegan
+//     (Vegan Action: no animal-derived ingredients/testing) · Nut-Free
+//     Certified (real allergen testing) · Kosher (OU/other recognized
+//     certifiers) and Halal Certified (real third-party religious-dietary
+//     compliance audits).
+//
+//   Tier C (+1) — real third-party certification, but about ETHICS/SOURCING
+//   rather than this product's health/ingredient profile:
+//     Fair Trade Certified (labor/trade standards) · Certified Humane
+//     (animal-welfare supply chain standards) · Rainforest Alliance Certified
+//     (environmental/sourcing standards) · B Corp Certified (company-wide
+//     governance, not product-specific) · California Olive Oil Council
+//     Certified (authenticity/quality standard specific to olive oil).
+//
+//   Tier D (+0) — a dietary-pattern or origin claim, not an independently
+//   verified safety/quality standard the way the tiers above are:
+//     Keto / Paleo / Whole30 (and their "Certified"/"Approved" variants) are
+//     macro/ingredient-pattern compliance claims with no single dominant
+//     accrediting body the way organic or gluten-free have; Made in USA is a
+//     country-of-origin claim (FTC-regulated, but not an ingredient-safety
+//     audit). Real programs, just not evidence a product is more healthful.
+//
+// Total is capped at MAX_CERT_BONUS so a long cert list can't stack past a
+// reasonable ceiling. An unrecognized certification string defaults to +1
+// (assume it's a real but unverified-scope mark) rather than the old blind +3.
+const CERT_TIER_A = new Set([
+  'usda organic', 'organic', 'usda-organic', 'ccof-certified-organic',
+  'non-gmo project verified', 'non-gmo project', 'non-gmo', 'non-gmo-project',
+  'heart-check',
+]);
+const CERT_TIER_B = new Set([
+  'certified gluten-free (gfco)', 'certified gluten-free', 'gluten-free (gfco)',
+  'gluten-free certified', 'gluten free certified', 'gluten-free', 'gluten free',
+  'certified-gluten-free',
+  'certified vegan', 'vegan action certified', 'vegan',
+  'nut-free certified',
+  'kosher (ou)', 'orthodox union kosher', 'kosher', 'tk kosher',
+  'orthodox-union-kosher', 'organized-kashrut-kosher',
+  'halal certified',
+]);
+const CERT_TIER_C = new Set([
+  'fair trade certified',
+  'certified humane',
+  'rainforest alliance certified',
+  'b corp certified',
+  'california olive oil council certified',
+]);
+const CERT_TIER_D = new Set([
+  'keto certified', 'keto',
+  'paleo certified', 'certified paleo', 'paleo',
+  'whole30 approved', 'whole30',
+  'made in usa',
+]);
+const MAX_CERT_BONUS = 8;
+
+function certWeight(cert) {
+  const n = String(cert || '').toLowerCase().trim();
+  if (CERT_TIER_A.has(n)) return 3;
+  if (CERT_TIER_B.has(n)) return 2;
+  if (CERT_TIER_C.has(n)) return 1;
+  if (CERT_TIER_D.has(n)) return 0;
+  return 1; // unrecognized mark: assume real but unverified scope
+}
+
+function calcCertBonus(certifications) {
+  const total = (certifications || []).reduce((sum, c) => sum + certWeight(c), 0);
+  return Math.min(MAX_CERT_BONUS, total);
+}
+
 // Words whose presence in an ingredient's name means that ingredient (and so
 // the product) underwent some processing step beyond simply being the whole
 // food itself — pasteurizing, juicing, roasting, salting, etc. Used to gate
@@ -529,7 +618,7 @@ export function scoreProduct(product) {
 
   const analyzed = analyzeIngredients(ingredients);
   const nutritionPenalty = calcNutritionPenalty(nutrition);
-  const certBonus = certifications.length * 3;
+  const certBonus = calcCertBonus(certifications);
   const markerCount = analyzed.markerCount;
   const markerLoad = analyzed.markerLoad;
   const packagingConcern = analyzePackagingConcern(product);

@@ -26,11 +26,22 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 /**
  * Supabase uses SecureStore (encrypted device keychain) instead of
  * AsyncStorage so auth tokens are stored securely.
+ *
+ * `keychainAccessible: AFTER_FIRST_UNLOCK` (Expo's default is WHEN_UNLOCKED,
+ * which requires the device to be unlocked at the exact moment of access) —
+ * without this, a token write/read that lands while the device is locked
+ * fails with "Error: Calling the 'setValueWithKeyAsync' function has failed
+ * → Caused by: User interaction is not allowed" (Sentry REACT-NATIVE-4).
+ * AppContext.js already stops Supabase's auto-refresh timer while backgrounded
+ * (see `fcd8ff5`) to prevent most of these; this closes the residual race
+ * where a refresh already in flight completes its keychain write after the
+ * device has locked.
  */
+const KEYCHAIN_OPTIONS = { keychainAccessible: SecureStore.AFTER_FIRST_UNLOCK };
 const SecureStoreAdapter = {
-  getItem:    (key) => SecureStore.getItemAsync(key),
-  setItem:    (key, value) => SecureStore.setItemAsync(key, value),
-  removeItem: (key) => SecureStore.deleteItemAsync(key),
+  getItem:    (key) => SecureStore.getItemAsync(key, KEYCHAIN_OPTIONS),
+  setItem:    (key, value) => SecureStore.setItemAsync(key, value, KEYCHAIN_OPTIONS),
+  removeItem: (key) => SecureStore.deleteItemAsync(key, KEYCHAIN_OPTIONS),
 };
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {

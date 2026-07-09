@@ -466,6 +466,47 @@ describe('scoreProduct: certification bonus', () => {
     expect(withoutCert.score).toBe(88);
     expect(withCert.score).toBe(91);
   });
+
+  test('certifications are tiered by what they actually verify, not a flat bonus', () => {
+    const base = { ingredients: ['sugar'], nutrition: {} };
+    // Tier A: independently verifies the ingredient/additive profile.
+    expect(scoreProduct({ ...base, certifications: ['USDA Organic'] }).certBonus).toBe(3);
+    expect(scoreProduct({ ...base, certifications: ['Non-GMO Project Verified'] }).certBonus).toBe(3);
+    expect(scoreProduct({ ...base, certifications: ['Heart-Check'] }).certBonus).toBe(3);
+    // Tier B: real verification, scoped to a dietary/allergen need.
+    expect(scoreProduct({ ...base, certifications: ['Certified Gluten-Free (GFCO)'] }).certBonus).toBe(2);
+    expect(scoreProduct({ ...base, certifications: ['Kosher (OU)'] }).certBonus).toBe(2);
+    // Tier C: real certification, but about ethics/sourcing not this product's
+    // ingredient profile.
+    expect(scoreProduct({ ...base, certifications: ['Fair Trade Certified'] }).certBonus).toBe(1);
+    // Tier D: a dietary-pattern or origin claim, not an independently verified
+    // safety/quality standard — contributes nothing.
+    expect(scoreProduct({ ...base, certifications: ['Made in USA'] }).certBonus).toBe(0);
+    expect(scoreProduct({ ...base, certifications: ['Keto Certified'] }).certBonus).toBe(0);
+  });
+
+  test('total certification bonus is capped even when many real certs stack', () => {
+    const result = scoreProduct({
+      ingredients: ['sugar'],
+      nutrition: {},
+      certifications: [
+        'USDA Organic', 'Non-GMO Project Verified', 'Heart-Check',
+        'Certified Gluten-Free (GFCO)', 'Certified Vegan', 'Kosher (OU)',
+        'Fair Trade Certified', 'Certified Humane',
+      ],
+    });
+    // Uncapped this would be 3+3+3+2+2+2+1+1 = 17 — capped at MAX_CERT_BONUS.
+    expect(result.certBonus).toBe(8);
+  });
+
+  test('an unrecognized certification string defaults to a modest +1, not the old flat +3', () => {
+    const result = scoreProduct({
+      ingredients: ['sugar'],
+      nutrition: {},
+      certifications: ['Some Brand-New Cert Nobody Has Seen Yet'],
+    });
+    expect(result.certBonus).toBe(1);
+  });
 });
 
 describe('scoreProduct: packaging penalty', () => {
