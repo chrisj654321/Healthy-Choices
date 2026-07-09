@@ -127,7 +127,7 @@ export default function HomeScreen({ navigation }) {
             </TouchableOpacity>
           </View>
           <View style={s.heroBadge}>
-            <Text style={s.heroBadgeNum}>700+</Text>
+            <Text style={s.heroBadgeNum}>1,000+</Text>
             <Text style={s.heroBadgeLabel}>products{'\n'}graded</Text>
           </View>
         </LinearGradient>
