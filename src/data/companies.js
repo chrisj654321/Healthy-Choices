@@ -9673,7 +9673,7 @@ export const BRAND_TO_COMPANY = {
   'hunts': 'conagra',
   'pam cooking spray': 'conagra',
   'wesson': 'conagra',
-  'peter pan': 'conagra',
+  'peter pan': 'post-holdings',
   'ro-tel': 'conagra',
 
   // Mondelez
