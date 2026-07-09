@@ -39,6 +39,19 @@ const OFF_BASE =
 
 const UA = { 'User-Agent': 'HealthyChoices/1.0 (support@healthychoices.app)' };
 
+// Neither fetch() call below had a timeout — on a slow/flaky connection the
+// request could hang indefinitely (RN's fetch has no default timeout, unlike
+// browsers), leaving the user staring at just the curated-local hit with no
+// indication live search ever ran. Bound every remote attempt so a hang always
+// resolves to a visible outcome instead of silence.
+const REMOTE_TIMEOUT_MS = 8000;
+
+function fetchWithTimeout(url, options, timeoutMs) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(url, { ...options, signal: controller.signal }).finally(() => clearTimeout(timer));
+}
+
 // ─── Cycling loader phrases ───────────────────────────────────────────────────
 
 const LOADER_PHRASES = [
@@ -100,7 +113,7 @@ async function fetchFromOFF(query) {
 
   // Primary: Search-a-licious
   try {
-    const resp = await fetch(SAL_BASE + encoded, { headers: UA });
+    const resp = await fetchWithTimeout(SAL_BASE + encoded, { headers: UA }, REMOTE_TIMEOUT_MS);
     if (resp.ok) {
       const data = await resp.json();
       const hits = data.hits || [];
@@ -116,7 +129,7 @@ async function fetchFromOFF(query) {
 
   // Fallback: legacy endpoint with US/EN filter
   if (products.length === 0) {
-    const resp = await fetch(OFF_BASE + encoded, { headers: UA });
+    const resp = await fetchWithTimeout(OFF_BASE + encoded, { headers: UA }, REMOTE_TIMEOUT_MS);
     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
     const data = await resp.json();
     products = (data.products || [])
@@ -138,6 +151,11 @@ export default function ProductSearchScreen({ navigation }) {
   const [liveHits,    setLiveHits]    = useState([]);   // web results
   const [liveLoading, setLiveLoading] = useState(false);
   const [error,       setError]       = useState(null);
+  // True when the remote search failed but curated local hits still rendered —
+  // previously this was entirely invisible (error only surfaces when there are
+  // zero results at all), so a live-search outage silently looked like "the
+  // catalog only has one match" instead of "live search is unavailable."
+  const [liveUnavailable, setLiveUnavailable] = useState(false);
   const [searched,    setSearched]    = useState(false);
   const [featuredProducts, setFeaturedProducts] = useState([]);
 
@@ -193,6 +211,7 @@ export default function ProductSearchScreen({ navigation }) {
     const gen = ++searchGen.current;
 
     setError(null);
+    setLiveUnavailable(false);
     setSearched(true);
     setLiveLoading(true);
     setPhraseIdx(0);
@@ -241,6 +260,11 @@ export default function ProductSearchScreen({ navigation }) {
       if (gen !== searchGen.current) return;
       if (localHits.length === 0) {
         setError('Could not reach the product database. Check your connection.');
+      } else {
+        // Local results exist, so the full error view won't show — surface a
+        // small inline notice instead so a live-search failure doesn't read
+        // as "the catalog only has this one match."
+        setLiveUnavailable(true);
       }
     } finally {
       if (gen === searchGen.current) setLiveLoading(false);
@@ -328,6 +352,8 @@ export default function ProductSearchScreen({ navigation }) {
     if (liveLoading) {
       listData.push({ type: 'loader', id: '__loader__' });
     }
+  } else if (liveUnavailable && curatedHits.length > 0) {
+    listData.push({ type: 'live-unavailable', id: '__live_unavailable__' });
   }
 
   const renderRow = ({ item }) => {
@@ -337,6 +363,16 @@ export default function ProductSearchScreen({ navigation }) {
           <View style={styles.dividerLine} />
           <Text style={styles.dividerLabel}>More results from the web</Text>
           <View style={styles.dividerLine} />
+        </View>
+      );
+    }
+    if (item.type === 'live-unavailable') {
+      return (
+        <View style={styles.liveUnavailableRow}>
+          <Ionicons name="cloud-offline-outline" size={14} color={Colors.textMuted} />
+          <Text style={styles.liveUnavailableText}>
+            Showing local matches only — live web search is unavailable right now.
+          </Text>
         </View>
       );
     }
@@ -597,6 +633,15 @@ const styles = StyleSheet.create({
     fontSize: Font.sizes.xs, color: Colors.textMuted,
     fontWeight: Font.weights.semibold,
     marginHorizontal: 10, textTransform: 'uppercase', letterSpacing: 0.5,
+  },
+
+  // Notice row: remote search failed but curated hits still rendered
+  liveUnavailableRow: {
+    flexDirection: 'row', alignItems: 'center',
+    marginHorizontal: 4, marginTop: 10, marginBottom: 4, gap: 6,
+  },
+  liveUnavailableText: {
+    fontSize: Font.sizes.xs, color: Colors.textMuted, flex: 1,
   },
 
   // Inline loader row at bottom of live tier

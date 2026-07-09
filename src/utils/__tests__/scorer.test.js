@@ -360,19 +360,47 @@ describe('classifyUnknown (via scoreProduct on unmatched ingredients)', () => {
 
 describe('scoreProduct: whole-food clean path', () => {
   test('single clean whole-food ingredient with modest sugar scores >= 95 and is marked wholeFoodClean', () => {
+    // No `packaging` field on this fixture -> packaging is unresearched, so
+    // this doesn't qualify for the literal-100 raw-whole-food ceiling (2026-07-09
+    // rule: assume plastic/unverified packaging until proven otherwise) even
+    // though "blackberries" itself has no processing indicator. It lands at
+    // the processed-clean ceiling (96) instead.
     const result = scoreProduct({ ingredients: ['blackberries'], nutrition: { sugars: 7 } });
     expect(result.wholeFoodClean).toBe(true);
+    expect(result.isRawWholeFood).toBe(false);
     expect(result.score).toBeGreaterThanOrEqual(95);
-    expect(result.score).toBe(100);
+    expect(result.score).toBe(96);
   });
 
   test('whole-food clean nutrition penalty is waived to at most 5 points even with high sugar', () => {
     // sugars: 35 -> raw nutritionPenalty would be 12, but the whole-food-clean
     // path only applies min(nutritionPenalty * 0.25, 5) => min(3, 5) = 3.
+    // Packaging is unresearched -> default assume-plastic penalty of 2 applies.
     const result = scoreProduct({ ingredients: ['blackberries'], nutrition: { sugars: 35 } });
     expect(result.wholeFoodClean).toBe(true);
     expect(result.nutritionPenalty).toBe(12);
-    expect(result.score).toBe(97); // 100 - 3 (waived-down nutrition hit)
+    expect(result.score).toBe(95); // 100 - 3 (waived nutrition hit) - 2 (assumed packaging)
+  });
+
+  test('a raw single-ingredient product with packaging verified clean reaches the literal 100 ceiling', () => {
+    const result = scoreProduct({
+      ingredients: ['almonds'],
+      nutrition: { sugars: 1 },
+      packaging: { material: 'glass' },
+    });
+    expect(result.wholeFoodClean).toBe(true);
+    expect(result.isRawWholeFood).toBe(true);
+    expect(result.score).toBe(100);
+  });
+
+  test('the same raw ingredient with a processing word (roasted) is not eligible for the literal 100 ceiling', () => {
+    const result = scoreProduct({
+      ingredients: ['roasted almonds'],
+      nutrition: { sugars: 1 },
+      packaging: { material: 'glass' },
+    });
+    expect(result.isRawWholeFood).toBe(false);
+    expect(result.score).toBe(96);
   });
 });
 
@@ -402,7 +430,9 @@ describe('scoreProduct: processing-ceiling clamp', () => {
     expect(result.markerLoad).toBe(2);
     expect(result.upfCeiling).toBe(56);
     expect(result.score).toBeLessThanOrEqual(result.upfCeiling);
-    expect(result.score).toBe(53); // raw penalty (25 + 22.5 = 47.5) drives it below the ceiling
+    // raw penalty (25 + 22.5 = 47.5) drives it below the ceiling; -2 more from
+    // the default assume-plastic packaging penalty (no packaging data here).
+    expect(result.score).toBe(51);
   });
 });
 
@@ -412,25 +442,29 @@ describe('scoreProduct: allergen flag = zero penalty', () => {
     const item = result.analyzedIngredients[0];
     expect(item.flag).toBe('allergen');
     expect(item.penalty).toBe(0);
-    // allergen is not a "concern" flag for wholeFoodClean purposes, so a
-    // single clean allergen-only ingredient still scores 100.
-    expect(result.score).toBe(100);
+    // allergen is not a "concern" flag for wholeFoodClean purposes, so this is
+    // still wholeFoodClean — but with no packaging data present it isn't
+    // eligible for the literal-100 raw-whole-food ceiling, so it lands at the
+    // processed-clean ceiling (96) instead.
+    expect(result.score).toBe(96);
   });
 });
 
 describe('scoreProduct: certification bonus', () => {
   test('a product with one certification scores +3 over the same product with none, when not clamped by the ceiling', () => {
     // 'sugar' (risk 4, flag moderate) is not a upfMarker (sweeteners only count
-    // as markers when flag is avoid/caution), so ceiling stays 100 and doesn't
-    // interfere with reading the cert bonus directly.
+    // as markers when flag is avoid/caution), so the ceiling (96, since no
+    // packaging data is present) stays well above the computed score and
+    // doesn't interfere with reading the cert bonus directly. No packaging
+    // data -> the default assume-plastic penalty (2) applies to both.
     const base = { ingredients: ['sugar'], nutrition: {} };
     const withoutCert = scoreProduct(base);
     const withCert = scoreProduct({ ...base, certifications: ['USDA Organic'] });
     expect(withoutCert.certBonus).toBe(0);
     expect(withCert.certBonus).toBe(3);
     expect(withCert.score).toBe(withoutCert.score + 3);
-    expect(withoutCert.score).toBe(90);
-    expect(withCert.score).toBe(93);
+    expect(withoutCert.score).toBe(88);
+    expect(withCert.score).toBe(91);
   });
 });
 

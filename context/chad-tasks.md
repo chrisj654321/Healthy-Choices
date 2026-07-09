@@ -56,6 +56,17 @@ Topics:
 **Validation (Claude runs after):** every URL spot-checked reachable and actually supporting its claim (sampled by Opus review); zero medical-causation claims (regulatory/observational facts only); every claim tagged; `could_not_verify` entries preserved, not silently dropped. Founder approves before any claim moves toward app copy.
 **Rules:** no fabrication (could_not_verify is success) — a shorter honest document beats a complete padded one; no fabricated studies/stats/quotes; source everything to primary sources where they exist; write research notes, NOT app copy (plain-English rewriting happens later under separate review); don't touch files outside your list.
 
+### PRODUCT CANDIDATE RESEARCH — PUSH TO 1,000+ — status: DRAFTED (2026-07-09)
+**Goal:** Research real, verifiable candidate products (real barcode + name + brand) NOT currently in `src/data/products.js`, prioritizing the DB's thinnest categories, to feed the Octavius pipeline toward 1,000+ total products (current count: 892, verified 2026-07-09).
+**Output files (Chad owns these for the run):** ONE new CSV, `src/data/batches/products/candidates-2026-07-09.csv`, columns exactly `Barcode,Product Name,Brand,Category` — no other files.
+**Format/schema:**
+- Aim for 150–200 candidate rows (buffer above the ~108 needed to cross 1,000, since some will be dupes/unresolvable and get dropped in Stage 0/1 of the Octavius pipeline).
+- **Prioritize these under-filled categories** (current product counts in parens — all real mainstream US grocery brands, not obscure/regional unless genuinely common): Kids Lunch (1), Deli Meat (1), Peanut Butter (1 — distinct from the existing "Nut Butters" category at 25, don't just duplicate those), Chips (2), Crackers (2), Eggs (13), Hot Cereal (14), Granola (17), Pasta Sauce & Cooking Sauces (17), Coffee & Tea (17). Fill the rest from any mainstream category once these are covered.
+- **Barcode must be a real UPC/EAN you found attached to that exact product** (retailer listing, Open Food Facts, USDA FDC, brand's own site) — if you can't confirm a real barcode for a product you're confident is real and common, list it anyway with the barcode column blank; Octavius's Stage 1 fetch script resolves by name-search when barcode is blank. **Never invent a barcode** — a wrong-but-plausible-looking UPC is worse than a blank one, since it would silently mismatch a different product downstream.
+- Do not attempt ingredients, nutrition, scoring, or company data — that's the Octavius pipeline's job (Stages 1–4), not this brief's.
+**Validation (Claude runs after):** dedupe check against every barcode already in `products.js`; drop rows whose barcode is a mod-10 (UPC/EAN check-digit) failure; spot-check a sample of blank-barcode rows are real, findable products (not invented); hand the surviving CSV to the `octavius` skill's Stage 0 pre-flight as a normal batch.
+**Rules:** no fabrication (a shorter, honest list beats a padded one — `could_not_verify`/blank-barcode is a fine outcome); real products only, no discontinued/regional-only items presented as mainstream; don't touch files outside your list; this is a candidate list ONLY — nothing here merges into the app without going through the full Octavius Stage 1–4 verification pipeline.
+
 ## Completed
 
 - Product waves 05–09 (~100 products each) — pre-board era, merged via batch pipeline.

@@ -488,6 +488,40 @@ export function upfCeiling(markerLoad) {
   return Math.max(40, Math.round(100 - markerLoad * 22));
 }
 
+// Words whose presence in an ingredient's name means that ingredient (and so
+// the product) underwent some processing step beyond simply being the whole
+// food itself — pasteurizing, juicing, roasting, salting, etc. Used to gate
+// the literal-100 ceiling below.
+const PROCESSING_INDICATORS = [
+  'pasteuriz', 'juice', 'concentrate', 'roast', 'salt', 'smoke', 'cured',
+  'fried', 'fry', 'baked', 'bake', 'cooked', 'cook', 'boiled', 'steamed',
+  'extract', 'isolate', 'hydrolyz', 'powder', 'syrup', 'flavor', 'flavour',
+  'sweetened', 'seasoned', 'blanched', 'toasted', 'dehydrated', 'canned',
+  'preserved',
+];
+
+function isRawIngredientName(name) {
+  const n = String(name || '').toLowerCase();
+  return !PROCESSING_INDICATORS.some((w) => n.includes(w));
+}
+
+// A product with a clean ingredient profile but ANY processing step, more
+// than one ingredient, or unverified-clean packaging is "excellent" but never
+// perfect — 100 is reserved for a genuinely raw, single-ingredient whole food
+// in packaging that's been checked and found non-plastic. Founder rule
+// (2026-07-09): "the only things that should get 100 are entirely whole
+// foods... even the cleanest product has been processed, or the container is
+// bad." In a barcoded grocery catalog this ceiling is meant to be almost
+// unreachable, not a typical outcome.
+const PROCESSED_CLEAN_CEILING = 96;
+
+// Applied when a product has no packaging data at all — most retail grocery
+// packaging is plastic or plastic-lined, so silently treating "unresearched"
+// the same as "verified clean" understated how common plastic contact is.
+// Founder rule (2026-07-09): assume plastic until packaging is actually
+// verified otherwise, rather than let missing data default to a free pass.
+const UNRESEARCHED_PACKAGING_PENALTY = 2;
+
 export function scoreProduct(product) {
   const { ingredients = [], nutrition = {}, certifications = [] } = product;
 
@@ -498,22 +532,42 @@ export function scoreProduct(product) {
   const certBonus = certifications.length * 3;
   const markerCount = analyzed.markerCount;
   const markerLoad = analyzed.markerLoad;
-  const ceiling = upfCeiling(markerLoad);
   const packagingConcern = analyzePackagingConcern(product);
-  const packagingPenalty = packagingConcern?.penalty ?? 0;
+  const packagingResearched = !!product.packaging;
+  const packagingPenalty = packagingConcern
+    ? packagingConcern.penalty
+    : (packagingResearched ? 0 : UNRESEARCHED_PACKAGING_PENALTY);
+  // Ceiling for anything that isn't a raw whole food: the existing UPF curve,
+  // intersected with the new hard "excellent but not perfect" cap so a
+  // near-zero marker load can no longer reach literal 100 on its own.
+  const ceiling = Math.min(PROCESSED_CLEAN_CEILING, upfCeiling(markerLoad));
 
   // "Whole-food clean": zero ultra-processing markers and nothing flagged
   // moderate/caution/avoid. The sugars and fats in a whole food are intrinsic,
   // so we waive almost all of the nutrition penalty — pure blackberries, raw
-  // almonds, plain raisins all land at/near 100.
+  // almonds, plain raisins all land at/near the ceiling.
   const hasConcern = analyzed.items.some(
     (i) => i.flag === 'moderate' || i.flag === 'caution' || i.flag === 'avoid'
   );
   const wholeFoodClean = !insufficientData && markerCount === 0 && !hasConcern;
 
+  // The stricter subset eligible for a literal 100: exactly one ingredient,
+  // that ingredient carries no processing indicator, and packaging has been
+  // actually checked (not just assumed) and found clean.
+  const isRawWholeFood =
+    wholeFoodClean &&
+    ingredients.length === 1 &&
+    isRawIngredientName(ingredients[0]) &&
+    packagingResearched &&
+    !packagingConcern;
+
   let score;
   if (wholeFoodClean) {
-    score = 100 - Math.min(nutritionPenalty * 0.25, 5) - packagingPenalty + certBonus;
+    const cleanCeiling = isRawWholeFood ? 100 : PROCESSED_CLEAN_CEILING;
+    score = Math.min(
+      cleanCeiling,
+      100 - Math.min(nutritionPenalty * 0.25, 5) - packagingPenalty + certBonus
+    );
   } else {
     score = 100 - analyzed.totalPenalty - nutritionPenalty - packagingPenalty + certBonus;
     score = Math.min(score, ceiling);
@@ -536,8 +590,10 @@ export function scoreProduct(product) {
     nutritionPenalty,
     packagingPenalty,
     packagingConcern,
+    packagingResearched,
     certBonus,
     wholeFoodClean,
+    isRawWholeFood,
     insufficientData,
   };
 }
