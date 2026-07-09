@@ -5,7 +5,7 @@
  */
 
 import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
-import { Alert } from 'react-native';
+import { Alert, AppState } from 'react-native';
 import * as Linking from 'expo-linking';
 import { supabase } from '../utils/supabase';
 import { identifyRCUser, resetRCUser } from '../utils/subscription';
@@ -113,6 +113,20 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
+    const syncAuthRefreshWithAppState = (state) => {
+      if (state === 'active') {
+        supabase.auth.startAutoRefresh();
+      } else {
+        supabase.auth.stopAutoRefresh();
+      }
+    };
+
+    // On React Native, Supabase can otherwise keep refreshing auth while the
+    // app is backgrounded. iOS may reject SecureStore keychain writes then with
+    // "User interaction is not allowed."
+    syncAuthRefreshWithAppState(AppState.currentState);
+    const appStateSub = AppState.addEventListener('change', syncAuthRefreshWithAppState);
+
     // Load existing session on mount
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
@@ -158,6 +172,8 @@ export function AuthProvider({ children }) {
     const linkingSub = Linking.addEventListener('url', ({ url }) => handleIncomingAuthUrl(url));
 
     return () => {
+      supabase.auth.stopAutoRefresh();
+      appStateSub.remove();
       subscription.unsubscribe();
       linkingSub.remove();
     };

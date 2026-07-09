@@ -16,6 +16,7 @@ iOS food-transparency app (Expo RN): scan a product → health grade, plain-Engl
 | [context/sops.md](context/sops.md) | How recurring work is always done | Add a section when a workflow repeats |
 | [context/backlog.md](context/backlog.md) | Idea backlog, impact-sorted + effort-sized | Add founder ideas here; delete when shipped (log outcome in decision-log) |
 | [VISION.md](VISION.md) | Product north star | Every feature and post serves it |
+| [memory/chad-memory.md](memory/chad-memory.md) | Durable Chad/ChatGPT preferences | Follow these defaults when generating prompts, creative concepts, and Chad-owned work |
 
 Strategy questions assume full knowledge of the folders above. Format outputs in Markdown unless told otherwise. Always reference past decisions before new recommendations.
 
