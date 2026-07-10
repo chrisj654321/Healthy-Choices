@@ -240,11 +240,11 @@
   },
   "total_manual_products": 540,
   "lastOctaviusMerge": {
-    "date": "2026-07-10T19:23:10.360Z",
-    "batch": "hot-cereal-2026-07-09_reviewed.js",
-    "merged": 15,
+    "date": "2026-07-10T19:24:12.826Z",
+    "batch": "granola-2026-07-09_reviewed.js",
+    "merged": 14,
     "duplicatesSkipped": 0,
     "photosAdded": 0,
-    "manualProductsTotal": 994
+    "manualProductsTotal": 1008
   }
 }
