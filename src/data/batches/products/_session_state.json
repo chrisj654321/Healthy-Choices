@@ -240,11 +240,11 @@
   },
   "total_manual_products": 540,
   "lastOctaviusMerge": {
-    "date": "2026-07-10T00:11:09.428Z",
-    "batch": "chips-2026-07-09_reviewed.js",
-    "merged": 16,
+    "date": "2026-07-10T14:12:46.195Z",
+    "batch": "crackers-2026-07-09_reviewed.js",
+    "merged": 14,
     "duplicatesSkipped": 0,
     "photosAdded": 0,
-    "manualProductsTotal": 954
+    "manualProductsTotal": 968
   }
 }

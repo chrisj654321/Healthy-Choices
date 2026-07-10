@@ -9664,7 +9664,8 @@ export const BRAND_TO_COMPANY = {
   'honey maid': 'mondelez',
   'wheat thins': 'mondelez',
   'newtons': 'mondelez',
-  'club crackers': 'mondelez',
+  'club crackers': 'kelloggs',
+  "carr's": 'kelloggs',
 
   // Mars
   "m&m's": 'mars',
