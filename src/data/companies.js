@@ -686,7 +686,7 @@ export const COMPANY_DB = {
         source: 'FDA BPA assessments; consumer advocacy reporting',
       },
     ],
-    subsidiaries: ["Campbell's", 'Pepperidge Farm', 'Goldfish', 'V8', 'Prego', 'Pace', 'Swanson', 'Pacific Foods', 'Snyder\'s of Hanover', 'Lance', 'Kettle Brand'],
+    subsidiaries: ["Campbell's", 'Pepperidge Farm', 'Goldfish', 'V8', 'Prego', 'Pace', 'Swanson', 'Pacific Foods', 'Snyder\'s of Hanover', 'Lance', 'Kettle Brand', 'Cape Cod', 'Snack Factory'],
     sustainabilityScore: 52,
   },
 
@@ -8029,36 +8029,6 @@ export const COMPANY_DB = {
 
   // ── Gap-fill: Companies referenced by products but not yet in DB ──
 
-  'campbell-soup': {
-    id: 'campbell-soup',
-    name: 'The Campbell Soup Company',
-    hq: 'Camden, New Jersey, USA',
-    revenue: '9.6B',
-    employees: '14,700',
-    logo: 'https://www.google.com/s2/favicons?domain=campbellsoupcompany.com&sz=256',
-    lobbyingSpend: 1440000,
-    lobbyingTargets: ['FDA', 'USDA', 'Congress — Nutrition Labeling', 'Congress — SNAP Program'],
-    politicalDonations: 1140000,
-    donationSplit: { republican: 55, democrat: 45 },
-    issues: [
-      {
-        id: 'bpa-soup-cans',
-        title: 'BPA in Soup Can Linings',
-        severity: 'high',
-        description: "A decade of class actions (2011–2022) alleged Campbell's misled consumers about BPA (bisphenol A) in its can linings. Campbell transitioned most cans to non-BPA linings by 2017, but some ongoing litigation argued replacement liners (BPS, acrylic) may carry similar risks.",
-        source: 'Environmental Health News; Top Class Actions, 2011–2022',
-      },
-      {
-        id: 'sodium-heart-disease',
-        title: 'Sodium Content & Heart Disease — Class Actions',
-        severity: 'medium',
-        description: "Multiple class actions alleged Campbell's soups marketed as 'heart healthy' or with cardiology society logos had excessive sodium, and that consumer were misled about salt content relative to cardiovascular health claims.",
-        source: 'Top Class Actions, 2014–2019',
-      },
-    ],
-    subsidiaries: ['Pepperidge Farm', "Goldfish", 'Swanson', 'Pacific Foods', 'Prego', 'Pace', "V8", "Snyder's of Hanover", "Cape Cod", 'Snack Factory'],
-    sustainabilityScore: 42,
-  },
 
   'olipop': {
     id: 'olipop',
@@ -10297,14 +10267,8 @@ export const BRAND_TO_COMPANY = {
   'bulletproof': 'bulletproof',
 
   // ── Gap-fill brand aliases ──
-  'campbell soup': 'campbell-soup',
-  'pepperidge farm': 'campbell-soup',
-  'goldfish': 'campbell-soup',
-  'swanson': 'campbell-soup',
-  'pacific foods': 'campbell-soup',
-  'prego': 'campbell-soup',
-  "snyder's of hanover": 'campbell-soup',
-  'cape cod chips': 'campbell-soup',
+  'campbell soup': 'campbell',
+  'cape cod chips': 'campbell',
   'olipop': 'olipop',
   'zevia': 'zevia',
   'spindrift': 'spindrift',
