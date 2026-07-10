@@ -22,14 +22,17 @@ The "it's live" moment content ran. August is now underway: **15 X posts schedul
 - All of the above: 794/794 tests passing, `assets/db/products.db` rebuilt + validated twice (once per scoring change) with the new scoring baked into precomputed score/grade columns — **ready to ship with the next build as asked.**
 - **Marketing-claims audit** (founder asked to verify the app does what social copy claims — see P1 below).
 
+## ✅ SHIPPED — New build submitted to Apple (night of 2026-07-09→10, founder-run)
+Carries everything above: scoring ceiling + retiered certifications, search resilience fix, SecureStore hardening (closes Sentry #4), the Sentry ANR fix, 76 new products (968 total), "1,000+" home badge copy. Auto-incremented build number off TestFlight's prior build 31 (`eas.json`'s `autoIncrement: true`); version string unchanged at 1.0.0. Awaiting Apple review.
+
 ## P0 — Launch burst + first revenue (was P1; now unblocked and time-critical)
-~25 days to the Aug 3 availability cliff. Goal: $1k/mo ≈ 40 annual subs ≈ 1,300–5,000 downloads.
+~24 days to the Aug 3 availability cliff. Goal: $1k/mo ≈ 40 annual subs ≈ 1,300–5,000 downloads.
 - [x] Launch-day content burst (Cicero) — ran, founder-confirmed 2026-07-09
+- [x] Next submission — build submitted night of 2026-07-09→10 (see above); run `submission-preflight` proactively before the *following* one
 - [ ] Marketing site DNS cutover (`shelfexpose.app` → the new Higgsfield site) — founder's call, currently paused
 - [ ] Waitlist emails (D1) → launch announcement once there are any signups
-- [ ] **Analytics SQL + privacy label — needs the founder directly, see checklist below**
-- [ ] Watch Sentry + App Store reviews daily for launch-week crashes/complaints
-- [ ] Next submission: run the `submission-preflight` skill, not ad-hoc checklists
+- [ ] **Analytics SQL + privacy label — needs the founder directly, see checklist below** (still open — separate from the build, doesn't block it)
+- [ ] Watch Sentry + App Store reviews daily now that the new build is in review/rolling out
 
 **Analytics SQL + privacy label checklist** (I can't execute either step myself — both require logging into a dashboard I don't have credentials for, Supabase and App Store Connect respectively):
 1. Supabase Dashboard → SQL Editor → paste the full contents of `supabase/analytics_setup.sql` → Run. One-time, idempotent (`create table if not exists`).
