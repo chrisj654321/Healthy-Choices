@@ -240,11 +240,11 @@
   },
   "total_manual_products": 540,
   "lastOctaviusMerge": {
-    "date": "2026-07-09T23:48:53.741Z",
-    "batch": "peanut-butter-2026-07-09_reviewed.js",
-    "merged": 17,
+    "date": "2026-07-10T00:11:09.428Z",
+    "batch": "chips-2026-07-09_reviewed.js",
+    "merged": 16,
     "duplicatesSkipped": 0,
     "photosAdded": 0,
-    "manualProductsTotal": 938
+    "manualProductsTotal": 954
   }
 }
