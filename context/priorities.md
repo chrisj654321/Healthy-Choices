@@ -1,6 +1,6 @@
 # Current priorities
 
-_Last updated: 2026-07-09 (evening pass) — update whenever a priority ships or shifts._
+_Last updated: 2026-07-11 — update whenever a priority ships or shifts._
 
 ## ✅ SHIPPED — Shelf Exposé is LIVE on the App Store (2026-07-06)
 **https://apps.apple.com/app/id6776718186** — free + IAP, $7.99/mo / $49.99/yr, 50% off first year. Approved after the 5.6.3 + 2.1(a) fix resubmission. Rejection era over.
@@ -47,10 +47,12 @@ Plan: `marketing/30-day-launch-plan.md`. Math: $1k/mo ≈ 40 annual subs ≈ 1,3
 - **Claims audit finding (2026-07-09) — action needed before these post**: two X/LinkedIn script lines describe capability the app doesn't have yet. "I'm building an app that flags ingredients banned in other countries. Follow so you catch the next one" (`marketing/video-scripts-batch.md`) — the app DOES show banned/restricted status passively when scanning (documented in `ingredients.js`), but there's no active alert when a NEW ban happens; "follow" means the social account, reword so it can't read as an app feature. "Shelf Exposé flags what replaced the thing that got banned" (`marketing/2026-07/linkedin-2026-07.md`) — **not implemented at all**. Either build it or cut the line before it posts.
 - Batch remaining August content before the Aug 3 availability cliff (still the deadline that drives everything)
 
-## P2 — Database to 1,000+ products, full photo coverage
-- 892 products today (verified 2026-07-09, corrects the prior stale "873" figure). Photo coverage 454/892 (51%), up from 40%.
-- **Product-candidate research now runs directly via `codex exec`** (2026-07-09) — no more founder paste-bridge needed for this lane; Claude invokes gpt-5.5 programmatically per `instructions/efficiency.md`'s Codex CLI mechanics. First run targets the DB's thinnest categories (Kids Lunch, Deli Meat, Peanut Butter, Chips, Crackers, Eggs, Hot Cereal), 150–200 real candidates, feeding the Octavius pipeline (script-first fetch → 1 Sonnet agent → 1 Opus review → script merge). Chad's paste-bridge (`context/chad-tasks.md`) stays available for anything that doesn't fit a self-contained CLI prompt.
-- Photo backlog: 438 products still missing an image after the free OFF bulk pass — next tier is UPCItemDB/USDA (still scriptable) then retailer-page lookups via the `octavius` agent for the genuine long tail.
+## ✅ SHIPPED — Crossed 1,000 products: full 10-batch Octavius push complete (2026-07-09→11)
+892 → **1,045 products**. Chad (`codex exec`) generated 187 real candidates across the DB's 10 thinnest categories with zero founder paste-bridge involvement; all 10 ran through the full script-fetch → Octavius research → Opus review → script-merge pipeline. Net: 153 products actually merged (rest correctly held back as `could_not_verify` or excluded duplicates — no fabrication). Along the way the review stage caught and fixed, before anything shipped: 3 fabricated-ingredient rejects, numerous wrong-product/wrong-variant Stage-1 substitutions (one batch, Eggs, had EVERY SINGLE Stage-1 record wrong), a fabricated "Gluten Free Certified" claim (real celiac-safety risk), a sodium-unit bug (grams vs mg) recurring in nearly every batch, and — independently, beyond the new entries — **5 mis-owned EXISTING company records** fixed: Peter Pan (Conagra → Post Holdings), Campbell/Campbell Soup duplicate consolidated, Classico (Mizkan → Kraft Heinz), Victoria Fine Foods (Rienzi & Sons → B&G Foods), Starbucks retail coffee ×4 entries (JDE Peet's → Nestlé, per the 2018 Global Coffee Alliance). Two real bugs fixed in the merge script itself (stale insertion anchor, apostrophe-breaking serializer). 794/794 tests passing throughout; `assets/db/products.db` rebuilt + validated after every merge.
+
+## P2 — Photo coverage
+- Photo backlog: 438 of the original 892 products still missing an image after the free OFF bulk pass (before this push added more) — next tier is UPCItemDB/USDA (still scriptable) then retailer-page lookups via the `octavius` agent for the genuine long tail. The new 153 products from the push mostly have no photo either (Stage-1 photos were frequently lost in transit — traced to an EAN-13 leading-zero barcode mismatch, worked around with a recovery script for the batches merged so far, ~40 photos recovered this way).
+- Next product push (if any) should target the remaining thin categories or deepen existing ones — no candidates queued right now.
 
 ## Feature ideas queue → [backlog.md](backlog.md) (impact-sorted, effort-sized)
 - NEW (2026-07-09): banned-ingredient-replacement tracking (what a manufacturer swapped in after a ban) — real feature gap found in the claims audit, not yet sized.
