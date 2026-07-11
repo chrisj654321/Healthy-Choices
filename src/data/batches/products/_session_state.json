@@ -240,11 +240,11 @@
   },
   "total_manual_products": 540,
   "lastOctaviusMerge": {
-    "date": "2026-07-10T19:24:12.826Z",
-    "batch": "granola-2026-07-09_reviewed.js",
-    "merged": 14,
+    "date": "2026-07-11T02:39:28.503Z",
+    "batch": "coffee-tea-2026-07-09_reviewed.js",
+    "merged": 20,
     "duplicatesSkipped": 0,
-    "photosAdded": 0,
-    "manualProductsTotal": 1008
+    "photosAdded": 6,
+    "manualProductsTotal": 1045
   }
 }
