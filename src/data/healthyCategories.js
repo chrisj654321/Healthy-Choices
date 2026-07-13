@@ -7,21 +7,17 @@
  * `productCategories` are matched against product.category (case-insensitive).
  * Icons use MaterialCommunityIcons (bundled in @expo/vector-icons).
  */
-import { categoryAccents } from '../constants/colors';
+import { buildCategoryAccents } from '../constants/colors';
 
 // One tile per shopping aisle, ordered roughly by how many products we carry.
 // `icon` is a MaterialCommunityIcons name (fallback shown only when an aisle has
 // no photographed product yet); the hero is otherwise the best-scoring product
-// photo in that aisle. Accent colors live in categoryAccents (colors.js).
-const C = categoryAccents;
-const tile = (id, label, icon, productCategories) => ({
-  id, label, icon,
-  color: C[id].color,
-  lightColor: C[id].light,
-  productCategories,
-});
+// photo in that aisle. Accent colors are computed from this list's order by
+// buildCategoryAccents (colors.js) — consecutive pairs share a shade, light
+// green through dark green then restarting light through dark brown.
+const tile = (id, label, icon, productCategories) => ({ id, label, icon, productCategories });
 
-export const HEALTHY_CATEGORIES = [
+const TILES = [
   tile('beverages',        'Beverages',          'bottle-soda',       ['Beverages']),
   tile('chips-crackers',   'Chips & Crackers',   'cookie',            ['Chips & Crackers', 'Chips', 'Crackers']),
   tile('snack-bars',       'Snack Bars',         'food-variant',      ['Snack Bars']),
@@ -48,6 +44,14 @@ export const HEALTHY_CATEGORIES = [
   tile('eggs',             'Eggs',               'egg',               ['Eggs']),
   tile('granola',          'Granola',            'barley',            ['Granola']),
 ];
+
+const accents = buildCategoryAccents(TILES.map((t) => t.id));
+
+export const HEALTHY_CATEGORIES = TILES.map((t) => ({
+  ...t,
+  color: accents[t.id].color,
+  lightColor: accents[t.id].light,
+}));
 
 /**
  * Returns products from PRODUCT_DB whose category matches the tile, scored and
