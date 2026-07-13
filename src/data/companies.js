@@ -2682,7 +2682,8 @@ export const COMPANY_DB = {
         source: 'Food Dive, 2023',
       },
     ],
-    subsidiaries: ['(Private label / store brand manufacturer — supplies Walmart, Kroger, Costco, Target, and others)'],
+    subsidiaries: [],
+    brandsNote: 'Private label / store brand manufacturer — supplies Walmart, Kroger, Costco, Target, and others',
     sustainabilityScore: 48,
   },
 
@@ -4344,7 +4345,8 @@ export const COMPANY_DB = {
         source: 'Center for Responsive Politics, 2022',
       },
     ],
-    subsidiaries: ['ADM (ingredient supplier — HFCS, corn starch, wheat flour, soy oil, ethanol)'],
+    subsidiaries: [],
+    brandsNote: 'Ingredient supplier — HFCS, corn starch, wheat flour, soy oil, ethanol',
     sustainabilityScore: 33,
   },
 
@@ -4401,7 +4403,8 @@ export const COMPANY_DB = {
         source: 'Mighty Earth, 2022',
       },
     ],
-    subsidiaries: ['(Private ingredient supplier — beef, pork, salt, oils, starches, sweeteners, animal feed)'],
+    subsidiaries: [],
+    brandsNote: 'Private ingredient supplier — beef, pork, salt, oils, starches, sweeteners, animal feed',
     sustainabilityScore: 24,
   },
 
@@ -4442,7 +4445,8 @@ export const COMPANY_DB = {
         source: 'Friends of the Earth US, 2023',
       },
     ],
-    subsidiaries: ['(Commodity ingredient supplier — soy, wheat, corn, sugar, vegetable oils)'],
+    subsidiaries: [],
+    brandsNote: 'Commodity ingredient supplier — soy, wheat, corn, sugar, vegetable oils',
     sustainabilityScore: 30,
   },
 
@@ -4467,7 +4471,8 @@ export const COMPANY_DB = {
         source: 'NOVA classification; FDA Enforcement Database, 2023-2026',
       },
     ],
-    subsidiaries: ['(B2B ingredient supplier — starches, sweeteners, nutrition ingredients)'],
+    subsidiaries: [],
+    brandsNote: 'B2B ingredient supplier — starches, sweeteners, nutrition ingredients',
     sustainabilityScore: 47,
   },
 

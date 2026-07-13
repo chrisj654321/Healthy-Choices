@@ -302,16 +302,29 @@ export default function CompanyProfileScreen({ route, navigation }) {
           <View>
             <SectionHeader
               title="Brands & Subsidiaries"
-              subtitle={`${company.subsidiaries?.length ?? 0} brands under ${company.name}`}
+              subtitle={
+                company.subsidiaries?.length
+                  ? `${company.subsidiaries.length} brands under ${company.name}`
+                  : 'No consumer-facing brands'
+              }
             />
-            <View style={styles.brandsGrid}>
-              {company.subsidiaries?.map((brand, i) => (
-                <View key={i} style={styles.brandCard}>
-                  <Ionicons name="pricetag-outline" size={16} color={Colors.primary} />
-                  <Text style={styles.brandName}>{brand}</Text>
-                </View>
-              ))}
-            </View>
+            {company.subsidiaries?.length > 0 ? (
+              <View style={styles.brandsGrid}>
+                {company.subsidiaries.map((brand, i) => (
+                  <View key={i} style={styles.brandCard}>
+                    <Ionicons name="pricetag-outline" size={16} color={Colors.primary} />
+                    <Text style={styles.brandName}>{brand}</Text>
+                  </View>
+                ))}
+              </View>
+            ) : company.brandsNote ? (
+              <View style={styles.brandsNoteCard}>
+                <Ionicons name="information-circle-outline" size={18} color={Colors.textSecondary} />
+                <Text style={styles.brandsNoteText}>{company.brandsNote}</Text>
+              </View>
+            ) : (
+              <EmptyState icon="pricetag-outline" text="No brand data available for this company." />
+            )}
           </View>
         )}
 
@@ -522,6 +535,8 @@ const styles = StyleSheet.create({
   brandsGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
   brandCard: { flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: Colors.white, borderRadius: 10, paddingHorizontal: 12, paddingVertical: 8, shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.05, shadowRadius: 4, elevation: 1 },
   brandName: { fontSize: Font.sizes.sm, fontWeight: Font.weights.medium, color: Colors.textPrimary },
+  brandsNoteCard: { flexDirection: 'row', alignItems: 'flex-start', gap: 8, backgroundColor: Colors.white, borderRadius: 12, padding: 14, shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.05, shadowRadius: 4, elevation: 1 },
+  brandsNoteText: { flex: 1, fontSize: Font.sizes.sm, color: Colors.textSecondary, lineHeight: 20 },
   productRow: { flexDirection: 'row', alignItems: 'center', backgroundColor: Colors.white, borderRadius: 12, padding: 12, marginBottom: 10, shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.05, shadowRadius: 4, elevation: 1 },
   productImage: { width: 52, height: 52, borderRadius: 8, marginRight: 12, resizeMode: 'contain' },
   productImagePlaceholder: { width: 52, height: 52, borderRadius: 8, marginRight: 12, backgroundColor: '#D5EAE3', alignItems: 'center', justifyContent: 'center' },
