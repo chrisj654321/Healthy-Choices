@@ -1,0 +1,387 @@
+{
+  "generated": "2026-07-09T16:05:24",
+  "total": 16,
+  "resolved": 15,
+  "missed": 1,
+  "source_health": {
+    "off-search": {
+      "ok": 107,
+      "miss": 48,
+      "err": 0,
+      "throttled": 187
+    },
+    "usda-fdc": {
+      "ok": 65,
+      "miss": 15,
+      "err": 0,
+      "throttled": 0
+    }
+  },
+  "products": {
+    "bear-naked-fruit-and-nut-granola": {
+      "input": {
+        "barcode": "",
+        "name": "Bear Naked Fruit and Nut Granola",
+        "brand": "Bear Naked"
+      },
+      "name": "Fruit & Nut Medley Wildly Delicious Granola",
+      "brand": "bear naked",
+      "serving_size": "1 serving (60 g)",
+      "calories": 270,
+      "ingredients_verbatim": "Whole grain oats, honey, _almonds_, expeller pressed canola oil, raisins (raisins, vegetable glycerin), _coconut_, dried cranberries (cranberries, cane sugar, vegetable glycerin), oat bran, maple syrup, _pecans_, walnuts, whole oat flour, ground flax seeds, toasted _sesame seeds_.",
+      "nutrition": {
+        "fat": 11,
+        "saturatedFat": 2.5,
+        "sodium": 0.17,
+        "carbs": 39,
+        "sugars": 16,
+        "protein": 6,
+        "fiber": 5
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/085/641/600/0017/front_en.48.400.jpg",
+      "matched_off_code": "0856416000017",
+      "source": "off-search"
+    },
+    "bear-naked-triple-berry-granola": {
+      "input": {
+        "barcode": "",
+        "name": "Bear Naked Triple Berry Granola",
+        "brand": "Bear Naked"
+      },
+      "name": "Triple Berry Crunch Granola",
+      "brand": "Bear Naked",
+      "serving_size": "1 serving (52 g)",
+      "calories": 210,
+      "ingredients_verbatim": "whole grain oats, brown sugar, brown rice syrup, crisp rice (rice flour, sugar, salt), whole oat flour, dried cranberries (cranberries, cane sugar, vegetable glycerin), canola oil, pumpkin seeds, strawberries, blueberries, baking soda, sea salt, natural flavors, rosemary extract.",
+      "nutrition": {
+        "fat": 5,
+        "saturatedFat": 1,
+        "sodium": 0.19,
+        "carbs": 38,
+        "sugars": 11,
+        "protein": 5,
+        "fiber": 4
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/085/641/600/0703/front_en.80.400.jpg",
+      "matched_off_code": "0856416000703",
+      "source": "off-search"
+    },
+    "bear-naked-cacao-and-cashew-butter-granola": {
+      "input": {
+        "barcode": "",
+        "name": "Bear Naked Cacao and Cashew Butter Granola",
+        "brand": "Bear Naked"
+      },
+      "name": "bear naked granola cacao and cashew butter",
+      "brand": null,
+      "serving_size": null,
+      "calories": null,
+      "ingredients_verbatim": "whole grain oats, semisweet chocolate (cane sugar, chocolate, cocoa butter, soy lecithin, vanilla extract), invert cane syrup. rice crisps (rice flour, cane sugar, salt), cashew butter, expeller pressed oil (sunflower and/or canola), cashews, pepitas, whole oat flour, brow rice syrup, cane sugar, sea salt, ginger, rosemary extract for freshnes contains soy and cashew ingredients. may contain other tree nuts.",
+      "nutrition": {
+        "fat": null,
+        "saturatedFat": null,
+        "sodium": null,
+        "carbs": null,
+        "sugars": null,
+        "protein": null,
+        "fiber": null
+      },
+      "image_url": null,
+      "matched_off_code": "09215113",
+      "source": "off-search"
+    },
+    "kind-healthy-grains-peanut-butter-whole-grain-cl": {
+      "input": {
+        "barcode": "",
+        "name": "KIND Healthy Grains Peanut Butter Whole Grain Clusters",
+        "brand": "KIND"
+      },
+      "name": "Kind, 100% Healthy Whole Grains, Dark Chocolate & Cranberry Clusters, Dark Chocolate & Cranberry Clusters",
+      "brand": "KIND",
+      "serving_size": "29.0 g",
+      "calories": 448,
+      "ingredients_verbatim": "WHOLE GRAINS (GLUTEN FREE OATS, BROWN RICE, MILLET, GLUTEN FREE OAT FLOUR, AMARANTH, BUCKWHEAT, QUINOA), EVAPORATED CANE JUICE, DARK CHOCOLATE (SUGAR, CHOCOLATE LIQUOR, COCOA BUTTER, SOY LECITHIN), CANOLA OIL, CHICORY ROOT FIBER, CRANBERRIES, SUGAR, MOLASSES, SEA SALT, NATURAL VITAMIN E, SUNFLOWER OIL.",
+      "nutrition": {
+        "fat": 10.3,
+        "saturatedFat": 1.72,
+        "sodium": 69,
+        "carbs": 79.3,
+        "sugars": 24.1,
+        "protein": 10.3,
+        "fiber": 10.3
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "kind-healthy-grains-dark-chocolate-whole-grain-c": {
+      "input": {
+        "barcode": "",
+        "name": "KIND Healthy Grains Dark Chocolate Whole Grain Clusters",
+        "brand": "KIND"
+      },
+      "name": "Kind, 100% healthy whole grains, dark chocolate & cranberry clusters",
+      "brand": "Kind",
+      "serving_size": "0.33 cup (29 g)",
+      "calories": 130,
+      "ingredients_verbatim": "Whole grains (gluten free oats, brown rice, millet, gluten free oat flour, amaranth, buckwheat, quinoa), evaporated cane juice, dark chocolate (sugar, chocolate liquor, cocoa butter, soy lecithin), canola oil, chicory root fiber, cranberries, sugar, molasses, sea salt, natural vitamin e, sunflower oil.",
+      "nutrition": {
+        "fat": 3,
+        "saturatedFat": 0.5,
+        "sodium": 0.02,
+        "carbs": 23,
+        "sugars": 7,
+        "protein": 3,
+        "fiber": 2.99
+      },
+      "image_url": null,
+      "matched_off_code": "0602652171833",
+      "source": "off-search"
+    },
+    "kind-healthy-grains-cinnamon-oat-clusters": {
+      "input": {
+        "barcode": "",
+        "name": "KIND Healthy Grains Cinnamon Oat Clusters",
+        "brand": "KIND"
+      },
+      "name": "Kind, 100% Healthy Whole Grains, Dark Chocolate & Cranberry Clusters, Dark Chocolate & Cranberry Clusters",
+      "brand": "KIND",
+      "serving_size": "29.0 g",
+      "calories": 448,
+      "ingredients_verbatim": "WHOLE GRAINS (GLUTEN FREE OATS, BROWN RICE, MILLET, GLUTEN FREE OAT FLOUR, AMARANTH, BUCKWHEAT, QUINOA), EVAPORATED CANE JUICE, DARK CHOCOLATE (SUGAR, CHOCOLATE LIQUOR, COCOA BUTTER, SOY LECITHIN), CANOLA OIL, CHICORY ROOT FIBER, CRANBERRIES, SUGAR, MOLASSES, SEA SALT, NATURAL VITAMIN E, SUNFLOWER OIL.",
+      "nutrition": {
+        "fat": 10.3,
+        "saturatedFat": 1.72,
+        "sodium": 69,
+        "carbs": 79.3,
+        "sugars": 24.1,
+        "protein": 10.3,
+        "fiber": 10.3
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "purely-elizabeth-ancient-grain-granola-vanilla-a": {
+      "input": {
+        "barcode": "",
+        "name": "Purely Elizabeth Ancient Grain Granola Vanilla Almond Butter",
+        "brand": "Purely Elizabeth"
+      },
+      "name": "Purely Elizabeth, Ancient Granola + Puffs Cereal, Pumpkin Fig",
+      "brand": "Purely Elizabeth",
+      "serving_size": "28.0 g",
+      "calories": 464,
+      "ingredients_verbatim": "PUMPKIN FIG ANCIENT GRAIN GRANOLA [ORGANIC GLUTEN-FREE OATS, ORGANIC COCONUT PALM SUGAR, ORGANIC RAW VIRGIN COCONUT OIL, ORGANIC PUFFED AMARANTH, ORGANIC QUINOA FLAKES, ORGANIC MILLET FLAKES, ORGANIC PUMPKIN SEEDS, DRIED FIGS, ORGANIC SUNFLOWER SEEDS, ORGANIC SALBA CHIA SEEDS, ORGANIC CINNAMON, SEA SALT] ORGANIC MILLET PUFFS.",
+      "nutrition": {
+        "fat": 16.1,
+        "saturatedFat": 8.93,
+        "sodium": 286,
+        "carbs": 64.3,
+        "sugars": 14.3,
+        "protein": 10.7,
+        "fiber": 7.1
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "purely-elizabeth-chocolate-sea-salt-probiotic-gr": {
+      "input": {
+        "barcode": "",
+        "name": "Purely Elizabeth Chocolate Sea Salt Probiotic Granola",
+        "brand": "Purely Elizabeth"
+      },
+      "name": "Purely Elizabeth, Ancient Granola + Puffs Cereal, Pumpkin Fig",
+      "brand": "Purely Elizabeth",
+      "serving_size": "28.0 g",
+      "calories": 464,
+      "ingredients_verbatim": "PUMPKIN FIG ANCIENT GRAIN GRANOLA [ORGANIC GLUTEN-FREE OATS, ORGANIC COCONUT PALM SUGAR, ORGANIC RAW VIRGIN COCONUT OIL, ORGANIC PUFFED AMARANTH, ORGANIC QUINOA FLAKES, ORGANIC MILLET FLAKES, ORGANIC PUMPKIN SEEDS, DRIED FIGS, ORGANIC SUNFLOWER SEEDS, ORGANIC SALBA CHIA SEEDS, ORGANIC CINNAMON, SEA SALT] ORGANIC MILLET PUFFS.",
+      "nutrition": {
+        "fat": 16.1,
+        "saturatedFat": 8.93,
+        "sodium": 286,
+        "carbs": 64.3,
+        "sugars": 14.3,
+        "protein": 10.7,
+        "fiber": 7.1
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "cascadian-farm-organic-fruit-and-nut-granola": {
+      "input": {
+        "barcode": "",
+        "name": "Cascadian Farm Organic Fruit and Nut Granola",
+        "brand": "Cascadian Farm"
+      },
+      "name": "Fruit and Nut Granola",
+      "brand": "Cascadian Farm Organic",
+      "serving_size": "1 serving (63 g)",
+      "calories": 213,
+      "ingredients_verbatim": "Whole Grain Oats, Cane Sugar, Rice, Sunflower Oil, Raisins, Cranberries, Almonds, Molasses, Sea Salt, Natural Flavor, Vitamin E",
+      "nutrition": {
+        "fat": 8,
+        "saturatedFat": 1,
+        "sodium": 0.07,
+        "carbs": 45,
+        "sugars": 15,
+        "protein": 6,
+        "fiber": 4
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/002/190/813/3119/front_en.21.400.jpg",
+      "matched_off_code": "0021908133119",
+      "source": "off-search"
+    },
+    "nature-s-path-love-crunch-dark-chocolate-and-red": {
+      "input": {
+        "barcode": "",
+        "name": "Nature's Path Love Crunch Dark Chocolate and Red Berries Granola",
+        "brand": "Nature's Path"
+      },
+      "name": "Love Crunch Premium Organic Granola Dark Chocolate & Red Berries",
+      "brand": "Nature's Path",
+      "serving_size": "1 cup (95 g)",
+      "calories": 464,
+      "ingredients_verbatim": "Flocons d'avoine*, jus de canne à sucre granulé*, huile de soja*, morceaux de chocolat noir équitable* (jus de canne à sucre granulé*, chocolat non sucré*, beurre de cacao*, vanille*, graines de lin*, noix de coco séchée*, cacao*, mélange de baies* séchées à froid (fraises* séchées à froid, framboises* séchées à froid), fécule de riz*, sel de mer, arôme naturel, tocophérols (pour préserver la fraîcheur). *Biologique. Contient du soja. Peut contenir du blé, du lait, des arac id pu des noix.",
+      "nutrition": {
+        "fat": 16,
+        "saturatedFat": 3.5,
+        "sodium": 0.18,
+        "carbs": 64,
+        "sugars": 21,
+        "protein": 9,
+        "fiber": 5
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/005/844/977/1760/front_en.29.400.jpg",
+      "matched_off_code": "0058449771760",
+      "source": "off-search"
+    },
+    "nature-s-path-pumpkin-seed-and-flax-granola": {
+      "input": {
+        "barcode": "",
+        "name": "Nature's Path Pumpkin Seed and Flax Granola",
+        "brand": "Nature's Path"
+      },
+      "name": "Pumpkin Seed + Flax Granola",
+      "brand": "Nature's Path Organic",
+      "serving_size": "0.75 cup cereal (55 g)",
+      "calories": 260,
+      "ingredients_verbatim": "Whole grain rolled oats*, cane sugar, soy oil*, brown rice flour pumpkin seeds, flax seeds* oat syrup solids* [oat syrup solids*, tocopherols (added to enhance freshness)], sea salt, molasses*, cinnamon*. *Organic. Contains soy. Produced in a facility that uses wheat, peanuts and tree nuts",
+      "nutrition": {
+        "fat": 10,
+        "saturatedFat": 1.5,
+        "sodium": 0.04,
+        "carbs": 37,
+        "sugars": 10,
+        "protein": 6,
+        "fiber": 4
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/005/844/977/0565/front_en.111.400.jpg",
+      "matched_off_code": "0058449770565",
+      "source": "off-search"
+    },
+    "madegood-strawberry-granola-minis": {
+      "input": {
+        "barcode": "",
+        "name": "MadeGood Strawberry Granola Minis",
+        "brand": "MadeGood"
+      },
+      "name": "Strawberry Organic Granola Minis",
+      "brand": "Made Good",
+      "serving_size": "0.85 ONZ (24 g)",
+      "calories": 90,
+      "ingredients_verbatim": "Pure rolled oats*, strawberry pieces* (apple juice concentrate*, apple puree*, strawberry puree*, cherry juice concentrate*, apple pectin, natural flavor*), cane sugar*, agave nectar*, sunflower oil*, apples*, whole grain crisp brown rice*, agave inulin*, apricots*, tapioca flour*, vegetable powder (spinach, broccoli, carrots, tomatoes, beets, shiitake mushrooms), strawberry flavor*.",
+      "nutrition": {
+        "fat": 2.5,
+        "saturatedFat": 0.4,
+        "sodium": 0,
+        "carbs": 16,
+        "sugars": 7,
+        "protein": 1,
+        "fiber": 1.99
+      },
+      "image_url": null,
+      "matched_off_code": "0687456223087",
+      "source": "off-search"
+    },
+    "safe-fair-birthday-cake-granola": {
+      "input": {
+        "barcode": "",
+        "name": "Safe + Fair Birthday Cake Granola",
+        "brand": "Safe + Fair"
+      },
+      "name": "Birthday Cake Granola",
+      "brand": "The Safe + Fair Food Company",
+      "serving_size": "30g",
+      "calories": 130,
+      "ingredients_verbatim": "Oats, brown rice syrup, cane sugar, sunflower oil, natural color sprinkles (cane sugar, palm oil and palm kernel oil, corn starch, sunflower lecithin, vegetable juice, annatto, spirulina extract, turmeric, beta carotene, maltodextrin, carnauba wax, cellulose gum), brown rice, millet, natural vanilla flavor, sea salt",
+      "nutrition": {
+        "fat": 4.5,
+        "saturatedFat": 0.5,
+        "sodium": 0.04,
+        "carbs": 21,
+        "sugars": 9,
+        "protein": 2,
+        "fiber": 1
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/085/843/800/3854/front_en.3.400.jpg",
+      "matched_off_code": "0858438003854",
+      "source": "off-search"
+    },
+    "udi-s-gluten-free-au-naturel-granola": {
+      "input": {
+        "barcode": "",
+        "name": "Udi's Gluten Free Au Naturel Granola",
+        "brand": "Udi's"
+      },
+      "name": "Au Naturel Granola",
+      "brand": "Udi's",
+      "serving_size": "0.5 PIZZA CRUST (57 g)",
+      "calories": 200,
+      "ingredients_verbatim": "water, tapioca starch, brown rice flour, canola oil, egg whites, dried cane syrup, tapioca syrup, tapioca maltodextrin, salt, xanthan gum, yeast, cultured corn syrup solids and citric acid (mold inhibitor), enzymes,",
+      "nutrition": {
+        "fat": 5,
+        "saturatedFat": 0,
+        "sodium": 0.35,
+        "carbs": 34,
+        "sugars": 5,
+        "protein": 4,
+        "fiber": 1.03
+      },
+      "image_url": null,
+      "matched_off_code": "0698997809173",
+      "source": "off-search"
+    },
+    "bakery-on-main-extreme-fruit-and-nut-granola": {
+      "input": {
+        "barcode": "",
+        "name": "Bakery on Main Extreme Fruit and Nut Granola",
+        "brand": "Bakery on Main"
+      },
+      "name": "Gluten-Free Granola Extreme Nut & Fruit",
+      "brand": "Bakery On Main",
+      "serving_size": "0.333 cup (30 g)",
+      "calories": 140,
+      "ingredients_verbatim": "corn meal, evaporated cane juice, brown rice, expeller pressed canola oil, sunflower seeds, raisins, almonds, sesame seed, flax seed, coconut, walnuts, hazelnuts, dried cranberries (cranberries, sugar, sunflower oil), corn starch, brazil nuts, rice bran extract, natural flavors, pecans, caramel color, sea salt,",
+      "nutrition": {
+        "fat": 7,
+        "saturatedFat": 1,
+        "sodium": 0.02,
+        "carbs": 18,
+        "sugars": 6,
+        "protein": 2,
+        "fiber": 2
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/083/522/800/6028/front_en.6.400.jpg",
+      "matched_off_code": "0835228006028",
+      "source": "off-search"
+    }
+  },
+  "misses": [
+    {
+      "barcode": "",
+      "name": "Seven Sundays Maple Sea Salt Oat Protein Cereal",
+      "brand": "Seven Sundays",
+      "reason": "unresolved",
+      "partial": null
+    }
+  ]
+}

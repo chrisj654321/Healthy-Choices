@@ -1,0 +1,418 @@
+{
+  "generated": "2026-07-09T16:05:24",
+  "total": 21,
+  "resolved": 15,
+  "missed": 6,
+  "source_health": {
+    "off-search": {
+      "ok": 107,
+      "miss": 48,
+      "err": 0,
+      "throttled": 187
+    },
+    "usda-fdc": {
+      "ok": 65,
+      "miss": 15,
+      "err": 0,
+      "throttled": 0
+    }
+  },
+  "products": {
+    "starbucks-caffe-verona-ground-coffee": {
+      "input": {
+        "barcode": "",
+        "name": "Starbucks Caffe Verona Ground Coffee",
+        "brand": "Starbucks"
+      },
+      "name": "Starbucks, Specialty Coffee Beverage, Caramel Caffe Latte",
+      "brand": "Starbucks Coffee Company",
+      "serving_size": "240.0 ml",
+      "calories": 54,
+      "ingredients_verbatim": "CAFFE BLEND K-CUP POD INGREDIENTS: GROUND COFFEE. SWEETENED DAIRY PACKET INGREDIENTS: SUGAR, NONFAT DRY MILK, DRIED CREAM, NATURAL FLAVORS.",
+      "nutrition": {
+        "fat": 1.46,
+        "saturatedFat": 0.83,
+        "sodium": 29,
+        "carbs": 9.17,
+        "sugars": 8.75,
+        "protein": 1.67,
+        "fiber": 0
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "dunkin-french-vanilla-ground-coffee": {
+      "input": {
+        "barcode": "",
+        "name": "Dunkin French Vanilla Ground Coffee",
+        "brand": "Dunkin"
+      },
+      "name": "Dunkin French Vanilla Ground Coffee imp",
+      "brand": null,
+      "serving_size": null,
+      "calories": null,
+      "ingredients_verbatim": "coffee, natural and artificial flavor.",
+      "nutrition": {
+        "fat": null,
+        "saturatedFat": null,
+        "sodium": null,
+        "carbs": null,
+        "sugars": null,
+        "protein": null,
+        "fiber": null
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/088/133/400/0474/front_en.14.400.jpg",
+      "matched_off_code": "0881334000474",
+      "source": "off-search"
+    },
+    "peet-s-major-dickason-s-blend-ground-coffee": {
+      "input": {
+        "barcode": "",
+        "name": "Peet's Major Dickason's Blend Ground Coffee",
+        "brand": "Peet's Coffee"
+      },
+      "name": "House Blend Medium Roast Ground Coffee",
+      "brand": "EARLY RISER",
+      "serving_size": "28.299999237060547 GRM",
+      "calories": 0,
+      "ingredients_verbatim": "GROUND COFFEE",
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": null,
+        "sodium": 0,
+        "carbs": 0,
+        "sugars": null,
+        "protein": 0,
+        "fiber": null
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "peet-s-big-bang-medium-roast-ground-coffee": {
+      "input": {
+        "barcode": "",
+        "name": "Peet's Big Bang Medium Roast Ground Coffee",
+        "brand": "Peet's Coffee"
+      },
+      "name": "Medium Roast Beauty Ground Coffee, Medium Roast",
+      "brand": "VITACUP",
+      "serving_size": "11.5 g",
+      "calories": 43,
+      "ingredients_verbatim": "COFFEE, COLLAGEN, CINNAMON, BIOTIN, MANGANESE, METHYLFOLATE.",
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": null,
+        "sodium": 391,
+        "carbs": 0,
+        "sugars": null,
+        "protein": 8.7,
+        "fiber": null
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "lavazza-classico-ground-coffee": {
+      "input": {
+        "barcode": "",
+        "name": "Lavazza Classico Ground Coffee",
+        "brand": "Lavazza"
+      },
+      "name": "Lavazza Espresso Italiano classico ground coffee",
+      "brand": "LavAzza",
+      "serving_size": null,
+      "calories": null,
+      "ingredients_verbatim": "GEMAHLENER GERÖSTETER KAFFEE/100% Arabica, medium roast",
+      "nutrition": {
+        "fat": null,
+        "saturatedFat": null,
+        "sodium": null,
+        "carbs": null,
+        "sugars": null,
+        "protein": null,
+        "fiber": null
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/800/007/001/2837/front_en.8.400.jpg",
+      "matched_off_code": "8000070012837",
+      "source": "off-search"
+    },
+    "cafe-bustelo-espresso-ground-coffee": {
+      "input": {
+        "barcode": "",
+        "name": "Cafe Bustelo Espresso Ground Coffee",
+        "brand": "Cafe Bustelo"
+      },
+      "name": "Cafe Espresso Ground Coffee, Cafe Espresso",
+      "brand": "EIGHT O'CLOCK COFFEE COMPANY",
+      "serving_size": "28.299999237060547 g",
+      "calories": 0,
+      "ingredients_verbatim": "GROUND COFFEE",
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": null,
+        "sodium": 0,
+        "carbs": 0,
+        "sugars": null,
+        "protein": 0,
+        "fiber": null
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "maxwell-house-breakfast-blend-ground-coffee": {
+      "input": {
+        "barcode": "",
+        "name": "Maxwell House Breakfast Blend Ground Coffee",
+        "brand": "Maxwell House"
+      },
+      "name": "Maxwell House, Iced Coffee, Caramel",
+      "brand": "MAXWELL HOUSE",
+      "serving_size": "5.0 ml",
+      "calories": 300,
+      "ingredients_verbatim": "CONCENTRATED COFFEE (WATER, COFFEE SOLIDS), FRUCTOSE, GLYCERIN, CARAMEL COLOR, NATURAL FLAVOR, CONTAINS LESS THAN 2% OF SALT, SUCRALOSE AND ACESULFAME POTASSIUM (SWEETNESS), POTASSIUM SORBATE (PRESERVATIVES), SULFUR DIOXIDE (SULFITES).",
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": null,
+        "sodium": 500,
+        "carbs": 80,
+        "sugars": 20,
+        "protein": 0,
+        "fiber": null
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "bigelow-earl-grey-black-tea": {
+      "input": {
+        "barcode": "",
+        "name": "Bigelow Earl Grey Black Tea",
+        "brand": "Bigelow"
+      },
+      "name": "Earl grey Black tea",
+      "brand": "Bigelow",
+      "serving_size": "1 serving (1.65 g)",
+      "calories": 0,
+      "ingredients_verbatim": "black tea, natural oil of bergamot",
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": null,
+        "sodium": null,
+        "carbs": 0,
+        "sugars": null,
+        "protein": 0,
+        "fiber": null
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/007/231/000/1237/front_en.4.400.jpg",
+      "matched_off_code": "0072310001237",
+      "source": "off-search"
+    },
+    "bigelow-constant-comment-black-tea": {
+      "input": {
+        "barcode": "",
+        "name": "Bigelow Constant Comment Black Tea",
+        "brand": "Bigelow"
+      },
+      "name": "Constant Comment Black Tea",
+      "brand": "Bigelow",
+      "serving_size": null,
+      "calories": null,
+      "ingredients_verbatim": "black tea, rind of oranges, sweet spice, natural flavor",
+      "nutrition": {
+        "fat": null,
+        "saturatedFat": null,
+        "sodium": null,
+        "carbs": null,
+        "sugars": null,
+        "protein": null,
+        "fiber": null
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/007/231/000/1039/front_en.5.400.jpg",
+      "matched_off_code": "0072310001039",
+      "source": "off-search"
+    },
+    "twinings-earl-grey-tea": {
+      "input": {
+        "barcode": "",
+        "name": "Twinings Earl Grey Tea",
+        "brand": "Twinings"
+      },
+      "name": "Earl Grey Tea Bags",
+      "brand": "Twinings",
+      "serving_size": null,
+      "calories": null,
+      "ingredients_verbatim": "Tea, bergamot flavouring (4%), natural lemon flavouring with other natural flavourings (1%).",
+      "nutrition": {
+        "fat": null,
+        "saturatedFat": null,
+        "sodium": null,
+        "carbs": null,
+        "sugars": null,
+        "protein": null,
+        "fiber": null
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/007/017/723/1415/front_en.15.400.jpg",
+      "matched_off_code": "0070177231415",
+      "source": "off-search"
+    },
+    "tazo-awake-english-breakfast-tea": {
+      "input": {
+        "barcode": "",
+        "name": "Tazo Awake English Breakfast Tea",
+        "brand": "Tazo"
+      },
+      "name": "Organic Awake english breakfast tea 16 tea bags",
+      "brand": "Tazo",
+      "serving_size": null,
+      "calories": 0,
+      "ingredients_verbatim": "A blend of organic black teas",
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": 0,
+        "sodium": 0,
+        "carbs": 0,
+        "sugars": 0,
+        "protein": 0,
+        "fiber": 0
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/079/452/200/3037/front_en.3.400.jpg",
+      "matched_off_code": "0794522003037",
+      "source": "off-search"
+    },
+    "tazo-zen-green-tea": {
+      "input": {
+        "barcode": "",
+        "name": "Tazo Zen Green Tea",
+        "brand": "Tazo"
+      },
+      "name": "Tazo, Green Tea, Plum Pomegranate, Plum Pomegranate",
+      "brand": "TAZO",
+      "serving_size": "408.0 ml",
+      "calories": 34,
+      "ingredients_verbatim": "A TEA INFUSION OF (WATER, GREEN TEA, NATURAL FLAVORS), CANE SUGAR. PLUM AND POMEGRANATE CONCENTRATE JUICE NATURAL FLAVOR CITRIC ACID.",
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": null,
+        "sodium": 2,
+        "carbs": 8.58,
+        "sugars": 8.33,
+        "protein": 0,
+        "fiber": null
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "yogi-honey-lavender-stress-relief-tea": {
+      "input": {
+        "barcode": "",
+        "name": "Yogi Honey Lavender Stress Relief Tea",
+        "brand": "Yogi"
+      },
+      "name": "Stress Relief Organic Tea Bags",
+      "brand": "PRIDE OF INDIA",
+      "serving_size": "1.7000000476837158 GRM",
+      "calories": 0,
+      "ingredients_verbatim": "INGREDIENTS: 100% ORGANIC BLEND OF MINT, TULSI (HOLY BASIL), LEMONGRASS, ARJUNA & ASHWAGANDHA.",
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": null,
+        "sodium": 0,
+        "carbs": 0,
+        "sugars": null,
+        "protein": 0,
+        "fiber": null
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "celestial-seasonings-bengal-spice-herbal-tea": {
+      "input": {
+        "barcode": "",
+        "name": "Celestial Seasonings Bengal Spice Herbal Tea",
+        "brand": "Celestial Seasonings"
+      },
+      "name": "Bengal Spice Herbal Tea",
+      "brand": "Celestial Seasonings",
+      "serving_size": "1 tea bag (2.35 g)",
+      "calories": null,
+      "ingredients_verbatim": "CINNAMON, ROASTED CHICORY ROASTED CAROB, NATURAL FLAVOURS, GINGER, CARDAMOM, BLACK PEPPER, CLOVES, NUTMEG.",
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": null,
+        "sodium": null,
+        "carbs": null,
+        "sugars": null,
+        "protein": null,
+        "fiber": null
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/007/073/452/5971/front_en.67.400.jpg",
+      "matched_off_code": "0070734525971",
+      "source": "off-search"
+    },
+    "stash-premium-peppermint-herbal-tea": {
+      "input": {
+        "barcode": "",
+        "name": "Stash Premium Peppermint Herbal Tea",
+        "brand": "Stash"
+      },
+      "name": "Organic Premium Herbal Tea, Peppermint",
+      "brand": "SIGNATURE TEA CO.",
+      "serving_size": "1.5 g",
+      "calories": 0,
+      "ingredients_verbatim": "ORGANIC PEPPERMINT LEAVES",
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": 0,
+        "sodium": 0,
+        "carbs": 0,
+        "sugars": 0,
+        "protein": 0,
+        "fiber": 0
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    }
+  },
+  "misses": [
+    {
+      "barcode": "",
+      "name": "Starbucks Veranda Blend Ground Coffee",
+      "brand": "Starbucks",
+      "reason": "unresolved",
+      "partial": null
+    },
+    {
+      "barcode": "",
+      "name": "Starbucks Breakfast Blend Ground Coffee",
+      "brand": "Starbucks",
+      "reason": "unresolved",
+      "partial": null
+    },
+    {
+      "barcode": "",
+      "name": "Dunkin Original Blend Ground Coffee",
+      "brand": "Dunkin",
+      "reason": "unresolved",
+      "partial": null
+    },
+    {
+      "barcode": "",
+      "name": "Community Coffee Breakfast Blend Ground Coffee",
+      "brand": "Community Coffee",
+      "reason": "unresolved",
+      "partial": null
+    },
+    {
+      "barcode": "",
+      "name": "Eight O'Clock The Original Ground Coffee",
+      "brand": "Eight O'Clock Coffee",
+      "reason": "unresolved",
+      "partial": null
+    },
+    {
+      "barcode": "",
+      "name": "Folgers Black Silk Ground Coffee",
+      "brand": "Folgers",
+      "reason": "unresolved",
+      "partial": null
+    }
+  ]
+}

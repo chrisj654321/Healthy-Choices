@@ -1,12 +1,12 @@
 # Current priorities
 
-_Last updated: 2026-07-11 — update whenever a priority ships or shifts._
+_Last updated: 2026-07-12 — update whenever a priority ships or shifts._
 
 ## ✅ SHIPPED — Shelf Exposé is LIVE on the App Store (2026-07-06)
 **https://apps.apple.com/app/id6776718186** — free + IAP, $7.99/mo / $49.99/yr, 50% off first year. Approved after the 5.6.3 + 2.1(a) fix resubmission. Rejection era over.
 
-## ✅ SHIPPED — Marketing site rebuilt + live (2026-07-08)
-Full detective-themed two-act site live at https://fierce-pine-854.higgsfield.app (headline bug fixed, S-curve evidence-board redesign, PepsiCo money section reframed around influence not brand trivia). Custom domain `shelfexpose.app` DNS cutover to this site still pending founder review/go-ahead — currently on back burner per founder (2026-07-09).
+## ✅ SHIPPED — Marketing site rebuilt + live (2026-07-08); Evidence Archive added (2026-07-12)
+Full detective-themed two-act site live at https://fierce-pine-854.higgsfield.app (headline bug fixed, S-curve evidence-board redesign, PepsiCo money section reframed around influence not brand trivia). **2026-07-12: static Doritos case card replaced with the founder-directed "Evidence Archive"** — a mouse-driven 3D fan of 10 manila case files (Walmart, Nestlé, PepsiCo, Coca-Cola, Tyson, Mars, Kraft Heinz, General Mills, Mondelēz, Unilever), each opening a dossier with vetted `companies.js` data (revenue, lobbying, donations + split, brands, one flagship documented issue); Doritos exhibit preserved inside PepsiCo's file. Same deploy fixed a fabricated "7,500+ products analyzed" stat → real "1,000+". Custom domain `shelfexpose.app` DNS cutover still pending founder review/go-ahead — on back burner per founder (2026-07-09).
 
 ## ✅ SHIPPED — Launch-day content burst (2026-07-09, founder-confirmed)
 The "it's live" moment content ran. August is now underway: **15 X posts scheduled**; LinkedIn is scheduling in a rolling 10-day window (Buffer plan limit on this tier), so it gets refreshed every ~10 days rather than batched a full month at once — noted as a standing constraint below, not a one-time gap.
@@ -32,17 +32,16 @@ The "it's live" moment content ran. August is now underway: **15 X posts schedul
 - [x] Next submission — build submitted night of 2026-07-09→10 (see above); run `submission-preflight` proactively before the *following* one
 - [ ] Marketing site DNS cutover (`shelfexpose.app` → the new Higgsfield site) — founder's call, currently paused
 - [ ] Waitlist emails (D1) → launch announcement once there are any signups
-- [ ] **Analytics SQL + privacy label — needs the founder directly, see checklist below** (still open — separate from the build, doesn't block it)
+- [x] Analytics SQL — founder confirmed 2026-07-12: `scan_events` table + insert policy already existed in Supabase (re-run hit "policy already exists," meaning the original run succeeded). Script patched to `drop policy if exists` first so future re-runs are safe.
+- [ ] **Privacy label — still needs the founder directly** (App Store Connect dashboard, no credentials on this side): App Privacy → add/confirm two data types: **Product Interaction** and **Crash Data**, both set to **"Data Not Linked to You"** (matches `scan_events`'s actual schema — no user/device/session id — and Sentry's identity-free config). Ships with the next build's metadata update, not the binary itself.
 - [ ] Watch Sentry + App Store reviews daily now that the new build is in review/rolling out
-
-**Analytics SQL + privacy label checklist** (I can't execute either step myself — both require logging into a dashboard I don't have credentials for, Supabase and App Store Connect respectively):
-1. Supabase Dashboard → SQL Editor → paste the full contents of `supabase/analytics_setup.sql` → Run. One-time, idempotent (`create table if not exists`).
-2. App Store Connect → App Privacy → add/confirm two data types: **Product Interaction** and **Crash Data**, both set to **"Data Not Linked to You"** (matches `scan_events`'s actual schema — no user/device/session id — and Sentry's identity-free config). Ships with the next build's metadata update, not the binary itself.
 
 ## P1 — Launch marketing engine (30-day plan → $1,000/mo)
 Plan: `marketing/30-day-launch-plan.md`. Math: $1k/mo ≈ 40 annual subs ≈ 1,300–5,000 downloads ≈ 40–150k short-form views.
 - Marketing folder reorganized 2026-07-08: one folder per month, one file per social type (`marketing/2026-07/`, `marketing/2026-08/`) — see decision-log.
-- **August underway**: 15 X posts scheduled. LinkedIn is Buffer-limited to a **rolling 10-day scheduling window on the current plan** — can't batch the full month at once; needs a recurring ~10-day top-up instead of a one-time August push. Worth a plan-upgrade cost/benefit check if this becomes a recurring time cost during the founder's Aug 3 availability cliff.
+- **X scheduled through August 26 (2026-07-12, founder-confirmed)**: 10 posts loaded into Buffer in a row. **5 more X posts still needed** to fill out the rest of August — next task.
+- **LinkedIn: more posts needed** (beyond X, not yet scheduled for August) — Buffer-limited to a **rolling 10-day scheduling window on the current plan**, so this needs a recurring ~10-day top-up rather than a one-time batch. Worth a plan-upgrade cost/benefit check if this becomes a recurring time cost during the founder's Aug 3 availability cliff.
+- **Cicero doctrine overhauled 2026-07-12** (see decision-log): 3-hooks-per-post, no markdown/em-dashes/banned CTAs in copy, live-app framing (was stale "pre-launch," now fixed across the whole August batch), claims must name a target + be a live issue, "linked to" medical framing allowed. Any NEW X/LinkedIn content should be written under this doctrine; already-scheduled Aug 1–26 posts predate parts of it (not retroactively touched — already loaded into Buffer).
 - LinkedIn origin-story series complete for July (`marketing/2026-07/linkedin-2026-07.md`, 29/29 days filled, dated) — flat engagement, staying on autopilot per 2026-07-04 decision
 - Sentry → GitHub auto-issue pipeline confirmed live AND working (2026-07-05, exercised for real 2026-07-08/09 — see above)
 - **Claims audit finding (2026-07-09) — action needed before these post**: two X/LinkedIn script lines describe capability the app doesn't have yet. "I'm building an app that flags ingredients banned in other countries. Follow so you catch the next one" (`marketing/video-scripts-batch.md`) — the app DOES show banned/restricted status passively when scanning (documented in `ingredients.js`), but there's no active alert when a NEW ban happens; "follow" means the social account, reword so it can't read as an app feature. "Shelf Exposé flags what replaced the thing that got banned" (`marketing/2026-07/linkedin-2026-07.md`) — **not implemented at all**. Either build it or cut the line before it posts.
@@ -62,9 +61,15 @@ Plan: `marketing/30-day-launch-plan.md`. Math: $1k/mo ≈ 40 annual subs ≈ 1,3
 - NEW (2026-07-09): banned-ingredient-replacement tracking (what a manufacturer swapped in after a ban) — real feature gap found in the claims audit, not yet sized.
 - NEW (2026-07-09): active banned-ingredient alert/notification (vs. today's passive scan-time display) — real feature gap, not yet sized.
 
+## ✅ SHIPPED (code-complete) — products.db production outage fixed 2026-07-12
+The Sentry `Cannot find module` error traced to `initProductStore()` bundling `products.db` via Metro `require()` — confirmed live by founder screenshots: every company's Products tab showed "0 products," Home's category-browse section was empty. **This was broken for every user in production.** Fixed: `productStore.js` now downloads the DB at runtime via `FileSystem.downloadAsync` (also fixes a second latent bug — catalog updates never reached devices with an existing local copy). Root size cause also found and fixed: `products.db` was 161MB only because `build-products-sqlite.js` was folding in `products_generated.json`'s ~136k OFF bulk rows that never actually shipped to production anyway — rebuilt manual-only, **161MB → 0.93MB**, still all 1,045 products, `validate-products-sqlite.js` full PASS.
+- Uploaded to Supabase Storage (`Catalog` bucket, public), founder-run via dashboard, then verified via a new reusable script (`scripts/upload-products-db.js`, service-role key in `.env`, gitignored). `REMOTE_DB_URL` in `productStore.js` is live and confirmed serving the correct 0.93MB file.
+- **Rides the next build.** No code changes needed to close this out — just needs to be included in whatever the founder builds/submits next.
+- Going forward: after any product-catalog change, run `node scripts/build-products-sqlite.js && node scripts/validate-products-sqlite.js && node scripts/upload-products-db.js`, then bump `DB_VERSION` in `productStore.js` so devices with an existing local copy re-download.
+
 ## P3 — App quality
-- **Testing infrastructure**: Jest + jest-expo, now **794** characterization tests across 6 suites — `npm test` runs the app's core logic locally, no build needed.
-- **Product-catalog re-architecture (Waves 1-3) COMPLETE 2026-07-05**: `assets/db/products.db` rebuilt twice today (scoring ceiling, then cert retiering) and validated clean each time. Still needs a founder call before the next real build: commit the ~153MB `products.db` vs. an EAS build hook to regenerate it; on-device asset-copy flow still unverified beyond mocks/Node-side checks.
+- **Testing infrastructure**: Jest + jest-expo, now **795** characterization tests across 6 suites — `npm test` runs the app's core logic locally, no build needed.
+- **Product-catalog re-architecture (Waves 1-3) COMPLETE 2026-07-05**: `assets/db/products.db` rebuilt twice today (scoring ceiling, then cert retiering) and validated clean each time. **Superseded 2026-07-12** — see the products.db production outage section above; the commit-vs-build-hook question is now moot since the DB is downloaded at runtime, not bundled at all.
 - **Company/political data**: 269 companies, 540 issues logged — 36 already animal-welfare/child-labor related (real, active litigation). Coverage across the full catalog hasn't been systematically audited — worth a pass as the product DB scales past 1,000.
 - UI polish batch done 2026-07-01 (tab-bar bug, personalized allergens, tiered severity, calm tiles) — shipped in build 27
 - RLS on product_requests: **DONE 2026-07-05**

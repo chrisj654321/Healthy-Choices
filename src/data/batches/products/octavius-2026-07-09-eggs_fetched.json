@@ -1,0 +1,337 @@
+{
+  "generated": "2026-07-09T16:05:24",
+  "total": 15,
+  "resolved": 13,
+  "missed": 2,
+  "source_health": {
+    "off-search": {
+      "ok": 107,
+      "miss": 48,
+      "err": 0,
+      "throttled": 187
+    },
+    "usda-fdc": {
+      "ok": 65,
+      "miss": 15,
+      "err": 0,
+      "throttled": 0
+    }
+  },
+  "products": {
+    "vital-farms-organic-pasture-raised-large-eggs": {
+      "input": {
+        "barcode": "",
+        "name": "Vital Farms Organic Pasture-Raised Large Eggs",
+        "brand": "Vital Farms"
+      },
+      "name": "Vital Farms Unsalted Pasture- Raised Butter",
+      "brand": "Vital Farms",
+      "serving_size": "15.0 g",
+      "calories": 110,
+      "ingredients_verbatim": "Pasteurized Cream ( Milk).",
+      "nutrition": {
+        "fat": 12,
+        "saturatedFat": 8,
+        "sodium": null,
+        "carbs": null,
+        "sugars": null,
+        "protein": 0,
+        "fiber": 0
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "vital-farms-pasture-raised-extra-large-eggs": {
+      "input": {
+        "barcode": "",
+        "name": "Vital Farms Pasture-Raised Extra Large Eggs",
+        "brand": "Vital Farms"
+      },
+      "name": "Vital Farms Unsalted Pasture- Raised Butter",
+      "brand": "Vital Farms",
+      "serving_size": "15.0 g",
+      "calories": 110,
+      "ingredients_verbatim": "Pasteurized Cream ( Milk).",
+      "nutrition": {
+        "fat": 12,
+        "saturatedFat": 8,
+        "sodium": null,
+        "carbs": null,
+        "sugars": null,
+        "protein": 0,
+        "fiber": 0
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "pete-gerry-s-organic-free-range-extra-large-eggs": {
+      "input": {
+        "barcode": "",
+        "name": "Pete & Gerry's Organic Free-Range Extra Large Eggs",
+        "brand": "Pete & Gerry's"
+      },
+      "name": "Organic Grade A Free Range Large Eggs",
+      "brand": "WELLSLEY FARMS",
+      "serving_size": "50.0 GRM",
+      "calories": 140,
+      "ingredients_verbatim": "LARGE ORGANIC EGGS.",
+      "nutrition": {
+        "fat": 10,
+        "saturatedFat": 3,
+        "sodium": 140,
+        "carbs": 0,
+        "sugars": 0,
+        "protein": 12,
+        "fiber": 0
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "pete-gerry-s-organic-pasture-raised-eggs": {
+      "input": {
+        "barcode": "",
+        "name": "Pete & Gerry's Organic Pasture-Raised Eggs",
+        "brand": "Pete & Gerry's"
+      },
+      "name": "Organic Pasture Raised Eggs",
+      "brand": "URBAN REMEDY",
+      "serving_size": "88.0 g",
+      "calories": 159,
+      "ingredients_verbatim": "HARD-BOILED PASTURE-RAISED EGG*",
+      "nutrition": {
+        "fat": 9.09,
+        "saturatedFat": 3.41,
+        "sodium": 136,
+        "carbs": 1.14,
+        "sugars": 0,
+        "protein": 13.6,
+        "fiber": 0
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "nellie-s-free-range-large-white-eggs": {
+      "input": {
+        "barcode": "",
+        "name": "Nellie's Free Range Large White Eggs",
+        "brand": "Nellie's"
+      },
+      "name": "Grade A Free Range Large Eggs",
+      "brand": "WELLSLEY FARMS",
+      "serving_size": "50.0 GRM",
+      "calories": 140,
+      "ingredients_verbatim": "LARGE EGGS.",
+      "nutrition": {
+        "fat": 10,
+        "saturatedFat": 3,
+        "sodium": 140,
+        "carbs": 0,
+        "sugars": 0,
+        "protein": 12,
+        "fiber": 0
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "nellie-s-free-range-organic-large-brown-eggs": {
+      "input": {
+        "barcode": "",
+        "name": "Nellie's Free Range Organic Large Brown Eggs",
+        "brand": "Nellie's"
+      },
+      "name": "Organic Free Range Grade A Large Brown Eggs",
+      "brand": "MEMBER'S MARK",
+      "serving_size": "50.0 g",
+      "calories": 140,
+      "ingredients_verbatim": "FREE RANGE ORGANIC LARGE BROWN EGGS.",
+      "nutrition": {
+        "fat": 10,
+        "saturatedFat": 3,
+        "sodium": 140,
+        "carbs": 0,
+        "sugars": 0,
+        "protein": 12,
+        "fiber": 0
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "eggland-s-best-cage-free-large-brown-eggs": {
+      "input": {
+        "barcode": "",
+        "name": "Eggland's Best Cage Free Large Brown Eggs",
+        "brand": "Eggland's Best"
+      },
+      "name": "Grade A Large Cage Free Brown Eggs",
+      "brand": "MEMBER'S MARK",
+      "serving_size": "50.0 g",
+      "calories": 140,
+      "ingredients_verbatim": "CAGE FREE LARGE BROWN EGGS.",
+      "nutrition": {
+        "fat": 10,
+        "saturatedFat": 3,
+        "sodium": 140,
+        "carbs": 0,
+        "sugars": 0,
+        "protein": 12,
+        "fiber": 0
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "eggland-s-best-organic-large-brown-eggs": {
+      "input": {
+        "barcode": "",
+        "name": "Eggland's Best Organic Large Brown Eggs",
+        "brand": "Eggland's Best"
+      },
+      "name": "Organic Large Brown Eggs",
+      "brand": "MEMBER'S MARK",
+      "serving_size": "50.0 g",
+      "calories": 140,
+      "ingredients_verbatim": "LARGE ORGANIC BROWN EGGS.",
+      "nutrition": {
+        "fat": 10,
+        "saturatedFat": 3,
+        "sodium": 140,
+        "carbs": 0,
+        "sugars": 0,
+        "protein": 12,
+        "fiber": 0
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "eggland-s-best-classic-extra-large-white-eggs": {
+      "input": {
+        "barcode": "",
+        "name": "Eggland's Best Classic Extra Large White Eggs",
+        "brand": "Eggland's Best"
+      },
+      "name": "Grade A Extra Large White Eggs",
+      "brand": "HANNAFORD",
+      "serving_size": "56.0 g",
+      "calories": 143,
+      "ingredients_verbatim": "EGGS.",
+      "nutrition": {
+        "fat": 8.93,
+        "saturatedFat": 3.57,
+        "sodium": 143,
+        "carbs": 0,
+        "sugars": 0,
+        "protein": 12.5,
+        "fiber": 0
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "happy-egg-organic-free-range-large-brown-eggs": {
+      "input": {
+        "barcode": "",
+        "name": "Happy Egg Organic Free Range Large Brown Eggs",
+        "brand": "Happy Egg"
+      },
+      "name": "Organic Free Range Grade A Large Brown Eggs",
+      "brand": "MEMBER'S MARK",
+      "serving_size": "50.0 g",
+      "calories": 140,
+      "ingredients_verbatim": "FREE RANGE ORGANIC LARGE BROWN EGGS.",
+      "nutrition": {
+        "fat": 10,
+        "saturatedFat": 3,
+        "sodium": 140,
+        "carbs": 0,
+        "sugars": 0,
+        "protein": 12,
+        "fiber": 0
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "happy-egg-free-range-blue-and-brown-heritage-bre": {
+      "input": {
+        "barcode": "",
+        "name": "Happy Egg Free Range Blue and Brown Heritage Breed Eggs",
+        "brand": "Happy Egg"
+      },
+      "name": "Free Range Brown Grade A Large Eggs",
+      "brand": "MEMBER'S MARK",
+      "serving_size": "50.0 g",
+      "calories": 140,
+      "ingredients_verbatim": "FREE RANGE LARGE BROWN EGGS.",
+      "nutrition": {
+        "fat": 10,
+        "saturatedFat": 3,
+        "sodium": 140,
+        "carbs": 0,
+        "sugars": 0,
+        "protein": 12,
+        "fiber": 0
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "bob-evans-100-liquid-egg-whites": {
+      "input": {
+        "barcode": "",
+        "name": "Bob Evans 100% Liquid Egg Whites",
+        "brand": "Bob Evans"
+      },
+      "name": "Bob Evans, Sausage Egg & Cheese Croissant",
+      "brand": "BOB EVANS",
+      "serving_size": "103.0 g",
+      "calories": 320,
+      "ingredients_verbatim": "CROISSANT (ENRICHED FLOUR [WHEAT FLOUR, MALTED BARLEY FLOUR, NIACIN, REDUCED IRON, THIAMINE MONONITRATE, RIBOFLAVIN, FOLIC ACID], WATER, MARGARINE [PALM OIL, WATER, SOYBEAN OIL, SUGAR, SOY LECITHIN, MONO- & DIGLYCERIDES, POTASSIUM SORBATE [PRESERVATIVE], CITRIC ACID [PRESERVATIVE], ARTIFICIAL FLAVOR, BETA-CAROTENE COLOR, VITAMIN A PALMITATE], HIGH FRUCTOSE CORN SYRUP, CONTAINS LESS THAN 2% OF THE FOLLOWING: YEAST, SALT, WHEY [MILK], BUTTER WITH LACTIC ACID [PASTEURIZED CREAM, LACTIC ACID], CALCIUM PROPIONATE [PRESERVATIVE], WHEAT FLOUR, DEXTROSE, CALCIUM SULFATE, DATEM, SUGAR, MALTODEXTRIN, ENZYMES, AMMONIUM SULFATE, ASCORBIC ACID [DOUGH CONDITIONER], NATURAL & ARTIFICIAL FLAVOR, HIGH OLEIC CANOLA OIL, AZODICARBONAMIDE, POTATO STARCH, ACACIA GUM, CAPRIC/CAPRYLIC TRIGLYCERIDES), SAUSAGE (PORK, WATER, CONTAINS 2% OR LESS OF THE FOLLOWING: SALT, SPICES, SUGAR, MONOSODIUM GLUTAMATE, CARAMEL COLOR), EGG PATTY: WHOLE EGGS, WHEY, SKIM MILK, SOYBEAN OIL, CONTAINS LESS THAN 2% OF THE FOLLOWING: WATER, DICALCIUM PHOSPHATE DIHYDRATE, ARTIFICIAL BUTTER FLAVOR, (PARTIALLY HYDROGENATED SOYBEAN AND COTTONSEED OIL, FLAVOR, MEDIUM CHAIN TRIGLYCERIDES), NATURAL BUTTER FLAVOR, SALT, SODIUM BICARBONATE, XANTHAN GUM, CITRIC ACID, WHITE PEPPER. PASTEURIZED PROCESS CHEDDAR CHEESE (CHEDDAR CHEESE [PASTEURIZED MILK, CHEESE CULTURE, SALT, ENZYMES], WATER, SODIUM PHOSPHATE, MILKFAT, SALT, SODIUM HEXAMETAPHOSPHATE, SORBIC ACID [PRESERVATIVE], APO CAROTENAL [COLOR]).",
+      "nutrition": {
+        "fat": 23.3,
+        "saturatedFat": 9.71,
+        "sodium": 592,
+        "carbs": 17.5,
+        "sugars": 2.91,
+        "protein": 10.7,
+        "fiber": 1
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "365-by-whole-foods-market-cage-free-large-brown-": {
+      "input": {
+        "barcode": "",
+        "name": "365 by Whole Foods Market Cage-Free Large Brown Eggs",
+        "brand": "365 by Whole Foods Market"
+      },
+      "name": "365 By Whole Foods Market Organic Whole Milk, 32 Oz",
+      "brand": "365",
+      "serving_size": "240.0 g",
+      "calories": 2,
+      "ingredients_verbatim": "Ingredients Organic Whole Milk, Vitamin D3.",
+      "nutrition": {
+        "fat": 8,
+        "saturatedFat": 5,
+        "sodium": null,
+        "carbs": null,
+        "sugars": 12,
+        "protein": 8,
+        "fiber": null
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    }
+  },
+  "misses": [
+    {
+      "barcode": "",
+      "name": "Vital Farms Alfresco Large Eggs",
+      "brand": "Vital Farms",
+      "reason": "unresolved",
+      "partial": null
+    },
+    {
+      "barcode": "",
+      "name": "Lucerne Grade AA Large Eggs",
+      "brand": "Lucerne",
+      "reason": "unresolved",
+      "partial": null
+    }
+  ]
+}

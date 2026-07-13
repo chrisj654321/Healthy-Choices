@@ -1,0 +1,516 @@
+{
+  "generated": "2026-07-09T16:05:24",
+  "total": 21,
+  "resolved": 21,
+  "missed": 0,
+  "source_health": {
+    "off-search": {
+      "ok": 107,
+      "miss": 48,
+      "err": 0,
+      "throttled": 187
+    },
+    "usda-fdc": {
+      "ok": 65,
+      "miss": 15,
+      "err": 0,
+      "throttled": 0
+    }
+  },
+  "products": {
+    "oscar-mayer-deli-fresh-oven-roasted-turkey-breas": {
+      "input": {
+        "barcode": "",
+        "name": "Oscar Mayer Deli Fresh Oven Roasted Turkey Breast",
+        "brand": "Oscar Mayer"
+      },
+      "name": "Deli fresh oven roasted turkey breast",
+      "brand": "Oscar Mayer",
+      "serving_size": "2 ONZ (56 g)",
+      "calories": 50,
+      "ingredients_verbatim": "Turkey breast, water, modified cornstarch, contains less than 2% of sodium lactate, salt, sugar, sodium phosphates, carrageenan, natural flavor, sodium diacetate, potassium chloride, sodium ascorbate, sodium nitrite, caramel color,",
+      "nutrition": {
+        "fat": 1,
+        "saturatedFat": 0,
+        "sodium": 0.5,
+        "carbs": 2,
+        "sugars": 0,
+        "protein": 9,
+        "fiber": 0
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/004/470/007/5104/front_en.3.400.jpg",
+      "matched_off_code": "0044700075104",
+      "source": "off-search"
+    },
+    "oscar-mayer-deli-fresh-smoked-ham": {
+      "input": {
+        "barcode": "",
+        "name": "Oscar Mayer Deli Fresh Smoked Ham",
+        "brand": "Oscar Mayer"
+      },
+      "name": "Oscar Mayer, Smoked Ham",
+      "brand": "OSCAR MAYER",
+      "serving_size": "57.0 g",
+      "calories": 105,
+      "ingredients_verbatim": "HAM, WATER, CONTAINS LESS THAN 2% OF SALT, SODIUM PHOSPHATES, SUGAR, SODIUM PROPIONATE, SODIUM DIACETATE, SODIUM BENZOATE, SODIUM ASCORBATE, SODIUM NITRITE.",
+      "nutrition": {
+        "fat": 3.51,
+        "saturatedFat": 1.75,
+        "sodium": 842,
+        "carbs": 0,
+        "sugars": null,
+        "protein": 17.5,
+        "fiber": null
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "oscar-mayer-deli-fresh-honey-ham": {
+      "input": {
+        "barcode": "",
+        "name": "Oscar Mayer Deli Fresh Honey Ham",
+        "brand": "Oscar Mayer"
+      },
+      "name": "Deli fresh honey uncured ham lunch meat",
+      "brand": "Oscar Mayer",
+      "serving_size": "1 portion (56 g)",
+      "calories": 70,
+      "ingredients_verbatim": "Ham, water, honey, contains less than 2% of salt, sugar, sodium phosphates, sodium propionate, sodium diacetate, sodium benzoate, sodium ascorbate, sodium nitrite, caramel color,",
+      "nutrition": {
+        "fat": 1.5,
+        "saturatedFat": null,
+        "sodium": null,
+        "carbs": 3,
+        "sugars": null,
+        "protein": 10,
+        "fiber": null
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/004/470/007/5081/front_la.5.400.jpg",
+      "matched_off_code": "0044700075081",
+      "source": "off-search"
+    },
+    "oscar-mayer-deli-fresh-rotisserie-seasoned-chick": {
+      "input": {
+        "barcode": "",
+        "name": "Oscar Mayer Deli Fresh Rotisserie Seasoned Chicken Breast",
+        "brand": "Oscar Mayer"
+      },
+      "name": "Rotisserie Seasoned Chicken Breast",
+      "brand": "Oscar Mayer Deli Fresh",
+      "serving_size": "56 g",
+      "calories": 50,
+      "ingredients_verbatim": "CHICKEN BREAST, WATER, MODIFIED CORNSTARCH, VINEGAR, SALT, CULTURED DEXTROSE, SUGAR, NATURAL CHICKEN TYPE FLAVOR (YEAST EXTRACT, SALT, DEXTROSE, ONION POWDER, NATURAL FLAVOR), SODIUM PHOSPHATES, CARRAGEENAN, POTASSIUM CHLORIDE, COATED WITH PAPRIKA, BLACK PEPPER, GARLIC POWDER, ONION POWDER, THYME.",
+      "nutrition": {
+        "fat": 1,
+        "saturatedFat": 0,
+        "sodium": 0.52,
+        "carbs": 1,
+        "sugars": 1,
+        "protein": 8,
+        "fiber": 0
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/004/470/003/0998/front_en.47.400.jpg",
+      "matched_off_code": "0044700030998",
+      "source": "off-search"
+    },
+    "oscar-mayer-deli-fresh-mesquite-smoked-turkey-br": {
+      "input": {
+        "barcode": "",
+        "name": "Oscar Mayer Deli Fresh Mesquite Smoked Turkey Breast",
+        "brand": "Oscar Mayer"
+      },
+      "name": "Oscar Mayer, Deli Fresh, Blackened Turkey Breast",
+      "brand": "OSCAR MAYER",
+      "serving_size": "56.0 g",
+      "calories": 107,
+      "ingredients_verbatim": "TURKEY BREAST, WATER, CULTURED DEXTROSE*, CONTAINS LESS THAN 2% OF MODIFIED CORNSTARCH, SALT, SUGAR, VINEGAR*, CULTURED CELERY JUICE*, SODIUM PHOSPHATES, CARRAGEENAN, CHERRY POWDER, LEMON JUICE SOLIDS, COATED WITH SEASONINGS (GARLIC, ONION POWDER, GARLIC POWDER, BLACK PEPPER, OREGANO, THYME, WHITE PEPPER, DRIED PARSLEY, DRIED BASIL), SALT, CAYENNE PEPPER, RED BELL PEPPERS, CARAMEL COLOR, OLEORESIN PAPRIKA.",
+      "nutrition": {
+        "fat": 2.68,
+        "saturatedFat": 0,
+        "sodium": 1000,
+        "carbs": 3.57,
+        "sugars": 0,
+        "protein": 16.1,
+        "fiber": null
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "hillshire-farm-ultra-thin-oven-roasted-turkey-br": {
+      "input": {
+        "barcode": "",
+        "name": "Hillshire Farm Ultra Thin Oven Roasted Turkey Breast",
+        "brand": "Hillshire Farm"
+      },
+      "name": "Hillshire Farm, Farm Classics, Honey Roasted Turkey Breast",
+      "brand": "HILLSHIRE FARM",
+      "serving_size": "50.0 g",
+      "calories": 120,
+      "ingredients_verbatim": "TURKEY BREAST, WHITE TURKEY, WATER, HONEY, MODIFIED CORN STARCH, CONTAINS 2% OR LESS: SALT, SUGAR, SODIUM PHOSPHATE, CARRAGEENAN, SODIUM PROPIONATE, SODIUM NITRITE.",
+      "nutrition": {
+        "fat": 3,
+        "saturatedFat": 1,
+        "sodium": 980,
+        "carbs": 6,
+        "sugars": 4,
+        "protein": 14,
+        "fiber": 0
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "hillshire-farm-ultra-thin-honey-ham": {
+      "input": {
+        "barcode": "",
+        "name": "Hillshire Farm Ultra Thin Honey Ham",
+        "brand": "Hillshire Farm"
+      },
+      "name": "Ultra Thin Honey Ham Water Added",
+      "brand": "Hillshire Farm",
+      "serving_size": "1 serving (56 g)",
+      "calories": 70,
+      "ingredients_verbatim": "Cured with water, honey, contains 2% or less: salt, dextrose, sugar, sodium phosphate, sodium propionate, sodium erythorbate, sodium nitrite.",
+      "nutrition": {
+        "fat": 2.5,
+        "saturatedFat": 1,
+        "sodium": 0.57,
+        "carbs": 4,
+        "sugars": 3,
+        "protein": 9,
+        "fiber": null
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/004/450/020/1963/front_en.14.400.jpg",
+      "matched_off_code": "0044500201963",
+      "source": "off-search"
+    },
+    "hillshire-farm-ultra-thin-black-forest-ham": {
+      "input": {
+        "barcode": "",
+        "name": "Hillshire Farm Ultra Thin Black Forest Ham",
+        "brand": "Hillshire Farm"
+      },
+      "name": "Hillshire Farm, Naturals, Black Forest Ham",
+      "brand": "HILLSHIRE FARM",
+      "serving_size": "49.0 g",
+      "calories": 102,
+      "ingredients_verbatim": "HAM, WATER, CONTAINS 2% OR LESS: SALT, SUGAR, DRIED VINEGAR, CARRAGEENAN, CULTURED CELERY JUICE POWDER.",
+      "nutrition": {
+        "fat": 3.06,
+        "saturatedFat": 1.02,
+        "sodium": 1020,
+        "carbs": 2.04,
+        "sugars": 2.04,
+        "protein": 18.4,
+        "fiber": 0
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "hillshire-farm-ultra-thin-roast-beef": {
+      "input": {
+        "barcode": "",
+        "name": "Hillshire Farm Ultra Thin Roast Beef",
+        "brand": "Hillshire Farm"
+      },
+      "name": "Hillshire Farm, Naturals, Roast Beef",
+      "brand": "HILLSHIRE FARM",
+      "serving_size": "60.0 g",
+      "calories": 100,
+      "ingredients_verbatim": "BEEF, BEEF BROTH, CONTAINS 2% OR LESS: SALT, VINEGAR, LEMON JUICE CONCENTRATE, DEXTROSE, FLAVORING (PECTIN)",
+      "nutrition": {
+        "fat": 2.5,
+        "saturatedFat": 0.83,
+        "sodium": 1000,
+        "carbs": 0,
+        "sugars": 0,
+        "protein": 20,
+        "fiber": 0
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "hormel-natural-choice-oven-roasted-deli-turkey": {
+      "input": {
+        "barcode": "",
+        "name": "Hormel Natural Choice Oven Roasted Deli Turkey",
+        "brand": "Hormel Natural Choice"
+      },
+      "name": "Oven Roasted deli Turkey",
+      "brand": "Hormel Natural Choice",
+      "serving_size": "3 slices (56 g)",
+      "calories": 60,
+      "ingredients_verbatim": "Turkey breast meat, water, salt, potato starch, turbinado sugar, rice starch, carrageenan (from seaweed), baking soda, cultured celery powder, cherry powder.",
+      "nutrition": {
+        "fat": 1,
+        "saturatedFat": 0,
+        "sodium": 0.46,
+        "carbs": 1,
+        "sugars": 1,
+        "protein": 11,
+        "fiber": null
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/003/760/013/2602/front_en.33.400.jpg",
+      "matched_off_code": "0037600132602",
+      "source": "off-search"
+    },
+    "hormel-natural-choice-honey-deli-ham": {
+      "input": {
+        "barcode": "",
+        "name": "Hormel Natural Choice Honey Deli Ham",
+        "brand": "Hormel Natural Choice"
+      },
+      "name": "Honey deli Ham",
+      "brand": "Hormel Natural Choice",
+      "serving_size": "4 SLICES (56 g)",
+      "calories": 39.2,
+      "ingredients_verbatim": "pork, water, honey, salt, turbinado sugar, cultured celery powder, cherry powder, sea salt.",
+      "nutrition": {
+        "fat": 0.84,
+        "saturatedFat": 0.28,
+        "sodium": 0.33,
+        "carbs": 1.68,
+        "sugars": 1.68,
+        "protein": 5.6,
+        "fiber": 0
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/003/760/026/0305/front_en.15.400.jpg",
+      "matched_off_code": "0037600260305",
+      "source": "off-search"
+    },
+    "hormel-natural-choice-smoked-deli-turkey": {
+      "input": {
+        "barcode": "",
+        "name": "Hormel Natural Choice Smoked Deli Turkey",
+        "brand": "Hormel Natural Choice"
+      },
+      "name": "Applewood Smoked deli Turkey",
+      "brand": "Hormel Natural Choice",
+      "serving_size": "3 SLICES (56 g)",
+      "calories": 50,
+      "ingredients_verbatim": "Turkey breast meat, water, salt, potato starch, turbinado sugar, rice starch, carrageenan (from seaweed), baking soda, cultured celery powder, cherry powder.",
+      "nutrition": {
+        "fat": 0.5,
+        "saturatedFat": 0,
+        "sodium": 0.54,
+        "carbs": 1,
+        "sugars": 1,
+        "protein": 10,
+        "fiber": 0
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/003/760/043/5611/front_en.11.400.jpg",
+      "matched_off_code": "0037600435611",
+      "source": "off-search"
+    },
+    "applegate-naturals-oven-roasted-turkey-breast": {
+      "input": {
+        "barcode": "",
+        "name": "Applegate Naturals Oven Roasted Turkey Breast",
+        "brand": "Applegate"
+      },
+      "name": "OVEN ROASTED TURKEY BREAST",
+      "brand": "APPLEGATE NATURALS",
+      "serving_size": "2 slices (55 g)",
+      "calories": 60,
+      "ingredients_verbatim": "Turkey breast**, water. contains less than 2% of the following: sea salt, potato starch, salt, chicken broth, rosemary extract.",
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": 0,
+        "sodium": 0.29,
+        "carbs": 0,
+        "sugars": 0,
+        "protein": 14,
+        "fiber": 0
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/002/531/758/6009/front_en.92.400.jpg",
+      "matched_off_code": "0025317586009",
+      "source": "off-search"
+    },
+    "applegate-naturals-black-forest-ham": {
+      "input": {
+        "barcode": "",
+        "name": "Applegate Naturals Black Forest Ham",
+        "brand": "Applegate"
+      },
+      "name": "BLACK FOREST UNCURED HAM",
+      "brand": "APPLEGATE NATURALS",
+      "serving_size": "2 slices (55 g)",
+      "calories": 70,
+      "ingredients_verbatim": "PORK**, WATER, CONTAINS LESS THAN 2% OF THE FOLLOWING: SEA SALT, CANE SUGAR, CELERY POWDER, SPICE EXTRACTS.",
+      "nutrition": {
+        "fat": 2,
+        "saturatedFat": 0.5,
+        "sodium": 0.47,
+        "carbs": 1,
+        "sugars": 1,
+        "protein": 12,
+        "fiber": 0
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/002/531/700/5906/front_en.27.400.jpg",
+      "matched_off_code": "0025317005906",
+      "source": "off-search"
+    },
+    "applegate-organics-oven-roasted-turkey-breast": {
+      "input": {
+        "barcode": "",
+        "name": "Applegate Organics Oven Roasted Turkey Breast",
+        "brand": "Applegate"
+      },
+      "name": "Organic Oven Roasted Turkey Breast, Oven Roasted",
+      "brand": "O ORGANICS",
+      "serving_size": "57.0 g",
+      "calories": 105,
+      "ingredients_verbatim": "ORGANIC TURKEY BREAST, WATER, CONTAINS 2% OR LESS OF SEA SALT, ORGANIC POTATO STARCH.",
+      "nutrition": {
+        "fat": 0.88,
+        "saturatedFat": 0.35,
+        "sodium": 789,
+        "carbs": 0,
+        "sugars": 0,
+        "protein": 21,
+        "fiber": 0
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "boar-s-head-ovengold-roasted-turkey-breast": {
+      "input": {
+        "barcode": "",
+        "name": "Boar's Head Ovengold Roasted Turkey Breast",
+        "brand": "Boar's Head"
+      },
+      "name": "Boar'S Head, Turkey Breast",
+      "brand": "BOAR'S HEAD",
+      "serving_size": "56.0 g",
+      "calories": 107,
+      "ingredients_verbatim": "TURKEY BREAST, WATER, LESS THAN 1.5% OF SALT, SUGAR, SODIUM PHOSPHATE AND DEXTROSE.",
+      "nutrition": {
+        "fat": 1.79,
+        "saturatedFat": 0,
+        "sodium": 679,
+        "carbs": 0,
+        "sugars": null,
+        "protein": 23.2,
+        "fiber": null
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "boar-s-head-deluxe-ham": {
+      "input": {
+        "barcode": "",
+        "name": "Boar's Head Deluxe Ham",
+        "brand": "Boar's Head"
+      },
+      "name": "Boar'S Head Branded Deluxe Ham",
+      "brand": "BOAR'S HEAD",
+      "serving_size": "56.0 GRM",
+      "calories": 107,
+      "ingredients_verbatim": "FRESH HAM, WATER, SALT, SUGAR, DEXTROSE, LESS THAN 2% OF SODIUM PHOSPHATE, SODIUM ERYTHORBATE, SODIUM NITRITE",
+      "nutrition": {
+        "fat": 1.79,
+        "saturatedFat": 0,
+        "sodium": 1050,
+        "carbs": 3.57,
+        "sugars": 3.57,
+        "protein": 16.1,
+        "fiber": null
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "dietz-watson-oven-classic-turkey-breast": {
+      "input": {
+        "barcode": "",
+        "name": "Dietz & Watson Oven Classic Turkey Breast",
+        "brand": "Dietz & Watson"
+      },
+      "name": "Dietz & Watson, Turkey Breast",
+      "brand": "DIETZ & WATSON",
+      "serving_size": "56.0 g",
+      "calories": 89,
+      "ingredients_verbatim": "TURKEY BREAST, WATER, CONTAINS LESS THAN 2% OF SEA SALT, ORGANIC SUGAR, POTASSIUM LACTATE, SODIUM PHOSPHATE, POTASSIUM CHLORIDE, SODIUM DIACETATE.",
+      "nutrition": {
+        "fat": 0.89,
+        "saturatedFat": 0,
+        "sodium": 643,
+        "carbs": 1.79,
+        "sugars": 1.79,
+        "protein": 19.6,
+        "fiber": 0
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "dietz-watson-black-forest-smoked-ham": {
+      "input": {
+        "barcode": "",
+        "name": "Dietz & Watson Black Forest Smoked Ham",
+        "brand": "Dietz & Watson"
+      },
+      "name": "Smoked Ham",
+      "brand": "Black Forest",
+      "serving_size": "56.00000000000001g",
+      "calories": 118,
+      "ingredients_verbatim": "FRESH HAM, WATER, CONTAINS LESS THAN 2% OF SEA SALT, ORGANIC SUGAR, DEXTROSE, SODIUM PHOSPHATE, POTASSIUM LACTATE, SODIUM DIACETATE, SODIUM ASCORBATE (VITAMIN C), SODIUM NITRITE, NATURAL SMOKE FLAVOR, SPICE EXTRACTS.",
+      "nutrition": {
+        "fat": 3.57,
+        "saturatedFat": 1.79,
+        "sodium": 0,
+        "carbs": 1.79,
+        "sugars": 1.79,
+        "protein": 19.6,
+        "fiber": 0
+      },
+      "image_url": null,
+      "matched_off_code": "0031506310270",
+      "source": "off-search"
+    },
+    "land-o-frost-premium-honey-ham": {
+      "input": {
+        "barcode": "",
+        "name": "Land O'Frost Premium Honey Ham",
+        "brand": "Land O'Frost"
+      },
+      "name": "Land O'Frost, Bold Ham",
+      "brand": "LAND O'FROST",
+      "serving_size": "53.0 g",
+      "calories": 113,
+      "ingredients_verbatim": "HAM, WATER, DEXTROSE, LESS THAN 2% OF SALT, VERMONT MAPLE SYRUP, NATURAL FLAVOR, CORN SYRUP, MAPLE EXTRACTIVES, MODIFIED CORN STARCH, MOLASSES, SODIUM PHOSPHATES, CARAMEL COLOR, SODIUM ERYTHORBATE, SODIUM NITRATE.",
+      "nutrition": {
+        "fat": 2.83,
+        "saturatedFat": 0,
+        "sodium": 943,
+        "carbs": 3.77,
+        "sugars": 3.77,
+        "protein": 17,
+        "fiber": 0
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "land-o-frost-premium-oven-roasted-turkey-breast": {
+      "input": {
+        "barcode": "",
+        "name": "Land O'Frost Premium Oven Roasted Turkey Breast",
+        "brand": "Land O'Frost"
+      },
+      "name": "Land O'Frost, Premium, Hickory Smoked Turkey Breast",
+      "brand": "LAND O'FROST",
+      "serving_size": "50.0 g",
+      "calories": 180,
+      "ingredients_verbatim": "TURKEY BREAST, WATER, WHITE TURKEY, DEXTROSE, SALT. LESS THAN 2% OF BROWN SUGAR, FLAVORING, MODIFIED CORN STARCH, SODIUM ERYTHORBATE, SODIUM PHOSPHATES, SODIUM NITRITE.",
+      "nutrition": {
+        "fat": 10,
+        "saturatedFat": 3,
+        "sodium": 1020,
+        "carbs": 6,
+        "sugars": 4,
+        "protein": 16,
+        "fiber": null
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    }
+  },
+  "misses": []
+}
