@@ -109,14 +109,18 @@ function loadHealthyCategories() {
     .replace(/export const HEALTHY_CATEGORIES\s*=/, 'const HEALTHY_CATEGORIES =')
     .replace(/export function\s+/g, 'function ');
 
-  const categoryAccents = new Proxy(Object.create(null), {
+  // healthyCategories.js now derives colors via buildCategoryAccents(ids) —
+  // this build script only needs valid category id/label/productCategories
+  // (color/lightColor aren't read anywhere below), so stub it with a Proxy
+  // that fabricates a plausible {color, light} pair for any id.
+  const buildCategoryAccents = () => new Proxy(Object.create(null), {
     get: (_target, key) => ({
       color: `#${String(key).slice(0, 6).padEnd(6, '0')}`,
       light: '#ffffff',
     }),
   });
 
-  return vm.runInNewContext(`${source}\nHEALTHY_CATEGORIES;`, { categoryAccents }, {
+  return vm.runInNewContext(`${source}\nHEALTHY_CATEGORIES;`, { buildCategoryAccents }, {
     filename: 'healthyCategories.js',
     timeout: 30000,
   });
@@ -415,9 +419,17 @@ function main() {
     log(scorerNote);
   }
 
-  const generatedRaw = require(path.join(DATA_DIR, 'products_generated.json'));
-  const generatedProducts = Array.isArray(generatedRaw.products) ? generatedRaw.products : [];
-  log(`Loaded ${generatedProducts.length} generated products.`);
+  // products_generated.json (the ~136k-row OFF bulk import) is deliberately
+  // NOT loaded here. It never ships to production (excluded from EAS builds
+  // per .easignore, require()'d behind a try/catch in products.js that
+  // silently no-ops when absent) — the app's production PRODUCT_DB has
+  // always been manual-only, with the OFF API as the live fallback for
+  // everything else. Folding it into products.db anyway is what made the
+  // file 161MB and unshippable (see 2026-07-12 decision-log entry: Supabase's
+  // free-tier 50MB upload cap, Metro OOM risk). Keeping this build
+  // manual-only restores the intended architecture and the file size that
+  // goes with it.
+  const generatedProducts = [];
 
   const db = new DatabaseSync(DB_PATH);
   createSchema(db);

@@ -4,19 +4,20 @@
  * and scripts/verify-productstore-queries.js for the real-schema/real-data
  * proof this file doesn't attempt to duplicate).
  *
- * expo-asset, expo-sqlite, and expo-file-system/legacy all wrap native
- * modules that can't run under Jest, so all three are hand-mocked below
- * (same pattern as subscription.test.js's react-native-purchases mock and
- * storage.test.js's AsyncStorage mock) — controllable jest.fn()s, not the
- * real native implementations.
+ * expo-sqlite and expo-file-system/legacy both wrap native modules that
+ * can't run under Jest, so both are hand-mocked below (same pattern as
+ * subscription.test.js's react-native-purchases mock and storage.test.js's
+ * AsyncStorage mock) — controllable jest.fn()s, not the real native
+ * implementations.
  *
  * What these tests pin:
  *   - initProductStore() is idempotent: calling it twice only runs the
- *     copy/open logic once (this is the module-level cached-promise pattern
- *     the brief specifically calls for, since getProductByBarcode also
- *     triggers it implicitly on every call).
- *   - It skips the copyAsync call entirely when FileSystem.getInfoAsync
- *     already reports the destination file exists.
+ *     download/open logic once (this is the module-level cached-promise
+ *     pattern the brief specifically calls for, since getProductByBarcode
+ *     also triggers it implicitly on every call).
+ *   - It skips the downloadAsync call entirely when a same-version copy
+ *     already exists on-device, and re-downloads when DB_VERSION differs
+ *     from what's recorded in the on-device .version file.
  *   - getProductByBarcode reshapes a raw DB row (JSON-stringified nested
  *     columns) into the same object shape PRODUCT_DB[barcode] has.
  *   - getProductByBarcode returns null (never throws) for: no row found,
@@ -24,22 +25,13 @@
  *     captureException in both the init-failure and query-failure paths.
  *
  * NOT covered here (impossible without a real device/simulator build, see
- * the Wave 2 build report): whether the real on-device asset bundling,
- * Asset.downloadAsync() localUri resolution, and the actual file copy into
- * the app's real documents directory succeed end-to-end on a physical
- * device. That remains unverified until an EAS build is tested on-device.
+ * the Wave 2 build report): whether the real on-device FileSystem.downloadAsync()
+ * call and SQLite.openDatabaseAsync() succeed end-to-end on a physical device
+ * against the real REMOTE_DB_URL. That remains unverified until an EAS build
+ * is tested on-device (this is exactly the class of gap that let the old
+ * Metro-asset-bundling approach ship broken — see the 2026-07-12 decision log
+ * entry and Sentry `metroRequire: Cannot find module` reports).
  */
-
-const mockAsset = {
-  localUri: 'file:///cache/ExponentAsset-fake.db',
-  downloadAsync: jest.fn(),
-};
-
-jest.mock('expo-asset', () => ({
-  Asset: {
-    fromModule: jest.fn(() => mockAsset),
-  },
-}));
 
 const mockDb = {
   getFirstAsync: jest.fn(),
@@ -54,15 +46,17 @@ jest.mock('expo-file-system/legacy', () => ({
   documentDirectory: 'file:///documents/',
   getInfoAsync: jest.fn(),
   makeDirectoryAsync: jest.fn(),
-  copyAsync: jest.fn(),
+  downloadAsync: jest.fn(),
+  readAsStringAsync: jest.fn(),
+  writeAsStringAsync: jest.fn(),
 }));
 
 jest.mock('../../utils/sentry', () => ({ captureException: jest.fn() }));
 
-import { Asset } from 'expo-asset';
 import * as SQLite from 'expo-sqlite';
 import * as FileSystem from 'expo-file-system/legacy';
 import { captureException } from '../../utils/sentry';
+import { DB_VERSION, REMOTE_DB_URL } from '../productStore';
 
 // productStore.js caches its init promise at module scope, so it must be
 // re-imported fresh (via jest.resetModules) in every test that cares about
@@ -77,11 +71,11 @@ function loadProductStore() {
 
 beforeEach(() => {
   jest.clearAllMocks();
-  mockAsset.localUri = 'file:///cache/ExponentAsset-fake.db';
-  mockAsset.downloadAsync.mockResolvedValue(mockAsset);
   FileSystem.getInfoAsync.mockResolvedValue({ exists: false });
   FileSystem.makeDirectoryAsync.mockResolvedValue(undefined);
-  FileSystem.copyAsync.mockResolvedValue(undefined);
+  FileSystem.downloadAsync.mockResolvedValue(undefined);
+  FileSystem.readAsStringAsync.mockResolvedValue(DB_VERSION);
+  FileSystem.writeAsStringAsync.mockResolvedValue(undefined);
   SQLite.openDatabaseAsync.mockResolvedValue(mockDb);
   mockDb.getFirstAsync.mockReset();
   mockDb.getAllAsync.mockReset();
@@ -118,47 +112,62 @@ function makeRow(overrides = {}) {
 // ─── initProductStore ──────────────────────────────────────────────────────
 
 describe('initProductStore', () => {
-  test('is idempotent — calling twice only copies the DB once', async () => {
+  test('is idempotent — calling twice only downloads the DB once', async () => {
     const { initProductStore } = loadProductStore();
 
     await initProductStore();
     await initProductStore();
 
-    expect(FileSystem.copyAsync).toHaveBeenCalledTimes(1);
+    expect(FileSystem.downloadAsync).toHaveBeenCalledTimes(1);
     expect(SQLite.openDatabaseAsync).toHaveBeenCalledTimes(1);
   });
 
-  test('concurrent calls before the first resolves still only copy once', async () => {
+  test('concurrent calls before the first resolves still only download once', async () => {
     const { initProductStore } = loadProductStore();
 
     await Promise.all([initProductStore(), initProductStore(), initProductStore()]);
 
-    expect(FileSystem.copyAsync).toHaveBeenCalledTimes(1);
+    expect(FileSystem.downloadAsync).toHaveBeenCalledTimes(1);
   });
 
-  test('skips copyAsync when the destination file already exists', async () => {
+  test('skips downloadAsync when the destination file exists and the version matches', async () => {
     FileSystem.getInfoAsync.mockResolvedValue({ exists: true });
+    FileSystem.readAsStringAsync.mockResolvedValue(DB_VERSION);
     const { initProductStore } = loadProductStore();
 
     await initProductStore();
 
-    expect(FileSystem.copyAsync).not.toHaveBeenCalled();
+    expect(FileSystem.downloadAsync).not.toHaveBeenCalled();
     expect(SQLite.openDatabaseAsync).toHaveBeenCalledWith('products.db');
   });
 
-  test('copies from the asset localUri to the documents SQLite directory', async () => {
+  test('re-downloads when the on-device version file does not match DB_VERSION', async () => {
+    FileSystem.getInfoAsync.mockResolvedValue({ exists: true });
+    FileSystem.readAsStringAsync.mockResolvedValue('some-stale-version');
     const { initProductStore } = loadProductStore();
 
     await initProductStore();
 
-    expect(FileSystem.copyAsync).toHaveBeenCalledWith({
-      from: mockAsset.localUri,
-      to: 'file:///documents/SQLite/products.db',
-    });
+    expect(FileSystem.downloadAsync).toHaveBeenCalledTimes(1);
   });
 
-  test('never rejects, even if asset download fails — reports to Sentry', async () => {
-    mockAsset.downloadAsync.mockRejectedValue(new Error('download failed'));
+  test('downloads from REMOTE_DB_URL to the documents SQLite directory, then writes the version marker', async () => {
+    const { initProductStore } = loadProductStore();
+
+    await initProductStore();
+
+    expect(FileSystem.downloadAsync).toHaveBeenCalledWith(
+      REMOTE_DB_URL,
+      'file:///documents/SQLite/products.db'
+    );
+    expect(FileSystem.writeAsStringAsync).toHaveBeenCalledWith(
+      'file:///documents/SQLite/products.db.version',
+      DB_VERSION
+    );
+  });
+
+  test('never rejects, even if the download fails — reports to Sentry', async () => {
+    FileSystem.downloadAsync.mockRejectedValue(new Error('download failed'));
     const { initProductStore } = loadProductStore();
 
     await expect(initProductStore()).resolves.toBeUndefined();

@@ -95,14 +95,17 @@ function loadHealthyCategories() {
     .replace(/export const HEALTHY_CATEGORIES\s*=/, 'const HEALTHY_CATEGORIES =')
     .replace(/export function\s+/g, 'function ');
 
-  const categoryAccents = new Proxy(Object.create(null), {
+  // healthyCategories.js now derives colors via buildCategoryAccents(ids) —
+  // stub it the same way build-products-sqlite.js does (color/lightColor
+  // aren't used below, just need a valid-shaped fake per id).
+  const buildCategoryAccents = () => new Proxy(Object.create(null), {
     get: (_target, key) => ({
       color: `#${String(key).slice(0, 6).padEnd(6, '0')}`,
       light: '#ffffff',
     }),
   });
 
-  return vm.runInNewContext(`${source}\nHEALTHY_CATEGORIES;`, { categoryAccents }, {
+  return vm.runInNewContext(`${source}\nHEALTHY_CATEGORIES;`, { buildCategoryAccents }, {
     filename: 'healthyCategories.js',
     timeout: 30000,
   });
@@ -196,20 +199,17 @@ function main() {
   log('Starting SQLite validation.');
   const manualProducts = loadManualProducts();
   const manualBarcodes = Object.keys(manualProducts);
-  const manualBarcodeSet = new Set(manualBarcodes);
   const categories = loadHealthyCategories();
   const productImages = require(path.join(DATA_DIR, 'product_images.json'));
-  const generatedRaw = require(path.join(DATA_DIR, 'products_generated.json'));
-  const generatedProducts = Array.isArray(generatedRaw.products) ? generatedRaw.products : [];
-  const generatedByBarcode = new Map(
-    generatedProducts
-      .filter((product) => product?.barcode)
-      .map((product) => [String(product.barcode), product])
-  );
 
-  const generatedCollisions = manualBarcodes.filter((barcode) => generatedByBarcode.has(barcode)).length;
-  const expectedRows = generatedProducts.filter((product) => product?.barcode && !manualBarcodeSet.has(String(product.barcode))).length
-    + manualBarcodes.length;
+  // products_generated.json (~136k OFF bulk rows) is deliberately excluded
+  // from products.db as of 2026-07-12 — it never shipped to production
+  // anyway (see products.js's try/catch require and .easignore), and folding
+  // it into the SQLite build ballooned the file to 161MB, blowing past
+  // Supabase's free-tier 50MB upload cap. products.db is manual-only now, so
+  // this validation expects exactly manualBarcodes.length rows and 0
+  // 'generated'-sourced rows.
+  const expectedRows = manualBarcodes.length;
 
   const db = new DatabaseSync(DB_PATH, { readOnly: true });
   const rowCount = db.prepare('SELECT COUNT(*) AS count FROM products').get().count;
@@ -217,9 +217,9 @@ function main() {
   const generatedCount = db.prepare("SELECT COUNT(*) AS count FROM products WHERE source = 'generated'").get().count;
 
   let allOk = true;
-  allOk = check('row count vs source JSON plus manual overrides', rowCount === expectedRows, `db=${rowCount}, expected=${expectedRows}, collisions=${generatedCollisions}`) && allOk;
+  allOk = check('row count is manual-only', rowCount === expectedRows, `db=${rowCount}, expected=${expectedRows}`) && allOk;
   allOk = check('manual source row count', manualCount === manualBarcodes.length, `db=${manualCount}, expected=${manualBarcodes.length}`) && allOk;
-  allOk = check('generated source row count', generatedCount === expectedRows - manualBarcodes.length, `db=${generatedCount}, expected=${expectedRows - manualBarcodes.length}`) && allOk;
+  allOk = check('generated rows deliberately excluded', generatedCount === 0, `db=${generatedCount}, expected=0`) && allOk;
 
   const productQuery = db.prepare('SELECT * FROM products WHERE barcode = ?');
 
@@ -235,25 +235,8 @@ function main() {
     ) && allOk;
   }
 
-  const generatedSamples = stableSample(
-    generatedProducts.filter((product) => product?.barcode && !manualBarcodeSet.has(String(product.barcode))),
-    10
-  );
-  for (const product of generatedSamples) {
-    const barcode = String(product.barcode);
-    const row = productQuery.get(barcode);
-    const dbComparable = row ? comparableDbRow(row) : null;
-    const sourceComparable = comparableProduct(product, productImages);
-    allOk = check(
-      `generated spot check ${barcode}`,
-      row?.source === 'generated' && sameJson(dbComparable, sourceComparable),
-      row ? `${row.name}` : 'missing'
-    ) && allOk;
-  }
-
-  // Dedicated spot checks for the new packaging/diet-flag columns (Wave 2
-  // schema gap fix): a manual product known to carry real packaging data,
-  // and a generated product known to have neither field.
+  // Dedicated spot check for the packaging/diet-flag columns (Wave 2 schema
+  // gap fix): a manual product known to carry real packaging data.
   const packagingBarcode = '014500021830'; // Birds Eye Steamfresh Pure & Simple Broccoli Florets
   const packagingRow = productQuery.get(packagingBarcode);
   const packagingSource = manualProducts[packagingBarcode];
@@ -275,17 +258,6 @@ function main() {
       : 'missing'
   ) && allOk;
 
-  const noPackagingGeneratedSample = generatedSamples[0];
-  if (noPackagingGeneratedSample) {
-    const barcode = String(noPackagingGeneratedSample.barcode);
-    const row = productQuery.get(barcode);
-    allOk = check(
-      `generated product has null/0 packaging + diet flags ${barcode}`,
-      !!row && row.packaging_json == null && !row.isOrganic && !row.isVegan && !row.isGlutenFree,
-      row ? `packaging_json=${row.packaging_json}, isOrganic=${row.isOrganic}, isVegan=${row.isVegan}, isGlutenFree=${row.isGlutenFree}` : 'missing'
-    ) && allOk;
-  }
-
   const expectedIndexes = new Set([
     'idx_products_category',
     'idx_products_company',
@@ -303,11 +275,6 @@ function main() {
   const category = categories[0];
   const wanted = new Set(category.productCategories.map((name) => String(name).toLowerCase()));
   let directCount = 0;
-  for (const product of generatedProducts) {
-    const barcode = String(product?.barcode || '');
-    if (!barcode || manualBarcodeSet.has(barcode)) continue;
-    if (product.category && wanted.has(String(product.category).toLowerCase())) directCount += 1;
-  }
   for (const product of Object.values(manualProducts)) {
     if (product.category && wanted.has(String(product.category).toLowerCase())) directCount += 1;
   }
@@ -330,7 +297,7 @@ function main() {
     allOk = check(`summary table populated ${table}`, count > 0, `rows=${count}`) && allOk;
   }
 
-  const barcodeForTiming = manualSamples[0] || generatedSamples[0]?.barcode;
+  const barcodeForTiming = manualSamples[0];
   timeQuery(`barcode lookup ${barcodeForTiming}`, () => productQuery.get(barcodeForTiming));
   timeQuery('LIKE search "%cheerios%" limit 6', () => db.prepare(
     "SELECT barcode, name FROM products WHERE search_text LIKE ? LIMIT 6"

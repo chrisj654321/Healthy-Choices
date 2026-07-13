@@ -28,6 +28,9 @@ alter table public.scan_events enable row level security;
 -- Allow INSERT from both authenticated and anonymous (anon) client roles.
 -- This is what lets the app log events regardless of whether the shopper
 -- is signed in — logging is never conditioned on account state.
+-- (Postgres has no CREATE POLICY IF NOT EXISTS, so drop-then-create keeps
+-- this script safe to re-run.)
+drop policy if exists "scan_events_insert_anon_and_authenticated" on public.scan_events;
 create policy "scan_events_insert_anon_and_authenticated"
   on public.scan_events
   for insert
