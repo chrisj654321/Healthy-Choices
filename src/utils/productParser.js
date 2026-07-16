@@ -4,46 +4,15 @@
  */
 
 import { BRAND_TO_COMPANY, BRAND_PARENT_MAP, COMPANY_DB } from '../data/companies';
+import { normalizeIngredientTokens } from './ingredientNormalizer';
 
 // ─── Parse ingredient string → array ─────────────────────────────────────────
-
-function decodeHtmlEntities(str) {
-  return str
-    .replace(/&quot;/gi, '')
-    .replace(/&amp;/gi, '&')
-    .replace(/&apos;/gi, "'")
-    .replace(/&#39;/gi, "'")
-    .replace(/&lt;/gi, '<')
-    .replace(/&gt;/gi, '>')
-    .replace(/&nbsp;/gi, ' ')
-    .replace(/&#\d+;/gi, '');
-}
-
-// Phrases that are advisory text or purpose descriptors, not ingredients —
-// filter after splitting. No real ingredient name starts with to/for/as/contains,
-// so anchoring those to the start is safe.
-const ADVISORY_PATTERNS = [
-  /allerg/i, /may contain/i, /produced from/i, /see highlighted/i,
-  /warning/i, /advice/i, /for all/i, /genetically modified/i,
-  /^\s*and\s/i, /^\s*or\s/i,
-  /less than \d/i,          // "Less than 2% of:"
-  /contains \d+%/i,         // "Contains 2% or less of:"
-  /^\d+%?\s*(or less)?\s*of/i,
-  /^to\s/i,                 // "to prevent caking", "to protect flavor/color"
-  /^for\s/i,                // "for color", "for tartness", "for freshness"
-  /^as\s/i,                 // "as a preservative", "as preservatives"
-  /^contains\b/i,           // "contains milk", "contains 2 or less of salt"
-  /\bor\s+less\b/i,         // "2 or less of salt", "less than 2 or less"
-  /^an?\s+(preservative|natural\s+(mold|color|colour|flavou?r)|milk\s+derivative|artificial\s+flavou?r$)/i,
-  /\bmold inhibitor\b/i,    // "a natural mold inhibitor"
-  /^ingredients?\b/i,       // "ingredients water" parsing artifact
-  /[€£¥]\s*\d/,             // price strings like "€40"
-  /\b20\d{2}[\/\-]\d{2}/,  // date fragments like "2025/7/18"
-  /^t&c\b/i,                // "T&c apply" label garbage
-];
+// Normalization (paren-flattening, oil-disclosure resolution, advisory-phrase
+// filtering, dedup) lives in ingredientNormalizer.js — shared with the
+// build-time ingest script (scripts/ingest-products.js).
 
 export function parseIngredients(p) {
-  let text =
+  const text =
     p.ingredients_text_en ||
     p.ingredients_text ||
     (Array.isArray(p.ingredients)
@@ -52,30 +21,7 @@ export function parseIngredients(p) {
 
   if (!text) return [];
 
-  // 1. Decode HTML entities
-  text = decodeHtmlEntities(text);
-
-  // 2. Period followed by space acts as a separator in some EU/UK data
-  text = text.replace(/\.\s+/g, ', ');
-
-  // 3. Expand brackets/parens into the ingredient stream instead of discarding
-  //    "Coating [sugar, cocoa butter]" → "Coating , sugar, cocoa butter"
-  text = text.replace(/[\[\]()]/g, ',');
-
-  // 4. Split and clean each token
-  return text
-    .split(/[,;]+/)
-    .map((s) =>
-      s
-        .replace(/\*/g, '')
-        .replace(/["""]/g, '')
-        .replace(/^\s*[-.:]\s*/, '')   // strip leading punctuation artifacts
-        .trim()
-        .toLowerCase()
-    )
-    .filter((s) => s.length > 2)
-    .filter((s) => !/^\d+(\.\d+)?\s*(%|g|mg|ml|oz|lb|kg|cal|kcal)?$/.test(s))
-    .filter((s) => !ADVISORY_PATTERNS.some((re) => re.test(s)));
+  return normalizeIngredientTokens(text);
 }
 
 // ─── Parse nutriments object → normalized nutrition ───────────────────────────

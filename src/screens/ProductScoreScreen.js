@@ -378,7 +378,7 @@ export default function ProductScoreScreen({ route, navigation }) {
     );
   }
 
-  const { score, grade, displayGrade, analyzedIngredients, insufficientData } = result;
+  const { score, grade, displayGrade, analyzedIngredients, insufficientData, hiddenUnreadableCount } = result;
   const gradeCol = insufficientData ? '#9BB5AE' : scoreToColor(score);
   const verdict = scoreToVerdict(displayGrade);
   const explanation = insufficientData ? null : generateScoreExplanation(product, result);
@@ -656,6 +656,13 @@ export default function ProductScoreScreen({ route, navigation }) {
                     />
                   ))}
                 </>
+              )}
+
+              {/* Hidden unreadable label entries (OCR garbage filtered out) */}
+              {hiddenUnreadableCount > 0 && (
+                <Text style={s.noIngredientNoteText}>
+                  {hiddenUnreadableCount} unreadable label {hiddenUnreadableCount === 1 ? 'entry' : 'entries'} hidden
+                </Text>
               )}
 
               {/* Certifications */}

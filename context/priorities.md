@@ -1,6 +1,24 @@
 # Current priorities
 
-_Last updated: 2026-07-12 — update whenever a priority ships or shifts._
+_Last updated: 2026-07-13 — update whenever a priority ships or shifts._
+
+## ✅ SHIPPED — Version with the July feature batch approved and LIVE on the App Store (2026-07-13, founder-confirmed with scan screenshots)
+Carries the products.db OTA-download fix, scoring ceiling + retiered certs, 1,045 products, brandsNote Brands-tab fix. Founder-run build/submit per standing policy.
+
+## ✅ SHIPPED — shelfexpose.app redirect live (2026-07-13)
+Apex + www 301 → fierce-pine-854.higgsfield.app via Cloudflare Redirect Rules (proxied records + Dynamic-type rules; see decision-log). True custom-domain cutover blocked by Higgsfield platform (no custom-domain support); site code is portable if ever needed.
+
+## P0 — App data-quality pack (founder-set, 2026-07-13; full plan in decision-log)
+Founder's live-scan screenshots exposed: duplicate ingredients (parser flattens parentheses, no dedup anywhere), label phrases ranked as ingredients ("Added To Preserve Freshness"), OCR garbage as "Unknown" rows ("Sgybean", "Balle Creak" — no plausibility gate), dev-speak descriptions leaking to consumers (~140+ "Parser phrase for…" entries in ingredientCache.js), and generic "vegetable oil" never resolved to disclosed specifics. Fix = shared normalizer in both parsers + plausibility gate + catalog rebuild (**ships OTA, no binary needed**) + interim dev-speak rewrite (coordinated with Chad's in-flight full 3,500→5,000 ingredient review) + honest oil-disclosure handling + Aug 26 Buffer post claim fix.
+
+## P1 — Cowork product pipeline (founder-approved)
+Scheduled runs: candidates CSV → fetch scripts (founder's OFF user agent + API key) → Octavius → Opus review → checkpoint; merge+commit stays interactive. Chad builds a standing candidates backlog. Pilot one manual run before any cron. OFF cloud-bot 503 + USDA egress are the open infra questions.
+
+## P1.5 — Funnel + retention analytics (founder-requested 2026-07-13)
+Founder wants: where users fall off (onboarding → first scan → paywall shown → dismissed/purchased), when they close the app, whether they reopen. **Design constraint: the 2026-07-02 NO-tracking/NO-PII doctrine stands** (identity-free analytics; privacy label "Not Linked to You"; PostHog explicitly rejected). Plan: extend the EXISTING identity-free Supabase pipeline (scan_events + insert policy already live) with an `app_events` table — whitelisted event names (app_open, onboarding_step, first_scan, paywall_shown/source, purchase_started/completed, app_backgrounded), a per-LAUNCH random session UUID (rotates every launch → in-session funnels with zero cross-session identity), and coarse retention via locally-computed cohort events (device reports "return visit, N-days-since-last-open bucket, install-week cohort" — no persistent device ID ever transmitted). Aggregate SQL views for funnel + retention curves. Zero new SDKs, zero cost; RevenueCat already covers purchase conversion. Upgrade path (would need founder sign-off, changes privacy posture): a random per-install ID for true retention curves — still "Not Linked to You" by Apple's definition, but weaker than the current absolute stance. Rides the next binary.
+
+## P2 — Public stats + website lobbying refocus (founder-approved)
+Stat set "1,000+ products · 268 companies · 3,500+ ingredients analyzed" on website (immediate deploy) + app Home (next binary). Website "In the file" blocks refocused on FOOD-REGULATORY lobbying per company via /political-analysis runs (sourced, neutral-regulatory framing).
 
 ## ✅ SHIPPED — Shelf Exposé is LIVE on the App Store (2026-07-06)
 **https://apps.apple.com/app/id6776718186** — free + IAP, $7.99/mo / $49.99/yr, 50% off first year. Approved after the 5.6.3 + 2.1(a) fix resubmission. Rejection era over.
@@ -30,7 +48,7 @@ The "it's live" moment content ran. August is now underway: **15 X posts schedul
 ~24 days to the Aug 3 availability cliff. Goal: $1k/mo ≈ 40 annual subs ≈ 1,300–5,000 downloads.
 - [x] Launch-day content burst (Cicero) — ran, founder-confirmed 2026-07-09
 - [x] Next submission — build submitted night of 2026-07-09→10 (see above); run `submission-preflight` proactively before the *following* one
-- [ ] Marketing site DNS cutover (`shelfexpose.app` → the new Higgsfield site) — founder's call, currently paused
+- [x] Marketing site DNS cutover — **DONE 2026-07-13 via redirect, not a true cutover** (Higgsfield has no custom-domain support — confirmed, no CLI command, nothing in platform docs; sites live only on `*.higgsfield.app`). `shelfexpose.app` and `www.shelfexpose.app` now 301-redirect (paths + query strings preserved) to the live Evidence Archive site via 2 Cloudflare Redirect Rules. Required: (1) both DNS records switched from "DNS only" to **Proxied** (orange cloud) — the domain was serving the stale Netlify site directly with rules silently not firing until this was flipped; (2) each rule's Type set to **Dynamic** (not the default Static) so `concat(...)` evaluates instead of redirecting to the literal string. No MX records on the domain, so no email risk. Revisit a real (non-redirect) cutover if Higgsfield ever ships custom domains — the site code itself (React/TanStack Start, real git repo) would port cleanly to a host with real custom-domain support if that's ever wanted instead
 - [ ] Waitlist emails (D1) → launch announcement once there are any signups
 - [x] Analytics SQL — founder confirmed 2026-07-12: `scan_events` table + insert policy already existed in Supabase (re-run hit "policy already exists," meaning the original run succeeded). Script patched to `drop policy if exists` first so future re-runs are safe.
 - [ ] **Privacy label — still needs the founder directly** (App Store Connect dashboard, no credentials on this side): App Privacy → add/confirm two data types: **Product Interaction** and **Crash Data**, both set to **"Data Not Linked to You"** (matches `scan_events`'s actual schema — no user/device/session id — and Sentry's identity-free config). Ships with the next build's metadata update, not the binary itself.

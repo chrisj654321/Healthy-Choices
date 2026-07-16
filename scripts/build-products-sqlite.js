@@ -139,10 +139,20 @@ function transformExports(source) {
     .replace(/\bexport function\s+/g, 'function ');
 }
 
+// ingredientNormalizer.js is a plain CommonJS module (module.exports = {...}),
+// not ES export syntax, since it must also be require()'d directly by
+// scripts/ingest-products.js. Strip its module.exports assignment so the
+// bare function declarations (hoisted) become available in the shared VM
+// sandbox scope for scorer.js's `classifyTokenPlausibility` reference.
+function stripModuleExports(source) {
+  return source.replace(/^module\.exports\s*=\s*\{[\s\S]*?\};\s*$/m, '');
+}
+
 function loadScorer() {
   const bundle = [
     transformExports(readSource('src/data/ingredientCache.js')),
     transformExports(readSource('src/data/ingredients.js')),
+    stripModuleExports(readSource('src/utils/ingredientNormalizer.js')),
     transformExports(readSource('src/utils/scorer.js')),
     '\nmodule.exports = { scoreProduct, scoreToGrade };',
   ].join('\n\n');

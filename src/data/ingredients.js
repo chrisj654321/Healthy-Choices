@@ -601,7 +601,7 @@ export const INGREDIENT_DB = {
   },
   'vegetable oil': {
     risk: 3, category: 'oils', label: 'Vegetable Oil',
-    note: 'A generic term for one or more industrially refined plant oils; its vagueness obscures the actual source.',
+    note: "The label does not say which oil this is. Companies use the generic name so they can swap in whatever oil is cheapest that week. Refined oils in this family are high in omega-6 fats, and diets heavy in them have been linked to inflammation in published research.",
     evidence: 'FDA labeling rules (21 CFR 101.4) permit "vegetable oil" as a collective name for refined plant oils; NOVA lists refined vegetable oils as ultra-processed markers (Monteiro et al., 2019).',
     flag: 'moderate', upfMarker: true,
   },

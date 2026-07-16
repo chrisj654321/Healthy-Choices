@@ -1,5 +1,6 @@
 import { INGREDIENT_DB, FLAG_LEVELS } from '../data/ingredients';
 import { CACHED_INGREDIENT_ANALYSIS, riskToFlag } from '../data/ingredientCache';
+import { classifyTokenPlausibility } from './ingredientNormalizer';
 
 // ─── Ingredient lookup: normalization + smart-matching ────────────────────────
 
@@ -127,6 +128,17 @@ function ensureIndexes() {
   }
 
   _indexesBuilt = true;
+}
+
+// Lazily-built set of all known ingredient DB/cache keys (lowercased), used
+// by the plausibility gate's fuzzy-rescue step. Built once, on first use.
+let _knownKeys = null;
+function getKnownKeysSet() {
+  if (_knownKeys) return _knownKeys;
+  _knownKeys = new Set();
+  for (const key of Object.keys(INGREDIENT_DB)) _knownKeys.add(key.toLowerCase());
+  for (const key of Object.keys(CACHED_INGREDIENT_ANALYSIS)) _knownKeys.add(key.toLowerCase());
+  return _knownKeys;
 }
 
 const LEADING_LABEL_NOISE = new Set([
@@ -673,6 +685,7 @@ export function scoreProduct(product) {
     analyzedIngredients: analyzed.items,
     flaggedCount: analyzed.flaggedCount,
     avoidCount: analyzed.avoidCount,
+    hiddenUnreadableCount: analyzed.hiddenUnreadableCount,
     markerCount,
     markerLoad,
     upfCeiling: ceiling,
@@ -782,10 +795,27 @@ function analyzeIngredients(ingredients) {
   let avoidCount = 0;
   let markerCount = 0;
   let markerLoad = 0;
+  let hiddenUnreadableCount = 0;
   const items = [];
 
   ingredients.forEach((raw) => {
-    const hit = lookupIngredient(raw);
+    let hit = lookupIngredient(raw);
+
+    // If nothing matched, run the plausibility gate before treating it as a
+    // plain "unknown" row: rescue near-miss OCR typos to a known key, and
+    // hide genuinely unreadable garbage tokens instead of showing them as
+    // an Unknown ingredient.
+    if (!hit) {
+      const { verdict, rescuedTo } = classifyTokenPlausibility(raw, getKnownKeysSet());
+      if (verdict === 'garbage') {
+        hiddenUnreadableCount++;
+        return;
+      }
+      if (verdict === 'rescued' && rescuedTo) {
+        const rescuedHit = lookupIngredient(rescuedTo);
+        if (rescuedHit) hit = rescuedHit;
+      }
+    }
 
     if (hit && hit.source === 'db') {
       const data = hit.entry;
@@ -844,7 +874,7 @@ function analyzeIngredients(ingredients) {
     }
   });
 
-  return { items, totalPenalty: Math.min(totalPenalty, 80), flaggedCount, avoidCount, markerCount, markerLoad };
+  return { items, totalPenalty: Math.min(totalPenalty, 80), flaggedCount, avoidCount, markerCount, markerLoad, hiddenUnreadableCount };
 }
 
 function calcNutritionPenalty(nutrition) {

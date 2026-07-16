@@ -200,24 +200,19 @@ function fetchJson(url, opts = {}) {
   });
 }
 
+const { normalizeIngredientTokens } = require('../src/utils/ingredientNormalizer');
+
 function tokenize(ingredientsText) {
-  return String(ingredientsText || '')
+  // Strip "CONTAINS (LESS THAN) X% (OR LESS) OF:" legal disclaimers and
+  // section-header labels ("CRUST:", "TOPPINGS:") BEFORE handing off to the
+  // shared normalizer, since those are ingest-specific label conventions
+  // not seen in the app's OpenFoodFacts-shaped ingredients_text.
+  let text = String(ingredientsText || '')
     .toLowerCase()
-    // ① Convert parentheses to commas FIRST so sub-ingredient lists
-    //   ("CHEDDAR CHEESE (MILK, CULTURES, SALT)") split into siblings
-    //   rather than collapsing into one junk token.
-    .replace(/[()]/g, ',')
-    // ② Strip "CONTAINS (LESS THAN) X% (OR LESS) OF:" legal disclaimers
-    //   — these precede ingredient lists and aren't ingredients themselves.
     .replace(/contains\s+(?:less\s+than\s+)?[\d.]+\s*%\s*(?:or\s+less\s+)?(?:of\s+)?:?\s*/gi, '')
-    // ③ Strip section-header labels of the form "WORD(S): " with no digits
-    //   e.g. "CRUST:", "TOPPINGS:", "BARBECUE SAUCE:", "YEAST TOPPINGS:"
-    //   The [a-z ] character class intentionally excludes digits so that
-    //   "CONTAINS LESS THAN 2% OF:" is not accidentally consumed here.
-    .replace(/\b[a-z][a-z ]{1,40}:\s*/g, '')
-    .split(/[,;]/)
-    .map((s) => s.trim().replace(/[\[\]\.]/g, '').trim())
-    .filter((s) => s.length > 1 && s.length < 80);
+    .replace(/\b[a-z][a-z ]{1,40}:\s*/g, '');
+
+  return normalizeIngredientTokens(text).filter((s) => s.length < 80);
 }
 
 // ─── Flagging logic ────────────────────────────────────────────────────────

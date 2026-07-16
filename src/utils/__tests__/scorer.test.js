@@ -601,3 +601,47 @@ describe('getPersonalisedWarnings', () => {
     expect(warnings).toEqual({ allergenHits: [], dietaryConflicts: [], goalNote: null });
   });
 });
+
+// ─── Plausibility gate: rescue + hidden-garbage (P0 ingredient data quality) ──
+
+describe('scoreProduct: unknown-ingredient plausibility gate', () => {
+  test('an OCR typo close to a real DB key is rescued and scored as that ingredient', () => {
+    // "sgybean oil" is 1-2 edits from "soybean oil", a real DB/cache key.
+    expect(lookupIngredient('sgybean oil')).toBeNull();
+    const result = scoreProduct({ ingredients: ['sgybean oil'], nutrition: {} });
+    const item = result.analyzedIngredients[0];
+    expect(item.category).not.toBe('unknown');
+    expect(result.hiddenUnreadableCount).toBe(0);
+  });
+
+  test('OCR garbage rows are hidden (no row emitted) and counted in hiddenUnreadableCount', () => {
+    const result = scoreProduct({
+      ingredients: ['whey', 'balle creak', 'mi 49015 usa austin® cneese', 'unequar', 'lactose'],
+      nutrition: {},
+    });
+    const raws = result.analyzedIngredients.map((i) => i.raw);
+    expect(raws).toEqual(['whey', 'lactose']);
+    expect(result.hiddenUnreadableCount).toBe(3);
+  });
+
+  test('a legitimate long ingredient name is never hidden as garbage', () => {
+    const result = scoreProduct({
+      ingredients: ['partially hydrogenated soybean oil', 'sodium stearoyl lactylate'],
+      nutrition: {},
+    });
+    expect(result.hiddenUnreadableCount).toBe(0);
+    expect(result.analyzedIngredients).toHaveLength(2);
+  });
+
+  test('the previously-pinned classifyUnknown fixtures still reach classifyUnknown unhidden', () => {
+    // These are 3+ word synthesized names — the short-token garbage heuristic
+    // must not touch them.
+    const r1 = scoreProduct({ ingredients: ['bleached zoranium compound'], nutrition: {} });
+    expect(r1.hiddenUnreadableCount).toBe(0);
+    expect(r1.analyzedIngredients[0].flag).toBe('caution');
+
+    const r2 = scoreProduct({ ingredients: ['dried rutabaga puree'], nutrition: {} });
+    expect(r2.hiddenUnreadableCount).toBe(0);
+    expect(r2.analyzedIngredients[0].flag).toBe('ok');
+  });
+});
