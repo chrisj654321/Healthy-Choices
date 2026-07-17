@@ -65,6 +65,10 @@ const ADVISORY_PATTERNS = [
   /vitamin (blend|and mineral blend):?$/i,
   /added for (color|freshness)/i,
   /for (color|freshness|texture)$/i,
+  // Sourcing/marketing descriptors that occasionally leak into a scraped
+  // ingredients field (vandalized or malformed third-party listings) — no
+  // real ingredient declaration opens with "local" as a sourcing claim.
+  /^local\s/i,
 ];
 
 function decodeHtmlEntities(str) {

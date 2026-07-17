@@ -49,6 +49,35 @@ describe('normalizeIngredientTokens: advisory-phrase filtering', () => {
   });
 });
 
+describe('normalizeIngredientTokens + classifyTokenPlausibility: vandalized third-party (live OFF) data', () => {
+  // Real-world incident: a vandalized OpenFoodFacts listing injected a fake
+  // narrative into ingredients_text, which rendered as ranked ingredients and
+  // leaked into the auto-generated "Shelf Exposé Says" summary as if it were
+  // the app's own claim (including a false statement about a real
+  // acquisition). Mirrors the real pipeline: normalize first (strips
+  // advisory-pattern matches, dedupes), then each token that fails an
+  // ingredient lookup goes through the plausibility gate.
+  const text =
+    'Dry Roasted Peanuts, Palm Oil, I Was One Of The First People That Worked For Justin, Justin Sold Out To Kraft Or Nestle For Hundreds Of Millions, Only Kinda Sketchy Ingredient 20 Years Ago Was Palm Oil, Local Boulder Colorado Nut Butter';
+
+  test('the "local ..." sourcing-descriptor phrase is stripped at normalization', () => {
+    const tokens = normalizeIngredientTokens(text);
+    expect(tokens).not.toContain('local boulder colorado nut butter');
+    expect(tokens).toEqual(
+      expect.arrayContaining(['dry roasted peanuts', 'palm oil'])
+    );
+  });
+
+  test('every surviving narrative-sentence token is caught as garbage by the plausibility gate (never rendered, never quoted in the score summary)', () => {
+    const tokens = normalizeIngredientTokens(text);
+    const narrativeTokens = tokens.filter((t) => t.includes('justin') || t.includes('sketchy'));
+    expect(narrativeTokens.length).toBeGreaterThan(0); // sanity: they did survive normalization
+    for (const t of narrativeTokens) {
+      expect(classifyTokenPlausibility(t, new Set()).verdict).toBe('garbage');
+    }
+  });
+});
+
 describe('normalizeIngredientTokens: dedup', () => {
   test('drops exact repeats of the same normalized token, first occurrence wins', () => {
     const tokens = normalizeIngredientTokens('Sugar, Salt, Sugar, Water, Salt');
