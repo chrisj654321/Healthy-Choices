@@ -18,6 +18,12 @@ import { HEALTHY_CATEGORIES } from '../data/healthyCategories';
 import { getCategoryCounts, getHeroImagesByCategory } from '../data/productStore';
 import { scoreToColor } from '../utils/scorer';
 import { getSpotlightCompany } from '../utils/spotlight';
+import SpecsMascot from '../components/SpecsMascot';
+
+// Module-level (not component state) so it survives across every Home
+// remount within the same app launch — the wave should play once per cold
+// open, not every time the user navigates back to this tab.
+let waveShownThisLaunch = false;
 
 const MISSING_LABEL = {
   allergens: 'allergens',
@@ -40,6 +46,13 @@ export default function HomeScreen({ navigation }) {
   const [categoryCounts, setCategoryCounts] = useState({});
   const [catHeroImages, setCatHeroImages] = useState({});
   const [spotlight, setSpotlight] = useState(null);
+  // Lazy initializer: 'wave' on the first Home mount of this launch, 'static'
+  // on every mount after that (so the header keeps a stable occupant).
+  const [headerMascotClip] = useState(() => {
+    if (waveShownThisLaunch) return 'static';
+    waveShownThisLaunch = true;
+    return 'wave';
+  });
 
   useFocusEffect(
     useCallback(() => {
@@ -94,6 +107,7 @@ export default function HomeScreen({ navigation }) {
           <Text style={s.headerGreeting}>{greeting()}{userName ? `, ${userName}` : ''}</Text>
           <Text style={s.headerTitle}>Shelf Exposé</Text>
         </View>
+        <SpecsMascot clip={headerMascotClip} size={64} style={s.headerMascot} />
         <TouchableOpacity
           style={s.headerIcon}
           onPress={() => navigation.navigate('History')}
@@ -132,7 +146,7 @@ export default function HomeScreen({ navigation }) {
           </View>
         </LinearGradient>
 
-        {/* Profile-completion nudge (detective) */}
+        {/* Profile-completion nudge (Specs) */}
         {!setup.complete && (
           <TouchableOpacity
             style={s.setupCard}
@@ -152,7 +166,7 @@ export default function HomeScreen({ navigation }) {
               </View>
             </View>
             <Image
-              source={require('../../assets/detective.png')}
+              source={require('../../assets/mascot/specs-standing.png')}
               style={s.setupDetective}
               resizeMode="contain"
             />
@@ -286,6 +300,7 @@ const s = StyleSheet.create({
   headerLeft: { flex: 1 },
   headerGreeting: { fontSize: Font.sizes.sm, color: Colors.textSecondary },
   headerTitle: { fontSize: Font.sizes.xl, fontWeight: Font.weights.heavy, color: Colors.textPrimary, marginTop: 1 },
+  headerMascot: { marginRight: 4 },
   headerIcon: {
     width: 40, height: 40, borderRadius: 20, backgroundColor: Colors.white,
     alignItems: 'center', justifyContent: 'center',

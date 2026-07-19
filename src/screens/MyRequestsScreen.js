@@ -13,6 +13,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
 import { getRequests } from '../utils/productRequests';
+import SpecsMascot from '../components/SpecsMascot';
 
 export default function MyRequestsScreen({ navigation }) {
   const insets = useSafeAreaInsets();
@@ -62,7 +63,7 @@ export default function MyRequestsScreen({ navigation }) {
         </View>
       ) : requests.length === 0 ? (
         <View style={styles.empty}>
-          <Ionicons name="file-tray-outline" size={64} color={Colors.textMuted} />
+          <SpecsMascot clip="inspecting" size={80} />
           <Text style={styles.emptyTitle}>No requests yet</Text>
           <Text style={styles.emptySubtitle}>
             Scan a product we don't have and tap "Request this product" — it'll show up here.

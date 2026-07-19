@@ -58,7 +58,8 @@
       ],
       "expo-build-properties",
       "expo-sqlite",
-      "expo-asset"
+      "expo-asset",
+      "expo-image"
     ],
     "scheme": "healthychoices",
     "extra": {

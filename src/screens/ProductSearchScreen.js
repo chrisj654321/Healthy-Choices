@@ -19,6 +19,7 @@ import { useProStatus } from '../utils/subscription';
 import { buildProductFromRaw } from '../utils/productParser';
 import { scoreProduct, scoreToColor } from '../utils/scorer';
 import { searchProductsLocal, getFeaturedProducts } from '../data/productStore';
+import SpecsMascot from '../components/SpecsMascot';
 
 // ─── Endpoints ────────────────────────────────────────────────────────────────
 
@@ -434,7 +435,7 @@ export default function ProductSearchScreen({ navigation }) {
       {/* Error state */}
       {!hasResults && !liveLoading && error && (
         <View style={styles.centerState}>
-          <Ionicons name="wifi-outline" size={44} color={Colors.textMuted} />
+          <SpecsMascot clip="inspecting" size={72} />
           <Text style={styles.errorText}>{error}</Text>
           <TouchableOpacity style={styles.retryBtn} onPress={() => runSearch(query)}>
             <Text style={styles.retryText}>Retry</Text>
@@ -445,7 +446,7 @@ export default function ProductSearchScreen({ navigation }) {
       {/* Empty state */}
       {noResults && !error && (
         <View style={styles.centerState}>
-          <Ionicons name="cube-outline" size={44} color={Colors.textMuted} />
+          <SpecsMascot clip="inspecting" size={72} />
           <Text style={styles.emptyTitle}>No results for "{query}"</Text>
           <Text style={styles.emptySub}>Try a different name or brand.</Text>
         </View>

@@ -13,6 +13,7 @@ import { DEFAULT_PREFS, saveUserPrefs, markOnboardingDone } from '../utils/stora
 import { optInToNotifications, declineNotificationPriming } from '../utils/notifications';
 import { PRIMARY_GOAL_OPTIONS } from '../data/preferences';
 import { STORES } from '../data/stores';
+import SpecsMascot from '../components/SpecsMascot';
 import { PRODUCT_IMAGES, COMPANY_LOGOS } from '../data/onboardingAssets';
 import { StoreLogo } from './ProfileScreen';
 
@@ -721,7 +722,7 @@ function ReadyStep() {
         style={rd.gradient}
       >
         <View style={rd.iconWrap}>
-          <Ionicons name="checkmark-circle" size={64} color={Colors.primary} />
+          <SpecsMascot clip="shy-blush" size={96} />
         </View>
       </LinearGradient>
 

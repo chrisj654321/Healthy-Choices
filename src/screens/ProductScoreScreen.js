@@ -17,10 +17,12 @@ import { logProductRequest } from '../utils/productRequests';
 import { logProductEvent } from '../utils/scanAnalytics';
 import { useProStatus } from '../utils/subscription';
 import { getAlternatives } from '../utils/alternatives';
+import { recordScanAndPickCelebration } from '../utils/mascotMoments';
 import { COMPANY_DB } from '../data/companies';
 import IngredientRow from '../components/IngredientRow';
 import GradeRing from '../components/GradeRing';
 import StatBar from '../components/StatBar';
+import SpecsMascot from '../components/SpecsMascot';
 
 // ── Flag utils ────────────────────────────────────────────────────────────────
 
@@ -304,6 +306,7 @@ export default function ProductScoreScreen({ route, navigation }) {
   const [requestState, setRequestState] = useState('idle');
   const [alternatives, setAlternatives] = useState([]);
   const [altShowAll, setAltShowAll] = useState(false);
+  const [celebration, setCelebration] = useState(null);
   const gradeAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -312,8 +315,20 @@ export default function ProductScoreScreen({ route, navigation }) {
     setResult(r);
     setAlternatives([]);
     setAltShowAll(false);
+    setCelebration(null);
 
     const grade = r.displayGrade || r.grade;
+
+    // Milestone celebrations only fire on a real scan (never when viewing
+    // history, search results, or an alternative product) — that's what
+    // fromScanner gates. Errors resolve to null inside the util itself, so
+    // this never blocks the score screen from rendering.
+    if (route?.params?.fromScanner) {
+      recordScanAndPickCelebration({ displayGrade: grade })
+        .then(setCelebration)
+        .catch(() => {});
+    }
+
     if (grade === 'D' || grade === 'F') {
       getAlternatives(product, { limit: 12 })
         .then(({ alternatives: alts }) => setAlternatives(alts))
@@ -373,7 +388,7 @@ export default function ProductScoreScreen({ route, navigation }) {
   if (!result) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors.background }}>
-        <ActivityIndicator color={Colors.primary} size="large" />
+        <SpecsMascot clip="idle-loop" size={88} />
       </View>
     );
   }
@@ -448,6 +463,9 @@ export default function ProductScoreScreen({ route, navigation }) {
               <Ionicons name="share-outline" size={20} color="#fff" />
             </TouchableOpacity>
           </LinearGradient>
+          {celebration && (
+            <SpecsMascot clip="backflip" size={96} style={s.heroCelebration} />
+          )}
         </View>
 
         {/* ── 1: Product info + score ── */}
@@ -504,7 +522,7 @@ export default function ProductScoreScreen({ route, navigation }) {
             )}
           </View>
           <Image
-            source={require('../../assets/detective.png')}
+            source={require('../../assets/mascot/specs-standing.png')}
             style={s.sayDetective}
             resizeMode="contain"
           />
@@ -947,6 +965,7 @@ const s = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.28)',
     alignItems: 'center', justifyContent: 'center',
   },
+  heroCelebration: { position: 'absolute', bottom: 0, right: 0 },
 
   // Product info card
   infoCard: {

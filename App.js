@@ -10,6 +10,7 @@ import AppNavigator from './src/navigation/AppNavigator';
 import { initRevenueCat } from './src/utils/subscription';
 import { initProductStore } from './src/data/productStore';
 import { initSentry, captureException } from './src/utils/sentry';
+import SpecsMascot from './src/components/SpecsMascot';
 
 // Foreground behavior for local notifications — show them even while the app
 // is open (banner + list), no sound. Must be set once at module scope, before
@@ -48,6 +49,7 @@ class ErrorBoundary extends Component {
     if (this.state.hasError) {
       return (
         <View style={eb.container}>
+          <SpecsMascot clip="inspecting" size={180} style={eb.mascot} />
           <Text style={eb.title}>Something went wrong</Text>
           <Text style={eb.subtitle}>
             The app ran into an unexpected error. Please restart it.
@@ -67,6 +69,7 @@ class ErrorBoundary extends Component {
 
 const eb = StyleSheet.create({
   container: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 32, backgroundColor: '#fff' },
+  mascot:    { marginBottom: 16 },
   title:     { fontSize: 22, fontWeight: '700', color: '#1D9E75', marginBottom: 12 },
   subtitle:  { fontSize: 15, color: '#555', textAlign: 'center', marginBottom: 32, lineHeight: 22 },
   btn:       { backgroundColor: '#1D9E75', paddingHorizontal: 32, paddingVertical: 14, borderRadius: 12 },

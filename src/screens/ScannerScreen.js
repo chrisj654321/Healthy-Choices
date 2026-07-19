@@ -28,6 +28,7 @@ import { useProStatus } from '../utils/subscription';
 import { buildProduct, findCompanyId } from '../utils/productParser';
 import { maybeRequestAppReview, recordSuccessfulScanForReview } from '../utils/reviewPrompt';
 import { addRequest } from '../utils/productRequests';
+import SpecsMascot from '../components/SpecsMascot';
 
 const OFF_API = 'https://world.openfoodfacts.org/api/v2/product';
 
@@ -166,7 +167,7 @@ export default function ScannerScreen({ navigation }) {
           }
           setLoading(false);
           Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
-          navigation.navigate('ProductScore', { product: local });
+          navigation.navigate('ProductScore', { product: local, fromScanner: true });
           promptForReviewAfterScan();
           return;
         }
@@ -218,7 +219,7 @@ export default function ScannerScreen({ navigation }) {
       const product = buildProduct(barcode, data);
       setLoading(false);
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
-      navigation.navigate('ProductScore', { product });
+      navigation.navigate('ProductScore', { product, fromScanner: true });
       promptForReviewAfterScan();
     } catch (err) {
       console.warn('[Scanner] scan error:', err);
@@ -226,7 +227,7 @@ export default function ScannerScreen({ navigation }) {
       if (local) {
         setLoading(false);
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
-        navigation.navigate('ProductScore', { product: local });
+        navigation.navigate('ProductScore', { product: local, fromScanner: true });
         promptForReviewAfterScan();
         return;
       }
@@ -326,7 +327,7 @@ export default function ScannerScreen({ navigation }) {
 
           {loading ? (
             <View style={s.frameCenter}>
-              <ActivityIndicator color={Colors.primary} size="large" />
+              <SpecsMascot clip="idle-loop" size={72} />
               <Text style={s.loadMsg}>{loadingMsg}</Text>
             </View>
           ) : scanned ? (
