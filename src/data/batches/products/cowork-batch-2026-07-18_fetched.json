@@ -1,0 +1,371 @@
+{
+ "generated": "2026-07-17T20:07:19",
+ "total": 15,
+ "resolved": 15,
+ "missed": 0,
+ "source_health": {
+  "off-search": {
+   "ok": 3,
+   "miss": 10,
+   "err": 0,
+   "throttled": 15
+  },
+  "usda-fdc": {
+   "ok": 12,
+   "miss": 0,
+   "err": 0,
+   "throttled": 0
+  }
+ },
+ "products": {
+  "beech-nut-naturals-pear-blueberry-baby-food": {
+   "input": {
+    "barcode": "",
+    "name": "Beech-Nut Naturals Pear & Blueberry Baby Food",
+    "brand": "Beech-Nut"
+   },
+   "name": "Beech-Nut, Just Apple & Aronia Berry Baby Food",
+   "brand": "BEECH-NUT",
+   "serving_size": "120.0 g",
+   "calories": 58.0,
+   "ingredients_verbatim": "APPLES, ARONIA BERRIES.",
+   "nutrition": {
+    "fat": 0.0,
+    "saturatedFat": null,
+    "sodium": 0.0,
+    "carbs": 14.2,
+    "sugars": 10.8,
+    "protein": 0.0,
+    "fiber": 2.5
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "beech-nut-naturals-butternut-squash-baby-food": {
+   "input": {
+    "barcode": "",
+    "name": "Beech-Nut Naturals Butternut Squash Baby Food",
+    "brand": "Beech-Nut"
+   },
+   "name": "Beech-Nut, Just Apple & Aronia Berry Baby Food",
+   "brand": "BEECH-NUT",
+   "serving_size": "120.0 g",
+   "calories": 58.0,
+   "ingredients_verbatim": "APPLES, ARONIA BERRIES.",
+   "nutrition": {
+    "fat": 0.0,
+    "saturatedFat": null,
+    "sodium": 0.0,
+    "carbs": 14.2,
+    "sugars": 10.8,
+    "protein": 0.0,
+    "fiber": 2.5
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "earth-s-best-organic-stage-2-apple-blueberry-oat": {
+   "input": {
+    "barcode": "",
+    "name": "Earth's Best Organic Stage 2 Apple Blueberry Oatmeal",
+    "brand": "Earth's Best"
+   },
+   "name": "Earth'S Best Organic Carrots Stage 2 Baby Food",
+   "brand": "Earth's Best",
+   "serving_size": "113.0 g",
+   "calories": 40.0,
+   "ingredients_verbatim": "Organic Carrots, Water",
+   "nutrition": {
+    "fat": 0.0,
+    "saturatedFat": 0.0,
+    "sodium": 0.055,
+    "carbs": 9.0,
+    "sugars": 5.0,
+    "protein": 1.0,
+    "fiber": 2.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "earth-s-best-organic-stage-2-carrots-broccoli": {
+   "input": {
+    "barcode": "",
+    "name": "Earth's Best Organic Stage 2 Carrots & Broccoli",
+    "brand": "Earth's Best"
+   },
+   "name": "Earth'S Best Organic Carrots Stage 2 Baby Food",
+   "brand": "Earth's Best",
+   "serving_size": "113.0 g",
+   "calories": 40.0,
+   "ingredients_verbatim": "Organic Carrots, Water",
+   "nutrition": {
+    "fat": 0.0,
+    "saturatedFat": 0.0,
+    "sodium": 0.055,
+    "carbs": 9.0,
+    "sugars": 5.0,
+    "protein": 1.0,
+    "fiber": 2.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "coffee-mate-cafe-mocha-liquid-coffee-creamer": {
+   "input": {
+    "barcode": "",
+    "name": "Coffee mate Cafe Mocha Liquid Coffee Creamer",
+    "brand": "Coffee mate"
+   },
+   "name": "Coffee Mate Cafe Mocha Liquid Coffee Creamer",
+   "brand": "Coffee-Mate",
+   "serving_size": "15.0 g",
+   "calories": 35.0,
+   "ingredients_verbatim": "Water, Sugar, Vegetable Oil ( High Oleic Soybean and / or High Oleic Canola), and Less than 2% of Micellar Casein (a Milk Derivative) ( Not a Source of Lactose), Cocoa Processed with Alkali, Mono- and Diglycerides, Dipotassium Phosphate, Natural and Artificial Flavor, Cellulose Gel, Cellulose Gum, Carrageenan. Contains: a milk derivative.",
+   "nutrition": {
+    "fat": 1.5,
+    "saturatedFat": 0.0,
+    "sodium": 5.0,
+    "carbs": 5.0,
+    "sugars": 5.0,
+    "protein": 0.0,
+    "fiber": null
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "coffee-mate-cinnamon-vanilla-creme-liquid-coffee": {
+   "input": {
+    "barcode": "",
+    "name": "Coffee mate Cinnamon Vanilla Creme Liquid Coffee Creamer",
+    "brand": "Coffee mate"
+   },
+   "name": "Coffee-Mate Cinnamon Vanilla Crme Liquid Coffee Creamer",
+   "brand": "Coffee-Mate",
+   "serving_size": "15.0 g",
+   "calories": 35.0,
+   "ingredients_verbatim": "INGREDIENTS: WATER, SUGAR, VEGETABLE OIL (HIGH OLEIC SOYBEAN AND / OR HIGH OLEIC CANOLA), AND LESS THAN 2% OF MICELLAR CASEIN (A MILK DERIVATIVE)**, MONO- AND DIGLYCERIDES, DIPOTASSIUM PHOSPHATE, NATURAL AND ARTIFICIAL FLAVOR, CELLULOSE GEL, CELLULOSE GUM, CARRAGEENAN.",
+   "nutrition": {
+    "fat": 1.5,
+    "saturatedFat": null,
+    "sodium": 5.0,
+    "carbs": 5.0,
+    "sugars": 5.0,
+    "protein": null,
+    "fiber": null
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "coffee-mate-vanilla-caramel-liquid-coffee-creame": {
+   "input": {
+    "barcode": "",
+    "name": "Coffee mate Vanilla Caramel Liquid Coffee Creamer",
+    "brand": "Coffee mate"
+   },
+   "name": "Coffee Mate Caramel Liquid Coffee Creamer",
+   "brand": "Coffee-Mate",
+   "serving_size": "15.0 g",
+   "calories": 35.0,
+   "ingredients_verbatim": "Water, Sugar, Vegetable Oil ( High Oleic Soybean and / or High Oleic Canola), and Less than 2% of Micellar Casein (a Milk Derivative) ( Not a Source of Lactose), Mono- and Diglycerides, Dipotassium Phosphate, Salt, Natural and Artificial Flavor, Cellulose Gel, Cellulose Gum, Carrageenan. Contains: a milk derivative.",
+   "nutrition": {
+    "fat": 1.5,
+    "saturatedFat": null,
+    "sodium": 15.0,
+    "carbs": 5.0,
+    "sugars": 5.0,
+    "protein": null,
+    "fiber": null
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "coffee-mate-snickers-liquid-coffee-creamer": {
+   "input": {
+    "barcode": "",
+    "name": "Coffee mate SNICKERS Liquid Coffee Creamer",
+    "brand": "Coffee mate"
+   },
+   "name": "Nestle Coffee Mate Snickers Liquid Coffee Creamer",
+   "brand": "NestlÃ©",
+   "serving_size": "15.0 g",
+   "calories": 35.0,
+   "ingredients_verbatim": "Nutrition Facts About 63 servings per container Serving Size 1.00 tbsp Amount Per Serving Calories 35 % Daily Value * Total Fat 1.5g 2% Saturated Fat 0g 0% Trans Fat 0g Monounsaturated Fat 1g Cholesterol 0mg 0% Sodium 20mg 1% Total Carbohydrate 5g 1% Total Sugars 5g Includes Added Sugars 5g 10% Protein 0g * The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily diet. 2.000 calories a day is used for general nutrition advice. Ingredients Water, Sugar, Vegetable Oil ( High Oleic Soybean and / or High Oleic Canola), and Less than 2% of Micellar Casein (a Milk Derivative) ( Not a Source of Lactose), Natural and Artificial Flavor, Cocoa Processed with Alkali, Mono- and Diglycerides, Dipotassium Phosphate, Salt, Cellulose Gel, Cellulose Gum, Carrageenan.",
+   "nutrition": {
+    "fat": 1.5,
+    "saturatedFat": 0.0,
+    "sodium": 20.0,
+    "carbs": 5.0,
+    "sugars": 5.0,
+    "protein": 0.0,
+    "fiber": null
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "coffee-mate-zero-sugar-italian-sweet-creme-liqui": {
+   "input": {
+    "barcode": "",
+    "name": "Coffee mate Zero Sugar Italian Sweet Creme Liquid Coffee Creamer",
+    "brand": "Coffee mate"
+   },
+   "name": "Coffee- Mate Zero Sugar Italian Sweet Creme Liquid Coffee Creamer",
+   "brand": "Coffee-Mate",
+   "serving_size": "15.0 g",
+   "calories": 15.0,
+   "ingredients_verbatim": "Water, Corn Syrup**, Soybean Oil, And Less Than 2% Of Maltodextrin**, Micellar Casein (A Milk Derivative), Dipotassium Phosphate, Mono- And Diglycerides, Natural Flavor, Carrageenan, Sucralose, Acesulfame Potassium ( Non- Nutritive Sweetener). ** Adds A Trivial Amount Of Sugar",
+   "nutrition": {
+    "fat": 1.0,
+    "saturatedFat": 0.0,
+    "sodium": 5.0,
+    "carbs": 1.0,
+    "sugars": null,
+    "protein": 0.0,
+    "fiber": null
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "international-delight-irish-creme-coffee-creamer": {
+   "input": {
+    "barcode": "",
+    "name": "International Delight Irish Creme Coffee Creamer",
+    "brand": "International Delight"
+   },
+   "name": "International delight, gourmet coffee creamer, irish creme cafe, irish creme cafe",
+   "brand": "International Delight",
+   "serving_size": "1 Tbsp (15 ml)",
+   "calories": 35,
+   "ingredients_verbatim": "Water, cane sugar, palm oil, contains 2% or less of each of the following: sodium caseinate (a milk derivative)*, dipotassium phosphate, natural and artificial flavors, mono and diglycerides, sodium stearoyl lactylate, polysorbate 60, carrageenan, salt.",
+   "nutrition": {
+    "fat": 1.5,
+    "saturatedFat": 1,
+    "sodium": 0,
+    "carbs": 5,
+    "sugars": 5,
+    "protein": 0,
+    "fiber": 0
+   },
+   "image_url": null,
+   "matched_off_code": "0041271019650",
+   "source": "off-search"
+  },
+  "international-delight-southern-butter-pecan-coff": {
+   "input": {
+    "barcode": "",
+    "name": "International Delight Southern Butter Pecan Coffee Creamer",
+    "brand": "International Delight"
+   },
+   "name": "Gourmet Coffee Creamer, Southern Butter Pecan",
+   "brand": "International Delight",
+   "serving_size": "1 Tbsp (15 ml)",
+   "calories": 35,
+   "ingredients_verbatim": "Water, cane sugar, palm oil, contains 2% or less of: sodium caseinate (a milk derivative)*, dipotassium phosphate, natural and artificial flavors, mono and diglycerides, sodium stearoyl lactylate, polysorbate 60, carrageenan",
+   "nutrition": {
+    "fat": 1.5,
+    "saturatedFat": 1,
+    "sodium": 0.01,
+    "carbs": 5,
+    "sugars": 5,
+    "protein": 0,
+    "fiber": 0
+   },
+   "image_url": null,
+   "matched_off_code": "0041271021448",
+   "source": "off-search"
+  },
+  "international-delight-zero-sugar-caramel-macchia": {
+   "input": {
+    "barcode": "",
+    "name": "International Delight Zero Sugar Caramel Macchiato Coffee Creamer",
+    "brand": "International Delight"
+   },
+   "name": "International Delight Liquid Coffee Creamer - Caramel Macchiato",
+   "brand": "International Delight",
+   "serving_size": "15.0 g",
+   "calories": null,
+   "ingredients_verbatim": "Water, Sugar, Palm Oil, Contains 2% or Less of: Sodium Caseinate ( Sodium Caseinate is Not a Source of Lactose) (a Milk Derivative), Dipotassium Phosphate, Carrageenan, Mono and Diglycerides, Natural & Artificial Flavors, Sodium Stearoyl Lactylate, Salt.",
+   "nutrition": {
+    "fat": null,
+    "saturatedFat": null,
+    "sodium": 10.0,
+    "carbs": null,
+    "sugars": null,
+    "protein": null,
+    "fiber": null
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "international-delight-reese-s-peanut-butter-cup-": {
+   "input": {
+    "barcode": "",
+    "name": "International Delight REESE'S Peanut Butter Cup Coffee Creamer",
+    "brand": "International Delight"
+   },
+   "name": "International Delight, Coffee Creamer",
+   "brand": "HOSTESS",
+   "serving_size": "15.0 ml",
+   "calories": 233,
+   "ingredients_verbatim": "WATER, SUGAR, PALM OIL, CONTAINS 2% OR LESS OF: SODIUM CASEINATE* (A MILK DERIVATNE), DIPOTASSIUM PHOSPHATE, CARRAGEENAN, MONO AND DIGLYCERIDES, SODIUM STEAROYL LACTYLATE, NATURAL AND ARTIFICIAL FLAVORS, SALT.",
+   "nutrition": {
+    "fat": 10.0,
+    "saturatedFat": 3.33,
+    "sodium": 67.0,
+    "carbs": 33.3,
+    "sugars": 33.3,
+    "protein": 0.0,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "chobani-sweet-cream-coffee-creamer": {
+   "input": {
+    "barcode": "",
+    "name": "Chobani Sweet Cream Coffee Creamer",
+    "brand": "Chobani"
+   },
+   "name": "Chobani Coffee Creamer Pumpkin Dairy - 24Floz",
+   "brand": "Chobani",
+   "serving_size": "15.0 g",
+   "calories": 35.0,
+   "ingredients_verbatim": "Milk, Cream, Cane Sugar, Natural Flavors",
+   "nutrition": {
+    "fat": 1.5,
+    "saturatedFat": 1.0,
+    "sodium": 10.0,
+    "carbs": 5.0,
+    "sugars": 5.0,
+    "protein": null,
+    "fiber": null
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "chobani-vanilla-coffee-creamer": {
+   "input": {
+    "barcode": "",
+    "name": "Chobani Vanilla Coffee Creamer",
+    "brand": "Chobani"
+   },
+   "name": "Vanilla Coffee Creamer",
+   "brand": "Chobani",
+   "serving_size": "1 serving (15 g)",
+   "calories": 35,
+   "ingredients_verbatim": "Milk, cream, cane sugar, natural flavors, vanilla extract",
+   "nutrition": {
+    "fat": 1.5,
+    "saturatedFat": 1,
+    "sodium": 0.01,
+    "carbs": 5,
+    "sugars": 5,
+    "protein": 0,
+    "fiber": null
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/081/829/001/6935/front_en.57.400.jpg",
+   "matched_off_code": "0818290016935",
+   "source": "off-search"
+  }
+ },
+ "misses": []
+}
