@@ -15,6 +15,7 @@ const batches = [
   { file: 'src/data/batches/products/cowork-batch-2026-07-17_reviewed.js', label: 'Cowork batch 2026-07-17' },
   { file: 'src/data/batches/products/cowork-batch-2026-07-18_reviewed.js', label: 'Cowork batch 2026-07-18' },
   { file: 'src/data/batches/products/cowork-batch-2026-07-20_reviewed.js', label: 'Cowork batch 2026-07-20' },
+  { file: 'src/data/batches/products/cowork-batch-2026-07-20b_reviewed.js', label: 'Cowork batch 2026-07-20b' },
 ];
 
 const productsSource = fs.readFileSync(productsPath, 'utf8');
