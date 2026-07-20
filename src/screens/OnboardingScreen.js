@@ -76,12 +76,16 @@ const PEPSICO_INCENTIVE_STATS = [
   },
 ];
 
-// Computed LIVE from the real company count (never a hand-typed guess — a
-// prior version of this const was manually set to "270+" while the real
-// count was 268, a genuine never-fabricate violation caught in review
-// 2026-07-19). Floors to the nearest 10 so the "+" always stays true even
-// as the catalog grows via the cowork product pipeline (see priorities.md).
-const COMPANY_COUNT_LABEL = `${Math.floor(Object.keys(COMPANY_DB).length / 10) * 10}+`;
+// "Approximately 300" (founder-directed 2026-07-20, deliberately not a hard
+// "300+" claim). Basis: COMPANY_DB has 268 full profiles, but
+// BRAND_PARENT_MAP additionally resolves 22 more parent companies (brand
+// ownership known, no full lobbying/donation profile yet) — so the app
+// actually touches ~290 distinct companies today, not just 268. A prior
+// version of this label was hand-typed as "270+" against a real count of
+// 268 (a genuine never-fabricate miss, caught in review 2026-07-19); this
+// "approximately" framing is honest about both numbers without needing to
+// track the exact live count.
+const COMPANY_COUNT_LABEL = 'approximately 300';
 
 // Verified 2026-07-19 via WebSearch against primary/authoritative sources —
 // never-fabricate gate (plan Part B3). Each figure traces to the source
