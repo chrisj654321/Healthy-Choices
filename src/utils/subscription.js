@@ -264,11 +264,6 @@ export function useProStatus() {
 // ─── Feature gate config ──────────────────────────────────────────────────────
 
 export const PRO_FEATURES = {
-  share: {
-    icon:  'share-social-outline',
-    title: 'Share Product Scores',
-    desc:  'Send product health scores to friends and family.',
-  },
   search: {
     icon:  'search-outline',
     title: 'Search Products',

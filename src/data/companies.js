@@ -114,6 +114,15 @@ export const COMPANY_DB = {
           'PepsiCo has actively opposed soda tax initiatives across multiple U.S. cities and states through direct lobbying and funding of industry front groups, as documented by the Center for Science in the Public Interest. These campaigns have been ongoing through the 2020–2025 period.',
         source: 'CSPI; OpenSecrets, 2020–2025',
       },
+      {
+        id: 'gmo-labeling-opposition',
+        title: 'Funded Opposition to GMO-Labeling Ballot Measures',
+        severity: 'medium',
+        description:
+          "Between 2012 and 2014, PepsiCo made more than $8 million in disclosed contributions to campaigns opposing mandatory GMO-labeling ballot measures in California, Washington, Colorado, and Oregon, per state campaign-finance filings. Part of PepsiCo's Washington spending flowed through the Grocery Manufacturers Association's \"Defense of Brands\" account; the association — not PepsiCo — was later found by Washington courts to have violated state campaign-disclosure law and resolved the matter for $9 million in 2022. PepsiCo, a member of GMA's successor the Consumer Brands Association, states that bioengineered ingredients are safe and that it complies with applicable labeling requirements.",
+        source:
+          'State campaign-finance filings via Ballotpedia (CA SOS 2012, WA PDC 2013, CO TRACER 2014, OR 2014); Washington State Attorney General press releases (2016–2022); PepsiCo ESG disclosure (2025)',
+      },
     ],
     subsidiaries: ['Pepsi', 'Mountain Dew', 'Gatorade', 'Lay\'s', 'Quaker', 'Tropicana', 'Doritos', 'Cheetos'],
     sustainabilityScore: 44,

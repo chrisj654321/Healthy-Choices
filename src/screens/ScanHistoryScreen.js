@@ -222,7 +222,7 @@ function HistoryGateBanner({ lockedCount, onUpgrade }) {
       </View>
       <View style={hgS.text}>
         <Text style={hgS.title}>{lockedCount} more scan{lockedCount !== 1 ? 's' : ''} locked</Text>
-        <Text style={hgS.sub}>Upgrade to Pro to see your full history.</Text>
+        <Text style={hgS.sub}>Upgrade to Premium to see your full history.</Text>
       </View>
       <View style={hgS.btn}>
         <Text style={hgS.btnText}>Unlock</Text>

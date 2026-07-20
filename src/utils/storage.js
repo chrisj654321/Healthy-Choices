@@ -5,6 +5,7 @@ const HISTORY_KEY     = '@hc_scan_history';
 const PREFS_KEY       = '@hc_user_prefs';
 const ONBOARDING_KEY  = '@hc_onboarding_done';
 const DAILY_SCAN_KEY  = '@hc_daily_scans';
+const SETUP_PROMPTED_KEY = '@hc_setup_prompted';
 const MAX_HISTORY     = 100;
 
 export const FREE_DAILY_LIMIT   = 5;
@@ -129,11 +130,21 @@ export const DEFAULT_PREFS = {
   favoriteStores: [],
   dietStyle: [],
   primaryGoal: null,
+  // Onboarding's shopping-challenge step (Part B6) — single-select, like primaryGoal.
+  challenge: null,
+  // Commitment step (Part B7): 1-10 slider + optional goal deadline/free-text.
+  // goalDeadline is null or { bucket, targetDate } (targetDate = ISO string).
+  commitment: null,
+  goalDeadline: null,
+  goalText: '',
   // Whether the user has explicitly reviewed each setup section (vs. skipped it
-  // during onboarding). Drives the "finish setting up your profile" Home card.
+  // during onboarding, or not yet visited in the post-first-scan setup flow).
+  // Drives the "finish setting up your profile" Home card.
   allergensReviewed: false,
   dietaryReviewed: false,
   goalReviewed: false,
+  challengeReviewed: false,
+  storesReviewed: false,
   showLobbying: true,
   showDonations: true,
   notifyNewFlags: true,
@@ -145,6 +156,12 @@ export const DEFAULT_PREFS = {
  * counts as done if it was explicitly reviewed OR already has data (covers
  * users who set things up before the review flags existed).
  * Returns { complete, missing: ['allergens'|'dietary'|'goal'] }.
+ *
+ * 'stores' is intentionally NOT checked here (founder, 2026-07-19) — the
+ * favorite-stores feature is paused, not shipped. favoriteStores/storesReviewed
+ * stay in DEFAULT_PREFS untouched so the field re-lights cleanly whenever the
+ * feature comes back; ProfileSetupScreen's StoresStep import was removed the
+ * same day, but the shared component still lives in setupSteps.js.
  */
 export function getProfileSetup(prefs = {}) {
   const allergensDone = prefs.allergensReviewed || (prefs.allergens?.length > 0);
@@ -158,6 +175,28 @@ export function getProfileSetup(prefs = {}) {
   if (!goalDone) missing.push('goal');
 
   return { complete: missing.length === 0, missing };
+}
+
+// ─── Post-first-scan setup prompt (Part B9) ────────────────────────────────────
+// One-time flag: has the user already been offered the "personalize your
+// scans?" prompt after their first real scan? Independent of whether they
+// accepted — either way we never auto-prompt a second time (the Home nudge
+// card stays as the persistent, non-modal reminder after this).
+
+export async function hasBeenPromptedForSetup() {
+  try {
+    return (await AsyncStorage.getItem(SETUP_PROMPTED_KEY)) === 'true';
+  } catch {
+    return false;
+  }
+}
+
+export async function markSetupPrompted() {
+  try {
+    await AsyncStorage.setItem(SETUP_PROMPTED_KEY, 'true');
+  } catch (e) {
+    console.warn('[Storage] failed to persist setup-prompted flag:', e?.message ?? e);
+  }
 }
 
 export async function getUserPrefs() {

@@ -25,6 +25,8 @@ import SpecsMascot from '../components/SpecsMascot';
 // open, not every time the user navigates back to this tab.
 let waveShownThisLaunch = false;
 
+// 'stores' intentionally absent — getProfileSetup() never returns it
+// (favorite-stores feature paused, see storage.js).
 const MISSING_LABEL = {
   allergens: 'allergens',
   dietary: 'dietary preferences',
@@ -141,8 +143,8 @@ export default function HomeScreen({ navigation }) {
             </TouchableOpacity>
           </View>
           <View style={s.heroBadge}>
-            <Text style={s.heroBadgeNum}>1,000+</Text>
-            <Text style={s.heroBadgeLabel}>products{'\n'}graded</Text>
+            <Text style={s.heroBadgeNum}>3,000,000+</Text>
+            <Text style={s.heroBadgeLabel}>products{'\n'}scannable</Text>
           </View>
         </LinearGradient>
 
@@ -151,7 +153,7 @@ export default function HomeScreen({ navigation }) {
           <TouchableOpacity
             style={s.setupCard}
             activeOpacity={0.85}
-            onPress={() => navigation.getParent()?.navigate('Profile')}
+            onPress={() => navigation.navigate('ProfileSetup')}
           >
             <View style={s.setupMain}>
               <Text style={s.setupTitle}>Finish setting up your profile</Text>

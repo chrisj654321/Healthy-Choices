@@ -363,14 +363,14 @@ describe('getUserPrefs / saveUserPrefs', () => {
 // ─── getProfileSetup ─────────────────────────────────────────────────────────
 
 describe('getProfileSetup', () => {
-  test('fully empty prefs ({}) -> all three missing, complete: false', () => {
+  test('fully empty prefs ({}) -> all three tracked sections missing, complete: false', () => {
     expect(getProfileSetup({})).toEqual({
       complete: false,
       missing: ['allergens', 'dietary', 'goal'],
     });
   });
 
-  test('no argument at all -> defaults to {} -> all three missing', () => {
+  test('no argument at all -> defaults to {} -> all three tracked sections missing', () => {
     expect(getProfileSetup()).toEqual({
       complete: false,
       missing: ['allergens', 'dietary', 'goal'],
@@ -415,11 +415,21 @@ describe('getProfileSetup', () => {
     expect(result.missing).toContain('goal');
   });
 
-  test('complete: true only when all three sections are done', () => {
+  // 'stores' is intentionally NOT tracked by getProfileSetup (paused feature,
+  // see storage.js) — storesReviewed/favoriteStores must never affect
+  // completeness or the missing list, no matter their value.
+  test('stores fields never affect completeness (feature paused)', () => {
+    expect(getProfileSetup({ storesReviewed: true }).missing).not.toContain('stores');
+    expect(getProfileSetup({ favoriteStores: ['walmart'] }).missing).not.toContain('stores');
+    expect(getProfileSetup({ favoriteStores: [], storesReviewed: false }).missing).not.toContain('stores');
+  });
+
+  test('complete: true once the three tracked sections are done, regardless of stores fields', () => {
     const result = getProfileSetup({
       allergensReviewed: true,
       dietaryReviewed: true,
       goalReviewed: true,
+      storesReviewed: false,
     });
     expect(result).toEqual({ complete: true, missing: [] });
   });
@@ -429,6 +439,7 @@ describe('getProfileSetup', () => {
       allergensReviewed: true,
       // dietary left incomplete
       goalReviewed: true,
+      storesReviewed: true,
     });
     expect(result).toEqual({ complete: false, missing: ['dietary'] });
   });

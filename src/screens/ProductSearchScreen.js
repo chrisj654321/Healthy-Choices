@@ -322,7 +322,7 @@ export default function ProductSearchScreen({ navigation }) {
             onPress={() => navigation.navigate('Paywall', { feature: 'search' })}
           >
             <Ionicons name="star" size={16} color={Colors.white} style={{ marginRight: 6 }} />
-            <Text style={styles.upgradeBtnText}>Upgrade to Pro</Text>
+            <Text style={styles.upgradeBtnText}>Upgrade to Premium</Text>
           </TouchableOpacity>
           <Text style={styles.gateNote}>Cancel anytime</Text>
         </View>

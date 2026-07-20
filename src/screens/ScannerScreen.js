@@ -146,7 +146,7 @@ export default function ScannerScreen({ navigation }) {
               Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error).catch(() => {});
               Alert.alert(
                 "Daily Limit Reached",
-                "Free accounts can scan 5 products per day. Upgrade to Pro for unlimited scans.",
+                "Free accounts can scan 5 products per day. Upgrade to Premium for unlimited scans.",
                 [
                   { text: "Not Now", style: "cancel", onPress: reset },
                   { text: "Upgrade", onPress: () => navigation.navigate('Paywall', { feature: 'scan' }) },
@@ -157,10 +157,10 @@ export default function ScannerScreen({ navigation }) {
             if (remaining === 0) {
               Alert.alert(
                 "Last Free Scan Today",
-                "You've used all 5 free scans for today. Upgrade to Pro for unlimited scanning.",
+                "You've used all 5 free scans for today. Upgrade to Premium for unlimited scanning.",
                 [
                   { text: "Continue", style: "cancel" },
-                  { text: "Upgrade to Pro", onPress: () => navigation.navigate('Paywall', { feature: 'scan' }) },
+                  { text: "Upgrade to Premium", onPress: () => navigation.navigate('Paywall', { feature: 'scan' }) },
                 ]
               );
             }
@@ -192,7 +192,7 @@ export default function ScannerScreen({ navigation }) {
           Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error).catch(() => {});
           Alert.alert(
             "Daily Limit Reached",
-            "Free accounts can scan 5 products per day. Upgrade to Pro for unlimited scans.",
+            "Free accounts can scan 5 products per day. Upgrade to Premium for unlimited scans.",
             [
               { text: "Not Now", style: "cancel", onPress: reset },
               { text: "Upgrade", onPress: () => navigation.navigate('Paywall', { feature: 'scan' }) },
@@ -203,10 +203,10 @@ export default function ScannerScreen({ navigation }) {
         if (remaining === 0) {
           Alert.alert(
             "Last Free Scan Today",
-            "You've used all 5 free scans for today. Upgrade to Pro for unlimited scanning.",
+            "You've used all 5 free scans for today. Upgrade to Premium for unlimited scanning.",
             [
               { text: "Continue", style: "cancel" },
-              { text: "Upgrade to Pro", onPress: () => navigation.navigate('Paywall', { feature: 'scan' }) },
+              { text: "Upgrade to Premium", onPress: () => navigation.navigate('Paywall', { feature: 'scan' }) },
             ]
           );
         }

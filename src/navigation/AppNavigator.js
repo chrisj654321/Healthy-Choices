@@ -9,8 +9,9 @@ import * as Haptics from 'expo-haptics';
 import * as Notifications from 'expo-notifications';
 import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
-import { isOnboardingDone } from '../utils/storage';
+import { isOnboardingDone, getUserPrefs } from '../utils/storage';
 import { refreshWeeklySchedule } from '../utils/notifications';
+import { refreshGoalReminders } from '../utils/goalReminders';
 import { useAuth } from '../context/AuthContext';
 
 import HomeScreen             from '../screens/HomeScreen';
@@ -22,6 +23,7 @@ import CompanyProfileScreen   from '../screens/CompanyProfileScreen';
 import ScanHistoryScreen      from '../screens/ScanHistoryScreen';
 import ProductSearchScreen    from '../screens/ProductSearchScreen';
 import ProfileScreen          from '../screens/ProfileScreen';
+import ProfileSetupScreen     from '../screens/ProfileSetupScreen';
 import MyRequestsScreen       from '../screens/MyRequestsScreen';
 import OnboardingScreen       from '../screens/OnboardingScreen';
 import PaywallScreen          from '../screens/PaywallScreen';
@@ -147,6 +149,9 @@ export default function AppNavigator() {
     // Rotate the weekly notification's copy to this week's line. No-ops
     // unless the user is opted in with OS permission granted — never prompts.
     refreshWeeklySchedule();
+    // Keep goal-reminder countdown/copy current, and let it go silent once
+    // the deadline window has fully passed. No-ops if there's no deadline.
+    getUserPrefs().then(refreshGoalReminders).catch(() => {});
   }, []);
 
   // Tapping any of our local notifications should just bring the user to the
@@ -234,6 +239,7 @@ export default function AppNavigator() {
       <Root.Navigator screenOptions={{ headerShown: false, presentation: 'modal' }}>
         <Root.Screen name="MainApp" component={MainTabs} options={{ presentation: 'card' }} />
         <Root.Screen name="Paywall" component={PaywallScreen} />
+        <Root.Screen name="ProfileSetup" component={ProfileSetupScreen} />
       </Root.Navigator>
     </NavigationContainer>
   );

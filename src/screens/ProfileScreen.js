@@ -213,6 +213,7 @@ export default function ProfileScreen({ navigation }) {
       dietaryFlags: 'dietaryReviewed',
       dietStyle: 'dietaryReviewed',
       primaryGoal: 'goalReviewed',
+      favoriteStores: 'storesReviewed',
     }[key];
     const updated = { ...prefs, [key]: value, ...(reviewKey ? { [reviewKey]: true } : {}) };
     setPrefs(updated);

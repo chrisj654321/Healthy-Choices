@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 import {
   View, Text, ScrollView, StyleSheet, TouchableOpacity,
-  Share, StatusBar, Image, ActivityIndicator, Animated,
+  Share, StatusBar, Image, ActivityIndicator, Animated, Alert,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
@@ -12,7 +12,10 @@ import { Font } from '../constants/typography';
 import {
   scoreProduct, scoreToColor, scoreToVerdict, generateScoreExplanation, getPersonalisedWarnings,
 } from '../utils/scorer';
-import { addScanToHistory, getUserPrefs } from '../utils/storage';
+import {
+  addScanToHistory, getUserPrefs,
+  hasBeenPromptedForSetup, markSetupPrompted,
+} from '../utils/storage';
 import { logProductRequest } from '../utils/productRequests';
 import { logProductEvent } from '../utils/scanAnalytics';
 import { useProStatus } from '../utils/subscription';
@@ -369,20 +372,63 @@ export default function ProductScoreScreen({ route, navigation }) {
     }).start();
   }, [product]);
 
+  // Post-first-scan setup prompt (Part B9, Trigger 1) — once, ever, right as
+  // the user leaves the score screen after a real scan (not history/search),
+  // offer the "personalize your scans?" nudge into ProfileSetupScreen.
+  // `beforeRemove` intercepts every way of leaving (back button, swipe
+  // gesture, programmatic goBack) so this fires reliably; best-effort only —
+  // never blocks navigation on failure.
+  useEffect(() => {
+    if (!route?.params?.fromScanner) return undefined;
+    let handled = false;
+
+    const unsubscribe = navigation.addListener('beforeRemove', (e) => {
+      if (handled) return;
+      handled = true;
+      e.preventDefault();
+      (async () => {
+        try {
+          const alreadyPrompted = await hasBeenPromptedForSetup();
+          if (alreadyPrompted) {
+            navigation.dispatch(e.data.action);
+            return;
+          }
+          await markSetupPrompted();
+          Alert.alert(
+            'Got a minute to personalize your scans?',
+            'Add allergens, dietary preferences, and your favorite stores — takes about a minute.',
+            [
+              { text: 'Not now', style: 'cancel', onPress: () => navigation.dispatch(e.data.action) },
+              {
+                text: "Let's go",
+                onPress: () => {
+                  navigation.dispatch(e.data.action);
+                  navigation.navigate('ProfileSetup');
+                },
+              },
+            ]
+          );
+        } catch (err) {
+          console.warn('[ProductScore] setup-prompt check failed:', err?.message ?? err);
+          navigation.dispatch(e.data.action);
+        }
+      })();
+    });
+
+    return unsubscribe;
+  }, [navigation, route]);
+
   const handleShare = useCallback(async () => {
     if (!result) return;
-    if (!isPro) {
-      navigation.navigate('Paywall', { feature: 'share' });
-      return;
-    }
     await Share.share({
       message:
         `${product.name} scored ${result.score}/100 on Shelf Exposé.\n` +
         (result.avoidCount > 0
           ? `⚠️ ${result.avoidCount} ingredient(s) to avoid.`
-          : '✅ No major red-flag ingredients!'),
+          : '✅ No major red-flag ingredients!') +
+        `\nGet the app: https://apps.apple.com/app/id6776718186`,
     });
-  }, [result, product, isPro, navigation]);
+  }, [result, product]);
 
   if (!product) return null;
   if (!result) {
