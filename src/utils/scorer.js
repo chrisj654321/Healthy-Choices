@@ -731,7 +731,7 @@ function analyzePackagingConcern(product = {}) {
   const title = isHeated ? 'Microwave plastic packaging' : 'Plastic food-contact packaging';
   const note = packaging.note || (
     isHeated
-      ? 'Prepared by heating food in plastic packaging. We reduce the score because Shelf Expose prioritizes lower heated-plastic food contact where practical.'
+      ? 'Prepared by heating food in plastic packaging. We reduce the score because Food Exposé prioritizes lower heated-plastic food contact where practical.'
       : 'Packaged in direct-contact plastic. We apply a small score reduction for consumers trying to reduce plastic food-contact exposure.'
   );
 

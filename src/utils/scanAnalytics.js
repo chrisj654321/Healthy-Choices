@@ -6,7 +6,7 @@
  * This module logs ONLY: barcode, category, score, grade, and source
  * ('scan' | 'search' | 'history' | 'category' | 'home'). It NEVER reads,
  * generates, or stores a user id, email, device id, IDFA, or any session
- * identifier. There is no linkage to a Shelf Exposé account or any other
+ * identifier. There is no linkage to a Food Exposé account or any other
  * account. The data exists solely so the founder can see aggregate trends —
  * which products/categories/ingredients shoppers scan — never who scanned
  * them.

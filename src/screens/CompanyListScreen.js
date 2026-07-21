@@ -53,7 +53,7 @@ export default function CompanyListScreen({ navigation }) {
           <Text style={s.lockTitle}>Company Transparency</Text>
           <Text style={s.lockSub}>
             See lobbying spend, political donations, and documented controversies behind
-            every brand you buy. Unlock with Shelf Exposé Pro.
+            every brand you buy. Unlock with Food Exposé Pro.
           </Text>
           <TouchableOpacity
             style={s.unlockBtn}

@@ -1,10 +1,10 @@
-# Company map — who and what runs Shelf Exposé
+# Company map — who and what runs Food Exposé
 
 _Last updated: 2026-07-05_
 
 ## The business
 
-**Shelf Exposé** (app; working repo name "HealthyChoices") — iOS food-transparency app: scan a product → instant health grade, plain-English ingredient breakdown, and the money trail behind the brand (ownership, lobbying, political donations). Product of **James Adventure Sales & Marketing LLC**. Freemium: company transparency data is the Pro gate ($7.99/mo or $49.99/yr; 50% off first year on both plans).
+**Food Exposé: Barcode Scanner** (app; working repo name "HealthyChoices", formerly "Shelf Exposé") — iOS food-transparency app: scan a product → instant health grade, plain-English ingredient breakdown, and the money trail behind the brand (ownership, lobbying, political donations). Product of **James Adventure Sales & Marketing LLC**. Freemium: company transparency data is the Pro gate ($7.99/mo or $49.99/yr; 50% off first year on both plans).
 
 North star: **VISION.md** — translate the label, expose the ownership, follow the money. Full doctrine in [instructions/instructions.md](../instructions/instructions.md).
 

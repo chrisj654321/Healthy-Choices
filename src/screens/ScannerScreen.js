@@ -260,7 +260,7 @@ export default function ScannerScreen({ navigation }) {
         <Text style={s.permTitle}>Camera Access Required</Text>
         <Text style={s.permSub}>
           {canAsk
-            ? 'Shelf Exposé needs your camera to scan product barcodes and analyze ingredients.'
+            ? 'Food Exposé needs your camera to scan product barcodes and analyze ingredients.'
             : 'Camera access was denied. Please enable it in your device Settings to scan barcodes.'}
         </Text>
         <TouchableOpacity
@@ -302,7 +302,7 @@ export default function ScannerScreen({ navigation }) {
       >
         <View style={s.topBar}>
           <View>
-            <Text style={s.appName}>Shelf Exposé</Text>
+            <Text style={s.appName}>Food Exposé</Text>
             <Text style={s.appTagline}>The truth behind your food</Text>
           </View>
           <TouchableOpacity style={s.iconBtn} onPress={() => setTorch((t) => !t)}>
@@ -429,6 +429,15 @@ const VF = 260;
 const CR = 26;
 const CT = 3;
 
+// Camera-overlay text sits on a live video feed with no predictable
+// background, so a strong dark shadow (not just white opacity or the
+// gradient scrim) is what keeps it readable over bright/busy frames.
+const CAMERA_TEXT_POP = {
+  textShadowColor: 'rgba(0,0,0,0.85)',
+  textShadowOffset: { width: 0, height: 1 },
+  textShadowRadius: 5,
+};
+
 const s = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#000' },
   centered: {
@@ -471,13 +480,16 @@ const s = StyleSheet.create({
   },
   appName: {
     fontSize: Font.sizes.lg, fontWeight: Font.weights.heavy, color: Colors.white,
+    ...CAMERA_TEXT_POP,
   },
   appTagline: {
-    fontSize: Font.sizes.xs, color: 'rgba(255,255,255,0.55)', marginTop: 2,
+    fontSize: Font.sizes.xs, color: 'rgba(255,255,255,0.82)', marginTop: 2,
+    ...CAMERA_TEXT_POP,
   },
   iconBtn: { padding: 8 },
   instruction: {
-    fontSize: Font.sizes.sm, color: 'rgba(255,255,255,0.7)', textAlign: 'center',
+    fontSize: Font.sizes.sm, color: 'rgba(255,255,255,0.92)', textAlign: 'center',
+    ...CAMERA_TEXT_POP,
   },
 
   midRow: { flexDirection: 'row', height: VF },
@@ -501,6 +513,7 @@ const s = StyleSheet.create({
   loadMsg: {
     color: Colors.white, fontSize: Font.sizes.sm,
     fontWeight: Font.weights.medium,
+    ...CAMERA_TEXT_POP,
   },
 
   bottomGrad: {

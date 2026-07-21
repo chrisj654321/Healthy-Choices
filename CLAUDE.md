@@ -1,4 +1,4 @@
-# Shelf Exposé (HealthyChoices) — session brief
+# Food Exposé: Barcode Scanner (HealthyChoices) — session brief
 
 iOS food-transparency app (Expo RN): scan a product → health grade, plain-English ingredients, and the money trail behind the brand. Solo founder (Christian James, James Adventure Sales & Marketing LLC), built by directing AI. Freemium — company transparency is the Pro gate.
 

@@ -196,7 +196,7 @@ export default function AuthScreen() {
             <LinearGradient colors={[Colors.primary, Colors.primaryDark ?? '#157A5A']} style={s.logoWrap}>
               <Ionicons name="leaf" size={34} color="#fff" />
             </LinearGradient>
-            <Text style={s.appName}>Shelf Exposé</Text>
+            <Text style={s.appName}>Food Exposé</Text>
             <Text style={s.tagline}>The truth behind your food.</Text>
           </View>
 

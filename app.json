@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "Shelf Exposé",
+    "name": "Food Exposé: Barcode Scanner",
     "slug": "healthychoices",
-    "version": "1.0.2",
+    "version": "1.2.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -11,7 +11,7 @@
       "bundleIdentifier": "com.jamesadventure.healthychoices",
       "usesAppleSignIn": true,
       "infoPlist": {
-        "NSCameraUsageDescription": "Shelf Exposé uses your camera to scan product barcodes.",
+        "NSCameraUsageDescription": "Food Exposé uses your camera to scan product barcodes.",
         "ITSAppUsesNonExemptEncryption": false
       }
     },
@@ -32,7 +32,7 @@
       [
         "expo-camera",
         {
-          "cameraPermission": "Shelf Exposé uses your camera to scan product barcodes.",
+          "cameraPermission": "Food Exposé uses your camera to scan product barcodes.",
           "microphonePermission": false
         }
       ],

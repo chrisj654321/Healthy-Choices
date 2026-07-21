@@ -52,7 +52,7 @@ describe('normalizeIngredientTokens: advisory-phrase filtering', () => {
 describe('normalizeIngredientTokens + classifyTokenPlausibility: vandalized third-party (live OFF) data', () => {
   // Real-world incident: a vandalized OpenFoodFacts listing injected a fake
   // narrative into ingredients_text, which rendered as ranked ingredients and
-  // leaked into the auto-generated "Shelf Exposé Says" summary as if it were
+  // leaked into the auto-generated "Food Exposé Says" summary as if it were
   // the app's own claim (including a false statement about a real
   // acquisition). Mirrors the real pipeline: normalize first (strips
   // advisory-pattern matches, dedupes), then each token that fails an

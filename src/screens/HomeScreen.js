@@ -107,7 +107,7 @@ export default function HomeScreen({ navigation }) {
       <View style={[s.header, { paddingTop: insets.top + 8 }]}>
         <View style={s.headerLeft}>
           <Text style={s.headerGreeting}>{greeting()}{userName ? `, ${userName}` : ''}</Text>
-          <Text style={s.headerTitle}>Shelf Exposé</Text>
+          <Text style={s.headerTitle}>Food Exposé</Text>
         </View>
         <SpecsMascot clip={headerMascotClip} size={64} style={s.headerMascot} />
         <TouchableOpacity

@@ -1,4 +1,4 @@
-# Notification Copy Bank — Shelf Exposé
+# Notification Copy Bank — Food Exposé
 
 **Status: REVIEWED (Fable, 2026-07-04) — approved with 4 edits:** #2 reworded (original joked about knowing store history — conflicts with no-tracking positioning), #16 tagged with Jan 15 2027 expiry, #23 corrected (BVO removed — no longer legal in US food since Aug 2025, claim was stale), #24 unsourced second sentence cut per Cicero's own flag. Founder has final say before any line ships. Facts individually sourced and verified against primary/regulatory sources (see Section 4). Voice: curious detective. Names names. Never guilt, never medical-causation claims, never fabricated stats. Written by Cicero, absorbing `marketing/x-posts-growth-batch.md`, `marketing/2026-07/linkedin-2026-07.md`, and `VISION.md`.
 

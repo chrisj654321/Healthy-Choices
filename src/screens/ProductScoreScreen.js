@@ -422,7 +422,7 @@ export default function ProductScoreScreen({ route, navigation }) {
     if (!result) return;
     await Share.share({
       message:
-        `${product.name} scored ${result.score}/100 on Shelf Exposé.\n` +
+        `${product.name} scored ${result.score}/100 on Food Exposé.\n` +
         (result.avoidCount > 0
           ? `⚠️ ${result.avoidCount} ingredient(s) to avoid.`
           : '✅ No major red-flag ingredients!') +
@@ -550,14 +550,14 @@ export default function ProductScoreScreen({ route, navigation }) {
           )}
         </View>
 
-        {/* ── 2: Shelf Exposé Says ── */}
+        {/* ── 2: Food Exposé Says ── */}
         <View style={[s.sayCard, { borderLeftColor: gradeCol }]}>
           <View style={s.sayMain}>
             <View style={s.sayHeader}>
               <View style={[s.sayIcon, { backgroundColor: gradeCol + '22' }]}>
                 <Ionicons name="search" size={13} color={gradeCol} />
               </View>
-              <Text style={[s.sayTitle, { color: gradeCol }]}>Shelf Exposé Says</Text>
+              <Text style={[s.sayTitle, { color: gradeCol }]}>Food Exposé Says</Text>
             </View>
             {insufficientData ? (
               <Text style={s.sayText}>
