@@ -38,7 +38,7 @@ const OFF_BASE =
   '&search_simple=1&lc=en&tagtype_0=countries&tag_contains_0=contains&tag_0=united-states' +
   '&search_terms=';
 
-const UA = { 'User-Agent': 'HealthyChoices/1.0 (support@healthychoices.app)' };
+const UA = { 'User-Agent': 'FoodExpose/1.2 (jamesadventuremarketing@gmail.com)' };
 
 // Neither fetch() call below had a timeout — on a slow/flaky connection the
 // request could hang indefinitely (RN's fetch has no default timeout, unlike

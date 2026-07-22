@@ -282,13 +282,13 @@ export default function PaywallContent({ feature = null, onPurchased, onDismiss 
           </Text>
           <View style={s.legalLinks}>
             <TouchableOpacity
-              onPress={() => WebBrowser.openBrowserAsync('https://shelfexpose.netlify.app/terms')}
+              onPress={() => WebBrowser.openBrowserAsync('https://shelfexpose.app/terms')}
             >
               <Text style={s.legalLink}>Terms of Use</Text>
             </TouchableOpacity>
             <Text style={s.footerSep}>·</Text>
             <TouchableOpacity
-              onPress={() => WebBrowser.openBrowserAsync('https://shelfexpose.netlify.app/privacy')}
+              onPress={() => WebBrowser.openBrowserAsync('https://shelfexpose.app/privacy')}
             >
               <Text style={s.legalLink}>Privacy Policy</Text>
             </TouchableOpacity>

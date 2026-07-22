@@ -349,8 +349,8 @@ export default function OnboardingScreen({ onComplete }) {
 // ─── Step: Welcome ────────────────────────────────────────────────────────────
 
 function WelcomeStep() {
-  const openTerms   = () => WebBrowser.openBrowserAsync('https://shelfexpose.netlify.app/terms');
-  const openPrivacy = () => WebBrowser.openBrowserAsync('https://shelfexpose.netlify.app/privacy');
+  const openTerms   = () => WebBrowser.openBrowserAsync('https://shelfexpose.app/terms');
+  const openPrivacy = () => WebBrowser.openBrowserAsync('https://shelfexpose.app/privacy');
 
   return (
     <View style={w.wrap}>

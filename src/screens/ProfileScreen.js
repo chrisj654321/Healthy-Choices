@@ -266,7 +266,7 @@ export default function ProfileScreen({ navigation }) {
             } catch (e) {
               Alert.alert(
                 'Deletion Failed',
-                'We could not delete your account right now. Please check your connection and try again, or contact support@healthychoices.app.'
+                'We could not delete your account right now. Please check your connection and try again, or contact jamesadventuremarketing@gmail.com.'
               );
             }
           },

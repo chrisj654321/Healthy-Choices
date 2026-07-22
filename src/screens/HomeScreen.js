@@ -18,6 +18,8 @@ import { HEALTHY_CATEGORIES } from '../data/healthyCategories';
 import { getCategoryCounts, getHeroImagesByCategory } from '../data/productStore';
 import { scoreToColor } from '../utils/scorer';
 import { getSpotlightCompany } from '../utils/spotlight';
+import { getFirstName } from '../utils/userName';
+import { useAuth } from '../context/AuthContext';
 import SpecsMascot from '../components/SpecsMascot';
 
 // Module-level (not component state) so it survives across every Home
@@ -42,9 +44,10 @@ function greeting() {
 
 export default function HomeScreen({ navigation }) {
   const insets = useSafeAreaInsets();
+  const { user } = useAuth();
+  const userName = getFirstName(user);
   const [setup, setSetup] = useState({ complete: true, missing: [] });
   const [recent, setRecent] = useState([]);
-  const [userName, setUserName] = useState(null);
   const [categoryCounts, setCategoryCounts] = useState({});
   const [catHeroImages, setCatHeroImages] = useState({});
   const [spotlight, setSpotlight] = useState(null);

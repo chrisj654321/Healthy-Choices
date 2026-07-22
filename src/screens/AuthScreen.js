@@ -29,6 +29,7 @@ export default function AuthScreen() {
   const insets = useSafeAreaInsets();
 
   const [tab,             setTab]             = useState('Sign In');
+  const [firstName,       setFirstName]       = useState('');
   const [email,           setEmail]           = useState('');
   const [password,        setPassword]        = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -50,12 +51,17 @@ export default function AuthScreen() {
     setTab(newTab);
     setPassword('');
     setConfirmPassword('');
+    setFirstName('');
   };
 
   // ── Email + password ───────────────────────────────────────────────────────
   const handleEmailAuth = async () => {
     if (!email.trim() || !password.trim()) {
       Alert.alert('Missing fields', 'Please enter your email and password.');
+      return;
+    }
+    if (tab === 'Create Account' && !firstName.trim()) {
+      Alert.alert('Missing fields', 'Please enter your first name.');
       return;
     }
     if (tab === 'Create Account' && password !== confirmPassword) {
@@ -71,7 +77,11 @@ export default function AuthScreen() {
     const { data, error } =
       tab === 'Sign In'
         ? await supabase.auth.signInWithPassword({ email: email.trim(), password })
-        : await supabase.auth.signUp({ email: email.trim(), password });
+        : await supabase.auth.signUp({
+            email: email.trim(),
+            password,
+            options: { data: { first_name: firstName.trim() } },
+          });
 
     setLoading(false);
 
@@ -129,6 +139,19 @@ export default function AuthScreen() {
           provider: 'apple',
           token:    credential.identityToken,
         });
+
+        // Apple only ever sends the user's name on this FIRST authorization
+        // — later sign-ins with the same Apple ID won't include it again —
+        // so it has to be captured and persisted into user_metadata right
+        // here, or it's gone for good.
+        const givenName = credential.fullName?.givenName;
+        if (!error && givenName) {
+          const { error: metaError } = await supabase.auth.updateUser({
+            data: { first_name: givenName },
+          });
+          if (metaError) console.warn('[Auth] failed to save Apple given name:', metaError.message);
+        }
+
         setLoading(false);
         if (error) Alert.alert('Apple Sign In Error', error.message);
       }
@@ -216,6 +239,22 @@ export default function AuthScreen() {
 
           {/* ── Email + password form ── */}
           <View style={s.form}>
+            {tab === 'Create Account' && (
+              <View style={s.inputWrap}>
+                <Ionicons name="person-outline" size={18} color={Colors.textMuted} style={s.inputIcon} />
+                <TextInput
+                  style={s.input}
+                  placeholder="First name"
+                  placeholderTextColor={Colors.textMuted}
+                  value={firstName}
+                  onChangeText={setFirstName}
+                  autoCapitalize="words"
+                  autoCorrect={false}
+                  returnKeyType="next"
+                />
+              </View>
+            )}
+
             <View style={s.inputWrap}>
               <Ionicons name="mail-outline" size={18} color={Colors.textMuted} style={s.inputIcon} />
               <TextInput
@@ -339,11 +378,11 @@ export default function AuthScreen() {
           {/* ── Legal fine print ── */}
           <Text style={s.legal}>
             By continuing you agree to our{' '}
-            <Text style={s.legalLink} onPress={() => WebBrowser.openBrowserAsync('https://shelfexpose.netlify.app/terms')}>
+            <Text style={s.legalLink} onPress={() => WebBrowser.openBrowserAsync('https://shelfexpose.app/terms')}>
               Terms of Service
             </Text>
             {' '}and{' '}
-            <Text style={s.legalLink} onPress={() => WebBrowser.openBrowserAsync('https://shelfexpose.netlify.app/privacy')}>
+            <Text style={s.legalLink} onPress={() => WebBrowser.openBrowserAsync('https://shelfexpose.app/privacy')}>
               Privacy Policy
             </Text>.
           </Text>

@@ -12,6 +12,12 @@ Full rewrite of `OnboardingScreen.js`, the paywall (renamed Premium), and a Home
 - **Home**: "1,000+ products graded" → "3,000,000+ products scannable" (honest OFF-backed figure, was stale even before this pass).
 - **Next**: founder review of the uncommitted diff → commit → rides the next `eas build`. Visual/purchase-flow QA (RevenueCat sandbox, Slider feel, offer-screen layout) deferred to that build per standing policy (no EAS builds from this session).
 
+## P2 — MorningStar ad image revision (founder-requested 2026-07-21)
+Current image at `marketing/app-store-screenshots/morningstar-scan-6.5in-*.png` needs an explicit problem/solution headline added at the top (e.g. "Marketed as healthy. Food Exposé found the truth.") over the existing skillet/box/phone/ingredient-bubble composition, so the single image communicates the app's whole premise without needing caption text elsewhere. Exact headline wording pending founder confirmation.
+
+## P2 — App localization: French, German, Brazilian Portuguese, Spanish (founder-requested 2026-07-21)
+Translate app description, screenshots, and in-app strings for these 4 languages, per feedback from an external app reviewer. Founder's open question: catalog is US-products-only (no European products sourced), so value is specifically for non-English-primary speakers living in the US, not international users — scope/target-language decision not yet finalized. See founder's own reasoning in [[localization-scope]] (memory) before starting.
+
 ## P0 — Microplastics medical video (founder priority, in progress 2026-07-18)
 Short-form 9:16 medical-documentary video on microplastics in the body, recreating a reference ad's X-ray-scan look. **Full progress + all clip URLs + Higgsfield job IDs + resume instructions: [marketing/microplastics-video-progress.md](../marketing/microplastics-video-progress.md).** Scenes 1-6 built + approved; scene 7 caveat folds into scene 6's tail (edit-stage); scenes 8 (stakes) + 9 (CTA) not yet built; then narrator VO + assembly. Paused 2026-07-18 for a context clear. Key process rule established: confirm exact Higgsfield prompt before every submission ([[feedback-confirm-every-generation-prompt]]).
 
