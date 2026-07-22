@@ -62,6 +62,12 @@
       "expo-image"
     ],
     "scheme": "healthychoices",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/158b3aec-7944-42f9-8427-c86ecc45176a"
+    },
     "extra": {
       "eas": {
         "projectId": "158b3aec-7944-42f9-8427-c86ecc45176a"
