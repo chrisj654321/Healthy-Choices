@@ -81,11 +81,23 @@ function isMostlyLatin(str) {
   return nonLatin / letters.length <= 0.3;
 }
 
-/** Normalized dedupe key: lowercased brand + '|' + first 24 chars of lowercased name. */
+/**
+ * Normalized dedupe key: lowercased brand + '|' + first 24 chars of lowercased
+ * name, with a leading brand-name repeat stripped first. Curated names are
+ * stored brand-prefixed ("Lay's Classic Potato Chips"); OFF's product_name
+ * often omits the brand ("Classic Potato Chips"). Without stripping, those
+ * two describe the same product but hash to different keys, so a live OFF
+ * hit for a product we already carry slips past the dedupe untouched — which
+ * is how a mismatched/vandalized OFF listing for a barcode we already have
+ * curated data for can show up as a second, unflagged search result.
+ */
 function dedupeKey(product) {
   const brand = (product.brand || '').toLowerCase().trim();
-  const name  = (product.name  || '').toLowerCase().trim().slice(0, 24);
-  return `${brand}|${name}`;
+  let name = (product.name || '').toLowerCase().trim();
+  if (brand && name.startsWith(brand)) {
+    name = name.slice(brand.length).replace(/^[-:,\s]+/, '');
+  }
+  return `${brand}|${name.slice(0, 24)}`;
 }
 
 /** True when the product has essentially no useful data. */
@@ -532,6 +544,12 @@ function ResultCard({ product, onPress }) {
         {product.calories > 0 && (
           <Text style={styles.resultCal}>{product.calories} cal / serving</Text>
         )}
+        {product.source === 'community' && (
+          <View style={styles.unverifiedTag}>
+            <Ionicons name="globe-outline" size={10} color="#9A6B00" />
+            <Text style={styles.unverifiedTagText}>Unverified · Community data</Text>
+          </View>
+        )}
       </View>
 
       {/* Score badge */}
@@ -618,6 +636,12 @@ const styles = StyleSheet.create({
   resultName:   { fontSize: Font.sizes.base, fontWeight: Font.weights.semibold, color: Colors.textPrimary, lineHeight: 20 },
   resultBrand:  { fontSize: Font.sizes.sm, color: Colors.textSecondary, marginTop: 2 },
   resultCal:    { fontSize: Font.sizes.xs, color: Colors.textMuted, marginTop: 2 },
+  unverifiedTag: {
+    flexDirection: 'row', alignItems: 'center', gap: 4,
+    marginTop: 4, alignSelf: 'flex-start',
+    backgroundColor: '#FEF9E7', borderRadius: 6, paddingHorizontal: 6, paddingVertical: 2,
+  },
+  unverifiedTagText: { fontSize: 10, color: '#9A6B00', fontWeight: '600' },
   gradeBadge:   {
     minWidth: 40, height: 40, borderRadius: 20, borderWidth: 2,
     alignItems: 'center', justifyContent: 'center', marginLeft: 8, paddingHorizontal: 5,

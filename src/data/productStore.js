@@ -121,6 +121,7 @@ function rowToProduct(row) {
     name: row.name,
     brand: row.brand,
     companyId: row.companyId,
+    source: 'curated',
     category: row.category,
     image: row.image,
     servingSize: row.servingSize,

@@ -67,7 +67,6 @@ export default function HomeScreen({ navigation }) {
         if (!active) return;
         setSetup(getProfileSetup(prefs));
         setRecent(history.slice(0, 8));
-        setUserName(prefs?.name ?? null);
       })();
       return () => { active = false; };
     }, [])

@@ -95,6 +95,7 @@ export function buildProductFromRaw(barcode, p) {
     name:           p.product_name || p.product_name_en || 'Unknown Product',
     brand:          brand || 'Unknown Brand',
     companyId:      findCompanyId(brand),
+    source:         'community',
     category:       cats[0]?.replace('en:', '').replace(/-/g, ' ') || 'General',
     ingredients:    parseIngredients(p),
     nutrition:      parseNutrition(p.nutriments),

@@ -495,11 +495,16 @@ export default function ProductScoreScreen({ route, navigation }) {
             <Image source={{ uri: product.image }} style={s.heroImg} resizeMode="cover" />
           ) : (
             <View style={s.heroPlaceholder}>
-              <Image source={require('../../assets/icon.png')} style={s.heroLogo} resizeMode="contain" />
+              <Image
+                source={require('../../assets/mascot/specs-placeholder-shrug.png')}
+                style={s.heroLogo}
+                resizeMode="contain"
+              />
             </View>
           )}
           <LinearGradient
-            colors={['rgba(0,0,0,0.52)', 'rgba(0,0,0,0.0)']}
+            colors={['rgba(0,0,0,0.5)', 'rgba(0,0,0,0.12)', 'rgba(0,0,0,0)']}
+            locations={[0, 0.22, 0.5]}
             style={[s.heroOverlay, { paddingTop: insets.top + 10 }]}
           >
             <TouchableOpacity style={s.navBtn} onPress={() => navigation.goBack()}>
@@ -549,6 +554,17 @@ export default function ProductScoreScreen({ route, navigation }) {
             </View>
           )}
         </View>
+
+        {/* ── 1b: Unverified community-data notice ── */}
+        {product.source === 'community' && (
+          <View style={s.unverifiedBanner}>
+            <Ionicons name="globe-outline" size={18} color="#9A6B00" />
+            <Text style={s.unverifiedBannerText}>
+              <Text style={{ fontWeight: '800' }}>Unverified source: </Text>
+              This product isn't in our curated database yet — the ingredients and score below come from a public, crowd-sourced listing and haven't been checked by Food Exposé.
+            </Text>
+          </View>
+        )}
 
         {/* ── 2: Food Exposé Says ── */}
         <View style={[s.sayCard, { borderLeftColor: gradeCol }]}>
@@ -1000,7 +1016,7 @@ const s = StyleSheet.create({
   heroWrap: { height: HERO_H, overflow: 'hidden', backgroundColor: '#D5EAE3' },
   heroImg: { width: '100%', height: '100%' },
   heroPlaceholder: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#D5EAE3' },
-  heroLogo: { width: HERO_H * 0.5, height: HERO_H * 0.5, opacity: 0.85 },
+  heroLogo: { width: '80%', height: HERO_H * 0.94 },
   heroOverlay: {
     ...StyleSheet.absoluteFillObject,
     flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start',
@@ -1027,6 +1043,14 @@ const s = StyleSheet.create({
   verdictText: { fontSize: 13, fontWeight: '700' },
   scoreSubLabel: { fontSize: 12, color: '#B0C4BE', fontWeight: '500' },
   tagRow: { flexDirection: 'row', flexWrap: 'wrap', marginTop: 6 },
+
+  // Unverified community-data notice
+  unverifiedBanner: {
+    flexDirection: 'row', alignItems: 'flex-start', gap: 10,
+    backgroundColor: '#FEF9E7', borderRadius: 12, padding: 12,
+    marginHorizontal: 16, marginTop: 12,
+  },
+  unverifiedBannerText: { flex: 1, fontSize: 13, color: '#9A6B00', lineHeight: 18 },
 
   // HealthyChoices Says card
   sayCard: {
