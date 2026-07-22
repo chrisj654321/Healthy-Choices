@@ -71,4 +71,4 @@ Topics:
 ## Completed
 
 - Product waves 05–09 (~100 products each) — pre-board era, merged via batch pipeline.
-- X growth-batch voice co-design (`marketing/x-posts-growth-batch.md`) — merged as Cicero's canonical voice exemplar.
+- X growth-batch voice co-design (`marketing/strategy/x-posts-growth-batch.md`) — merged as Cicero's canonical voice exemplar.

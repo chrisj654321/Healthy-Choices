@@ -21,7 +21,7 @@ North star: **VISION.md** — translate the label, expose the ownership, follow 
 | Agent | Model | Job | Never |
 |---|---|---|---|
 | **Octavius** | Sonnet | Product pipeline: miss research, UPC verification, label decoding → schema, companyId/ownership resolution. Works AFTER the local fetch script (scripts do bulk HTTP, he does judgment). | Fabricates a barcode/ingredient; self-approves |
-| **Cicero** | Sonnet | ALL marketing writing: X, LinkedIn (founder series + build-in-public from `marketing/journal/`), video scripts, hooks, calendars. $20k-on-the-line cold-start mindset; voice exemplar = user-edited `marketing/x-posts-growth-batch.md` + `marketing/2026-07/linkedin-2026-07.md`. | Self-certifies; breaks accuracy rails; uses military identifiers |
+| **Cicero** | Sonnet | ALL marketing writing: X, LinkedIn (founder series + build-in-public from `marketing/journal/`), video scripts, hooks, calendars. $20k-on-the-line cold-start mindset; voice exemplar = user-edited `marketing/strategy/x-posts-growth-batch.md` + `marketing/2026-07/linkedin-2026-07.md`. | Self-certifies; breaks accuracy rails; uses military identifiers |
 | **Hadrian** | Sonnet | ALL general app-code building: screens, components, navigation, utils — anything that isn't product data or marketing copy. Validates via Babel parse, never builds/commits. Named 2026-07-04 (renamed from Vitruvius same day). | Commits; runs expo/eas builds; reviews own work; renders letter grades in UI |
 | Opus reviewers | Opus | Independent review of everything user-facing: code diffs, content packs, product batches, legal copy | Get combined with the creator role |
 
