@@ -27,7 +27,7 @@ _This is the standard brief for any AI session working in this repo (Claude, Cha
 ## Never
 
 - **Military-mention rule (refined 2026-07-02):** biographical military context in marketing is allowed (being in the Army, at AIT, location, limited WiFi/time — his real story). PROHIBITED: using position/rank/title/uniform to promote or as a credibility pitch, uniform photos in marketing, implying Army/DoD endorsement, or implying the business is built on duty time or government resources. Per-post test: is the affiliation doing the SELLING, or setting the scene? Optional insurance on affiliation-forward posts: "views my own, not DoD's."
-- Never fabricate: barcodes, ingredients, stats, studies, screenshots, headlines. `could_not_verify` is a success state.
+- Never fabricate: barcodes, ingredients, stats, studies, screenshots, headlines. `could_not_verify` is a success state. **Caveat (2026-07-23):** marketing tone/framing may exaggerate for engagement (hyperbole, drama, punchy hooks) — the rail is verifiable facts, not enthusiasm. **Satire carve-out (2026-07-23):** fabricating the app's OWN interface/output for obvious-in-context comedic effect is allowed (founder call); fabricating THIRD-PARTY facts/data stays fully banned.
 - Never make medical-causation claims ("causes cancer") — regulatory facts only ("banned in the EU").
 - Never let an agent commit, or an author approve its own work.
 - Haiku never generates facts (no search-and-report, no barcodes/money/legal, nothing user-facing); classify/extract-from-given-text/reformat only, always behind a script validator or Sonnet+ review.
