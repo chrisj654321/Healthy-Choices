@@ -7,12 +7,12 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
 import { getProductsByCategory } from '../data/productStore';
 import { scoreToColor } from '../utils/scorer';
+import BackButton from '../components/BackButton';
 
 export default function HealthyCategoryScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
@@ -35,12 +35,9 @@ export default function HealthyCategoryScreen({ route, navigation }) {
 
   return (
     <View style={s.container}>
+      <BackButton navigation={navigation} />
       <View style={[s.header, { paddingTop: insets.top + 8 }]}>
-        <TouchableOpacity style={s.back} onPress={() => navigation.goBack()}>
-          <Ionicons name="chevron-back" size={22} color={Colors.primary} />
-        </TouchableOpacity>
         <Text style={s.headerTitle}>{category.label}</Text>
-        <View style={s.back} />
       </View>
 
       <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 40 }}>
@@ -84,10 +81,9 @@ export default function HealthyCategoryScreen({ route, navigation }) {
 const s = StyleSheet.create({
   container: { flex: 1, backgroundColor: Colors.background },
   header: {
-    flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
+    flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
     paddingHorizontal: 12, paddingBottom: 10,
   },
-  back: { width: 40, height: 40, alignItems: 'center', justifyContent: 'center' },
   headerTitle: { fontSize: Font.sizes.lg, fontWeight: Font.weights.heavy, color: Colors.textPrimary },
   intro: { fontSize: Font.sizes.sm, color: Colors.textSecondary, marginBottom: 12 },
 

@@ -26,6 +26,7 @@ import IngredientRow from '../components/IngredientRow';
 import GradeRing from '../components/GradeRing';
 import StatBar from '../components/StatBar';
 import SpecsMascot from '../components/SpecsMascot';
+import BackButton from '../components/BackButton';
 
 // ── Flag utils ────────────────────────────────────────────────────────────────
 
@@ -507,9 +508,6 @@ export default function ProductScoreScreen({ route, navigation }) {
             locations={[0, 0.22, 0.5]}
             style={[s.heroOverlay, { paddingTop: insets.top + 10 }]}
           >
-            <TouchableOpacity style={s.navBtn} onPress={() => navigation.goBack()}>
-              <Ionicons name="chevron-back" size={22} color="#fff" />
-            </TouchableOpacity>
             <TouchableOpacity style={s.navBtn} onPress={handleShare}>
               <Ionicons name="share-outline" size={20} color="#fff" />
             </TouchableOpacity>
@@ -641,9 +639,6 @@ export default function ProductScoreScreen({ route, navigation }) {
         {/* ── 3: Tabs (sticky) ── */}
         <View style={s.tabBarSticky}>
           <View style={s.tabBar}>
-            <TouchableOpacity style={s.tabBack} onPress={() => navigation.goBack()}>
-              <Ionicons name="chevron-back" size={20} color={Colors.primary} />
-            </TouchableOpacity>
             {TABS.map((tab) => (
               <TouchableOpacity
                 key={tab}
@@ -911,6 +906,8 @@ export default function ProductScoreScreen({ route, navigation }) {
         </Text>
 
       </ScrollView>
+
+      <BackButton navigation={navigation} />
     </View>
   );
 }
@@ -1019,7 +1016,7 @@ const s = StyleSheet.create({
   heroLogo: { width: '80%', height: HERO_H * 0.94 },
   heroOverlay: {
     ...StyleSheet.absoluteFillObject,
-    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start',
+    flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'flex-start',
     paddingHorizontal: 16, paddingBottom: 16,
   },
   navBtn: {
@@ -1073,7 +1070,6 @@ const s = StyleSheet.create({
     borderBottomWidth: 1, borderBottomColor: '#EDF2F0',
   },
   tab: { flex: 1, alignItems: 'center', paddingVertical: 13 },
-  tabBack: { width: 44, alignItems: 'center', justifyContent: 'center', paddingVertical: 13, paddingLeft: 4 },
   tabActive: { borderBottomWidth: 2.5, borderBottomColor: Colors.primary },
   tabInner: { flexDirection: 'row', alignItems: 'center', gap: 5 },
   tabLabel: { fontSize: 13, color: '#9BB5AE', fontWeight: '500' },

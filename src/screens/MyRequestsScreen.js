@@ -14,6 +14,7 @@ import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
 import { getRequests } from '../utils/productRequests';
 import SpecsMascot from '../components/SpecsMascot';
+import BackButton from '../components/BackButton';
 
 export default function MyRequestsScreen({ navigation }) {
   const insets = useSafeAreaInsets();
@@ -49,12 +50,9 @@ export default function MyRequestsScreen({ navigation }) {
 
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
+      <BackButton navigation={navigation} />
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
-          <Ionicons name="chevron-back" size={22} color={Colors.textPrimary} />
-        </TouchableOpacity>
         <Text style={styles.title}>My Requests</Text>
-        <View style={styles.backBtn} />
       </View>
 
       {loading ? (
@@ -109,10 +107,9 @@ export default function MyRequestsScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: Colors.background },
   header: {
-    flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
+    flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
     paddingHorizontal: 16, paddingTop: 8, paddingBottom: 10,
   },
-  backBtn: { width: 32, height: 32, alignItems: 'flex-start', justifyContent: 'center' },
   title: { fontSize: Font.sizes.md, fontWeight: Font.weights.bold, color: Colors.textPrimary },
 
   centered: { flex: 1, alignItems: 'center', justifyContent: 'center' },

@@ -13,6 +13,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
 import LobbyingFlagCard from '../components/LobbyingFlagCard';
+import BackButton from '../components/BackButton';
 import { getLobbyingRiskLevel, formatCurrency, scoreProduct, scoreToColor } from '../utils/scorer';
 import { getUserPrefs } from '../utils/storage';
 import { useProStatus } from '../utils/subscription';
@@ -76,17 +77,13 @@ export default function CompanyProfileScreen({ route, navigation }) {
 
   return (
     <View style={styles.container}>
+      <BackButton navigation={navigation} />
+
       {/* Header */}
       <LinearGradient
         colors={[Colors.textPrimary, '#2A4040']}
         style={[styles.header, { paddingTop: insets.top + 8 }]}
       >
-        <View style={styles.headerTop}>
-          <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
-            <Ionicons name="chevron-back" size={24} color={Colors.white} />
-          </TouchableOpacity>
-        </View>
-
         <View style={styles.companyMeta}>
           <View style={[styles.companyIconWrap, company.logo && styles.companyIconWhite]}>
             {company.logo ? (
@@ -465,9 +462,7 @@ const ltStyles = StyleSheet.create({
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: Colors.background },
   header: { paddingHorizontal: 20, paddingBottom: 16 },
-  headerTop: { marginBottom: 16 },
-  backBtn: { padding: 4 },
-  companyMeta: { flexDirection: 'row', alignItems: 'flex-start', gap: 14, marginBottom: 16 },
+  companyMeta: { flexDirection: 'row', alignItems: 'flex-start', gap: 14, marginBottom: 16, marginTop: 44 },
   companyIconWrap: { width: 64, height: 64, borderRadius: 16, backgroundColor: 'rgba(255,255,255,0.1)', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   companyIconWhite: { backgroundColor: '#fff' },
   companyLogoImg: { width: 46, height: 46 },

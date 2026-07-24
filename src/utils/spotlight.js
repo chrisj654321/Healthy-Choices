@@ -36,14 +36,29 @@ export async function getSpotlightCompany() {
     'bumble-bee', 'starkist',
   ];
   const eligibleById = new Map(eligible.map((c) => [c.id, c]));
-  const pool = FEATURED_ORDER.map((id) => eligibleById.get(id)).filter(Boolean);
-  const rotation = pool.length > 0 ? pool : eligible;
 
-  // Anchored weekly index (deterministic, not dependent on "now" beyond the week bucket).
+  // Index into the FIXED-length FEATURED_ORDER list, not a live-filtered pool —
+  // the eligible set changes shape every time the catalog is rebuilt (new
+  // product batches happen multiple times a week), so computing the index
+  // from a filtered pool's length made "this week's" company drift with
+  // every catalog update instead of staying stable for 7 days. Eligibility
+  // is only used to skip a normally-ineligible name for its turn, never to
+  // resize the modulo base.
   const ANCHOR_WEEK = Math.floor(Date.parse('2026-06-29T00:00:00Z') / WEEK_MS);
   const week = Math.floor(Date.now() / WEEK_MS);
-  const idx = (((week - ANCHOR_WEEK) % rotation.length) + rotation.length) % rotation.length;
-  const company = rotation[idx];
+  const baseIdx = (((week - ANCHOR_WEEK) % FEATURED_ORDER.length) + FEATURED_ORDER.length) % FEATURED_ORDER.length;
+
+  let company = null;
+  for (let i = 0; i < FEATURED_ORDER.length; i++) {
+    const id = FEATURED_ORDER[(baseIdx + i) % FEATURED_ORDER.length];
+    if (eligibleById.has(id)) { company = eligibleById.get(id); break; }
+  }
+  // None of the curated names are currently eligible — fall back to the full
+  // eligible set (rare; only when the catalog temporarily lacks all 30).
+  if (!company) {
+    const idx = (((week - ANCHOR_WEEK) % eligible.length) + eligible.length) % eligible.length;
+    company = eligible[idx];
+  }
 
   const issue = company.issues.find((i) => i.severity === 'high');
   if (!issue) return null;

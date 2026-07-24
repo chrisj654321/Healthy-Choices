@@ -224,6 +224,7 @@ describe('getProductByBarcode', () => {
       name: 'Cheerios Original',
       brand: 'Cheerios',
       companyId: 'general-mills',
+      source: 'curated',
       category: 'Cereals',
       image: null,
       servingSize: '1 cup (28g)',
