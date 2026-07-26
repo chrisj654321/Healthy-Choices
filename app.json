@@ -59,7 +59,13 @@
       "expo-build-properties",
       "expo-sqlite",
       "expo-asset",
-      "expo-image"
+      "expo-image",
+      [
+        "@sentry/react-native/expo",
+        {
+          "url": "https://sentry.io/"
+        }
+      ]
     ],
     "scheme": "healthychoices",
     "runtimeVersion": {

@@ -24,6 +24,20 @@ Cicero drafts (voice exemplars: `marketing/strategy/x-posts-growth-batch.md`, `m
 ## App Store submissions
 Before every resubmit: IAPs attached to the version + review screenshots; metadata has Terms link + Privacy URL; sandbox-test that a purchase unlocks Pro; reviewer notes (demo login, what's Pro-gated, IAP test path). Screenshots: 6.9"/6.7" iPhone required, 13" iPad since `supportsTablet`. Apple reviews on iPad Air — check the app there when it matters.
 
+## Shipping a JS fix with readable stack traces
+Source maps upload automatically on `eas build` (the `@sentry/react-native/expo` plugin in `app.json` + the SENTRY_ORG / SENTRY_PROJECT / SENTRY_AUTH_TOKEN EAS secrets). **OTA updates don't** — `eas update` ships JS the build-time upload never saw, so an un-uploaded OTA silently reverts that release to minified traces. After every `eas update`, run:
+
+```
+npx expo export --dump-sourcemap --output-dir dist
+npm run upload:sourcemaps
+```
+
+`SENTRY_AUTH_TOKEN` must be in the local environment (a gitignored `.env`) for the upload leg — the EAS secret only exists inside EAS builds. The token is a credential: the founder creates and installs it, it never goes in `app.json`, `eas.json`, or any committed file.
+
+**Why `SENTRY_ALLOW_FAILURE: "true"` is set in `eas.json`:** the plugin's Xcode phase (`sentry-xcode.sh`) exits 1 when an upload fails, which fails the whole build — a missing or wrong token would burn a metered EAS build for a diagnostics-only step. The flag downgrades that to a warning. The cost is that a broken upload is now silent, so **check the build log for `sentry-cli - error` the first time after touching the secrets**, and confirm the release actually shows artifacts in Sentry before trusting a stack trace.
+
+To check whether a fix actually reached devices, filter Sentry on the `ota.update_id` tag, not `release` — patched and unpatched devices report the same `release` when the binary is the same.
+
 ## Agent economics
 Max 3 concurrent agents; Opus max 2; ~10/session. Checkpoint guards (>500 bytes) between waves. If an agent would make the same HTTP call 10+ times → write a local script instead. Session limits reset ~9:10am Central; EAS iOS quota resets 00:00 UTC on the 1st (~7pm Central the prior evening).
 

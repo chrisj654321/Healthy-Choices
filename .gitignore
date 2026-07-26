@@ -11,6 +11,7 @@ web-build/
 web-build/
 .env
 .env.local
+.env.sentry-build-plugin
 .claude/
 src/data/products_generated.json
 scripts/ingestion_log.txt

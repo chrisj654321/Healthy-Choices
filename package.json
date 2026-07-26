@@ -9,7 +9,8 @@
     "web": "expo start --web",
     "build:android": "eas build --platform android",
     "build:ios": "eas build --platform ios",
-    "test": "jest"
+    "test": "jest",
+    "upload:sourcemaps": "sentry-expo-upload-sourcemaps dist"
   },
   "dependencies": {
     "@expo/metro-runtime": "~56.0.15",

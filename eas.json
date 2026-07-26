@@ -12,6 +12,9 @@
     "preview": {
       "distribution": "internal",
       "channel": "preview",
+      "env": {
+        "SENTRY_ALLOW_FAILURE": "true"
+      },
       "ios": {
         "simulator": false
       }
@@ -19,6 +22,9 @@
     "production": {
       "autoIncrement": true,
       "channel": "production",
+      "env": {
+        "SENTRY_ALLOW_FAILURE": "true"
+      },
       "ios": {
         "image": "latest"
       }
