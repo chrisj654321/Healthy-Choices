@@ -831,18 +831,35 @@ export default function ProductScoreScreen({ route, navigation }) {
                     <Text style={s.coHQ}>{company.hq}</Text>
                   </View>
 
-                  <View style={s.coStats}>
-                    <CoStat icon="people-outline" label="Employees" value={company.employees} />
-                    <CoStat icon="trending-up-outline" label="Revenue" value={`$${company.revenue}`} />
-                    {prefs.showLobbying !== false && (
-                      <CoStat
-                        icon="megaphone-outline"
-                        label="Lobbying/yr"
-                        value={formatMoney(company.lobbyingSpend)}
-                        highlight
-                      />
-                    )}
-                  </View>
+                  {/* This row is a flexible flex-row (not a fixed grid), so a
+                      missing stat is simply omitted rather than shown as
+                      "undefined"/"$undefined" — no placeholder text needed
+                      since 1-3 cells all lay out fine. lobbyingSpend of 0 is
+                      this dataset's "unresearched" sentinel (see
+                      getLobbyingRiskLevel in scorer.js), not a verified zero,
+                      so it's treated the same as missing here. The row itself
+                      is skipped when every stat is missing (small/private
+                      sparse records), rather than rendering an empty box. */}
+                  {(company.employees != null ||
+                    company.revenue != null ||
+                    (prefs.showLobbying !== false && company.lobbyingSpend > 0)) && (
+                    <View style={s.coStats}>
+                      {company.employees != null && (
+                        <CoStat icon="people-outline" label="Employees" value={company.employees} />
+                      )}
+                      {company.revenue != null && (
+                        <CoStat icon="trending-up-outline" label="Revenue" value={`$${company.revenue}`} />
+                      )}
+                      {prefs.showLobbying !== false && company.lobbyingSpend > 0 && (
+                        <CoStat
+                          icon="megaphone-outline"
+                          label="Lobbying/yr"
+                          value={formatMoney(company.lobbyingSpend)}
+                          highlight
+                        />
+                      )}
+                    </View>
+                  )}
 
                   {company.issues?.length > 0 && (
                     <TouchableOpacity
@@ -997,6 +1014,7 @@ const csS = StyleSheet.create({
 });
 
 function formatMoney(n) {
+  if (n == null) return null;
   if (n >= 1_000_000) return `$${(n / 1_000_000).toFixed(1)}M`;
   if (n >= 1_000) return `$${(n / 1_000).toFixed(0)}K`;
   return `$${n}`;

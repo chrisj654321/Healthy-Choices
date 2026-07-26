@@ -925,14 +925,31 @@ export function formatIngredientLabel(raw) {
     .join(' ');
 }
 
+// Distinguishes "we have no lobbying data for this company" from "we verified
+// they spend little." `null`/`undefined` obviously means no data — but so
+// does `0` in this dataset: `lobbyingSpend: 0` is the established convention
+// for "not yet researched" (see e.g. COMPANY_DB.willas), NOT a verified-zero
+// federal lobbying finding. Nothing in the schema currently distinguishes a
+// real audited zero from an unresearched placeholder, so both null and 0 map
+// to the neutral "No data" band rather than the green "Low" band. This is a
+// deliberate behavior change from the old code (which returned "Low" — green
+// — for 0, fabricating a favorable claim on ~144 of 268 existing companies).
+// Every positive numeric input's band is unchanged.
 export function getLobbyingRiskLevel(spend) {
+  if (spend == null || spend === 0) {
+    return { label: 'No data', color: '#9BB5AE', bg: '#EEF2F1', unknown: true };
+  }
   if (spend >= 3000000) return { label: 'Very High', color: '#D93B3B', bg: '#FDE8E8' };
   if (spend >= 1500000) return { label: 'High', color: '#F06A25', bg: '#FEF0E6' };
   if (spend >= 500000) return { label: 'Moderate', color: '#F5C842', bg: '#FEF9E7' };
   return { label: 'Low', color: '#1D9E75', bg: '#E8F7F2' };
 }
 
+// Returns null for missing amounts instead of "$undefined" / "$null" — callers
+// must check for null themselves and show honest placeholder copy (or hide
+// the element) rather than render this as a dollar figure.
 export function formatCurrency(amount) {
+  if (amount == null) return null;
   if (amount >= 1000000) return `$${(amount / 1000000).toFixed(1)}M`;
   if (amount >= 1000) return `$${(amount / 1000).toFixed(0)}K`;
   return `$${amount}`;

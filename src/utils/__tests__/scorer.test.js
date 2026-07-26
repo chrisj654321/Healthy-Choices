@@ -21,6 +21,8 @@ import {
   lookupIngredient,
   scoreProduct,
   getPersonalisedWarnings,
+  getLobbyingRiskLevel,
+  formatCurrency,
 } from '../scorer';
 
 // ─── upfCeiling ────────────────────────────────────────────────────────────
@@ -126,6 +128,87 @@ describe('scoreToVerdict', () => {
   });
   test('unrecognized grade -> Unknown', () => {
     expect(scoreToVerdict('Z')).toBe('Unknown');
+  });
+});
+
+// ─── getLobbyingRiskLevel / formatCurrency ─────────────────────────────────
+//
+// Sparse company records (ownership verified, financials not researched) use
+// `null` for revenue/employees but `0` for lobbyingSpend/politicalDonations
+// (see COMPANY_DB.willas in src/data/companies.js) — 144 of the 268 existing
+// companies carry `lobbyingSpend: 0` this way. Neither null nor 0 may render
+// as a favorable "Low risk" claim or as a fabricated dollar amount.
+
+describe('getLobbyingRiskLevel: missing-data cases', () => {
+  test('undefined spend -> unknown "No data", not "Low"', () => {
+    const result = getLobbyingRiskLevel(undefined);
+    expect(result.label).toBe('No data');
+    expect(result.unknown).toBe(true);
+  });
+
+  test('null spend -> unknown "No data", not "Low"', () => {
+    const result = getLobbyingRiskLevel(null);
+    expect(result.label).toBe('No data');
+    expect(result.unknown).toBe(true);
+  });
+
+  test('0 spend -> unknown "No data", not "Low" (0 is the "unresearched" sentinel, not a verified zero)', () => {
+    const result = getLobbyingRiskLevel(0);
+    expect(result.label).toBe('No data');
+    expect(result.unknown).toBe(true);
+  });
+
+  test('"No data" band is visually neutral, not green', () => {
+    const result = getLobbyingRiskLevel(null);
+    expect(result.color).not.toBe('#1D9E75'); // not the "Low" green
+    expect(result.bg).not.toBe('#E8F7F2');    // not the "Low" green background
+  });
+});
+
+describe('getLobbyingRiskLevel: numeric-input bands are unchanged', () => {
+  test('1 -> Low (any positive spend below Moderate threshold)', () => {
+    const result = getLobbyingRiskLevel(1);
+    expect(result.label).toBe('Low');
+    expect(result.unknown).toBeUndefined();
+  });
+  test('499999 -> Low', () => {
+    expect(getLobbyingRiskLevel(499999).label).toBe('Low');
+  });
+  test('500000 -> Moderate', () => {
+    expect(getLobbyingRiskLevel(500000).label).toBe('Moderate');
+  });
+  test('1500000 -> High', () => {
+    expect(getLobbyingRiskLevel(1500000).label).toBe('High');
+  });
+  test('3000000 -> Very High', () => {
+    expect(getLobbyingRiskLevel(3000000).label).toBe('Very High');
+  });
+  test('3000001 -> Very High', () => {
+    expect(getLobbyingRiskLevel(3000001).label).toBe('Very High');
+  });
+});
+
+describe('formatCurrency: missing-data cases', () => {
+  test('undefined -> null (never the string "$undefined")', () => {
+    expect(formatCurrency(undefined)).toBeNull();
+  });
+  test('null -> null (never the string "$null")', () => {
+    expect(formatCurrency(null)).toBeNull();
+  });
+});
+
+describe('formatCurrency: numeric formatting is unchanged', () => {
+  test('0 -> "$0" (a real, formattable number)', () => {
+    expect(formatCurrency(0)).toBe('$0');
+  });
+  test('500 -> "$500"', () => {
+    expect(formatCurrency(500)).toBe('$500');
+  });
+  test('2500 -> "$3K" (rounds to nearest K)', () => {
+    expect(formatCurrency(2500)).toBe('$3K');
+  });
+  test('2500000 -> "$2.5M"', () => {
+    expect(formatCurrency(2500000)).toBe('$2.5M');
   });
 });
 

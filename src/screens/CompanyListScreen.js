@@ -108,7 +108,10 @@ export default function CompanyListScreen({ navigation }) {
               <View style={s.info}>
                 <Text style={s.name} numberOfLines={1}>{company.name}</Text>
                 <View style={s.metaRow}>
-                  {company.lobbyingSpend != null && (
+                  {/* lobbyingSpend: 0 is this dataset's "unresearched" sentinel,
+                      not a verified zero (see getLobbyingRiskLevel in scorer.js) —
+                      only show the figure when it's an actual positive spend. */}
+                  {company.lobbyingSpend > 0 && (
                     <Text style={s.meta}>
                       {formatCurrency(company.lobbyingSpend)}/yr lobbying
                     </Text>

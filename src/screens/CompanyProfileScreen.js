@@ -61,13 +61,22 @@ export default function CompanyProfileScreen({ route, navigation }) {
   const unlocked = isPro || spotlightCompany?.company?.id === company.id;
   const goPaywall = () => navigation.navigate('Paywall', { feature: 'company' });
 
+  // lobbyRisk.unknown covers both `undefined`/`null` (never researched) and
+  // `0` (this dataset's "not yet researched" sentinel for lobbyingSpend — see
+  // getLobbyingRiskLevel). Money-trail figures further down that gate on
+  // "do we actually have lobbying/donation data" use `> 0` rather than
+  // `!= null` for the same reason: it excludes both null and the 0 sentinel
+  // without a separate unresearched-vs-verified-zero flag in the schema.
   const lobbyRisk = getLobbyingRiskLevel(company.lobbyingSpend);
+  const hasDonationData = company.politicalDonations > 0 && company.donationSplit != null;
   const repPct = company.donationSplit?.republican ?? 50;
   const demPct = company.donationSplit?.democrat ?? 50;
   const highSeverityCount = company.issues?.filter((i) => i.severity === 'high').length ?? 0;
 
   const sustainColor =
-    company.sustainabilityScore >= 70
+    company.sustainabilityScore == null
+      ? Colors.textMuted
+      : company.sustainabilityScore >= 70
       ? Colors.scoreA
       : company.sustainabilityScore >= 55
       ? Colors.scoreB
@@ -98,8 +107,14 @@ export default function CompanyProfileScreen({ route, navigation }) {
               <Ionicons name="location-outline" size={13} color="rgba(255,255,255,0.6)" /> {company.hq}
             </Text>
             <View style={styles.metaRow}>
-              <MetaPill icon="people-outline" value={company.employees} label="Employees" />
-              <MetaPill icon="trending-up-outline" value={`$${company.revenue}`} label="Revenue" />
+              {/* Sparse records carry employees/revenue: null when unresearched —
+                  omit the pill entirely rather than show "null" or "$null". */}
+              {company.employees != null && (
+                <MetaPill icon="people-outline" value={company.employees} label="Employees" />
+              )}
+              {company.revenue != null && (
+                <MetaPill icon="trending-up-outline" value={`$${company.revenue}`} label="Revenue" />
+              )}
             </View>
           </View>
         </View>
@@ -113,10 +128,16 @@ export default function CompanyProfileScreen({ route, navigation }) {
                 <Text style={[styles.riskPillLevel, { color: lobbyRisk.color }]}>{lobbyRisk.label}</Text>
               </View>
               <View style={styles.riskRight}>
-                <Text style={styles.riskAmount}>
-                  {formatCurrency(company.lobbyingSpend)}/yr
-                </Text>
-                <Text style={styles.riskSub}>Federal lobbying</Text>
+                {lobbyRisk.unknown ? (
+                  <Text style={styles.riskSub}>No federal lobbying data yet</Text>
+                ) : (
+                  <>
+                    <Text style={styles.riskAmount}>
+                      {formatCurrency(company.lobbyingSpend)}/yr
+                    </Text>
+                    <Text style={styles.riskSub}>Federal lobbying</Text>
+                  </>
+                )}
               </View>
             </View>
             {highSeverityCount > 0 && (
@@ -164,17 +185,29 @@ export default function CompanyProfileScreen({ route, navigation }) {
               <View style={styles.financialsRow}>
                 <View style={styles.financialStat}>
                   <Ionicons name="trending-up-outline" size={18} color={Colors.primary} />
-                  <Text style={styles.financialValue}>${company.revenue}</Text>
+                  {/* revenue/employees: null means unresearched (not "$0") — show
+                      honest placeholder copy instead of "$null"/"null". This is a
+                      fixed two-column grid with a shared divider, so hiding one
+                      side would unbalance the row; a muted placeholder reads
+                      better here than removing the cell. */}
+                  <Text style={[styles.financialValue, company.revenue == null && styles.financialValueMuted]}>
+                    {company.revenue != null ? `$${company.revenue}` : 'Not disclosed'}
+                  </Text>
                   <Text style={styles.financialLabel}>Annual Revenue</Text>
                 </View>
                 <View style={styles.financialDivider} />
                 <View style={styles.financialStat}>
                   <Ionicons name="people-outline" size={18} color={Colors.primary} />
-                  <Text style={styles.financialValue}>{company.employees}</Text>
+                  <Text style={[styles.financialValue, company.employees == null && styles.financialValueMuted]}>
+                    {company.employees != null ? company.employees : 'Not disclosed'}
+                  </Text>
                   <Text style={styles.financialLabel}>Employees</Text>
                 </View>
               </View>
-              {unlocked && prefs.showLobbying !== false && company.lobbyingSpend != null && (
+              {/* lobbyingSpend of 0 is this dataset's "unresearched" sentinel
+                  (see getLobbyingRiskLevel), not a verified zero — lobbyRisk.unknown
+                  is false only when we have a real positive figure to show. */}
+              {unlocked && prefs.showLobbying !== false && !lobbyRisk.unknown && (
                 <>
                   <View style={styles.financialsDividerH} />
                   <View style={styles.financialsRow}>
@@ -183,7 +216,7 @@ export default function CompanyProfileScreen({ route, navigation }) {
                       <Text style={[styles.financialValue, { color: '#E67E22' }]}>{formatCurrency(company.lobbyingSpend)}</Text>
                       <Text style={styles.financialLabel}>Federal Lobbying / yr</Text>
                     </View>
-                    {prefs.showDonations !== false && company.politicalDonations != null && (
+                    {prefs.showDonations !== false && company.politicalDonations > 0 && (
                       <>
                         <View style={styles.financialDivider} />
                         <View style={styles.financialStat}>
@@ -198,8 +231,10 @@ export default function CompanyProfileScreen({ route, navigation }) {
               )}
             </View>
 
-            {/* Political donation split */}
-            {unlocked && prefs.showDonations !== false && company.politicalDonations != null && (
+            {/* Political donation split — requires an actual donationSplit
+                object, not just a nonzero politicalDonations figure; otherwise
+                the fallback ?? 50/50 below would fabricate an even split. */}
+            {unlocked && prefs.showDonations !== false && hasDonationData && (
               <>
                 <SectionHeader title="Donation Split" subtitle={`${company.donationSplitYear ?? ''} election cycle`} />
                 <View style={styles.donationCard}>
@@ -251,27 +286,34 @@ export default function CompanyProfileScreen({ route, navigation }) {
               />
             )}
 
-            {/* Sustainability */}
-            <SectionHeader title="Sustainability Score" />
-            <View style={styles.sustainCard}>
-              <View style={[styles.sustainScore, { borderColor: sustainColor }]}>
-                <Text style={[styles.sustainNum, { color: sustainColor }]}>{company.sustainabilityScore}</Text>
-                <Text style={[styles.sustainMax, { color: sustainColor }]}>/100</Text>
-              </View>
-              <View style={styles.sustainBar}>
-                <View style={styles.sustainTrack}>
-                  <View
-                    style={[
-                      styles.sustainFill,
-                      { width: `${company.sustainabilityScore}%`, backgroundColor: sustainColor },
-                    ]}
-                  />
+            {/* Sustainability — omitted entirely when unresearched (null) rather
+                than showing a fabricated "0/100" or a percent-width bar computed
+                from undefined. Every existing company has this field today, but
+                new sparse records may not. */}
+            {company.sustainabilityScore != null && (
+              <>
+                <SectionHeader title="Sustainability Score" />
+                <View style={styles.sustainCard}>
+                  <View style={[styles.sustainScore, { borderColor: sustainColor }]}>
+                    <Text style={[styles.sustainNum, { color: sustainColor }]}>{company.sustainabilityScore}</Text>
+                    <Text style={[styles.sustainMax, { color: sustainColor }]}>/100</Text>
+                  </View>
+                  <View style={styles.sustainBar}>
+                    <View style={styles.sustainTrack}>
+                      <View
+                        style={[
+                          styles.sustainFill,
+                          { width: `${company.sustainabilityScore}%`, backgroundColor: sustainColor },
+                        ]}
+                      />
+                    </View>
+                    <Text style={styles.sustainNote}>
+                      Based on environmental, labor, and supply chain data.
+                    </Text>
+                  </View>
                 </View>
-                <Text style={styles.sustainNote}>
-                  Based on environmental, labor, and supply chain data.
-                </Text>
-              </View>
-            </View>
+              </>
+            )}
           </View>
         )}
 
@@ -511,6 +553,9 @@ const styles = StyleSheet.create({
   financialDivider: { width: 1, backgroundColor: Colors.border, marginVertical: 8 },
   financialsDividerH: { height: 1, backgroundColor: Colors.border, marginHorizontal: 16 },
   financialValue: { fontSize: Font.sizes.lg, fontWeight: Font.weights.heavy, color: Colors.textPrimary, marginTop: 4 },
+  // "Not disclosed" placeholder — deliberately lighter/smaller than a real
+  // figure so it doesn't read as a shouted stat next to genuine numbers.
+  financialValueMuted: { fontSize: Font.sizes.sm, fontWeight: Font.weights.medium, color: Colors.textMuted },
   financialLabel: { fontSize: Font.sizes.xs, color: Colors.textMuted, textAlign: 'center' },
   sourceNote: { fontSize: Font.sizes.xs, color: Colors.textMuted, fontStyle: 'italic', marginTop: 4 },
 
