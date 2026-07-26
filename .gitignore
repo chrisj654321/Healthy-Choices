@@ -12,6 +12,10 @@ web-build/
 .env
 .env.local
 .env.sentry-build-plugin
+# Catch-all so no stray credential file (.env.bak, .env.production, editor
+# backups) can ever be committed. Keep an example file trackable if we add one.
+.env*
+!.env.example
 .claude/
 src/data/products_generated.json
 scripts/ingestion_log.txt
