@@ -63,6 +63,8 @@
       [
         "@sentry/react-native/expo",
         {
+          "organization": "shelfexpose",
+          "project": "react-native",
           "url": "https://sentry.io/"
         }
       ]

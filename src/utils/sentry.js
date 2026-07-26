@@ -8,11 +8,16 @@
  *
  *   - `app.json` carries the "@sentry/react-native/expo" config plugin, which
  *     adds the source-map upload build phase to the generated native projects.
- *   - Three env vars drive it at build time — SENTRY_ORG, SENTRY_PROJECT,
- *     SENTRY_AUTH_TOKEN — stored as EAS secrets, never in the repo. The auth
- *     token is a credential; it must never be pasted into app.json (the plugin
- *     itself warns about this, since plugin props get written into the app
- *     package).
+ *   - Org (`shelfexpose`) and project (`react-native`) are plain config in
+ *     app.json — they're identifiers, not secrets. Only SENTRY_AUTH_TOKEN is a
+ *     credential, and it lives in the environment (an EAS secret for builds, a
+ *     gitignored .env for local OTA uploads). It must NEVER be pasted into
+ *     app.json — the plugin itself warns about this, since plugin props get
+ *     written into the shipped app package.
+ *   - Careful: sentry-cli lets env vars OVERRIDE the generated properties file,
+ *     so a stale or misspelled SENTRY_ORG / SENTRY_PROJECT in the environment
+ *     silently shadows the correct values above. Keep those two out of the EAS
+ *     environment now that they're config.
  *   - EAS builds upload maps automatically. OTA updates do NOT — `eas update`
  *     ships new JS that the build-time upload never saw, so it needs a manual
  *     `npm run upload:sourcemaps` afterward or those stacks stay minified.
