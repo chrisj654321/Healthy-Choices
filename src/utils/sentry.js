@@ -16,6 +16,8 @@
  * traces in the Sentry dashboard may show minified/bundled JS instead of your
  * original source. This module still captures JS exceptions/error boundaries
  * fully — this TODO only affects symbolication quality and native crash capture.
+ * When you do wire it up, upload the source maps under the same `release`/`dist`
+ * pair this file sets below, or Sentry won't match them to incoming events.
  *
  * No user tracking / no PII — see CLAUDE.md non-negotiables and the
  * 2026-07-02 decision log entry ("NO user tracking, NO PII selling — ever").
@@ -24,9 +26,55 @@
  */
 
 import * as Sentry from '@sentry/react-native';
+import * as Application from 'expo-application';
+import * as Updates from 'expo-updates';
 
 const SENTRY_DSN =
   'https://7a3c87989d3d7ceb24d9bdda7deb107c@o4511678184685568.ingest.us.sentry.io/4511678765334528';
+
+/**
+ * Release identifier in Sentry's mobile convention: `<bundleId>@<version>+<build>`
+ * (e.g. `com.jamesadventure.healthychoices@1.2.0+31`). This is the exact shape
+ * the native SDK auto-detects from Info.plist, so setting it explicitly changes
+ * nothing about grouping — it just makes the value deterministic from JS and
+ * survives `enableNative: false` or a native-detection miss.
+ *
+ * Returns null in Expo Go / dev, where these natives report null. Callers must
+ * then OMIT `release` entirely rather than pass a half-built string, so the
+ * SDK's own detection still gets its chance.
+ */
+function nativeRelease() {
+  const id = Application.applicationId;
+  const version = Application.nativeApplicationVersion;
+  const build = Application.nativeBuildVersion;
+  if (!id || !version || !build) return null;
+  return `${id}@${version}+${build}`;
+}
+
+/**
+ * OTA provenance tags. The native release above identifies the BINARY, and two
+ * devices running the same binary report the same release even when one has
+ * pulled a JS-only `eas update` and the other hasn't — so release alone cannot
+ * answer "is this device running the patched code?" once expo-updates is live
+ * (first shipped in the 1.2.0 build). `ota.update_id` is what actually
+ * distinguishes them; filter on it to confirm a fix landed.
+ *
+ * All values are strings because Sentry tags must be strings, and every read is
+ * wrapped because these constants are null in Expo Go and can throw if the
+ * updates module isn't configured in a given build.
+ */
+function otaTags() {
+  try {
+    return {
+      'ota.update_id': Updates.updateId || 'embedded',
+      'ota.channel': Updates.channel || 'none',
+      'ota.runtime_version': Updates.runtimeVersion || 'unknown',
+      'ota.embedded_launch': String(Updates.isEmbeddedLaunch),
+    };
+  } catch (e) {
+    return { 'ota.update_id': 'unavailable' };
+  }
+}
 
 /**
  * Call once at module scope in App.js, before the component tree renders.
@@ -35,8 +83,17 @@ const SENTRY_DSN =
  */
 export function initSentry() {
   try {
+    const release = nativeRelease();
+
     Sentry.init({
       dsn: SENTRY_DSN,
+
+      // Which build an event came from. Omitted (not set to a placeholder) when
+      // the natives report null, so the SDK falls back to its own detection.
+      ...(release ? { release, dist: Application.nativeBuildVersion } : {}),
+
+      // OTA provenance on every event — see otaTags().
+      initialScope: { tags: otaTags() },
 
       // Hard no-tracking stance: never attach IP address, user identity,
       // cookies, or other default PII to events.
