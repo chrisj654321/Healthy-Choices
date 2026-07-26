@@ -25,6 +25,7 @@ import ProductSearchScreen    from '../screens/ProductSearchScreen';
 import ProfileScreen          from '../screens/ProfileScreen';
 import ProfileSetupScreen     from '../screens/ProfileSetupScreen';
 import MyRequestsScreen       from '../screens/MyRequestsScreen';
+import SuggestProductScreen   from '../screens/SuggestProductScreen';
 import OnboardingScreen       from '../screens/OnboardingScreen';
 import PaywallScreen          from '../screens/PaywallScreen';
 import AuthScreen             from '../screens/AuthScreen';
@@ -90,6 +91,7 @@ function ProfileStack() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="ProfileMain"    component={ProfileScreen} />
       <Stack.Screen name="MyRequests"     component={MyRequestsScreen} />
+      <Stack.Screen name="SuggestProduct" component={SuggestProductScreen} />
       <Stack.Screen name="ProductScore"   component={ProductScoreScreen} />
       <Stack.Screen name="CompanyProfile" component={CompanyProfileScreen} />
     </Stack.Navigator>

@@ -64,13 +64,17 @@ export default function MyRequestsScreen({ navigation }) {
           <SpecsMascot clip="inspecting" size={80} />
           <Text style={styles.emptyTitle}>No requests yet</Text>
           <Text style={styles.emptySubtitle}>
-            Scan a product we don't have and tap "Request this product" — it'll show up here.
+            Scan a product we don't have, or suggest one by name — it'll show up here.
           </Text>
         </View>
       ) : (
         <FlatList
           data={requests}
-          keyExtractor={(item, idx) => `${item.barcode}-${item.requestedAt}-${idx}`}
+          // Name-only requests (from "Suggest a product") have no barcode, so
+          // keying on barcode alone collides every one of them into the same
+          // key — index is always present and unique within this list, so it
+          // anchors the key regardless of which fields a given entry has.
+          keyExtractor={(item, idx) => `${item.barcode || item.name || 'request'}-${item.requestedAt}-${idx}`}
           contentContainerStyle={styles.list}
           renderItem={({ item }) => (
             <TouchableOpacity
@@ -80,7 +84,13 @@ export default function MyRequestsScreen({ navigation }) {
               disabled={!item.resolved}
             >
               <View style={styles.rowLeft}>
-                <Text style={styles.barcode}>{item.barcode}</Text>
+                {item.barcode ? (
+                  <Text style={styles.barcode}>{item.barcode}</Text>
+                ) : (
+                  <Text style={styles.barcode} numberOfLines={1}>
+                    {item.name}{item.brand ? ` · ${item.brand}` : ''}
+                  </Text>
+                )}
                 <Text style={styles.date}>Requested {formatDate(item.requestedAt)}</Text>
               </View>
               {item.resolved ? (

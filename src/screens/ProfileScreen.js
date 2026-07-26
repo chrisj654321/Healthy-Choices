@@ -570,6 +570,17 @@ export default function ProfileScreen({ navigation }) {
           </View>
           <Ionicons name="chevron-forward" size={16} color={Colors.textMuted} />
         </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.manageRow}
+          onPress={() => navigation.navigate('SuggestProduct')}
+        >
+          <Ionicons name="add-circle-outline" size={18} color={Colors.primary} />
+          <View style={{ flex: 1 }}>
+            <Text style={styles.manageLabel}>Suggest a Product</Text>
+            <Text style={styles.manageSub}>Don't have it in hand? Tell us what to add by name.</Text>
+          </View>
+          <Ionicons name="chevron-forward" size={16} color={Colors.textMuted} />
+        </TouchableOpacity>
         <TouchableOpacity style={styles.dangerRow} onPress={handleClearHistory}>
           <Ionicons name="trash-outline" size={18} color={Colors.flagRed} />
           <View style={{ flex: 1 }}>
