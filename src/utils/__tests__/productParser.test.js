@@ -4,7 +4,8 @@
  * src/utils/__tests__/ingredientNormalizer.test.js for the normalizer's own
  * unit tests). These tests pin down the OpenFoodFacts-shaped call contract.
  */
-import { parseIngredients } from '../productParser';
+import { parseIngredients, findCompanyId } from '../productParser';
+import { BRAND_TO_COMPANY, COMPANY_DB } from '../../data/companies';
 
 describe('parseIngredients', () => {
   test('returns [] when there is no ingredients text on any known field', () => {
@@ -29,5 +30,129 @@ describe('parseIngredients', () => {
   test('advisory/label phrases like "Added To Preserve Freshness" are filtered out', () => {
     const tokens = parseIngredients({ ingredients_text_en: 'Whey, Added To Preserve Freshness, Lactose' });
     expect(tokens).toEqual(['whey', 'lactose']);
+  });
+});
+
+/**
+ * findCompanyId() resolves a brand string in three stages: (1) BRAND_TO_COMPANY
+ * exact/substring keys, (2) BRAND_PARENT_MAP -> fuzzy COMPANY_DB name match,
+ * (3) NEW — direct COMPANY_DB record-NAME matching, added because most of the
+ * OpenFoodFacts bulk dump's "brand" field is the *manufacturer's legal name*
+ * ("General Mills, Inc.", "The Kroger Co.") rather than a consumer brand, and
+ * none of those legal names are (or should be) BRAND_TO_COMPANY keys.
+ *
+ * Stage (3) is intentionally conservative — see productParser.js's comments
+ * above matchCompanyDbName/isTrustworthyPrefixPair for the full reasoning.
+ * The tests below are grouped to make that reasoning checkable: new
+ * resolutions, a hard no-regression pass over every pre-existing brand key,
+ * and real near-collisions (constructed from actual COMPANY_DB records) that
+ * must NOT cross-map.
+ */
+describe('findCompanyId — COMPANY_DB name matching (stage 3)', () => {
+  test('resolves manufacturer legal names straight from the OFF bulk dump', () => {
+    // Real strings pulled from src/data/products_generated.json, with real
+    // SKU counts at time of writing.
+    expect(findCompanyId('General Mills, Inc.')).toBe('general-mills');       // 929 SKUs
+    expect(findCompanyId('GENERAL MILLS SALES INC.')).toBe('general-mills');  // 1,401 SKUs
+    expect(findCompanyId('The Kroger Co.')).toBe('kroger');                   // 1,629 SKUs
+    expect(findCompanyId('Wal-Mart Stores, Inc.')).toBe('walmart');           // 2,966 SKUs — biggest single owner in the catalog
+    expect(findCompanyId('WAL-MART STORES')).toBe('walmart');
+    expect(findCompanyId('WAL-MART')).toBe('walmart');
+  });
+
+  test('bridges an initialism legal name to its COMPANY_DB record ("H-E-B")', () => {
+    // COMPANY_DB['heb'].name is literally "H-E-B". The real OFF brand text is
+    // spelled out ("H E Butt Grocery Company", 477 SKUs) — plain prefix
+    // matching can't bridge "Butt" -> "B", so this needs the initialism rule.
+    expect(COMPANY_DB.heb.name).toBe('H-E-B');
+    expect(findCompanyId('H E Butt Grocery Company')).toBe('heb');
+    expect(findCompanyId('H-E-B')).toBe('heb');
+  });
+
+  test('does not fuzzy-match a real subsidiary that has no COMPANY_DB record of its own', () => {
+    // Fred Meyer, King Soopers, and Ralphs are real Kroger subsidiaries
+    // (COMPANY_DB.kroger.subsidiaries lists all three) but none of them has
+    // its own COMPANY_DB entry or a curated BRAND_TO_COMPANY/BRAND_PARENT_MAP
+    // mapping — resolving their legal names onto "kroger" (or anything else)
+    // would be a guess this app must not make on its own. (Harris Teeter,
+    // the fourth subsidiary in that same list, is intentionally excluded
+    // from this test: it now HAS a curated 'harris-teeter inc.' -> 'kroger'
+    // entry in src/data/companies.js, a deliberate business decision made
+    // upstream of this resolver, not something stage 3 should second-guess.)
+    expect(COMPANY_DB.kroger.subsidiaries).toEqual(
+      expect.arrayContaining(['Fred Meyer', 'King Soopers', 'Ralphs'])
+    );
+    expect(COMPANY_DB['fred-meyer']).toBeUndefined();
+    expect(COMPANY_DB['king-soopers']).toBeUndefined();
+    expect(COMPANY_DB['ralphs']).toBeUndefined();
+    expect(findCompanyId('Fred Meyer Stores, Inc.')).toBeNull();
+    expect(findCompanyId('King Soopers, Inc.')).toBeNull();
+    expect(findCompanyId('Ralphs Grocery Company')).toBeNull();
+  });
+
+  test('an unknown brand still returns null', () => {
+    expect(findCompanyId('Completely Unrelated Snack Brand XYZ')).toBeNull();
+    expect(findCompanyId('')).toBeNull();
+    expect(findCompanyId(null)).toBeNull();
+  });
+
+  test('a near-collision does not cross-map: two real companies sharing a name stem', () => {
+    // garden-of-life and garden-of-light are two different real COMPANY_DB
+    // records that both start with "Garden of ...". A brand string that
+    // reduces to just "garden" is ambiguous between them and must return
+    // null rather than guessing either one.
+    expect(COMPANY_DB['garden-of-life'].name).toMatch(/^Garden of Life/);
+    expect(COMPANY_DB['garden-of-light'].name).toMatch(/^Garden of Light/);
+    expect(findCompanyId('The Garden Company, Ltd.')).toBeNull();
+
+    // Still resolves cleanly when the string is NOT ambiguous — a real SKU
+    // in the OFF dump tagged exactly "Garden of Light Inc.".
+    expect(findCompanyId('Garden of Light Inc.')).toBe('garden-of-light');
+  });
+
+  test('a generic leftover word does not silently cross-map to an unrelated real company', () => {
+    // Real near-collisions found validating against the full OFF bulk dump.
+    // "The Organic Co" strips down to the single word "organic", which is
+    // NOT the same thing as the real company "Organic Valley (CROPP
+    // Cooperative)". "RIVERSIDE" was found tagged on a "FROZEN LOBSTER MEAT"
+    // SKU — nothing to do with "Riverside Natural Foods Ltd.", a vegan
+    // snack-bar maker.
+    expect(COMPANY_DB['organic-valley'].name).toMatch(/^Organic Valley/);
+    expect(COMPANY_DB['riverside-natural-foods'].name).toBe('Riverside Natural Foods Ltd.');
+    expect(findCompanyId('The Organic Co')).toBeNull();
+    expect(findCompanyId('RIVERSIDE')).toBeNull();
+  });
+
+  test('a manufacturer legal name we do not have a bridge for still returns null (known limitation)', () => {
+    // COMPANY_DB['kelloggs'].name is "Kellanova (Kellogg's)" — Kellogg's
+    // 2023 corporate rebrand. The real OFF brand text is the pre-rebrand
+    // legal name ("The Kellogg Company", 707 SKUs) which shares no textual
+    // root with "Kellanova" at all, so word-boundary/prefix matching cannot
+    // bridge it. Deliberately NOT solved by extracting the "(Kellogg's)"
+    // parenthetical as a generic alias: doing that for every COMPANY_DB
+    // record with a "(...)" aside produces real false positives elsewhere
+    // in this exact dataset (e.g. cleaneats' "(private label)" alias would
+    // wrongly capture the unrelated real brand string "Private Label
+    // Foods"). Fixing Kellogg's specifically needs a hand-curated
+    // BRAND_TO_COMPANY entry in src/data/companies.js, which is out of
+    // scope here — flagged as a follow-up, not silently attempted.
+    expect(COMPANY_DB.kelloggs.name).toBe("Kellanova (Kellogg's)");
+    expect(findCompanyId('The Kellogg Company')).toBeNull();
+  });
+
+  test('every pre-existing BRAND_TO_COMPANY resolution is unchanged (no regressions)', () => {
+    for (const [brand, companyId] of Object.entries(BRAND_TO_COMPANY)) {
+      expect(findCompanyId(brand)).toBe(companyId);
+    }
+  });
+
+  test('spot-checked pre-existing BRAND_PARENT_MAP resolutions are unchanged', () => {
+    // These already resolved via the pre-existing fuzzy BRAND_PARENT_MAP ->
+    // COMPANY_DB name match (stage 2), which stage 3 must not interfere with.
+    expect(findCompanyId('burts bees')).toBe('clorox-company');
+    expect(findCompanyId('larabar')).toBe('general-mills');
+    expect(findCompanyId("m&m's")).toBe('mars');
+    expect(findCompanyId('aveeno')).toBe('kenvue');
+    expect(findCompanyId('nescafe')).toBe('nestle');
   });
 });

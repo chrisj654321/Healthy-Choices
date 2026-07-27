@@ -53,35 +53,65 @@ const TOP = parseInt(argOf('--top', '30'), 10);
 const ONLY_COMPANY = argOf('--company', null);
 
 // ── the app's real resolution logic ──────────────────────────────────────────
-// Deliberately re-implemented here rather than imported: src/utils/productParser.js
-// uses extensionless ESM imports that plain `node` cannot resolve (the same
-// trap that produced the bogus photo-coverage numbers on 2026-07-11 — see
-// priorities.md). Keep this in sync with findCompanyId(); the pinned tests in
-// src/utils/__tests__/productParser.test.js are the contract both must satisfy.
-const { BRAND_TO_COMPANY, BRAND_PARENT_MAP, COMPANY_DB } = require('../src/data/companies.js');
+// Loads the REAL findCompanyId() from src/utils/productParser.js rather than
+// re-implementing it. An earlier version of this script kept its own copy,
+// which is how measurement scripts start lying: the moment the real resolver
+// gains a rule, the copy silently under-reports and you "measure" a version of
+// the app that doesn't exist. This project has already been burned once by a
+// measurement artifact (the 2026-07-11 photo-coverage numbers — see
+// priorities.md), so: one source of truth, or no number at all.
+//
+// The catch this works around: productParser.js uses EXTENSIONLESS relative
+// imports ('../data/companies'), which Metro/Jest resolve happily but Node's
+// ESM loader refuses. So we materialize a temp copy with extensions added and
+// import that. If anything here fails we exit loudly rather than fall back to
+// an approximation.
+const os = require('os');
 
-const b2cKeys = Object.keys(BRAND_TO_COMPANY);
-const dbValues = Object.values(COMPANY_DB);
+async function loadFindCompanyId() {
+  const srcDir = path.join(ROOT, 'src', 'utils');
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'shelfexpose-resolve-'));
 
-function findCompanyId(brand) {
-  if (!brand) return null;
-  const lower = String(brand).toLowerCase().trim();
-
-  if (BRAND_TO_COMPANY[lower]) return BRAND_TO_COMPANY[lower];
-
-  const directKey = b2cKeys.find((k) => lower.includes(k) || k.includes(lower));
-  if (directKey) return BRAND_TO_COMPANY[directKey];
-
-  const parentName = BRAND_PARENT_MAP[lower];
-  if (parentName) {
-    const pLower = parentName.toLowerCase();
-    const match = dbValues.find(
-      (c) => c.name.toLowerCase().includes(pLower) || pLower.includes(c.name.toLowerCase())
+  // Copy productParser + its local dependency, rewriting relative imports to
+  // carry explicit .js extensions. Absolute/package imports are left alone.
+  const addExt = (code) =>
+    code.replace(/from\s+'(\.[^']*?)'/g, (full, spec) =>
+      path.extname(spec) ? full : `from '${spec}.js'`
     );
-    if (match) return match.id;
+
+  fs.writeFileSync(
+    path.join(tmpDir, 'productParser.js'),
+    addExt(fs.readFileSync(path.join(srcDir, 'productParser.js'), 'utf8'))
+  );
+  fs.writeFileSync(
+    path.join(tmpDir, 'ingredientNormalizer.js'),
+    addExt(fs.readFileSync(path.join(srcDir, 'ingredientNormalizer.js'), 'utf8'))
+  );
+  // productParser imports '../data/companies' — mirror the directory shape.
+  const tmpData = path.join(tmpDir, '..', path.basename(tmpDir) + '-data');
+  fs.mkdirSync(tmpData, { recursive: true });
+  fs.copyFileSync(path.join(ROOT, 'src', 'data', 'companies.js'), path.join(tmpData, 'companies.js'));
+  // Re-point the data import at the sibling copy.
+  // Windows: bare absolute paths ("C:\...") are not a legal ESM specifier —
+  // they must be file:// URLs, or Node reads "c:" as an unsupported protocol.
+  const { pathToFileURL } = require('url');
+  const pp = path.join(tmpDir, 'productParser.js');
+  fs.writeFileSync(
+    pp,
+    fs.readFileSync(pp, 'utf8').replace(
+      /from\s+'\.\.\/data\/companies\.js'/,
+      `from '${pathToFileURL(path.join(tmpData, 'companies.js')).href}'`
+    )
+  );
+
+  const mod = await import(pathToFileURL(pp).href);
+  if (typeof mod.findCompanyId !== 'function') {
+    throw new Error('productParser.js did not export findCompanyId');
   }
-  return null;
+  return mod.findCompanyId;
 }
+
+const { COMPANY_DB } = require('../src/data/companies.js');
 
 // ── US/Canada filter ─────────────────────────────────────────────────────────
 // OFF is a global database with a heavy European skew; ranking brands without
@@ -95,6 +125,8 @@ function isUS(barcode) {
 }
 
 async function main() {
+  const findCompanyId = await loadFindCompanyId();
+
   if (!fs.existsSync(DUMP)) {
     console.error(`Missing ${path.relative(ROOT, DUMP)} (gitignored, ~221MB).`);
     console.error('This report needs the Open Food Facts bulk dump to mean anything.');

@@ -51,6 +51,169 @@ export function parseNutrition(n = {}) {
 }
 
 // ─── Map brand string → internal company ID ───────────────────────────────────
+//
+// findCompanyId() resolves a brand string in three stages:
+//   1. BRAND_TO_COMPANY exact/substring keys (consumer brands, e.g. "cheerios")
+//   2. BRAND_PARENT_MAP -> fuzzy match against COMPANY_DB record names
+//   3. NEW: direct match against COMPANY_DB record NAMES themselves — this is
+//      what lets manufacturer legal-name strings straight out of the OFF bulk
+//      dump ("General Mills, Inc.", "The Kroger Co.", "Wal-Mart Stores, Inc.")
+//      resolve even though they're not brands and aren't in BRAND_TO_COMPANY.
+//
+// Stage 3 is intentionally conservative: a wrongly-named parent company is a
+// worse failure for this app than showing nothing, so every rule below is
+// biased toward returning null over guessing. See matchCompanyDbName().
+
+const CORP_SUFFIX_WORDS = new Set([
+  'inc', 'llc', 'ltd', 'co', 'corp', 'corporation', 'company', 'the', 'usa', 'holdings',
+]);
+
+const MIN_PREFIX_LEN = 5;   // shorter side must clear this before a prefix match counts
+const MIN_INITIALISM_LEN = 3;
+
+/**
+ * Lowercase; drop parenthetical asides (aka/parent/dba notes, mirrors the
+ * "(...)" strip scorer.js already does for ingredients); join hyphens so
+ * "Wal-Mart" lines up with "Walmart"; turn remaining punctuation into word
+ * boundaries; drop corporate-suffix noise words.
+ * Returns the significant words as an array (callers join(' ') as needed).
+ */
+function normalizeCompanyWords(str) {
+  return str
+    .toLowerCase()
+    .replace(/\([^)]*\)/g, ' ')     // drop parenthetical asides
+    .replace(/-/g, '')              // join hyphenated names: "Wal-Mart" -> "walmart"
+    .replace(/[^a-z0-9\s]/g, ' ')   // remaining punctuation -> word boundary
+    .split(/\s+/)
+    .filter(Boolean)
+    .filter((w) => !CORP_SUFFIX_WORDS.has(w));
+}
+
+function normalizeCompanyName(str) {
+  return normalizeCompanyWords(str).join(' ');
+}
+
+// Detect "H-E-B"-style initialisms: every hyphen/period/space-delimited
+// segment of the ORIGINAL (pre-normalization) company name is a single
+// character, 3 or more segments (e.g. "H-E-B" -> ['H','E','B'] -> "heb").
+// This is the only way a real-data case like "H E Butt Grocery Company"
+// (OFF legal-name text) resolves to a COMPANY_DB record literally named
+// "H-E-B" — plain word-boundary prefix matching can't bridge that gap
+// because "Butt" (not "B") is the third significant word on the brand side.
+function detectInitialism(originalName) {
+  const segments = originalName.split(/[^A-Za-z0-9]+/).filter(Boolean);
+  if (segments.length < MIN_INITIALISM_LEN) return null;
+  if (!segments.every((s) => s.length === 1)) return null;
+  return segments.join('').toLowerCase();
+}
+
+function isWordBoundaryPrefix(shorter, longer) {
+  if (shorter.length < MIN_PREFIX_LEN) return false;
+  if (!longer.startsWith(shorter)) return false;
+  const rest = longer.slice(shorter.length);
+  return rest === '' || rest.startsWith(' '); // never a bare substring match
+}
+
+// A single leftover word is too weak a signal to trust as a prefix root
+// UNLESS it is COMPANY_DB's own curated canonical name (e.g. "walmart",
+// "target") acting as the prefix of a longer legal-entity string. If
+// instead it's the incoming (uncurated, third-party) brand string that
+// reduces to one bare word, that word must NOT be allowed to reach out and
+// prefix-match a longer DB name it merely happens to share a root with.
+// Two real near-collisions surfaced validating this against the full OFF
+// bulk dump:
+//   - "The Organic Co" reduces to "organic" (after stripping "The"/"Co"),
+//     which would otherwise prefix-match "Organic Valley (CROPP
+//     Cooperative)" — a different real company.
+//   - "RIVERSIDE" (tagged on a "FROZEN LOBSTER MEAT" SKU) would otherwise
+//     prefix-match "Riverside Natural Foods Ltd.", a vegan snack-bar maker
+//     with nothing to do with lobster.
+function isTrustworthyPrefixPair(dbWords, brandWords) {
+  const dbNorm = dbWords.join(' ');
+  const brandNorm = brandWords.join(' ');
+  const dbIsShorter = dbNorm.length <= brandNorm.length;
+  const shorterWords = dbIsShorter ? dbWords : brandWords;
+  const shorter = dbIsShorter ? dbNorm : brandNorm;
+  const longer = dbIsShorter ? brandNorm : dbNorm;
+  if (shorterWords.length === 1 && !dbIsShorter) return false;
+  return isWordBoundaryPrefix(shorter, longer);
+}
+
+// COMPANY_DB name index, built LAZILY on first use (not at module import) —
+// same pattern as scorer.js's ensureIndexes()/_indexesBuilt (785baf0), which
+// fixed a cold-start ANR caused by eager index-building at import time.
+// productParser.js is imported by screens on the launch path; this index
+// build is O(records) with regex work per record, so it must stay off that
+// path and only run when a brand string is actually being resolved.
+let _companyIndexBuilt = false;
+const companyNameIndex = new Map();  // normalized name -> Set(company ids)
+const companyInitialismIndex = new Map(); // initials string -> Set(company ids)
+
+function ensureCompanyIndex() {
+  if (_companyIndexBuilt) return;
+
+  for (const c of Object.values(COMPANY_DB)) {
+    const n = normalizeCompanyName(c.name);
+    if (n) {
+      if (!companyNameIndex.has(n)) companyNameIndex.set(n, new Set());
+      companyNameIndex.get(n).add(c.id);
+    }
+    const init = detectInitialism(c.name);
+    if (init) {
+      if (!companyInitialismIndex.has(init)) companyInitialismIndex.set(init, new Set());
+      companyInitialismIndex.get(init).add(c.id);
+    }
+  }
+
+  _companyIndexBuilt = true;
+}
+
+/**
+ * Match a (lowercased) brand/manufacturer string directly against
+ * COMPANY_DB record names. Returns a single company id, or null if there's
+ * no confident match — including when the string is ambiguous between two
+ * or more different real companies (never guess between candidates).
+ */
+function matchCompanyDbName(lowerBrand) {
+  ensureCompanyIndex();
+
+  const words = normalizeCompanyWords(lowerBrand);
+  const n = words.join(' ');
+  if (!n) return null;
+
+  const matches = new Set();
+
+  // 1. Exact equality (COMPANY_DB names are unique once normalized, so this
+  //    can never itself be ambiguous).
+  if (companyNameIndex.has(n)) {
+    for (const id of companyNameIndex.get(n)) matches.add(id);
+  }
+
+  // 2. Word-boundary prefix match, either direction, shorter side >= MIN_PREFIX_LEN.
+  if (matches.size === 0) {
+    for (const [name, ids] of companyNameIndex) {
+      if (isTrustworthyPrefixPair(name.split(' '), words)) {
+        for (const id of ids) matches.add(id);
+      }
+    }
+  }
+
+  // 3. Initialism match (e.g. "H-E-B"): leading words' first letters spell
+  //    a known DB initialism, in order.
+  if (matches.size === 0) {
+    for (const [init, ids] of companyInitialismIndex) {
+      if (words.length < init.length) continue;
+      const leading = words.slice(0, init.length).map((w) => w[0]).join('');
+      if (leading === init) {
+        for (const id of ids) matches.add(id);
+      }
+    }
+  }
+
+  // Ambiguous (matches more than one real company) -> null, never guess.
+  if (matches.size === 1) return [...matches][0];
+  return null;
+}
 
 export function findCompanyId(brand) {
   if (!brand) return null;
@@ -73,6 +236,9 @@ export function findCompanyId(brand) {
     );
     if (match) return match.id;
   }
+
+  const dbNameMatch = matchCompanyDbName(lower);
+  if (dbNameMatch) return dbNameMatch;
 
   return null;
 }
