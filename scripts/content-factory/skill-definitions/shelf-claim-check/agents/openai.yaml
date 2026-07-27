@@ -1,0 +1,4 @@
+interface:
+  display_name: "Shelf Claim Check"
+  short_description: "Verify claims and source evidence"
+  default_prompt: "Use $shelf-claim-check to verify claims and rights notes for pending Food Exposé concepts."

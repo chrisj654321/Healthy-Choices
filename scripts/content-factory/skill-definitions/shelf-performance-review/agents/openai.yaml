@@ -1,0 +1,4 @@
+interface:
+  display_name: "Shelf Performance Review"
+  short_description: "Analyze results and recommend experiments"
+  default_prompt: "Use $shelf-performance-review to analyze Food Exposé metrics and recommend next week's controlled tests."

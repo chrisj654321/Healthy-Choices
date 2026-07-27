@@ -1,0 +1,4 @@
+interface:
+  display_name: "Shelf Content Factory"
+  short_description: "Run the complete weekly content workflow"
+  default_prompt: "Use $shelf-content-factory to run the weekly Food Exposé research, production, review, approval, delivery, and learning workflow."
