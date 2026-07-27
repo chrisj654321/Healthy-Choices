@@ -3,13 +3,14 @@ import React, { useEffect, Component } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, AppState } from 'react-native';
 import * as Notifications from 'expo-notifications';
 import { AuthProvider } from './src/context/AuthContext';
 import AppNavigator from './src/navigation/AppNavigator';
 import { initRevenueCat } from './src/utils/subscription';
 import { initProductStore } from './src/data/productStore';
 import { initSentry, captureException } from './src/utils/sentry';
+import { logAppEvent } from './src/utils/appAnalytics';
 import SpecsMascot from './src/components/SpecsMascot';
 
 // Foreground behavior for local notifications — show them even while the app
@@ -90,6 +91,23 @@ export default function App() {
     // local lookups just fall back to "not found locally" if this never
     // completes successfully (see src/data/productStore.js).
     initProductStore().catch((e) => console.warn('[ProductStore] init failed:', e.message));
+
+    // Funnel/retention analytics: 'app_open' fires exactly once here, per
+    // cold start (see src/utils/appAnalytics.js — never throws, never
+    // blocks). A dedicated AppState listener (rather than reusing
+    // AuthContext's, which exists purely to pause Supabase's auth-refresh
+    // timer and lives inside AuthProvider, mounted below this) logs
+    // 'app_backgrounded' when the app leaves the foreground. 'inactive'
+    // (iOS's brief transient state, e.g. Control Center) is intentionally
+    // NOT treated as backgrounded — only a real transition to 'background'.
+    logAppEvent('app_open').catch(() => {});
+    const handleAppStateChange = (nextState) => {
+      if (nextState === 'background') {
+        logAppEvent('app_backgrounded').catch(() => {});
+      }
+    };
+    const appStateSub = AppState.addEventListener('change', handleAppStateChange);
+    return () => appStateSub.remove();
   }, []);
 
   return (

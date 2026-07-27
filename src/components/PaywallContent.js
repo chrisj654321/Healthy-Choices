@@ -17,6 +17,7 @@ import {
 } from '../utils/subscription';
 import { FALLBACK_PRICES, monthlyEquiv } from '../utils/paywallPricing';
 import { maybeRequestAppReview } from '../utils/reviewPrompt';
+import { logAppEvent } from '../utils/appAnalytics';
 
 // ─── Static feature list ──────────────────────────────────────────────────────
 // 'Share product health scores' removed (share is now free — see Part A) and
@@ -59,6 +60,11 @@ export default function PaywallContent({ feature = null, onPurchased, onDismiss 
   const insets  = useSafeAreaInsets();
   const { title, sub } = headlineCopy(feature);
 
+  // Funnel analytics: 'onboarding' when this renders as the onboarding
+  // "paywall" step (feature is never passed there) — every other call site
+  // (PaywallScreen.js) always passes one of the ~8 in-app trigger features.
+  const paywallSource = feature || 'onboarding';
+
   const [selectedPlan, setSelectedPlan] = useState('yearly');
   const [loading,      setLoading]      = useState(false);
   const [rcPackages,   setRcPackages]   = useState({ yearly: null, monthly: null });
@@ -74,6 +80,16 @@ export default function PaywallContent({ feature = null, onPurchased, onDismiss 
       Animated.timing(slideAnim, { toValue: 0, duration: 340, useNativeDriver: true }),
     ]).start();
   }, []);
+
+  // Funnel analytics: this paywall was shown, exactly once per mount.
+  useEffect(() => {
+    logAppEvent('paywall_shown', { step: paywallSource }).catch(() => {});
+  }, []);
+
+  const handleDismiss = () => {
+    logAppEvent('paywall_dismissed', { step: paywallSource }).catch(() => {});
+    onDismiss?.();
+  };
 
   // ── Load RC offering ───────────────────────────────────────────────────────
   useEffect(() => {
@@ -124,6 +140,7 @@ export default function PaywallContent({ feature = null, onPurchased, onDismiss 
     }
 
     setLoading(true);
+    logAppEvent('purchase_started', { step: paywallSource }).catch(() => {});
     try {
       let isPro = await purchaseRCPackage(pkg);
       // Defensive re-check: if the purchase completed but the entitlement isn't
@@ -134,6 +151,7 @@ export default function PaywallContent({ feature = null, onPurchased, onDismiss 
       setLoading(false);
       if (isPro) {
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
+        logAppEvent('purchase_completed', { step: paywallSource }).catch(() => {});
         await maybeRequestAppReview('subscription');
         onPurchased?.();
       } else {
@@ -171,7 +189,7 @@ export default function PaywallContent({ feature = null, onPurchased, onDismiss 
       <StatusBar barStyle="dark-content" />
 
       {/* Close button — 44×44 touch target */}
-      <TouchableOpacity style={[s.closeBtn, { top: insets.top + 12 }]} onPress={onDismiss}>
+      <TouchableOpacity style={[s.closeBtn, { top: insets.top + 12 }]} onPress={handleDismiss}>
         <Ionicons name="close" size={20} color={Colors.textMuted} />
       </TouchableOpacity>
 
@@ -266,7 +284,7 @@ export default function PaywallContent({ feature = null, onPurchased, onDismiss 
 
           {/* Continue free / Restore */}
           <View style={s.footerLinks}>
-            <TouchableOpacity onPress={onDismiss}>
+            <TouchableOpacity onPress={handleDismiss}>
               <Text style={s.freeLink}>Continue with free version</Text>
             </TouchableOpacity>
             <Text style={s.footerSep}>·</Text>

@@ -18,6 +18,7 @@ import {
 } from '../utils/storage';
 import { logProductRequest } from '../utils/productRequests';
 import { logProductEvent } from '../utils/scanAnalytics';
+import { logFirstScanIfNeeded } from '../utils/appAnalytics';
 import { useProStatus } from '../utils/subscription';
 import { getAlternatives } from '../utils/alternatives';
 import { recordScanAndPickCelebration } from '../utils/mascotMoments';
@@ -331,6 +332,10 @@ export default function ProductScoreScreen({ route, navigation }) {
       recordScanAndPickCelebration({ displayGrade: grade })
         .then(setCelebration)
         .catch(() => {});
+      // Funnel analytics: 'first_scan' fires once per install, no matter how
+      // many real scans happen — logFirstScanIfNeeded() no-ops after the
+      // first (see appAnalytics.js).
+      logFirstScanIfNeeded().catch(() => {});
     }
 
     if (grade === 'D' || grade === 'F') {

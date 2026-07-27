@@ -14,6 +14,7 @@ import {
 } from '../utils/subscription';
 import { computeOfferPricing } from '../utils/paywallPricing';
 import { maybeRequestAppReview } from '../utils/reviewPrompt';
+import { logAppEvent } from '../utils/appAnalytics';
 import SpecsMascot from './SpecsMascot';
 
 // ─── Pure exit-offer content ───────────────────────────────────────────────────
@@ -60,12 +61,18 @@ export default function OfferContent({ onPurchased, onPayFullPrice, onDismiss })
     }
 
     setLoading(true);
+    // step: 'offer' — this is the 50%-off exit offer, a distinct purchase
+    // path from the main paywall (see appAnalytics.js's app_events_setup.sql
+    // conversion query for the caveat this creates: a purchase completed
+    // here can't be attributed back to whichever paywall trigger led here).
+    logAppEvent('purchase_started', { step: 'offer' }).catch(() => {});
     try {
       let isPro = await purchaseRCPackage(pkg);
       if (!isPro) isPro = await getProStatus();
       setLoading(false);
       if (isPro) {
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
+        logAppEvent('purchase_completed', { step: 'offer' }).catch(() => {});
         await maybeRequestAppReview('subscription');
         onPurchased?.();
       } else {

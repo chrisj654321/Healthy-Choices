@@ -11,6 +11,7 @@ import * as WebBrowser from 'expo-web-browser';
 import Slider from '@react-native-community/slider';
 import { Colors } from '../constants/colors';
 import { DEFAULT_PREFS, saveUserPrefs, markOnboardingDone } from '../utils/storage';
+import { logAppEvent } from '../utils/appAnalytics';
 import { optInToNotifications } from '../utils/notifications';
 import { DEADLINE_BUCKETS, bucketToTargetDate, enableGoalReminders } from '../utils/goalReminders';
 import { PRIMARY_GOAL_OPTIONS } from '../data/preferences';
@@ -170,8 +171,16 @@ export default function OnboardingScreen({ onComplete }) {
   const isLast      = step === STEPS.length - 1;
   const progressPct = step / (STEPS.length - 1);
 
+  // Funnel analytics: log the very first step (mount) once. Every later
+  // step is logged from goToStep below, so this plus goToStep together
+  // cover the whole welcome -> ... -> ready flow.
+  useEffect(() => {
+    logAppEvent('onboarding_step', { step: STEPS[0] }).catch(() => {});
+  }, []);
+
   // Animate step transitions
   const goToStep = (next) => {
+    logAppEvent('onboarding_step', { step: STEPS[next] }).catch(() => {});
     Animated.parallel([
       Animated.timing(fadeAnim,  { toValue: 0, duration: 160, useNativeDriver: true }),
       Animated.timing(slideAnim, { toValue: -20, duration: 160, useNativeDriver: true }),
