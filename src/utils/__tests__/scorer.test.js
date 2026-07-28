@@ -728,3 +728,48 @@ describe('scoreProduct: unknown-ingredient plausibility gate', () => {
     expect(r2.analyzedIngredients[0].flag).toBe('ok');
   });
 });
+
+describe('scoreProduct: weak-hit boilerplate gate + merged-token expansion', () => {
+  // Regression for the 2026-07 Gorilla Mind scan: whole-package OCR tokens
+  // that shared ONE food word with a DB entry rendered as scored ingredients
+  // ("May Cause Occasionally Rapid Heart Rate" as a seed), and comma-loss
+  // merges rendered as one nonsense unknown row.
+
+  test('a warning sentence that weak-matches a DB entry is hidden, not scored', () => {
+    const result = scoreProduct({
+      ingredients: ['whey', 'may cause occasionally rapid heart rate'],
+      nutrition: {},
+    });
+    expect(result.analyzedIngredients.map((i) => i.raw)).toEqual(['whey']);
+    expect(result.hiddenUnreadableCount).toBe(1);
+  });
+
+  test('real single-shared-token ingredients still render (weak hit must NOT imply hidden)', () => {
+    const result = scoreProduct({
+      ingredients: ['bay leaf', 'nutritional yeast'],
+      nutrition: {},
+    });
+    expect(result.hiddenUnreadableCount).toBe(0);
+    expect(result.analyzedIngredients).toHaveLength(2);
+  });
+
+  test('a comma-loss merge of two known compound names splits into both rows', () => {
+    const result = scoreProduct({
+      ingredients: ['potassium sorbate l-theanine'],
+      nutrition: {},
+    });
+    const raws = result.analyzedIngredients.map((i) => i.raw);
+    expect(raws).toEqual(['potassium sorbate', 'l-theanine']);
+  });
+
+  test('a one-ingredient name that merely CONTAINS known names is not shredded', () => {
+    // "blackberry juice concentrate" must stay one row even though
+    // "blackberry" and "juice concentrate" both exist as keys.
+    const result = scoreProduct({
+      ingredients: ['blackberry juice concentrate'],
+      nutrition: {},
+    });
+    expect(result.analyzedIngredients).toHaveLength(1);
+    expect(result.analyzedIngredients[0].raw).toBe('blackberry juice concentrate');
+  });
+});
