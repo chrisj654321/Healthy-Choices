@@ -39,6 +39,9 @@ A branded character for marketing video — ties directly into the LOCKED video 
 
 ## 🟠 Big swings — schedule deliberately
 
+### Ingredients-and-companies-first repositioning — **overhaul (research pipelines, not code)** · founder-floated 2026-07-28, NOT started
+The pivot: curated product breadth stops being a goal; the durable data assets become (1) ingredient depth (Chad deep-research running as of 2026-07-28) and (2) company transparency depth — NEW layer: animal-welfare/farm-sourcing evidence (hen housing, welfare lawsuits/enforcement, single-farm sourcing, pesticide/fertilizer practices via certifications). Products analyzed live at scan; curated set = top ~20% healthiest per category, powering redirects (mechanism already exists: `getCuratedGradeABCandidates`). Before any fleet-wide company redo: (a) define the evidence schema (certifications w/ verifier+date, enforcement actions w/ source, sourcing model, welfare flags); (b) pilot ONE category — eggs (Cornucopia scorecard exists, max brand contrast, high consumer emotion); (c) ideal-product-number question answered from scan_events category demand, not picked a priori. Welfare/farm claims are legally sharp — political-analysis-style sourcing discipline applies; certifications are the pesticide proxy (true farm-level data is mostly non-public).
+
 7. **Dark mode** — **overhaul.** Colors is a static constant used across ~20 screens; real dark mode means a theme context + dynamic palette everywhere + asset audits. High polish value, real cost. Profile already has a Display Settings section to house the toggle. Don't start this in a batch-work session.
 
 ## ⚙️ Workflow (founder's top to-do, saved 2026-07-01 — not started)
