@@ -31,6 +31,7 @@ North star: **VISION.md** — translate the label, expose the ownership, follow 
 
 - **octavius** skill — add products (data+company+photo+barcode), ~2 agents/batch. Target: 2,000 products.
 - **product-photo-lookup** skill — bulk photo backfills (local scripts first, Octavius for misses, Opus visual review).
-- **/political-analysis** — company lobbying/issues research, 4-role legal-separation chain. Only pipeline that stays multi-agent on purpose.
+- **/political-analysis** — company lobbying/issues research, 4-role legal-separation chain. Stays multi-agent on purpose (legal separation).
+- **sourcing-transparency** skill (added 2026-07-28) — animal-welfare/farm-sourcing research → evidence-graded `sourcing` field on companies.js. Same 4-role legal chain as /political-analysis + a symmetric praise rail (positive claims need third-party certification). Industry modules; eggs is the unrun pilot (~33 catalog products, ≤15 brands). Second pipeline that stays multi-agent on purpose.
 - **content-sprint** skill — monthly content pack (Cicero drafts, Opus evaluates, human approves).
 - Marketing system: ~$27/mo (Buffer + Runway), video-primary, auto-generate + human approve.
