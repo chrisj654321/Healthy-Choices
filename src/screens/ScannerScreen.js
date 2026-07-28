@@ -26,6 +26,7 @@ import { Font } from '../constants/typography';
 import { getProductByBarcode } from '../data/productStore';
 import { useProStatus } from '../utils/subscription';
 import { buildProduct, findCompanyId } from '../utils/productParser';
+import { fetchWithTimeout } from '../utils/fetchWithTimeout';
 import { maybeRequestAppReview, recordSuccessfulScanForReview } from '../utils/reviewPrompt';
 import { addRequest } from '../utils/productRequests';
 import SpecsMascot from '../components/SpecsMascot';
@@ -44,6 +45,9 @@ export default function ScannerScreen({ navigation }) {
   const [active, setActive] = useState(true);
   const [manualMode, setManualMode] = useState(false);
   const [manualBarcode, setManualBarcode] = useState('');
+  // Barcode whose lookup failed on the network — non-null shows the in-screen
+  // connection-error card (with Specs) instead of the old bare Alert.
+  const [connErrorBarcode, setConnErrorBarcode] = useState(null);
   const { isPro, refresh: refreshPro } = useProStatus();
   const cooldown = useRef(false);
   const scanAnim = useRef(new Animated.Value(0)).current;
@@ -72,7 +76,17 @@ export default function ScannerScreen({ navigation }) {
   const reset = () => {
     setScanned(false);
     setLoading(false);
+    setConnErrorBarcode(null);
     cooldown.current = false;
+  };
+
+  // Retry the exact barcode that hit the connection error (the old alert's
+  // "Retry" just reset the scanner, forcing the user to re-aim and rescan).
+  const retryBarcode = (barcode) => {
+    setConnErrorBarcode(null);
+    setScanned(false);
+    cooldown.current = false;
+    handleBarCodeScanned({ data: barcode });
   };
 
   const handleManualSubmit = () => {
@@ -112,11 +126,51 @@ export default function ScannerScreen({ navigation }) {
     }
   };
 
+  // ── Daily scan limit (free tier), charged only on successful lookups ──────
+  // Returns true when the scan may proceed. Shared by the local and remote
+  // success paths (was three duplicated inline blocks).
+  const enforceDailyScanLimit = async () => {
+    if (isPro) return true;
+    const { allowed, remaining } = await checkAndIncrementDailyScan();
+    if (!allowed) {
+      setLoading(false);
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error).catch(() => {});
+      Alert.alert(
+        'Daily Limit Reached',
+        'Free accounts can scan 5 products per day. Upgrade to Premium for unlimited scans.',
+        [
+          { text: 'Not Now', style: 'cancel', onPress: reset },
+          { text: 'Upgrade', onPress: () => navigation.navigate('Paywall', { feature: 'scan' }) },
+        ]
+      );
+      return false;
+    }
+    if (remaining === 0) {
+      Alert.alert(
+        'Last Free Scan Today',
+        "You've used all 5 free scans for today. Upgrade to Premium for unlimited scanning.",
+        [
+          { text: 'Continue', style: 'cancel' },
+          { text: 'Upgrade to Premium', onPress: () => navigation.navigate('Paywall', { feature: 'scan' }) },
+        ]
+      );
+    }
+    return true;
+  };
+
+  const goToProduct = (product) => {
+    setLoading(false);
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
+    navigation.navigate('ProductScore', { product, fromScanner: true });
+    promptForReviewAfterScan();
+  };
+
   const handleBarCodeScanned = async ({ data: barcode }) => {
     if (cooldown.current || scanned) return;
 
     cooldown.current = true;
     setScanned(true);
+    setConnErrorBarcode(null);
     Vibration.vibrate(60);
 
     try {
@@ -124,8 +178,25 @@ export default function ScannerScreen({ navigation }) {
       setLoadingMsg('Scanning barcode…');
       await delay(250);
 
+      // ── 1. Curated local DB FIRST ─────────────────────────────────────────
+      // Our reviewed catalog resolves instantly and fully offline — an
+      // in-store scan on flaky LTE should never need a network round-trip for
+      // a product we carry. This also means curated data now WINS over live
+      // OFF for those barcodes (deliberate: our data is reviewed, OFF is
+      // third-party and has been vandalized before).
+      const local = await getProductByBarcode(barcode);
+      if (local) {
+        if (!(await enforceDailyScanLimit())) return;
+        goToProduct(local);
+        return;
+      }
+
+      // ── 2. OpenFoodFacts, bounded ─────────────────────────────────────────
+      // fetchWithTimeout: RN's fetch has no default timeout, so a flaky
+      // connection used to hang here indefinitely behind the "Found!" overlay
+      // before eventually surfacing the Connection Error alert.
       setLoadingMsg('Looking up product…');
-      const res = await fetch(
+      const res = await fetchWithTimeout(
         `${OFF_API}/${encodeURIComponent(barcode)}?fields=product_name,product_name_en,brands,` +
           `ingredients_text,ingredients,nutriments,categories_tags,labels_tags,packaging,packaging_text,packaging_tags,preparation,preparation_text,cooking_instructions,instructions,` +
           `serving_size,image_front_url`,
@@ -136,41 +207,6 @@ export default function ScannerScreen({ navigation }) {
       const data = await res.json();
 
       if (data.status === 0 || !data.product) {
-        const local = await getProductByBarcode(barcode);
-        if (local) {
-          // ── Daily scan limit check (only on successful lookup) ───────────────
-          if (!isPro) {
-            const { allowed, remaining } = await checkAndIncrementDailyScan();
-            if (!allowed) {
-              setLoading(false);
-              Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error).catch(() => {});
-              Alert.alert(
-                "Daily Limit Reached",
-                "Free accounts can scan 5 products per day. Upgrade to Premium for unlimited scans.",
-                [
-                  { text: "Not Now", style: "cancel", onPress: reset },
-                  { text: "Upgrade", onPress: () => navigation.navigate('Paywall', { feature: 'scan' }) },
-                ]
-              );
-              return;
-            }
-            if (remaining === 0) {
-              Alert.alert(
-                "Last Free Scan Today",
-                "You've used all 5 free scans for today. Upgrade to Premium for unlimited scanning.",
-                [
-                  { text: "Continue", style: "cancel" },
-                  { text: "Upgrade to Premium", onPress: () => navigation.navigate('Paywall', { feature: 'scan' }) },
-                ]
-              );
-            }
-          }
-          setLoading(false);
-          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
-          navigation.navigate('ProductScore', { product: local, fromScanner: true });
-          promptForReviewAfterScan();
-          return;
-        }
         setLoading(false);
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error).catch(() => {});
         Alert.alert(
@@ -184,59 +220,20 @@ export default function ScannerScreen({ navigation }) {
         return;
       }
 
-      // ── Daily scan limit check (only on successful lookup) ─────────────────
-      if (!isPro) {
-        const { allowed, remaining } = await checkAndIncrementDailyScan();
-        if (!allowed) {
-          setLoading(false);
-          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error).catch(() => {});
-          Alert.alert(
-            "Daily Limit Reached",
-            "Free accounts can scan 5 products per day. Upgrade to Premium for unlimited scans.",
-            [
-              { text: "Not Now", style: "cancel", onPress: reset },
-              { text: "Upgrade", onPress: () => navigation.navigate('Paywall', { feature: 'scan' }) },
-            ]
-          );
-          return;
-        }
-        if (remaining === 0) {
-          Alert.alert(
-            "Last Free Scan Today",
-            "You've used all 5 free scans for today. Upgrade to Premium for unlimited scanning.",
-            [
-              { text: "Continue", style: "cancel" },
-              { text: "Upgrade to Premium", onPress: () => navigation.navigate('Paywall', { feature: 'scan' }) },
-            ]
-          );
-        }
-      }
-      // ───────────────────────────────────────────────────────────────────────
+      if (!(await enforceDailyScanLimit())) return;
 
       setLoadingMsg('Analyzing ingredients…');
       await delay(200);
 
-      const product = buildProduct(barcode, data);
-      setLoading(false);
-      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
-      navigation.navigate('ProductScore', { product, fromScanner: true });
-      promptForReviewAfterScan();
+      goToProduct(buildProduct(barcode, data));
     } catch (err) {
+      // Only network/timeout failures land here now (curated DB was already
+      // checked before the fetch). Show the in-screen error card — real
+      // Retry, and a way into the request loop, which is offline-safe.
       console.warn('[Scanner] scan error:', err);
-      const local = await getProductByBarcode(barcode);
-      if (local) {
-        setLoading(false);
-        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
-        navigation.navigate('ProductScore', { product: local, fromScanner: true });
-        promptForReviewAfterScan();
-        return;
-      }
       setLoading(false);
-      Alert.alert(
-        'Connection Error',
-        'Could not reach the product database. Check your internet connection and try again.',
-        [{ text: 'Retry', onPress: reset }]
-      );
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error).catch(() => {});
+      setConnErrorBarcode(barcode);
     }
   };
 
@@ -330,7 +327,7 @@ export default function ScannerScreen({ navigation }) {
               <SpecsMascot clip="idle-loop" size={72} />
               <Text style={s.loadMsg}>{loadingMsg}</Text>
             </View>
-          ) : scanned ? (
+          ) : connErrorBarcode ? null : scanned ? (
             <View style={s.frameCenter}>
               <Ionicons name="checkmark-circle" size={56} color={Colors.primary} />
               <Text style={s.loadMsg}>Found!</Text>
@@ -384,7 +381,7 @@ export default function ScannerScreen({ navigation }) {
           </KeyboardAvoidingView>
         ) : (
           <>
-            {scanned && !loading && (
+            {scanned && !loading && !connErrorBarcode && (
               <TouchableOpacity style={s.rescanBtn} onPress={reset}>
                 <Ionicons name="scan-outline" size={18} color={Colors.white} />
                 <Text style={s.rescanText}>Scan Another Product</Text>
@@ -415,6 +412,38 @@ export default function ScannerScreen({ navigation }) {
           </>
         )}
       </LinearGradient>
+
+      {/* Connection-error card — replaces the old bare Alert. Specs shows up
+          for the bad news, Retry re-runs the SAME barcode, and the request
+          loop stays reachable (addRequest is offline-safe). */}
+      {connErrorBarcode && (
+        <View style={s.errOverlay} pointerEvents="box-none">
+          <View style={s.errCard}>
+            <SpecsMascot clip="inspecting" size={96} />
+            <Text style={s.errTitle}>Connection hiccup</Text>
+            <Text style={s.errSub}>
+              Specs couldn't reach the product database. Check your signal and try again.
+            </Text>
+            <TouchableOpacity
+              style={s.errPrimaryBtn}
+              onPress={() => retryBarcode(connErrorBarcode)}
+              activeOpacity={0.85}
+            >
+              <Ionicons name="refresh-outline" size={18} color={Colors.white} />
+              <Text style={s.errPrimaryText}>Retry</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={s.errSecondaryBtn}
+              onPress={() => handleRequestProduct(connErrorBarcode)}
+            >
+              <Text style={s.errSecondaryText}>Request this product instead</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={s.errSecondaryBtn} onPress={reset}>
+              <Text style={s.errSecondaryText}>Scan something else</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      )}
     </View>
   );
 }
@@ -544,4 +573,41 @@ const s = StyleSheet.create({
   manualRow: { flexDirection: 'row', gap: 10, alignItems: 'center' },
   manualCancel: { paddingVertical: 14, paddingHorizontal: 6 },
   manualCancelText: { fontSize: Font.sizes.base, color: 'rgba(255,255,255,0.6)', fontWeight: '600' },
+
+  // Connection-error card
+  errOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    alignItems: 'center', justifyContent: 'center',
+    paddingHorizontal: 28,
+  },
+  errCard: {
+    width: '100%', maxWidth: 360,
+    backgroundColor: Colors.background, borderRadius: 24,
+    paddingHorizontal: 24, paddingTop: 24, paddingBottom: 16,
+    alignItems: 'center',
+    shadowColor: '#000', shadowOpacity: 0.35,
+    shadowRadius: 24, shadowOffset: { width: 0, height: 8 }, elevation: 12,
+  },
+  errTitle: {
+    fontSize: Font.sizes.xl, fontWeight: Font.weights.heavy,
+    color: Colors.textPrimary, marginTop: 10,
+  },
+  errSub: {
+    fontSize: Font.sizes.base, color: Colors.textSecondary,
+    textAlign: 'center', lineHeight: 22, marginTop: 6, marginBottom: 18,
+  },
+  errPrimaryBtn: {
+    flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8,
+    alignSelf: 'stretch',
+    backgroundColor: Colors.primary, borderRadius: 14, height: 50,
+  },
+  errPrimaryText: {
+    color: Colors.white, fontSize: Font.sizes.base,
+    fontWeight: Font.weights.bold,
+  },
+  errSecondaryBtn: { paddingVertical: 11, alignItems: 'center', alignSelf: 'stretch' },
+  errSecondaryText: {
+    fontSize: Font.sizes.sm, color: Colors.primary,
+    fontWeight: Font.weights.semibold,
+  },
 });
