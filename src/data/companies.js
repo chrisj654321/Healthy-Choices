@@ -5857,12 +5857,12 @@ export const COMPANY_DB = {
         source: 'Organic Consumers Association press releases, 2020–2021',
       },
       {
-        id: 'happy-egg-class-action-cramped-conditions-2022',
+        id: 'happy-egg-class-action-cramped-conditions-2021',
         title: "Class Action: Cramped Conditions Despite 'Happy' Branding",
         severity: 'medium',
         description:
-          "A separate class-action complaint filed in 2022 alleged that Happy Egg Co. falsely claimed its eggs were pasture raised and that hens were raised in cramped, stressful environments lacking meaningful access to roam and forage on pasture. The case was ongoing as of mid-2022.",
-        source: 'ClassAction.org, 2022',
+          "A separate class-action complaint (Rusoff et al. v. The Happy Group, Inc., N.D. Cal., Case No. 3:21-cv-08084), filed October 15, 2021, alleged that Happy Egg Co. falsely claimed its eggs were pasture raised and that hens were raised in cramped, stressful environments lacking meaningful access to roam and forage on pasture.",
+        source: 'ClassAction.org, 2021; CourtListener docket 3:21-cv-08084',
       },
     ],
     subsidiaries: ['Egg Innovations (merged Oct 2024)', 'Blue Sky Family Farms'],
