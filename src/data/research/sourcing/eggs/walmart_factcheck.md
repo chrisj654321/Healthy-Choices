@@ -1,0 +1,31 @@
+# Walmart Inc. — fact-check annotations
+_Checked: 2026-07-28 | Agent 2 (fact-checker) | flags only, no rewriting_
+
+## Claim-by-claim
+| # | Claim (abbreviated) | Flag | Verification note (what source you loaded, what it said) | URL |
+|---|---|---|---|---|
+| 1 | Cornucopia "Great Value (Walmart)" score: 0 out of 1700 points, 1-star | VERIFIED | Loaded the page directly. Confirmed "0 out of 1700 possible points," 1-star, last updated March 22, 2024. Page described the rated line as "Great Value organic eggs (private label store brand)." | https://www.cornucopia.org/scorecard/eggs/great-value-walmart/ |
+| 2 | Scope caveat: Cornucopia rates the ORGANIC Great Value line, distinct from catalog's "Grade A Large White" and "Cage Free Large Brown" SKUs | UNVERIFIED (but consistent) | Unlike the Kroger entry, this fetch consistently described the rated product as organic on the one pass performed. Catalog SKUs in scope (Grade A White; Cage Free Brown) are not organic-labeled, so the scope caveat is reasonable, but I did not independently confirm the exact organic-labeled Great Value product name shown on the page — recorded as consistent with, not proven beyond, the raw file's claim. | https://www.cornucopia.org/scorecard/eggs/great-value-walmart/ |
+| 3 | A second, differently-URLed Cornucopia entry exists (cornucopia.org/scorecard/eggs/great-value/) not reconciled with the above | UNVERIFIED | Not re-checked this session; carried forward as an open gap exactly as the raw file states. | https://www.cornucopia.org/scorecard/eggs/great-value/ |
+| 4 | Original pledge: April 5, 2016, "100% cage-free egg supply chain by 2025" | UNVERIFIED | Attempted the primary press release twice (news.walmart.com) — both attempts returned ECONNREFUSED, the same failure the researcher hit. Wording rests on secondary paraphrase (FoodLogistics, FarmProgress) as in the raw file. | https://news.walmart.com/news-archive/2016/04/05/walmart-us-announces-transition-to-cage-free-egg-supply-chain-by-2025 |
+| 5 | Progress: 14% (2019), 21%/41% Walmart-US/Sam's Club (2023), 27% (2024) | UNVERIFIED | No primary Walmart ESG/sustainability report was reachable this session. Search corroborates the same figures via secondary aggregation (multiple outlets converge on the same numbers), but none is a primary company disclosure I loaded directly. | n/a — no primary source located |
+| 6 | Walmart has not announced a new 100% target date and reportedly stopped publishing annual cage-free progress updates | UNVERIFIED | Rests on a single secondary analysis source (ainvest.com) exactly as the raw file states — this is the same single-source-claim risk pattern flagged for Albertsons's "pledge abandoned" claim. Do not treat as confirmed; no primary Walmart statement located either confirming or denying this. | https://www.ainvest.com/news/walmart-ethical-supply-chain-crossroads-laggards-pace-cage-free-revolution-2506/ |
+| 7 | Walmart's participation in the 2008–2022 processed-egg antitrust MDL (2:08-md-02002) was NOT confirmed | VERIFIED (as an absence) | While researching Kroger's plaintiff status in the same MDL, I found convergent secondary sources naming the full list of 12 retailer Direct Action Plaintiffs: Kroger, Giant Eagle, Publix, H-E-B, Safeway, Winn-Dixie, Albertsons, Hy-Vee, Walgreens, Supervalu, Roundy's. **Walmart does not appear on this list in any source found.** This corroborates — via absence across multiple independent listings, not a single gap — that the raw file's cautious "not confirmed" framing for Walmart is well-founded; there is no indication Walmart was a party to this litigation. | search-aggregated (case-tracking/legal-press summaries of the Dec. 2019 jury verdict) |
+| 8 | 2018 Marketside Organic v. Cal-Maine class action — current status (settled/dismissed/pending) unknown | UNVERIFIED | Not re-checked this session; not a listed priority target. Carried forward as a gap exactly as stated in the raw file. | n/a |
+| 9 | 2018 Rose Acre Farms recall (200M+ eggs) possibly sold at Walmart/Food Lion, brand attribution to "Great Value" unconfirmed | UNVERIFIED | Not re-checked this session; not a listed priority target. Carried forward as-is. | n/a |
+| 10 | Walmart's role (if any) as party/amicus in NPPC v. Ross (Prop 12) unconfirmed | UNVERIFIED | Not re-checked this session; raw file already correctly declines to assert this. Carried forward as-is. | n/a |
+| 11 | Cal-Maine Foods as supplier of "Great Value" specifically (vs. only documented for "Marketside") | UNVERIFIED | Not re-checked this session; raw file already flags this as an unconfirmed inference. Carried forward as-is. | n/a |
+
+## Cage-free pledge: primary-source status
+The original 2016 pledge and every progress figure (2019/2023/2024) remain **UNVERIFIED against a primary source**. The April 2016 press release could not be reached (ECONNREFUSED both attempts, matching the researcher's own experience), and no Walmart ESG/sustainability report was located and loaded this session. This is a clean, honest gap — do not upgrade any of these figures without a primary Walmart document.
+
+## Scorecard scope (which line was actually rated vs our catalog SKU)
+Score (0/1700, 1-star) is VERIFIED. The organic-vs-catalog scope distinction is reasonably supported (single consistent fetch calling it an organic line) but not independently pinned to an exact organic SKU name — treat as UNVERIFIED-but-plausible, one notch more solid than the disputed Kroger case.
+
+## Corrections to the raw file (factual errors found)
+- No factual errors found. One confidence upgrade: claim #7 (Walmart's non-participation in the egg antitrust MDL) is now better supported — a full plaintiff roster was located that excludes Walmart — though this is still an absence-of-evidence finding, not a primary-document confirmation.
+
+## Claims that must NOT be used
+- Do NOT state Walmart met, or has a currently active, 100% cage-free-by-2025 target — all evidence (secondary, but converging) says the target was missed and no new 100% date has been announced.
+- Do NOT cite "Walmart stopped publishing progress updates" as an established fact — it rests on one analysis piece.
+- Do NOT assert Cal-Maine as the confirmed supplier of "Great Value" (as opposed to "Marketside," which is the only Walmart brand directly tied to Cal-Maine via litigation).
