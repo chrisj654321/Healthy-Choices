@@ -10272,7 +10272,15 @@ export const BRAND_TO_COMPANY = {
   'stonyfield': 'danone',
   'silk': 'danone',
   'so delicious': 'danone',
-  'horizon organic': 'danone',
+  // 'horizon organic' deliberately NOT mapped to danone: Platinum Equity
+  // acquired a majority interest in Horizon Organic (and Wallaby) from
+  // Danone, completed 2024-04-02; Danone retains only a non-consolidated
+  // minority stake. The live mapping is 'horizon organic' ->
+  // 'horizon-family-brands', further down this same object. This entry used
+  // to sit here as a duplicate key — dead code that JS silently discarded
+  // (same trap as the red-40/yellow-5 dye duplicates fixed 2026-07-04), but
+  // dead code that would have become live and WRONG if the later key ever
+  // moved or was removed.
   'evian': 'danone',
   'volvic': 'danone',
   'two good': 'danone',
