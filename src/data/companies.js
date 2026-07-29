@@ -1319,6 +1319,42 @@ export const COMPANY_DB = {
     ],
     subsidiaries: ['Bob Evans'],
     sustainabilityScore: 41,
+  
+    sourcing: {
+      industry: 'eggs',
+      lastVerified: '2026-07-29',
+      model: 'unknown',
+      certifications: [],
+      welfare: {
+        housing: 'unknown',
+        scorecards: [],
+      },
+      enforcement: [
+        {
+          year: 2025,
+          body: 'USDA FSIS (recall by co-packer Cargill Kitchen Solutions)',
+          action: 'According to Today.com and other secondary reporting, in April 2025 Cargill Kitchen Solutions (a co-packer for Bob Evans-branded liquid egg products, at its Lake Odessa, Michigan facility) recalled approximately 212,268 pounds combined of "Bob Evans Better\'n Eggs Made with Real Egg Whites" and Egg Beaters-branded liquid egg products, due to possible contamination with a cleaning solution containing sodium hypochlorite. FSIS classified the recall Class III (negligible health risk), and no confirmed illnesses were reported. The primary FSIS recall notice returned an access error and could not be independently loaded.',
+          status: 'alleged',
+          amount: null,
+          source: {
+            name: 'Today.com',
+            url: 'https://www.today.com/food/recall/liquid-egg-recall-rcna198830',
+          },
+        },
+      ],
+      practices: [
+        {
+          claim: 'Bob Evans Farms participates in Protein PACT, described by parent company Post Holdings as a collective-action industry initiative on animal-protein sustainability. Post Holdings\' animal-welfare page does not specify a particular housing standard or welfare commitment tied to this membership.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Post Holdings, Inc., sustainability/animal-welfare page',
+            url: 'https://www.postholdings.com/home/sustainability/sourcing/animal-welfare/',
+            date: '2026-07-29',
+          },
+        },
+      ],
+    },
+
   },
 
   'lactalis': {
@@ -1515,6 +1551,67 @@ export const COMPANY_DB = {
     ],
     subsidiaries: ['Organic Valley', 'Organic Prairie'],
     sustainabilityScore: 82,
+  
+    sourcing: {
+      industry: 'eggs',
+      lastVerified: '2026-07-29',
+      model: 'co-op',
+      modelSource: {
+        name: 'CROPP Cooperative — Farmers FAQ',
+        url: 'https://www.farmers.coop/frequently-asked-questions/',
+        date: '2026-07-29',
+        basis: 'company-disclosure',
+      },
+      certifications: [],
+      welfare: {
+        housing: 'unknown',
+        scorecards: [
+          {
+            name: 'Cornucopia Organic Egg Scorecard',
+            ratedLine: 'Organic Valley',
+            appliesTo: 'all-lines',
+            rating: '555/1700',
+            tier: '2-star (1-5 scale)',
+            year: 2024,
+            url: 'https://www.cornucopia.org/scorecard/eggs/organic-valley/',
+          },
+        ],
+      },
+      enforcement: [
+        {
+          year: 2011,
+          body: 'USDA National Organic Program (complaint filed by The Cornucopia Institute, an advocacy organization; no agency action recorded)',
+          action: 'The Cornucopia Institute, an advocacy organization, filed a complaint with USDA alleging that a West Coast egg supplier used by CROPP Cooperative (Petaluma Egg Farm) provided outdoor access only through enclosed, screened "sun porches" that did not meet federal organic outdoor-access standards. As of 2011 — no adjudicated fine, certificate suspension, or court ruling against Organic Valley/CROPP was found, and the current (2026) status of this specific supply relationship has not been confirmed.',
+          status: 'alleged',
+          amount: null,
+          source: {
+            name: 'Common Dreams (reproducing Cornucopia Institute release)',
+            url: 'https://www.commondreams.org/newswire/2011/04/13/watchdog-organic-valley-herbrucks-violating-federal-organic-standards-factory',
+          },
+        },
+      ],
+      practices: [
+        {
+          claim: 'CROPP Cooperative reports around 1,600 farmer-members across 29 states, governed one-farm-one-vote by a board elected from the farmer membership.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'CROPP Cooperative — Farmers FAQ',
+            url: 'https://www.farmers.coop/frequently-asked-questions/',
+            date: '2026-07-29',
+          },
+        },
+        {
+          claim: 'CROPP\'s Egg Pool, founded in 1994, includes about 50 organic egg-producing member farms, with a regional minimum flock size as low as 5,000 birds depending on region and route proximity.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'CROPP Cooperative — Egg Pool',
+            url: 'https://www.farmers.coop/pools/egg-pool/',
+            date: '2026-07-29',
+          },
+        },
+      ],
+    },
+
   },
 
   'chobani': {
@@ -1679,6 +1776,87 @@ export const COMPANY_DB = {
     ],
     subsidiaries: ['Vital Farms', 'Pasture-Raised Eggs & Butter'],
     sustainabilityScore: 81,
+  
+    sourcing: {
+      industry: 'eggs',
+      lastVerified: '2026-07-29',
+      model: 'contract-farms',
+      modelSource: {
+        name: 'Company disclosure (hub-and-spoke network of contracted family farms; company\'s own avian-influenza page describes \'600+\' / \'575+\' contracted farms as of 2025-2026)',
+        url: 'https://vitalfarms.com/avian-influenza/',
+        date: '2026-04-15',
+        basis: 'company-disclosure',
+      },
+      certifications: [
+        {
+          name: 'Certified Humane',
+          verifier: 'Humane Farm Animal Care',
+          scope: 'Pasture-raised shell egg cartons; operations described as over 100 farms in Texas, Missouri, Arkansas, Tennessee, Oklahoma, and Georgia',
+          standard: 'total outdoor pasture system, with access to shelters at night',
+          verifiedDate: '2026-07-28',
+          source: {
+            name: 'Certified Humane — Vital Farms producer page',
+            url: 'https://certifiedhumane.org/vital-farms/',
+          },
+        },
+      ],
+      welfare: {
+        housing: 'pasture-raised',
+        housingSource: {
+          name: 'Certified Humane — Vital Farms producer page (describes company-wide operations as a total outdoor pasture system)',
+          url: 'https://certifiedhumane.org/vital-farms/',
+          date: '2026-07-28',
+          basis: 'certification',
+        },
+        scorecards: [
+          {
+            name: 'Cornucopia Organic Egg Scorecard',
+            ratedLine: 'Vital Farms Organic',
+            appliesTo: 'organic-line',
+            rating: '1135/1700',
+            tier: '4-star (1-5 scale)',
+            year: 2024,
+            url: 'https://www.cornucopia.org/scorecard/eggs/vital-farms-organic/',
+          },
+        ],
+      },
+      enforcement: [
+        {
+          year: 2021,
+          body: 'U.S. District Court, Western District of Texas',
+          action: 'Usler et al. v. Vital Farms, Inc. (W.D. Tex., No. 1:21-cv-00447), filed May 20, 2021, alleged the company\'s \'humane\'/\'ethical\' marketing claims were false, citing hatchery male-chick culling and beak-trimming as practices inconsistent with that marketing. Vital Farms states the court dismissed the class-action claims in September 2024 and that plaintiffs subsequently dropped remaining claims with no payment by the company. The court docket confirms the case was terminated January 7, 2025 — the docket confirms the closure date; the company\'s own account is the source for the substance of how the case was resolved.',
+          status: 'adjudicated',
+          amount: null,
+          source: {
+            name: 'CourtListener docket (primary court record, confirms filed/terminated dates); Vital Farms company statement (substance of resolution)',
+            url: 'https://www.courtlistener.com/docket/59922095/usler-v-vital-farms-inc/',
+          },
+        },
+        {
+          year: 2026,
+          body: 'U.S. District Court, Western District of Texas',
+          action: 'A federal securities class action (Wilkerson v. Vital Farms, Inc., W.D. Tex., No. 1:26-cv-00738) alleges the company made materially misleading statements about the operational impact of an ERP system transition ahead of a February 26, 2026 disclosure that it had missed its own revenue guidance. The court docket confirms the case was filed March 27, 2026 and remains pending, with no termination date recorded.',
+          status: 'pending',
+          amount: null,
+          source: {
+            name: 'CourtListener docket (primary court record)',
+            url: 'https://www.courtlistener.com/docket/73101339/wilkerson-v-vital-farms-inc/',
+          },
+        },
+      ],
+      practices: [
+        {
+          claim: 'As of April 2026, the company states approximately 9% of its contracted farms were temporarily housing hens indoors as part of avian-influenza management. Separately, an April 2024 version of the same company page reported 5 of 600+ farms affected since Fall 2022; the page has been updated at least twice since (May 2025, April 2026), so that 5-of-600 figure is that specific date\'s snapshot, not a current count.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Vital Farms — Avian Influenza page (rolling company disclosure)',
+            url: 'https://vitalfarms.com/avian-influenza/',
+            date: '2026-04-15',
+          },
+        },
+      ],
+    },
+
   },
 
   'cabot-creamery': {
@@ -2570,6 +2748,77 @@ export const COMPANY_DB = {
     ],
     subsidiaries: ['Honey Bunches of Oats', 'Fruity Pebbles', 'Cocoa Pebbles', 'Grape-Nuts', 'Raisin Bran', 'Shredded Wheat', 'Bob Evans (packaged)', 'Michael Foods', 'Egg Beaters'],
     sustainabilityScore: 43,
+  
+    sourcing: {
+      industry: 'eggs',
+      lastVerified: '2026-07-29',
+      model: 'aggregator',
+      modelSource: {
+        name: 'Post Holdings press release describing Michael Foods\' \'controlled supply\' as \'inclusive of owned and third-party contracted farms\'',
+        url: 'https://www.postholdings.com/post-holdings-reports-avian-influenza-at-third-party-contracted-facility-and-affirms-fiscal-year-2025-adjusted-ebitda-outlook/',
+        date: '2024-12-09',
+        basis: 'company-disclosure',
+      },
+      certifications: [],
+      welfare: {
+        housing: 'unknown',
+        scorecards: [],
+      },
+      enforcement: [
+        {
+          year: 2017,
+          body: 'U.S. District Court, Eastern District of Pennsylvania (multidistrict litigation)',
+          action: 'Michael Foods, Inc. (a Post Holdings subsidiary since June 2014) was a defendant, alongside roughly 10 other egg producers and the United Egg Producers trade group, in In re Processed Egg Products Antitrust Litigation (MDL No. 2:08-md-02002), which alleged a conspiracy to restrict egg supply and control prices; direct-purchaser plaintiffs included Kraft, Kellogg, General Mills, and Nestle. Michael Foods reached a settlement with the direct-purchaser plaintiff class; secondary legal-press sources report final court approval on November 20, 2017, and consistently cite a $75 million settlement amount specific to Michael Foods, but this figure was not independently confirmed against the court\'s own order, so it is not asserted as a verified amount. The alleged conduct predates Post\'s June 2014 acquisition of Michael Foods. The court\'s own docket confirms the overall multidistrict litigation was filed December 2, 2008 and terminated November 8, 2022.',
+          status: 'settled',
+          amount: null,
+          source: {
+            name: 'CourtListener docket (primary court record, MDL); secondary legal press (Law360, Lexis Legal News, Feedstuffs) for the $75M figure and 2017 approval date',
+            url: 'https://www.courtlistener.com/docket/4368662/in-re-processed-egg-products-antitrust-litigation/',
+          },
+        },
+        {
+          year: 2016,
+          body: 'Federal Trade Commission (complaint filed by the Humane Society of the United States)',
+          action: 'The Humane Society of the United States filed a complaint with the FTC in October 2016 alleging that Davidson\'s Safest Choice egg carton packaging (depicting pastures, a red barn, and free-roaming hens) misrepresented production methods, and that the pictured hens were in reality confined in battery cages; HSUS also alleged the company\'s pasteurization-related Salmonella claim was misleading. No FTC investigation finding, consent order, or dismissal has been publicly reported.',
+          status: 'alleged',
+          amount: null,
+          source: {
+            name: 'Food Safety News',
+            url: 'https://www.foodsafetynews.com/2016/10/humane-society-says-egg-carton-artwork-is-false-advertising/',
+          },
+        },
+      ],
+      practices: [
+        {
+          claim: 'Some Egg Beaters and Bob Evans-branded liquid egg products are co-packed by a third-party processor (Cargill Kitchen Solutions), per an April 2025 FSIS recall notice; the primary FSIS.gov notice could not be independently loaded, but the co-packing relationship is corroborated by multiple secondary press outlets.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'FSIS recall notice (secondary corroboration: Today.com, NPR, WattAgNet)',
+            url: 'https://www.today.com/food/recall/liquid-egg-recall-rcna198830',
+            date: '2025-04-04',
+          },
+        },
+        {
+          claim: 'On December 9, 2024, the company disclosed that a third-party contracted egg-laying flock in Iowa (approximately 4.5 million hens, about 12% of Post\'s controlled egg supply of owned and third-party contracted farms) tested positive for avian influenza; Post affirmed its fiscal-year 2025 Adjusted EBITDA outlook despite the event.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Post Holdings press release',
+            url: 'https://www.postholdings.com/post-holdings-reports-avian-influenza-at-third-party-contracted-facility-and-affirms-fiscal-year-2025-adjusted-ebitda-outlook/',
+            date: '2024-12-09',
+          },
+        },
+        {
+          claim: 'Company states it maintains an internal Animal Welfare Committee with named external advisors, conducts routine internal and third-party audits, and commits to reporting progress at least annually; no third-party welfare certification (Certified Humane, Global Animal Partnership, Animal Welfare Approved) is named for the egg business specifically.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Post Holdings sustainability page',
+            url: 'https://www.postholdings.com/home/sustainability/sourcing/animal-welfare/',
+            date: '2026-07-28',
+          },
+        },
+      ],
+    },
+
   },
 
   'b-and-g-foods': {
@@ -3955,6 +4204,76 @@ export const COMPANY_DB = {
     ],
     subsidiaries: ['Kroger', 'Harris Teeter', 'Fred Meyer', 'King Soopers', 'Ralphs', 'Simple Truth', 'Private Selection', 'Smart Way'],
     sustainabilityScore: 47,
+  
+    sourcing: {
+      industry: 'eggs',
+      lastVerified: '2026-07-29',
+      model: 'aggregator',
+      modelSource: {
+        name: 'Cornucopia Institute, Organic Egg Scorecard (private-label description)',
+        url: 'https://www.cornucopia.org/scorecard/eggs/simple-truth-kroger-3/',
+        date: '2026-07-29',
+        basis: 'third-party-scorecard',
+      },
+      certifications: [],
+      welfare: {
+        housing: 'caged',
+        housingSource: {
+          name: 'Kroger Co. and Simple Truth product listings',
+          url: 'https://www.kroger.com/',
+          date: '2026-07-29',
+          basis: 'company-disclosure',
+        },
+        scorecards: [],
+      },
+      enforcement: [
+        {
+          year: 2024,
+          body: 'U.S. District Court, Northern District of Illinois',
+          action: 'Sorkin v. The Kroger Co. (1:23-cv-14916): a putative class action alleged Kroger\'s in-store "Farm Fresh" egg labeling was misleading because the eggs came from caged hens. The court dismissed the case, finding "farm fresh" did not necessarily imply open-space housing and distinguishing it from terms like "cage-free" or "free-range."',
+          status: 'adjudicated',
+          amount: null,
+          source: {
+            name: 'CourtListener docket 1:23-cv-14916',
+            url: 'https://www.courtlistener.com/docket/67883102/sorkin-v-the-kroger-co/',
+          },
+        },
+        {
+          year: 2023,
+          body: 'U.S. District Court, Central District of Illinois',
+          action: 'Long v. The Kroger Co. (1:23-cv-01179): a putative class action alleged "Farm Fresh," "Positive Farm Fresh," and "Grade A" labeling misled consumers about whether eggs were cage-free. The plaintiff voluntarily dismissed the case in October 2023, before the court ruled on Kroger\'s pending motion to dismiss.',
+          status: 'alleged',
+          amount: null,
+          source: {
+            name: 'CourtListener docket 1:23-cv-01179',
+            url: 'https://www.courtlistener.com/docket/67320626/long-v-the-kroger-co/',
+          },
+        },
+        {
+          year: 2026,
+          body: 'FDA (voluntary recall by supplier Midwest Poultry Services)',
+          action: 'According to CBS News, approximately 1.6 million cartons of shell eggs distributed under multiple brands, including Kroger and Simple Truth, were recalled in July 2026 due to possible Salmonella Enteritidis contamination. Reported illness counts vary by source and point in the timeline: initial recall-notice coverage reported no confirmed illnesses, while later outbreak-investigation reporting cited approximately 98 illnesses across 17 states. These figures were not reconciled against a primary FDA source, which returned an access error and could not be independently loaded.',
+          status: 'alleged',
+          amount: null,
+          source: {
+            name: 'CBS News',
+            url: 'https://www.cbsnews.com/news/egg-recall-salmonella-midwest-poultry-kroger/',
+          },
+        },
+      ],
+      practices: [
+        {
+          claim: 'Kroger stated in 2016 a goal to transition to a 100% cage-free egg supply chain by 2025. According to secondary reporting citing Kroger\'s 2022 ESG report, Kroger said it did not expect to meet that 2025 commitment and set a revised goal of approximately 70% of eggs sold moving to cage-free or higher-welfare standards by 2030. The same secondary reporting attributes a 2024 figure of approximately 56% of egg revenue (43% of units) from cage-free sources to Kroger\'s 2024 ESG report. None of these figures could be independently confirmed against Kroger\'s own primary ESG documents, which were not text-extractable this session.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Kroger ESG report, via secondary reporting (AOL/WATTPoultry)',
+            url: 'https://www.aol.com/articles/kroger-walks-back-cage-free-170636688.html',
+            date: '2022',
+          },
+        },
+      ],
+    },
+
   },
 
   'walmart': {
@@ -4012,6 +4331,61 @@ export const COMPANY_DB = {
     ],
     subsidiaries: ["Great Value", "Sam's Choice", "Marketside", "Parent's Choice", "Equate", "Sam's Club Member's Mark"],
     sustainabilityScore: 43,
+  
+    sourcing: {
+      industry: 'eggs',
+      lastVerified: '2026-07-29',
+      model: 'aggregator',
+      modelSource: {
+        name: 'Cornucopia Institute, Organic Egg Scorecard (private-label description)',
+        url: 'https://www.cornucopia.org/scorecard/eggs/great-value-walmart/',
+        date: '2026-07-29',
+        basis: 'third-party-scorecard',
+      },
+      certifications: [],
+      welfare: {
+        housing: 'caged',
+        housingSource: {
+          name: 'Walmart / Great Value product listings',
+          url: 'https://www.walmart.com/',
+          date: '2026-07-29',
+          basis: 'company-disclosure',
+        },
+        scorecards: [
+          {
+            name: 'Cornucopia Organic Egg Scorecard',
+            ratedLine: 'Great Value organic eggs (private label store brand)',
+            appliesTo: 'organic-line',
+            rating: '0/1700',
+            tier: '1-star (1-5 scale)',
+            year: 2024,
+            url: 'https://www.cornucopia.org/scorecard/eggs/great-value-walmart/',
+          },
+        ],
+      },
+      enforcement: [],
+      practices: [
+        {
+          claim: 'Walmart U.S. and Sam\'s Club U.S. stated in April 2016 a goal to transition to a 100% cage-free egg supply chain by 2025.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Walmart press release, via Food Logistics (secondary)',
+            url: 'https://www.foodlogistics.com/sustainability/news/12191358/walmart-walmart-commits-to-100-cagefree-eggs-by-2025',
+            date: '2016-04-05',
+          },
+        },
+        {
+          claim: 'According to secondary reporting, Walmart\'s cage-free progress was reported at approximately 14% of sales (2019), 21% of Walmart U.S. sales and 41% of Sam\'s Club sales (2023), and 27% of sales (2024). By 2024 the original 2025 100% target was described as unattainable, and no new 100% target date was located. None of these figures were confirmed against a primary Walmart document, which could not be reached this session (repeated connection errors).',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Secondary analysis, AInvest',
+            url: 'https://www.ainvest.com/news/walmart-ethical-supply-chain-crossroads-laggards-pace-cage-free-revolution-2506/',
+            date: '2025',
+          },
+        },
+      ],
+    },
+
   },
 
   'costco': {
@@ -4094,6 +4468,60 @@ export const COMPANY_DB = {
     ],
     subsidiaries: ['Good & Gather', 'Market Pantry', 'Favorite Day', 'Simply Balanced'],
     sustainabilityScore: 57,
+  
+    sourcing: {
+      industry: 'eggs',
+      lastVerified: '2026-07-29',
+      model: 'aggregator',
+      modelSource: {
+        name: 'Cornucopia Institute, Organic Egg Scorecard (private-label description)',
+        url: 'https://www.cornucopia.org/scorecard/eggs/good-and-gather-target-2/',
+        date: '2026-07-29',
+        basis: 'third-party-scorecard',
+      },
+      certifications: [],
+      welfare: {
+        housing: 'caged',
+        housingSource: {
+          name: 'Target.com, Good & Gather product listings',
+          url: 'https://www.target.com/',
+          date: '2026-07-29',
+          basis: 'company-disclosure',
+        },
+        scorecards: [],
+      },
+      enforcement: [],
+      practices: [
+        {
+          claim: 'Target stated in 2016 a goal to transition to a 100% cage-free egg supply chain by 2025, subject to available supply. The 2025 target was not met; Target\'s corporate sustainability page states a revised target of 100% cage-free unit sales and SKUs by 2030, with interim milestones of 57-61% of unit sales cage-free by the end of 2026 (81% of SKUs, rising to 94% by 2029), and states liquid eggs are already sourced 100% cage-free company-wide.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Target Corporation, corporate sustainability page',
+            url: 'https://corporate.target.com/sustainability-governance/responsible-supply-chains/animal-welfare',
+            date: '2026-07-29',
+          },
+        },
+        {
+          claim: 'Secondary reporting (Star Tribune) states Target\'s annual sustainability report disclosed a different, revenue-based cage-free figure of 68% (fiscal 2025) up from 57% the prior year. This revenue-based figure has not been reconciled with Target\'s own unit-volume-based progress figures above; the two may reflect different metrics or reporting periods and should not be averaged or treated as the same measurement.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Star Tribune',
+            url: 'https://www.startribune.com/cage-free-cage-free-eggs-target-walmart-sustainability-esg-goals-pledges/601112057',
+            date: '2025-07',
+          },
+        },
+        {
+          claim: 'Target\'s website groups a cage-free "Good & Gather" egg SKU (12ct Cage-Free Fresh Grade A Large Brown Eggs) under a "Certified Humane" product filter on target.com. This is a different SKU from the plain "Good & Gather Grade A Large Eggs" line in this catalog, which was not shown under that filter and carries no Certified Humane claim in its own product description.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Target.com, Certified Humane category page',
+            url: 'https://www.target.com/c/eggs-dairy-grocery/certified-humane/-/N-5xsziZvw5v8',
+            date: '2026-07-29',
+          },
+        },
+      ],
+    },
+
   },
 
   'trader-joes': {
@@ -4902,6 +5330,88 @@ export const COMPANY_DB = {
     ],
     subsidiaries: ["Eggland's Best", 'Land O Lakes Eggs (license)', 'Farmhouse Eggs'],
     sustainabilityScore: 55,
+  
+    sourcing: {
+      industry: 'eggs',
+      lastVerified: '2026-07-29',
+      model: 'contract-farms',
+      modelSource: {
+        name: 'Eggland\'s Best — About Us (company disclosure of franchise/licensing model)',
+        url: 'https://www.egglandsbest.com/about-us',
+        date: '2026-07-28',
+        basis: 'company-disclosure',
+      },
+      certifications: [
+        {
+          name: 'Certified Humane',
+          verifier: 'Humane Farm Animal Care',
+          scope: 'Free Range and Pasture Raised lines only — NOT the flagship conventional Eggland\'s Best product',
+          standard: 'unknown',
+          verifiedDate: '2026-07-29',
+          source: {
+            name: 'Certified Humane — Who\'s Certified directory',
+            url: 'https://certifiedhumane.org/whos-certified/',
+          },
+        },
+      ],
+      welfare: {
+        housing: 'caged',
+        housingSource: {
+          name: 'Eggland\'s Best product line pages (Cage-Free line marketed as distinct from the base/flagship product)',
+          url: 'https://www.egglandsbest.com/products/cage-free-eggs',
+          date: '2026-07-28',
+          basis: 'company-disclosure',
+        },
+        scorecards: [
+          {
+            name: 'Cornucopia Organic Egg Scorecard',
+            ratedLine: 'Eggland\'s Best (organic line)',
+            appliesTo: 'organic-line',
+            rating: '20/1700',
+            tier: '1-star (1-5 scale)',
+            year: 2024,
+            url: 'https://www.cornucopia.org/scorecard/eggs/egglands-best/',
+          },
+        ],
+      },
+      enforcement: [
+        {
+          year: 1996,
+          body: 'Federal Trade Commission',
+          action: 'FTC alleged during 1994-1996 that Eggland\'s Best\'s marketing claims about saturated fat and cholesterol effects were false or unsubstantiated. Secondary sources reproducing the FTC\'s press release describe a consent settlement requiring corrective package language and, per those sources, a $100,000 payment; the primary FTC release could not be independently loaded to confirm directly, so the dollar figure is not asserted as a verified amount.',
+          status: 'settled',
+          amount: null,
+          source: {
+            name: 'Quackwatch (secondary mirror reproducing FTC press release text; primary ftc.gov blocked/403 in two independent attempts)',
+            url: 'https://quackwatch.org/cases/ftc/news/ftc-news-releases-for-1994/egglands-best/',
+          },
+        },
+        {
+          year: 2024,
+          body: 'Private plaintiffs, federal court (California, per secondary reporting)',
+          action: 'A putative class action alleges Eggland\'s Best\'s \'25% Less Saturated Fat than Regular Eggs\' label claim is false; plaintiffs cite independent lab testing they say shows more saturated fat than labeled. The case was reported pending as of 2024, with no confirmed resolution found.',
+          status: 'pending',
+          amount: null,
+          source: {
+            name: 'TopClassActions.com',
+            url: 'https://topclassactions.com/lawsuit-settlements/consumer-products/food/egglands-best-class-action-falsely-advertises-25-less-saturated-fat-than-regular-eggs/',
+          },
+        },
+        {
+          year: 2024,
+          body: 'U.S. District Court, Northern District of Illinois',
+          action: 'Janecyk et al. v. Eggland\'s Best, Inc. (N.D. Ill., No. 1:24-cv-06222), filed July 23, 2024, alleges the company\'s \'cage free\' labeling (\'every hen ... free to roam in a pleasant, natural environment\') misrepresents housing conditions. The presiding judge denied a motion to dismiss in February 2026, ruling plaintiffs plausibly alleged a reasonable person would be misled. The court docket confirms the case remains open, with no termination date recorded as of this research (2026-07-29).',
+          status: 'pending',
+          amount: null,
+          source: {
+            name: 'CourtListener docket (primary court record)',
+            url: 'https://www.courtlistener.com/docket/68970638/janecyk-v-egglands-best-inc/',
+          },
+        },
+      ],
+      practices: [],
+    },
+
   },
 
   'boars-head': {
@@ -5694,6 +6204,32 @@ export const COMPANY_DB = {
     ],
     subsidiaries: [],
     sustainabilityScore: 47,
+  
+    sourcing: {
+      industry: 'eggs',
+      lastVerified: '2026-07-29',
+      model: 'unknown',
+      certifications: [],
+      welfare: {
+        housing: 'unknown',
+        scorecards: [],
+      },
+      enforcement: [
+        {
+          year: 2017,
+          body: 'U.S. District Court, E.D. Pennsylvania (MDL 2:08-md-02002)',
+          action: 'Michael Foods, Inc. (Crystal Farms\' corporate parent, via Post Holdings — Crystal Farms itself was not a named party) was a defendant in the In re: Processed Egg Products Antitrust Litigation (MDL 2:08-md-02002), which alleged coordinated egg pricing among processors. Secondary legal press consistently cites a $75 million settlement amount specific to Michael Foods, but this figure was not independently confirmed against the court\'s own order, so it is not asserted as a verified amount. A separately reported cumulative-total figure across all settling defendants was not used here: the two fact-checking passes on this litigation could not reconcile it against a per-defendant breakdown. The alleged conduct predates Post\'s June 2014 acquisition of Michael Foods.',
+          status: 'settled',
+          amount: null,
+          source: {
+            name: 'Top Class Actions',
+            url: 'https://topclassactions.com/lawsuit-settlements/lawsuit-news/michael-foods-pay-75m-settle-egg-price-fixing-class-action/',
+          },
+        },
+      ],
+      practices: [],
+    },
+
   },
 
   'tinkyada': {
@@ -5834,6 +6370,87 @@ export const COMPANY_DB = {
     ],
     subsidiaries: ["Nellie's Free Range Eggs", 'Farmers Hen House (acquired Jan 2025)'],
     sustainabilityScore: 65,
+  
+    sourcing: {
+      industry: 'eggs',
+      lastVerified: '2026-07-29',
+      model: 'contract-farms',
+      modelSource: {
+        name: 'Cornucopia Organic Egg Scorecard — Pete and Gerry\'s Organic Eggs (multiple supplying farms)',
+        url: 'https://www.cornucopia.org/scorecard/eggs/pete-and-gerrys-organic-eggs/',
+        date: '2024-03-22',
+        basis: 'third-party-scorecard',
+      },
+      certifications: [
+        {
+          name: 'Certified Humane',
+          verifier: 'Humane Farm Animal Care',
+          scope: 'Per certifier directory: Kirkland Cage-Free Organic Eggs (private label); Nellie\'s Free-Range Eggs',
+          standard: 'unknown',
+          verifiedDate: '2026-07-29',
+          source: {
+            name: 'Certified Humane — Who\'s Certified directory',
+            url: 'https://certifiedhumane.org/whos-certified/',
+          },
+        },
+      ],
+      welfare: {
+        housing: 'free-range',
+        housingSource: {
+          name: 'Pete & Gerry\'s company site — product-line tagline (\'Organic, Free-Range, and Pasture-Raised Eggs\')',
+          url: 'https://www.peteandgerrys.com',
+          date: '2026-07-28',
+          basis: 'company-disclosure',
+        },
+        scorecards: [
+          {
+            name: 'Cornucopia Organic Egg Scorecard',
+            ratedLine: 'Pete and Gerry\'s Organic Eggs',
+            appliesTo: 'organic-line',
+            rating: '1100/1700',
+            tier: '4-star (1-5 scale)',
+            year: 2024,
+            url: 'https://www.cornucopia.org/scorecard/eggs/pete-and-gerrys-organic-eggs/',
+          },
+        ],
+      },
+      enforcement: [
+        {
+          year: 2019,
+          body: 'U.S. District Court, Southern District of New York',
+          action: 'Lugones et al. v. Pete and Gerry\'s Organics, LLC (S.D.N.Y., No. 1:19-cv-02097), filed March 6, 2019, alleged marketing language (\'love,\' \'kindness,\' \'green grass,\' claims hens roam freely) misrepresented actual housing conditions; Nellie\'s Free Range Eggs was a co-defendant. A 2020 ruling on the motion to dismiss dismissed Nellie\'s Free Range Eggs from the case along with several claims, while other fraud/GBL claims survived. Secondary press subsequently reported the case as settled; settlement terms were not found. The court docket confirms the case was terminated April 23, 2020.',
+          status: 'settled',
+          amount: null,
+          source: {
+            name: 'CourtListener docket (primary court record)',
+            url: 'https://www.courtlistener.com/docket/14631058/lugones-v-pete-and-gerrys-organics-llc/',
+          },
+        },
+        {
+          year: 2021,
+          body: 'U.S. District Court, Southern District of New York',
+          action: 'Mogull v. Pete and Gerry\'s Organics, LLC (S.D.N.Y., No. 7:21-cv-03521), filed April 21, 2021, alleged \'free-range\' labeling (Nellie\'s brand) did not meet the conditions represented. The court denied a motion to dismiss in March 2022. Secondary sources report the case was voluntarily dismissed with prejudice following settlement discussions. The court docket confirms the case was terminated April 12, 2023.',
+          status: 'settled',
+          amount: null,
+          source: {
+            name: 'CourtListener docket (primary court record)',
+            url: 'https://www.courtlistener.com/docket/59840464/mogull-v-pete-and-gerrys-organics-llc/',
+          },
+        },
+      ],
+      practices: [
+        {
+          claim: 'Organic Pasture Raised line is stated by the company to provide 108 square feet of outdoor space per hen, which the company attributes to Certified Humane Pasture-Raised standards (not independently cross-checked against the certifier\'s own published pasture-raised standard document).',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Pete & Gerry\'s product page',
+            url: 'https://www.peteandgerrys.com/products/organic-pasture-raised-eggs',
+            date: '2026-07-28',
+          },
+        },
+      ],
+    },
+
   },
 
   'happy-egg': {
@@ -5867,6 +6484,52 @@ export const COMPANY_DB = {
     ],
     subsidiaries: ['Egg Innovations (merged Oct 2024)', 'Blue Sky Family Farms'],
     sustainabilityScore: 58,
+  
+    sourcing: {
+      industry: 'eggs',
+      lastVerified: '2026-07-29',
+      model: 'contract-farms',
+      modelSource: {
+        name: 'Company merger press release — contracted family-farm network (including the Egg Innovations / Blue Sky Family Farms network across AR and the Midwest)',
+        url: 'https://www.prnewswire.com/news-releases/happy-egg-strengthens-position-as-leading-egg-brand-with-integration-of-egg-innovations-302290413.html',
+        date: '2024-10-29',
+        basis: 'company-disclosure',
+      },
+      certifications: [],
+      welfare: {
+        housing: 'free-range',
+        housingSource: {
+          name: 'Cornucopia Organic Egg Scorecard — Happy Egg (page notes the brand sells organic, heritage, and pastured lines in addition to free-range)',
+          url: 'https://www.cornucopia.org/scorecard/eggs/happy-egg/',
+          date: '2024-03-22',
+          basis: 'third-party-scorecard',
+        },
+        scorecards: [
+          {
+            name: 'Cornucopia Organic Egg Scorecard',
+            ratedLine: 'Happy Egg Organic Free Range eggs',
+            appliesTo: 'organic-line',
+            rating: '1000/1700',
+            tier: '4-star (1-5 scale)',
+            year: 2024,
+            url: 'https://www.cornucopia.org/scorecard/eggs/happy-egg/',
+          },
+        ],
+      },
+      enforcement: [],
+      practices: [
+        {
+          claim: 'Following an October 2024 merger with Egg Innovations, the company\'s production network spans contracted family farms in Arkansas and the Midwest (Indiana, Illinois, Michigan, Ohio, Kentucky, Iowa, Minnesota, Wisconsin), including farms marketed under the \'Blue Sky Family Farms\' brand, with a combined flock of approximately 3.7 million hens.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'PR Newswire — Happy Egg / Egg Innovations merger release',
+            url: 'https://www.prnewswire.com/news-releases/happy-egg-strengthens-position-as-leading-egg-brand-with-integration-of-egg-innovations-302290413.html',
+            date: '2024-10-29',
+          },
+        },
+      ],
+    },
+
   },
 
   'natures-yoke': {
@@ -5883,6 +6546,52 @@ export const COMPANY_DB = {
     issues: [],
     subsidiaries: ['Utopihen Farms', 'Rosies Farm Fresh'],
     sustainabilityScore: 74,
+  
+    sourcing: {
+      industry: 'eggs',
+      lastVerified: '2026-07-29',
+      model: 'single-farm',
+      modelSource: {
+        name: 'Nature\'s Yoke — About (Westfield Egg Farm, Inc.)',
+        url: 'https://naturesyoke.com/about/',
+        date: '2026-07-29',
+        basis: 'company-disclosure',
+      },
+      certifications: [],
+      welfare: {
+        housing: 'free-range',
+        housingSource: {
+          name: 'Nature\'s Yoke — About',
+          url: 'https://naturesyoke.com/about/',
+          date: '2026-07-29',
+          basis: 'company-disclosure',
+        },
+        scorecards: [
+          {
+            name: 'Cornucopia Organic Egg Scorecard',
+            ratedLine: 'Nature\'s Yoke (Westfield Egg Farm)',
+            appliesTo: 'organic-line',
+            rating: '1115/1700',
+            tier: '4-star (1-5 scale)',
+            year: 2024,
+            url: 'https://www.cornucopia.org/scorecard/eggs/natures-yoke-westfield-egg-farm/',
+          },
+        ],
+      },
+      enforcement: [],
+      practices: [
+        {
+          claim: 'The company states its three egg lines (Organic, Legacy, Omega-3) are \'100% Certified Humane\' and produced by its four-generation, family-run business. This claim was not confirmed against Humane Farm Animal Care\'s own certified-producer directory by any research or fact-check pass — it is the company\'s own statement about itself, not an independently verified certification.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Nature\'s Yoke — About',
+            url: 'https://naturesyoke.com/about/',
+            date: '2026-07-29',
+          },
+        },
+      ],
+    },
+
   },
 
   'gold-circle-farms': {
@@ -5899,6 +6608,20 @@ export const COMPANY_DB = {
     issues: [],
     subsidiaries: [],
     sustainabilityScore: 55,
+  
+    sourcing: {
+      industry: 'eggs',
+      lastVerified: '2026-07-29',
+      model: 'unknown',
+      certifications: [],
+      welfare: {
+        housing: 'unknown',
+        scorecards: [],
+      },
+      enforcement: [],
+      practices: [],
+    },
+
   },
 
   'vans-foods': {
@@ -7176,6 +7899,36 @@ export const COMPANY_DB = {
     ],
     subsidiaries: ['Horizon Organic', 'Wallaby Organic'],
     sustainabilityScore: 45,
+  
+    sourcing: {
+      industry: 'eggs',
+      lastVerified: '2026-07-29',
+      model: 'aggregator',
+      modelSource: {
+        name: 'Cornucopia Organic Egg Scorecard — Horizon Organic (Danone)',
+        url: 'https://www.cornucopia.org/scorecard/eggs/horizon-organic-danone/',
+        date: '2024-03-22',
+        basis: 'third-party-scorecard',
+      },
+      certifications: [],
+      welfare: {
+        housing: 'unknown',
+        scorecards: [
+          {
+            name: 'Cornucopia Organic Egg Scorecard',
+            ratedLine: 'Horizon Organic',
+            appliesTo: 'organic-line',
+            rating: '0/1700',
+            tier: '1-star (1-5 scale)',
+            year: 2024,
+            url: 'https://www.cornucopia.org/scorecard/eggs/horizon-organic-danone/',
+          },
+        ],
+      },
+      enforcement: [],
+      practices: [],
+    },
+
   },
 
   'gruma': {
@@ -8928,6 +9681,79 @@ export const COMPANY_DB = {
     subsidiaries: ['Lucerne', 'Safeway', 'Signature Select', 'Open Nature', 'O Organics'],
     sustainabilityScore: null,
     ownershipSource: 'albertsonscompanies.com newsroom (Lucerne brand); public filings (NYSE: ACI)',
+  
+    sourcing: {
+      industry: 'eggs',
+      lastVerified: '2026-07-29',
+      model: 'aggregator',
+      modelSource: {
+        name: 'Cornucopia Institute, Organic Egg Scorecard (private-label description)',
+        url: 'https://www.cornucopia.org/scorecard/eggs/o-organics-albertsons/',
+        date: '2026-07-29',
+        basis: 'third-party-scorecard',
+      },
+      certifications: [],
+      welfare: {
+        housing: 'caged',
+        housingSource: {
+          name: 'Albertsons.com, Lucerne product listings',
+          url: 'https://www.albertsons.com/',
+          date: '2026-07-29',
+          basis: 'company-disclosure',
+        },
+        scorecards: [
+          {
+            name: 'Cornucopia Organic Egg Scorecard',
+            ratedLine: 'O Organics (Albertsons)',
+            appliesTo: 'organic-line',
+            rating: '30/1700',
+            tier: '1-star (1-5 scale)',
+            year: 2024,
+            url: 'https://www.cornucopia.org/scorecard/eggs/o-organics-albertsons/',
+          },
+        ],
+      },
+      enforcement: [],
+      practices: [
+        {
+          claim: 'A Certified Humane award (Humane Farm Animal Care) naming Albertsons\' Lucerne Cage-Free, O Organics, and Open Nature egg lines is dated December 17, 2012. This has not been independently reconfirmed since and is nearly 14 years old — treat as historical, not a current certification status. It would not, in any case, cover the conventional Lucerne Grade AA Large Eggs line in this catalog, which Certified Humane\'s own housing standards categorically exclude.',
+          basis: 'certification',
+          source: {
+            name: 'Certified Humane (certifiedhumane.org)',
+            url: 'https://certifiedhumane.org/safeways-lucerne-cage-free-o-organic-and-open-nature-eggs-are-certified-humane/',
+            date: '2012-12-17',
+          },
+        },
+        {
+          claim: 'Albertsons Companies stated in March 2016 a goal of working with suppliers toward sourcing 100% cage-free eggs for its retail shell-egg products by 2025, based on available supply, across its store banners (Safeway, Vons, Pavilions, Jewel-Osco, Shaw\'s, Acme, and others). In March 2017, Albertsons stated it was expanding this commitment to include retail liquid eggs sold under the Lucerne and Open Nature brands.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Albertsons Companies press release (PR Newswire)',
+            url: 'https://www.prnewswire.com/news-releases/albertsons-companies-sets-goal-for-cage-free-eggs-by-2025-300228385.html',
+            date: '2016-03-01',
+          },
+        },
+        {
+          claim: 'According to search-indexed content from Albertsons\' own "Animal Well-Being" page (the live page returned an error and could not be independently reloaded this session), more than 60% of liquid and shell eggs across Albertsons stores were sourced from cage-free environments as of 2023. No Albertsons-published cage-free percentage more recent than 2023 was located.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Albertsons Companies, Animal Well-Being page (via search index)',
+            url: 'https://www.albertsonscompanies.com/our-impact/products/animal-well-being/default.aspx',
+            date: '2023',
+          },
+        },
+        {
+          claim: 'The ASPCA\'s 2024 Supermarket Scorecard gave Albertsons an overall grade of C (320 of 900 possible points), including a cage-free policy score of 100/100, a progress-reporting score of 48/100, a store-brand score of 63/100, and a combined "Laying Hens" category score of 211/300.',
+          basis: 'third-party-scorecard',
+          source: {
+            name: 'ASPCA Supermarket Scorecard 2024',
+            url: 'https://www.aspca.org/supermarketscorecard',
+            date: '2024-08',
+          },
+        },
+      ],
+    },
+
   },
 
   'beast-industries': {
