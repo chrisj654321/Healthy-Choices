@@ -1,0 +1,17 @@
+[
+  { "label": "egg-antitrust-mdl", "court": "In re Processed Egg Products Antitrust Litigation 08-md-02002" },
+  { "label": "janecyk-egglands-best", "court": "Janecyk v Eggland's Best 1:24-cv-06222" },
+  { "label": "kroger-sorkin", "court": "Sorkin v Kroger 1:23-cv-14916" },
+  { "label": "kroger-long", "court": "Long v Kroger 1:23-cv-01179" },
+  { "label": "pete-gerrys-lugones", "court": "Lugones v Pete and Gerry's Organics 1:19-cv-02097" },
+  { "label": "pete-gerrys-mogull", "court": "Mogull v Pete and Gerry's Organics 7:21-cv-03521" },
+  { "label": "vital-farms-usler", "court": "Usler v Vital Farms 1:21-cv-447" },
+  { "label": "vital-farms-wilkerson", "court": "Wilkerson v Vital Farms 26-cv-00738" },
+  { "label": "vital-farms-fsap", "court": "Foundation to Support Animal Protection v Vital Farms 22-mc-00023" },
+  { "label": "vital-farms-sec", "secTicker": "VITL", "forms": ["10-K", "8-K"] },
+  { "label": "post-holdings-sec", "secTicker": "POST", "forms": ["10-K", "8-K"] },
+  { "label": "kroger-sec", "secTicker": "KR", "forms": ["10-K"] },
+  { "label": "walmart-sec", "secTicker": "WMT", "forms": ["10-K"] },
+  { "label": "target-sec", "secTicker": "TGT", "forms": ["10-K"] },
+  { "label": "albertsons-sec", "secTicker": "ACI", "forms": ["10-K"] }
+]
