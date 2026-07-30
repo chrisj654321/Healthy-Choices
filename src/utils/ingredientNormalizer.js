@@ -449,6 +449,31 @@ function classifyTokenPlausibility(token, knownKeysSet) {
 const MAX_SEGMENT_WORDS = 5;
 const MAX_SEGMENTABLE_WORDS = 6;
 
+/**
+ * Longest single key used by ANY complete decomposition of the word list into
+ * known ingredient keys. -1 when the list does not fully decompose.
+ *
+ * Used only to detect that a more specific reading of the token exists than the
+ * one greedy left-to-right matching committed to.
+ */
+function longestKeyInAnyDecomposition(words, knownKeysSet) {
+  const memo = new Array(words.length + 1).fill(undefined);
+  const solve = (i) => {
+    if (i === words.length) return 0;
+    if (memo[i] !== undefined) return memo[i];
+    let best = -1;
+    for (let len = 1; len <= Math.min(MAX_SEGMENT_WORDS, words.length - i); len++) {
+      if (!knownKeysSet.has(words.slice(i, i + len).join(' '))) continue;
+      const rest = solve(i + len);
+      if (rest === -1) continue;
+      best = Math.max(best, len, rest);
+    }
+    memo[i] = best;
+    return best;
+  };
+  return solve(0);
+}
+
 function segmentIntoKnownIngredients(token, knownKeysSet) {
   const t = String(token || '').trim().toLowerCase();
   if (!t || !knownKeysSet || knownKeysSet.size === 0) return null;
@@ -475,6 +500,26 @@ function segmentIntoKnownIngredients(token, knownKeysSet) {
 
   if (segments.length < 2) return null;
 
+  // SPECIFICITY GUARD. Greedy matching above scans left to right and commits to
+  // the first key that fits, so it can miss a longer, more specific ingredient
+  // name starting one word later. "organic sugar snap peas" is the case that
+  // proves it: "organic sugar" is a real key, so greedy takes it, pairs it with
+  // "snap peas", passes every rule below — and a bag of frozen peas gains an
+  // added sweetener it never declared. The right reading, "organic" + "sugar
+  // snap peas", is invisible to greedy because it opens with a bare word.
+  //
+  // So: if the token decomposes some OTHER way that uses a strictly longer key
+  // than anything greedy chose, greedy picked the less specific reading and the
+  // token is left exactly as the label wrote it.
+  //
+  // This only ever REMOVES a split — greedy still decides the segments, so no
+  // token starts splitting that did not split before. That asymmetry is the
+  // point: the catalog's ingredient cache carries merge-artifact keys harvested
+  // from damaged data ("butter pasteurized cream", "shortening palm oil"), and
+  // any rule that let them CREATE splits would invent ingredients.
+  const greedyLongest = segments.reduce((m, s) => Math.max(m, s.split(' ').length), 0);
+  if (longestKeyInAnyDecomposition(words, knownKeysSet) > greedyLongest) return null;
+
   // EVERY piece must be a COMPOUND ingredient name — multi-word, or a
   // hyphenated chemical name ("l-theanine"). This is the rule that makes the
   // whole thing safe, and it was arrived at by running the candidate splits
@@ -496,7 +541,15 @@ function segmentIntoKnownIngredients(token, knownKeysSet) {
   // because it was never its own comma-separated token ("citric acid to
   // protect flavor"). Now that the pieces are separated, hold them to the
   // same advisory rule as any other token.
-  const kept = segments.filter((s) => !ADVISORY_PATTERNS.some((re) => re.test(s)));
+  //
+  // A leading connector is stripped FIRST. "roasted peanuts and sugar"
+  // decomposes to "roasted peanuts" + "and sugar" (the catalog really does
+  // carry "and sugar" as a key, harvested from damaged data), and the advisory
+  // rule /^\s*and\s/ would silently delete the sugar from a peanut butter.
+  // The connector is punctuation the lost comma left behind, not advisory text.
+  const kept = segments
+    .map((s) => s.replace(/^(?:and|or)\s+/i, '').trim())
+    .filter((s) => s && !ADVISORY_PATTERNS.some((re) => re.test(s)));
   if (kept.length === 0) return null;
   return kept;
 }

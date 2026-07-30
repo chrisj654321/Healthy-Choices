@@ -236,3 +236,55 @@ describe('segmentIntoKnownIngredients: comma-loss merges', () => {
     expect(segmentIntoKnownIngredients('sodium benzoate', keys)).toBeNull();
   });
 });
+
+describe('segmentIntoKnownIngredients: specificity guard', () => {
+  // 'organic' and 'organic sugar' are both real keys, which is what let greedy
+  // left-to-right matching read a bag of frozen peas as containing sugar.
+  const keys = new Set([
+    'organic', 'organic sugar', 'sugar', 'snap peas', 'sugar snap peas',
+    'unsalted butter', 'pasteurized cream',
+    'enriched flour', 'wheat flour',
+    'potassium sorbate', 'l-theanine',
+  ]);
+
+  test('does not split when a longer, more specific name spans the boundary', () => {
+    // "organic sugar" + "snap peas" would invent an added sweetener.
+    expect(segmentIntoKnownIngredients('organic sugar snap peas', keys)).toBeNull();
+  });
+
+  test('still splits when no longer alternative reading exists', () => {
+    // 'unsalted' is not a key, so 'butter pasteurized cream' cannot head a
+    // complete decomposition — this parent/sub-ingredient merge must survive.
+    expect(segmentIntoKnownIngredients('unsalted butter pasteurized cream', keys)).toEqual([
+      'unsalted butter',
+      'pasteurized cream',
+    ]);
+    expect(segmentIntoKnownIngredients('enriched flour wheat flour', keys)).toEqual([
+      'enriched flour',
+      'wheat flour',
+    ]);
+    expect(segmentIntoKnownIngredients('potassium sorbate l-theanine', keys)).toEqual([
+      'potassium sorbate',
+      'l-theanine',
+    ]);
+  });
+});
+
+describe('segmentIntoKnownIngredients: connector pieces are not discarded', () => {
+  // The catalog really does carry 'and sugar' as a key, harvested from tokens
+  // that had already lost their comma.
+  const keys = new Set(['roasted peanuts', 'and sugar', 'sugar', 'palm oil', 'and salt', 'salt']);
+
+  test('strips a leading connector instead of letting the advisory rule delete the piece', () => {
+    // Previously returned ['roasted peanuts'] — the sugar vanished from a
+    // peanut butter, because /^\s*and\s/ rejected 'and sugar' outright.
+    expect(segmentIntoKnownIngredients('roasted peanuts and sugar', keys)).toEqual([
+      'roasted peanuts',
+      'sugar',
+    ]);
+    expect(segmentIntoKnownIngredients('palm oil and salt', keys)).toEqual([
+      'palm oil',
+      'salt',
+    ]);
+  });
+});
