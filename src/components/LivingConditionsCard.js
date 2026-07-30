@@ -12,16 +12,20 @@ import { detectHousingTier, matchSourcingToProduct, isEggsHousingEligible, getCo
 //
 // No specific housing claim on the carton (plain "conventional") defaults
 // to caged.jpg — the pilot's own research anchored that finding for the
-// companies in this dataset. 'organic' is deliberately NOT the same
-// default: USDA organic rules require outdoor access, so a caged/battery
-// photo would depict a system organic certification legally prohibits —
-// showing it would be a factual error, not just an imprecise stand-in.
-// free-range.jpg is the closer (if imperfect) generic image for "organic,
-// no further housing claim on this carton" — organic access requirements
-// are closer in kind to free-range than to pasture-scale or caged.
+// companies in this dataset.
+//
+// 'organic' (2026-07-30, revised): NOT caged.jpg — USDA organic rules
+// legally prohibit battery cages outright, so that photo would depict a
+// housing SYSTEM organic certification bars, a factual error about the
+// system even when the real number is bad. NOT free-range.jpg either
+// (the original default) — real audited data (Eggland's Best's organic
+// line, 1.2 sq ft/hen indoors) came in BELOW the cage-free minimum, closer
+// to a dense indoor barn than an open-pasture shot. cage-free.jpg is the
+// accurate middle: legally correct (no cages) and honest about what the
+// real numbers actually look like, not the more generous free-range scene.
 const TIER_IMAGES = {
   conventional: require('../../assets/sourcing/eggs/caged.jpg'),
-  organic: require('../../assets/sourcing/eggs/free-range.jpg'),
+  organic: require('../../assets/sourcing/eggs/cage-free.jpg'),
   'cage-free': require('../../assets/sourcing/eggs/cage-free.jpg'),
   'free-range': require('../../assets/sourcing/eggs/free-range.jpg'),
   'pasture-raised': require('../../assets/sourcing/eggs/pasture-raised.jpg'),
