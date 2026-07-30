@@ -13,6 +13,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
 import LobbyingFlagCard from '../components/LobbyingFlagCard';
+import SourcingSection from '../components/SourcingSection';
 import BackButton from '../components/BackButton';
 import { getLobbyingRiskLevel, formatCurrency, scoreProduct, scoreToColor } from '../utils/scorer';
 import { getUserPrefs } from '../utils/storage';
@@ -72,6 +73,12 @@ export default function CompanyProfileScreen({ route, navigation }) {
   const repPct = company.donationSplit?.republican ?? 50;
   const demPct = company.donationSplit?.democrat ?? 50;
   const highSeverityCount = company.issues?.filter((i) => i.severity === 'high').length ?? 0;
+
+  // 'sourcing' (animal-welfare/farm evidence, egg pilot) only exists on a
+  // handful of companies today — a fixed tabs array would show a dead tab
+  // for the ~250 companies without it, so the tab list is computed per company.
+  const tabs = ['overview', 'issues', 'brands', 'products'];
+  if (company.sourcing) tabs.push('sourcing');
 
   const sustainColor =
     company.sustainabilityScore == null
@@ -163,7 +170,7 @@ export default function CompanyProfileScreen({ route, navigation }) {
 
       {/* Tabs */}
       <View style={styles.tabs}>
-        {['overview', 'issues', 'brands', 'products'].map((tab) => (
+        {tabs.map((tab) => (
           <TouchableOpacity
             key={tab}
             style={[styles.tab, activeTab === tab && styles.tabActive]}
@@ -333,6 +340,24 @@ export default function CompanyProfileScreen({ route, navigation }) {
               company.issues.map((issue, i) => <LobbyingFlagCard key={i} issue={issue} />)
             ) : (
               <EmptyState icon="checkmark-circle-outline" text="No documented issues found for this company." />
+            )}
+          </View>
+        )}
+
+        {activeTab === 'sourcing' && company.sourcing && (
+          <View>
+            <SectionHeader
+              title="Animal Welfare & Sourcing"
+              subtitle="Where this company's product comes from, and how it's evidenced."
+            />
+            {!unlocked ? (
+              <LockedTeaser
+                title="Unlock sourcing & welfare evidence"
+                subtitle="Certifications, housing systems, scorecard ratings, and enforcement records — with sources."
+                onPress={goPaywall}
+              />
+            ) : (
+              <SourcingSection sourcing={company.sourcing} />
             )}
           </View>
         )}

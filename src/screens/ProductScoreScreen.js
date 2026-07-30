@@ -28,6 +28,7 @@ import GradeRing from '../components/GradeRing';
 import StatBar from '../components/StatBar';
 import SpecsMascot from '../components/SpecsMascot';
 import BackButton from '../components/BackButton';
+import LivingConditionsCard from '../components/LivingConditionsCard';
 
 // ── Flag utils ────────────────────────────────────────────────────────────────
 
@@ -481,10 +482,16 @@ export default function ProductScoreScreen({ route, navigation }) {
   const TABS = ['ingredients', 'nutrition', 'company'];
 
   const showBetterPicks = (displayGrade === 'D' || displayGrade === 'F') && alternatives.length > 0;
+  // Product-level "how was this raised" card — narrow gate, eggs only for
+  // now (see LivingConditionsCard.js). Computed here (not just inside the
+  // component) because it also has to feed the stickyIndex count below.
+  const showLivingConditions = Boolean(company?.sourcing) &&
+    company.sourcing.industry === 'eggs' && product.category === 'Eggs';
   // Children before the sticky tab bar: 0 hero, 1 infoCard, 2 sayCard,
-  // optionally 2b request card (insufficientData) or 2c better-picks (D/F),
-  // then the sticky tab bar itself.
-  const stickyIndex = 3 + (insufficientData || showBetterPicks ? 1 : 0);
+  // optionally 2b' living-conditions card (eggs only), optionally 2b request
+  // card (insufficientData) or 2c better-picks (D/F), then the sticky tab
+  // bar itself.
+  const stickyIndex = 3 + (showLivingConditions ? 1 : 0) + (insufficientData || showBetterPicks ? 1 : 0);
 
   return (
     <View style={s.container}>
@@ -592,6 +599,24 @@ export default function ProductScoreScreen({ route, navigation }) {
             resizeMode="contain"
           />
         </View>
+
+        {/* ── 2b': Living Conditions (product-scoped sourcing card, eggs
+              only for now) — Pro-gated with this screen's own ProGateCard
+              convention, not CompanyProfileScreen.js's LockedTeaser. ── */}
+        {showLivingConditions && (
+          isPro ? (
+            <LivingConditionsCard product={product} company={company} navigation={navigation} />
+          ) : (
+            <View style={{ marginHorizontal: 16, marginTop: 10 }}>
+              <ProGateCard
+                icon="leaf-outline"
+                title="Living Conditions"
+                desc="See how the animals behind this exact carton were raised — housing tier, certifications, and space-per-hen data where it's on record."
+                onUpgrade={() => navigation.navigate('Paywall', { feature: 'sourcing' })}
+              />
+            </View>
+          )
+        )}
 
         {/* ── 2b: Request card (insufficient data only) ── */}
         {insufficientData && (

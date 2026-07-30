@@ -1,0 +1,169 @@
+/**
+ * Tests for src/utils/sourcingMatch.js — pure product-to-sourcing-evidence
+ * matching (no RN dependency).
+ *
+ * Uses REAL `sourcing` records pulled straight from src/data/companies.js
+ * (vital-farms, egglands-best) rather than fixtures, so a future edit to
+ * that data that breaks scope-matching assumptions here shows up as a
+ * failing test.
+ */
+
+import { detectHousingTier, matchSourcingToProduct } from '../sourcingMatch';
+import { COMPANY_DB } from '../../data/companies';
+
+const vitalFarmsSourcing = COMPANY_DB['vital-farms'].sourcing;
+const egglandsBestSourcing = COMPANY_DB['egglands-best'].sourcing;
+
+describe('detectHousingTier', () => {
+  test('detects pasture-raised (hyphenated)', () => {
+    expect(detectHousingTier('Vital Farms Pasture-Raised Large Grade A Eggs')).toBe('pasture-raised');
+  });
+
+  test('detects pasture-raised even when "organic" is also present (pasture beats organic-alone)', () => {
+    expect(detectHousingTier('Vital Farms Organic Pasture-Raised Extra Large Eggs')).toBe('pasture-raised');
+  });
+
+  test('detects free-range', () => {
+    expect(detectHousingTier("Pete & Gerry's Organic Free-Range Eggs Large")).toBe('free-range');
+  });
+
+  test('detects cage-free', () => {
+    expect(detectHousingTier('Simple Truth Natural Cage Free Large Brown Eggs')).toBe('cage-free');
+  });
+
+  test('detects cage-free with the space-separated spelling', () => {
+    expect(detectHousingTier("Eggland's Best Cage Free Large Brown Eggs")).toBe('cage-free');
+  });
+
+  test('detects organic-alone (no housing claim on the carton)', () => {
+    expect(detectHousingTier("Eggland's Best Organic Large Brown Eggs")).toBe('organic');
+  });
+
+  test('falls back to conventional when no claim is present', () => {
+    expect(detectHousingTier('Kroger Grade A Large White Eggs')).toBe('conventional');
+    expect(detectHousingTier("Eggland's Best Classic Large White Eggs Grade A")).toBe('conventional');
+  });
+
+  test('handles missing/empty name without throwing', () => {
+    expect(detectHousingTier(undefined)).toBe('conventional');
+    expect(detectHousingTier('')).toBe('conventional');
+  });
+
+  test('is case-insensitive', () => {
+    expect(detectHousingTier('VITAL FARMS PASTURE-RAISED LARGE EGGS')).toBe('pasture-raised');
+  });
+});
+
+describe('matchSourcingToProduct — Vital Farms (real data)', () => {
+  test('an organic pasture-raised SKU matches the organic-line scorecard and gets spacePerAnimal', () => {
+    const productName = 'Vital Farms Organic Pasture-Raised Extra Large Eggs';
+    const tier = detectHousingTier(productName);
+    expect(tier).toBe('pasture-raised');
+
+    const result = matchSourcingToProduct(vitalFarmsSourcing, tier, productName);
+
+    expect(result.scorecard).not.toBeNull();
+    expect(result.scorecard.ratedLine).toBe('Vital Farms Organic');
+    expect(result.scorecard.appliesTo).toBe('organic-line');
+    expect(result.scorecard.spacePerAnimal).toEqual(expect.stringContaining('108.9 sq ft/hen'));
+  });
+
+  test('a non-organic pasture-raised SKU (this exact real catalog SKU) does NOT get the organic-line scorecard', () => {
+    const productName = 'Vital Farms Pasture-Raised Large Grade A Eggs';
+    const tier = detectHousingTier(productName);
+    expect(tier).toBe('pasture-raised');
+
+    const result = matchSourcingToProduct(vitalFarmsSourcing, tier, productName);
+
+    expect(result.scorecard).toBeNull();
+  });
+
+  test('housingLabel reflects the DETECTED tier, not company.sourcing.welfare.housing', () => {
+    // Vital Farms' company-wide welfare.housing is 'pasture-raised' already,
+    // so this doesn't distinguish much on its own — the real assertion is
+    // that a conventional-tier detection never inherits the company-wide
+    // label; see the Eggland's Best conventional case below.
+    const result = matchSourcingToProduct(vitalFarmsSourcing, 'pasture-raised', 'Vital Farms Pasture-Raised Large Grade A Eggs');
+    expect(result.housingLabel).toBe('Pasture-Raised');
+  });
+});
+
+describe("matchSourcingToProduct — Eggland's Best (real data)", () => {
+  test('the flagship conventional product does NOT show the Certified Humane certification', () => {
+    const productName = "Eggland's Best Classic Large White Eggs Grade A";
+    const tier = detectHousingTier(productName);
+    expect(tier).toBe('conventional');
+
+    const result = matchSourcingToProduct(egglandsBestSourcing, tier, productName);
+
+    expect(result.certifications).toHaveLength(0);
+    expect(result.housingLabel).toBe('Conventional / Caged');
+  });
+
+  test('the flagship conventional product does NOT get the organic-line scorecard', () => {
+    const productName = "Eggland's Best Classic Large White Eggs Grade A";
+    const tier = detectHousingTier(productName);
+
+    const result = matchSourcingToProduct(egglandsBestSourcing, tier, productName);
+
+    expect(result.scorecard).toBeNull();
+  });
+
+  test('an organic-line SKU gets the organic-line SCORECARD but NOT the Certified Humane cert (its scope names only free-range/pasture-raised as an exhaustive "only" list — organic is never named)', () => {
+    const productName = "Eggland's Best Organic Large Brown Eggs";
+    const tier = detectHousingTier(productName);
+    expect(tier).toBe('organic');
+
+    const result = matchSourcingToProduct(egglandsBestSourcing, tier, productName);
+
+    // These are independently-sourced facts, not a contradiction: the
+    // Cornucopia scorecard rates the organic line directly (that's what an
+    // "Organic Egg Scorecard" does); the Certified Humane cert is a
+    // separate certification whose own scope text is exhaustive
+    // ("...lines only") and simply never names organic as covered.
+    expect(result.certifications).toHaveLength(0);
+    expect(result.scorecard).not.toBeNull();
+    expect(result.scorecard.appliesTo).toBe('organic-line');
+    expect(result.scorecard.spacePerAnimal).toEqual(expect.stringContaining('1.2 sq ft'));
+  });
+
+  test('a free-range SKU (named in the "only" list) DOES surface the Certified Humane certification', () => {
+    const productName = "Eggland's Best Free Range Large Brown Eggs";
+    const tier = detectHousingTier(productName);
+    expect(tier).toBe('free-range');
+
+    const result = matchSourcingToProduct(egglandsBestSourcing, tier, productName);
+
+    expect(result.certifications).toHaveLength(1);
+    expect(result.certifications[0].name).toBe('Certified Humane');
+  });
+
+  test('a cage-free SKU does not match the organic-line scorecard (name has no "organic")', () => {
+    const productName = "Eggland's Best Cage Free Large Brown Eggs";
+    const tier = detectHousingTier(productName);
+    expect(tier).toBe('cage-free');
+
+    const result = matchSourcingToProduct(egglandsBestSourcing, tier, productName);
+
+    expect(result.scorecard).toBeNull();
+  });
+});
+
+describe('matchSourcingToProduct — safety/edge cases', () => {
+  test('returns scorecard: null (never "nearest") and empty certifications when sourcing is missing', () => {
+    const result = matchSourcingToProduct(null, 'pasture-raised', 'Some Product Pasture-Raised Eggs');
+    expect(result.scorecard).toBeNull();
+    expect(result.certifications).toEqual([]);
+    expect(result.housingLabel).toBe('Pasture-Raised');
+  });
+
+  test('omitting productName fails conservatively (no organic-line match), not by over-matching', () => {
+    const result = matchSourcingToProduct(vitalFarmsSourcing, 'pasture-raised');
+    expect(result.scorecard).toBeNull();
+  });
+
+  test('unknown tier falls back to the conventional label rather than throwing', () => {
+    const result = matchSourcingToProduct(vitalFarmsSourcing, 'not-a-real-tier', '');
+    expect(result.housingLabel).toBe('Conventional / Caged');
+  });
+});
