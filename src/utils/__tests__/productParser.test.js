@@ -4,7 +4,7 @@
  * src/utils/__tests__/ingredientNormalizer.test.js for the normalizer's own
  * unit tests). These tests pin down the OpenFoodFacts-shaped call contract.
  */
-import { parseIngredients, findCompanyId } from '../productParser';
+import { parseIngredients, findCompanyId, buildProductFromRaw } from '../productParser';
 import { BRAND_TO_COMPANY, COMPANY_DB } from '../../data/companies';
 
 describe('parseIngredients', () => {
@@ -154,5 +154,42 @@ describe('findCompanyId — COMPANY_DB name matching (stage 3)', () => {
     expect(findCompanyId("m&m's")).toBe('mars');
     expect(findCompanyId('aveeno')).toBe('kenvue');
     expect(findCompanyId('nescafe')).toBe('nestle');
+  });
+});
+
+describe('buildProductFromRaw — category detection', () => {
+  // OFF's categories_tags runs general -> specific, so a real egg product's
+  // first tag is usually a broad one, never "eggs" itself. This is why
+  // trusting cats[0] blindly (the old behavior) meant a scanned egg outside
+  // the curated catalog would almost never get category: 'Eggs', silently
+  // hiding the Living Conditions card from every unrecognized egg brand.
+  test('finds "Eggs" from a non-first categories_tags entry (realistic OFF ordering)', () => {
+    const p = buildProductFromRaw('000', {
+      product_name: 'Some Unrecognized Free Range Eggs',
+      brands: 'Some Random Brand',
+      categories_tags: ['en:fresh-foods', 'en:eggs', 'en:chicken-eggs'],
+    });
+    expect(p.category).toBe('Eggs');
+  });
+
+  test('does not false-positive on "eggplants" (substring, not a whole tag token)', () => {
+    const p = buildProductFromRaw('001', {
+      product_name: 'Grilled Eggplant',
+      categories_tags: ['en:vegetables', 'en:eggplants'],
+    });
+    expect(p.category).not.toBe('Eggs');
+  });
+
+  test('falls back to cats[0] for anything with no known category signal', () => {
+    const p = buildProductFromRaw('002', {
+      product_name: 'Some Snack',
+      categories_tags: ['en:salty-snacks'],
+    });
+    expect(p.category).toBe('salty snacks');
+  });
+
+  test('falls back to General when categories_tags is empty/missing', () => {
+    const p = buildProductFromRaw('003', { product_name: 'Mystery Item' });
+    expect(p.category).toBe('General');
   });
 });

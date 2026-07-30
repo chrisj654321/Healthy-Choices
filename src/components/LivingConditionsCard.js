@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Image, Linking } from 'react-
 import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
-import { detectHousingTier, matchSourcingToProduct } from '../utils/sourcingMatch';
+import { detectHousingTier, matchSourcingToProduct, isEggsHousingEligible } from '../utils/sourcingMatch';
 
 // Static requires — RN's bundler needs these resolved at build time, not
 // from a dynamic path string. Keyed by the DETECTED tier (see
@@ -31,13 +31,18 @@ const TIER_IMAGES = {
  * Product-level "how was this specific carton raised" card. Supersedes the
  * COMPANY-level Sourcing tab (CompanyProfileScreen.js / SourcingSection.js)
  * as the primary surface for this data — that tab still exists, but only as
- * a "see the full record" link from here (footer of this card).
+ * a "see the full record" link from here (footer of this card, when we have
+ * a resolved company to link to).
  *
- * Scoped to the actual SKU the user is holding via product.name (see
- * src/utils/sourcingMatch.js) because most brands sell eggs across multiple
- * housing tiers under one name — showing a company-wide or wrong-tier value
- * next to the wrong carton is the exact failure mode this card exists to
- * prevent.
+ * PRODUCT-based, not company-based: the tier (badge + photo + space figure)
+ * is read entirely off product.name via sourcingMatch.js, and renders
+ * whenever the product is in the Eggs category — with or without a
+ * resolved company, with or without company-level `sourcing` research. This
+ * is what makes it work for every catalog egg (not just the ~15 companies
+ * the pilot happened to research) and for an unrecognized scanned egg with
+ * no catalog/company record at all. `company.sourcing` is an OPTIONAL
+ * enhancement layered on top (a real per-brand scorecard figure, third-party
+ * certification chips) — never a requirement to show anything.
  *
  * Pro-gating is handled by the caller (ProductScoreScreen.js), matching that
  * screen's own ProGateCard convention rather than CompanyProfileScreen.js's
@@ -45,23 +50,32 @@ const TIER_IMAGES = {
  * decided to show it.
  */
 export default function LivingConditionsCard({ product, company, navigation }) {
-  if (!company?.sourcing) return null;
-  // Narrow, intentional gate: only the eggs module has data so far. A
-  // non-eggs sourcing record (dairy, meat-poultry, ...) has no matching UI
-  // (no tier photos, no caption behavior) yet, so it renders nothing rather
-  // than guessing.
-  if (company.sourcing.industry !== 'eggs' || product?.category !== 'Eggs') return null;
+  // Narrow, intentional gate: only the eggs module has tier photos/copy so
+  // far, and a plant-based egg substitute (e.g. JUST Egg) has no hens at
+  // all — see isEggsHousingEligible().
+  if (!isEggsHousingEligible(product)) return null;
 
   const tier = detectHousingTier(product?.name);
-  const { housingLabel, scorecard, certifications } = matchSourcingToProduct(
-    company.sourcing,
+  const { housingLabel, scorecard, certifications, genericStandard } = matchSourcingToProduct(
+    company?.sourcing?.industry === 'eggs' ? company.sourcing : null,
     tier,
     product?.name
   );
   const image = TIER_IMAGES[tier] || TIER_IMAGES.conventional;
 
-  const openScorecardSource = () => {
-    if (scorecard?.url) Linking.openURL(scorecard.url).catch(() => {});
+  // Prefer a real, per-brand verified figure (a Cornucopia-style scorecard
+  // entry scoped to this exact line) over the generic tier definition —
+  // more specific and independently scored beats a certifier's general
+  // minimum. Fall back to the generic standard so every tier still shows
+  // something rather than nothing.
+  const spaceInfo = scorecard?.spacePerAnimal
+    ? { label: 'Certified standard', spacePerAnimal: scorecard.spacePerAnimal, sourceName: scorecard.name, url: scorecard.url }
+    : genericStandard
+      ? { label: `What "${housingLabel}" means`, spacePerAnimal: genericStandard.spacePerAnimal, sourceName: genericStandard.name, url: genericStandard.url }
+      : null;
+
+  const openSpaceSource = () => {
+    if (spaceInfo?.url) Linking.openURL(spaceInfo.url).catch(() => {});
   };
 
   return (
@@ -75,19 +89,19 @@ export default function LivingConditionsCard({ product, company, navigation }) {
       <Image source={image} style={s.photo} resizeMode="cover" />
       <Text style={s.caption}>This animal lived in conditions similar to this.</Text>
 
-      {scorecard?.spacePerAnimal && (
+      {spaceInfo && (
         <TouchableOpacity
           style={s.spaceRow}
-          activeOpacity={scorecard.url ? 0.75 : 1}
-          disabled={!scorecard.url}
-          onPress={openScorecardSource}
+          activeOpacity={spaceInfo.url ? 0.75 : 1}
+          disabled={!spaceInfo.url}
+          onPress={openSpaceSource}
         >
           <Ionicons name="resize-outline" size={16} color={Colors.primaryDark} />
           <View style={s.spaceTextWrap}>
-            <Text style={s.spaceText}>Certified standard: {scorecard.spacePerAnimal}</Text>
+            <Text style={s.spaceText}>{spaceInfo.label}: {spaceInfo.spacePerAnimal}</Text>
             <Text style={s.spaceSource}>
-              {scorecard.name}
-              {scorecard.url ? ' · Tap to view source' : ''}
+              {spaceInfo.sourceName}
+              {spaceInfo.url ? ' · Tap to view source' : ''}
             </Text>
           </View>
         </TouchableOpacity>
@@ -104,14 +118,16 @@ export default function LivingConditionsCard({ product, company, navigation }) {
         </View>
       )}
 
-      <TouchableOpacity
-        style={s.footerLink}
-        activeOpacity={0.75}
-        onPress={() => navigation.navigate('CompanyProfile', { company, initialTab: 'sourcing' })}
-      >
-        <Text style={s.footerLinkText}>See the full sourcing record for {company.name} →</Text>
-        <Ionicons name="chevron-forward" size={14} color={Colors.primary} />
-      </TouchableOpacity>
+      {company && (
+        <TouchableOpacity
+          style={s.footerLink}
+          activeOpacity={0.75}
+          onPress={() => navigation.navigate('CompanyProfile', { company, initialTab: 'sourcing' })}
+        >
+          <Text style={s.footerLinkText}>See the full sourcing record for {company.name} →</Text>
+          <Ionicons name="chevron-forward" size={14} color={Colors.primary} />
+        </TouchableOpacity>
+      )}
     </View>
   );
 }

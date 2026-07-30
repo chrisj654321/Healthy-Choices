@@ -29,6 +29,7 @@ import StatBar from '../components/StatBar';
 import SpecsMascot from '../components/SpecsMascot';
 import BackButton from '../components/BackButton';
 import LivingConditionsCard from '../components/LivingConditionsCard';
+import { isEggsHousingEligible } from '../utils/sourcingMatch';
 
 // ── Flag utils ────────────────────────────────────────────────────────────────
 
@@ -483,15 +484,22 @@ export default function ProductScoreScreen({ route, navigation }) {
 
   const showBetterPicks = (displayGrade === 'D' || displayGrade === 'F') && alternatives.length > 0;
   // Product-level "how was this raised" card — narrow gate, eggs only for
-  // now (see LivingConditionsCard.js). Computed here (not just inside the
+  // now (see LivingConditionsCard.js / isEggsHousingEligible in
+  // sourcingMatch.js, which also excludes plant-based egg substitutes like
+  // JUST Egg). PRODUCT-based (category + name), not company-based: renders
+  // with or without a resolved company/sourcing record, so it also covers
+  // unrecognized scanned eggs. Computed here (not just inside the
   // component) because it also has to feed the stickyIndex count below.
-  const showLivingConditions = Boolean(company?.sourcing) &&
-    company.sourcing.industry === 'eggs' && product.category === 'Eggs';
-  // Children before the sticky tab bar: 0 hero, 1 infoCard, 2 sayCard,
+  const showLivingConditions = isEggsHousingEligible(product);
+  // Children before the sticky tab bar: 0 hero, 1 infoCard, optionally 1b
+  // unverified-source banner (community-sourced scans), 2 sayCard,
   // optionally 2b' living-conditions card (eggs only), optionally 2b request
   // card (insufficientData) or 2c better-picks (D/F), then the sticky tab
   // bar itself.
-  const stickyIndex = 3 + (showLivingConditions ? 1 : 0) + (insufficientData || showBetterPicks ? 1 : 0);
+  const stickyIndex = 3 +
+    (product.source === 'community' ? 1 : 0) +
+    (showLivingConditions ? 1 : 0) +
+    (insufficientData || showBetterPicks ? 1 : 0);
 
   return (
     <View style={s.container}>

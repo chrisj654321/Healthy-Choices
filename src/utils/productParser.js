@@ -243,6 +243,27 @@ export function findCompanyId(brand) {
   return null;
 }
 
+// ─── Category detection from OFF categories_tags ───────────────────────────
+//
+// OFF's categories_tags order runs general -> specific (taxonomy expansion),
+// so blindly trusting cats[0] mostly returns a broad tag like "fresh-foods,"
+// never the specific one the app's category-gated features (e.g. the eggs
+// Living Conditions card) key off of. Scan every tag for known category
+// signals instead; cats[0] stays the fallback for anything unmatched.
+//
+// Egg detection matches "egg"/"eggs" as a whole hyphen-delimited token
+// (never a bare substring) so "en:eggplants" can't false-positive.
+const CATEGORY_TAG_MATCHERS = [
+  { category: 'Eggs', test: (tag) => /(^|-)eggs?($|-)/.test(tag) },
+];
+
+function detectCategory(cats) {
+  for (const { category, test } of CATEGORY_TAG_MATCHERS) {
+    if (cats.some((t) => test(t.replace('en:', '')))) return category;
+  }
+  return cats[0]?.replace('en:', '').replace(/-/g, ' ') || 'General';
+}
+
 // ─── Build product from a barcode API response ({ product: {...} }) ───────────
 
 export function buildProduct(barcode, data) {
@@ -262,7 +283,7 @@ export function buildProductFromRaw(barcode, p) {
     brand:          brand || 'Unknown Brand',
     companyId:      findCompanyId(brand),
     source:         'community',
-    category:       cats[0]?.replace('en:', '').replace(/-/g, ' ') || 'General',
+    category:       detectCategory(cats),
     ingredients:    parseIngredients(p),
     nutrition:      parseNutrition(p.nutriments),
     certifications: labels.includes('en:organic') ? ['USDA Organic'] : [],

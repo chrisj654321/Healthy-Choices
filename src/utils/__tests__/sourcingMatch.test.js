@@ -8,7 +8,7 @@
  * failing test.
  */
 
-import { detectHousingTier, matchSourcingToProduct } from '../sourcingMatch';
+import { detectHousingTier, matchSourcingToProduct, isEggsHousingEligible } from '../sourcingMatch';
 import { COMPANY_DB } from '../../data/companies';
 
 const vitalFarmsSourcing = COMPANY_DB['vital-farms'].sourcing;
@@ -165,5 +165,59 @@ describe('matchSourcingToProduct — safety/edge cases', () => {
   test('unknown tier falls back to the conventional label rather than throwing', () => {
     const result = matchSourcingToProduct(vitalFarmsSourcing, 'not-a-real-tier', '');
     expect(result.housingLabel).toBe('Conventional / Caged');
+  });
+});
+
+describe('matchSourcingToProduct — genericStandard (product/tier-based, no company required)', () => {
+  test('a completely unresolved product (no company, no sourcing) still gets a generic tier standard', () => {
+    const productName = 'Some Random Brand Free Range Large Eggs';
+    const tier = detectHousingTier(productName);
+    const result = matchSourcingToProduct(null, tier, productName);
+
+    expect(result.genericStandard).not.toBeNull();
+    expect(result.genericStandard.spacePerAnimal).toEqual(expect.stringContaining('2 sq ft'));
+  });
+
+  test('conventional (no claim on the carton) still gets a generic industry standard', () => {
+    const result = matchSourcingToProduct(null, 'conventional', 'Some Brand Grade A Large Eggs');
+    expect(result.genericStandard.spacePerAnimal).toEqual(expect.stringContaining('67 sq in'));
+  });
+
+  test('pasture-raised generic standard matches the Certified Humane figure', () => {
+    const result = matchSourcingToProduct(null, 'pasture-raised', 'Some Brand Pasture-Raised Eggs');
+    expect(result.genericStandard.spacePerAnimal).toEqual(expect.stringContaining('108 sq ft'));
+  });
+
+  test('organic has no fabricated generic figure (never-fabricate rule — left unset, not guessed)', () => {
+    const result = matchSourcingToProduct(null, 'organic', 'Some Brand Organic Eggs');
+    expect(result.genericStandard).toBeNull();
+  });
+
+  test('a real per-brand scorecard figure is still returned alongside genericStandard (caller prefers the specific one)', () => {
+    const productName = 'Vital Farms Organic Pasture-Raised Extra Large Eggs';
+    const tier = detectHousingTier(productName);
+    const result = matchSourcingToProduct(vitalFarmsSourcing, tier, productName);
+
+    expect(result.scorecard.spacePerAnimal).toEqual(expect.stringContaining('108.9 sq ft/hen'));
+    expect(result.genericStandard.spacePerAnimal).toEqual(expect.stringContaining('108 sq ft'));
+  });
+});
+
+describe('isEggsHousingEligible', () => {
+  test('true for a real egg product', () => {
+    expect(isEggsHousingEligible({ category: 'Eggs', name: 'Kroger Grade A Large White Eggs' })).toBe(true);
+  });
+
+  test('false for a non-Eggs category', () => {
+    expect(isEggsHousingEligible({ category: 'Dairy', name: 'Some Milk' })).toBe(false);
+  });
+
+  test('false for a plant-based egg substitute even though it is catalogued under Eggs', () => {
+    expect(isEggsHousingEligible({ category: 'Eggs', name: 'JUST Egg Plant-Based Egg' })).toBe(false);
+  });
+
+  test('handles missing product without throwing', () => {
+    expect(isEggsHousingEligible(undefined)).toBe(false);
+    expect(isEggsHousingEligible(null)).toBe(false);
   });
 });

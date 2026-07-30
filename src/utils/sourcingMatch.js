@@ -43,6 +43,15 @@ export function detectHousingTier(productName) {
   return 'conventional';
 }
 
+// Plant-based egg substitutes (JUST Egg etc.) have no hens — the housing
+// ladder doesn't apply, so they're excluded rather than shown a guessed
+// tier (module-boundary rule, sourcing-transparency SKILL.md). Shared here
+// so the parent screen's stickyIndex accounting and the card's own render
+// gate can't drift apart.
+export function isEggsHousingEligible(product) {
+  return product?.category === 'Eggs' && !/plant[\s-]based|vegan/i.test(product?.name || '');
+}
+
 // appliesTo matching, isolated for readability/testability.
 function appliesToMatchesTier(appliesTo, tier, nameIsOrganic) {
   if (!appliesTo) return false;
@@ -59,6 +68,43 @@ function appliesToMatchesTier(appliesTo, tier, nameIsOrganic) {
   }
   return false;
 }
+
+// Generic, TIER-level space standards — the certifying/industry body's OWN
+// published definition of what the LABEL TERM requires, not a verified fact
+// about any specific carton (most cartons printing "cage-free"/"free-range"
+// carry no third-party certification at all — USDA sets no footage minimum
+// for either term). Keyed purely by detected tier, same "reused across every
+// brand" pattern as TIER_IMAGES in LivingConditionsCard.js, so it renders for
+// ANY product whose name signals a tier — catalog or scanned, company data
+// or none. Company-specific verified figures (a real scorecard.spacePerAnimal)
+// take priority over this when we have them; this is the honest fallback.
+// Sourced 2026-07-30, each figure the standard body's own published minimum:
+export const GENERIC_TIER_STANDARDS = {
+  conventional: {
+    spacePerAnimal: '67 sq in/hen indoors',
+    name: 'United Egg Producers Certified — Conventional Cage Program',
+    url: 'https://uepcertified.com/conventional-cage-housing/',
+  },
+  'cage-free': {
+    spacePerAnimal: '1.5 sq ft/hen indoors',
+    name: 'Certified Humane — Cage-Free standard',
+    url: 'https://certifiedhumane.org/what-makes-certified-humane-cage-free-eggs-different/',
+  },
+  'free-range': {
+    spacePerAnimal: '2 sq ft/hen outdoors, min. 6 hrs/day access',
+    name: 'Certified Humane — Free-Range standard',
+    url: 'https://certifiedhumane.org/decode-egg-labels/',
+  },
+  'pasture-raised': {
+    spacePerAnimal: '108 sq ft/hen outdoors',
+    name: 'Certified Humane — Pasture-Raised standard',
+    url: 'https://certifiedhumane.org/decode-egg-labels/',
+  },
+  // organic: no numeric USDA figure could be independently verified from a
+  // fetchable primary source (the 2023 Organic Livestock & Poultry Standards
+  // rule requires outdoor access but the gov PDF 403'd every fetch attempt)
+  // — leave unset rather than guess. Never-fabricate rule.
+};
 
 // Tier-name phrases as they actually appear in scope prose (evidence-schema.md
 // requires scope to be written in plain English, not an enum) — used only to
@@ -134,9 +180,10 @@ function scopeCoversTier(scopeRaw, tier) {
  */
 export function matchSourcingToProduct(sourcing, tier, productName = '') {
   const housingLabel = TIER_LABELS[tier] || TIER_LABELS.conventional;
+  const genericStandard = GENERIC_TIER_STANDARDS[tier] || null;
 
   if (!sourcing) {
-    return { housingLabel, scorecard: null, certifications: [] };
+    return { housingLabel, scorecard: null, certifications: [], genericStandard };
   }
 
   const nameIsOrganic = /organic/i.test(productName || '');
@@ -149,5 +196,5 @@ export function matchSourcingToProduct(sourcing, tier, productName = '') {
     scopeCoversTier(cert.scope, tier)
   );
 
-  return { housingLabel, scorecard, certifications };
+  return { housingLabel, scorecard, certifications, genericStandard };
 }
