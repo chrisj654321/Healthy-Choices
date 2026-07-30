@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Image, Linking } from 'react-
 import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
-import { detectHousingTier, matchSourcingToProduct, isEggsHousingEligible } from '../utils/sourcingMatch';
+import { detectHousingTier, matchSourcingToProduct, isEggsHousingEligible, getComparisonBaseline } from '../utils/sourcingMatch';
 
 // Static requires — RN's bundler needs these resolved at build time, not
 // from a dynamic path string. Keyed by the DETECTED tier (see
@@ -68,10 +68,22 @@ export default function LivingConditionsCard({ product, company, navigation }) {
   // more specific and independently scored beats a certifier's general
   // minimum. Fall back to the generic standard so every tier still shows
   // something rather than nothing.
+  //
+  // A bare per-brand number ("1.2 sq ft indoors") has no reference point on
+  // its own — pair it with the generic baseline for that tier so the reader
+  // can judge it themselves. Always shown alongside a per-brand figure when
+  // one exists, whether the brand clears the baseline or falls short of it
+  // — never rendered selectively only when a brand looks bad.
   const spaceInfo = scorecard?.spacePerAnimal
-    ? { label: 'Certified standard', spacePerAnimal: scorecard.spacePerAnimal, sourceName: scorecard.name, url: scorecard.url }
+    ? {
+        label: 'Certified standard',
+        spacePerAnimal: scorecard.spacePerAnimal,
+        sourceName: scorecard.name,
+        url: scorecard.url,
+        baseline: getComparisonBaseline(tier),
+      }
     : genericStandard
-      ? { label: `What "${housingLabel}" means`, spacePerAnimal: genericStandard.spacePerAnimal, sourceName: genericStandard.name, url: genericStandard.url }
+      ? { label: `What "${housingLabel}" means`, spacePerAnimal: genericStandard.spacePerAnimal, sourceName: genericStandard.name, url: genericStandard.url, baseline: null }
       : null;
 
   const openSpaceSource = () => {
@@ -103,6 +115,12 @@ export default function LivingConditionsCard({ product, company, navigation }) {
               {spaceInfo.sourceName}
               {spaceInfo.url ? ' · Tap to view source' : ''}
             </Text>
+            {spaceInfo.baseline && (
+              <Text style={s.spaceCompare}>
+                For comparison — {spaceInfo.baseline.name}: {spaceInfo.baseline.spacePerAnimal}
+                {spaceInfo.baseline.note ? ` (${spaceInfo.baseline.note})` : ''}
+              </Text>
+            )}
           </View>
         </TouchableOpacity>
       )}
@@ -172,6 +190,9 @@ const s = StyleSheet.create({
   spaceTextWrap: { flex: 1 },
   spaceText: { fontSize: Font.sizes.sm, fontWeight: Font.weights.bold, color: Colors.primaryDark },
   spaceSource: { fontSize: Font.sizes.xs, color: Colors.textMuted, fontStyle: 'italic', marginTop: 3 },
+  // Neutral, not red/alarming — same treatment whether the brand's real
+  // figure clears this baseline or falls short of it (symmetric fairness).
+  spaceCompare: { fontSize: Font.sizes.xs, color: Colors.textMuted, marginTop: 6, lineHeight: 16 },
 
   certRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 12 },
   certChip: {

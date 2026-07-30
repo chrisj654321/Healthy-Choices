@@ -106,6 +106,34 @@ export const GENERIC_TIER_STANDARDS = {
   // — leave unset rather than guess. Never-fabricate rule.
 };
 
+/**
+ * getComparisonBaseline(tier) -> generic-standard object | null
+ *
+ * A real per-brand figure (a Cornucopia scorecard entry, etc.) shown alone
+ * has no reference point — "1.2 sq ft indoors" reads as neutral unless the
+ * reader independently knows what other tiers typically provide. This is
+ * the baseline the card shows ALONGSIDE any per-brand figure, always,
+ * whether the brand's real number clears it or falls short — never shown
+ * only when a brand looks bad (that would break the symmetric fairness
+ * rule: the same comparison renders for every brand in the same tier).
+ *
+ * Most tiers compare against their own GENERIC_TIER_STANDARDS entry.
+ * 'organic' has none of its own (see above), but USDA organic rules
+ * prohibit caging outright — so an organic operation's regulatory floor is,
+ * at minimum, cage-free. That's the honest reference for an organic-line
+ * figure: not a claim about what "organic" itself specifies, but the
+ * baseline it's legally required to already clear.
+ */
+export function getComparisonBaseline(tier) {
+  if (tier === 'organic') {
+    const cageFree = GENERIC_TIER_STANDARDS['cage-free'];
+    return cageFree
+      ? { ...cageFree, note: 'USDA organic rules prohibit caging — this is the cage-free floor organic operations must clear at minimum, not organic\'s own standard' }
+      : null;
+  }
+  return GENERIC_TIER_STANDARDS[tier] || null;
+}
+
 // Tier-name phrases as they actually appear in scope prose (evidence-schema.md
 // requires scope to be written in plain English, not an enum) — used only to
 // check whether an EXHAUSTIVE "X lines only" list names the current tier.

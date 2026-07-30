@@ -8,7 +8,7 @@
  * failing test.
  */
 
-import { detectHousingTier, matchSourcingToProduct, isEggsHousingEligible } from '../sourcingMatch';
+import { detectHousingTier, matchSourcingToProduct, isEggsHousingEligible, getComparisonBaseline } from '../sourcingMatch';
 import { COMPANY_DB } from '../../data/companies';
 
 const vitalFarmsSourcing = COMPANY_DB['vital-farms'].sourcing;
@@ -200,6 +200,40 @@ describe('matchSourcingToProduct — genericStandard (product/tier-based, no com
 
     expect(result.scorecard.spacePerAnimal).toEqual(expect.stringContaining('108.9 sq ft/hen'));
     expect(result.genericStandard.spacePerAnimal).toEqual(expect.stringContaining('108 sq ft'));
+  });
+});
+
+describe('getComparisonBaseline — reference point shown alongside a per-brand figure', () => {
+  test('non-organic tiers compare against their own generic standard', () => {
+    expect(getComparisonBaseline('pasture-raised').spacePerAnimal).toEqual(expect.stringContaining('108 sq ft'));
+    expect(getComparisonBaseline('cage-free').spacePerAnimal).toEqual(expect.stringContaining('1.5 sq ft'));
+    expect(getComparisonBaseline('conventional').spacePerAnimal).toEqual(expect.stringContaining('67 sq in'));
+  });
+
+  test('organic has no standard of its own — falls back to the cage-free regulatory floor, clearly noted as such', () => {
+    const baseline = getComparisonBaseline('organic');
+    expect(baseline.spacePerAnimal).toEqual(expect.stringContaining('1.5 sq ft'));
+    expect(baseline.note).toEqual(expect.stringContaining('organic'));
+  });
+
+  test('a real-data case: Eggland\'s Best organic-line per-brand figure (1.2 sq ft) falls short of the cage-free floor it must clear', () => {
+    const productName = "Eggland's Best Organic Large Brown Eggs";
+    const tier = detectHousingTier(productName);
+    const result = matchSourcingToProduct(egglandsBestSourcing, tier, productName);
+    const baseline = getComparisonBaseline(tier);
+
+    expect(result.scorecard.spacePerAnimal).toEqual(expect.stringContaining('1.2 sq ft'));
+    expect(baseline.spacePerAnimal).toEqual(expect.stringContaining('1.5 sq ft'));
+  });
+
+  test('a real-data case: Vital Farms organic-pasture per-brand figure (108.9 sq ft) tracks its own certified standard (108 sq ft) closely', () => {
+    const productName = 'Vital Farms Organic Pasture-Raised Extra Large Eggs';
+    const tier = detectHousingTier(productName);
+    const result = matchSourcingToProduct(vitalFarmsSourcing, tier, productName);
+    const baseline = getComparisonBaseline(tier);
+
+    expect(result.scorecard.spacePerAnimal).toEqual(expect.stringContaining('108.9 sq ft'));
+    expect(baseline.spacePerAnimal).toEqual(expect.stringContaining('108 sq ft'));
   });
 });
 
