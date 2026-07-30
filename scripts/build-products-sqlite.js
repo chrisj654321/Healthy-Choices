@@ -134,7 +134,14 @@ function loadCompanies() {
 
 function transformExports(source) {
   return source
-    .replace(/^import .+;\s*$/gm, '')
+    // Pre-existing bug found 2026-07-30: this only matched single-line
+    // imports, so scorer.js's multi-line `import {\n a,\n b,\n} from '...'`
+    // (added for ingredientNormalizer.js) silently broke score precompute
+    // (caught by the try/catch, logged as "skipped", never crashed the
+    // build — so it went unnoticed rather than failing loudly). Now
+    // matches `import` through the first `from '...';` non-greedily,
+    // across lines, covering both single- and multi-line import forms.
+    .replace(/^import\b[\s\S]*?from\s*['"][^'"]+['"];?\s*$/gm, '')
     .replace(/\bexport const\s+/g, 'const ')
     .replace(/\bexport function\s+/g, 'function ');
 }
@@ -153,6 +160,10 @@ function loadScorer() {
     transformExports(readSource('src/data/ingredientCache.js')),
     transformExports(readSource('src/data/ingredients.js')),
     stripModuleExports(readSource('src/utils/ingredientNormalizer.js')),
+    // scorer.js imports detectHousingTier/isEggsHousingEligible from here
+    // (housing-tier scoring adjustment, 2026-07-30) — must be bundled
+    // before scorer.js or those calls are ReferenceErrors in the sandbox.
+    transformExports(readSource('src/utils/sourcingMatch.js')),
     transformExports(readSource('src/utils/scorer.js')),
     '\nmodule.exports = { scoreProduct, scoreToGrade };',
   ].join('\n\n');

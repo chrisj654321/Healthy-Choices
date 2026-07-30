@@ -5,6 +5,7 @@ import {
   isLabelBoilerplate,
   segmentIntoKnownIngredients,
 } from './ingredientNormalizer';
+import { detectHousingTier, isEggsHousingEligible } from './sourcingMatch';
 
 // ─── Ingredient lookup: normalization + smart-matching ────────────────────────
 
@@ -634,6 +635,53 @@ const PROCESSED_CLEAN_CEILING = 96;
 // verified otherwise, rather than let missing data default to a free pass.
 const UNRESEARCHED_PACKAGING_PENALTY = 2;
 
+// Housing/living-conditions scoring adjustment. Founder directive
+// (2026-07-30): "the chicken condition should weigh heavily into the
+// scoring, that's the point of this feature... pasture raised organic is
+// the healthiest chicken and hence egg, score should reflect that."
+// Before this, `certifications` on the product could earn a small ethics/
+// sourcing bonus (Tier C, +1 — see calcCertBonus) but nothing PENALIZED a
+// plain conventional/caged product, so an Eggland's Best Classic egg
+// (single clean ingredient, no packaging concern) scored identically to a
+// pasture-raised egg with the exact same ingredient profile.
+//
+// Read PURELY from the product's own name via detectHousingTier() — the
+// same ground truth the Living Conditions card uses (sourcingMatch.js) —
+// never from company data, so this applies identically to a curated
+// catalog product and an unrecognized scan alike. Scoped to Eggs only:
+// this is the one module with real, founder-approved research behind the
+// housing ladder (see .claude/skills/sourcing-transparency); a future
+// module (meat-poultry, seafood, dairy) needs the same treatment added
+// explicitly once ITS research is real, never inherited by default.
+//
+// The magnitude is deliberately a real swing (16 points between best and
+// worst), comparable to or larger than any other single factor in this
+// scorer, per "weigh heavily." Most of the upside is absorbed by the
+// existing PROCESSED_CLEAN_CEILING for whole-food-clean eggs (a packaging/
+// processing ceiling, a different axis, deliberately untouched here) — the
+// visible effect is mainly the conventional penalty pulling a plain caged
+// egg down a full letter grade, which is the actual complaint this fixes.
+const SOURCING_ADJUSTMENT = {
+  'pasture-raised': 8,
+  'free-range': 3,
+  'cage-free': 2,
+  // USDA organic legally prohibits caging, a real floor above conventional
+  // — but "organic" alone (no further housing claim) is NOT the same
+  // guarantee as a verified cage-free/free-range/pasture-raised claim, so
+  // this stays modest rather than assumed-good. (Real audited counter-
+  // example already on file: Eggland's Best's organic line measures 1.2
+  // sq ft/hen indoors, BELOW the cage-free minimum — "organic" overselling
+  // its actual conditions is a real, not hypothetical, risk.)
+  organic: 1,
+  conventional: -8,
+};
+
+function calcSourcingAdjustment(product) {
+  if (!isEggsHousingEligible(product)) return 0;
+  const tier = detectHousingTier(product.name);
+  return SOURCING_ADJUSTMENT[tier] ?? 0;
+}
+
 export function scoreProduct(product) {
   const { ingredients = [], nutrition = {}, certifications = [] } = product;
 
@@ -642,6 +690,7 @@ export function scoreProduct(product) {
   const analyzed = analyzeIngredients(ingredients);
   const nutritionPenalty = calcNutritionPenalty(nutrition);
   const certBonus = calcCertBonus(certifications);
+  const sourcingAdjustment = calcSourcingAdjustment(product);
   const markerCount = analyzed.markerCount;
   const markerLoad = analyzed.markerLoad;
   const packagingConcern = analyzePackagingConcern(product);
@@ -684,6 +733,16 @@ export function scoreProduct(product) {
     score = 100 - analyzed.totalPenalty - nutritionPenalty - packagingPenalty + certBonus;
     score = Math.min(score, ceiling);
   }
+  // Applied AFTER the packaging/processing ceiling above, not capped by it —
+  // that ceiling exists for an unrelated reason (unverified packaging data),
+  // and letting it silently absorb the housing bonus is exactly what made
+  // pasture-raised and conventional eggs score identically before this.
+  // A strong housing tier can push a whole-food-clean egg past 96 up to the
+  // literal 100 a raw-whole-food packaging-verified product would otherwise
+  // need separately-verified packaging to reach; a conventional/caged egg
+  // drops a real letter grade instead of landing on the ceiling like a good
+  // one. Still clamped to [0, 100] below like everything else.
+  score = score + sourcingAdjustment;
   score = Math.max(0, Math.min(100, Math.round(score)));
 
   const grade = scoreToGrade(score);
@@ -705,6 +764,7 @@ export function scoreProduct(product) {
     packagingConcern,
     packagingResearched,
     certBonus,
+    sourcingAdjustment,
     wholeFoodClean,
     isRawWholeFood,
     insufficientData,

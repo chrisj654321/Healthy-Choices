@@ -592,6 +592,87 @@ describe('scoreProduct: certification bonus', () => {
   });
 });
 
+describe('scoreProduct: sourcing/housing adjustment (eggs)', () => {
+  // Founder directive (2026-07-30): a conventional/caged egg must not score
+  // identically to a pasture-raised one just because the ingredient list is
+  // the same single "eggs" entry — the housing tier itself is meant to
+  // "weigh heavily" into the score, not just show up in a separate card.
+  const eggBase = { ingredients: ['eggs'], nutrition: {}, category: 'Eggs' };
+
+  test('every tier gets its own sourcingAdjustment, read from the product name alone', () => {
+    expect(scoreProduct({ ...eggBase, name: 'Some Brand Grade A Large Eggs' }).sourcingAdjustment).toBe(-8);
+    expect(scoreProduct({ ...eggBase, name: 'Some Brand Organic Eggs' }).sourcingAdjustment).toBe(1);
+    expect(scoreProduct({ ...eggBase, name: 'Some Brand Cage Free Eggs' }).sourcingAdjustment).toBe(2);
+    expect(scoreProduct({ ...eggBase, name: 'Some Brand Free Range Eggs' }).sourcingAdjustment).toBe(3);
+    expect(scoreProduct({ ...eggBase, name: 'Some Brand Pasture-Raised Eggs' }).sourcingAdjustment).toBe(8);
+  });
+
+  test('a real catalog case: Eggland\'s Best Classic (conventional) drops a full letter grade vs. before this feature', () => {
+    // Single clean ingredient, no packaging data -> pre-adjustment this
+    // landed on the 96 ceiling (grade A) same as every other tier. Real
+    // regression target: this must no longer be true.
+    const result = scoreProduct({
+      ingredients: ['eggs'],
+      nutrition: { fat: 4, saturatedFat: 1, sodium: 60, carbs: 0, sugars: 0, protein: 6 },
+      category: 'Eggs',
+      name: "Eggland's Best Classic Large White Eggs Grade A",
+      certifications: [],
+    });
+    expect(result.score).toBe(88);
+    expect(result.grade).toBe('B');
+  });
+
+  test('pasture-raised reaches a literal 100, breaking past the processed-food ceiling that trapped every tier at the same score before', () => {
+    const result = scoreProduct({
+      ingredients: ['eggs'],
+      nutrition: { fat: 4, saturatedFat: 1, sodium: 60, carbs: 0, sugars: 0, protein: 6 },
+      category: 'Eggs',
+      name: 'Vital Farms Pasture-Raised Large Grade A Eggs',
+      certifications: [],
+    });
+    expect(result.score).toBe(100);
+    expect(result.grade).toBe('A');
+  });
+
+  test('tiers are fully ordered top to bottom for an otherwise-identical product', () => {
+    const scoreFor = (name) => scoreProduct({ ...eggBase, name }).score;
+    const pasture = scoreFor('Brand Pasture-Raised Eggs');
+    const freeRange = scoreFor('Brand Free Range Eggs');
+    const cageFree = scoreFor('Brand Cage Free Eggs');
+    const organic = scoreFor('Brand Organic Eggs');
+    const conventional = scoreFor('Brand Grade A Eggs');
+    expect(pasture).toBeGreaterThan(freeRange);
+    expect(freeRange).toBeGreaterThan(cageFree);
+    expect(cageFree).toBeGreaterThan(organic);
+    expect(organic).toBeGreaterThan(conventional);
+  });
+
+  test('scoped to Eggs only — a non-egg product with an egg-tier-sounding name gets no adjustment', () => {
+    const result = scoreProduct({
+      ingredients: ['chicken'],
+      nutrition: {},
+      category: 'Meat & Seafood / Primary Proteins',
+      name: 'Some Free Range Chicken Breast',
+    });
+    expect(result.sourcingAdjustment).toBe(0);
+  });
+
+  test('a plant-based egg substitute gets no housing adjustment even though it is catalogued under Eggs', () => {
+    const result = scoreProduct({
+      ingredients: ['water', 'mung bean protein'],
+      nutrition: {},
+      category: 'Eggs',
+      name: 'JUST Egg Plant-Based Egg',
+    });
+    expect(result.sourcingAdjustment).toBe(0);
+  });
+
+  test('a non-egg product with no category set is unaffected (no crash, adjustment is 0)', () => {
+    const result = scoreProduct({ ingredients: ['sugar'], nutrition: {} });
+    expect(result.sourcingAdjustment).toBe(0);
+  });
+});
+
 describe('scoreProduct: packaging penalty', () => {
   test('plastic pouch + high concern + microwave heat use -> penalty 8 (6 base + 2 heat)', () => {
     const result = scoreProduct({
