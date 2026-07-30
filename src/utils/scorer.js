@@ -638,12 +638,24 @@ const UNRESEARCHED_PACKAGING_PENALTY = 2;
 // Housing/living-conditions scoring adjustment. Founder directive
 // (2026-07-30): "the chicken condition should weigh heavily into the
 // scoring, that's the point of this feature... pasture raised organic is
-// the healthiest chicken and hence egg, score should reflect that."
+// the healthiest chicken and hence egg, score should reflect that" —
+// then, after an initial pass: "it needs to be more strict than this. the
+// health difference and vitamin difference from conventional to pasture
+// raised is significant, scores should reflect that."
 // Before this, `certifications` on the product could earn a small ethics/
 // sourcing bonus (Tier C, +1 — see calcCertBonus) but nothing PENALIZED a
 // plain conventional/caged product, so an Eggland's Best Classic egg
 // (single clean ingredient, no packaging concern) scored identically to a
 // pasture-raised egg with the exact same ingredient profile.
+//
+// The stricter conventional penalty is grounded in real nutrient data, not
+// just a welfare framing: a Penn State University study (Karsten et al.,
+// Renewable Agriculture and Food Systems) comparing pastured vs. caged
+// hens' eggs found 2.5x total omega-3 fatty acids, 2x long-chain omega-3,
+// less than half the omega-6:omega-3 ratio, 2x vitamin E, up to 4x vitamin
+// D (driven by outdoor sun exposure), and 38% more vitamin A in pastured
+// eggs. That is a genuinely large, peer-reviewed nutrient gap — the
+// magnitude below reflects it, not an arbitrary welfare-only penalty.
 //
 // Read PURELY from the product's own name via detectHousingTier() — the
 // same ground truth the Living Conditions card uses (sourcingMatch.js) —
@@ -654,13 +666,14 @@ const UNRESEARCHED_PACKAGING_PENALTY = 2;
 // module (meat-poultry, seafood, dairy) needs the same treatment added
 // explicitly once ITS research is real, never inherited by default.
 //
-// The magnitude is deliberately a real swing (16 points between best and
-// worst), comparable to or larger than any other single factor in this
-// scorer, per "weigh heavily." Most of the upside is absorbed by the
-// existing PROCESSED_CLEAN_CEILING for whole-food-clean eggs (a packaging/
-// processing ceiling, a different axis, deliberately untouched here) — the
-// visible effect is mainly the conventional penalty pulling a plain caged
-// egg down a full letter grade, which is the actual complaint this fixes.
+// Applied AFTER the packaging/processing ceiling (a different, unrelated
+// axis) rather than inside it, so the bonus/penalty isn't silently
+// absorbed the way it was before this feature existed. cage-free/free-range
+// bonuses stay modest deliberately: cage-free is an indoor-only welfare
+// improvement with no foraging/sunlight component, so it isn't backed by
+// the same nutrient evidence pasture access is; free-range's outdoor
+// access is real but USDA doesn't standardize its quality or duration, so
+// it sits between cage-free and pasture-raised rather than matching either.
 const SOURCING_ADJUSTMENT = {
   'pasture-raised': 8,
   'free-range': 3,
@@ -673,7 +686,7 @@ const SOURCING_ADJUSTMENT = {
   // sq ft/hen indoors, BELOW the cage-free minimum — "organic" overselling
   // its actual conditions is a real, not hypothetical, risk.)
   organic: 1,
-  conventional: -8,
+  conventional: -18,
 };
 
 function calcSourcingAdjustment(product) {

@@ -600,17 +600,18 @@ describe('scoreProduct: sourcing/housing adjustment (eggs)', () => {
   const eggBase = { ingredients: ['eggs'], nutrition: {}, category: 'Eggs' };
 
   test('every tier gets its own sourcingAdjustment, read from the product name alone', () => {
-    expect(scoreProduct({ ...eggBase, name: 'Some Brand Grade A Large Eggs' }).sourcingAdjustment).toBe(-8);
+    expect(scoreProduct({ ...eggBase, name: 'Some Brand Grade A Large Eggs' }).sourcingAdjustment).toBe(-18);
     expect(scoreProduct({ ...eggBase, name: 'Some Brand Organic Eggs' }).sourcingAdjustment).toBe(1);
     expect(scoreProduct({ ...eggBase, name: 'Some Brand Cage Free Eggs' }).sourcingAdjustment).toBe(2);
     expect(scoreProduct({ ...eggBase, name: 'Some Brand Free Range Eggs' }).sourcingAdjustment).toBe(3);
     expect(scoreProduct({ ...eggBase, name: 'Some Brand Pasture-Raised Eggs' }).sourcingAdjustment).toBe(8);
   });
 
-  test('a real catalog case: Eggland\'s Best Classic (conventional) drops a full letter grade vs. before this feature', () => {
+  test('a real catalog case: Eggland\'s Best Classic (conventional) drops two full letter grades vs. before this feature, grounded in the real Penn State nutrient-gap study', () => {
     // Single clean ingredient, no packaging data -> pre-adjustment this
-    // landed on the 96 ceiling (grade A) same as every other tier. Real
-    // regression target: this must no longer be true.
+    // landed on the 96 ceiling (grade A) same as every other tier. Founder
+    // called the first pass (-8, landing at grade B) not strict enough
+    // given how large the real nutrient gap (omega-3/vitamin D/E/A) is.
     const result = scoreProduct({
       ingredients: ['eggs'],
       nutrition: { fat: 4, saturatedFat: 1, sodium: 60, carbs: 0, sugars: 0, protein: 6 },
@@ -618,8 +619,8 @@ describe('scoreProduct: sourcing/housing adjustment (eggs)', () => {
       name: "Eggland's Best Classic Large White Eggs Grade A",
       certifications: [],
     });
-    expect(result.score).toBe(88);
-    expect(result.grade).toBe('B');
+    expect(result.score).toBe(78);
+    expect(result.grade).toBe('C');
   });
 
   test('pasture-raised reaches a literal 100, breaking past the processed-food ceiling that trapped every tier at the same score before', () => {
