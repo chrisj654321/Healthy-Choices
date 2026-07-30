@@ -10,7 +10,20 @@
     "build:android": "eas build --platform android",
     "build:ios": "eas build --platform ios",
     "test": "jest",
-    "upload:sourcemaps": "sentry-expo-upload-sourcemaps dist"
+    "upload:sourcemaps": "sentry-expo-upload-sourcemaps dist",
+    "content:init": "node scripts/content-factory/cli.js init",
+    "content:research": "node scripts/content-factory/cli.js research",
+    "content:claims": "node scripts/content-factory/cli.js claims",
+    "content:produce": "node scripts/content-factory/cli.js produce",
+    "content:review": "node scripts/content-factory/cli.js review",
+    "content:buffer-drafts": "node scripts/content-factory/cli.js buffer-drafts",
+    "content:metrics": "node scripts/content-factory/cli.js metrics",
+    "content:backup": "node scripts/content-factory/cli.js backup",
+    "content:health": "node scripts/content-factory/cli.js health",
+    "content:community": "node scripts/content-factory/cli.js community",
+    "content:board": "node scripts/content-factory/cli.js board",
+    "content:pilot": "node scripts/content-factory/cli.js pilot",
+    "content:test": "node --test scripts/content-factory/tests/*.acceptance.js"
   },
   "dependencies": {
     "@expo/metro-runtime": "~56.0.15",
@@ -61,7 +74,8 @@
     "@babel/core": "^7.25.2",
     "ffmpeg-static": "^5.3.0",
     "jest": "^29.7.0",
-    "jest-expo": "^56.0.5"
+    "jest-expo": "^56.0.5",
+    "sharp": "^0.35.3"
   },
   "private": true,
   "jest": {

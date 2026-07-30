@@ -17,6 +17,7 @@ import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
 import { useProStatus } from '../utils/subscription';
 import { buildProductFromRaw } from '../utils/productParser';
+import { fetchWithTimeout, REMOTE_TIMEOUT_MS } from '../utils/fetchWithTimeout';
 import { scoreProduct, scoreToColor } from '../utils/scorer';
 import { searchProductsLocal, getFeaturedProducts } from '../data/productStore';
 import SpecsMascot from '../components/SpecsMascot';
@@ -40,19 +41,6 @@ const OFF_BASE =
   '&search_terms=';
 
 const UA = { 'User-Agent': 'FoodExpose/1.2 (jamesadventuremarketing@gmail.com)' };
-
-// Neither fetch() call below had a timeout — on a slow/flaky connection the
-// request could hang indefinitely (RN's fetch has no default timeout, unlike
-// browsers), leaving the user staring at just the curated-local hit with no
-// indication live search ever ran. Bound every remote attempt so a hang always
-// resolves to a visible outcome instead of silence.
-const REMOTE_TIMEOUT_MS = 8000;
-
-function fetchWithTimeout(url, options, timeoutMs) {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), timeoutMs);
-  return fetch(url, { ...options, signal: controller.signal }).finally(() => clearTimeout(timer));
-}
 
 // ─── Cycling loader phrases ───────────────────────────────────────────────────
 

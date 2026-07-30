@@ -8,6 +8,7 @@
  * Exports:
  *   normalizeIngredientTokens(rawText) -> string[]
  *   classifyTokenPlausibility(token, knownKeysSet) -> { verdict, rescuedTo? }
+ *   segmentIntoKnownIngredients(token, knownKeysSet) -> string[] | null
  */
 
 // ─── Specific oils recognized inside a "vegetable oil (...)" disclosure ──────
@@ -71,6 +72,69 @@ const ADVISORY_PATTERNS = [
   /^local\s/i,
 ];
 
+// ─── Label-section cutoff ────────────────────────────────────────────────────
+// Third-party listings are frequently populated by OCR'ing the WHOLE package,
+// so the "ingredients" field runs straight past the ingredient declaration
+// into the Nutrition Facts panel, the warning box, and the manufacturer's
+// address/social handles. Every one of those tails then reaches the UI as
+// pretend ingredient rows ("Boise", "Cans Per Day", "Nutrition Facts Serving
+// Size 1 Can") — see the Gorilla Mind energy-drink listing that surfaced this.
+//
+// A real ingredient declaration never RESUMES after any of these markers, so
+// the whole tail can be cut in one move rather than filtered token by token.
+// Every marker below is a phrase that cannot appear inside an ingredient name.
+const LABEL_SECTION_MARKERS = [
+  /\bnutrition(al)? facts\b/i,
+  /\bsupplement facts\b/i,
+  /\bserving size\b/i,
+  /\bservings? per (container|package)\b/i,
+  /\bpercent daily values?\b/i,
+  /\bdaily values?\s*(are|is|not)\b/i,
+  /\bwarnings?\s*[:!]/i,
+  /\bcaution\s*[:!]/i,
+  /\bdo not exceed\b/i,
+  /\bnot for use by\b/i,
+  /\bconsult (a|an|your)\b/i,
+  /\bkeep out of reach\b/i,
+  /\bdistributed (by|for)\b/i,
+  /\bmanufactured (by|for)\b/i,
+  /\bpacked (by|for)\b/i,
+  /\bimported by\b/i,
+  /\bquestions or comments\b/i,
+  /\b1[-\s]?800[-\s]?\d/,
+  /\bplease recycle\b/i,
+  /\brefrigerate after opening\b/i,
+  /\bkeep refrigerated\b/i,
+  /\bstore in a cool\b/i,
+  /\bbest (by|before|if used by)\b/i,
+  /\bhttps?:\/\//i,
+  /\bwww\./i,
+  /\b@[a-z0-9_]{3,}/i,
+  /[a-z0-9]\.(com|net|org)\b/i,
+];
+
+// Never cut inside the opening of the field — a marker that appears in the
+// first few characters is far more likely to be a mis-scrape of a header than
+// a genuine end-of-ingredients boundary, and cutting there would throw away
+// the entire declaration.
+const MIN_CUTOFF_INDEX = 20;
+
+/**
+ * Truncate the raw ingredients text at the first label-section marker, so
+ * Nutrition Facts / warning / manufacturer-address text never enters the
+ * ingredient stream. Returns the text unchanged when no marker is found.
+ */
+function truncateAtLabelSections(text) {
+  let cut = -1;
+  for (const re of LABEL_SECTION_MARKERS) {
+    const m = re.exec(text);
+    if (m && m.index >= MIN_CUTOFF_INDEX && (cut === -1 || m.index < cut)) {
+      cut = m.index;
+    }
+  }
+  return cut === -1 ? text : text.slice(0, cut);
+}
+
 function decodeHtmlEntities(str) {
   return str
     .replace(/&quot;/gi, '')
@@ -132,6 +196,11 @@ function normalizeIngredientTokens(rawText) {
   if (!text) return [];
 
   text = decodeHtmlEntities(text);
+
+  // Drop the Nutrition Facts / warning / manufacturer tail BEFORE the period
+  // split below turns those sentences into ingredient-shaped fragments.
+  text = truncateAtLabelSections(text);
+  if (!text.trim()) return [];
 
   // Period followed by space acts as a separator in some EU/UK data.
   text = text.replace(/\.\s+/g, ', ');
@@ -213,6 +282,35 @@ const COMMON_INGREDIENT_WORDS = new Set([
   'benzoic', 'acetic',
 ]);
 
+// Words that no real ingredient name contains, but that packaging boilerplate
+// is full of. A token containing ANY of these is label text, not an
+// ingredient. Deliberately excludes words that legitimately appear in food
+// names — "nutritional"/"nutrition" (nutritional yeast, "nutrition blend:"),
+// "imported" (imported olive oil), "packed" (blueberries packed in water),
+// "daily" (OCR'd "non daily creamer") — each verified against the curated
+// catalog to hide real rows if listed; their boilerplate forms ("imported
+// by", "packed by", "nutrition facts", "% daily value") are handled by the
+// LABEL_SECTION_MARKERS truncation instead. Keep this a hard reject.
+const NON_INGREDIENT_WORDS = new Set([
+  'warning', 'warnings', 'consult', 'physician', 'healthcare', 'professional',
+  'pregnant', 'nursing', 'exceed', 'dosage', 'persons', 'cause', 'rate',
+  'facts', 'calories', 'serving', 'servings',
+  'recycle', 'recyclable', 'distributed', 'manufactured',
+  'questions', 'comments', 'satisfaction', 'guaranteed',
+  'refrigerate', 'refrigerated', 'website', 'address', 'trademark',
+  'registered', 'copyright', 'oz', 'fl', 'lbs',
+]);
+
+// Contact details and web/social handles that OCR sweeps in from the back of
+// the package. No ingredient declaration contains an @handle or a domain.
+const CONTACT_PATTERNS = [
+  /@[a-z0-9_]/i,
+  /\bwww\./i,
+  /[a-z0-9]\.(com|net|org|co)\b/i,
+  /\b\d{3}[-.\s]\d{3}[-.\s]\d{4}\b/,
+  /\b[a-z]{2}\s+\d{5}(-\d{4})?\b/i,   // "ID 83702" — state + ZIP
+];
+
 function boundedLevenshtein(a, b, maxDist) {
   if (Math.abs(a.length - b.length) > maxDist) return maxDist + 1;
   const la = a.length;
@@ -240,6 +338,42 @@ function boundedLevenshtein(a, b, maxDist) {
 }
 
 /**
+ * isLabelBoilerplate(token) -> boolean
+ *
+ * The narrow, high-precision half of the garbage detection: is this token
+ * provably PACKAGING TEXT rather than an ingredient — boilerplate vocabulary
+ * (warning/consult/serving/recycle…), contact details/handles/domains, or an
+ * over-long sentence (>6 words; no real ingredient name is that long, and
+ * anything longer is a swept-in warning or storage instruction).
+ *
+ * This is the ONLY check applied to tokens that got a weak
+ * (single-shared-token) DB match, because a weak hit is no evidence the
+ * string is an ingredient ("may cause occasionally rapid heart rate" weak-
+ * matched a seed via "rapeseed"-style token overlap). Calibrated against the
+ * whole curated catalog:
+ *   - full plausibility gate on weak hits → 8,160 legit tokens newly hidden
+ *     ("bay leaf", "dill", "cabbage" — the vocabulary heuristic assumes
+ *     no-match tokens only);
+ *   - adding the digit/glyph/single-letter structural checks → 3,708 newly
+ *     hidden, still wrong ("riboflavin vitamin b2", "flavor enhancer e621",
+ *     "yellow 5 & 6" — E-numbers and vitamin codes are legitimate
+ *     digit-words);
+ *   - adding a >6-word length check → 2,771 newly hidden, still wrong
+ *     (run-on but real ingredient globs like "organic grade a milk and
+ *     organic grade a cream", "contains 2% or less of: dried whole egg");
+ *   - this vocabulary+contact set → every actual bug row (each contains a
+ *     boilerplate word or handle/domain) and nothing that looks like a
+ *     declared ingredient.
+ */
+function isLabelBoilerplate(token) {
+  const t = String(token || '').trim().toLowerCase();
+  if (!t) return false;
+  const words = t.split(/\s+/).filter(Boolean);
+  if (words.some((w) => NON_INGREDIENT_WORDS.has(w))) return true;
+  return CONTACT_PATTERNS.some((re) => re.test(t));
+}
+
+/**
  * classifyTokenPlausibility(token, knownKeysSet) -> { verdict, rescuedTo? }
  * verdict: 'ok' | 'rescued' | 'garbage'
  */
@@ -247,6 +381,13 @@ function classifyTokenPlausibility(token, knownKeysSet) {
   const t = String(token || '').trim().toLowerCase();
 
   if (PUNT_FRAGMENTS.has(t) || /^\d+$/.test(t)) {
+    return { verdict: 'garbage' };
+  }
+
+  // Packaging boilerplate and contact details are label text, never
+  // ingredients — reject before any lookup or fuzzy rescue can dress them up
+  // as a real row.
+  if (isLabelBoilerplate(t)) {
     return { verdict: 'garbage' };
   }
 
@@ -293,8 +434,130 @@ function classifyTokenPlausibility(token, knownKeysSet) {
   return { verdict: 'ok' };
 }
 
+// ─── Merged-ingredient segmentation ──────────────────────────────────────────
+//
+// OCR'd labels routinely lose the comma between two ingredients, gluing them
+// into one token ("Potassium Sorbate L-theanine", "Saffron Extract Edelate
+// Catum Disodium"). Those render as one nonsense row and score against the
+// wrong profile.
+//
+// This splits such a token ONLY when every word of it is accounted for by a
+// known ingredient key (greedy longest-match). Partial decomposition returns
+// null and the token is left exactly as it was — a half-understood split
+// would invent an ingredient the label never declared, which is worse than
+// showing the merged text.
+const MAX_SEGMENT_WORDS = 5;
+const MAX_SEGMENTABLE_WORDS = 6;
+
+/**
+ * Longest single key used by ANY complete decomposition of the word list into
+ * known ingredient keys. -1 when the list does not fully decompose.
+ *
+ * Used only to detect that a more specific reading of the token exists than the
+ * one greedy left-to-right matching committed to.
+ */
+function longestKeyInAnyDecomposition(words, knownKeysSet) {
+  const memo = new Array(words.length + 1).fill(undefined);
+  const solve = (i) => {
+    if (i === words.length) return 0;
+    if (memo[i] !== undefined) return memo[i];
+    let best = -1;
+    for (let len = 1; len <= Math.min(MAX_SEGMENT_WORDS, words.length - i); len++) {
+      if (!knownKeysSet.has(words.slice(i, i + len).join(' '))) continue;
+      const rest = solve(i + len);
+      if (rest === -1) continue;
+      best = Math.max(best, len, rest);
+    }
+    memo[i] = best;
+    return best;
+  };
+  return solve(0);
+}
+
+function segmentIntoKnownIngredients(token, knownKeysSet) {
+  const t = String(token || '').trim().toLowerCase();
+  if (!t || !knownKeysSet || knownKeysSet.size === 0) return null;
+  if (knownKeysSet.has(t)) return null;   // the whole token is itself a real name
+
+  const words = t.split(/\s+/).filter(Boolean);
+  if (words.length < 3 || words.length > MAX_SEGMENTABLE_WORDS) return null;
+
+  const segments = [];
+  let i = 0;
+  while (i < words.length) {
+    let matched = null;
+    for (let len = Math.min(MAX_SEGMENT_WORDS, words.length - i); len >= 1; len--) {
+      const candidate = words.slice(i, i + len).join(' ');
+      if (knownKeysSet.has(candidate)) {
+        matched = candidate;
+        i += len;
+        break;
+      }
+    }
+    if (!matched) return null;            // all-or-nothing
+    segments.push(matched);
+  }
+
+  if (segments.length < 2) return null;
+
+  // SPECIFICITY GUARD. Greedy matching above scans left to right and commits to
+  // the first key that fits, so it can miss a longer, more specific ingredient
+  // name starting one word later. "organic sugar snap peas" is the case that
+  // proves it: "organic sugar" is a real key, so greedy takes it, pairs it with
+  // "snap peas", passes every rule below — and a bag of frozen peas gains an
+  // added sweetener it never declared. The right reading, "organic" + "sugar
+  // snap peas", is invisible to greedy because it opens with a bare word.
+  //
+  // So: if the token decomposes some OTHER way that uses a strictly longer key
+  // than anything greedy chose, greedy picked the less specific reading and the
+  // token is left exactly as the label wrote it.
+  //
+  // This only ever REMOVES a split — greedy still decides the segments, so no
+  // token starts splitting that did not split before. That asymmetry is the
+  // point: the catalog's ingredient cache carries merge-artifact keys harvested
+  // from damaged data ("butter pasteurized cream", "shortening palm oil"), and
+  // any rule that let them CREATE splits would invent ingredients.
+  const greedyLongest = segments.reduce((m, s) => Math.max(m, s.split(' ').length), 0);
+  if (longestKeyInAnyDecomposition(words, knownKeysSet) > greedyLongest) return null;
+
+  // EVERY piece must be a COMPOUND ingredient name — multi-word, or a
+  // hyphenated chemical name ("l-theanine"). This is the rule that makes the
+  // whole thing safe, and it was arrived at by running the candidate splits
+  // across all ~3M ingredient tokens in the catalog: allowing a bare
+  // single-word piece wrecks ~15k real ingredients, because a bare word is
+  // nearly always a modifier that belongs to its neighbour, not an ingredient
+  // in its own right — "blackberry juice concentrate" is not blackberry plus
+  // juice concentrate, "dried cheddar cheese" is not dried plus cheddar
+  // cheese, "bourbon vanilla extract" is not bourbon plus vanilla extract.
+  // Hyphenated names are exempt from the bare-word rule because they can't be
+  // modifiers of a neighbour — that's what lets the real scanned case
+  // "potassium sorbate l-theanine" split into its two declared ingredients.
+  // The cost is recall (a genuine "palm oil carrageenan" merge stays merged);
+  // that trade is deliberate — a merged row shows the label's own words,
+  // whereas a bad split invents an ingredient the label never declared.
+  if (!segments.every((s) => s.includes(' ') || s.includes('-'))) return null;
+
+  // A glued token can also carry advisory text the per-token filter never saw
+  // because it was never its own comma-separated token ("citric acid to
+  // protect flavor"). Now that the pieces are separated, hold them to the
+  // same advisory rule as any other token.
+  //
+  // A leading connector is stripped FIRST. "roasted peanuts and sugar"
+  // decomposes to "roasted peanuts" + "and sugar" (the catalog really does
+  // carry "and sugar" as a key, harvested from damaged data), and the advisory
+  // rule /^\s*and\s/ would silently delete the sugar from a peanut butter.
+  // The connector is punctuation the lost comma left behind, not advisory text.
+  const kept = segments
+    .map((s) => s.replace(/^(?:and|or)\s+/i, '').trim())
+    .filter((s) => s && !ADVISORY_PATTERNS.some((re) => re.test(s)));
+  if (kept.length === 0) return null;
+  return kept;
+}
+
 module.exports = {
   normalizeIngredientTokens,
   classifyTokenPlausibility,
+  isLabelBoilerplate,
+  segmentIntoKnownIngredients,
   ADVISORY_PATTERNS,
 };

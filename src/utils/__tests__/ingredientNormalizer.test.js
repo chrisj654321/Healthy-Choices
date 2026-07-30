@@ -7,7 +7,12 @@
  * P0 ingredient data-quality brief): duplicate oils, "Added To Preserve
  * Freshness" ranked as a real ingredient, and OCR garbage rows.
  */
-import { normalizeIngredientTokens, classifyTokenPlausibility } from '../ingredientNormalizer';
+import {
+  normalizeIngredientTokens,
+  classifyTokenPlausibility,
+  isLabelBoilerplate,
+  segmentIntoKnownIngredients,
+} from '../ingredientNormalizer';
 
 describe('normalizeIngredientTokens: oil disclosure resolution', () => {
   test('"Vegetable Oil (Canola Oil, Sunflower Oil), Sugar, Canola Oil" yields each oil once, no generic row', () => {
@@ -132,5 +137,154 @@ describe('classifyTokenPlausibility', () => {
 
   test('a bare number is garbage', () => {
     expect(classifyTokenPlausibility('49015', knownKeys).verdict).toBe('garbage');
+  });
+});
+
+describe('normalizeIngredientTokens: label-section truncation (whole-package OCR)', () => {
+  // Real-world case (2026-07 founder scan, Gorilla Mind energy drink): the
+  // OFF ingredients field was OCR'd off the ENTIRE can, running past the
+  // declaration into Nutrition Facts, the warning box, and the address —
+  // which rendered rows like "Boise", "Cans Per Day", and "Nutrition Facts
+  // Serving Size 1 Can" as ingredients.
+  const ocrText =
+    'Carbonated Filtered Water, Citric Acid, Natural Flavors, Sucralose, Sodium Benzoate, ' +
+    'Potassium Sorbate, Niacinamide, Calcium Pantothenate. ' +
+    'Nutrition Facts Serving Size 1 Can 16 Fl Oz. Calories 5 Total Fat 0g Sodium 5mg. ' +
+    'Warning: Do Not Exceed 2 Cans Per Day. Consult A Qualified Healthcare Professional Before Use. ' +
+    'Gorilla Mind, Boise, ID, USA @gorillamind Gorillamind.com Please Recycle';
+
+  test('everything after the Nutrition Facts marker is cut before tokenizing', () => {
+    const tokens = normalizeIngredientTokens(ocrText);
+    expect(tokens).toEqual([
+      'carbonated filtered water',
+      'citric acid',
+      'natural flavors',
+      'sucralose',
+      'sodium benzoate',
+      'potassium sorbate',
+      'niacinamide',
+      'calcium pantothenate',
+    ]);
+    expect(tokens).not.toContain('boise');
+    expect(tokens.some((t) => t.includes('cans per day'))).toBe(false);
+    expect(tokens.some((t) => t.includes('serving size'))).toBe(false);
+  });
+
+  test('a lone trailing marker phrase cuts the tail too (warning box without a facts panel)', () => {
+    const tokens = normalizeIngredientTokens(
+      'Water, Sugar, Citric Acid, Warning: Keep Out Of Reach Of Children'
+    );
+    expect(tokens).toEqual(['water', 'sugar', 'citric acid']);
+  });
+
+  test('a marker inside the first characters does NOT wipe the declaration', () => {
+    // "Ingredients:"-style headers sometimes mis-scrape; never cut at index < 20.
+    const tokens = normalizeIngredientTokens('Serving Size Water, Sugar');
+    expect(tokens.length).toBeGreaterThan(0);
+  });
+
+  test('normal labels without markers are untouched', () => {
+    const tokens = normalizeIngredientTokens('Peanuts, Sea Salt');
+    expect(tokens).toEqual(['peanuts', 'sea salt']);
+  });
+});
+
+describe('isLabelBoilerplate: weak-hit screen', () => {
+  test('flags warning/panel/address sentences that share a food word with the DB', () => {
+    expect(isLabelBoilerplate('may cause occasionally rapid heart rate')).toBe(true);
+    expect(isLabelBoilerplate('nutrition facts serving size 1 can 16 fl oz')).toBe(true);
+    expect(isLabelBoilerplate('usa @gorillamind gorillamind.com please recycle')).toBe(true);
+    expect(isLabelBoilerplate('consult a qualified healthcare professional before use')).toBe(true);
+  });
+
+  test('never flags real ingredients — including weak-match shapes the catalog probe surfaced', () => {
+    expect(isLabelBoilerplate('bay leaf')).toBe(false);
+    expect(isLabelBoilerplate('riboflavin vitamin b2')).toBe(false);
+    expect(isLabelBoilerplate('flavor enhancer e621')).toBe(false);
+    expect(isLabelBoilerplate('yellow 5 & 6')).toBe(false);
+    expect(isLabelBoilerplate('nutritional yeast')).toBe(false);
+    expect(isLabelBoilerplate('organic grade a milk and organic grade a cream')).toBe(false);
+  });
+});
+
+describe('segmentIntoKnownIngredients: comma-loss merges', () => {
+  const keys = new Set([
+    'potassium sorbate', 'l-theanine', 'sodium benzoate', 'saffron extract',
+    'blackberry', 'juice concentrate', 'dried', 'cheddar cheese',
+    'palm oil', 'carrageenan',
+  ]);
+
+  test('splits two glued multi-word ingredients', () => {
+    expect(segmentIntoKnownIngredients('potassium sorbate l-theanine', keys)).toEqual([
+      'potassium sorbate',
+      'l-theanine',
+    ]);
+  });
+
+  test('never splits when any piece would be a bare single word', () => {
+    // "blackberry juice concentrate" is ONE ingredient, not blackberry + juice
+    // concentrate; "dried cheddar cheese" is not dried + cheddar cheese.
+    expect(segmentIntoKnownIngredients('blackberry juice concentrate', keys)).toBeNull();
+    expect(segmentIntoKnownIngredients('dried cheddar cheese', keys)).toBeNull();
+  });
+
+  test('returns null when a word is unaccounted for (no partial invention)', () => {
+    expect(segmentIntoKnownIngredients('potassium sorbate mysteryzine', keys)).toBeNull();
+  });
+
+  test('leaves a token alone when it is itself a known name', () => {
+    expect(segmentIntoKnownIngredients('sodium benzoate', keys)).toBeNull();
+  });
+});
+
+describe('segmentIntoKnownIngredients: specificity guard', () => {
+  // 'organic' and 'organic sugar' are both real keys, which is what let greedy
+  // left-to-right matching read a bag of frozen peas as containing sugar.
+  const keys = new Set([
+    'organic', 'organic sugar', 'sugar', 'snap peas', 'sugar snap peas',
+    'unsalted butter', 'pasteurized cream',
+    'enriched flour', 'wheat flour',
+    'potassium sorbate', 'l-theanine',
+  ]);
+
+  test('does not split when a longer, more specific name spans the boundary', () => {
+    // "organic sugar" + "snap peas" would invent an added sweetener.
+    expect(segmentIntoKnownIngredients('organic sugar snap peas', keys)).toBeNull();
+  });
+
+  test('still splits when no longer alternative reading exists', () => {
+    // 'unsalted' is not a key, so 'butter pasteurized cream' cannot head a
+    // complete decomposition — this parent/sub-ingredient merge must survive.
+    expect(segmentIntoKnownIngredients('unsalted butter pasteurized cream', keys)).toEqual([
+      'unsalted butter',
+      'pasteurized cream',
+    ]);
+    expect(segmentIntoKnownIngredients('enriched flour wheat flour', keys)).toEqual([
+      'enriched flour',
+      'wheat flour',
+    ]);
+    expect(segmentIntoKnownIngredients('potassium sorbate l-theanine', keys)).toEqual([
+      'potassium sorbate',
+      'l-theanine',
+    ]);
+  });
+});
+
+describe('segmentIntoKnownIngredients: connector pieces are not discarded', () => {
+  // The catalog really does carry 'and sugar' as a key, harvested from tokens
+  // that had already lost their comma.
+  const keys = new Set(['roasted peanuts', 'and sugar', 'sugar', 'palm oil', 'and salt', 'salt']);
+
+  test('strips a leading connector instead of letting the advisory rule delete the piece', () => {
+    // Previously returned ['roasted peanuts'] — the sugar vanished from a
+    // peanut butter, because /^\s*and\s/ rejected 'and sugar' outright.
+    expect(segmentIntoKnownIngredients('roasted peanuts and sugar', keys)).toEqual([
+      'roasted peanuts',
+      'sugar',
+    ]);
+    expect(segmentIntoKnownIngredients('palm oil and salt', keys)).toEqual([
+      'palm oil',
+      'salt',
+    ]);
   });
 });

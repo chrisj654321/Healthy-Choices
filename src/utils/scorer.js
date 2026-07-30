@@ -1,6 +1,10 @@
 import { INGREDIENT_DB, FLAG_LEVELS } from '../data/ingredients';
 import { CACHED_INGREDIENT_ANALYSIS, riskToFlag } from '../data/ingredientCache';
-import { classifyTokenPlausibility } from './ingredientNormalizer';
+import {
+  classifyTokenPlausibility,
+  isLabelBoilerplate,
+  segmentIntoKnownIngredients,
+} from './ingredientNormalizer';
 
 // ─── Ingredient lookup: normalization + smart-matching ────────────────────────
 
@@ -285,7 +289,14 @@ export function lookupIngredient(raw) {
   // Require at least ONE shared non-weak token and a clear winner
   if (!bestHit || bestShared < 1 || ambiguous) return null;
 
-  return bestHit;
+  // Flag token-fallback results as WEAK: all this match proves is that one
+  // significant word of the raw string also appears in a known ingredient
+  // name. That is the right level of confidence for a noisy-but-real label
+  // ("sunflower oil (high oleic)"), and the wrong one for a whole sentence of
+  // packaging text that happens to contain a food word — which is how
+  // "May Cause Occasionally Rapid Heart Rate" reached the UI scored as an
+  // ingredient. Callers must re-check weak hits against the plausibility gate.
+  return { ...bestHit, weak: true };
 }
 
 // ─── Unknown ingredient classifier ───────────────────────────────────────────
@@ -789,7 +800,45 @@ function markerWeight(entry) {
   return 0.4;               // mild (e.g. natural flavors)
 }
 
-function analyzeIngredients(ingredients) {
+/**
+ * Split tokens that are two real ingredients glued together by a missing
+ * comma before anything is scored. Only touches tokens that have no strong
+ * (exact/cleaned-phrase) match of their own — a token the DB already
+ * recognizes as one ingredient is never taken apart.
+ */
+function expandMergedIngredients(ingredients) {
+  const knownKeys = getKnownKeysSet();
+  const out = [];
+
+  // Original tokens pass through untouched, duplicates and all — this
+  // function's job is splitting merges, not cleaning up the input list.
+  // Only PIECES RECOVERED BY A SPLIT are deduped, and only against tokens
+  // that already exist: "lemon juice citric acid" must not add a second
+  // "citric acid" row when the label also declares it separately, and
+  // "palm oil palm oil" must not become two identical rows.
+  const originals = new Set(ingredients);
+  const emittedParts = new Set();
+
+  for (const raw of ingredients) {
+    const hit = lookupIngredient(raw);
+    if (!hit || hit.weak) {
+      const parts = segmentIntoKnownIngredients(raw, knownKeys);
+      if (parts) {
+        for (const part of parts) {
+          if (originals.has(part) || emittedParts.has(part)) continue;
+          emittedParts.add(part);
+          out.push(part);
+        }
+        continue;
+      }
+    }
+    out.push(raw);
+  }
+  return out;
+}
+
+function analyzeIngredients(rawIngredients) {
+  const ingredients = expandMergedIngredients(rawIngredients);
   let totalPenalty = 0;
   let flaggedCount = 0;
   let avoidCount = 0;
@@ -801,10 +850,20 @@ function analyzeIngredients(ingredients) {
   ingredients.forEach((raw) => {
     let hit = lookupIngredient(raw);
 
-    // If nothing matched, run the plausibility gate before treating it as a
-    // plain "unknown" row: rescue near-miss OCR typos to a known key, and
-    // hide genuinely unreadable garbage tokens instead of showing them as
-    // an Unknown ingredient.
+    // A WEAK (single-shared-token) match is not evidence the string is an
+    // ingredient at all — hold it to the narrow label-boilerplate check.
+    // (Running weak hits through the full gate would hide thousands of real
+    // single-token-matched ingredients like "bay leaf" and "vitamin b2";
+    // see the calibration notes on isLabelBoilerplate.)
+    if (hit && hit.weak && isLabelBoilerplate(raw)) {
+      hiddenUnreadableCount++;
+      return;
+    }
+
+    // If nothing matched, run the full plausibility gate before treating it
+    // as a plain "unknown" row: rescue near-miss OCR typos to a known key,
+    // and hide genuinely unreadable garbage tokens instead of showing them
+    // as an Unknown ingredient.
     if (!hit) {
       const { verdict, rescuedTo } = classifyTokenPlausibility(raw, getKnownKeysSet());
       if (verdict === 'garbage') {

@@ -2230,6 +2230,9 @@ export const CACHED_INGREDIENT_ANALYSIS = {
   'onion*': { risk: IngredientRisk.Low, category: 'vegetables', explanation: 'Certified organic onion; same quercetin and allyl sulfide content as conventional — no safety concerns.' },
   'onions': { risk: IngredientRisk.Low, category: 'vegetables', explanation: 'Fresh or dried Allium cepa; quercetin, fructooligosaccharide prebiotic fiber, and organosulfur compounds — no safety concerns at culinary amounts.' },
   'snap peas': { risk: IngredientRisk.Low, category: 'vegetables', explanation: 'Fresh sugar snap peas (Pisum sativum var. saccharatum); provide fiber, vitamin C, and vitamin K — no safety concerns.' },
+  // Canonical full name. Its absence made "organic sugar snap peas" decompose
+  // as "organic sugar" + "snap peas", inventing a sweetener in a bag of peas.
+  'sugar snap peas': { risk: IngredientRisk.Low, category: 'vegetables', explanation: 'Fresh sugar snap peas (Pisum sativum var. saccharatum); provide fiber, vitamin C, and vitamin K — no safety concerns.' },
   'green peas': { risk: IngredientRisk.Low, category: 'vegetables', explanation: 'Fresh or frozen garden peas; good source of plant protein, fiber, vitamins C and K — no safety concerns.' },
   'peas': { risk: IngredientRisk.Low, category: 'vegetables', explanation: 'Pisum sativum; nutrient-dense legume/vegetable providing protein, fiber, vitamin C, and folate — no safety concerns.' },
   'red peppers': { risk: IngredientRisk.Low, category: 'vegetables', explanation: 'Ripe red bell peppers; exceptionally rich in vitamin C (~190mg per cup) and lycopene — FDA GRAS, no safety concerns.' },

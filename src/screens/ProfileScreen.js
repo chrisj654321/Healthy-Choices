@@ -581,6 +581,17 @@ export default function ProfileScreen({ navigation }) {
           </View>
           <Ionicons name="chevron-forward" size={16} color={Colors.textMuted} />
         </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.manageRow}
+          onPress={() => navigation.navigate('SuggestFeature')}
+        >
+          <Ionicons name="bulb-outline" size={18} color={Colors.primary} />
+          <View style={{ flex: 1 }}>
+            <Text style={styles.manageLabel}>Suggest a Feature</Text>
+            <Text style={styles.manageSub}>Tell us what the app should do next.</Text>
+          </View>
+          <Ionicons name="chevron-forward" size={16} color={Colors.textMuted} />
+        </TouchableOpacity>
         <TouchableOpacity style={styles.dangerRow} onPress={handleClearHistory}>
           <Ionicons name="trash-outline" size={18} color={Colors.flagRed} />
           <View style={{ flex: 1 }}>

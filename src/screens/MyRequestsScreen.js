@@ -13,6 +13,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
 import { getRequests } from '../utils/productRequests';
+import { getFeatureRequests } from '../utils/featureRequests';
 import SpecsMascot from '../components/SpecsMascot';
 import BackButton from '../components/BackButton';
 
@@ -29,8 +30,16 @@ export default function MyRequestsScreen({ navigation }) {
 
   const loadRequests = async () => {
     setLoading(true);
-    const data = await getRequests();
-    setRequests(data);
+    // One merged list, newest first: product requests (barcode or name) and
+    // feature requests (title). Feature entries carry type: 'feature' so the
+    // row can show a Feature chip instead of the product resolved/pending
+    // status — features have no auto-resolve against the local product DB.
+    const [products, features] = await Promise.all([getRequests(), getFeatureRequests()]);
+    const merged = [
+      ...products,
+      ...features.map((f) => ({ ...f, type: 'feature' })),
+    ].sort((a, b) => (b.requestedAt || '').localeCompare(a.requestedAt || ''));
+    setRequests(merged);
     setLoading(false);
   };
 
@@ -64,7 +73,7 @@ export default function MyRequestsScreen({ navigation }) {
           <SpecsMascot clip="inspecting" size={80} />
           <Text style={styles.emptyTitle}>No requests yet</Text>
           <Text style={styles.emptySubtitle}>
-            Scan a product we don't have, or suggest one by name — it'll show up here.
+            Scan a product we don't have, suggest one by name, or suggest a feature — it'll show up here.
           </Text>
         </View>
       ) : (
@@ -74,7 +83,7 @@ export default function MyRequestsScreen({ navigation }) {
           // keying on barcode alone collides every one of them into the same
           // key — index is always present and unique within this list, so it
           // anchors the key regardless of which fields a given entry has.
-          keyExtractor={(item, idx) => `${item.barcode || item.name || 'request'}-${item.requestedAt}-${idx}`}
+          keyExtractor={(item, idx) => `${item.barcode || item.name || item.title || 'request'}-${item.requestedAt}-${idx}`}
           contentContainerStyle={styles.list}
           renderItem={({ item }) => (
             <TouchableOpacity
@@ -84,7 +93,9 @@ export default function MyRequestsScreen({ navigation }) {
               disabled={!item.resolved}
             >
               <View style={styles.rowLeft}>
-                {item.barcode ? (
+                {item.type === 'feature' ? (
+                  <Text style={styles.barcode} numberOfLines={1}>{item.title}</Text>
+                ) : item.barcode ? (
                   <Text style={styles.barcode}>{item.barcode}</Text>
                 ) : (
                   <Text style={styles.barcode} numberOfLines={1}>
@@ -93,7 +104,12 @@ export default function MyRequestsScreen({ navigation }) {
                 )}
                 <Text style={styles.date}>Requested {formatDate(item.requestedAt)}</Text>
               </View>
-              {item.resolved ? (
+              {item.type === 'feature' ? (
+                <View style={styles.typeChip}>
+                  <Ionicons name="bulb-outline" size={12} color={Colors.primary} />
+                  <Text style={styles.typeChipText}>Feature</Text>
+                </View>
+              ) : item.resolved ? (
                 <View style={styles.statusResolved}>
                   <Ionicons name="checkmark-circle" size={14} color={Colors.primary} />
                   <Text style={styles.statusResolvedText}>Added</Text>
@@ -153,4 +169,11 @@ const styles = StyleSheet.create({
     borderWidth: 1, borderColor: Colors.border,
   },
   statusPendingText: { fontSize: Font.sizes.xs, color: Colors.textSecondary, fontWeight: Font.weights.medium },
+
+  typeChip: {
+    flexDirection: 'row', alignItems: 'center', gap: 4,
+    backgroundColor: Colors.primaryLight, borderRadius: 8,
+    paddingHorizontal: 8, paddingVertical: 4,
+  },
+  typeChipText: { fontSize: Font.sizes.xs, color: Colors.primary, fontWeight: Font.weights.medium },
 });
