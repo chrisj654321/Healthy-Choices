@@ -1,23 +1,38 @@
 # Current priorities
 
-_Last updated: 2026-07-26 — update whenever a priority ships or shifts._
+_Last updated: 2026-07-30 — update whenever a priority ships or shifts._
 
 _Full rewrite 2026-07-26: the previous version was dated 07-20 and had drifted badly — it listed shipped work as pending, carried multi-paragraph write-ups of things long since done, and omitted the highest-leverage item entirely. Shipped work now lives as one line each with a commit ref; the detail is in [decision-log.md](decision-log.md)._
 
 ---
 
-## 🚦 BLOCKING THE NEXT BUILD
+## 🚦 BLOCKING THE NEXT APPLE BUILD
 
-The founder is holding the next build until the items below are done. Nothing here needs an EAS build to verify — that's the point.
+_Updated 2026-07-30: founder wanted to see the Living Conditions feature but isn't submitting to Apple right now — no build was run this session. This section is prepped so the next real submission doesn't have to re-derive any of this._
 
-- **Is 1.2.0 approved?** Submitted 2026-07-23, no approval logged since. This decides the version number: if it's still in review, ship another build under `1.2.0` (build number auto-increments, `eas.json` `autoIncrement: true` + `appVersionSource: remote`); if it's live, go to **1.3.0** — today added a user-facing feature, so a `.1` patch bump understates it.
-- **Privacy policy must be LIVE before the binary ships** (`029716c`, not yet pushed). The build now collects a persistent install id; the currently-published policy says it doesn't. Push so the site redeploys.
-- **App Store Connect privacy label — founder only, no credentials on this side:**
-  - Add **Identifiers → Device ID**, set to **"Data Not Linked to You"** (honest because `app_events` has no `user_id` column at all). **Leave "Used for Tracking" = No** — build 27 was rejected on 5.1.2(i) over exactly this toggle; first-party, never-shared ids are not ATT tracking.
-  - Add **Name** — still outstanding from the 2026-07-22 preflight, for the first-name capture that already shipped in 1.2.0.
-- **Run `supabase/app_events_setup.sql`** in the Supabase dashboard before the build ships, or the analytics inserts silently no-op.
+**Version number — decide when you're actually ready to submit:**
+- Ship under `1.2.0` (autoIncrement handles the build number) if the 2026-07-23 submission is still in Apple review, OR if it was approved and you want this as a follow-up patch.
+- Go to **1.3.0** if 1.2.0 is already live — this batch adds a real user-facing feature (Living Conditions), not just fixes, so a `.1` bump would understate it.
+- Can't be checked from this session (App Store Connect, no credentials here) — check ASC before deciding.
 
-**Immediately AFTER the build ships:** upload `products.db` (`node scripts/upload-products-db.js`) and bump `DB_VERSION`. Not before — the rebuilt catalog references 16 company records that only exist in the new binary, so a fresh install of the older live version would show blank company pages.
+**What's New copy, drafted from every commit since the 1.2.0 submission (`a3788c0`) — trim before pasting into ASC:**
+- New: "How This Was Raised" card on egg products — housing conditions, certified space-per-hen standards, sourced to Certified Humane / USDA / United Egg Producers, shown on any egg scan (catalog or not)
+- New: "Suggest a product" by name, from Profile
+- Fixed: company pages no longer show fabricated "Low" lobbying badges or invented 50/50 donation splits when we never researched that company — now honestly says "No data"
+- Fixed: scanner "Connection Error" on common items — checks the local catalog before the network call now
+- Fixed: whole-package OCR text no longer renders as ingredients
+- Data: 16 new company records, all null-companyId products resolved; +58 product photos (86% coverage, up from 80.7%); company-resolution work in progress (19.5% → 41.5% of the wider OFF catalog, background work, not user-facing yet)
+
+**Not user-facing but relevant to the release:**
+- Sentry now tags every event with release/build/OTA-update id (needs `SENTRY_ORG`/`SENTRY_PROJECT`/token secrets live in EAS — grep the build log for `sentry-cli`: `output:` good, `error:` means a secret's wrong)
+- New `app_events` funnel/retention analytics table — **run `supabase/app_events_setup.sql` in the Supabase dashboard before this ships, or inserts silently no-op**
+- Privacy policy already covers the install-id disclosure (`029716c`) and is live (pushed, confirmed on `origin/main` as of this session)
+
+**Housekeeping found this session, not blocking but worth knowing before you build:**
+- Local `main` is **27 commits ahead of `origin/main`** (everything since `af5d7f6`, including all of the above) — push before building if your EAS build source is GitHub-linked rather than local-CLI upload.
+- App Store Connect privacy label additions (Device ID → "Data Not Linked to You", Used for Tracking = No; Name) were flagged 2026-07-26 as still outstanding — re-check before submitting, can't verify from here.
+
+**Immediately AFTER the build ships:** upload `products.db` (`node scripts/upload-products-db.js`) and bump `DB_VERSION`. Not before — the rebuilt catalog references company records that only exist in the new binary, so a fresh install of the older live version would show blank company pages.
 
 ---
 
