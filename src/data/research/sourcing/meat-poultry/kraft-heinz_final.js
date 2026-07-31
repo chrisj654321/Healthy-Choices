@@ -7,7 +7,7 @@ module.exports = {
 
     model: 'aggregator',
     modelSource: {
-      name: "Kraft Heinz's own European Chicken Commitment page describes standards applied to its chicken 'suppliers' (plural) with third-party auditing and annual public reporting of supplier compliance — consistent with an aggregator model that buys from multiple external chicken producers rather than a single-farm or contract-flock structure. Separately, Kraft Heinz's real-world market position is that of a large industrial purchaser that processes chicken and pork into branded products (Oscar Mayer) rather than raising livestock itself, independently consistent with its framing as a purchaser/plaintiff — not a producer/defendant — in the broiler chicken antitrust litigation (see enforcement[]). No company-wide sourcing-model disclosure (e.g., 10-K risk-factor language) was independently read in this research pass — sec.gov Archives URLs returned HTTP 403 throughout this research batch.",
+      name: "Kraft Heinz's own European Chicken Commitment page describes standards applied to its chicken 'suppliers' (plural) with third-party auditing and annual public reporting of supplier compliance — consistent with an aggregator model that buys from multiple external chicken producers rather than a single-farm or contract-flock structure. Separately, Kraft Heinz's market position is that of a large industrial purchaser that processes chicken and pork into branded products (Oscar Mayer) rather than raising livestock itself. Note that 'aggregator' here is this pipeline's reading of the structure, not a classification Kraft Heinz itself publishes. No company-wide sourcing-model disclosure (e.g., 10-K risk-factor language) was independently read in this research pass — sec.gov Archives URLs returned HTTP 403 throughout this research batch.",
       url: 'https://www.kraftheinz.com/en-GB/animal-welfare-commitment',
       date: '2026-07-30',
       basis: 'company-disclosure',
@@ -30,9 +30,20 @@ module.exports = {
         date: '2026-07-30',
         basis: 'company-disclosure',
       },
-      gestationCrateStatus: 'company-claims-crate-free',
+      // Stage 5 review (2026-07-31) downgraded this field from
+      // 'company-claims-crate-free' to 'unknown'. Kraft Heinz has never
+      // claimed to BE crate-free; its own current (2023) language is that it
+      // is "phasing out the purchase of pork from suppliers who use gestation
+      // stalls," open-ended, with no completion date or percentage. The enum
+      // value 'company-claims-crate-free' asserted a completed company claim
+      // the source note itself says does not exist. No source found supports
+      // an affirmative 'crates-used' finding either (the only such claim is
+      // advocacy-sourced and treated as a lead), so the field is genuinely
+      // unresolved. The pledge history is preserved below and renders as
+      // no-data, not as implied-good or implied-bad.
+      gestationCrateStatus: 'unknown',
       gestationCrateSource: {
-        name: "In 2012, then-Kraft Foods announced Oscar Mayer would move away from gestation stalls by 2022 (one of several such industry pledges made 2012-2015). Kraft Heinz's own successive disclosures then restated this commitment: its 2017 ESG report and 2018 proxy statement restated the target as elimination of gestation stalls globally 'by 2025'; its 2023 ESG Report softened the language to 'phasing out the purchase of pork from suppliers who use gestation stalls' — an open-ended phrase with no completion date or percentage-achieved figure disclosed. This is company-disclosure (Kraft Heinz's own successive report language) and is the clearest documented instance in this research batch of a company restating and softening a welfare commitment over time (2012: pledge by 2022 -> 2018: restated as by 2025 -> 2023: open-ended 'phasing out,' no completion percentage). No percentage-complete figure for Kraft Heinz's current gestation-stall-free sourcing was found (contrast with Hormel, which discloses a specific percentage — see the hormel companyId record). A separate 2021 World Animal Protection ('Quit Stalling') report characterizing the 2022 pledge as missed is an advocacy-sourced claim, treated as a lead only, not established fact, and is not the basis for this status. No GAP, Certified Humane, or AGW certification specific to Kraft Heinz's own gestation-crate-free status was found (NOT CHECKED exhaustively). Because there is no completion percentage or third-party certification, this is recorded as a company claim of moving toward crate-free sourcing, not a certified or company-wide-confirmed crate-free status.",
+        name: "In 2012, then-Kraft Foods announced Oscar Mayer would move away from gestation stalls by 2022 (one of several such industry pledges made 2012-2015). Kraft Heinz's own successive disclosures then restated this commitment: its 2017 ESG report and 2018 proxy statement restated the target as elimination of gestation stalls globally 'by 2025'; its 2023 ESG Report softened the language to 'phasing out the purchase of pork from suppliers who use gestation stalls' — an open-ended phrase with no completion date or percentage-achieved figure disclosed. This is company-disclosure (Kraft Heinz's own successive report language); the sequence itself is the citable fact (2012: pledge by 2022 -> 2018: restated as by 2025 -> 2023: open-ended 'phasing out,' no completion percentage). No percentage-complete figure for Kraft Heinz's current gestation-stall-free sourcing was found. A separate 2021 World Animal Protection ('Quit Stalling') report characterizing the 2022 pledge as missed is an advocacy-sourced claim, treated as a lead only, not established fact, and is not the basis for this status. No GAP, Certified Humane, or AGW certification specific to Kraft Heinz's own gestation-crate-free status was found (NOT CHECKED exhaustively). Because there is no completion percentage or third-party certification, this is recorded as a company claim of moving toward crate-free sourcing, not a certified or company-wide-confirmed crate-free status.",
         url: 'https://www.sec.gov/Archives/edgar/data/1637459/000121465924004993/d322243px14a6g.htm',
         date: '2026-07-30',
         basis: 'company-disclosure',
@@ -47,19 +58,24 @@ module.exports = {
       scorecards: [],
     },
 
+    // DELIBERATELY OMITTED (Stage 5 review, 2026-07-31): In re Broiler Chicken
+    // Antitrust Litigation (N.D. Ill., 1:16-cv-08637). Kraft Heinz appears in
+    // that docket as a PURCHASER/PLAINTIFF — it sued Tyson, Pilgrim's Pride and
+    // other processors in 2019 alleging it was overcharged — and is on NO
+    // version of the defendant roster. Stage 4 placed it in enforcement[] with
+    // status 'pending'; the prose was correct but the FIELD TYPE was not.
+    // enforcement[] means "an action against this company," and any UI that
+    // renders body/status/year without the full action text would show
+    // "Kraft Heinz — broiler chicken antitrust — pending," i.e. the exact
+    // defamatory inversion the Stage 3 fact-check spent its priority section
+    // preventing. The fact-check's own mandatory instruction was that this
+    // UNVERIFIED, non-welfare fact defaults to OMIT unless the founder
+    // specifically wants purchaser-side antitrust activity surfaced. If the
+    // founder does want it, it needs its own non-enforcement field, not this
+    // array. Source if restored: Food Business News, "Kraft Heinz, Conagra,
+    // Nestle file poultry price-fixing lawsuit" (2019-04-02), mirrored by
+    // Supermarket Perimeter.
     enforcement: [
-      {
-        year: 2016,
-        body: 'U.S. District Court, Northern District of Illinois — In re Broiler Chicken Antitrust Litigation (docket 1:16-cv-08637)',
-        action:
-          "Kraft Heinz Foods Company appears as a named party in this docket, but it is NOT a defendant in the broiler chicken price-fixing litigation. According to Food Business News (April 2, 2019, mirrored by Supermarket Perimeter under license), Kraft Heinz Co. — together with Conagra Brands Inc. and Nestle USA Inc./Nestle Purina Petcare Co. — filed a lawsuit in federal court in Chicago claiming Tyson Foods, Pilgrim's Pride, and other poultry processors conspired to inflate broiler chicken prices. Separately, Cohen Milstein's case-tracker page and general search synthesis describe 'bulk purchasers of broiler chicken like Walmart, Kraft Heinz and Nestle' as having joined the suit as purchasers, consistent with the Food Business News framing. Cross-checked against three independent case-tracker sources, the consistently reported defendant/settling-producer roster for this litigation is Tyson, Pilgrim's Pride, Fieldale Farms, Peco, George's, Amick, Mar-Jac, Harrison Poultry, Simmons, Mountaire, O.K. Foods, HRF, Koch, Foster Farms, Perdue, Case, Claxton, Wayne Farms, Agri Stats, and Sanderson Farms — Kraft Heinz never appears on any version of this defendant list, and no settlement or liability finding involving Kraft Heinz as a defendant was found in this research. This purchaser/plaintiff role characterization is UNVERIFIED (no primary court document with role-labeled parties was independently read — CourtListener/govinfo full-text fetches returned HTTP 403), but it is consistently corroborated across multiple independent secondary sources with no contradicting source found anywhere in this research.",
-        status: 'pending',
-        amount: null,
-        source: {
-          name: "Food Business News, \"Kraft Heinz, Conagra, Nestle file poultry price-fixing lawsuit\" (April 2, 2019), mirrored by Supermarket Perimeter; Cohen Milstein case-tracker page; Lockridge Grindal Nauen and other independent case-tracker sources for the defendant roster",
-          url: 'https://www.foodbusinessnews.net/articles/13565-kraft-heinz-conagra-nestle-file-poultry-price-fixing-lawsuit',
-        },
-      },
       {
         year: 2025,
         body: 'USDA Food Safety and Inspection Service (FSIS)',
@@ -76,9 +92,9 @@ module.exports = {
         year: 2018,
         body: 'U.S. Occupational Safety and Health Administration (OSHA)',
         action:
-          "As of 2018-03-16, Kraft Heinz Foods Company's Mason, OH facility received a citation after an employee suffered a partial finger amputation while clearing a machine jam; OSHA found failures in energy-control (lockout/tagout) procedures, inadequate machine guarding, and insufficient training, with $109,939 in proposed penalties. This is a 2018 finding, outside the 2023-2025 recency window relevant to this research pass, and is included only as historical pattern context with this explicit date caveat — it should not be presented as a current or recent finding.",
-        status: 'settled',
-        amount: 109939,
+          "As of 2018-03-16, Kraft Heinz Foods Company's Mason, OH facility received a citation after an employee suffered a partial finger amputation while clearing a machine jam; OSHA found failures in energy-control (lockout/tagout) procedures, inadequate machine guarding, and insufficient training, with $109,939 in proposed penalties. OSHA's proposed penalty is the figure at citation; whether it was contested, reduced, or paid as proposed was not determined in this research, so no final penalty amount is recorded. This is a 2018 finding, outside the 2023-2025 recency window relevant to this research pass, and is included only as historical pattern context with this explicit date caveat — it should not be presented as a current or recent finding.",
+        status: 'alleged',
+        amount: null,
         source: {
           name: 'U.S. Department of Labor press release (primary government source, URL located via search, not independently re-fetched in this research pass)',
           url: 'https://www.dol.gov/newsroom/releases/osha/osha20180316-3',

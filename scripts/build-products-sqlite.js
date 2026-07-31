@@ -155,7 +155,7 @@ function stripModuleExports(source) {
   return source.replace(/^module\.exports\s*=\s*\{[\s\S]*?\};\s*$/m, '');
 }
 
-function loadScorer() {
+function loadScorer(companies) {
   const bundle = [
     transformExports(readSource('src/data/ingredientCache.js')),
     transformExports(readSource('src/data/ingredients.js')),
@@ -172,6 +172,13 @@ function loadScorer() {
     module: { exports: {} },
     exports: {},
     console,
+    // scorer.js also imports COMPANY_DB directly (meat-poultry/seafood
+    // sourcing adjustment, 2026-07-30) — the import line itself gets
+    // stripped by transformExports() same as every other import, so the
+    // bundled code's `COMPANY_DB` reference needs this pre-parsed object
+    // (from loadCompanies(), already-loaded real data, not re-bundled
+    // source text) sitting in scope before the bundle runs.
+    COMPANY_DB: companies,
   };
 
   vm.runInNewContext(bundle, sandbox, {
@@ -433,7 +440,7 @@ function main() {
   let scoreProduct = null;
   let scorerNote = 'scoreProduct imported through VM bundle; score and grade precomputed';
   try {
-    scoreProduct = loadScorer().scoreProduct;
+    scoreProduct = loadScorer(companies).scoreProduct;
     log('Loaded scorer; score and grade will be precomputed.');
   } catch (error) {
     scorerNote = `score precompute skipped: ${error.message}`;

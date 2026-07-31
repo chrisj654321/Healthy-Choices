@@ -226,3 +226,44 @@ export function matchSourcingToProduct(sourcing, tier, productName = '') {
 
   return { housingLabel, scorecard, certifications, genericStandard };
 }
+
+/**
+ * detectMeatSpecies(productName) -> 'beef' | 'pork' | 'poultry' | 'unknown'
+ *
+ * Unlike eggs, meat-poultry products in this catalog carry NO housing/diet
+ * tier claim in their own name (no "grass-fed," no "gestation-crate-free" —
+ * verified against the real catalog, 2026-07-30) — deli meat and sausage
+ * packaging doesn't print that the way egg cartons print their housing
+ * tier. So the real signal for this module lives in company-level
+ * `sourcing` data, not the product name. What the name CAN still tell us
+ * is which species the product is made from, which determines which
+ * company-level field even applies (grassFinished only means something for
+ * beef; gestationCrateStatus only for pork) — a turkey product shouldn't
+ * be scored against a company's beef-finishing practices.
+ *
+ * Deliberately conservative: an ambiguous or mixed-species name (e.g. a
+ * combo pack) returns 'unknown' rather than guessing, so no field gets
+ * applied to the wrong species.
+ */
+export function detectMeatSpecies(productName) {
+  const name = (productName || '').toLowerCase();
+
+  // Explicit species words are authoritative and override format words —
+  // "BEEF Smoked Sausage" and "Turkey Smoked Sausage" are real catalog
+  // products, and "sausage" alone doesn't tell you the species.
+  const explicitBeef = /\bbeef\b|\bangus\b/.test(name);
+  const explicitPork = /\bpork\b/.test(name);
+  const explicitPoultry = /\bturkey\b|\bchicken\b/.test(name);
+  const explicitHits = [explicitBeef, explicitPork, explicitPoultry].filter(Boolean).length;
+  if (explicitHits === 1) {
+    if (explicitBeef) return 'beef';
+    if (explicitPork) return 'pork';
+    return 'poultry';
+  }
+  if (explicitHits > 1) return 'unknown'; // genuinely mixed, e.g. "Franks made with chicken and pork"
+
+  // No explicit species word — these formats are pork by default in US
+  // grocery unless another species is named (already ruled out above).
+  const isPorkFormat = /\bham\b|\bbacon\b|\bsausage\b|\bbratwurst\b|\bkielbasa\b|\bandouille\b/.test(name);
+  return isPorkFormat ? 'pork' : 'unknown';
+}

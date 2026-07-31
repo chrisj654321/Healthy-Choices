@@ -50,10 +50,10 @@ module.exports = {
     enforcement: [
       {
         year: 2021,
-        body: 'Federal Trade Commission (complaints filed by the Animal Welfare Institute)',
+        body: 'Animal Welfare Institute — advocacy complaints filed with the Federal Trade Commission (no FTC action taken)',
         action:
-          "On February 23, 2021, the Animal Welfare Institute (AWI) filed two complaints with the FTC alleging Boar's Head's \"humanely raised\" label claims — on its chicken sausage and on its Simplicity All Natural turkey products — are deceptive, on the grounds that Boar's Head's compliance with the industry-association FACTA (chicken) and NTF (turkey) programs does not constitute independent third-party welfare certification. As of this research (2026-07-30), no FTC enforcement action, consent order, or other public disposition on either complaint has been found in the five-plus years since filing; the matter has not been adjudicated.",
-        status: 'pending',
+          "On February 23, 2021, the Animal Welfare Institute (AWI) filed two complaints with the FTC alleging Boar's Head's \"humanely raised\" label claims — on its chicken sausage and on its Simplicity All Natural turkey products — are deceptive, on the grounds that Boar's Head's compliance with the industry-association FACTA (chicken) and NTF (turkey) programs does not constitute independent third-party welfare certification. As of this research (2026-07-30), no FTC enforcement action, consent order, or other public disposition on either complaint has been found in the five-plus years since filing; the matter has not been adjudicated. Recorded as 'alleged' rather than 'pending' because nothing indicates an open or active FTC proceeding — an advocacy complaint with no agency response in five-plus years is an unadjudicated allegation, not a pending action.",
+        status: 'alleged',
         amount: null,
         source: {
           name: 'Animal Welfare Institute Quarterly, Spring 2021 retrospective (direct fetch); corroborated by Lady Free Thinker, New Food Magazine, Perishable News, and a Crowell & Moring law-firm client alert (non-advocacy legal-industry source)',
@@ -100,8 +100,8 @@ module.exports = {
         year: 2024,
         body: "Wrongful-death suit — Otis Adams Jr. family",
         action:
-          "A wrongful-death suit was filed by Morgan & Morgan on behalf of the family of Otis Adams Jr. (died May 5, 2024), alleging he contracted listeriosis from Boar's Head ham purchased at a Tampa-area Publix — reported as the first suit in the outbreak tied to ham/cheese rather than liverwurst. No public court docket number was located, and the case's current status was not confirmed in this research.",
-        status: 'pending',
+          "A wrongful-death suit was filed by Morgan & Morgan on behalf of the family of Otis Adams Jr. (died May 5, 2024), alleging he contracted listeriosis from Boar's Head ham purchased at a Tampa-area Publix — reported as the first suit in the outbreak tied to ham/cheese rather than liverwurst. No public court docket number was located, and the case's current status was not confirmed in this research — recorded as an unadjudicated allegation rather than as a confirmed-pending action.",
+        status: 'alleged',
         amount: null,
         source: {
           name: 'ABC News, Good Morning America, Forbes, and The Hill',
@@ -135,7 +135,7 @@ module.exports = {
       },
       {
         claim:
-          "Boar's Head's chicken products are produced under the FACTA (Farm Animal Care Training & Auditing) program and its turkey products under the National Turkey Federation (NTF) Standards of Conduct — both industry-association programs, not independent third-party welfare certifications. This is the basis of the pending AWI FTC complaint (see enforcement).",
+          "Boar's Head's chicken products are produced under the FACTA (Farm Animal Care Training & Auditing) program and its turkey products under the National Turkey Federation (NTF) Standards of Conduct — both industry-association programs, not independent third-party welfare certifications. This is the basis of the unadjudicated AWI complaint filed with the FTC (see enforcement).",
         basis: 'company-disclosure',
         source: {
           name: 'Corroborated across AWI, Lady Free Thinker, New Food Magazine, Perishable News, and Crowell & Moring (non-advocacy legal-industry source); no direct Boar\'s Head statement naming FACTA/NTF was independently fetched',

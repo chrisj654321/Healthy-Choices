@@ -681,6 +681,66 @@ describe('scoreProduct: sourcing/housing adjustment (eggs)', () => {
   });
 });
 
+describe('scoreProduct: sourcing/housing adjustment (meat-poultry, seafood)', () => {
+  // Unlike eggs, no meat-poultry product carries a tier claim in its own
+  // name (verified against the real catalog, 2026-07-30) -- so this reads
+  // company-level `sourcing` data via companyId, not the product name.
+  // 'tyson' and 'smithfield' are real COMPANY_DB records with real
+  // sourcing data merged from the pipeline -- these tests pin real values,
+  // not fixtures, so a future data edit that breaks the scoring
+  // assumptions here shows up as a failing test (same pattern as the eggs
+  // sourcingMatch tests).
+  const beefFranks = { ingredients: ['beef'], nutrition: {}, category: 'Deli & Lunch', name: 'Angus beef franks', companyId: 'tyson' };
+  const smithfieldSausage = { ingredients: ['pork'], nutrition: {}, category: 'Deli & Lunch', name: 'Smoked Sausage Rope', companyId: 'smithfield' };
+  const turkeyProduct = { ingredients: ['turkey'], nutrition: {}, category: 'Deli & Lunch', name: 'Oven Roasted Turkey Breast', companyId: 'tyson' };
+
+  test('a real beef product from a company with no grass-finished claim gets the confirmed-conventional penalty', () => {
+    const result = scoreProduct(beefFranks);
+    expect(result.sourcingAdjustment).toBe(-4);
+  });
+
+  test('a real pork product from a company confirmed using gestation crates gets the crate penalty', () => {
+    const result = scoreProduct(smithfieldSausage);
+    expect(result.sourcingAdjustment).toBe(-6);
+  });
+
+  test('a poultry product gets no adjustment -- chill method is a processing fact, not scored, and GAP is dormant for this company', () => {
+    const result = scoreProduct(turkeyProduct);
+    expect(result.sourcingAdjustment).toBe(0);
+  });
+
+  test('species detection gates the field correctly: a pork company\'s BEEF product does not get the pork gestation-crate treatment', () => {
+    const result = scoreProduct({ ingredients: ['beef'], nutrition: {}, category: 'Deli & Lunch', name: 'Smithfield Beef Franks', companyId: 'smithfield' });
+    // smithfield's gestationCrateStatus is 'crates-used' (-6) but this is a
+    // BEEF product -- must not inherit the pork penalty. smithfield's
+    // grassFinished is 'not-applicable' (no beef line researched), so this
+    // should be 0, not -6.
+    expect(result.sourcingAdjustment).toBe(0);
+  });
+
+  test('seafood: real Seafood Watch ratings drive a real spread (StarKist/Bumble Bee Avoid vs. Wild Planet Best Choice)', () => {
+    const starkist = scoreProduct({ ingredients: ['tuna'], nutrition: {}, category: 'Canned Goods', name: 'StarKist Chunk Light Tuna in Water', companyId: 'starkist' });
+    const wildPlanet = scoreProduct({ ingredients: ['tuna'], nutrition: {}, category: 'Canned Goods', name: 'Wild Planet Wild Albacore Tuna', companyId: 'wild-planet' });
+    expect(starkist.sourcingAdjustment).toBe(-5);
+    expect(wildPlanet.sourcingAdjustment).toBe(4);
+  });
+
+  test('seafood: farmed shrimp with an unconfirmed sourcing country gets a modest, real-evidence-grounded caution', () => {
+    const result = scoreProduct({ ingredients: ['shrimp'], nutrition: {}, category: 'Meat & Seafood / Primary Proteins', name: 'SeaPak Jumbo Butterfly Shrimp 9oz', companyId: 'rich-products' });
+    expect(result.sourcingAdjustment).toBe(-3);
+  });
+
+  test('a product with no companyId is unaffected (no crash, adjustment is 0)', () => {
+    const result = scoreProduct({ ingredients: ['beef'], nutrition: {}, category: 'Deli & Lunch', name: 'Some Unbranded Beef Product' });
+    expect(result.sourcingAdjustment).toBe(0);
+  });
+
+  test('a companyId that resolves to a non-sourced company is unaffected', () => {
+    const result = scoreProduct({ ingredients: ['sugar'], nutrition: {}, category: 'Chips & Crackers', name: 'Some Chips', companyId: 'pepsico' });
+    expect(result.sourcingAdjustment).toBe(0);
+  });
+});
+
 describe('scoreProduct: packaging penalty', () => {
   test('plastic pouch + high concern + microwave heat use -> penalty 8 (6 base + 2 heat)', () => {
     const result = scoreProduct({

@@ -8,7 +8,7 @@
  * failing test.
  */
 
-import { detectHousingTier, matchSourcingToProduct, isEggsHousingEligible, getComparisonBaseline } from '../sourcingMatch';
+import { detectHousingTier, matchSourcingToProduct, isEggsHousingEligible, getComparisonBaseline, detectMeatSpecies } from '../sourcingMatch';
 import { COMPANY_DB } from '../../data/companies';
 
 const vitalFarmsSourcing = COMPANY_DB['vital-farms'].sourcing;
@@ -253,5 +253,40 @@ describe('isEggsHousingEligible', () => {
   test('handles missing product without throwing', () => {
     expect(isEggsHousingEligible(undefined)).toBe(false);
     expect(isEggsHousingEligible(null)).toBe(false);
+  });
+});
+
+describe('detectMeatSpecies', () => {
+  test('explicit species word wins', () => {
+    expect(detectMeatSpecies('Oscar Mayer Turkey Bologna')).toBe('poultry');
+    expect(detectMeatSpecies('Grilled Chicken Breast Strips')).toBe('poultry');
+    expect(detectMeatSpecies('All Natural Uncured Beef Franks')).toBe('beef');
+    expect(detectMeatSpecies('Angus beef franks')).toBe('beef');
+  });
+
+  test('explicit species word overrides a pork-format word (real catalog cases)', () => {
+    expect(detectMeatSpecies('BEEF SMOKED SAUSAGE')).toBe('beef');
+    expect(detectMeatSpecies('BEEF POLSKA KIELBASA')).toBe('beef');
+    expect(detectMeatSpecies('Turkey Polska Kielbasa')).toBe('poultry');
+    expect(detectMeatSpecies('Italian Style Smoked Chicken Sausage with Mozzarella Cheese')).toBe('poultry');
+  });
+
+  test('pork-format words default to pork only when no explicit species word is present', () => {
+    expect(detectMeatSpecies('Original Bratwurst')).toBe('pork');
+    expect(detectMeatSpecies('Smoked Sausage Rope')).toBe('pork');
+    expect(detectMeatSpecies('Natural Choice Honey Deli Ham')).toBe('pork');
+  });
+
+  test('genuinely mixed-species names are unknown, not guessed', () => {
+    expect(detectMeatSpecies('Franks made with chicken and pork')).toBe('unknown');
+  });
+
+  test('a name with no species signal at all is unknown', () => {
+    expect(detectMeatSpecies('Dino Nuggets')).toBe('unknown');
+  });
+
+  test('handles missing/empty name without throwing', () => {
+    expect(detectMeatSpecies(undefined)).toBe('unknown');
+    expect(detectMeatSpecies('')).toBe('unknown');
   });
 });

@@ -5,7 +5,8 @@ import {
   isLabelBoilerplate,
   segmentIntoKnownIngredients,
 } from './ingredientNormalizer';
-import { detectHousingTier, isEggsHousingEligible } from './sourcingMatch';
+import { detectHousingTier, isEggsHousingEligible, detectMeatSpecies } from './sourcingMatch';
+import { COMPANY_DB } from '../data/companies';
 
 // ─── Ingredient lookup: normalization + smart-matching ────────────────────────
 
@@ -715,10 +716,149 @@ const SOURCING_ADJUSTMENT = {
   conventional: -18,
 };
 
-function calcSourcingAdjustment(product) {
+function calcEggsSourcingAdjustment(product) {
   if (!isEggsHousingEligible(product)) return 0;
   const tier = detectHousingTier(product.name);
   return SOURCING_ADJUSTMENT[tier] ?? 0;
+}
+
+// meat-poultry and seafood adjustments (2026-07-30, second sourcing module
+// after eggs). Structurally different from eggs on purpose, not by
+// oversight: verified against the real catalog that NO meat-poultry
+// product carries a housing/diet tier claim in its own name (no
+// "grass-fed," no "gestation-crate-free" — deli meat and sausage
+// packaging doesn't print that the way egg cartons print their tier), so
+// there is no per-SKU signal to detect the way detectHousingTier() reads
+// eggs. The real signal for these two modules lives in the COMPANY-level
+// `sourcing` data from the sourcing-transparency pipeline — a deliberate,
+// verified architecture choice, not a shortcut.
+//
+// Every magnitude below is either grounded in real evidence (cited) or
+// zero — this module does not invent a nutrition claim to justify a
+// number the way it would be tempting to, mirroring the eggs feature's
+// own discipline (e.g. eggs left 'organic' with no fabricated generic
+// standard when no verifiable figure existed).
+
+// Beef/lamb: grass-finished vs. grain-finished. Real, peer-reviewed
+// evidence (2025 Journal of Animal Science commercial-system comparison;
+// Daley et al. 2010 review, Nutrition Journal) — grass-finished beef has
+// roughly a 4x better omega-6:omega-3 ratio (~2.1 vs. ~8.3), up to 2x the
+// CLA (conjugated linoleic acid), and elevated vitamin A/E precursors and
+// antioxidants vs. grain-finished. Magnitude kept smaller than eggs'
+// pasture-raised bonus deliberately: the research itself flags the
+// absolute omega-3 gain as "modest" and there are no RCTs yet proving a
+// disease-outcome difference in humans, unlike the more clear-cut egg
+// nutrient-density comparison.
+const GRASS_FINISHED_ADJUSTMENT = {
+  certified: 6,               // independently certified (e.g. American Grassfed Association)
+  'company-disclosure-only': 2, // real claim, not independently audited
+  'not-claimed': -4,          // confirmed no claim made -> the industry default is grain-finished
+  unknown: 0,                 // genuinely couldn't be determined, never penalized for a data gap
+  'not-applicable': 0,        // company doesn't sell beef/lamb at all
+};
+
+// Pork: gestation-crate status. No nutrition/vitamin evidence found for
+// this axis (unlike grass-finishing) — this is a welfare fact, not a
+// health fact, same honest treatment eggs gave cage-free (real, modest,
+// not claimed to be about nutrient content).
+const GESTATION_CRATE_ADJUSTMENT = {
+  'certified-crate-free': 4,
+  'company-claims-crate-free': 1,  // real claim, not independently audited
+  'crates-used': -6,               // confirmed practice, real fact (Hormel, Smithfield both verified here)
+  unknown: 0,
+  'not-applicable': 0,
+};
+
+// GAP (Global Animal Partnership) step — the cross-species standardized
+// ladder. Bonus-only, never a penalty for absence: GAP is an opt-in
+// certification system, and "not GAP-rated" is not evidence of bad
+// practice any more than "not USDA Organic" is (evidence-schema.md's
+// Display rules: absence of certification is never displayed as an
+// accusation). Currently dormant for every company in the catalog (all
+// 'unknown' or 'none') — architecture-ready for when real positive data
+// exists, not a guess today.
+const GAP_STEP_ADJUSTMENT = {
+  '5+': 6, '5': 5, '4': 4, '3': 3, '2': 2, '1': 1,
+  none: 0, unknown: 0,
+};
+
+function calcMeatPoultryAdjustment(product) {
+  const company = product.companyId ? COMPANY_DB[product.companyId] : null;
+  const sourcing = company?.sourcing;
+  if (!sourcing || sourcing.industry !== 'meat-poultry') return 0;
+
+  const w = sourcing.welfareMeatPoultry;
+  if (!w) return 0;
+
+  const species = detectMeatSpecies(product.name);
+  let adjustment = 0;
+
+  if (species === 'beef') {
+    adjustment += GRASS_FINISHED_ADJUSTMENT[w.grassFinished] ?? 0;
+  } else if (species === 'pork') {
+    adjustment += GESTATION_CRATE_ADJUSTMENT[w.gestationCrateStatus] ?? 0;
+  }
+  // poultry: chillMethod is a processing fact, not a welfare/nutrition
+  // claim (evidence-schema.md's own comment on this field) — deliberately
+  // excluded from scoring, not an oversight.
+
+  adjustment += GAP_STEP_ADJUSTMENT[w.gapStep] ?? 0;
+
+  return adjustment;
+}
+
+// Seafood Watch rating is stored as free text (e.g. "Avoid (red) —
+// category rating for skipjack/purse-seine-on-FADs, NOT a confirmed
+// StarKist-brand-specific rating") rather than a clean enum, because the
+// Stage 5 review found the rating is often method/region-level, not a
+// confirmed brand-specific figure — parsing just the leading rating word
+// respects that same caveat rather than pretending it's a precise number.
+function parseSeafoodWatchAdjustment(ratingText) {
+  const t = (ratingText || '').toLowerCase();
+  if (t.startsWith('best choice')) return 4;
+  if (t.startsWith('good alternative')) return 1;
+  if (t.startsWith('avoid')) return -5;
+  return 0;
+}
+
+function calcSeafoodAdjustment(product) {
+  const company = product.companyId ? COMPANY_DB[product.companyId] : null;
+  const sourcing = company?.sourcing;
+  if (!sourcing || sourcing.industry !== 'seafood') return 0;
+
+  const w = sourcing.welfareSeafood;
+  if (!w) return 0;
+
+  let adjustment = parseSeafoodWatchAdjustment(w.seafoodWatchRating);
+
+  // Farmed shrimp with an unconfirmed sourcing country: a real, peer-
+  // reviewed 2021 study (PMC7870836) found higher antibiotic-resistance-
+  // gene prevalence in imported farm-raised shrimp vs. wild-caught US
+  // shrimp — but it's a category-level finding about IMPORTED farmed
+  // shrimp broadly, not proof about any specific farm. Kept small and
+  // only applies when the farming country is genuinely unconfirmed
+  // (rather than guessing a specific country's risk level) — matches the
+  // real catalog case (Rich Products/SeaPak, farmingCountry: 'unknown').
+  const isFarmedUnconfirmed =
+    (w.sourceType === 'farmed' || w.sourceType === 'mixed') &&
+    (w.farmingCountry === 'unknown' || !w.farmingCountry);
+  if (isFarmedUnconfirmed) adjustment -= 3;
+
+  return adjustment;
+}
+
+function calcSourcingAdjustment(product) {
+  if (isEggsHousingEligible(product)) return calcEggsSourcingAdjustment(product);
+
+  // Dispatch on the COMPANY's sourcing industry, not a fallthrough guess —
+  // a meat-poultry product legitimately scoring 0 (e.g. a poultry item
+  // with no positive GAP data) must not fall through and get re-evaluated
+  // as a seafood product just because both happen to return zero.
+  const company = product.companyId ? COMPANY_DB[product.companyId] : null;
+  const industry = company?.sourcing?.industry;
+  if (industry === 'meat-poultry') return calcMeatPoultryAdjustment(product);
+  if (industry === 'seafood') return calcSeafoodAdjustment(product);
+  return 0;
 }
 
 export function scoreProduct(product) {

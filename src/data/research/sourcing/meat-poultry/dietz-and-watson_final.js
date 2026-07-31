@@ -7,7 +7,7 @@ module.exports = {
 
     model: 'contract-farms',
     modelSource: {
-      name: "Dietz & Watson's \"Global Impact\" page states the company does not operate its own farms, instead sourcing from external supplier programs organized by species (chicken, beef, pork, turkey), each with its own company-stated standard — the most detailed company-disclosed sourcing breakdown found among the three companies in this batch.",
+      name: "Dietz & Watson's \"Global Impact\" page states the company does not operate its own farms, instead sourcing from external supplier programs organized by species (chicken, beef, pork, turkey), each with its own company-stated standard.",
       url: 'https://www.dietzandwatson.com/our-family/global-impact',
       date: '2026-07-30',
       basis: 'company-disclosure',
@@ -52,7 +52,7 @@ module.exports = {
         year: 2010,
         body: 'USDA Food Safety and Inspection Service',
         action:
-          "On March 16, 2010, FSIS issued a public health alert (prompted by a Canadian Food Inspection Agency tip) for deli meat products manufactured by a third-party supplier, Siena Foods LTD (Toronto), and sold in the U.S. under several brands including Dietz & Watson, Boar's Head, Daniele, and Black Bear of the Black Forest, due to possible Listeria monocytogenes contamination. No illnesses were reported at the time of the alert. This concerned a third-party supplier's products sold under the Dietz & Watson label, not a Dietz & Watson-operated facility.",
+          "On March 16, 2010, FSIS issued a public health alert (prompted by a Canadian Food Inspection Agency tip) for deli meat products manufactured by a third-party supplier, Siena Foods LTD (Toronto), and sold in the U.S. under several deli brand labels including Dietz & Watson, due to possible Listeria monocytogenes contamination. No illnesses were reported at the time of the alert. This concerned a third-party supplier's products sold under the Dietz & Watson label, not a Dietz & Watson-operated facility.",
         status: 'adjudicated',
         amount: null,
         source: {

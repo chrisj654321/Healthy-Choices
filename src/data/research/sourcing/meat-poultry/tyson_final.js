@@ -37,9 +37,9 @@ module.exports = {
         date: '2026-07-30',
         basis: 'company-disclosure',
       },
-      chillMethod: 'air-chilled',
+      chillMethod: 'unknown',
       chillMethodSource: {
-        name: "Tyson's own 2018 press release confirms it acquired Tecumseh Poultry LLC, owner of the air-chilled, organic Smart Chicken brand, which now operates as a wholly-owned Tyson subsidiary — independently corroborated by Lincoln Journal Star, The Shelby Report, Feedstuffs, and Talk Business & Politics. This applies to the Smart Chicken brand specifically; Tyson's flagship Tyson-brand fresh chicken's own chilling method was not confirmed in this research (industry-standard water-chilling is the default for most U.S. commodity chicken, but no direct Tyson statement was found either way).",
+        name: "Tyson's company-wide chilling method is unresolved. The only chilling-method evidence found is scoped to one acquired subsidiary brand: Tyson's own 2018 press release confirms it acquired Tecumseh Poultry LLC, owner of the air-chilled, organic Smart Chicken brand, which now operates as a wholly-owned Tyson subsidiary — independently corroborated by Lincoln Journal Star, The Shelby Report, Feedstuffs, and Talk Business & Politics (recorded as a line-scoped claim in practices[]). That single-brand fact is NOT carried up to this company-wide field: Tyson's flagship Tyson-brand fresh chicken's own chilling method was not confirmed in this research (industry-standard water-chilling is the default for most U.S. commodity chicken, but no direct Tyson statement was found either way), so this field stays unknown rather than reading as company-wide air-chilling.",
         url: 'https://www.tysonfoods.com/news/news-releases/2018/6/tyson-foods-acquires-one-leading-brands-organic-chicken',
         date: '2018-06-04',
         basis: 'company-disclosure',
@@ -52,7 +52,7 @@ module.exports = {
         year: 2016,
         body: 'U.S. District Court, Northern District of Illinois — In re Broiler Chicken Antitrust Litigation (MDL)',
         action:
-          "Tyson Breeders, Inc. is a named defendant in the consolidated multidistrict litigation alleging chicken processors conspired to fix broiler chicken prices, alongside Pilgrim's Pride, Sanderson Farms, and other processors. The docket (filed 2016-09-02) remains active with no termination date recorded. (Kraft Heinz also appears in this same docket, but as a purchaser/plaintiff, not a defendant — see the separate kraft-heinz companyId record; the two roles should never be conflated.)",
+          "Tyson Breeders, Inc. is a named defendant in the consolidated multidistrict litigation alleging chicken processors conspired to fix broiler chicken prices, alongside Pilgrim's Pride, Sanderson Farms, and other processors. The docket (filed 2016-09-02) remains active with no termination date recorded.",
         status: 'pending',
         amount: null,
         source: {
@@ -64,7 +64,7 @@ module.exports = {
         year: 2021,
         body: 'U.S. Department of Justice, Antitrust Division — criminal chicken price-fixing investigation',
         action:
-          "According to Food Dive and Food & Power, Tyson was the first company to cooperate under the DOJ's Corporate Leniency Program in connection with a criminal investigation into chicken price-fixing (conduct alleged 2012-2017), and as a result avoided criminal prosecution; Tyson separately paid a reported $80 million to resolve related civil claims. Pilgrim's Pride, a co-defendant in the same investigation, pleaded guilty to a criminal charge and paid a $108 million fine. The exact date of Tyson's own civil payment was not independently confirmed in this research; presented here in the context of the investigation's broader resolution window.",
+          "According to Food Dive and Food & Power, Tyson was the first company to cooperate under the DOJ's Corporate Leniency Program in connection with a criminal investigation into chicken price-fixing (conduct alleged 2012-2017), and as a result avoided criminal prosecution; Tyson separately paid a reported $80 million to resolve related civil claims. The exact date of Tyson's own civil payment was not independently confirmed in this research; presented here in the context of the investigation's broader resolution window.",
         status: 'settled',
         amount: null,
         source: {
@@ -100,7 +100,7 @@ module.exports = {
         year: 2025,
         body: 'Purchaser plaintiffs — pork price-fixing multidistrict litigation',
         action:
-          "According to NBC News, Insurance Journal, Food Dive, Supply Chain Dive, and Talk Business & Politics, Tyson agreed to pay a reported $85 million in 2025 to settle a proposed class action alleging collusion to inflate pork prices — described by these outlets as the largest settlement to date in the pork antitrust MDL. This is separate from Hormel's own, smaller pork-litigation settlement (see the hormel companyId record). Not independently confirmed against the underlying court filing; exact article URLs for this specific figure were not captured during research.",
+          "According to NBC News, Insurance Journal, Food Dive, Supply Chain Dive, and Talk Business & Politics, Tyson agreed to pay a reported $85 million in 2025 to settle a proposed class action alleging collusion to inflate pork prices — described by these outlets as the largest settlement to date in the pork antitrust MDL. Not independently confirmed against the underlying court filing; exact article URLs for this specific figure were not captured during research.",
         status: 'settled',
         amount: null,
         source: {
@@ -123,6 +123,16 @@ module.exports = {
     ],
 
     practices: [
+      {
+        claim:
+          "Smart Chicken, an organic chicken brand Tyson acquired in 2018 (via Tecumseh Poultry LLC) and operates as a wholly-owned subsidiary, is marketed as air-chilled. This applies to the Smart Chicken brand line only — it is not a Tyson-brand or company-wide chilling-method claim, and Tyson-brand fresh chicken's own chilling method was not confirmed in this research.",
+        basis: 'company-disclosure',
+        source: {
+          name: "Tyson Foods press release, \"Tyson Foods Acquires One of the Leading Brands of Organic Chicken\"; corroborated by Lincoln Journal Star, The Shelby Report, Feedstuffs, and Talk Business & Politics",
+          url: 'https://www.tysonfoods.com/news/news-releases/2018/6/tyson-foods-acquires-one-leading-brands-organic-chicken',
+          date: '2018-06-04',
+        },
+      },
       {
         claim:
           "Progressive Beef — a licensed quality-management program covering food safety, antibiotic stewardship, environmental practices, and animal-welfare best practices for feedlot operators in Tyson's cattle supply chain. Tyson began licensing it in 2018 and reported purchasing over 3 million Progressive Beef-certified cattle by 2020, described at the time as more than half of its cattle supply chain. This is a feedlot quality-management/food-safety program, not a grass-fed or grass-finished welfare certification.",
