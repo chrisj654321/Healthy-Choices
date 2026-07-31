@@ -13,7 +13,29 @@ module.exports = {
       basis: 'company-disclosure',
     },
 
-    certifications: [],
+    // Scoped narrowly to Applegate's beef hot dog line, not Hormel-branded
+    // meat or the Hormel corporation generally — matches the practices[]
+    // scope note below. Step level left unstated: the underlying
+    // "GAP-certified" fact is corroborated by two independent trade-press
+    // outlets (MEAT+POULTRY 2019, Supermarket Perimeter) beyond Applegate's
+    // own site, but the specific "Step 4" designation is not independently
+    // confirmed as applied to this product. Added at Stage 5 review
+    // (2026-07-30) — a corroborated positive was sitting only in
+    // practices[], which understated it (certifications: [] renders as
+    // "no third-party welfare certification found," which was inaccurate).
+    certifications: [
+      {
+        name: 'Global Animal Partnership (GAP) Animal Welfare Certified',
+        verifier: 'Global Animal Partnership',
+        scope: "Applegate's beef hot dog line only — not Hormel-branded meat, not Applegate's other product lines",
+        standard: 'unknown', // step level not independently confirmed, see note above
+        verifiedDate: '2026-07-30',
+        source: {
+          name: "Applegate, \"Animal Welfare\"; MEAT+POULTRY, \"GAP certifies Applegate hot dogs\" (2019-07-02); Supermarket Perimeter, \"Applegate Farms takes pride in Humanely Raised standard\"",
+          url: 'https://applegate.com/mission/animal-welfare',
+        },
+      },
+    ],
 
     welfareMeatPoultry: {
       gapStep: 'unknown',
@@ -52,7 +74,7 @@ module.exports = {
         year: 2018,
         body: 'U.S. District Court, District of Minnesota — In re Pork Antitrust Litigation (MDL No. 2998)',
         action:
-          "Hormel Foods, LLC was named as a defendant in In re Pork Antitrust Litigation (docket 0:18-cv-01776, filed 2018-06-28; also consolidated as MDL No. 2998, docket 0:21-md-02998, filed 2021-06-22; both dockets show no termination date recorded), alongside Agri Stats Inc., Seaboard Foods LLC, Seaboard Corporation, and Smithfield Foods Inc., over an alleged conspiracy since January 2009 to restrict hog supply and fix/raise/stabilize pork prices, partly via shared data through Agri Stats. According to multiple independent trade-press accounts (meatingplace.com, National Hog Farmer), Judge John Tunheim later granted Hormel's motion for summary judgment on most claims, with the court's stated basis being that Hormel — unlike its co-defendants — did not formally subscribe to the Agri Stats benchmarking-report service central to the alleged conspiracy (Hormel is reported to have only accepted free Agri Stats samples in 2017). The dismissal was partial, not total: it was without prejudice as to most claims, but the consumer indirect-purchaser plaintiffs' complaint against Hormel continued. Hormel separately settled with the Direct Purchaser Plaintiffs and other purchaser tiers for a reported combined total of roughly $11 million ($2.4M to institutional customers, $4.8M to wholesalers/direct purchasers, $4.4M to consumers), reached in Q2 fiscal 2024, without admitting fault. This antitrust posture is materially different from co-defendants who remain in active litigation on the merits, and should not be presented as equivalent to Smithfield's exposure in the same litigation.",
+          "Hormel Foods, LLC was named as a defendant in In re Pork Antitrust Litigation (docket 0:18-cv-01776, filed 2018-06-28; also consolidated as MDL No. 2998, docket 0:21-md-02998, filed 2021-06-22; both dockets show no termination date recorded), alongside Agri Stats Inc., Seaboard Foods LLC, Seaboard Corporation, and Smithfield Foods Inc., over an alleged conspiracy since January 2009 to restrict hog supply and fix/raise/stabilize pork prices, partly via shared data through Agri Stats. According to multiple independent trade-press accounts (meatingplace.com, National Hog Farmer), Judge John Tunheim later granted Hormel's motion for summary judgment on most claims, with the court's stated basis being that Hormel did not formally subscribe to the Agri Stats benchmarking-report service central to the alleged conspiracy (Hormel is reported to have only accepted free Agri Stats samples in 2017). The dismissal was partial, not total: it was without prejudice as to most claims, but the consumer indirect-purchaser plaintiffs' complaint against Hormel continued. Hormel separately settled with the Direct Purchaser Plaintiffs and other purchaser tiers for a reported combined total of roughly $11 million ($2.4M to institutional customers, $4.8M to wholesalers/direct purchasers, $4.4M to consumers), reached in Q2 fiscal 2024, without admitting fault.",
         status: 'settled',
         amount: null,
         source: {
@@ -109,7 +131,7 @@ module.exports = {
       },
       {
         claim:
-          "Hormel states its company-owned sow farms were converted to group housing by 2018, ahead of its stated commitment. This is distinct from Hormel's contract-farm supply (the ~96%-under-contract/250+ producers figure — see modelSource), which is a separately STALE, FY2017-era figure not re-confirmed for the current year.",
+          "Hormel states its company-owned sow farms were converted to group housing by 2018, which the company describes as ahead of its stated commitment. This is distinct from Hormel's contract-farm supply (the ~96%-under-contract/250+ producers figure — see modelSource), which is a separately STALE, FY2017-era figure not re-confirmed for the current year.",
         basis: 'company-disclosure',
         source: {
           name: 'Search-engine synthesis citing a Hormel FY1999/2017-era 10-K reference and Hormel CSR materials — not independently re-fetched at a current date',

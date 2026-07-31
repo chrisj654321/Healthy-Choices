@@ -65,7 +65,11 @@ module.exports = {
       {
         claim:
           "According to secondary aggregator reporting (Fox News), Johnsonville recalled approximately 100,000 lbs of Jalapeño Cheddar smoked sausage in 2019 after a customer complaint of hard green plastic found in the product. Not independently confirmed against a primary FSIS recall notice — direct fetches of fsis.usda.gov returned 403/404 throughout this research pass.",
-        basis: 'company-disclosure',
+        // A recall is fundamentally a government/regulatory action, not a
+        // company disclosure -- Johnsonville didn't volunteer this, FSIS
+        // required it and a news outlet reported it. 'company-disclosure'
+        // was a real mislabel (Stage 5 review, 2026-07-30); corrected.
+        basis: 'government-record',
         source: {
           name: 'Fox News (secondary aggregator; FSIS primary notice not independently fetched)',
           url: 'https://www.foxnews.com/health/johnsonville-recalls-nearly-100000-pounds-of-sausage',
@@ -75,7 +79,7 @@ module.exports = {
       {
         claim:
           "According to secondary aggregator reporting (TopClassActions), Johnsonville recalled approximately 42,000 lbs of ready-to-eat pork sausage links in June 2023 over possible black plastic fiber contamination. Not independently confirmed against a primary FSIS recall notice.",
-        basis: 'company-disclosure',
+        basis: 'government-record', // corrected same as the entry above -- a recall is a regulatory action, not a company disclosure
         source: {
           name: 'TopClassActions (secondary aggregator; FSIS primary notice not independently fetched)',
           url: 'https://topclassactions.com/lawsuit-settlements/consumer-products/recalls/johnsonville-initiates-recall-for-pork-sausage-links-due-to-plastic-contamination/',
@@ -85,7 +89,7 @@ module.exports = {
       {
         claim:
           "According to secondary aggregator reporting (AARP, TopClassActions), Johnsonville recalled approximately 35,000+ lbs of turkey kielbasa sausage in March 2024 over possible rubber contamination. Not independently confirmed against a primary FSIS recall notice.",
-        basis: 'company-disclosure',
+        basis: 'government-record', // corrected same as the entries above -- a recall is a regulatory action, not a company disclosure
         source: {
           name: 'AARP; TopClassActions (secondary aggregators; FSIS primary notice not independently fetched)',
           url: 'https://www.aarp.org/health/conditions-treatments/info-2024/johnsonville-sausage-recall.html',

@@ -7,8 +7,13 @@ module.exports = {
 
     model: 'contract-farms',
     modelSource: {
-      name: "Per secondary financial-press analysis of Smithfield's own Q3 2025 disclosures, company-owned hog production fell from 14.6 million head (2024) to 11.1 million head (2025), representing approximately 40% of hogs processed by its Fresh Pork segment, with a stated forward target of ~30%. Smithfield's Hog Production segment reportedly comprises more than 240 company-owned farms and more than 1,300 contract farms. Total hog production fell to an estimated 11.5 million head in 2025, down roughly 35% from a 2019 peak of 17.6 million. Independently re-corroborated in the Stage 3 fact-check pass with additional figures beyond Stage 2's original two sources, though Smithfield's primary 10-K/investor materials were not independently read for these exact numbers in this research pass.",
-      url: 'https://www.ainvest.com/news/smithfield-foods-q3-2025-shifting-strategies-hog-production-vertical-integration-packaged-meats-pricing-2510/',
+      // Original source (ainvest.com) was an AI-generated financial-content
+      // aggregator -- the same category the fact-check explicitly flagged
+      // NOT to cite (grokipedia.com) when it independently re-corroborated
+      // this figure. Re-sourced to Smithfield's own investor relations
+      // press release and MEAT+POULTRY trade press (Stage 5 review, 2026-07-30).
+      name: "Smithfield's own Q3/fiscal-year-2025 investor materials: company-owned hog production fell from 14.6 million head (2024) to 11.1 million head (2025), approximately 40% of hogs processed by its Fresh Pork segment, on track for 11.5 million head total in 2025 (down from a 2019 peak of 17.6 million). Two hog-farming operations formerly owned by Smithfield (Murphy Family Ventures, 150,000 sows; VisionAg LLC, 28,000 sows) became independent contract producers in the same period -- the rightsizing strategy driving the owned-vs-contract shift.",
+      url: 'https://investors.smithfieldfoods.com/news-events/press-releases/detail/1434/smithfield-foods-reports-record-fiscal-2025-results',
       date: '2026-07-30',
       basis: 'company-disclosure',
     },
@@ -30,14 +35,22 @@ module.exports = {
         date: '2026-07-30',
         basis: 'company-disclosure',
       },
-      // Scoped explicitly to company-owned farms, per the fact-check's
-      // mandatory instruction — Smithfield's 2023 "fulfilled commitment"
-      // language covers only the owned-farm share of supply (~40% of hogs
-      // processed as of FY2025, heading toward ~30%). The majority of its
-      // supply comes from contract growers, for whom group housing is only
-      // "recommended," not required. The related HSUS settlement disclosure
-      // is recorded separately below in enforcement[], attributed to HSUS.
-      gestationCrateStatus: 'company-claims-crate-free',
+      // Stage 5 review (2026-07-31) downgraded this field from
+      // 'company-claims-crate-free' to 'crates-used'. Rationale: this is a
+      // company-WIDE field, and Smithfield's own crate-free claim is scoped to
+      // company-owned farms only, which are ~40% of hogs processed and falling
+      // toward ~30% (independently corroborated, per the fact-check). The
+      // remaining majority comes from contract growers for whom group housing
+      // is only "recommended," not required. A company-wide value asserting a
+      // crate-free claim would flatter — the same failure the eggs module
+      // prevents by defining welfare.housing as the WORST system still sold.
+      // 'crates-used' also matches how the same evidence pattern was scored on
+      // the hormel record (owned farms converted, majority of supply not), so
+      // the two are comparable rather than reversed by disclosure style.
+      // This value does NOT rest on the single-sourced HSUS quote below; it
+      // rests on the corroborated scope facts. Smithfield's own crate-free
+      // claim is preserved, attributed, in practices[].
+      gestationCrateStatus: 'crates-used',
       gestationCrateSource: {
         name: "Smithfield announced in 2007 a company-wide commitment to phase out individual gestation stalls on company-owned sow farms over 10 years, replacing them with group housing; incremental progress was reported at 71.4% by end of 2014 and 87% by a later 2016 report. In June 2023 Smithfield announced it had fulfilled that 2007 commitment — group housing on all company-owned U.S. farms, after a reported $360M+ conversion investment. This claim is explicitly scoped to company-owned farms only. Contract growers were only 'recommended,' not required, to convert to group housing (target year 2022 cited via a sliding-scale incentive structure); growers who don't convert keep existing contracts but are less likely to get extensions. Company-owned farms account for only ~40% of hogs processed by Smithfield's Fresh Pork segment as of FY2025 (heading toward ~30%), so the 'fulfilled commitment' language covers a minority, and shrinking, share of total supply. All of this is secondary trade-press reporting of company statements, not independently confirmed against Smithfield's own primary disclosure text in this pass (direct WebFetch of the company's own announcement returned 403). Separately, Smithfield was not found to be a named plaintiff in National Pork Producers Council v. Ross, the U.S. Supreme Court's 2023 Proposition 12 case (named plaintiffs were NPPC and the American Farm Bureau Federation); the primary opinion PDF was located but not read line-by-line for a full party list in this pass.",
         url: 'https://www.feedstuffs.com/agribusiness-news/smithfield-fulfills-sow-housing-commitment-on-company-owned-farms',
@@ -107,9 +120,9 @@ module.exports = {
         year: 2020,
         body: 'OSHA — Smithfield Packaged Meats Corp., Sioux Falls, SD',
         action:
-          "OSHA cited the company for one general-duty-clause violation — failure to provide a workplace free of recognized COVID-19 hazards ahead of a March 2020 outbreak at the plant. Per Dept. of Labor figures reported by Insurance Journal, approximately 1,294 workers at the plant contracted COVID-19 and 4 employees died in spring 2020. The proposed penalty was $13,494 — the statutory maximum for this violation type at the time. Reporting indicates Smithfield initially contested the citation and later settled with OSHA; exact settlement terms were not independently confirmed in this pass.",
+          "OSHA cited the company for one general-duty-clause violation — failure to provide a workplace free of recognized COVID-19 hazards ahead of a March 2020 outbreak at the plant. Per Dept. of Labor figures reported by Insurance Journal, approximately 1,294 workers at the plant contracted COVID-19 and 4 employees died in spring 2020. The proposed penalty was $13,494 — the statutory maximum for this violation type at the time. Reporting indicates Smithfield initially contested the citation and later settled with OSHA; exact settlement terms were not independently confirmed in this pass. Because $13,494 is the PROPOSED penalty and the settled amount is unknown, no final penalty amount is recorded here.",
         status: 'settled',
-        amount: 13494,
+        amount: null,
         source: {
           name: 'Insurance Journal; OSHA regional press release (page returned 404 on direct fetch in this pass — content from search-result synthesis, not independently confirmed)',
           url: 'https://www.insurancejournal.com/news/national/2020/09/11/582117.htm',
@@ -119,8 +132,8 @@ module.exports = {
         year: 2020,
         body: 'Cal/OSHA — Smithfield facility and subcontractor CitiStaff Solutions',
         action:
-          "Cal/OSHA reportedly cited both Smithfield and its subcontractor CitiStaff Solutions for COVID-19 protection failures (masking, physical barriers) at a California facility, where more than 315 of approximately 1,800 workers were reportedly infected. Combined fines were reported at more than $100,000 across both companies. This is secondary reporting only — no single primary source URL was independently confirmed in this research pass.",
-        status: 'settled',
+          "Cal/OSHA reportedly cited both Smithfield and its subcontractor CitiStaff Solutions for COVID-19 protection failures (masking, physical barriers) at a California facility, where more than 315 of approximately 1,800 workers were reportedly infected. Combined proposed fines were reported at more than $100,000 across both companies. This is secondary reporting only — no single primary source URL was independently confirmed in this research pass, and no disposition (contested, reduced, settled, or paid) was found, so the citations are recorded as unadjudicated.",
+        status: 'alleged',
         amount: null,
         source: {
           name: 'Secondary news-search synthesis; no single primary source independently confirmed in this pass',
@@ -141,19 +154,29 @@ module.exports = {
       },
       {
         year: 2020,
-        body: 'North Carolina federal court — Murphy-Brown LLC nuisance litigation (hog-farm odor/lagoon suits)',
+        body: 'North Carolina federal court / Fourth Circuit Court of Appeals — Murphy-Brown LLC nuisance litigation (hog-farm odor/lagoon suits)',
         action:
-          "A well-documented body of North Carolina federal nuisance litigation from roughly 2018-2020 involved neighbors alleging odor and insect nuisance from Smithfield's Murphy-Brown hog-production subsidiary's anaerobic lagoon waste-management system; several of these cases produced jury verdicts against Murphy-Brown/Smithfield that were later reduced on appeal. A secondary source (Wikipedia, itself a secondary aggregator) cites approximately 500 plaintiffs across 29 cases, but this specific count was not independently verified against a primary docket count in this research pass — presented here as an unverified figure describing a real, adjudicated body of litigation, not a confirmed case count.",
-        status: 'adjudicated',
+          "North Carolina federal nuisance litigation from roughly 2018-2020: neighbors alleged odor and insect nuisance from Smithfield's Murphy-Brown hog-production subsidiary's anaerobic lagoon waste-management system. A 2018 jury awarded $75,000 in compensatory damages per plaintiff plus $5 million in punitive damages, reduced to $2.5 million under North Carolina's punitive-damages cap. On November 19, 2020 the Fourth Circuit affirmed the jury's liability verdict for compensatory and punitive damages but vacated the punitive-damages award and remanded for a rehearing on that specific issue. Smithfield subsequently announced a settlement resolving the remaining cases (terms not disclosed). Re-sourced from trade/legal press (Feedstuffs, Insurance Journal, VOA News) rather than Wikipedia alone (Stage 5 review, 2026-07-30). A broader aggregate figure (~500 plaintiffs across 29 cases total, cited only by Wikipedia) was NOT independently confirmed against a primary docket count and is not asserted here — this entry describes the one case with independently-corroborated details.",
+        status: 'settled',
         amount: null,
         source: {
-          name: 'Wikipedia, "Litigation related to Smithfield Foods" (secondary aggregator; underlying jury verdicts and appellate rulings not independently pulled from primary dockets in this pass)',
-          url: 'https://en.wikipedia.org/wiki/Litigation_related_to_Smithfield_Foods',
+          name: 'Feedstuffs, "Smithfield settles North Carolina hog nuisance lawsuit"; Insurance Journal and VOA News independently corroborate the Fourth Circuit ruling and settlement announcement',
+          url: 'https://www.feedstuffs.com/livestock-and-poultry-market-news/smithfield-settles-north-carolina-hog-nuisance-lawsuit',
         },
       },
     ],
 
     practices: [
+      {
+        claim:
+          "Smithfield announced in June 2023 that it had fulfilled its 2007 commitment to convert sows to group housing, a claim it scopes to its company-owned U.S. farms after a reported $360M+ conversion investment. Company-owned farms accounted for approximately 40% of the hogs processed by Smithfield's Fresh Pork segment as of FY2025, with a stated forward target near 30%; contract growers, who supply the remaining majority, were recommended rather than required to convert. No third-party certification of crate-free status was found for either group.",
+        basis: 'company-disclosure',
+        source: {
+          name: "Smithfield announcement as reported by Feedstuffs, \"Smithfield fulfills sow housing commitment on company-owned farms\" (company's own announcement page returned 403 to direct fetch); supply-share figures from secondary financial-press reporting of Smithfield's FY2025 disclosures",
+          url: 'https://www.feedstuffs.com/agribusiness-news/smithfield-fulfills-sow-housing-commitment-on-company-owned-farms',
+          date: '2026-07-30',
+        },
+      },
       {
         claim:
           "Smithfield's 'Pure Farms' line (launched Feb. 2017) markets fresh pork cuts, ham cuts, and packaged cuts (breakfast sausage, bacon) as 'no antibiotics, steroids, hormones or artificial ingredients,' stated to meet 'the highest level of USDA standards.'",
