@@ -16,29 +16,22 @@ module.exports = {
       basis: 'company-disclosure',
     },
 
-    // BAP certification of the Brownsville, TX plant is corroborated by
-    // three independent contemporary trade sources (press release plus two
-    // trade-press outlets); BAP's own certified-facilities directory could
-    // not be queried directly (404/redirect to a non-queryable landing
-    // page — a tooling gap, not evidence against the certification). ASC is
-    // named by SeaPak only as an accepted alternative to MSC for its
-    // WILD-CAUGHT (salmon) line, not for shrimp — no ASC certification hit
-    // was found for SeaPak/Rich Products at all, so it is intentionally NOT
-    // listed here.
-    certifications: [
-      {
-        name: 'Best Aquaculture Practices (BAP)',
-        verifier: 'Global Aquaculture Alliance / BAP',
-        scope: 'Brownsville, TX processing plant (shrimp and tilapia processing); company states minimum 2-star BAP required for all its aquaculture (shrimp) suppliers',
-        standard:
-          'Minimum 2-star BAP required for all aquaculture suppliers; as of this research pass, 80% of SeaPak\'s aquaculture products are sourced from 4-star (top-tier) BAP-certified suppliers, with a stated company goal of reaching 100% — 80% is the current figure, not yet achieved at 100%',
-        verifiedDate: '2026-07-30',
-        source: {
-          name: 'PR Newswire — "Rich Products\' Texas Manufacturing Plant Receives \'Best Aquaculture Practices\' Certification," corroborated by ReliablePlant and SeafoodSource trade coverage; current 80%/4-star figure confirmed via direct fetch of SeaPak\'s own sustainability page (BAP\'s own certified-facilities directory could not be queried directly — redirected to a non-queryable landing page)',
-          url: 'https://www.prnewswire.com/news-releases/rich-products-texas-manufacturing-plant-receives-best-aquaculture-practices-certification-164297706.html',
-        },
-      },
-    ],
+    // EMPTY BY DECISION, NOT BY ABSENCE — read this before adding anything.
+    // BAP: SeaPak's Brownsville, TX plant BAP certification is real but was
+    // never confirmed against BAP's own certified-facilities directory (the
+    // directory redirects to a non-queryable landing page — recorded as NOT
+    // CHECKED, which is a tooling gap, NOT evidence against the cert). Its only
+    // sources are Rich Products' own undated press release plus trade coverage
+    // of that release — company-disclosure tier, not the directory hit this
+    // array requires, and there is no `verifiedDate` this pipeline can honestly
+    // write. It also covers a US PROCESSING plant, not the shrimp farms, so
+    // rendering it as this product's certification would repeat the exact
+    // processing-vs-farming conflation this module exists to prevent. Recorded
+    // in practices[] as company-disclosure instead.
+    // ASC: named by SeaPak only as an accepted alternative to MSC for its
+    // WILD-CAUGHT (salmon) line, never for shrimp; no ASC hit found for
+    // SeaPak/Rich Products at all. Intentionally not listed.
+    certifications: [],
 
     welfareSeafood: {
       // Company carries both a farmed line (shrimp) and a wild-caught line
@@ -104,22 +97,28 @@ module.exports = {
       },
     },
 
-    enforcement: [
+    // EMPTY BY DECISION. No adjudicated, settled, pending, or alleged
+    // enforcement ACTION was found against Rich Products/SeaPak on any
+    // sourcing, welfare, or forced-labor matter (Stage 1 pulled 20 federal
+    // dockets; all were employment/civil-rights/immigration matters outside
+    // this module's scope). The 2011 allergen recall was a VOLUNTARY company
+    // recall, not an agency enforcement action — none of this array's status
+    // values ('adjudicated'/'settled'/'pending'/'alleged') describe it
+    // truthfully, so it is recorded in practices[] as a government record
+    // instead (same placement Bumble Bee's 2023 recall uses in this batch).
+    enforcement: [],
+
+    practices: [
       {
-        year: 2011,
-        body: 'U.S. Food and Drug Administration',
-        action:
-          'Rich Products Corporation issued a nationwide voluntary recall of "SeaPak Breaded Butterfly Shrimp – Ready to Fry" (22 oz, Product Code 10302, production date 7/25/2011) after an undeclared milk ingredient (whey, less than 0.1%) was found in the shrimp coating — an allergen-labeling issue, not a pathogen or contamination finding. Confirmed via an archived mirror of the FDA\'s own recall-notification text. Not confirmed as covering the "Jumbo Butterfly Shrimp" SKU specifically (a same-family, larger-size product currently sold); recorded against the "Breaded Butterfly Shrimp" line as named in the recall.',
-        status: 'settled',
-        amount: null,
+        claim:
+          'Issued a nationwide voluntary recall in September 2011 of "SeaPak Breaded Butterfly Shrimp – Ready to Fry" (22 oz, Product Code 10302, production date 7/25/2011) after an undeclared milk ingredient (whey, less than 0.1%) was found in the shrimp coating — an allergen-labeling issue, not a pathogen or contamination finding, and a voluntary recall rather than an enforcement action. Not confirmed as covering the "Jumbo Butterfly Shrimp" SKU specifically (a same-family, larger-size product currently sold); recorded against the "Breaded Butterfly Shrimp" line as named in the recall.',
+        basis: 'government-record',
         source: {
           name: 'Archived mirror of FDA recall-notification email (spinics.net public archive of the FDA recall mailing list) — confirms company, product, net weight, and allergen reason verbatim; the original fda.gov page for this record is no longer live',
           url: 'https://www.spinics.net/lists/fda/msg04519.html',
+          date: '2026-07-30',
         },
       },
-    ],
-
-    practices: [
       {
         claim:
           'Discloses that 80% of its products are processed at its Brownsville, TX facility and the remaining ~20% are processed in Ecuador and Thailand. This is a disclosed PROCESSING location split, not a disclosure of where the shrimp are actually farmed/grown before processing — no source distinguishing the two was found.',
@@ -127,6 +126,26 @@ module.exports = {
         source: {
           name: 'SeaPak — Sourcing & Sustainability',
           url: 'https://seapak.com/sustainability/',
+          date: '2026-07-30',
+        },
+      },
+      {
+        claim:
+          'States that it requires a minimum 2-star Best Aquaculture Practices (BAP) certification of all its aquaculture (shrimp) suppliers, and that 80% of its products currently come from 4-star BAP-certified suppliers (4 stars is the highest level on BAP\'s own scale), with a stated goal of reaching 100%. 80% is the company\'s current stated figure, not an achieved 100%. These are SeaPak\'s own statements about its suppliers; BAP\'s certified-facilities directory could not be queried to confirm any of them independently.',
+        basis: 'company-disclosure',
+        source: {
+          name: 'SeaPak — Sourcing & Sustainability (direct page fetch, 2026-07-30)',
+          url: 'https://seapak.com/sustainability/',
+          date: '2026-07-30',
+        },
+      },
+      {
+        claim:
+          'Announced via company press release that its Brownsville, TX processing plant received Best Aquaculture Practices (BAP) certification from the Global Aquaculture Alliance, covering shrimp and tilapia PROCESSING at that plant — a processing-facility certification, not a certification of the farms where the shrimp were raised. The announcement is undated in the sources reviewed and BAP\'s own certified-facilities directory could not be queried, so whether this certification is current as of 2026 is unconfirmed.',
+        basis: 'company-disclosure',
+        source: {
+          name: 'PR Newswire — "Rich Products\' Texas Manufacturing Plant Receives \'Best Aquaculture Practices\' Certification," corroborated by ReliablePlant and SeafoodSource trade coverage of the same release (all trace to the company announcement; not a primary directory record)',
+          url: 'https://www.prnewswire.com/news-releases/rich-products-texas-manufacturing-plant-receives-best-aquaculture-practices-certification-164297706.html',
           date: '2026-07-30',
         },
       },
@@ -142,7 +161,7 @@ module.exports = {
       },
       {
         claim:
-          'SeaPak/Rich Products processes some product in Thailand, a country the U.S. State Department downgraded to Tier 3 (its lowest ranking) in its 2014 Trafficking in Persons report, driven substantially by forced-labor concerns in the fishing industry. No forced-labor action, finding, court record, or investigative report naming SeaPak or Rich Products Corporation specifically was found in this research — this is country-level context about a location where the company discloses processing activity, not a brand-specific finding.',
+          'COUNTRY-LEVEL CONTEXT, NOT A FINDING ABOUT THIS COMPANY: no forced-labor action, finding, court record, or investigative report naming SeaPak or Rich Products Corporation was found anywhere in this research. Separately, and as background on one of the countries where SeaPak discloses PROCESSING activity: the U.S. State Department downgraded Thailand to Tier 3 (its lowest ranking) in its 2014 Trafficking in Persons report, driven substantially by forced-labor concerns in the fishing industry. That is a 2014 ranking and is not a statement of Thailand\'s current TIP tier, nor of conditions at any facility SeaPak uses.',
         basis: 'government-record',
         source: {
           name: 'U.S. State Department 2014 Trafficking in Persons Report (Thailand Tier 3 downgrade), corroborated via the joint NOAA Fisheries/State Department "Report to Congress: Human Trafficking in the Seafood Supply Chain" (mandated by the FY2020 NDAA) and independent press coverage (NPR, World Fishing, The Fish Site); the State Department report itself was identified but not opened directly in this research pass',

@@ -116,7 +116,7 @@ module.exports = {
       },
       {
         claim:
-          'Pole-and-line and troll-caught tuna, as a fishing method (not a Wild Planet-specific claim), is independently rated by Seafood Watch as a top-tier/Best Choice sustainable catch method, distinct from longline and purse-seine methods.',
+          'Pole-and-line and troll-caught tuna, as a fishing method (not a Wild Planet-specific claim), carries Seafood Watch\'s "Best Choice" (green) rating — the rating attaches to the method, and Wild Planet\'s use of that method at the stated volumes is company-disclosed, not independently audited.',
         basis: 'third-party-scorecard',
         source: {
           name: 'Monterey Bay Aquarium Seafood Watch, sustainable tuna consumer guide (rating system corroborated via multiple convergent sources; direct page/PDF fetch did not return ratings content)',

@@ -11,8 +11,7 @@ module.exports = {
         "Bumble Bee's supply chain runs through FCF Co., Ltd. (Bumble Bee's parent company since January 2020, and also its primary tuna supplier) rather than a single farm or an exclusive contract fleet. Per Mongabay's investigative reporting, FCF supplies approximately 95% of Bumble Bee's albacore and more than 70% of its light-meat (skipjack) tuna, drawn from FCF's own FAD-free and MSC-related fishery programs.",
       url: 'https://news.mongabay.com/2020/02/tuna-supply-chains-under-scrutiny-as-bumble-bee-brand-changes-hands/',
       date: '2026-07-30',
-      basis:
-        'investigative-journalism (single outlet, treated as a lead per the module\'s IUU/labor sourcing tier), consistent with Bumble Bee\'s own company-disclosed sourcing-mix reporting (see practices below)',
+      basis: 'investigative-journalism',
     },
 
     certifications: [],
@@ -31,7 +30,7 @@ module.exports = {
           "Canned tuna has no meaningful U.S. commercial aquaculture; Seafood Watch's skipjack rating (see below) confirms wild-capture gear types (purse seine) for the species Bumble Bee's canned tuna draws from",
         url: 'https://www.seafoodwatch.org/recommendation/tuna/skipjack-tuna-30707',
         date: '2026-07-30',
-        basis: 'category-level industry fact + third-party-scorecard fishery record',
+        basis: 'third-party-scorecard',
       },
 
       farmingSystem: 'not-applicable',
@@ -40,8 +39,11 @@ module.exports = {
           'No Bumble Bee aquaculture/farmed sourcing identified in this research pass; the canned tuna category is wild-caught only',
         url: 'https://www.seafoodwatch.org/recommendation/tuna/skipjack-tuna-30707',
         date: '2026-07-30',
-        basis: 'category-level industry fact',
+        basis: 'third-party-scorecard',
       },
+      // No farmed line, so there is no grow-out country to record. This is
+      // 'not-applicable', NOT 'unknown' — the two must never be conflated.
+      farmingCountry: 'not-applicable',
 
       fishingMethod: 'unknown',
       fishingMethodSource: {
@@ -49,10 +51,14 @@ module.exports = {
           "Bumble Bee/FCF disclose sustainability-program participation (FIP/MSC status by fishery, two FCF FAD-free sourcing programs) but not a gear-type breakdown (FAD vs. non-FAD, purse seine vs. longline share) for its own flagship retail SKUs (chunk light, solid white albacore). Vessels enrolled in FCF's programs can still include mixed gear practices, and no public disclosure resolving this to the SKU level was found.",
         url: 'https://thebumblebeecompany.com/sustaining-fisheries/',
         date: '2026-07-30',
-        basis: 'company-disclosure (gap — gear-type breakdown not disclosed)',
+        basis: 'company-disclosure',
       },
 
-      seafoodWatchRating: 'Avoid (red)',
+      // The caveat is carried IN the value, not only in the scope field below:
+      // Bumble Bee's own gear breakdown is 'unknown' (above), so this is a
+      // species+gear+region category rating, never a confirmed brand rating.
+      seafoodWatchRating:
+        'Avoid (red) — category rating for skipjack/purse-seine-on-FADs, NOT a confirmed Bumble Bee-brand-specific rating',
       seafoodWatchScope:
         'Skipjack tuna caught by purse seine on floating objects/FADs — Northwest, Southwest, or Western Central Atlantic. Seafood Watch rates by species + gear + region, not by brand; this is the underlying fishery-method rating for the gear/species combination most associated with canned light/skipjack tuna generally. It is not a confirmed Bumble Bee-specific gear breakdown (see fishingMethod above, unknown).',
       seafoodWatchSource: {
@@ -84,7 +90,12 @@ module.exports = {
         action:
           "Former Bumble Bee President and CEO Christopher Lischewski was convicted December 3, 2019 of conspiring to fix, raise, and maintain the price of canned tuna with Bumble Bee, StarKist, and Chicken of the Sea (case: United States v. Lischewski, N.D. Cal. No. 3:18-cr-00203; filed May 16, 2018). The court found Lischewski was 'a leader or organizer' of the conspiracy. Sentenced June 16, 2020 to 40 months in federal prison and a $100,000 criminal fine. The Ninth Circuit affirmed the conviction July 7, 2021, and the U.S. Supreme Court denied Lischewski's petition for writ of certiorari on May 2, 2022 (No. 21-852) — the conviction is fully final, with no further appeal avenue remaining.",
         status: 'adjudicated',
-        amount: 100000,
+        // amount is null, not 100000 — the $100K fine was Lischewski's
+        // personal criminal fine, not a Bumble Bee corporate liability. If
+        // this ever feeds a summed "financial exposure" figure for the
+        // company, including an individual's fine would misattribute it.
+        // The figure stays in the prose above, just not in this field.
+        amount: null,
         source: {
           name:
             'DOJ press release, "Former Bumble Bee CEO Sentenced to Prison for Fixing Prices of Canned Tuna"; cert-denial date and docket number cross-corroborated by California Lawyers Association Antitrust E-Briefs (June 2022) and Wolters Kluwer Antitrust Connect blog',

@@ -13,21 +13,17 @@ module.exports = {
       basis: 'company-disclosure',
     },
 
-    certifications: [
-      {
-        name: 'MSC (Marine Stewardship Council) Fisheries Standard — fishery-level catch certification',
-        verifier: 'Control Union (UK) Limited',
-        scope:
-          "Dongwon Pacific Ocean Tuna purse seine and longline fishery — held by StarKist's parent company, Dongwon Industries. This is a FISHERY-level catch certification confirmed on MSC's own Fisheries database. It does NOT by itself confirm that StarKist's U.S. retail cans carry MSC chain-of-custody certification (a fishery catch certificate and a product chain-of-custody certificate are distinct MSC instruments) — no chain-of-custody check on StarKist's own can labels was completed in this research pass.",
-        standard:
-          'MSC Fisheries Standard — purse seine and pelagic longline gear, covering yellowfin, skipjack, bigeye, and albacore tuna. Certified 2019-10-18, expires 2030-04-17.',
-        verifiedDate: '2026-07-30',
-        source: {
-          name: 'MSC Fisheries database — Dongwon Pacific Ocean Tuna purse seine and longline fishery',
-          url: 'https://fisheries.msc.org/en/fisheries/dongwon-pacific-ocean-tuna-purse-seine-and-longline-fishery/',
-        },
-      },
-    ],
+    // NOT an "absent" finding, and NOT a certification gap on StarKist's own
+    // products either — it is a SCOPE finding. The one MSC certificate found
+    // this pass is held by StarKist's PARENT (Dongwon Industries) and covers a
+    // FISHERY's catch, not StarKist's retail cans. A fishery catch certificate
+    // and a product chain-of-custody certificate are distinct MSC instruments,
+    // and no chain-of-custody check on StarKist's own can labels was completed
+    // (NOT CHECKED, not absent). Listing a parent company's fishery certificate
+    // in this array would render as "this can is MSC certified," which the
+    // evidence does not support — it is recorded in practices[] below instead,
+    // naming the actual certificate holder.
+    certifications: [],
 
     welfareSeafood: {
       sourceType: 'wild-caught',
@@ -35,7 +31,7 @@ module.exports = {
         name: 'MSC Fisheries database — Dongwon Pacific Ocean Tuna purse seine and longline fishery (confirms wild-capture gear types); canned tuna has no meaningful U.S. commercial aquaculture, so wild-caught is the category for this product line',
         url: 'https://fisheries.msc.org/en/fisheries/dongwon-pacific-ocean-tuna-purse-seine-and-longline-fishery/',
         date: '2026-07-30',
-        basis: 'certification-directory record + category-level industry fact',
+        basis: 'certification',
       },
 
       farmingSystem: 'not-applicable',
@@ -43,18 +39,25 @@ module.exports = {
         name: 'No StarKist aquaculture/farmed sourcing identified — same MSC fishery record above confirms purse-seine/longline (wild-capture) gear only',
         url: 'https://fisheries.msc.org/en/fisheries/dongwon-pacific-ocean-tuna-purse-seine-and-longline-fishery/',
         date: '2026-07-30',
-        basis: 'certification-directory record',
+        basis: 'certification',
       },
+      // No farmed line, so there is no grow-out country to record. This is
+      // 'not-applicable', NOT 'unknown' — the two must never be conflated.
+      farmingCountry: 'not-applicable',
 
       fishingMethod: 'unknown',
       fishingMethodSource: {
         name: "StarKist discloses vessel-registry participation (100% purse-seine supply from ISSF PVR-listed vessels; 33.9% of longline purchases PVR-listed, exact reporting year not disclosed) but not a gear-type breakdown (FAD vs. non-FAD, purse seine vs. longline share) for its own flagship retail SKUs (chunk light, solid white albacore) — PVR-listed vessels can still use FADs, and no public disclosure resolving this was found",
         url: 'https://starkist.com/about-starkist/corporate-responsibility/natural-resources-policies/',
         date: '2026-07-30',
-        basis: 'company-disclosure (gap — gear-type breakdown not disclosed)',
+        basis: 'company-disclosure',
       },
 
-      seafoodWatchRating: 'Avoid (red)',
+      // The caveat is carried IN the value, not only in the scope field below:
+      // StarKist's own gear breakdown is 'unknown' (above), so this is a
+      // species+gear+region category rating, never a confirmed StarKist rating.
+      seafoodWatchRating:
+        'Avoid (red) — category rating for skipjack/purse-seine-on-FADs, NOT a confirmed StarKist-brand-specific rating',
       seafoodWatchScope:
         'Skipjack tuna caught by purse seine on floating objects/FADs — Northwest, Southwest, or Western Central Atlantic. Seafood Watch rates by species + gear + region, not by brand; this is the underlying fishery-method rating for the gear/species combination most associated with canned light/skipjack tuna generally. It is not a confirmed StarKist-specific gear breakdown (see fishingMethod above, unknown).',
       seafoodWatchSource: {
@@ -105,6 +108,16 @@ module.exports = {
     ],
 
     practices: [
+      {
+        claim:
+          "StarKist's parent company, Dongwon Industries, holds an MSC Fisheries Standard certificate for the Dongwon Pacific Ocean Tuna purse seine and longline fishery (certified 2019-10-18, expires 2030-04-17; certifier Control Union (UK) Limited; covers yellowfin, skipjack, bigeye, and albacore). This is a FISHERY-level catch certificate held by the parent company. It does not confirm that StarKist's U.S. retail cans carry MSC chain-of-custody certification — a separate MSC instrument, which was not checked in this research pass.",
+        basis: 'certification',
+        source: {
+          name: 'MSC Fisheries database — Dongwon Pacific Ocean Tuna purse seine and longline fishery',
+          url: 'https://fisheries.msc.org/en/fisheries/dongwon-pacific-ocean-tuna-purse-seine-and-longline-fishery/',
+          date: '2026-07-30',
+        },
+      },
       {
         claim:
           "Announced in April 2021 that it sources 100% of its tuna and salmon from suppliers meeting the MSC standard for sustainable fishing, or enrolled in a Fishery Improvement Project (FIP) working toward that standard.",
@@ -160,7 +173,7 @@ module.exports = {
           "FDA/EPA joint fish-consumption guidance places canned light (skipjack) tuna in the 'Best Choices' category (2–3 servings/week) and albacore/white and yellowfin tuna in the 'Good Choices' category (1 serving/week, no other fish that week), reflecting higher mercury bioaccumulation in the larger, longer-lived species. This is category-level guidance about the tuna species, not a StarKist-specific finding or accusation.",
         basis: 'government-record',
         source: {
-          name: 'Federal Register, "Advice About Eating Fish From the Environmental Protection Agency and Food and Drug Administration" (FDA URL in the original raw checkpoint has since 404'd; this Federal Register notice is the stable citable link for the same guidance)',
+          name: 'Federal Register, "Advice About Eating Fish From the Environmental Protection Agency and Food and Drug Administration" (FDA URL in the original raw checkpoint has since 404ed; this Federal Register notice is the stable citable link for the same guidance)',
           url: 'https://www.federalregister.gov/documents/2017/01/19/2017-01073/advice-about-eating-fish-from-the-environmental-protection-agency-and-food-and-drug-administration',
           date: '2026-07-30',
         },
