@@ -668,24 +668,50 @@ const UNRESEARCHED_PACKAGING_PENALTY = 2;
 //
 // Applied AFTER the packaging/processing ceiling (a different, unrelated
 // axis) rather than inside it, so the bonus/penalty isn't silently
-// absorbed the way it was before this feature existed. cage-free/free-range
-// bonuses stay modest deliberately: cage-free is an indoor-only welfare
-// improvement with no foraging/sunlight component, so it isn't backed by
-// the same nutrient evidence pasture access is; free-range's outdoor
-// access is real but USDA doesn't standardize its quality or duration, so
-// it sits between cage-free and pasture-raised rather than matching either.
+// absorbed the way it was before this feature existed.
+//
+// Redesigned 2026-07-30 (second pass, same day) after the founder pushed
+// back on the first version clustering every non-conventional tier within
+// 2 points of pasture-raised: "free range does not mean they have a
+// hundred square feet of bugs and little proteins and foods that it eats
+// on the regular... All scores should reflect less than ideal nutrition
+// than pasture raised." That's correct and changes the model — the Penn
+// State nutrient gap is specifically about hens actually FORAGING pasture
+// (legumes, grasses, insects) plus real sun exposure, not about "has a
+// door to outside." USDA free-range requires SOME outdoor access with NO
+// vegetation or foraging-space minimum; cage-free requires no outdoor
+// access at all. Neither has the mechanism the nutrient study measured —
+// scoring them close to pasture-raised was crediting the label claim, not
+// the actual biology. Only pasture-raised (108 sq ft/hen, real range) gets
+// credit for the full nutrient gap; everything else is a real but modest
+// welfare/regulatory step, clustered well below pasture and well above
+// conventional rather than near-tied with either end.
 const SOURCING_ADJUSTMENT = {
-  'pasture-raised': 8,
-  'free-range': 3,
-  'cage-free': 2,
-  // USDA organic legally prohibits caging, a real floor above conventional
-  // — but "organic" alone (no further housing claim) is NOT the same
-  // guarantee as a verified cage-free/free-range/pasture-raised claim, so
-  // this stays modest rather than assumed-good. (Real audited counter-
-  // example already on file: Eggland's Best's organic line measures 1.2
-  // sq ft/hen indoors, BELOW the cage-free minimum — "organic" overselling
-  // its actual conditions is a real, not hypothetical, risk.)
-  organic: 1,
+  // The only tier with a real foraging + sun-exposure mechanism behind it
+  // — this is what the Penn State 2.5x-omega-3/2x-vitamin-E/4x-vitamin-D
+  // gap actually measured. Pushes a typical clean egg to the literal 100
+  // ceiling, standing alone as the sole tier that reaches grade A.
+  'pasture-raised': 10,
+  // USDA's 2023 Organic Livestock & Poultry Standards rule is the newest,
+  // most specific outdoor-access requirement short of pasture-raised
+  // (prohibits total confinement, requires vegetated outdoor space "to
+  // the degree practicable") — a real step toward the foraging mechanism,
+  // though not verified to match pasture-raised's actual square footage.
+  // A real audited counter-example is already on file (Eggland's Best's
+  // organic line measured 1.2 sq ft/hen indoors, below even the cage-free
+  // floor), so this stays a meaningful but bounded improvement, not
+  // treated as pasture-equivalent.
+  organic: -7,
+  // USDA free-range requires SOME outdoor access but sets no minimum
+  // space, no vegetation requirement, and no standard for what's actually
+  // out there — a concrete-and-fence yard satisfies the legal term. Real,
+  // but doesn't carry the foraging mechanism the nutrient study measured.
+  'free-range': -8,
+  // No outdoor access requirement at all — a real welfare improvement
+  // (no cage confinement) but zero mechanistic basis for the nutrient
+  // gap this whole adjustment is grounded in, so it sits closest to
+  // conventional of the non-conventional tiers.
+  'cage-free': -13,
   conventional: -18,
 };
 

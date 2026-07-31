@@ -600,11 +600,18 @@ describe('scoreProduct: sourcing/housing adjustment (eggs)', () => {
   const eggBase = { ingredients: ['eggs'], nutrition: {}, category: 'Eggs' };
 
   test('every tier gets its own sourcingAdjustment, read from the product name alone', () => {
+    // Second-pass design (2026-07-30): only pasture-raised carries the real
+    // foraging + sun-exposure mechanism the Penn State nutrient gap
+    // measured. organic/free-range/cage-free are real regulatory/welfare
+    // steps but none guarantee actual foraging, so they cluster well below
+    // pasture-raised rather than near-tying it — ordered by how much
+    // outdoor-access requirement each legally carries (organic's 2023 rule
+    // > free-range's unstandardized access > cage-free's none at all).
     expect(scoreProduct({ ...eggBase, name: 'Some Brand Grade A Large Eggs' }).sourcingAdjustment).toBe(-18);
-    expect(scoreProduct({ ...eggBase, name: 'Some Brand Organic Eggs' }).sourcingAdjustment).toBe(1);
-    expect(scoreProduct({ ...eggBase, name: 'Some Brand Cage Free Eggs' }).sourcingAdjustment).toBe(2);
-    expect(scoreProduct({ ...eggBase, name: 'Some Brand Free Range Eggs' }).sourcingAdjustment).toBe(3);
-    expect(scoreProduct({ ...eggBase, name: 'Some Brand Pasture-Raised Eggs' }).sourcingAdjustment).toBe(8);
+    expect(scoreProduct({ ...eggBase, name: 'Some Brand Cage Free Eggs' }).sourcingAdjustment).toBe(-13);
+    expect(scoreProduct({ ...eggBase, name: 'Some Brand Free Range Eggs' }).sourcingAdjustment).toBe(-8);
+    expect(scoreProduct({ ...eggBase, name: 'Some Brand Organic Eggs' }).sourcingAdjustment).toBe(-7);
+    expect(scoreProduct({ ...eggBase, name: 'Some Brand Pasture-Raised Eggs' }).sourcingAdjustment).toBe(10);
   });
 
   test('a real catalog case: Eggland\'s Best Classic (conventional) drops two full letter grades vs. before this feature, grounded in the real Penn State nutrient-gap study', () => {
@@ -635,17 +642,17 @@ describe('scoreProduct: sourcing/housing adjustment (eggs)', () => {
     expect(result.grade).toBe('A');
   });
 
-  test('tiers are fully ordered top to bottom for an otherwise-identical product', () => {
+  test('tiers are fully ordered top to bottom for an otherwise-identical product: pasture > organic > free-range > cage-free > conventional', () => {
     const scoreFor = (name) => scoreProduct({ ...eggBase, name }).score;
     const pasture = scoreFor('Brand Pasture-Raised Eggs');
+    const organic = scoreFor('Brand Organic Eggs');
     const freeRange = scoreFor('Brand Free Range Eggs');
     const cageFree = scoreFor('Brand Cage Free Eggs');
-    const organic = scoreFor('Brand Organic Eggs');
     const conventional = scoreFor('Brand Grade A Eggs');
-    expect(pasture).toBeGreaterThan(freeRange);
+    expect(pasture).toBeGreaterThan(organic);
+    expect(organic).toBeGreaterThan(freeRange);
     expect(freeRange).toBeGreaterThan(cageFree);
-    expect(cageFree).toBeGreaterThan(organic);
-    expect(organic).toBeGreaterThan(conventional);
+    expect(cageFree).toBeGreaterThan(conventional);
   });
 
   test('scoped to Eggs only — a non-egg product with an egg-tier-sounding name gets no adjustment', () => {
