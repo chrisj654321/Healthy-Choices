@@ -387,6 +387,86 @@ export const COMPANY_DB = {
     ],
     subsidiaries: ['Kraft', 'Heinz', 'Oscar Mayer', 'Philadelphia', 'Velveeta', 'Lunchables', 'Maxwell House', "Jell-O", 'Kool-Aid', 'Capri Sun'],
     sustainabilityScore: 36,
+  
+    sourcing: {
+      industry: 'meat-poultry',
+      lastVerified: '2026-07-30',
+      model: 'aggregator',
+      modelSource: {
+        name: 'Kraft Heinz\'s own European Chicken Commitment page describes standards applied to its chicken \'suppliers\' (plural) with third-party auditing and annual public reporting of supplier compliance — consistent with an aggregator model that buys from multiple external chicken producers rather than a single-farm or contract-flock structure. Separately, Kraft Heinz\'s market position is that of a large industrial purchaser that processes chicken and pork into branded products (Oscar Mayer) rather than raising livestock itself. Note that \'aggregator\' here is this pipeline\'s reading of the structure, not a classification Kraft Heinz itself publishes. No company-wide sourcing-model disclosure (e.g., 10-K risk-factor language) was independently read in this research pass — sec.gov Archives URLs returned HTTP 403 throughout this research batch.',
+        url: 'https://www.kraftheinz.com/en-GB/animal-welfare-commitment',
+        date: '2026-07-30',
+        basis: 'company-disclosure',
+      },
+      certifications: [],
+      welfareMeatPoultry: {
+        gapStep: 'unknown',
+        gapStepSource: {
+          name: 'Global Animal Partnership\'s own Manufacturers directory page, fetched directly, does not list Kraft Heinz, Oscar Mayer, or any Kraft Heinz brand among its shown manufacturer partners (page 1 of the list only; the multi-page Farms & Ranches directory was not checked). Separately, Kraft Heinz made a forward-looking commitment (2017) to source 100% of its U.S. chicken via breeds/standards approved by RSPCA or GAP by 2024, including a max stocking density of 6 lb/sq ft and improved litter/lighting/enrichment — this is a pledge about supplier standards, not a claim that Kraft Heinz itself holds a GAP step rating, and no evidence was found in this research confirming the 2024 target was met. NOT CHECKED exhaustively; do not write as absent — write as \'not found on manufacturers directory; company has a supplier-standard pledge, completion unconfirmed.\'',
+          url: 'https://globalanimalpartnership.org/partners/manufacturers/',
+          date: '2026-07-30',
+          basis: 'third-party-audit',
+        },
+        grassFinished: 'unknown',
+        grassFinishedSource: {
+          name: 'No evidence was found of Kraft Heinz/Oscar Mayer marketing any product as \'grass-fed.\' Oscar Mayer\'s meat lines found in this research (hot dogs, bacon, turkey bacon, lunch meat) are processed/cured products, not raw beef cuts where a grass-fed label would typically appear. This is an absence-of-finding from the searches run in this research pass, not a completed exhaustive search of Kraft Heinz\'s full product catalog — carried forward as unknown, not as a confirmed \'no grass-fed claims.\'',
+          url: 'https://www.kraftheinz.com/',
+          date: '2026-07-30',
+          basis: 'company-disclosure',
+        },
+        gestationCrateStatus: 'unknown',
+        gestationCrateSource: {
+          name: 'In 2012, then-Kraft Foods announced Oscar Mayer would move away from gestation stalls by 2022 (one of several such industry pledges made 2012-2015). Kraft Heinz\'s own successive disclosures then restated this commitment: its 2017 ESG report and 2018 proxy statement restated the target as elimination of gestation stalls globally \'by 2025\'; its 2023 ESG Report softened the language to \'phasing out the purchase of pork from suppliers who use gestation stalls\' — an open-ended phrase with no completion date or percentage-achieved figure disclosed. This is company-disclosure (Kraft Heinz\'s own successive report language); the sequence itself is the citable fact (2012: pledge by 2022 -> 2018: restated as by 2025 -> 2023: open-ended \'phasing out,\' no completion percentage). No percentage-complete figure for Kraft Heinz\'s current gestation-stall-free sourcing was found. A separate 2021 World Animal Protection (\'Quit Stalling\') report characterizing the 2022 pledge as missed is an advocacy-sourced claim, treated as a lead only, not established fact, and is not the basis for this status. No GAP, Certified Humane, or AGW certification specific to Kraft Heinz\'s own gestation-crate-free status was found (NOT CHECKED exhaustively). Because there is no completion percentage or third-party certification, this is recorded as a company claim of moving toward crate-free sourcing, not a certified or company-wide-confirmed crate-free status.',
+          url: 'https://www.sec.gov/Archives/edgar/data/1637459/000121465924004993/d322243px14a6g.htm',
+          date: '2026-07-30',
+          basis: 'company-disclosure',
+        },
+        chillMethod: 'unknown',
+        chillMethodSource: {
+          name: 'No information was found on Oscar Mayer/Kraft Heinz poultry (turkey bacon, turkey breast) chilling method in this research pass. Genuine search attempted, no relevant result surfaced — do not write as either air- or water-chilled.',
+          url: 'https://www.kraftheinz.com/',
+          date: '2026-07-30',
+          basis: 'company-disclosure',
+        },
+        scorecards: [],
+      },
+      enforcement: [
+        {
+          year: 2025,
+          body: 'USDA Food Safety and Inspection Service (FSIS)',
+          action: 'On 2025-07-02, Kraft Heinz Foods Company recalled approximately 367,812 lbs of fully cooked Oscar Mayer Turkey Bacon Original (12 oz vacuum packs, UPC 071871548601, \'use by\' dates 2025-07-18 through 2025-08-02, lot code RS40) due to possible Listeria monocytogenes contamination. Product was made 2025-04-24 through 2025-06-11 and distributed nationwide plus exports to the British Virgin Islands and Hong Kong. The contamination was discovered via Kraft Heinz\'s own internal lab testing; no illnesses were reported as of the recall notice. The FSIS.gov primary recall notice could not be independently fetched (HTTP 403), but ABC News and Food Dive independently corroborate the same figures and detail.',
+          status: 'settled',
+          amount: null,
+          source: {
+            name: 'FSIS recall notice, title matched via search — page not independently fetched (HTTP 403); ABC News and Food Dive corroborate the same figures',
+            url: 'https://www.fsis.usda.gov/recalls-alerts/kraft-heinz-foods-company-recalls-turkey-bacon-products-due-possible-listeria-contamination',
+          },
+        },
+        {
+          year: 2018,
+          body: 'U.S. Occupational Safety and Health Administration (OSHA)',
+          action: 'As of 2018-03-16, Kraft Heinz Foods Company\'s Mason, OH facility received a citation after an employee suffered a partial finger amputation while clearing a machine jam; OSHA found failures in energy-control (lockout/tagout) procedures, inadequate machine guarding, and insufficient training, with $109,939 in proposed penalties. OSHA\'s proposed penalty is the figure at citation; whether it was contested, reduced, or paid as proposed was not determined in this research, so no final penalty amount is recorded. This is a 2018 finding, outside the 2023-2025 recency window relevant to this research pass, and is included only as historical pattern context with this explicit date caveat — it should not be presented as a current or recent finding.',
+          status: 'alleged',
+          amount: null,
+          source: {
+            name: 'U.S. Department of Labor press release (primary government source, URL located via search, not independently re-fetched in this research pass)',
+            url: 'https://www.dol.gov/newsroom/releases/osha/osha20180316-3',
+          },
+        },
+      ],
+      practices: [
+        {
+          claim: 'Kraft Heinz\'s European Chicken Commitment (published on its own site) pledges, by 2026, for European chicken supply only: compliance with all EU animal welfare laws regardless of production country; a maximum stocking density of 30kg/m2 or less; higher-welfare breed genetics; minimum 50 lux lighting (including natural light); at least 2 metres of perch space and 2 pecking substrates per 1,000 birds; no cages or multi-tier systems; specified stunning methods (controlled atmospheric stunning using inert gas or multi-phase systems, or effective electrical stunning without live inversion); and third-party auditing with annual public reporting. The geographic scope is explicitly Europe only, with a target year of 2026 (not yet due at time of research) — this does not apply to and must never be used to characterize U.S. Oscar Mayer sourcing.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Kraft Heinz UK site, "Animal Welfare Commitment," fetched directly',
+            url: 'https://www.kraftheinz.com/en-GB/animal-welfare-commitment',
+            date: '2026-07-30',
+          },
+        },
+      ],
+    },
+
   },
 
   'conagra': {
@@ -1008,6 +1088,157 @@ export const COMPANY_DB = {
     ],
     subsidiaries: ['Tyson', 'Jimmy Dean', "Ball Park", 'Hillshire Farm', 'Wright Brand', 'State Fair', 'Aidells', 'Nature Raised Farms'],
     sustainabilityScore: 28,
+  
+    sourcing: {
+      industry: 'meat-poultry',
+      lastVerified: '2026-07-30',
+      model: 'contract-farms',
+      modelSource: {
+        name: 'Tyson Foods press release on the Progressive Beef program (a licensed quality-management system for feedlot operators covering food safety, antibiotic stewardship, environmental practices, and animal-welfare best practices); by 2020 Tyson had purchased 3M+ Progressive Beef-certified cattle, described at the time as more than half of its cattle supply chain — read as evidence of a contract-feedlot supply structure for cattle. Tyson\'s overall company-wide sourcing-model disclosure (contract vs. owned herds/flocks) was not independently confirmed in this research pass; SEC 10-K risk-factor text, which would normally describe this, could not be fetched (systematic HTTP 403 on sec.gov Archives URLs across this entire research batch).',
+        url: 'https://www.tysonfoods.com/news/news-releases/2020/9/tyson-foods-becomes-first-us-food-company-verify-sustainable-cattle-production',
+        date: '2020-09-09',
+        basis: 'company-disclosure',
+      },
+      certifications: [],
+      welfareMeatPoultry: {
+        gapStep: 'unknown',
+        gapStepSource: {
+          name: 'Global Animal Partnership\'s own Manufacturers directory page does not list Tyson (checked directly, 2026-07-30). A separate, uncorroborated secondary claim attributed to Open Philanthropy Project states GAP achieves scale partly through contracts with large producers \'including Tyson Foods\' — this was not traced to Open Philanthropy\'s original publication and conflicts with the directory finding. Independent fact-check WebSearch reconfirmed both sides exist with no resolution either way. Status stays genuinely DISPUTED/unresolved — not a confirmed absence of any GAP relationship, and not confirmed presence either.',
+          url: 'https://globalanimalpartnership.org/partners/manufacturers/',
+          date: '2026-07-30',
+          basis: 'third-party-audit',
+        },
+        grassFinished: 'not-claimed',
+        grassFinishedSource: {
+          name: 'Tyson\'s own consumer-education blog post explains grass-fed vs. grass-finished terminology without claiming any specific Tyson product is grass-finished. Tyson\'s beef sustainability program, Progressive Beef, is a feedlot quality-management/food-safety program, not a grass-fed or grass-finished welfare certification (see practices[]). No American Grassfed Association certification was found for any Tyson-family brand, though the AGA directory could not be directly fetched (HTTP 403) — its absence is not confirmed as exhaustive.',
+          url: 'https://thefeed.blog/2021/09/27/how-to-read-food-labels-on-beef-and-pork/',
+          date: '2021-09-27',
+          basis: 'company-disclosure',
+        },
+        gestationCrateStatus: 'unknown',
+        gestationCrateSource: {
+          name: 'Tyson\'s CEO has stated the company can supply California Prop 12-compliant (crate-free) pork to meet market demand, and news coverage reports Tyson supplying California with compliant pork — but this describes supply capability for a specific state market, not a company-wide gestation-crate-free claim or status. No independent certifier (GAP, Certified Humane, AGW) was found confirming Tyson\'s own gestation-crate practices.',
+          url: 'https://www.agriculturedive.com/news/prop-12-compliance-is-here-in-New-Year-California-pork/703660/',
+          date: '2026-07-30',
+          basis: 'company-disclosure',
+        },
+        chillMethod: 'unknown',
+        chillMethodSource: {
+          name: 'Tyson\'s company-wide chilling method is unresolved. The only chilling-method evidence found is scoped to one acquired subsidiary brand: Tyson\'s own 2018 press release confirms it acquired Tecumseh Poultry LLC, owner of the air-chilled, organic Smart Chicken brand, which now operates as a wholly-owned Tyson subsidiary — independently corroborated by Lincoln Journal Star, The Shelby Report, Feedstuffs, and Talk Business & Politics (recorded as a line-scoped claim in practices[]). That single-brand fact is NOT carried up to this company-wide field: Tyson\'s flagship Tyson-brand fresh chicken\'s own chilling method was not confirmed in this research (industry-standard water-chilling is the default for most U.S. commodity chicken, but no direct Tyson statement was found either way), so this field stays unknown rather than reading as company-wide air-chilling.',
+          url: 'https://www.tysonfoods.com/news/news-releases/2018/6/tyson-foods-acquires-one-leading-brands-organic-chicken',
+          date: '2018-06-04',
+          basis: 'company-disclosure',
+        },
+        scorecards: [],
+      },
+      enforcement: [
+        {
+          year: 2016,
+          body: 'U.S. District Court, Northern District of Illinois — In re Broiler Chicken Antitrust Litigation (MDL)',
+          action: 'Tyson Breeders, Inc. is a named defendant in the consolidated multidistrict litigation alleging chicken processors conspired to fix broiler chicken prices, alongside Pilgrim\'s Pride, Sanderson Farms, and other processors. The docket (filed 2016-09-02) remains active with no termination date recorded.',
+          status: 'pending',
+          amount: null,
+          source: {
+            name: 'CourtListener docket (primary court record, Stage 1 script pull), cross-checked against the Lockridge Grindal Nauen case tracker\'s defendant list and a 2025 court-order defendant roster — Tyson appears on every independent version of the defendant list found',
+            url: 'https://www.courtlistener.com/docket/4508538/in-re-broiler-chicken-antitrust-litigation/',
+          },
+        },
+        {
+          year: 2021,
+          body: 'U.S. Department of Justice, Antitrust Division — criminal chicken price-fixing investigation',
+          action: 'According to Food Dive and Food & Power, Tyson was the first company to cooperate under the DOJ\'s Corporate Leniency Program in connection with a criminal investigation into chicken price-fixing (conduct alleged 2012-2017), and as a result avoided criminal prosecution; Tyson separately paid a reported $80 million to resolve related civil claims. The exact date of Tyson\'s own civil payment was not independently confirmed in this research; presented here in the context of the investigation\'s broader resolution window.',
+          status: 'settled',
+          amount: null,
+          source: {
+            name: 'Food Dive; Food & Power (secondary trade/news reporting, consistent detail, not independently confirmed against a DOJ primary document)',
+            url: 'https://www.fooddive.com/news/tyson-foods-exchanges-cooperation-for-leniency-in-price-fixing-probe/579602/',
+          },
+        },
+        {
+          year: 2022,
+          body: 'U.S. District Court, District of Minnesota — In re Cattle and Beef Antitrust Litigation (MDL No. 3031)',
+          action: 'Tyson Foods, Inc. and Tyson Fresh Meats, Inc. are named defendants, alongside Cargill Meat Solutions, Swift Beef Company, JBS USA Food Company, and National Beef Packing Company, in litigation alleging collusion among major beef packers. The docket (JPML consolidation 2022-03-10, case filed 2022-06-03) remains active with no termination date recorded.',
+          status: 'pending',
+          amount: null,
+          source: {
+            name: 'CourtListener docket (primary court record, Stage 1 script pull)',
+            url: 'https://www.courtlistener.com/docket/63363039/in-re-cattle-and-beef-antitrust-litigation/',
+          },
+        },
+        {
+          year: 2025,
+          body: 'Direct-purchaser and consumer plaintiffs — In re Cattle and Beef Antitrust Litigation, D. Minnesota',
+          action: 'According to Bloomberg Law, Feedstuffs, Meatingplace, and JDJournal, Tyson agreed in December 2025 to an $82.5 million settlement with direct-purchaser plaintiffs in the cattle/beef antitrust litigation (reported structure: $80 million settlement fund plus $2.5 million in notice/administration costs), with preliminary court approval granted May 2026 by Judge John Tunheim. Tyson also previously agreed to pay a reported $55 million to resolve related consumer price-fixing claims in the same litigation. Both figures were reported consistently across four independent outlets but not independently confirmed against the underlying court filing.',
+          status: 'settled',
+          amount: null,
+          source: {
+            name: 'Bloomberg Law; Feedstuffs; Meatingplace; JDJournal — four independent outlets reporting consistent figures and structure',
+            url: 'https://news.bloomberglaw.com/antitrust/tyson-foods-wins-first-approval-of-83-million-price-fixing-deal',
+          },
+        },
+        {
+          year: 2025,
+          body: 'Purchaser plaintiffs — pork price-fixing multidistrict litigation',
+          action: 'According to NBC News, Insurance Journal, Food Dive, Supply Chain Dive, and Talk Business & Politics, Tyson agreed to pay a reported $85 million in 2025 to settle a proposed class action alleging collusion to inflate pork prices — described by these outlets as the largest settlement to date in the pork antitrust MDL. Not independently confirmed against the underlying court filing; exact article URLs for this specific figure were not captured during research.',
+          status: 'settled',
+          amount: null,
+          source: {
+            name: 'NBC News; Insurance Journal; Food Dive; Supply Chain Dive; Talk Business & Politics',
+            url: 'https://www.fooddive.com/',
+          },
+        },
+        {
+          year: 2025,
+          body: 'Environmental Working Group v. Tyson Foods, Inc. (settlement)',
+          action: 'Tyson launched \'Brazen Beef\' in September 2023 (a joint venture with Schweid & Sons) marketed as \'climate-smart\' and moving toward \'net zero,\' including a USDA-approved \'climate-friendly\' claim citing a 10% greenhouse-gas reduction. The Environmental Working Group sued Tyson in 2024 alleging greenwashing — that Tyson never defined \'climate-smart beef\' or disclosed how the reduction was measured. According to EWG, Earthjustice, Food Processing, and Bloomberg (a financial outlet with no stake in the case), plus a case write-up from UK law firm Peters & Peters (a third party to the case), Tyson settled in November 2025: it agreed to stop making \'net zero\' and \'climate-smart beef\' claims, to halt marketing, selling, or promoting Brazen Beef in the U.S. for five years, and not to make new environmental claims without verification by a jointly agreed-upon expert. Per Peters & Peters, Tyson did not admit wrongdoing. The settlement agreement\'s own text was not independently read in this research (the document was located but could not be rendered for text extraction).',
+          status: 'settled',
+          amount: null,
+          source: {
+            name: 'Environmental Working Group; Earthjustice; Food Processing; Bloomberg; Peters & Peters (case commentary) — independently corroborating, including at least one non-advocacy, non-party source',
+            url: 'https://earthjustice.org/press/2025/tyson-foods-agrees-to-stop-making-net-zero-and-climate-smart-beef-claims',
+          },
+        },
+      ],
+      practices: [
+        {
+          claim: 'Smart Chicken, an organic chicken brand Tyson acquired in 2018 (via Tecumseh Poultry LLC) and operates as a wholly-owned subsidiary, is marketed as air-chilled. This applies to the Smart Chicken brand line only — it is not a Tyson-brand or company-wide chilling-method claim, and Tyson-brand fresh chicken\'s own chilling method was not confirmed in this research.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Tyson Foods press release, "Tyson Foods Acquires One of the Leading Brands of Organic Chicken"; corroborated by Lincoln Journal Star, The Shelby Report, Feedstuffs, and Talk Business & Politics',
+            url: 'https://www.tysonfoods.com/news/news-releases/2018/6/tyson-foods-acquires-one-leading-brands-organic-chicken',
+            date: '2018-06-04',
+          },
+        },
+        {
+          claim: 'Progressive Beef — a licensed quality-management program covering food safety, antibiotic stewardship, environmental practices, and animal-welfare best practices for feedlot operators in Tyson\'s cattle supply chain. Tyson began licensing it in 2018 and reported purchasing over 3 million Progressive Beef-certified cattle by 2020, described at the time as more than half of its cattle supply chain. This is a feedlot quality-management/food-safety program, not a grass-fed or grass-finished welfare certification.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Tyson Foods press release, "Tyson Foods Becomes First U.S. Food Company to Verify Sustainable Cattle Production Practices at Scale"',
+            url: 'https://www.tysonfoods.com/news/news-releases/2020/9/tyson-foods-becomes-first-us-food-company-verify-sustainable-cattle-production',
+            date: '2020-09-09',
+          },
+        },
+        {
+          claim: 'According to trade press, Tyson changed its \'no antibiotics ever\' branded-chicken claim to \'No Antibiotics Important to Human Medicine\' (completed by end of 2023), which allows ionophores (not classified as medically important antibiotics) in some chickens\' diets for fresh/frozen/ready-to-eat branded products.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Supermarket Perimeter, "Tyson updates its \'no antibiotics ever\' policy" (secondary trade press; the underlying USDA AMS Process Verified Program page could not be independently fetched — HTTP 403)',
+            url: 'https://www.supermarketperimeter.com/articles/9916-tyson-updates-its-no-antibiotics-ever-policy',
+            date: '2026-07-30',
+          },
+        },
+        {
+          claim: 'USDA AMS lists a \'Tyson Foods, Inc. Process Verified Program\' and a separate \'Tyson Fresh Meats Process Verified Program.\' Program scope and audit details were not independently confirmed — the USDA AMS pages describing them could not be fetched directly.',
+          basis: 'government-record',
+          source: {
+            name: 'USDA Agricultural Marketing Service (page existence confirmed via search-result title match; page content not independently fetched — HTTP 403)',
+            url: 'https://www.ams.usda.gov/content/tyson-foods-inc-process-verified-program',
+            date: '2026-07-30',
+          },
+        },
+      ],
+    },
+
   },
 
   'hormel': {
@@ -1057,6 +1288,127 @@ export const COMPANY_DB = {
     ],
     subsidiaries: ['SPAM', 'Skippy', 'Applegate', "Jennie-O", "Justin's", 'Natural Choice', 'Columbus Craft Meats', 'Wholly Guacamole', 'Dinty Moore', 'Planters'],
     sustainabilityScore: 35,
+  
+    sourcing: {
+      industry: 'meat-poultry',
+      lastVerified: '2026-07-30',
+      model: 'contract-farms',
+      modelSource: {
+        name: 'Hormel\'s own Global Impact site (hogs supply-chain page) describes systems it harvests hogs from in terms of purchased/contracted supply rather than a fully owned herd, consistent with a contract-farm structure. Separately, per company materials referenced in this research (not independently re-fetched at a current date), Hormel has stated it purchases roughly 96% of hogs under supply contracts from 250+ independent producers, mostly Midwest family farms, while also owning/operating some hog farms itself in Colorado. That specific 96%/250+ figure traces to an FY2017-era reference and is STALE — nearly a decade old, not re-confirmed for the current year, and should not be presented as Hormel\'s present-day split. The contract-farm classification is used here as the best-supported reading of the overall structure despite the dated percentage.',
+        url: 'https://www.hormelfoods.com/global-impact/planet/supply-chain/hogs/',
+        date: '2024-11-19',
+        basis: 'company-disclosure',
+      },
+      certifications: [
+        {
+          name: 'Global Animal Partnership (GAP) Animal Welfare Certified',
+          verifier: 'Global Animal Partnership',
+          scope: 'Applegate\'s beef hot dog line only — not Hormel-branded meat, not Applegate\'s other product lines',
+          standard: 'unknown',
+          verifiedDate: '2026-07-30',
+          source: {
+            name: 'Applegate, "Animal Welfare"; MEAT+POULTRY, "GAP certifies Applegate hot dogs" (2019-07-02); Supermarket Perimeter, "Applegate Farms takes pride in Humanely Raised standard"',
+            url: 'https://applegate.com/mission/animal-welfare',
+          },
+        },
+      ],
+      welfareMeatPoultry: {
+        gapStep: 'unknown',
+        gapStepSource: {
+          name: 'Global Animal Partnership\'s own Manufacturers directory page, fetched directly, does not list Hormel or Applegate among its shown manufacturer partners (page 1 of the list only; the multi-page Farms & Ranches directory was not checked, so this does not rule out a GAP relationship recorded elsewhere on the site). Independently, GAP does host a dedicated page at globalanimalpartnership.org/portfolio/applegate-farms/, confirming GAP carries an Applegate portfolio entry — but that page\'s content is a bare logo and a 2017 date with no step-level text, so it neither confirms nor contradicts a specific step. This applies to Applegate\'s beef hot dog line specifically (see practices[]), not to Hormel-branded meat generally — no GAP relationship is confirmed for the Hormel corporate brand itself. NOT CHECKED exhaustively; do not write as absent.',
+          url: 'https://globalanimalpartnership.org/partners/manufacturers/',
+          date: '2026-07-30',
+          basis: 'third-party-audit',
+        },
+        grassFinished: 'not-claimed',
+        grassFinishedSource: {
+          name: 'Hormel does not sell raw/fresh beef cuts as a mainline consumer brand (its portfolio is primarily pork, turkey, and processed/prepared foods: SPAM, Skippy, Justin\'s, Wholly, Columbus, Jennie-O). The one beef-relevant line found, Applegate\'s beef hot dogs, is sourced as 100% \'Certified Regenerative Beef\' as of a 2025 Hormel press release — certified via Regenerative Organic Certified (ROC), Land to Market, and \'Certified Regenerative\' (endorsed by Certified Humane). This is a regenerative-agriculture/soil-practice certification, not a grass-fed or grass-finished welfare/diet certification, and must not be conflated with one. No American Grassfed Association (or equivalent) certification was found for any Hormel-family beef product in this research pass.',
+          url: 'https://www.hormelfoods.com/newsroom/press-releases/applegate-farms-llc-beats-2025-regenerative-goal-transitions-all-beef-hot-dogs-to-100-certified-regenerative-beef/',
+          date: '2026-07-30',
+          basis: 'company-disclosure',
+        },
+        gestationCrateStatus: 'crates-used',
+        gestationCrateSource: {
+          name: 'Independently confirmed directly on Hormel\'s own Global Impact site, in Hormel\'s own words: "19% of the total hogs we were harvesting on an annualized basis (regardless of destination) were produced in California Proposition 12 compliant systems" and "13% were produced in loose sow housed systems," with 100% of hogs destined for the Massachusetts and California markets specifically housed in group pens from birth (the legally-required subset for those two states\' compliance regimes, not a company-wide figure). This data lives directly on Hormel\'s Global Impact site rather than in one titled downloadable report document; the page references a \'2023/2024 Group Sow Housing Report\' and was last updated 11/19/24, with the figures described as of June 2024. Because only 19%+13% of hogs are in Prop-12-compliant or loose-housed systems, the majority of Hormel\'s supply is not disclosed as crate-free — this is recorded as \'crates-used\' rather than any crate-free status. Separately, Hormel states it converted its own company-owned sow farms to group housing by 2018, and that it purchases roughly 96% of hogs under contract from 250+ independent producers (that percentage is STALE, FY2017-era, not re-confirmed for the current year — see practices[]).',
+          url: 'https://www.hormelfoods.com/global-impact/planet/supply-chain/hogs/',
+          date: '2024-11-19',
+          basis: 'company-disclosure',
+        },
+        chillMethod: 'unknown',
+        chillMethodSource: {
+          name: 'No information was found on whether Jennie-O (Hormel\'s turkey brand) uses air-chilling or water-chilling; searches surfaced only unrelated content (employee training/air-and-water-quality compliance topics, and the 2026 sale of Hormel\'s whole-bird turkey processing business to Life-Science Innovations, with Hormel retaining the Jennie-O brand for ground/processed turkey). Genuine search attempted, no relevant result surfaced — do not write as either air- or water-chilled.',
+          url: 'https://www.provisioneronline.com/articles/120524-hormel-foods-completes-sale-of-whole-bird-turkey-business-to-life-science-innovations',
+          date: '2026-07-30',
+          basis: 'company-disclosure',
+        },
+        scorecards: [],
+      },
+      enforcement: [
+        {
+          year: 2018,
+          body: 'U.S. District Court, District of Minnesota — In re Pork Antitrust Litigation (MDL No. 2998)',
+          action: 'Hormel Foods, LLC was named as a defendant in In re Pork Antitrust Litigation (docket 0:18-cv-01776, filed 2018-06-28; also consolidated as MDL No. 2998, docket 0:21-md-02998, filed 2021-06-22; both dockets show no termination date recorded), alongside Agri Stats Inc., Seaboard Foods LLC, Seaboard Corporation, and Smithfield Foods Inc., over an alleged conspiracy since January 2009 to restrict hog supply and fix/raise/stabilize pork prices, partly via shared data through Agri Stats. According to multiple independent trade-press accounts (meatingplace.com, National Hog Farmer), Judge John Tunheim later granted Hormel\'s motion for summary judgment on most claims, with the court\'s stated basis being that Hormel did not formally subscribe to the Agri Stats benchmarking-report service central to the alleged conspiracy (Hormel is reported to have only accepted free Agri Stats samples in 2017). The dismissal was partial, not total: it was without prejudice as to most claims, but the consumer indirect-purchaser plaintiffs\' complaint against Hormel continued. Hormel separately settled with the Direct Purchaser Plaintiffs and other purchaser tiers for a reported combined total of roughly $11 million ($2.4M to institutional customers, $4.8M to wholesalers/direct purchasers, $4.4M to consumers), reached in Q2 fiscal 2024, without admitting fault.',
+          status: 'settled',
+          amount: null,
+          source: {
+            name: 'CourtListener docket (Stage 1 primary court record) for the defendant listing and docket status; Star Tribune and Bloomberg Law for the settlement figures (independently re-corroborated by nny360.com, Feedstuffs, and an official PR Newswire class-action settlement notice); meatingplace.com and National Hog Farmer for the summary-judgment/Agri Stats-subscription reasoning. The summary-judgment specifics and settlement figures are UNVERIFIED — no primary court order or settlement declaration was independently read in this research pass — but corroborated across multiple independent, non-advocacy outlets with no contradicting account found.',
+            url: 'https://www.courtlistener.com/docket/7338509/in-re-pork-antitrust-litigation/',
+          },
+        },
+        {
+          year: 2025,
+          body: 'USDA Food Safety and Inspection Service (FSIS)',
+          action: 'According to Today.com, approximately 4,874,815 lbs of foodservice ready-to-eat frozen chicken breast/thigh products were recalled for possible metal-fragment contamination; product was distributed 2025-02-10 through 2025-09-19 to HRI Commercial Food Service locations nationwide, and the recall was issued after multiple customer complaints of metal in product. The FSIS.gov listing was referenced via search (title matched) but could not be independently fetched (HTTP 403).',
+          status: 'settled',
+          amount: null,
+          source: {
+            name: 'Today.com (secondary news); FSIS.gov listing referenced via search, page not independently fetched — HTTP 403',
+            url: 'https://www.today.com/food/recall/hormel-frozen-chicken-recall-rcna240051',
+          },
+        },
+        {
+          year: 2025,
+          body: 'USDA Food Safety and Inspection Service (FSIS)',
+          action: 'According to an FSIS.gov listing referenced via search (page not independently fetched — HTTP 403), approximately 256,185 lbs of canned beef stew were recalled for possible wood contamination, dated approximately May 2025.',
+          status: 'settled',
+          amount: null,
+          source: {
+            name: 'FSIS.gov listing referenced via search, page not independently fetched — HTTP 403',
+            url: 'https://www.fsis.usda.gov/recalls-alerts',
+          },
+        },
+      ],
+      practices: [
+        {
+          claim: 'Applegate, a Hormel subsidiary, states on its own site that cattle raised for its products are third-party certified via GAP Step 4 (\'Pasture Centered\' — pasture/outdoor access year-round), Certified Humane, or Australian Certified Organic. This is now corroborated by two independent trade-press outlets beyond Applegate\'s own site — MEAT+POULTRY (2019) and Supermarket Perimeter — describing the GAP Animal Welfare Certified logo appearing on Applegate\'s \'The Great Organic Uncured Beef Hot Dog\' at Whole Foods. The underlying \'GAP-certified\' claim for this specific product is corroborated; the exact \'Step 4\' designation is not independently confirmed by a source describing it as applied to Applegate specifically. This scope is limited to Applegate\'s beef hot dog line — it is not a Hormel-corporate-wide claim, and it does not apply to Hormel-branded meat. Separately, Applegate\'s site also describes a \'Humanely Raised\' standard (a Where Food Comes From program), which is a different certification body from Certified Humane (Humane Farm Animal Care/HFAC) despite the similar name — which of these program(s) Applegate actually holds was not independently confirmed against either certifier\'s own directory in this research pass, so the two are not merged into a single certification here.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Applegate, "Animal Welfare"; MEAT+POULTRY, "GAP certifies Applegate hot dogs" (2019-07-02); Supermarket Perimeter, "Applegate Farms takes pride in Humanely Raised standard"',
+            url: 'https://applegate.com/mission/animal-welfare',
+            date: '2026-07-30',
+          },
+        },
+        {
+          claim: 'Applegate, a Hormel subsidiary, states it has required its pork suppliers to house sows in groups (not gestation crates) since 1987. No independent third-party audit confirmation was found for this specific historical claim beyond Applegate\'s general GAP/Certified Humane certifications noted above. This is scoped to Applegate specifically, not to Hormel-branded pork.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Hormel/Applegate press materials (search-engine synthesis, not independently re-fetched from a single primary Applegate page in this research pass)',
+            url: 'https://applegate.com/mission/animal-welfare',
+            date: '2026-07-30',
+          },
+        },
+        {
+          claim: 'Hormel states its company-owned sow farms were converted to group housing by 2018, which the company describes as ahead of its stated commitment. This is distinct from Hormel\'s contract-farm supply (the ~96%-under-contract/250+ producers figure — see modelSource), which is a separately STALE, FY2017-era figure not re-confirmed for the current year.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Search-engine synthesis citing a Hormel FY1999/2017-era 10-K reference and Hormel CSR materials — not independently re-fetched at a current date',
+            url: 'https://www.hormelfoods.com/global-impact/global-impact-reporting/',
+            date: '2026-07-30',
+          },
+        },
+      ],
+    },
+
   },
 
   'jbs': {
@@ -1155,6 +1507,188 @@ export const COMPANY_DB = {
     ],
     subsidiaries: ['Smithfield', 'Eckrich', 'Nathan\'s Famous (packaged)', 'Farmland', 'Armour', 'Margherita', 'Cook\'s'],
     sustainabilityScore: 25,
+  
+    sourcing: {
+      industry: 'meat-poultry',
+      lastVerified: '2026-07-30',
+      model: 'contract-farms',
+      modelSource: {
+        name: 'Smithfield\'s own Q3/fiscal-year-2025 investor materials: company-owned hog production fell from 14.6 million head (2024) to 11.1 million head (2025), approximately 40% of hogs processed by its Fresh Pork segment, on track for 11.5 million head total in 2025 (down from a 2019 peak of 17.6 million). Two hog-farming operations formerly owned by Smithfield (Murphy Family Ventures, 150,000 sows; VisionAg LLC, 28,000 sows) became independent contract producers in the same period -- the rightsizing strategy driving the owned-vs-contract shift.',
+        url: 'https://investors.smithfieldfoods.com/news-events/press-releases/detail/1434/smithfield-foods-reports-record-fiscal-2025-results',
+        date: '2026-07-30',
+        basis: 'company-disclosure',
+      },
+      certifications: [],
+      welfareMeatPoultry: {
+        gapStep: 'unknown',
+        gapStepSource: {
+          name: 'Global Animal Partnership\'s find-a-producer directory was not genuinely queried in this pass — the URL attempted (globalanimalpartnership.org/find-a-producer) returned 404, and the correct interactive directory URL was not located. A site-restricted WebSearch (site:globalanimalpartnership.org Smithfield) returned no producer-specific hit. Recorded as NOT CHECKED / unknown, not as confirmed absence, since GAP\'s own directory was never successfully loaded.',
+          url: 'https://globalanimalpartnership.org/',
+          date: '2026-07-30',
+          basis: 'third-party-audit',
+        },
+        grassFinished: 'not-applicable',
+        grassFinishedSource: {
+          name: 'Smithfield is a pork producer/processor; no grass-fed/grass-finished beef claim applies to its product line.',
+          url: 'https://www.smithfieldfoods.com/',
+          date: '2026-07-30',
+          basis: 'company-disclosure',
+        },
+        gestationCrateStatus: 'crates-used',
+        gestationCrateSource: {
+          name: 'Smithfield announced in 2007 a company-wide commitment to phase out individual gestation stalls on company-owned sow farms over 10 years, replacing them with group housing; incremental progress was reported at 71.4% by end of 2014 and 87% by a later 2016 report. In June 2023 Smithfield announced it had fulfilled that 2007 commitment — group housing on all company-owned U.S. farms, after a reported $360M+ conversion investment. This claim is explicitly scoped to company-owned farms only. Contract growers were only \'recommended,\' not required, to convert to group housing (target year 2022 cited via a sliding-scale incentive structure); growers who don\'t convert keep existing contracts but are less likely to get extensions. Company-owned farms account for only ~40% of hogs processed by Smithfield\'s Fresh Pork segment as of FY2025 (heading toward ~30%), so the \'fulfilled commitment\' language covers a minority, and shrinking, share of total supply. All of this is secondary trade-press reporting of company statements, not independently confirmed against Smithfield\'s own primary disclosure text in this pass (direct WebFetch of the company\'s own announcement returned 403). Separately, Smithfield was not found to be a named plaintiff in National Pork Producers Council v. Ross, the U.S. Supreme Court\'s 2023 Proposition 12 case (named plaintiffs were NPPC and the American Farm Bureau Federation); the primary opinion PDF was located but not read line-by-line for a full party list in this pass.',
+          url: 'https://www.feedstuffs.com/agribusiness-news/smithfield-fulfills-sow-housing-commitment-on-company-owned-farms',
+          date: '2026-07-30',
+          basis: 'company-disclosure',
+        },
+        chillMethod: 'not-applicable',
+        chillMethodSource: {
+          name: 'Smithfield is a pork producer/processor; air-chilled vs. water-chilled is a poultry-processing claim type and does not apply to its product line.',
+          url: 'https://www.smithfieldfoods.com/',
+          date: '2026-07-30',
+          basis: 'company-disclosure',
+        },
+        scorecards: [],
+      },
+      enforcement: [
+        {
+          year: 2018,
+          body: 'U.S. District Court, District of Minnesota — In re Pork Antitrust Litigation (MDL No. 2998)',
+          action: 'Smithfield Foods, Inc. is a named defendant in the consolidated multidistrict litigation alleging major U.S. pork producers (also including Hormel Foods, Agri Stats, Seaboard Foods, Clemens Food Group, JBS USA, Triumph Foods, and Tyson entities) conspired to fix, raise, or stabilize pork prices beginning around 2009, partly via shared data through Agri Stats Inc. The overarching MDL docket (JPML consolidation 2021-03-10; the underlying case filed 2018-06-28) is VERIFIED as not-yet-terminated per direct CourtListener primary-source data (Stage 1 script pull; dateTerminated: null across all three related dockets). Smithfield\'s defendant role (as opposed to purchaser/plaintiff) was independently confirmed in fact-check via cross-checked defendant rosters, with no contradicting source found. The MDL remains open overall because other co-defendants continue litigating even after Smithfield\'s own portion settled (see below).',
+          status: 'pending',
+          amount: null,
+          source: {
+            name: 'CourtListener docket (primary court record, Stage 1 script pull); defendant role independently cross-checked against meatingplace.com and nationalhogfarmer.com trade coverage',
+            url: 'https://www.courtlistener.com/docket/7338509/in-re-pork-antitrust-litigation/',
+          },
+        },
+        {
+          year: 2025,
+          body: 'In re Pork Antitrust Litigation, D. Minnesota — settlements by Smithfield',
+          action: 'Smithfield has settled three separate tranches of the pork price-fixing MDL: approximately $42 million with restaurant/direct-action plaintiffs (also agreeing to cooperate in prosecuting claims against other pork companies); approximately $75 million with indirect/consumer purchasers (final court approval reported April 11, 2023, per Judge John R. Tunheim); and approximately $83 million with direct purchasers (named plaintiffs Maplevale Farms Inc. and John Gross & Company Inc.), reported by MEAT+POULTRY, National Hog Farmer, Food Dive, PorkBusiness, and U.S. News — five independent non-advocacy outlets. Combined, these three settlements total approximately $200 million, consistent with an independently found figure describing JBS, Tyson, and Smithfield together having \'paid out more than $200 million combined.\' None of the three settlement amounts were independently confirmed against a primary court-filed order in this research pass.',
+          status: 'settled',
+          amount: 200000000,
+          source: {
+            name: 'MEAT+POULTRY; National Hog Farmer; Food Dive; PorkBusiness; U.S. News (five independent outlets, consistent figures, primary court orders not independently read)',
+            url: 'https://www.nationalhogfarmer.com/market-news/smithfield-foods-posts-record-profit-sets-stage-for-2026-growth',
+          },
+        },
+        {
+          year: 2025,
+          body: 'Humane Society of the United States v. Smithfield Foods, Inc. — Superior Court of the District of Columbia',
+          action: 'HSUS sued Smithfield on Oct. 18, 2021, alleging Smithfield\'s \'group housing\' marketing and its public statement that it had eliminated gestation-crate use violated the D.C. Consumer Protection Procedures Act. HSUS\'s own filing characterized Smithfield\'s \'group housing\' as a repeating cycle involving gestation crates — an allegation from the plaintiff, not an established fact. On Oct. 24, 2022, D.C. Superior Court Judge Yvonne Williams denied Smithfield\'s motion to dismiss, a procedural ruling allowing the case to proceed that is not itself a finding of liability; this ruling and the case\'s 2021 filing are independently corroborated by four non-advocacy trade outlets (MEAT+POULTRY, Farm Progress, National Hog Farmer, AGDAILY). The parties settled on Jan. 28, 2025. According to HSUS\'s own settlement announcement — the only source found for this specific language despite a genuine additional search effort, so it is presented here as HSUS\'s characterization, not Smithfield\'s own statement or an independently confirmed fact — Smithfield agreed to clarify its marketing and disclosures, and its materials now state that it \'still crates sows for 4 to 6 weeks each pregnancy cycle following insemination.\' No settlement payment amount was found in HSUS\'s announcement or elsewhere.',
+          status: 'settled',
+          amount: null,
+          source: {
+            name: 'Humane Society of the United States settlement announcement (plaintiff-side source for the specific disclosure quote); case filing and 2022 motion-to-dismiss ruling independently corroborated by MEAT+POULTRY, Farm Progress, National Hog Farmer, and AGDAILY',
+            url: 'https://www.humaneworld.org/en/news/humane-society-united-states-and',
+          },
+        },
+        {
+          year: 2020,
+          body: 'USDA Food Safety and Inspection Service — Notice of Intended Enforcement, Smithfield Fresh Meats Corp. (Est. M320M)',
+          action: 'A Notice of Intended Enforcement dated Feb. 20, 2020, reportedly alleged failure to prevent inhumane handling and slaughter of livestock at this establishment, per a document found hosted at an animal-advocacy site rather than FSIS\'s own domain (fsis.usda.gov returned 403 to direct fetch throughout this research pass). An NOIE gives the establishment a chance to demonstrate compliance before FSIS suspends inspection personnel assignment; it is a preliminary compliance notice, not an adjudicated finding. Content is drawn from search-result synthesis only and was not independently read from a primary FSIS document — flagged for re-verification against fsis.usda.gov directly before use as more than a lead.',
+          status: 'alleged',
+          amount: null,
+          source: {
+            name: 'Document hosted by an animal-advocacy organization (farmtransparency.org), not FSIS itself; content not independently fetched (404 on the specific document URL)',
+            url: 'https://www.fsis.usda.gov/',
+          },
+        },
+        {
+          year: 2020,
+          body: 'OSHA — Smithfield Packaged Meats Corp., Sioux Falls, SD',
+          action: 'OSHA cited the company for one general-duty-clause violation — failure to provide a workplace free of recognized COVID-19 hazards ahead of a March 2020 outbreak at the plant. Per Dept. of Labor figures reported by Insurance Journal, approximately 1,294 workers at the plant contracted COVID-19 and 4 employees died in spring 2020. The proposed penalty was $13,494 — the statutory maximum for this violation type at the time. Reporting indicates Smithfield initially contested the citation and later settled with OSHA; exact settlement terms were not independently confirmed in this pass. Because $13,494 is the PROPOSED penalty and the settled amount is unknown, no final penalty amount is recorded here.',
+          status: 'settled',
+          amount: null,
+          source: {
+            name: 'Insurance Journal; OSHA regional press release (page returned 404 on direct fetch in this pass — content from search-result synthesis, not independently confirmed)',
+            url: 'https://www.insurancejournal.com/news/national/2020/09/11/582117.htm',
+          },
+        },
+        {
+          year: 2020,
+          body: 'Cal/OSHA — Smithfield facility and subcontractor CitiStaff Solutions',
+          action: 'Cal/OSHA reportedly cited both Smithfield and its subcontractor CitiStaff Solutions for COVID-19 protection failures (masking, physical barriers) at a California facility, where more than 315 of approximately 1,800 workers were reportedly infected. Combined proposed fines were reported at more than $100,000 across both companies. This is secondary reporting only — no single primary source URL was independently confirmed in this research pass, and no disposition (contested, reduced, settled, or paid) was found, so the citations are recorded as unadjudicated.',
+          status: 'alleged',
+          amount: null,
+          source: {
+            name: 'Secondary news-search synthesis; no single primary source independently confirmed in this pass',
+            url: 'https://www.osha.gov/',
+          },
+        },
+        {
+          year: 2024,
+          body: 'Food & Water Watch v. Smithfield Foods, Inc. — Superior Court of the District of Columbia',
+          action: 'Food & Water Watch alleged Smithfield repeatedly misled consumers during COVID-19 (a separate case from the HSUS gestation-crate suit). Reported settled and dismissed in May 2024. Sourced to FarmSTAND, an advocacy/legal-support organization for food-system litigation; this is a D.C. Superior Court matter not covered by CourtListener\'s federal-only search, consistent with the pipeline\'s documented tooling limitation for state courts, and was not independently confirmed against the court\'s own docket.',
+          status: 'settled',
+          amount: null,
+          source: {
+            name: 'FarmSTAND (advocacy/legal-support organization, not independently cross-checked against the D.C. Superior Court docket)',
+            url: 'https://farmstand.org/case/food-water-watch-v-smithfield-foods/',
+          },
+        },
+        {
+          year: 2020,
+          body: 'North Carolina federal court / Fourth Circuit Court of Appeals — Murphy-Brown LLC nuisance litigation (hog-farm odor/lagoon suits)',
+          action: 'North Carolina federal nuisance litigation from roughly 2018-2020: neighbors alleged odor and insect nuisance from Smithfield\'s Murphy-Brown hog-production subsidiary\'s anaerobic lagoon waste-management system. A 2018 jury awarded $75,000 in compensatory damages per plaintiff plus $5 million in punitive damages, reduced to $2.5 million under North Carolina\'s punitive-damages cap. On November 19, 2020 the Fourth Circuit affirmed the jury\'s liability verdict for compensatory and punitive damages but vacated the punitive-damages award and remanded for a rehearing on that specific issue. Smithfield subsequently announced a settlement resolving the remaining cases (terms not disclosed). Re-sourced from trade/legal press (Feedstuffs, Insurance Journal, VOA News) rather than Wikipedia alone (Stage 5 review, 2026-07-30). A broader aggregate figure (~500 plaintiffs across 29 cases total, cited only by Wikipedia) was NOT independently confirmed against a primary docket count and is not asserted here — this entry describes the one case with independently-corroborated details.',
+          status: 'settled',
+          amount: null,
+          source: {
+            name: 'Feedstuffs, "Smithfield settles North Carolina hog nuisance lawsuit"; Insurance Journal and VOA News independently corroborate the Fourth Circuit ruling and settlement announcement',
+            url: 'https://www.feedstuffs.com/livestock-and-poultry-market-news/smithfield-settles-north-carolina-hog-nuisance-lawsuit',
+          },
+        },
+      ],
+      practices: [
+        {
+          claim: 'Smithfield announced in June 2023 that it had fulfilled its 2007 commitment to convert sows to group housing, a claim it scopes to its company-owned U.S. farms after a reported $360M+ conversion investment. Company-owned farms accounted for approximately 40% of the hogs processed by Smithfield\'s Fresh Pork segment as of FY2025, with a stated forward target near 30%; contract growers, who supply the remaining majority, were recommended rather than required to convert. No third-party certification of crate-free status was found for either group.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Smithfield announcement as reported by Feedstuffs, "Smithfield fulfills sow housing commitment on company-owned farms" (company\'s own announcement page returned 403 to direct fetch); supply-share figures from secondary financial-press reporting of Smithfield\'s FY2025 disclosures',
+            url: 'https://www.feedstuffs.com/agribusiness-news/smithfield-fulfills-sow-housing-commitment-on-company-owned-farms',
+            date: '2026-07-30',
+          },
+        },
+        {
+          claim: 'Smithfield\'s \'Pure Farms\' line (launched Feb. 2017) markets fresh pork cuts, ham cuts, and packaged cuts (breakfast sausage, bacon) as \'no antibiotics, steroids, hormones or artificial ingredients,\' stated to meet \'the highest level of USDA standards.\'',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Smithfield Foods investor-relations press release, "Smithfield Foods Introduces Pure Farms(TM) Antibiotic-Free Product Line" (primary company source; full text not independently re-fetched in this pass)',
+            url: 'https://investors.smithfieldfoods.com/2017-02-20-Smithfield-Foods-Introduces-Pure-Farms-TM-Antibiotic-Free-Product-Line',
+            date: '2017-02-20',
+          },
+        },
+        {
+          claim: 'USDA AMS lists a \'Smithfield Process Verified Program\' page. Its current (2026) scope — whether it currently covers antibiotic-related claims specifically, or only traceability/handling — was not confirmed; direct WebFetch of the page and the master PVP listing PDF returned 403 in this research pass.',
+          basis: 'government-record',
+          source: {
+            name: 'USDA Agricultural Marketing Service (page existence confirmed via search-result title match; page content not independently fetched — HTTP 403)',
+            url: 'https://www.ams.usda.gov/content/smithfield-process-verified-program',
+            date: '2026-07-30',
+          },
+        },
+        {
+          claim: 'A 2006 secondary source states Smithfield Packing Company achieved USDA Process Verified Program certification for all three of its processing facilities at that time, described then as \'the world\'s largest pork company to be 100% process verified,\' covering traceability-to-farm-of-origin, PQA Plus program adherence, and TQA livestock-hauler status. This is a 2006 source and the current (2026) PVP scope was not independently re-verified — flagged as outdated context, not a current-state claim.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'American Association of Swine Veterinarians news item (2006; STALE — predates 2020, current status not reconfirmed)',
+            url: 'https://www.aasv.org/2006/05/smithfield-foods-achieves-usda-process-verified-certification/',
+            date: '2006-05-01',
+          },
+        },
+        {
+          claim: 'According to an FSIS recall page title, Smithfield Packaged Meats Corp. recalled approximately 185,610 lbs of ready-to-eat bacon topping product in 2022 for possible metal contamination, following a customer complaint. Page title/URL located via search; full page content was not independently fetched (403).',
+          basis: 'government-record',
+          source: {
+            name: 'FSIS recall notice (page existence confirmed via search-result title match; full content not independently fetched — HTTP 403)',
+            url: 'https://www.fsis.usda.gov/recalls-alerts/smithfield-packaged-meats-corp--recalls-a-ready-eat-bacon-topping-products-due',
+            date: '2022-01-01',
+          },
+        },
+      ],
+    },
+
   },
 
   'perdue': {
@@ -5572,6 +6106,157 @@ export const COMPANY_DB = {
     ],
     subsidiaries: ["Boar's Head"],
     sustainabilityScore: 40,
+  
+    sourcing: {
+      industry: 'meat-poultry',
+      lastVerified: '2026-07-30',
+      model: 'contract-farms',
+      modelSource: {
+        name: 'Boar\'s Head, "Animal Well-Being" — the company states it does not operate farms or raise animals itself, instead sourcing from external suppliers selected on criteria including animal welfare standards, and describes collaborating with animal welfare experts and unnamed "third-party audits." No specific certifier or audit standard is named on the page.',
+        url: 'https://boarshead.com/animalwell-being',
+        date: '2026-07-30',
+        basis: 'company-disclosure',
+      },
+      certifications: [],
+      welfareMeatPoultry: {
+        gapStep: 'none',
+        gapStepSource: {
+          name: 'Global Animal Partnership\'s Shoppers partner-list page does not include Boar\'s Head; independently re-confirmed on a second fetch of the live directory.',
+          url: 'https://globalanimalpartnership.org/shoppers/',
+          date: '2026-07-30',
+          basis: 'third-party-audit',
+        },
+        grassFinished: 'not-applicable',
+        grassFinishedSource: {
+          name: 'No grass-fed or grass-finished beef claim was found for any Boar\'s Head product line in this research pass.',
+          url: 'https://boarshead.com/animalwell-being',
+          date: '2026-07-30',
+          basis: 'company-disclosure',
+        },
+        gestationCrateStatus: 'unknown',
+        gestationCrateSource: {
+          name: 'No gestation-crate policy, company statement, or certification was found for Boar\'s Head pork sourcing in this research pass.',
+          url: 'https://boarshead.com/animalwell-being',
+          date: '2026-07-30',
+          basis: 'company-disclosure',
+        },
+        chillMethod: 'unknown',
+        chillMethodSource: {
+          name: 'No chilling-method disclosure was found for Boar\'s Head poultry products in this research pass.',
+          url: 'https://boarshead.com/animalwell-being',
+          date: '2026-07-30',
+          basis: 'company-disclosure',
+        },
+        scorecards: [],
+      },
+      enforcement: [
+        {
+          year: 2021,
+          body: 'Animal Welfare Institute — advocacy complaints filed with the Federal Trade Commission (no FTC action taken)',
+          action: 'On February 23, 2021, the Animal Welfare Institute (AWI) filed two complaints with the FTC alleging Boar\'s Head\'s "humanely raised" label claims — on its chicken sausage and on its Simplicity All Natural turkey products — are deceptive, on the grounds that Boar\'s Head\'s compliance with the industry-association FACTA (chicken) and NTF (turkey) programs does not constitute independent third-party welfare certification. As of this research (2026-07-30), no FTC enforcement action, consent order, or other public disposition on either complaint has been found in the five-plus years since filing; the matter has not been adjudicated. Recorded as \'alleged\' rather than \'pending\' because nothing indicates an open or active FTC proceeding — an advocacy complaint with no agency response in five-plus years is an unadjudicated allegation, not a pending action.',
+          status: 'alleged',
+          amount: null,
+          source: {
+            name: 'Animal Welfare Institute Quarterly, Spring 2021 retrospective (direct fetch); corroborated by Lady Free Thinker, New Food Magazine, Perishable News, and a Crowell & Moring law-firm client alert (non-advocacy legal-industry source)',
+            url: 'https://awionline.org/awi-quarterly/spring-2021/awi-challenges-boars-head-humanely-raised-claim',
+          },
+        },
+        {
+          year: 2024,
+          body: 'USDA Food Safety and Inspection Service (FSIS)',
+          action: 'FSIS opened an investigation July 12, 2024 after Maryland health officials detected Listeria monocytogenes in a liverwurst sample. Boar\'s Head recalled approximately 207,528 lb of liverwurst and related deli meat (produced June 11-July 17, 2024) from its Jarratt, Virginia plant on July 26, 2024, then expanded the recall on July 30, 2024 to approximately 7 million additional pounds of ready-to-eat meat and poultry products made at the Jarratt plant (establishment M12612) between May 10 and July 29, 2024. CDC identified 61 illnesses across 19 states and 10 deaths tied to the outbreak, with illness specimens collected May 29-September 13, 2024; CDC declared the outbreak over on November 21, 2024. FSIS suspended production at the Jarratt plant on July 31, 2024. A USDA-FSIS public report issued January 2025 found inadequate sanitation practices at the Jarratt facility contributed to the outbreak and documented 69 FSIS noncompliance reports issued for the plant between August 2023 and August 2024. Boar\'s Head permanently discontinued liverwurst production at Jarratt; the plant\'s broader suspension was indefinite, not permanent — FSIS placed the suspension into abeyance on July 18, 2025 after reviewing corrective documentation, and the plant reopened for non-liverwurst production in 2025 under enhanced federal oversight and at least 90 days of heightened Listeria monitoring.',
+          status: 'adjudicated',
+          amount: null,
+          source: {
+            name: 'USDA-FSIS recall notices and January 2025 public report (accessed via WebSearch restatement, direct fsis.usda.gov fetch blocked); corroborated by Food Safety News (direct fetch of its inspection-record investigation), CIDRAP, Virginia Business, WTVR, WVTF, and Fox Business',
+            url: 'https://www.fsis.usda.gov/recalls-alerts/boars-head-provisions-co--expands-recall-ready-eat-meat-and-poultry-products-due',
+          },
+        },
+        {
+          year: 2025,
+          body: 'U.S. District Court, Southern District of New York — Pompilio et al. v. Boar\'s Head Provisions Co. Inc.',
+          action: 'A consumer class action arising from the 2024 listeria recall (case no. 7:24-cv-08220-PMH, White Plains division), covering purchases of recalled products May 10-August 12, 2024, reached a $3.1 million class-action settlement; the court granted final approval on August 13, 2025.',
+          status: 'settled',
+          amount: 3100000,
+          source: {
+            name: 'CourtListener docket; corroborated by Fast Company and Food Poisoning News',
+            url: 'https://www.courtlistener.com/?q=Pompilio+v.+Boar%27s+Head',
+          },
+        },
+        {
+          year: 2024,
+          body: 'Wrongful-death claim — Morgenstein family (private settlement)',
+          action: 'The family of Gunter Morgenstein, represented by Ron Simon & Associates, reached a settlement with Boar\'s Head over a wrongful-death claim tied to the 2024 listeria outbreak, announced December 13, 2024; settlement terms were not disclosed and no public court docket number was located.',
+          status: 'settled',
+          amount: null,
+          source: {
+            name: '13newsnow, WAVY, MEAT+POULTRY, and Supermarket Perimeter — four independent outlets',
+            url: 'https://www.13newsnow.com/',
+          },
+        },
+        {
+          year: 2024,
+          body: 'Wrongful-death suit — Otis Adams Jr. family',
+          action: 'A wrongful-death suit was filed by Morgan & Morgan on behalf of the family of Otis Adams Jr. (died May 5, 2024), alleging he contracted listeriosis from Boar\'s Head ham purchased at a Tampa-area Publix — reported as the first suit in the outbreak tied to ham/cheese rather than liverwurst. No public court docket number was located, and the case\'s current status was not confirmed in this research — recorded as an unadjudicated allegation rather than as a confirmed-pending action.',
+          status: 'alleged',
+          amount: null,
+          source: {
+            name: 'ABC News, Good Morning America, Forbes, and The Hill',
+            url: 'https://abcnews.go.com/',
+          },
+        },
+        {
+          year: 2014,
+          body: 'Occupational Safety and Health Administration',
+          action: 'OSHA issued one Serious citation to Boar\'s Head Provisions Co. Inc. (inspection #317489482) under 29 CFR 1910.22(a)(1), a walking-working-surfaces standard, with a penalty of $2,100; the citation was contested and reached a final settled order June 13, 2016. This predates and is unrelated to the 2024 listeria outbreak.',
+          status: 'settled',
+          amount: 2100,
+          source: {
+            name: 'OSHA establishment/violation detail page (direct fetch)',
+            url: 'https://www.osha.gov/ords/imis/establishment.violation_detail?id=317489482&citation_id=01001A',
+          },
+        },
+      ],
+      practices: [
+        {
+          claim: 'Boar\'s Head states it selects suppliers on criteria including "ethical farming practices, animal welfare standards, and sustainable approaches," collaborates with animal-welfare experts, and conducts "verification audits, annual reviews, and third-party audits" framed around the Five Freedoms — no specific certifier or audited standard is named.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Boar\'s Head, "Animal Well-Being"',
+            url: 'https://boarshead.com/animalwell-being',
+            date: '2026-07-30',
+          },
+        },
+        {
+          claim: 'Boar\'s Head\'s chicken products are produced under the FACTA (Farm Animal Care Training & Auditing) program and its turkey products under the National Turkey Federation (NTF) Standards of Conduct — both industry-association programs, not independent third-party welfare certifications. This is the basis of the unadjudicated AWI complaint filed with the FTC (see enforcement).',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Corroborated across AWI, Lady Free Thinker, New Food Magazine, Perishable News, and Crowell & Moring (non-advocacy legal-industry source); no direct Boar\'s Head statement naming FACTA/NTF was independently fetched',
+            url: 'https://awionline.org/awi-quarterly/spring-2021/awi-challenges-boars-head-humanely-raised-claim',
+            date: '2026-07-30',
+          },
+        },
+        {
+          claim: 'Boar\'s Head\'s Simplicity and All Natural Collection product lines carry "no added hormones and no antibiotics ever" claims and are marketed as "humanely raised pork."',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Boar\'s Head product listings (aggregated via retailer pages)',
+            url: 'https://boarshead.com/',
+            date: '2026-07-30',
+          },
+        },
+        {
+          claim: 'Boar\'s Head labels certain products "No Nitrates or Nitrites Added" except for those naturally occurring in cultured celery powder and sea salt — standard FDA-permitted "uncured" labeling language; the product does still contain naturally-occurring nitrates/nitrites from those ingredients despite the "no added" framing.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Boar\'s Head product labels (aggregated)',
+            url: 'https://boarshead.com/',
+            date: '2026-07-30',
+          },
+        },
+      ],
+    },
+
   },
 
   'ocean-spray': {
@@ -6470,6 +7155,90 @@ export const COMPANY_DB = {
     ],
     subsidiaries: ['Johnsonville Sausage'],
     sustainabilityScore: 55,
+  
+    sourcing: {
+      industry: 'meat-poultry',
+      lastVerified: '2026-07-30',
+      model: 'unknown',
+      modelSource: {
+        name: 'No page was found on johnsonville.com or johnsonvillefoodservice.com disclosing whether the company\'s pork supply comes from company-owned farms, contract growers, or open-market purchasing. A 2014 secondary trade-press figure describing \'the most sow harvest capacity in the United States\' (3,400 pigs/day) describes processing/slaughter capacity, not farm ownership or sourcing structure, and is stale/off-point. Independently reconfirmed as a genuine gap in the Stage 3 fact-check pass, not an incomplete search.',
+        url: 'https://johnsonville.com/our-story/',
+        date: '2026-07-30',
+        basis: 'company-disclosure',
+      },
+      certifications: [],
+      welfareMeatPoultry: {
+        gapStep: 'unknown',
+        gapStepSource: {
+          name: 'Global Animal Partnership\'s interactive producer directory was not queryable (documented tooling limitation). A targeted WebSearch for Johnsonville + GAP/Certified Humane/AWA returned no relevant hit in the Stage 2 pass, and an independent Stage 3 re-run of the same search also returned zero Johnsonville-specific hits. Two independent negative searches with no positive result; still recorded as unknown rather than a confirmed absence, since GAP\'s own directory itself could not be directly queried.',
+          url: 'https://globalanimalpartnership.org/partners/manufacturers/',
+          date: '2026-07-30',
+          basis: 'third-party-audit',
+        },
+        grassFinished: 'not-applicable',
+        grassFinishedSource: {
+          name: 'Johnsonville is a pork sausage manufacturer; no grass-fed/grass-finished beef claim applies to its product line. Not researched as an open claim type for this company.',
+          url: 'https://johnsonville.com/our-story/',
+          date: '2026-07-30',
+          basis: 'company-disclosure',
+        },
+        gestationCrateStatus: 'unknown',
+        gestationCrateSource: {
+          name: 'No Johnsonville-specific statement on gestation-crate use, group housing, or sow housing was found in either the Stage 2 research pass or the independent Stage 3 fact-check re-check. Johnsonville is primarily a sausage manufacturer rather than a vertically integrated hog producer/breeder in the way this claim type assumes, but that is an inference from absence of evidence, not a confirmed fact about its supply chain — its hog suppliers\' practices were not identified. Recorded as unknown, not as crate-free or as using crates.',
+          url: 'https://johnsonville.com/our-story/',
+          date: '2026-07-30',
+          basis: 'company-disclosure',
+        },
+        chillMethod: 'unknown',
+        chillMethodSource: {
+          name: 'No chilling-method disclosure (air-chilled vs. water-chilled) was located for Johnsonville products in this research pass; Johnsonville is primarily a pork sausage manufacturer rather than a fresh-poultry processor, so this claim type may have limited applicability, but no direct statement either way was found.',
+          url: 'https://johnsonville.com/our-story/',
+          date: '2026-07-30',
+          basis: 'company-disclosure',
+        },
+        scorecards: [],
+      },
+      enforcement: [],
+      practices: [
+        {
+          claim: 'According to secondary aggregator reporting (Fox News), Johnsonville recalled approximately 100,000 lbs of Jalapeño Cheddar smoked sausage in 2019 after a customer complaint of hard green plastic found in the product. Not independently confirmed against a primary FSIS recall notice — direct fetches of fsis.usda.gov returned 403/404 throughout this research pass.',
+          basis: 'government-record',
+          source: {
+            name: 'Fox News (secondary aggregator; FSIS primary notice not independently fetched)',
+            url: 'https://www.foxnews.com/health/johnsonville-recalls-nearly-100000-pounds-of-sausage',
+            date: '2026-07-30',
+          },
+        },
+        {
+          claim: 'According to secondary aggregator reporting (TopClassActions), Johnsonville recalled approximately 42,000 lbs of ready-to-eat pork sausage links in June 2023 over possible black plastic fiber contamination. Not independently confirmed against a primary FSIS recall notice.',
+          basis: 'government-record',
+          source: {
+            name: 'TopClassActions (secondary aggregator; FSIS primary notice not independently fetched)',
+            url: 'https://topclassactions.com/lawsuit-settlements/consumer-products/recalls/johnsonville-initiates-recall-for-pork-sausage-links-due-to-plastic-contamination/',
+            date: '2026-07-30',
+          },
+        },
+        {
+          claim: 'According to secondary aggregator reporting (AARP, TopClassActions), Johnsonville recalled approximately 35,000+ lbs of turkey kielbasa sausage in March 2024 over possible rubber contamination. Not independently confirmed against a primary FSIS recall notice.',
+          basis: 'government-record',
+          source: {
+            name: 'AARP; TopClassActions (secondary aggregators; FSIS primary notice not independently fetched)',
+            url: 'https://www.aarp.org/health/conditions-treatments/info-2024/johnsonville-sausage-recall.html',
+            date: '2026-07-30',
+          },
+        },
+        {
+          claim: 'FSIS recall page title (fsis.usda.gov) indicates Johnsonville LLC recalled approximately 22,672 lbs of cheddar bratwurst (produced Feb. 5, 2025 at its Momence, IL establishment) on April 5, 2025 for possible hard plastic/foreign-matter contamination, shipped to retail in GA, IN, KS, KY, MI, MN, OH, TN, VA, and WI. Page title/URL located; full page content was not independently fetched (403).',
+          basis: 'government-record',
+          source: {
+            name: 'FSIS recall notice (page existence confirmed via search-result title match; full content not independently fetched — HTTP 403)',
+            url: 'https://www.fsis.usda.gov/recalls-alerts/johnsonville-llc-recalls-cheddar-bratwurst-product-due-possible-foreign-matter',
+            date: '2025-04-05',
+          },
+        },
+      ],
+    },
+
   },
 
   'dietz-and-watson': {
@@ -6495,6 +7264,164 @@ export const COMPANY_DB = {
     ],
     subsidiaries: [],
     sustainabilityScore: 62,
+  
+    sourcing: {
+      industry: 'meat-poultry',
+      lastVerified: '2026-07-30',
+      model: 'contract-farms',
+      modelSource: {
+        name: 'Dietz & Watson\'s "Global Impact" page states the company does not operate its own farms, instead sourcing from external supplier programs organized by species (chicken, beef, pork, turkey), each with its own company-stated standard.',
+        url: 'https://www.dietzandwatson.com/our-family/global-impact',
+        date: '2026-07-30',
+        basis: 'company-disclosure',
+      },
+      certifications: [],
+      welfareMeatPoultry: {
+        gapStep: 'none',
+        gapStepSource: {
+          name: 'Global Animal Partnership\'s Shoppers partner-list page does not include Dietz & Watson; independently re-confirmed on a second fetch of the live directory.',
+          url: 'https://globalanimalpartnership.org/shoppers/',
+          date: '2026-07-30',
+          basis: 'third-party-audit',
+        },
+        grassFinished: 'not-applicable',
+        grassFinishedSource: {
+          name: 'No grass-fed or grass-finished beef claim was found for any Dietz & Watson product line in this research pass.',
+          url: 'https://www.dietzandwatson.com/our-family/global-impact',
+          date: '2026-07-30',
+          basis: 'company-disclosure',
+        },
+        gestationCrateStatus: 'unknown',
+        gestationCrateSource: {
+          name: 'No gestation-crate policy or company statement was found for Dietz & Watson pork sourcing; the company states its pork suppliers "meet and exceed current humane handling requirements" and participate in the National Pork Board Sustainable Pork Advisory Council, but does not address gestation-crate use specifically, and no certification was found.',
+          url: 'https://www.dietzandwatson.com/our-family/global-impact',
+          date: '2026-07-30',
+          basis: 'company-disclosure',
+        },
+        chillMethod: 'unknown',
+        chillMethodSource: {
+          name: 'No chilling-method disclosure was found for Dietz & Watson poultry products in this research pass.',
+          url: 'https://www.dietzandwatson.com/our-family/global-impact',
+          date: '2026-07-30',
+          basis: 'company-disclosure',
+        },
+        scorecards: [],
+      },
+      enforcement: [
+        {
+          year: 2010,
+          body: 'USDA Food Safety and Inspection Service',
+          action: 'On March 16, 2010, FSIS issued a public health alert (prompted by a Canadian Food Inspection Agency tip) for deli meat products manufactured by a third-party supplier, Siena Foods LTD (Toronto), and sold in the U.S. under several deli brand labels including Dietz & Watson, due to possible Listeria monocytogenes contamination. No illnesses were reported at the time of the alert. This concerned a third-party supplier\'s products sold under the Dietz & Watson label, not a Dietz & Watson-operated facility.',
+          status: 'adjudicated',
+          amount: null,
+          source: {
+            name: 'USDA-FSIS / Canadian Food Inspection Agency alert (accessed via WebSearch restatement, direct fsis.usda.gov fetch blocked)',
+            url: 'https://www.fsis.usda.gov/',
+          },
+        },
+        {
+          year: 2017,
+          body: 'Voluntary recall — Deutsch Kase Haus (third-party co-packer)',
+          action: 'In February 2017, Colby and Colby Jack cheese products labeled Dietz & Watson were voluntarily recalled for possible Listeria monocytogenes contamination. The products were manufactured by a third-party supplier, Deutsch Kase Haus (Middlebury, Indiana) — not a Dietz & Watson-operated plant. Dietz & Watson ended its supplier relationship with Deutsch Kase Haus following the incident. This was a cheese recall traced to a since-dropped co-packer, not a contamination event at a Dietz & Watson-manufactured product or facility; no contamination recall of a Dietz & Watson-manufactured product was found in this research.',
+          status: 'adjudicated',
+          amount: null,
+          source: {
+            name: 'Manufacturing.net, Food Safety News, MEAT+POULTRY, Refrigerated & Frozen Foods, and Gourmet News — five independent outlets',
+            url: 'https://www.foodsafetynews.com/',
+          },
+        },
+        {
+          year: 2020,
+          body: 'U.S. District Court, Southern District of New York — Watson v. Dietz & Watson, Inc.',
+          action: 'A class action (case no. 1:20-cv-06550, filed August 17, 2020, Judge Alison J. Nathan) alleged Dietz & Watson\'s Smoked Gouda cheese labeling was deceptive because its smoky flavor comes from added "natural smoke flavoring" rather than actual wood-smoke exposure. The case status is settled and voluntarily dismissed; settlement terms were not made public.',
+          status: 'settled',
+          amount: null,
+          source: {
+            name: 'truthinadvertising.org litigation tracker; docket details corroborated via UniCourt',
+            url: 'https://www.truthinadvertising.org/',
+          },
+        },
+        {
+          year: 2020,
+          body: 'U.S. District Court, Eastern District of New York — Jones v. Dietz & Watson, Inc.',
+          action: 'A related class action (case no. 1:20-cv-06018, E.D.N.Y.) alleged the same type of deceptive "smoked" labeling claim against Dietz & Watson\'s Smoked Provolone cheese. Plaintiffs filed to voluntarily dismiss the suit with prejudice within about a month of filing; settlement details were not made public.',
+          status: 'settled',
+          amount: null,
+          source: {
+            name: 'National Law Review / Lexology, "Flavor Litigation Update: Smoked Cheese"; corroborated via topclassactions.com',
+            url: 'https://www.natlawreview.com/',
+          },
+        },
+        {
+          year: 2024,
+          body: 'Occupational Safety and Health Administration',
+          action: 'OSHA opened a referral-type inspection of Dietz & Watson\'s Philadelphia facility (5701 Tacony Street) on February 21, 2024, examining amputation hazards, and issued two "Other" citations under 29 CFR 1910.212(a)(2) and 29 CFR 1910.219(c)(4)(i) (machine-guarding standards). Total penalty was $12,340 following an informal settlement; the case closed December 20, 2024.',
+          status: 'settled',
+          amount: 12340,
+          source: {
+            name: 'OSHA establishment inspection detail page (direct fetch)',
+            url: 'https://www.osha.gov/ords/imis/establishment.inspection_detail?id=1729245.015',
+          },
+        },
+      ],
+      practices: [
+        {
+          claim: 'Dietz & Watson states its chicken suppliers raise "cage free chickens... in a healthy, reduced stress environment that promotes animal welfare and natural behavior," fed "wholesome feed with vitamins, minerals and abundant fresh water." No third-party certifier is named for this cage-free claim.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Dietz & Watson, "Global Impact"',
+            url: 'https://www.dietzandwatson.com/our-family/global-impact',
+            date: '2026-07-30',
+          },
+        },
+        {
+          claim: 'Dietz & Watson states its beef suppliers "meet and exceed current humane handling requirements" and participate in the Global Roundtable for Sustainable Beef (GRSB), an industry sustainability roundtable rather than an animal-welfare certifier; supplier membership on GRSB\'s own roster was not independently confirmed.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Dietz & Watson, "Global Impact"',
+            url: 'https://www.dietzandwatson.com/our-family/global-impact',
+            date: '2026-07-30',
+          },
+        },
+        {
+          claim: 'Dietz & Watson states its pork suppliers "meet and exceed current humane handling requirements... in reduced stress environments" and participate in the National Pork Board Sustainable Pork Advisory Council; supplier membership on the Board\'s own roster was not independently confirmed.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Dietz & Watson, "Global Impact"',
+            url: 'https://www.dietzandwatson.com/our-family/global-impact',
+            date: '2026-07-30',
+          },
+        },
+        {
+          claim: 'Dietz & Watson states its turkey is raised in "a reduced stress environment that promotes natural behavior and socialization" on "sustainable family farms in the Shenandoah Valley," following National Turkey Federation (NTF) Standards of Conduct — an industry-association program, not an independent third-party welfare certification.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Dietz & Watson, "Global Impact"',
+            url: 'https://www.dietzandwatson.com/our-family/global-impact',
+            date: '2026-07-30',
+          },
+        },
+        {
+          claim: 'Dietz & Watson\'s "Naturals" product line (a distinct line, not the whole catalog) is marketed as "no antibiotics EVER, no nitrates, no nitrites, no artificial preservatives, and no gluten" and "exclusively sourced from humane farms," with the company stating it conducts its own annual supplier audits — an internal, self-run audit program, not independent third-party certification.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Dietz & Watson, "No Antibiotics Ever"',
+            url: 'https://www.dietzandwatson.com/dietz-life/eatingbetter/no-antibiotics-ever',
+            date: '2026-07-30',
+          },
+        },
+        {
+          claim: 'Dietz & Watson states it separately sells a USDA Certified Organic "Organics" line — a legally-defined federal certification (which legally prohibits synthetic pesticides and most antibiotic use) distinct from the self-audited Naturals line. This claim was not independently confirmed against the USDA Organic Integrity Database (interactive search UI not queryable by this pipeline\'s tooling), so it is recorded as a company claim, not a verified certification.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Dietz & Watson, "No Antibiotics Ever" (company disclosure of the Organics line\'s existence; USDA Organic Integrity Database not independently queried)',
+            url: 'https://www.dietzandwatson.com/dietz-life/eatingbetter/no-antibiotics-ever',
+            date: '2026-07-30',
+          },
+        },
+      ],
+    },
+
   },
 
   // ── Phase 8: Missing Companies (added 2026-06) ──
@@ -7137,6 +8064,126 @@ export const COMPANY_DB = {
     ],
     subsidiaries: [],
     sustainabilityScore: 55,
+  
+    sourcing: {
+      industry: 'meat-poultry',
+      lastVerified: '2026-07-30',
+      model: 'unknown',
+      modelSource: {
+        name: 'Land O\'Frost\'s corporate "Who We Are" page and FAQ page were both fetched directly and contain no disclosure of meat/animal sourcing practices, supplier relationships, farm practices, or a described sourcing model of any kind — their content is limited to company history, brand acquisitions, philanthropy, storage/nutrition guidance, and retail/employment information. This absence was independently confirmed twice (research pass and a separate fact-check pass) against the same pages. The company\'s 2025 Corporate Social Responsibility report (as described in press coverage, not the full PDF) covers emissions targets, Safe Quality Food (SQF) facility ratings — a food-safety certification, not an animal-welfare certification — and philanthropy, with no sourcing or welfare content mentioned in any press coverage found. Recorded as not disclosed, not as evidence of bad practice.',
+        url: 'https://www.landofrost.com/who-we-are/',
+        date: '2026-07-30',
+        basis: 'company-disclosure',
+      },
+      certifications: [],
+      welfareMeatPoultry: {
+        gapStep: 'none',
+        gapStepSource: {
+          name: 'Global Animal Partnership\'s Shoppers partner-list page does not include Land O\'Frost or its Ambassador brand; independently re-confirmed on a second fetch of the live directory.',
+          url: 'https://globalanimalpartnership.org/shoppers/',
+          date: '2026-07-30',
+          basis: 'third-party-audit',
+        },
+        grassFinished: 'not-applicable',
+        grassFinishedSource: {
+          name: 'No grass-fed or grass-finished beef claim was found for any Land O\'Frost product line in this research pass.',
+          url: 'https://www.landofrost.com/who-we-are/',
+          date: '2026-07-30',
+          basis: 'company-disclosure',
+        },
+        gestationCrateStatus: 'unknown',
+        gestationCrateSource: {
+          name: 'No gestation-crate policy, company statement, or certification was found for Land O\'Frost pork sourcing anywhere in the company\'s public materials.',
+          url: 'https://www.landofrost.com/who-we-are/',
+          date: '2026-07-30',
+          basis: 'company-disclosure',
+        },
+        chillMethod: 'unknown',
+        chillMethodSource: {
+          name: 'No chilling-method disclosure was found for Land O\'Frost poultry products in this research pass.',
+          url: 'https://www.landofrost.com/who-we-are/',
+          date: '2026-07-30',
+          basis: 'company-disclosure',
+        },
+        scorecards: [],
+      },
+      enforcement: [
+        {
+          year: 2015,
+          body: 'USDA Food Safety and Inspection Service',
+          action: 'Land O\'Frost, Inc. (Lansing, IL establishment, EST. 500) recalled approximately 17 lb of 12 oz. packages of Ambassador Beef Summer Sausage (produced July 25, 2015, shipped to Minnesota retail locations) due to misbranding — the product contained undeclared pork. Discovered and self-reported to FSIS by the establishment; no adverse reactions were reported.',
+          status: 'adjudicated',
+          amount: null,
+          source: {
+            name: 'Perishable News and Food Poisoning Bulletin (accessed via WebSearch restatement, direct fsis.usda.gov fetch blocked); FSIS establishment page title independently corroborates',
+            url: 'https://www.fsis.usda.gov/',
+          },
+        },
+        {
+          year: 2018,
+          body: 'USDA Food Safety and Inspection Service',
+          action: 'Land O\'Frost, Inc. (Madisonville, KY establishment) recalled approximately 4,944 lb of Premium Black Forest Ham product (produced April 27, 2018; shipped to AZ, CA, OR, TX, WA) under FSIS Recall Notification Report 054-2018 (Ham Products), after the front panel correctly read "Black Forest Ham" but the back panel was mislabeled "Honey Smoked Turkey Breast." The issue was discovered via a June 20, 2018 consumer complaint; the firm notified FSIS June 22, 2018. This was a mislabeling event, not a pathogen-contamination event; no adverse reactions were reported. This is a distinct, separately-titled FSIS notice from the 2015 Ambassador summer sausage recall above.',
+          status: 'adjudicated',
+          amount: null,
+          source: {
+            name: 'Food Safety News, The National Provisioner, Legal Reader, Hip2Save, and corp.commissaries.com — five independent outlets (accessed via WebSearch restatement, direct fsis.usda.gov fetch blocked)',
+            url: 'https://www.fsis.usda.gov/recalls-alerts/recall-notification-report-054-2018-ham-products',
+          },
+        },
+        {
+          year: 2020,
+          body: 'Occupational Safety and Health Administration',
+          action: 'OSHA opened an inspection of Land O\'Frost\'s Lansing, IL plant (16850 Chicago Avenue) on July 1, 2020, after a June 29, 2020 workplace injury in which a maintenance technician\'s hand was crushed in a Multi-Vac machine that cycled unexpectedly after safety guards were bypassed without proper lockout/tagout procedure, causing a fracture and hospitalization. OSHA issued one Serious citation under 29 CFR 1910.147(d) (lockout/tagout); the initial $74,218 penalty was reduced to $13,494 via formal settlement on October 30, 2020. The case closed November 24, 2021.',
+          status: 'settled',
+          amount: 13494,
+          source: {
+            name: 'OSHA establishment inspection detail page (direct fetch, independently re-confirmed on a second fetch)',
+            url: 'https://www.osha.gov/ords/imis/establishment.inspection_detail?id=1481556.015',
+          },
+        },
+        {
+          year: 2024,
+          body: 'Occupational Safety and Health Administration',
+          action: 'OSHA opened a referral-type inspection of Land O\'Frost\'s Chicago, IL plant (700 E. 107th Street) on January 17, 2024, focused on amputation hazards and food-manufacturing safety standards. Six citations were issued initially (including four Serious); three were deleted via a formal settlement on May 31, 2024, leaving citations under 29 CFR 1910.212 (machine guarding), 1910.147 (lockout/tagout), 1910.219 (mechanical power-transmission guarding), and 1904.0040 (recordkeeping). The initial $66,828 penalty was reduced to $44,262 after settlement. The case closed June 27, 2025.',
+          status: 'settled',
+          amount: 44262,
+          source: {
+            name: 'OSHA establishment inspection detail page (direct fetch, independently re-confirmed on a second fetch)',
+            url: 'https://www.osha.gov/ords/imis/establishment.inspection_detail?id=1721385.015',
+          },
+        },
+      ],
+      practices: [
+        {
+          claim: 'No "no antibiotics ever," hormone-free, or nitrate/nitrite policy claim was found anywhere in Land O\'Frost\'s public materials (corporate site, FAQ, or CSR press coverage) — a multi-query search found nothing, though individual product-label/retailer-listing claims were not exhaustively spot-checked.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Land O\'Frost, "Who We Are" and "FAQs" (direct fetch, both independently re-confirmed on a second fetch)',
+            url: 'https://www.landofrost.com/faqs/',
+            date: '2026-07-30',
+          },
+        },
+        {
+          claim: 'Land O\'Frost\'s three named manufacturing facilities (Lansing, IL; Madisonville, KY; Searcy, AR) each received an "Excellent" rating under the Safe Quality Food (SQF) program, per the company\'s 2025 Corporate Social Responsibility report. SQF is a GFSI-recognized food-safety certification covering facility/process food-safety management — it does not certify how animals were raised or handled and is not an animal-welfare standard.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Perishable News, "Land O\'Frost Turns Family Values into Forward Progress in 2025 Corporate Social Responsibility Report" (direct fetch; the full CSR report PDF itself was not independently opened)',
+            url: 'https://perishablenews.com/deli/land-ofrost-turns-family-values-into-forward-progress-in-2025-corporate-social-responsibility-report/',
+            date: '2026-07-30',
+          },
+        },
+        {
+          claim: 'Land O\'Frost, its Ambassador brand, and its acquired Wellshire brand name do not appear in the Certified Humane directory (checked against the directory\'s current URL, certifiedhumane.org/whos-certified/).',
+          basis: 'third-party-audit',
+          source: {
+            name: 'Certified Humane — Who\'s Certified directory (direct fetch of the current directory URL, after the previously-attempted URL was found to be dead)',
+            url: 'https://certifiedhumane.org/whos-certified/',
+            date: '2026-07-30',
+          },
+        },
+      ],
+    },
+
   },
 
   'beech-nut': {
