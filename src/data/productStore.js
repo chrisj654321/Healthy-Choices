@@ -42,7 +42,7 @@ import { captureException } from '../utils/sentry';
 // any time you re-upload a rebuilt products.db so devices that already
 // downloaded a copy pick up the new one — see scripts/upload-products-db.js.
 export const REMOTE_DB_URL = 'https://huvxeaegygaeotomdqpc.supabase.co/storage/v1/object/public/Catalog/products.db';
-export const DB_VERSION = '2026-07-22-1';
+export const DB_VERSION = '2026-07-30-1';
 
 const DB_NAME = 'products.db';
 const SQLITE_DIR = `${FileSystem.documentDirectory}SQLite`;
