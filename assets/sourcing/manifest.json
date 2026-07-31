@@ -1,0 +1,58 @@
+{
+  "fetchedAt": "2026-07-31T20:11:05.000Z",
+  "note": "Generic, per-tier housing/farming-system photos, reused across every brand assigned that tier -- never depicts a specific company's facility. Real photo sourced first per housing-imagery.md's process; AI generation only as a fallback when no genuinely free, clearly-licensed, non-advocacy real photo existed.",
+  "eggs": {
+    "caged.jpg": { "type": "real", "note": "sourced 2026-07-29, see prior manifest/decision-log entries" },
+    "cage-free.jpg": { "type": "ai-generated", "note": "sourced 2026-07-29, see prior manifest/decision-log entries" },
+    "free-range.jpg": { "type": "real", "note": "sourced 2026-07-29, see prior manifest/decision-log entries" },
+    "pasture-raised.jpg": { "type": "real", "note": "sourced 2026-07-29, see prior manifest/decision-log entries" }
+  },
+  "meat-poultry": {
+    "grass-finished-beef.jpg": {
+      "type": "real",
+      "license": "Public domain (USDA employee work)",
+      "author": "Ryan Thompson, USDA",
+      "source": "https://commons.wikimedia.org/wiki/File:2789694551_37beafc438_b_-_Grass_Fed_Beef_-_Ryan_Thompson_-_Flickr_-_USDAgov.jpg",
+      "depicts": "Cattle grazing on pasture, USDA's own illustration of the organic/grass-fed grazing concept. Not tied to any company in the catalog."
+    },
+    "conventional-beef-feedlot.jpg": {
+      "type": "real",
+      "license": "CC BY-SA (GFDL 1.2+ / CC BY-SA 3.0 dual-licensed)",
+      "author": "Wikimedia user H20",
+      "source": "https://commons.wikimedia.org/wiki/File:Feedlot-1.jpg",
+      "depicts": "Generic cattle feedlot, Texas Panhandle. Not tied to any specific named company."
+    },
+    "crate-free-pork.jpg": {
+      "type": "real",
+      "license": "CC BY-SA 3.0 (GFDL 1.2+ dual-licensed)",
+      "author": "Wikimedia user Hajotthu",
+      "source": "https://commons.wikimedia.org/wiki/File:Free_range_pigs.jpg",
+      "depicts": "Free-range sow with piglets, Bonstorf, Germany -- illustrates group/open housing (absence of individual gestation crates), not tied to any company in the catalog."
+    },
+    "gestation-crate.png": {
+      "type": "ai-generated",
+      "model": "Nano Banana Pro (nano_banana_2) via Higgsfield",
+      "generatedAt": "2026-07-31T20:11:05.000Z",
+      "founderApprovedPrompt": true,
+      "reason": "No usable real photo found. The only real candidate on Wikimedia Commons ('Gestation crates 2.jpg') depicts a NAMED Smithfield Foods/Murphy Brown facility -- Smithfield is one of the 8 companies in this catalog's meat-poultry module, so using it would both violate the 'never depict a specific company's facility' rule AND directly implicate a real sourced company from advocacy-photography content. Same structural gap as eggs' cage-free/aviary tier: this is a heavily advocacy-photographed welfare topic with no neutral, freely-licensed alternative.",
+      "xmpEmbedded": true,
+      "xmpScript": ".claude/skills/sourcing-transparency/scripts/embed-ai-metadata.js"
+    }
+  },
+  "seafood": {
+    "wild-caught.jpg": {
+      "type": "real",
+      "license": "Public domain (NOAA employee work)",
+      "author": "C. Ortiz Rojas, NOAA",
+      "source": "https://commons.wikimedia.org/wiki/File:Chilean_purse_seine.jpg",
+      "depicts": "Commercial purse-seine catch (Chilean jack mackerel, not tuna specifically) -- illustrates the GENERIC wild-caught commercial fishing practice, not a species- or company-specific claim. All 3 tuna companies in the catalog (StarKist, Bumble Bee, Wild Planet) are wild-caught; no real, clearly-licensed, non-advocacy tuna-specific purse-seine photo was found in the time spent searching."
+    },
+    "farmed.jpg": {
+      "type": "real",
+      "license": "CC BY 3.0",
+      "author": "Wikimedia user Vebra (originally posted to Panoramio)",
+      "source": "https://commons.wikimedia.org/wiki/File:Shrimp_farm,_Madura,_Indonesia.jpg",
+      "depicts": "Generic shrimp aquaculture pond, Madura, Indonesia. Not tied to Rich Products/SeaPak or any other company in the catalog -- SeaPak's own actual farming country is unconfirmed (see companies.js sourcing.welfareSeafood.farmingCountry: 'unknown'), so this image is deliberately generic rather than implying a specific country match."
+    }
+  }
+}
