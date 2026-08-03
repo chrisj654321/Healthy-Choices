@@ -180,7 +180,8 @@ describe('matchSourcingToProduct — genericStandard (product/tier-based, no com
 
   test('conventional (no claim on the carton) still gets a generic industry standard', () => {
     const result = matchSourcingToProduct(null, 'conventional', 'Some Brand Grade A Large Eggs');
-    expect(result.genericStandard.spacePerAnimal).toEqual(expect.stringContaining('67 sq in'));
+    // 0.47 sq ft, not 67 sq in -- every tier reports in the same unit now.
+    expect(result.genericStandard.spacePerAnimal).toEqual(expect.stringContaining('0.47 sq ft'));
   });
 
   test('pasture-raised generic standard matches the Certified Humane figure', () => {
@@ -207,7 +208,7 @@ describe('getComparisonBaseline — reference point shown alongside a per-brand 
   test('non-organic tiers compare against their own generic standard', () => {
     expect(getComparisonBaseline('pasture-raised').spacePerAnimal).toEqual(expect.stringContaining('108 sq ft'));
     expect(getComparisonBaseline('cage-free').spacePerAnimal).toEqual(expect.stringContaining('1.5 sq ft'));
-    expect(getComparisonBaseline('conventional').spacePerAnimal).toEqual(expect.stringContaining('67 sq in'));
+    expect(getComparisonBaseline('conventional').spacePerAnimal).toEqual(expect.stringContaining('0.47 sq ft'));
   });
 
   test('organic has no standard of its own — falls back to the cage-free regulatory floor, clearly noted as such', () => {

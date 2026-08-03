@@ -1,6 +1,6 @@
 {
   "fetchedAt": "2026-07-31T20:11:05.000Z",
-  "note": "Generic, per-tier housing/farming-system photos, reused across every brand assigned that tier -- never depicts a specific company's facility. Real photo sourced first per housing-imagery.md's process; AI generation only as a fallback when no genuinely free, clearly-licensed, non-advocacy real photo existed.",
+  "note": "Generic, per-tier housing/farming-system photos, reused across every brand assigned that tier. Real photo sourced first per housing-imagery.md's process; AI generation only as a last resort when no genuinely free, clearly-licensed real photo existed. Policy revised 2026-07-31 (founder directive): an unmodified, undramatized real photo of an actual documented facility is fine to use as a tier illustration, including when the source is advocacy-sourced or the facility is identifiable -- the app never discloses or claims which company's facility is shown (every tier photo carries the same generic 'similar to this' caption regardless of source), so showing a real, accurate, unmanipulated photo is not a misrepresentation. What's still required: the photo must not be manipulated/staged to look worse than reality, and must not depict active distress/injury/gore -- ordinary documentary content only.",
   "eggs": {
     "caged.jpg": { "type": "real", "note": "sourced 2026-07-29, see prior manifest/decision-log entries" },
     "cage-free.jpg": { "type": "ai-generated", "note": "sourced 2026-07-29, see prior manifest/decision-log entries" },
@@ -29,14 +29,12 @@
       "source": "https://commons.wikimedia.org/wiki/File:Free_range_pigs.jpg",
       "depicts": "Free-range sow with piglets, Bonstorf, Germany -- illustrates group/open housing (absence of individual gestation crates), not tied to any company in the catalog."
     },
-    "gestation-crate.png": {
-      "type": "ai-generated",
-      "model": "Nano Banana Pro (nano_banana_2) via Higgsfield",
-      "generatedAt": "2026-07-31T20:11:05.000Z",
-      "founderApprovedPrompt": true,
-      "reason": "No usable real photo found. The only real candidate on Wikimedia Commons ('Gestation crates 2.jpg') depicts a NAMED Smithfield Foods/Murphy Brown facility -- Smithfield is one of the 8 companies in this catalog's meat-poultry module, so using it would both violate the 'never depict a specific company's facility' rule AND directly implicate a real sourced company from advocacy-photography content. Same structural gap as eggs' cage-free/aviary tier: this is a heavily advocacy-photographed welfare topic with no neutral, freely-licensed alternative.",
-      "xmpEmbedded": true,
-      "xmpScript": ".claude/skills/sourcing-transparency/scripts/embed-ai-metadata.js"
+    "gestation-crate.jpg": {
+      "type": "real",
+      "license": "CC BY 3.0 (explicit release confirmed via Wikimedia's permissions process)",
+      "author": "Humane Society of the United States, photographed November 2010",
+      "source": "https://commons.wikimedia.org/wiki/File:Gestation_crates_2.jpg",
+      "depicts": "Smithfield Foods/Murphy Brown gestation-crate barn, Waverly, Virginia. Superseded an earlier AI-generated placeholder (2026-07-31) after founder review: unmodified, undramatized real documentation of an actual, verified industry practice (Smithfield's own sourcing data already confirms crate use) is preferable to a synthetic stand-in, as long as the app never claims this specific photo depicts any OTHER company's facility -- it's shown with the same generic 'similar to this' caption every tier photo uses, never captioned as 'Smithfield's facility.' Reviewed directly before use: bright natural lighting, no visible injury/blood, no dramatized framing -- an ordinary documentary shot despite the advocacy source."
     }
   },
   "seafood": {

@@ -81,7 +81,12 @@ function appliesToMatchesTier(appliesTo, tier, nameIsOrganic) {
 // Sourced 2026-07-30, each figure the standard body's own published minimum:
 export const GENERIC_TIER_STANDARDS = {
   conventional: {
-    spacePerAnimal: '67 sq in/hen indoors',
+    // UEP's own published standard is 67 sq in/hen (0.4653 sq ft, rounded
+    // to 0.47) -- converted to sq ft so every tier uses the same unit;
+    // everything else here is already sq ft, and comparing 67 sq IN against
+    // 1.5 sq FT elsewhere reads as a much bigger number than it is unless
+    // you stop and do the conversion yourself.
+    spacePerAnimal: '0.47 sq ft/hen indoors',
     name: 'United Egg Producers Certified — Conventional Cage Program',
     url: 'https://uepcertified.com/conventional-cage-housing/',
   },
