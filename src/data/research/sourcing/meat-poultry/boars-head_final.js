@@ -18,9 +18,9 @@ module.exports = {
     welfareMeatPoultry: {
       gapStep: 'none',
       gapStepSource: {
-        name: "Global Animal Partnership's Shoppers partner-list page does not include Boar's Head; independently re-confirmed on a second fetch of the live directory.",
-        url: 'https://globalanimalpartnership.org/shoppers/',
-        date: '2026-07-30',
+        name: "Re-checked 2026-08-03 using the same 3-method process applied uniformly across all 8 meat-poultry companies in this pass (previously this company was checked via the Shoppers directory alone, an inconsistent method vs. the Manufacturers-directory check used for Tyson/Hormel/Kraft Heinz — corrected here): (1) GAP's Manufacturers directory [globalanimalpartnership.org/partners/manufacturers/, confirmed by direct HTML inspection to be a fixed, non-paginated 28-entry list — no match]; (2) GAP's Shoppers/'Buy G.A.P. Certified' directory [globalanimalpartnership.org/shoppers/, confirmed fixed ~80-entry list — no match, reconfirmed]; (3) a site-restricted WebSearch (site:globalanimalpartnership.org \"Boar's Head\"), which returned zero GAP-hosted hits — only third-party Animal Welfare Institute coverage of Boar's Head's disputed 'Humanely Raised' label claims, and Boar's Head's own site. Method validated against known-positive controls (Tyson Foods Inc., Applegate Farms), so the absence is a genuine completed search. 'none' confirmed and retained.",
+        url: 'https://globalanimalpartnership.org/partners/manufacturers/',
+        date: '2026-08-03',
         basis: 'third-party-audit',
       },
       grassFinished: 'not-applicable',
@@ -61,14 +61,14 @@ module.exports = {
         },
       },
       {
-        year: 2024,
-        body: 'USDA Food Safety and Inspection Service (FSIS)',
+        year: 2025,
+        body: 'USDA Food Safety and Inspection Service (FSIS) — public report on Jarratt, VA plant sanitation',
         action:
-          "FSIS opened an investigation July 12, 2024 after Maryland health officials detected Listeria monocytogenes in a liverwurst sample. Boar's Head recalled approximately 207,528 lb of liverwurst and related deli meat (produced June 11-July 17, 2024) from its Jarratt, Virginia plant on July 26, 2024, then expanded the recall on July 30, 2024 to approximately 7 million additional pounds of ready-to-eat meat and poultry products made at the Jarratt plant (establishment M12612) between May 10 and July 29, 2024. CDC identified 61 illnesses across 19 states and 10 deaths tied to the outbreak, with illness specimens collected May 29-September 13, 2024; CDC declared the outbreak over on November 21, 2024. FSIS suspended production at the Jarratt plant on July 31, 2024. A USDA-FSIS public report issued January 2025 found inadequate sanitation practices at the Jarratt facility contributed to the outbreak and documented 69 FSIS noncompliance reports issued for the plant between August 2023 and August 2024. Boar's Head permanently discontinued liverwurst production at Jarratt; the plant's broader suspension was indefinite, not permanent — FSIS placed the suspension into abeyance on July 18, 2025 after reviewing corrective documentation, and the plant reopened for non-liverwurst production in 2025 under enhanced federal oversight and at least 90 days of heightened Listeria monitoring.",
+          "A USDA-FSIS public report issued January 2025 found inadequate sanitation practices at the Jarratt, Virginia plant (establishment M12612) contributed to the 2024 listeria outbreak (see recalls[] for the recall/health-impact detail) and documented 69 FSIS noncompliance reports issued for the plant between August 2023 and August 2024. FSIS suspended production at the plant on July 31, 2024. Boar's Head permanently discontinued liverwurst production at Jarratt; the plant's broader suspension was indefinite, not permanent — FSIS placed the suspension into abeyance on July 18, 2025 after reviewing corrective documentation, and the plant reopened for non-liverwurst production in 2025 under enhanced federal oversight and at least 90 days of heightened Listeria monitoring.",
         status: 'adjudicated',
         amount: null,
         source: {
-          name: 'USDA-FSIS recall notices and January 2025 public report (accessed via WebSearch restatement, direct fsis.usda.gov fetch blocked); corroborated by Food Safety News (direct fetch of its inspection-record investigation), CIDRAP, Virginia Business, WTVR, WVTF, and Fox Business',
+          name: 'USDA-FSIS January 2025 public report (accessed via WebSearch restatement, direct fsis.usda.gov fetch blocked); corroborated by Food Safety News (direct fetch of its inspection-record investigation), CIDRAP, Virginia Business, WTVR, WVTF, and Fox Business',
           url: 'https://www.fsis.usda.gov/recalls-alerts/boars-head-provisions-co--expands-recall-ready-eat-meat-and-poultry-products-due',
         },
       },
@@ -118,6 +118,29 @@ module.exports = {
         source: {
           name: "OSHA establishment/violation detail page (direct fetch)",
           url: 'https://www.osha.gov/ords/imis/establishment.violation_detail?id=317489482&citation_id=01001A',
+        },
+      },
+    ],
+
+    recalls: [
+      {
+        year: 2024,
+        agency: 'USDA-FSIS',
+        product: 'Liverwurst, later expanded to ready-to-eat meat and poultry products',
+        reason: 'Listeria monocytogenes contamination',
+        scope: "Initial recall ~207,528 lb liverwurst (produced June 11-July 17, 2024) from the Jarratt, VA plant, announced July 26, 2024; expanded July 30, 2024 to ~7 million additional lbs of ready-to-eat product made at the same plant (establishment M12612) between May 10 and July 29, 2024",
+        scale: 'own-facility',
+        // The one case in this catalog with real, CDC-documented health
+        // impact — hospitalizations wasn't a figure our own verified
+        // sources stated, so it stays unconfirmed rather than guessed
+        // (a real number does exist publicly for this outbreak, but citing
+        // it from memory rather than a source this pipeline actually
+        // verified would break the never-fabricate rule).
+        healthImpact: { illnesses: 61, hospitalizations: 'unconfirmed', deaths: 10 },
+        source: {
+          name: 'USDA-FSIS recall notices and CDC outbreak investigation (accessed via WebSearch restatement, direct fsis.usda.gov/cdc.gov fetch blocked); corroborated by Food Safety News (direct fetch of its inspection-record investigation), CIDRAP, Virginia Business, WTVR, WVTF, and Fox Business. Illness specimens collected May 29-September 13, 2024; CDC declared the outbreak over November 21, 2024.',
+          url: 'https://www.fsis.usda.gov/recalls-alerts/boars-head-provisions-co--expands-recall-ready-eat-meat-and-poultry-products-due',
+          date: '2024-07-30',
         },
       },
     ],

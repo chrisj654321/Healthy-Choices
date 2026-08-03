@@ -400,11 +400,11 @@ export const COMPANY_DB = {
       },
       certifications: [],
       welfareMeatPoultry: {
-        gapStep: 'unknown',
+        gapStep: 'none',
         gapStepSource: {
-          name: 'Global Animal Partnership\'s own Manufacturers directory page, fetched directly, does not list Kraft Heinz, Oscar Mayer, or any Kraft Heinz brand among its shown manufacturer partners (page 1 of the list only; the multi-page Farms & Ranches directory was not checked). Separately, Kraft Heinz made a forward-looking commitment (2017) to source 100% of its U.S. chicken via breeds/standards approved by RSPCA or GAP by 2024, including a max stocking density of 6 lb/sq ft and improved litter/lighting/enrichment — this is a pledge about supplier standards, not a claim that Kraft Heinz itself holds a GAP step rating, and no evidence was found in this research confirming the 2024 target was met. NOT CHECKED exhaustively; do not write as absent — write as \'not found on manufacturers directory; company has a supplier-standard pledge, completion unconfirmed.\'',
+          name: 'Re-checked 2026-08-03 using the same 3-method process applied uniformly across all 8 meat-poultry companies in this pass: (1) GAP\'s Manufacturers directory [globalanimalpartnership.org/partners/manufacturers/, confirmed by direct HTML inspection to be a fixed, non-paginated 28-entry list — no match for \'Kraft Heinz\', \'Kraft\', or \'Oscar Mayer\']; (2) GAP\'s Shoppers/\'Buy G.A.P. Certified\' directory [globalanimalpartnership.org/shoppers/, confirmed fixed ~80-entry list — no match]; (3) site-restricted WebSearches (site:globalanimalpartnership.org "Kraft Heinz" and site:globalanimalpartnership.org "Oscar Mayer"), both returning zero GAP-hosted hits. This 3-method check is the same one that successfully surfaced real GAP portfolio pages for known-positive controls (Tyson Foods Inc., Applegate Farms) when run the same way, so this absence is a genuine completed search, not a tooling failure — upgraded from \'unknown\' to \'none\' on that basis. Kraft Heinz\'s 2017 pledge to source 100% of U.S. chicken to RSPCA/GAP-approved standards by 2024 remains a supplier-standard commitment, not a claim that Kraft Heinz itself holds a GAP certification or step rating, and no evidence was found confirming the 2024 target was met or independently verified by GAP.',
           url: 'https://globalanimalpartnership.org/partners/manufacturers/',
-          date: '2026-07-30',
+          date: '2026-08-03',
           basis: 'third-party-audit',
         },
         grassFinished: 'unknown',
@@ -432,17 +432,6 @@ export const COMPANY_DB = {
       },
       enforcement: [
         {
-          year: 2025,
-          body: 'USDA Food Safety and Inspection Service (FSIS)',
-          action: 'On 2025-07-02, Kraft Heinz Foods Company recalled approximately 367,812 lbs of fully cooked Oscar Mayer Turkey Bacon Original (12 oz vacuum packs, UPC 071871548601, \'use by\' dates 2025-07-18 through 2025-08-02, lot code RS40) due to possible Listeria monocytogenes contamination. Product was made 2025-04-24 through 2025-06-11 and distributed nationwide plus exports to the British Virgin Islands and Hong Kong. The contamination was discovered via Kraft Heinz\'s own internal lab testing; no illnesses were reported as of the recall notice. The FSIS.gov primary recall notice could not be independently fetched (HTTP 403), but ABC News and Food Dive independently corroborate the same figures and detail.',
-          status: 'settled',
-          amount: null,
-          source: {
-            name: 'FSIS recall notice, title matched via search — page not independently fetched (HTTP 403); ABC News and Food Dive corroborate the same figures',
-            url: 'https://www.fsis.usda.gov/recalls-alerts/kraft-heinz-foods-company-recalls-turkey-bacon-products-due-possible-listeria-contamination',
-          },
-        },
-        {
           year: 2018,
           body: 'U.S. Occupational Safety and Health Administration (OSHA)',
           action: 'As of 2018-03-16, Kraft Heinz Foods Company\'s Mason, OH facility received a citation after an employee suffered a partial finger amputation while clearing a machine jam; OSHA found failures in energy-control (lockout/tagout) procedures, inadequate machine guarding, and insufficient training, with $109,939 in proposed penalties. OSHA\'s proposed penalty is the figure at citation; whether it was contested, reduced, or paid as proposed was not determined in this research, so no final penalty amount is recorded. This is a 2018 finding, outside the 2023-2025 recency window relevant to this research pass, and is included only as historical pattern context with this explicit date caveat — it should not be presented as a current or recent finding.',
@@ -451,6 +440,26 @@ export const COMPANY_DB = {
           source: {
             name: 'U.S. Department of Labor press release (primary government source, URL located via search, not independently re-fetched in this research pass)',
             url: 'https://www.dol.gov/newsroom/releases/osha/osha20180316-3',
+          },
+        },
+      ],
+      recalls: [
+        {
+          year: 2025,
+          agency: 'USDA-FSIS',
+          product: 'Oscar Mayer Turkey Bacon Original (12 oz vacuum packs, UPC 071871548601, lot code RS40)',
+          reason: 'Possible Listeria monocytogenes contamination',
+          scope: 'Approximately 367,812 lbs; produced 2025-04-24 through 2025-06-11, distributed nationwide plus exports to the British Virgin Islands and Hong Kong',
+          scale: 'own-facility',
+          healthImpact: {
+            illnesses: 0,
+            hospitalizations: 0,
+            deaths: 0,
+          },
+          source: {
+            name: 'FSIS recall notice, title matched via search — page not independently fetched (HTTP 403); ABC News and Food Dive corroborate the same figures. Contamination discovered via Kraft Heinz\'s own internal lab testing; no illnesses reported as of the recall notice.',
+            url: 'https://www.fsis.usda.gov/recalls-alerts/kraft-heinz-foods-company-recalls-turkey-bacon-products-due-possible-listeria-contamination',
+            date: '2025-07-02',
           },
         },
       ],
@@ -1103,9 +1112,9 @@ export const COMPANY_DB = {
       welfareMeatPoultry: {
         gapStep: 'unknown',
         gapStepSource: {
-          name: 'Global Animal Partnership\'s own Manufacturers directory page does not list Tyson (checked directly, 2026-07-30). A separate, uncorroborated secondary claim attributed to Open Philanthropy Project states GAP achieves scale partly through contracts with large producers \'including Tyson Foods\' — this was not traced to Open Philanthropy\'s original publication and conflicts with the directory finding. Independent fact-check WebSearch reconfirmed both sides exist with no resolution either way. Status stays genuinely DISPUTED/unresolved — not a confirmed absence of any GAP relationship, and not confirmed presence either.',
-          url: 'https://globalanimalpartnership.org/partners/manufacturers/',
-          date: '2026-07-30',
+          name: 'RESOLVES the prior disputed status (previously an unresolved conflict between GAP\'s Manufacturers directory absence and an uncorroborated Open Philanthropy secondary claim). Re-checked 2026-08-03 using the same 3-method process applied uniformly across all 8 meat-poultry companies in this pass: (1) GAP\'s Manufacturers directory [globalanimalpartnership.org/partners/manufacturers/, confirmed by direct HTML inspection to be a fixed, non-paginated 28-entry list — no match for \'Tyson\']; (2) GAP\'s Shoppers/\'Buy G.A.P. Certified\' directory [globalanimalpartnership.org/shoppers/, confirmed fixed ~80-entry list — no match for \'Tyson\']; (3) a site-restricted WebSearch (site:globalanimalpartnership.org Tyson), which surfaced a real GAP-hosted page: globalanimalpartnership.org/portfolio/tyson-foods-inc/ (posted 2017-08-15, titled \'Tyson Foods, Inc.\', header image filename \'tyson-open-prairie\'). Cross-referencing that image label against Tyson\'s own brand pages (tysonfreshmeats.com/our-brands/open-prairie-natural-meats; openprairienatural.com) confirms it refers to Tyson Fresh Meats\' \'Open Prairie Natural Meats\' brand, which Tyson\'s own sites state is certified to GAP Step 1. This is a REAL, confirmed GAP relationship — but scoped to one specific \'Never Ever\' sub-brand (Open Prairie), not a company-wide Tyson-brand certification. Per the same company-wide-vs-subsidiary-scoping convention used for Hormel/Applegate, this field stays \'unknown\' (not \'none\' — a genuine relationship exists — and not a step level, since that would flatter the flagship Tyson brand with a sub-brand\'s rating). Method validated against known-positive controls (this Tyson hit itself, plus Applegate Farms\' portfolio page) and known-negative controls (Kraft Heinz, Boar\'s Head, Dietz & Watson, Land O\'Frost, Johnsonville, Smithfield — see their files).',
+          url: 'https://globalanimalpartnership.org/portfolio/tyson-foods-inc/',
+          date: '2026-08-03',
           basis: 'third-party-audit',
         },
         grassFinished: 'not-claimed',
@@ -1148,7 +1157,7 @@ export const COMPANY_DB = {
           body: 'U.S. Department of Justice, Antitrust Division — criminal chicken price-fixing investigation',
           action: 'According to Food Dive and Food & Power, Tyson was the first company to cooperate under the DOJ\'s Corporate Leniency Program in connection with a criminal investigation into chicken price-fixing (conduct alleged 2012-2017), and as a result avoided criminal prosecution; Tyson separately paid a reported $80 million to resolve related civil claims. The exact date of Tyson\'s own civil payment was not independently confirmed in this research; presented here in the context of the investigation\'s broader resolution window.',
           status: 'settled',
-          amount: null,
+          amount: 80000000,
           source: {
             name: 'Food Dive; Food & Power (secondary trade/news reporting, consistent detail, not independently confirmed against a DOJ primary document)',
             url: 'https://www.fooddive.com/news/tyson-foods-exchanges-cooperation-for-leniency-in-price-fixing-probe/579602/',
@@ -1167,10 +1176,21 @@ export const COMPANY_DB = {
         },
         {
           year: 2025,
-          body: 'Direct-purchaser and consumer plaintiffs — In re Cattle and Beef Antitrust Litigation, D. Minnesota',
-          action: 'According to Bloomberg Law, Feedstuffs, Meatingplace, and JDJournal, Tyson agreed in December 2025 to an $82.5 million settlement with direct-purchaser plaintiffs in the cattle/beef antitrust litigation (reported structure: $80 million settlement fund plus $2.5 million in notice/administration costs), with preliminary court approval granted May 2026 by Judge John Tunheim. Tyson also previously agreed to pay a reported $55 million to resolve related consumer price-fixing claims in the same litigation. Both figures were reported consistently across four independent outlets but not independently confirmed against the underlying court filing.',
+          body: 'Direct-purchaser plaintiffs — In re Cattle and Beef Antitrust Litigation, D. Minnesota',
+          action: 'According to Bloomberg Law, Feedstuffs, Meatingplace, and JDJournal, Tyson agreed in December 2025 to an $82.5 million settlement with direct-purchaser plaintiffs in the cattle/beef antitrust litigation (reported structure: $80 million settlement fund plus $2.5 million in notice/administration costs), with preliminary court approval granted May 2026 by Judge John Tunheim. Reported consistently across four independent outlets but not independently confirmed against the underlying court filing.',
           status: 'settled',
-          amount: null,
+          amount: 82500000,
+          source: {
+            name: 'Bloomberg Law; Feedstuffs; Meatingplace; JDJournal — four independent outlets reporting consistent figures and structure',
+            url: 'https://news.bloomberglaw.com/antitrust/tyson-foods-wins-first-approval-of-83-million-price-fixing-deal',
+          },
+        },
+        {
+          year: 2025,
+          body: 'Consumer plaintiffs — In re Cattle and Beef Antitrust Litigation, D. Minnesota',
+          action: 'Separate from the direct-purchaser settlement above (split into its own entry so the two distinct dollar figures don\'t collapse into one field): Tyson also agreed to pay a reported $55 million to resolve related consumer price-fixing claims in the same litigation. Reported consistently across the same four independent outlets but not independently confirmed against the underlying court filing.',
+          status: 'settled',
+          amount: 55000000,
           source: {
             name: 'Bloomberg Law; Feedstuffs; Meatingplace; JDJournal — four independent outlets reporting consistent figures and structure',
             url: 'https://news.bloomberglaw.com/antitrust/tyson-foods-wins-first-approval-of-83-million-price-fixing-deal',
@@ -1181,7 +1201,7 @@ export const COMPANY_DB = {
           body: 'Purchaser plaintiffs — pork price-fixing multidistrict litigation',
           action: 'According to NBC News, Insurance Journal, Food Dive, Supply Chain Dive, and Talk Business & Politics, Tyson agreed to pay a reported $85 million in 2025 to settle a proposed class action alleging collusion to inflate pork prices — described by these outlets as the largest settlement to date in the pork antitrust MDL. Not independently confirmed against the underlying court filing; exact article URLs for this specific figure were not captured during research.',
           status: 'settled',
-          amount: null,
+          amount: 85000000,
           source: {
             name: 'NBC News; Insurance Journal; Food Dive; Supply Chain Dive; Talk Business & Politics',
             url: 'https://www.fooddive.com/',
@@ -1315,9 +1335,9 @@ export const COMPANY_DB = {
       welfareMeatPoultry: {
         gapStep: 'unknown',
         gapStepSource: {
-          name: 'Global Animal Partnership\'s own Manufacturers directory page, fetched directly, does not list Hormel or Applegate among its shown manufacturer partners (page 1 of the list only; the multi-page Farms & Ranches directory was not checked, so this does not rule out a GAP relationship recorded elsewhere on the site). Independently, GAP does host a dedicated page at globalanimalpartnership.org/portfolio/applegate-farms/, confirming GAP carries an Applegate portfolio entry — but that page\'s content is a bare logo and a 2017 date with no step-level text, so it neither confirms nor contradicts a specific step. This applies to Applegate\'s beef hot dog line specifically (see practices[]), not to Hormel-branded meat generally — no GAP relationship is confirmed for the Hormel corporate brand itself. NOT CHECKED exhaustively; do not write as absent.',
+          name: 'Re-checked 2026-08-03 using the same 3-method process applied uniformly across all 8 meat-poultry companies in this pass: (1) GAP\'s Manufacturers directory [globalanimalpartnership.org/partners/manufacturers/, confirmed by direct HTML inspection to be a fixed, non-paginated 28-entry list — no match for \'Hormel\' or \'Applegate\']; (2) GAP\'s Shoppers/\'Buy G.A.P. Certified\' directory [globalanimalpartnership.org/shoppers/, confirmed fixed ~80-entry list — no match for \'Hormel\', though \'Applegate Farms\' DOES appear on this list]; (3) a site-restricted WebSearch (site:globalanimalpartnership.org Hormel), which returned no Hormel-specific hit. GAP does host a dedicated page at globalanimalpartnership.org/portfolio/applegate-farms/ (bare logo, 2017 date, no step-level text) confirming a real Applegate portfolio entry — already correctly scoped to Applegate\'s beef hot dog line in certifications[]/practices[] above and NOT re-touched here. No GAP relationship of any kind was found for the Hormel corporate brand itself across all three methods. Field stays \'unknown\' rather than \'none\': a real GAP relationship exists within the Hormel corporate family (Applegate), just not confirmed at the Hormel-brand-wide scope this field measures, so \'none\' would misleadingly read as \'no GAP relationship anywhere in this company.\' Method validated against known-positive controls (Tyson Foods Inc., Applegate Farms) and known-negative controls (Kraft Heinz, Boar\'s Head, Dietz & Watson, Land O\'Frost, Johnsonville, Smithfield).',
           url: 'https://globalanimalpartnership.org/partners/manufacturers/',
-          date: '2026-07-30',
+          date: '2026-08-03',
           basis: 'third-party-audit',
         },
         grassFinished: 'not-claimed',
@@ -1349,32 +1369,40 @@ export const COMPANY_DB = {
           body: 'U.S. District Court, District of Minnesota — In re Pork Antitrust Litigation (MDL No. 2998)',
           action: 'Hormel Foods, LLC was named as a defendant in In re Pork Antitrust Litigation (docket 0:18-cv-01776, filed 2018-06-28; also consolidated as MDL No. 2998, docket 0:21-md-02998, filed 2021-06-22; both dockets show no termination date recorded), alongside Agri Stats Inc., Seaboard Foods LLC, Seaboard Corporation, and Smithfield Foods Inc., over an alleged conspiracy since January 2009 to restrict hog supply and fix/raise/stabilize pork prices, partly via shared data through Agri Stats. According to multiple independent trade-press accounts (meatingplace.com, National Hog Farmer), Judge John Tunheim later granted Hormel\'s motion for summary judgment on most claims, with the court\'s stated basis being that Hormel did not formally subscribe to the Agri Stats benchmarking-report service central to the alleged conspiracy (Hormel is reported to have only accepted free Agri Stats samples in 2017). The dismissal was partial, not total: it was without prejudice as to most claims, but the consumer indirect-purchaser plaintiffs\' complaint against Hormel continued. Hormel separately settled with the Direct Purchaser Plaintiffs and other purchaser tiers for a reported combined total of roughly $11 million ($2.4M to institutional customers, $4.8M to wholesalers/direct purchasers, $4.4M to consumers), reached in Q2 fiscal 2024, without admitting fault.',
           status: 'settled',
-          amount: null,
+          amount: 11600000,
           source: {
             name: 'CourtListener docket (Stage 1 primary court record) for the defendant listing and docket status; Star Tribune and Bloomberg Law for the settlement figures (independently re-corroborated by nny360.com, Feedstuffs, and an official PR Newswire class-action settlement notice); meatingplace.com and National Hog Farmer for the summary-judgment/Agri Stats-subscription reasoning. The summary-judgment specifics and settlement figures are UNVERIFIED — no primary court order or settlement declaration was independently read in this research pass — but corroborated across multiple independent, non-advocacy outlets with no contradicting account found.',
             url: 'https://www.courtlistener.com/docket/7338509/in-re-pork-antitrust-litigation/',
           },
         },
+      ],
+      recalls: [
         {
           year: 2025,
-          body: 'USDA Food Safety and Inspection Service (FSIS)',
-          action: 'According to Today.com, approximately 4,874,815 lbs of foodservice ready-to-eat frozen chicken breast/thigh products were recalled for possible metal-fragment contamination; product was distributed 2025-02-10 through 2025-09-19 to HRI Commercial Food Service locations nationwide, and the recall was issued after multiple customer complaints of metal in product. The FSIS.gov listing was referenced via search (title matched) but could not be independently fetched (HTTP 403).',
-          status: 'settled',
-          amount: null,
+          agency: 'USDA-FSIS',
+          product: 'Foodservice ready-to-eat frozen chicken breast/thigh products',
+          reason: 'Possible metal-fragment contamination',
+          scope: 'Approximately 4,874,815 lbs; distributed 2025-02-10 through 2025-09-19 to HRI Commercial Food Service locations nationwide',
+          scale: 'own-facility',
+          healthImpact: null,
           source: {
             name: 'Today.com (secondary news); FSIS.gov listing referenced via search, page not independently fetched — HTTP 403',
             url: 'https://www.today.com/food/recall/hormel-frozen-chicken-recall-rcna240051',
+            date: '2026-07-30',
           },
         },
         {
           year: 2025,
-          body: 'USDA Food Safety and Inspection Service (FSIS)',
-          action: 'According to an FSIS.gov listing referenced via search (page not independently fetched — HTTP 403), approximately 256,185 lbs of canned beef stew were recalled for possible wood contamination, dated approximately May 2025.',
-          status: 'settled',
-          amount: null,
+          agency: 'USDA-FSIS',
+          product: 'Canned beef stew',
+          reason: 'Possible wood contamination',
+          scope: 'Approximately 256,185 lbs; dated approximately May 2025',
+          scale: 'own-facility',
+          healthImpact: null,
           source: {
             name: 'FSIS.gov listing referenced via search, page not independently fetched — HTTP 403',
             url: 'https://www.fsis.usda.gov/recalls-alerts',
+            date: '2026-07-30',
           },
         },
       ],
@@ -1520,11 +1548,11 @@ export const COMPANY_DB = {
       },
       certifications: [],
       welfareMeatPoultry: {
-        gapStep: 'unknown',
+        gapStep: 'none',
         gapStepSource: {
-          name: 'Global Animal Partnership\'s find-a-producer directory was not genuinely queried in this pass — the URL attempted (globalanimalpartnership.org/find-a-producer) returned 404, and the correct interactive directory URL was not located. A site-restricted WebSearch (site:globalanimalpartnership.org Smithfield) returned no producer-specific hit. Recorded as NOT CHECKED / unknown, not as confirmed absence, since GAP\'s own directory was never successfully loaded.',
-          url: 'https://globalanimalpartnership.org/',
-          date: '2026-07-30',
+          name: 'Re-checked 2026-08-03 using the same 3-method process applied uniformly across all 8 meat-poultry companies in this pass (previously the wrong URL was attempted (globalanimalpartnership.org/find-a-producer, 404) and no correct directory was located — replaced here with the two working static directories plus search): (1) GAP\'s Manufacturers directory [globalanimalpartnership.org/partners/manufacturers/, confirmed by direct HTML inspection to be a fixed, non-paginated 28-entry list — no match for \'Smithfield\']; (2) GAP\'s Shoppers/\'Buy G.A.P. Certified\' directory [globalanimalpartnership.org/shoppers/, confirmed fixed ~80-entry list — no match]; (3) a site-restricted WebSearch (site:globalanimalpartnership.org Smithfield), which surfaced a false-positive lead — GAP\'s portfolio page for \'Maid-Rite Specialty Foods, LLC\' — that was individually checked and confirmed unrelated: Maid-Rite is headquartered in Smithfield, Rhode Island, a place-name collision, not a reference to Smithfield Foods the company (the Maid-Rite page itself contains no mention of Smithfield Foods). No other GAP-hosted hit was found for Smithfield Foods across any of the three methods. This check is the same one that successfully surfaced real GAP portfolio pages for known-positive controls (Tyson Foods Inc., Applegate Farms) when run the same way, so this absence is a genuine completed search — upgraded from \'unknown\' to \'none\' on that basis.',
+          url: 'https://globalanimalpartnership.org/partners/manufacturers/',
+          date: '2026-08-03',
           basis: 'third-party-audit',
         },
         grassFinished: 'not-applicable',
@@ -1677,9 +1705,16 @@ export const COMPANY_DB = {
             date: '2006-05-01',
           },
         },
+      ],
+      recalls: [
         {
-          claim: 'According to an FSIS recall page title, Smithfield Packaged Meats Corp. recalled approximately 185,610 lbs of ready-to-eat bacon topping product in 2022 for possible metal contamination, following a customer complaint. Page title/URL located via search; full page content was not independently fetched (403).',
-          basis: 'government-record',
+          year: 2022,
+          agency: 'USDA-FSIS',
+          product: 'Ready-to-eat bacon topping product',
+          reason: 'Possible metal contamination',
+          scope: 'Approximately 185,610 lbs, following a customer complaint',
+          scale: 'own-facility',
+          healthImpact: null,
           source: {
             name: 'FSIS recall notice (page existence confirmed via search-result title match; full content not independently fetched — HTTP 403)',
             url: 'https://www.fsis.usda.gov/recalls-alerts/smithfield-packaged-meats-corp--recalls-a-ready-eat-bacon-topping-products-due',
@@ -6121,9 +6156,9 @@ export const COMPANY_DB = {
       welfareMeatPoultry: {
         gapStep: 'none',
         gapStepSource: {
-          name: 'Global Animal Partnership\'s Shoppers partner-list page does not include Boar\'s Head; independently re-confirmed on a second fetch of the live directory.',
-          url: 'https://globalanimalpartnership.org/shoppers/',
-          date: '2026-07-30',
+          name: 'Re-checked 2026-08-03 using the same 3-method process applied uniformly across all 8 meat-poultry companies in this pass (previously this company was checked via the Shoppers directory alone, an inconsistent method vs. the Manufacturers-directory check used for Tyson/Hormel/Kraft Heinz — corrected here): (1) GAP\'s Manufacturers directory [globalanimalpartnership.org/partners/manufacturers/, confirmed by direct HTML inspection to be a fixed, non-paginated 28-entry list — no match]; (2) GAP\'s Shoppers/\'Buy G.A.P. Certified\' directory [globalanimalpartnership.org/shoppers/, confirmed fixed ~80-entry list — no match, reconfirmed]; (3) a site-restricted WebSearch (site:globalanimalpartnership.org "Boar\'s Head"), which returned zero GAP-hosted hits — only third-party Animal Welfare Institute coverage of Boar\'s Head\'s disputed \'Humanely Raised\' label claims, and Boar\'s Head\'s own site. Method validated against known-positive controls (Tyson Foods Inc., Applegate Farms), so the absence is a genuine completed search. \'none\' confirmed and retained.',
+          url: 'https://globalanimalpartnership.org/partners/manufacturers/',
+          date: '2026-08-03',
           basis: 'third-party-audit',
         },
         grassFinished: 'not-applicable',
@@ -6162,13 +6197,13 @@ export const COMPANY_DB = {
           },
         },
         {
-          year: 2024,
-          body: 'USDA Food Safety and Inspection Service (FSIS)',
-          action: 'FSIS opened an investigation July 12, 2024 after Maryland health officials detected Listeria monocytogenes in a liverwurst sample. Boar\'s Head recalled approximately 207,528 lb of liverwurst and related deli meat (produced June 11-July 17, 2024) from its Jarratt, Virginia plant on July 26, 2024, then expanded the recall on July 30, 2024 to approximately 7 million additional pounds of ready-to-eat meat and poultry products made at the Jarratt plant (establishment M12612) between May 10 and July 29, 2024. CDC identified 61 illnesses across 19 states and 10 deaths tied to the outbreak, with illness specimens collected May 29-September 13, 2024; CDC declared the outbreak over on November 21, 2024. FSIS suspended production at the Jarratt plant on July 31, 2024. A USDA-FSIS public report issued January 2025 found inadequate sanitation practices at the Jarratt facility contributed to the outbreak and documented 69 FSIS noncompliance reports issued for the plant between August 2023 and August 2024. Boar\'s Head permanently discontinued liverwurst production at Jarratt; the plant\'s broader suspension was indefinite, not permanent — FSIS placed the suspension into abeyance on July 18, 2025 after reviewing corrective documentation, and the plant reopened for non-liverwurst production in 2025 under enhanced federal oversight and at least 90 days of heightened Listeria monitoring.',
+          year: 2025,
+          body: 'USDA Food Safety and Inspection Service (FSIS) — public report on Jarratt, VA plant sanitation',
+          action: 'A USDA-FSIS public report issued January 2025 found inadequate sanitation practices at the Jarratt, Virginia plant (establishment M12612) contributed to the 2024 listeria outbreak (see recalls[] for the recall/health-impact detail) and documented 69 FSIS noncompliance reports issued for the plant between August 2023 and August 2024. FSIS suspended production at the plant on July 31, 2024. Boar\'s Head permanently discontinued liverwurst production at Jarratt; the plant\'s broader suspension was indefinite, not permanent — FSIS placed the suspension into abeyance on July 18, 2025 after reviewing corrective documentation, and the plant reopened for non-liverwurst production in 2025 under enhanced federal oversight and at least 90 days of heightened Listeria monitoring.',
           status: 'adjudicated',
           amount: null,
           source: {
-            name: 'USDA-FSIS recall notices and January 2025 public report (accessed via WebSearch restatement, direct fsis.usda.gov fetch blocked); corroborated by Food Safety News (direct fetch of its inspection-record investigation), CIDRAP, Virginia Business, WTVR, WVTF, and Fox Business',
+            name: 'USDA-FSIS January 2025 public report (accessed via WebSearch restatement, direct fsis.usda.gov fetch blocked); corroborated by Food Safety News (direct fetch of its inspection-record investigation), CIDRAP, Virginia Business, WTVR, WVTF, and Fox Business',
             url: 'https://www.fsis.usda.gov/recalls-alerts/boars-head-provisions-co--expands-recall-ready-eat-meat-and-poultry-products-due',
           },
         },
@@ -6214,6 +6249,26 @@ export const COMPANY_DB = {
           source: {
             name: 'OSHA establishment/violation detail page (direct fetch)',
             url: 'https://www.osha.gov/ords/imis/establishment.violation_detail?id=317489482&citation_id=01001A',
+          },
+        },
+      ],
+      recalls: [
+        {
+          year: 2024,
+          agency: 'USDA-FSIS',
+          product: 'Liverwurst, later expanded to ready-to-eat meat and poultry products',
+          reason: 'Listeria monocytogenes contamination',
+          scope: 'Initial recall ~207,528 lb liverwurst (produced June 11-July 17, 2024) from the Jarratt, VA plant, announced July 26, 2024; expanded July 30, 2024 to ~7 million additional lbs of ready-to-eat product made at the same plant (establishment M12612) between May 10 and July 29, 2024',
+          scale: 'own-facility',
+          healthImpact: {
+            illnesses: 61,
+            hospitalizations: 'unconfirmed',
+            deaths: 10,
+          },
+          source: {
+            name: 'USDA-FSIS recall notices and CDC outbreak investigation (accessed via WebSearch restatement, direct fsis.usda.gov/cdc.gov fetch blocked); corroborated by Food Safety News (direct fetch of its inspection-record investigation), CIDRAP, Virginia Business, WTVR, WVTF, and Fox Business. Illness specimens collected May 29-September 13, 2024; CDC declared the outbreak over November 21, 2024.',
+            url: 'https://www.fsis.usda.gov/recalls-alerts/boars-head-provisions-co--expands-recall-ready-eat-meat-and-poultry-products-due',
+            date: '2024-07-30',
           },
         },
       ],
@@ -7168,11 +7223,11 @@ export const COMPANY_DB = {
       },
       certifications: [],
       welfareMeatPoultry: {
-        gapStep: 'unknown',
+        gapStep: 'none',
         gapStepSource: {
-          name: 'Global Animal Partnership\'s interactive producer directory was not queryable (documented tooling limitation). A targeted WebSearch for Johnsonville + GAP/Certified Humane/AWA returned no relevant hit in the Stage 2 pass, and an independent Stage 3 re-run of the same search also returned zero Johnsonville-specific hits. Two independent negative searches with no positive result; still recorded as unknown rather than a confirmed absence, since GAP\'s own directory itself could not be directly queried.',
+          name: 'Re-checked 2026-08-03 using the same 3-method process applied uniformly across all 8 meat-poultry companies in this pass (previously the interactive producer directory attempt failed as a tooling limitation — replaced here with the two working static directories plus search): (1) GAP\'s Manufacturers directory [globalanimalpartnership.org/partners/manufacturers/, confirmed by direct HTML inspection to be a fixed, non-paginated 28-entry list — no match for \'Johnsonville\']; (2) GAP\'s Shoppers/\'Buy G.A.P. Certified\' directory [globalanimalpartnership.org/shoppers/, confirmed fixed ~80-entry list — no match]; (3) a site-restricted WebSearch (site:globalanimalpartnership.org Johnsonville), which returned zero GAP-hosted hits (only Wikipedia and GAP\'s own general homepage/certification pages). This 3-method check is the same one that successfully surfaced real GAP portfolio pages for known-positive controls (Tyson Foods Inc., Applegate Farms) when run the same way, so this absence is a genuine completed search — upgraded from \'unknown\' to \'none\' on that basis.',
           url: 'https://globalanimalpartnership.org/partners/manufacturers/',
-          date: '2026-07-30',
+          date: '2026-08-03',
           basis: 'third-party-audit',
         },
         grassFinished: 'not-applicable',
@@ -7199,37 +7254,57 @@ export const COMPANY_DB = {
         scorecards: [],
       },
       enforcement: [],
-      practices: [
+      recalls: [
         {
-          claim: 'According to secondary aggregator reporting (Fox News), Johnsonville recalled approximately 100,000 lbs of Jalapeño Cheddar smoked sausage in 2019 after a customer complaint of hard green plastic found in the product. Not independently confirmed against a primary FSIS recall notice — direct fetches of fsis.usda.gov returned 403/404 throughout this research pass.',
-          basis: 'government-record',
+          year: 2019,
+          agency: 'USDA-FSIS',
+          product: 'Jalapeño Cheddar smoked sausage',
+          reason: 'Hard green plastic foreign-matter contamination',
+          scope: 'Approximately 100,000 lbs',
+          scale: 'own-facility',
+          healthImpact: null,
           source: {
-            name: 'Fox News (secondary aggregator; FSIS primary notice not independently fetched)',
+            name: 'Fox News (secondary aggregator; FSIS primary notice not independently fetched — direct fetches of fsis.usda.gov returned 403/404 throughout this research pass)',
             url: 'https://www.foxnews.com/health/johnsonville-recalls-nearly-100000-pounds-of-sausage',
-            date: '2026-07-30',
+            date: '2019-01-01',
           },
         },
         {
-          claim: 'According to secondary aggregator reporting (TopClassActions), Johnsonville recalled approximately 42,000 lbs of ready-to-eat pork sausage links in June 2023 over possible black plastic fiber contamination. Not independently confirmed against a primary FSIS recall notice.',
-          basis: 'government-record',
+          year: 2023,
+          agency: 'USDA-FSIS',
+          product: 'Ready-to-eat pork sausage links',
+          reason: 'Possible black plastic fiber contamination',
+          scope: 'Approximately 42,000 lbs, June 2023',
+          scale: 'own-facility',
+          healthImpact: null,
           source: {
             name: 'TopClassActions (secondary aggregator; FSIS primary notice not independently fetched)',
             url: 'https://topclassactions.com/lawsuit-settlements/consumer-products/recalls/johnsonville-initiates-recall-for-pork-sausage-links-due-to-plastic-contamination/',
-            date: '2026-07-30',
+            date: '2023-06-01',
           },
         },
         {
-          claim: 'According to secondary aggregator reporting (AARP, TopClassActions), Johnsonville recalled approximately 35,000+ lbs of turkey kielbasa sausage in March 2024 over possible rubber contamination. Not independently confirmed against a primary FSIS recall notice.',
-          basis: 'government-record',
+          year: 2024,
+          agency: 'USDA-FSIS',
+          product: 'Turkey kielbasa sausage',
+          reason: 'Possible rubber contamination',
+          scope: 'Approximately 35,000+ lbs, March 2024',
+          scale: 'own-facility',
+          healthImpact: null,
           source: {
             name: 'AARP; TopClassActions (secondary aggregators; FSIS primary notice not independently fetched)',
             url: 'https://www.aarp.org/health/conditions-treatments/info-2024/johnsonville-sausage-recall.html',
-            date: '2026-07-30',
+            date: '2024-03-01',
           },
         },
         {
-          claim: 'FSIS recall page title (fsis.usda.gov) indicates Johnsonville LLC recalled approximately 22,672 lbs of cheddar bratwurst (produced Feb. 5, 2025 at its Momence, IL establishment) on April 5, 2025 for possible hard plastic/foreign-matter contamination, shipped to retail in GA, IN, KS, KY, MI, MN, OH, TN, VA, and WI. Page title/URL located; full page content was not independently fetched (403).',
-          basis: 'government-record',
+          year: 2025,
+          agency: 'USDA-FSIS',
+          product: 'Cheddar bratwurst (Momence, IL establishment)',
+          reason: 'Possible hard plastic/foreign-matter contamination',
+          scope: 'Approximately 22,672 lbs; produced Feb. 5, 2025; shipped to retail in GA, IN, KS, KY, MI, MN, OH, TN, VA, WI',
+          scale: 'own-facility',
+          healthImpact: null,
           source: {
             name: 'FSIS recall notice (page existence confirmed via search-result title match; full content not independently fetched — HTTP 403)',
             url: 'https://www.fsis.usda.gov/recalls-alerts/johnsonville-llc-recalls-cheddar-bratwurst-product-due-possible-foreign-matter',
@@ -7237,6 +7312,7 @@ export const COMPANY_DB = {
           },
         },
       ],
+      practices: [],
     },
 
   },
@@ -7279,9 +7355,9 @@ export const COMPANY_DB = {
       welfareMeatPoultry: {
         gapStep: 'none',
         gapStepSource: {
-          name: 'Global Animal Partnership\'s Shoppers partner-list page does not include Dietz & Watson; independently re-confirmed on a second fetch of the live directory.',
-          url: 'https://globalanimalpartnership.org/shoppers/',
-          date: '2026-07-30',
+          name: 'Re-checked 2026-08-03 using the same 3-method process applied uniformly across all 8 meat-poultry companies in this pass (previously this company was checked via the Shoppers directory alone, an inconsistent method vs. the Manufacturers-directory check used for Tyson/Hormel/Kraft Heinz — corrected here): (1) GAP\'s Manufacturers directory [globalanimalpartnership.org/partners/manufacturers/, confirmed by direct HTML inspection to be a fixed, non-paginated 28-entry list — no match]; (2) GAP\'s Shoppers/\'Buy G.A.P. Certified\' directory [globalanimalpartnership.org/shoppers/, confirmed fixed ~80-entry list — no match, reconfirmed]; (3) a site-restricted WebSearch (site:globalanimalpartnership.org "Dietz & Watson"), which returned zero GAP-hosted hits — only Dietz & Watson\'s own site and general company listings. Method validated against known-positive controls (Tyson Foods Inc., Applegate Farms), so the absence is a genuine completed search. \'none\' confirmed and retained.',
+          url: 'https://globalanimalpartnership.org/partners/manufacturers/',
+          date: '2026-08-03',
           basis: 'third-party-audit',
         },
         grassFinished: 'not-applicable',
@@ -7308,28 +7384,6 @@ export const COMPANY_DB = {
         scorecards: [],
       },
       enforcement: [
-        {
-          year: 2010,
-          body: 'USDA Food Safety and Inspection Service',
-          action: 'On March 16, 2010, FSIS issued a public health alert (prompted by a Canadian Food Inspection Agency tip) for deli meat products manufactured by a third-party supplier, Siena Foods LTD (Toronto), and sold in the U.S. under several deli brand labels including Dietz & Watson, due to possible Listeria monocytogenes contamination. No illnesses were reported at the time of the alert. This concerned a third-party supplier\'s products sold under the Dietz & Watson label, not a Dietz & Watson-operated facility.',
-          status: 'adjudicated',
-          amount: null,
-          source: {
-            name: 'USDA-FSIS / Canadian Food Inspection Agency alert (accessed via WebSearch restatement, direct fsis.usda.gov fetch blocked)',
-            url: 'https://www.fsis.usda.gov/',
-          },
-        },
-        {
-          year: 2017,
-          body: 'Voluntary recall — Deutsch Kase Haus (third-party co-packer)',
-          action: 'In February 2017, Colby and Colby Jack cheese products labeled Dietz & Watson were voluntarily recalled for possible Listeria monocytogenes contamination. The products were manufactured by a third-party supplier, Deutsch Kase Haus (Middlebury, Indiana) — not a Dietz & Watson-operated plant. Dietz & Watson ended its supplier relationship with Deutsch Kase Haus following the incident. This was a cheese recall traced to a since-dropped co-packer, not a contamination event at a Dietz & Watson-manufactured product or facility; no contamination recall of a Dietz & Watson-manufactured product was found in this research.',
-          status: 'adjudicated',
-          amount: null,
-          source: {
-            name: 'Manufacturing.net, Food Safety News, MEAT+POULTRY, Refrigerated & Frozen Foods, and Gourmet News — five independent outlets',
-            url: 'https://www.foodsafetynews.com/',
-          },
-        },
         {
           year: 2020,
           body: 'U.S. District Court, Southern District of New York — Watson v. Dietz & Watson, Inc.',
@@ -7361,6 +7415,40 @@ export const COMPANY_DB = {
           source: {
             name: 'OSHA establishment inspection detail page (direct fetch)',
             url: 'https://www.osha.gov/ords/imis/establishment.inspection_detail?id=1729245.015',
+          },
+        },
+      ],
+      recalls: [
+        {
+          year: 2010,
+          agency: 'FDA',
+          product: 'Deli meat products sold under several deli brand labels including Dietz & Watson',
+          reason: 'Possible Listeria monocytogenes contamination',
+          scope: 'Public health alert prompted by a Canadian Food Inspection Agency tip; no illnesses reported at the time of the alert',
+          scale: 'third-party-co-packer',
+          healthImpact: {
+            illnesses: 0,
+            hospitalizations: 0,
+            deaths: 0,
+          },
+          source: {
+            name: 'USDA-FSIS / Canadian Food Inspection Agency alert (accessed via WebSearch restatement, direct fsis.usda.gov fetch blocked)',
+            url: 'https://www.fsis.usda.gov/',
+            date: '2010-03-16',
+          },
+        },
+        {
+          year: 2017,
+          agency: 'FDA',
+          product: 'Colby and Colby Jack cheese labeled Dietz & Watson',
+          reason: 'Possible Listeria monocytogenes contamination',
+          scope: 'Voluntary recall, February 2017; Dietz & Watson ended its supplier relationship with the manufacturer following the incident',
+          scale: 'third-party-co-packer',
+          healthImpact: null,
+          source: {
+            name: 'Manufacturing.net, Food Safety News, MEAT+POULTRY, Refrigerated & Frozen Foods, and Gourmet News — five independent outlets. Manufactured by third-party supplier Deutsch Kase Haus (Middlebury, Indiana), not a Dietz & Watson-operated plant.',
+            url: 'https://www.foodsafetynews.com/',
+            date: '2017-02-01',
           },
         },
       ],
@@ -8079,9 +8167,9 @@ export const COMPANY_DB = {
       welfareMeatPoultry: {
         gapStep: 'none',
         gapStepSource: {
-          name: 'Global Animal Partnership\'s Shoppers partner-list page does not include Land O\'Frost or its Ambassador brand; independently re-confirmed on a second fetch of the live directory.',
-          url: 'https://globalanimalpartnership.org/shoppers/',
-          date: '2026-07-30',
+          name: 'Re-checked 2026-08-03 using the same 3-method process applied uniformly across all 8 meat-poultry companies in this pass (previously this company was checked via the Shoppers directory alone, an inconsistent method vs. the Manufacturers-directory check used for Tyson/Hormel/Kraft Heinz — corrected here): (1) GAP\'s Manufacturers directory [globalanimalpartnership.org/partners/manufacturers/, confirmed by direct HTML inspection to be a fixed, non-paginated 28-entry list — no match]; (2) GAP\'s Shoppers/\'Buy G.A.P. Certified\' directory [globalanimalpartnership.org/shoppers/, confirmed fixed ~80-entry list — no match for Land O\'Frost or its Ambassador brand, reconfirmed]; (3) a site-restricted WebSearch (site:globalanimalpartnership.org "Land O\'Frost"), which returned zero GAP-hosted hits. Method validated against known-positive controls (Tyson Foods Inc., Applegate Farms), so the absence is a genuine completed search. \'none\' confirmed and retained.',
+          url: 'https://globalanimalpartnership.org/partners/manufacturers/',
+          date: '2026-08-03',
           basis: 'third-party-audit',
         },
         grassFinished: 'not-applicable',
@@ -8109,28 +8197,6 @@ export const COMPANY_DB = {
       },
       enforcement: [
         {
-          year: 2015,
-          body: 'USDA Food Safety and Inspection Service',
-          action: 'Land O\'Frost, Inc. (Lansing, IL establishment, EST. 500) recalled approximately 17 lb of 12 oz. packages of Ambassador Beef Summer Sausage (produced July 25, 2015, shipped to Minnesota retail locations) due to misbranding — the product contained undeclared pork. Discovered and self-reported to FSIS by the establishment; no adverse reactions were reported.',
-          status: 'adjudicated',
-          amount: null,
-          source: {
-            name: 'Perishable News and Food Poisoning Bulletin (accessed via WebSearch restatement, direct fsis.usda.gov fetch blocked); FSIS establishment page title independently corroborates',
-            url: 'https://www.fsis.usda.gov/',
-          },
-        },
-        {
-          year: 2018,
-          body: 'USDA Food Safety and Inspection Service',
-          action: 'Land O\'Frost, Inc. (Madisonville, KY establishment) recalled approximately 4,944 lb of Premium Black Forest Ham product (produced April 27, 2018; shipped to AZ, CA, OR, TX, WA) under FSIS Recall Notification Report 054-2018 (Ham Products), after the front panel correctly read "Black Forest Ham" but the back panel was mislabeled "Honey Smoked Turkey Breast." The issue was discovered via a June 20, 2018 consumer complaint; the firm notified FSIS June 22, 2018. This was a mislabeling event, not a pathogen-contamination event; no adverse reactions were reported. This is a distinct, separately-titled FSIS notice from the 2015 Ambassador summer sausage recall above.',
-          status: 'adjudicated',
-          amount: null,
-          source: {
-            name: 'Food Safety News, The National Provisioner, Legal Reader, Hip2Save, and corp.commissaries.com — five independent outlets (accessed via WebSearch restatement, direct fsis.usda.gov fetch blocked)',
-            url: 'https://www.fsis.usda.gov/recalls-alerts/recall-notification-report-054-2018-ham-products',
-          },
-        },
-        {
           year: 2020,
           body: 'Occupational Safety and Health Administration',
           action: 'OSHA opened an inspection of Land O\'Frost\'s Lansing, IL plant (16850 Chicago Avenue) on July 1, 2020, after a June 29, 2020 workplace injury in which a maintenance technician\'s hand was crushed in a Multi-Vac machine that cycled unexpectedly after safety guards were bypassed without proper lockout/tagout procedure, causing a fracture and hospitalization. OSHA issued one Serious citation under 29 CFR 1910.147(d) (lockout/tagout); the initial $74,218 penalty was reduced to $13,494 via formal settlement on October 30, 2020. The case closed November 24, 2021.',
@@ -8150,6 +8216,44 @@ export const COMPANY_DB = {
           source: {
             name: 'OSHA establishment inspection detail page (direct fetch, independently re-confirmed on a second fetch)',
             url: 'https://www.osha.gov/ords/imis/establishment.inspection_detail?id=1721385.015',
+          },
+        },
+      ],
+      recalls: [
+        {
+          year: 2015,
+          agency: 'USDA-FSIS',
+          product: 'Ambassador Beef Summer Sausage (12 oz. packages)',
+          reason: 'Misbranding — contained undeclared pork',
+          scope: 'Approximately 17 lb; produced July 25, 2015, shipped to Minnesota retail locations; discovered and self-reported to FSIS by the establishment',
+          scale: 'own-facility',
+          healthImpact: {
+            illnesses: 0,
+            hospitalizations: 0,
+            deaths: 0,
+          },
+          source: {
+            name: 'Perishable News and Food Poisoning Bulletin (accessed via WebSearch restatement, direct fsis.usda.gov fetch blocked); FSIS establishment page title independently corroborates',
+            url: 'https://www.fsis.usda.gov/',
+            date: '2015-07-25',
+          },
+        },
+        {
+          year: 2018,
+          agency: 'USDA-FSIS',
+          product: 'Premium Black Forest Ham',
+          reason: 'Mislabeling — front panel correctly read "Black Forest Ham" but the back panel was mislabeled "Honey Smoked Turkey Breast"',
+          scope: 'Approximately 4,944 lb; produced April 27, 2018, shipped to AZ, CA, OR, TX, WA; discovered via a June 20, 2018 consumer complaint',
+          scale: 'own-facility',
+          healthImpact: {
+            illnesses: 0,
+            hospitalizations: 0,
+            deaths: 0,
+          },
+          source: {
+            name: 'Food Safety News, The National Provisioner, Legal Reader, Hip2Save, and corp.commissaries.com — five independent outlets (accessed via WebSearch restatement, direct fsis.usda.gov fetch blocked)',
+            url: 'https://www.fsis.usda.gov/recalls-alerts/recall-notification-report-054-2018-ham-products',
+            date: '2018-04-27',
           },
         },
       ],

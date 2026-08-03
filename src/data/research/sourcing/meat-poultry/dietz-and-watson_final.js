@@ -18,9 +18,9 @@ module.exports = {
     welfareMeatPoultry: {
       gapStep: 'none',
       gapStepSource: {
-        name: "Global Animal Partnership's Shoppers partner-list page does not include Dietz & Watson; independently re-confirmed on a second fetch of the live directory.",
-        url: 'https://globalanimalpartnership.org/shoppers/',
-        date: '2026-07-30',
+        name: "Re-checked 2026-08-03 using the same 3-method process applied uniformly across all 8 meat-poultry companies in this pass (previously this company was checked via the Shoppers directory alone, an inconsistent method vs. the Manufacturers-directory check used for Tyson/Hormel/Kraft Heinz — corrected here): (1) GAP's Manufacturers directory [globalanimalpartnership.org/partners/manufacturers/, confirmed by direct HTML inspection to be a fixed, non-paginated 28-entry list — no match]; (2) GAP's Shoppers/'Buy G.A.P. Certified' directory [globalanimalpartnership.org/shoppers/, confirmed fixed ~80-entry list — no match, reconfirmed]; (3) a site-restricted WebSearch (site:globalanimalpartnership.org \"Dietz & Watson\"), which returned zero GAP-hosted hits — only Dietz & Watson's own site and general company listings. Method validated against known-positive controls (Tyson Foods Inc., Applegate Farms), so the absence is a genuine completed search. 'none' confirmed and retained.",
+        url: 'https://globalanimalpartnership.org/partners/manufacturers/',
+        date: '2026-08-03',
         basis: 'third-party-audit',
       },
       grassFinished: 'not-applicable',
@@ -48,30 +48,6 @@ module.exports = {
     },
 
     enforcement: [
-      {
-        year: 2010,
-        body: 'USDA Food Safety and Inspection Service',
-        action:
-          "On March 16, 2010, FSIS issued a public health alert (prompted by a Canadian Food Inspection Agency tip) for deli meat products manufactured by a third-party supplier, Siena Foods LTD (Toronto), and sold in the U.S. under several deli brand labels including Dietz & Watson, due to possible Listeria monocytogenes contamination. No illnesses were reported at the time of the alert. This concerned a third-party supplier's products sold under the Dietz & Watson label, not a Dietz & Watson-operated facility.",
-        status: 'adjudicated',
-        amount: null,
-        source: {
-          name: 'USDA-FSIS / Canadian Food Inspection Agency alert (accessed via WebSearch restatement, direct fsis.usda.gov fetch blocked)',
-          url: 'https://www.fsis.usda.gov/',
-        },
-      },
-      {
-        year: 2017,
-        body: 'Voluntary recall — Deutsch Kase Haus (third-party co-packer)',
-        action:
-          "In February 2017, Colby and Colby Jack cheese products labeled Dietz & Watson were voluntarily recalled for possible Listeria monocytogenes contamination. The products were manufactured by a third-party supplier, Deutsch Kase Haus (Middlebury, Indiana) — not a Dietz & Watson-operated plant. Dietz & Watson ended its supplier relationship with Deutsch Kase Haus following the incident. This was a cheese recall traced to a since-dropped co-packer, not a contamination event at a Dietz & Watson-manufactured product or facility; no contamination recall of a Dietz & Watson-manufactured product was found in this research.",
-        status: 'adjudicated',
-        amount: null,
-        source: {
-          name: 'Manufacturing.net, Food Safety News, MEAT+POULTRY, Refrigerated & Frozen Foods, and Gourmet News — five independent outlets',
-          url: 'https://www.foodsafetynews.com/',
-        },
-      },
       {
         year: 2020,
         body: 'U.S. District Court, Southern District of New York — Watson v. Dietz & Watson, Inc.',
@@ -106,6 +82,42 @@ module.exports = {
         source: {
           name: 'OSHA establishment inspection detail page (direct fetch)',
           url: 'https://www.osha.gov/ords/imis/establishment.inspection_detail?id=1729245.015',
+        },
+      },
+    ],
+
+    recalls: [
+      {
+        year: 2010,
+        agency: 'FDA',
+        product: 'Deli meat products sold under several deli brand labels including Dietz & Watson',
+        reason: 'Possible Listeria monocytogenes contamination',
+        scope: 'Public health alert prompted by a Canadian Food Inspection Agency tip; no illnesses reported at the time of the alert',
+        // The clearest scale='third-party-co-packer' case in this catalog
+        // — manufactured by Siena Foods LTD (Toronto), not any Dietz &
+        // Watson facility. This is exactly the distinction this field
+        // exists to make: a co-packer's failure is not evidence about
+        // Dietz & Watson's own manufacturing.
+        scale: 'third-party-co-packer',
+        healthImpact: { illnesses: 0, hospitalizations: 0, deaths: 0 },
+        source: {
+          name: 'USDA-FSIS / Canadian Food Inspection Agency alert (accessed via WebSearch restatement, direct fsis.usda.gov fetch blocked)',
+          url: 'https://www.fsis.usda.gov/',
+          date: '2010-03-16',
+        },
+      },
+      {
+        year: 2017,
+        agency: 'FDA',
+        product: 'Colby and Colby Jack cheese labeled Dietz & Watson',
+        reason: 'Possible Listeria monocytogenes contamination',
+        scope: 'Voluntary recall, February 2017; Dietz & Watson ended its supplier relationship with the manufacturer following the incident',
+        scale: 'third-party-co-packer',
+        healthImpact: null,
+        source: {
+          name: 'Manufacturing.net, Food Safety News, MEAT+POULTRY, Refrigerated & Frozen Foods, and Gourmet News — five independent outlets. Manufactured by third-party supplier Deutsch Kase Haus (Middlebury, Indiana), not a Dietz & Watson-operated plant.',
+          url: 'https://www.foodsafetynews.com/',
+          date: '2017-02-01',
         },
       },
     ],

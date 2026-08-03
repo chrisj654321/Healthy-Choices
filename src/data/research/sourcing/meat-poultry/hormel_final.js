@@ -40,9 +40,9 @@ module.exports = {
     welfareMeatPoultry: {
       gapStep: 'unknown',
       gapStepSource: {
-        name: "Global Animal Partnership's own Manufacturers directory page, fetched directly, does not list Hormel or Applegate among its shown manufacturer partners (page 1 of the list only; the multi-page Farms & Ranches directory was not checked, so this does not rule out a GAP relationship recorded elsewhere on the site). Independently, GAP does host a dedicated page at globalanimalpartnership.org/portfolio/applegate-farms/, confirming GAP carries an Applegate portfolio entry — but that page's content is a bare logo and a 2017 date with no step-level text, so it neither confirms nor contradicts a specific step. This applies to Applegate's beef hot dog line specifically (see practices[]), not to Hormel-branded meat generally — no GAP relationship is confirmed for the Hormel corporate brand itself. NOT CHECKED exhaustively; do not write as absent.",
+        name: "Re-checked 2026-08-03 using the same 3-method process applied uniformly across all 8 meat-poultry companies in this pass: (1) GAP's Manufacturers directory [globalanimalpartnership.org/partners/manufacturers/, confirmed by direct HTML inspection to be a fixed, non-paginated 28-entry list — no match for 'Hormel' or 'Applegate']; (2) GAP's Shoppers/'Buy G.A.P. Certified' directory [globalanimalpartnership.org/shoppers/, confirmed fixed ~80-entry list — no match for 'Hormel', though 'Applegate Farms' DOES appear on this list]; (3) a site-restricted WebSearch (site:globalanimalpartnership.org Hormel), which returned no Hormel-specific hit. GAP does host a dedicated page at globalanimalpartnership.org/portfolio/applegate-farms/ (bare logo, 2017 date, no step-level text) confirming a real Applegate portfolio entry — already correctly scoped to Applegate's beef hot dog line in certifications[]/practices[] above and NOT re-touched here. No GAP relationship of any kind was found for the Hormel corporate brand itself across all three methods. Field stays 'unknown' rather than 'none': a real GAP relationship exists within the Hormel corporate family (Applegate), just not confirmed at the Hormel-brand-wide scope this field measures, so 'none' would misleadingly read as 'no GAP relationship anywhere in this company.' Method validated against known-positive controls (Tyson Foods Inc., Applegate Farms) and known-negative controls (Kraft Heinz, Boar's Head, Dietz & Watson, Land O'Frost, Johnsonville, Smithfield).",
         url: 'https://globalanimalpartnership.org/partners/manufacturers/',
-        date: '2026-07-30',
+        date: '2026-08-03',
         basis: 'third-party-audit',
       },
       grassFinished: 'not-claimed',
@@ -76,34 +76,43 @@ module.exports = {
         action:
           "Hormel Foods, LLC was named as a defendant in In re Pork Antitrust Litigation (docket 0:18-cv-01776, filed 2018-06-28; also consolidated as MDL No. 2998, docket 0:21-md-02998, filed 2021-06-22; both dockets show no termination date recorded), alongside Agri Stats Inc., Seaboard Foods LLC, Seaboard Corporation, and Smithfield Foods Inc., over an alleged conspiracy since January 2009 to restrict hog supply and fix/raise/stabilize pork prices, partly via shared data through Agri Stats. According to multiple independent trade-press accounts (meatingplace.com, National Hog Farmer), Judge John Tunheim later granted Hormel's motion for summary judgment on most claims, with the court's stated basis being that Hormel did not formally subscribe to the Agri Stats benchmarking-report service central to the alleged conspiracy (Hormel is reported to have only accepted free Agri Stats samples in 2017). The dismissal was partial, not total: it was without prejudice as to most claims, but the consumer indirect-purchaser plaintiffs' complaint against Hormel continued. Hormel separately settled with the Direct Purchaser Plaintiffs and other purchaser tiers for a reported combined total of roughly $11 million ($2.4M to institutional customers, $4.8M to wholesalers/direct purchasers, $4.4M to consumers), reached in Q2 fiscal 2024, without admitting fault.",
         status: 'settled',
-        amount: null,
+        // Sum of the three cited tranches ($2.4M + $4.8M + $4.4M = $11.6M),
+        // more precise than the prose's own rounded "roughly $11 million."
+        amount: 11600000,
         source: {
           name: 'CourtListener docket (Stage 1 primary court record) for the defendant listing and docket status; Star Tribune and Bloomberg Law for the settlement figures (independently re-corroborated by nny360.com, Feedstuffs, and an official PR Newswire class-action settlement notice); meatingplace.com and National Hog Farmer for the summary-judgment/Agri Stats-subscription reasoning. The summary-judgment specifics and settlement figures are UNVERIFIED — no primary court order or settlement declaration was independently read in this research pass — but corroborated across multiple independent, non-advocacy outlets with no contradicting account found.',
           url: 'https://www.courtlistener.com/docket/7338509/in-re-pork-antitrust-litigation/',
         },
       },
+    ],
+
+    recalls: [
       {
         year: 2025,
-        body: 'USDA Food Safety and Inspection Service (FSIS)',
-        action:
-          "According to Today.com, approximately 4,874,815 lbs of foodservice ready-to-eat frozen chicken breast/thigh products were recalled for possible metal-fragment contamination; product was distributed 2025-02-10 through 2025-09-19 to HRI Commercial Food Service locations nationwide, and the recall was issued after multiple customer complaints of metal in product. The FSIS.gov listing was referenced via search (title matched) but could not be independently fetched (HTTP 403).",
-        status: 'settled',
-        amount: null,
+        agency: 'USDA-FSIS',
+        product: 'Foodservice ready-to-eat frozen chicken breast/thigh products',
+        reason: 'Possible metal-fragment contamination',
+        scope: 'Approximately 4,874,815 lbs; distributed 2025-02-10 through 2025-09-19 to HRI Commercial Food Service locations nationwide',
+        scale: 'own-facility',
+        healthImpact: null,
         source: {
           name: 'Today.com (secondary news); FSIS.gov listing referenced via search, page not independently fetched — HTTP 403',
           url: 'https://www.today.com/food/recall/hormel-frozen-chicken-recall-rcna240051',
+          date: '2026-07-30',
         },
       },
       {
         year: 2025,
-        body: 'USDA Food Safety and Inspection Service (FSIS)',
-        action:
-          "According to an FSIS.gov listing referenced via search (page not independently fetched — HTTP 403), approximately 256,185 lbs of canned beef stew were recalled for possible wood contamination, dated approximately May 2025.",
-        status: 'settled',
-        amount: null,
+        agency: 'USDA-FSIS',
+        product: 'Canned beef stew',
+        reason: 'Possible wood contamination',
+        scope: 'Approximately 256,185 lbs; dated approximately May 2025',
+        scale: 'own-facility',
+        healthImpact: null,
         source: {
           name: 'FSIS.gov listing referenced via search, page not independently fetched — HTTP 403',
           url: 'https://www.fsis.usda.gov/recalls-alerts',
+          date: '2026-07-30',
         },
       },
     ],

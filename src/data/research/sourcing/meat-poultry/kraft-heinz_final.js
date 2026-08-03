@@ -16,11 +16,11 @@ module.exports = {
     certifications: [],
 
     welfareMeatPoultry: {
-      gapStep: 'unknown',
+      gapStep: 'none',
       gapStepSource: {
-        name: "Global Animal Partnership's own Manufacturers directory page, fetched directly, does not list Kraft Heinz, Oscar Mayer, or any Kraft Heinz brand among its shown manufacturer partners (page 1 of the list only; the multi-page Farms & Ranches directory was not checked). Separately, Kraft Heinz made a forward-looking commitment (2017) to source 100% of its U.S. chicken via breeds/standards approved by RSPCA or GAP by 2024, including a max stocking density of 6 lb/sq ft and improved litter/lighting/enrichment — this is a pledge about supplier standards, not a claim that Kraft Heinz itself holds a GAP step rating, and no evidence was found in this research confirming the 2024 target was met. NOT CHECKED exhaustively; do not write as absent — write as 'not found on manufacturers directory; company has a supplier-standard pledge, completion unconfirmed.'",
+        name: "Re-checked 2026-08-03 using the same 3-method process applied uniformly across all 8 meat-poultry companies in this pass: (1) GAP's Manufacturers directory [globalanimalpartnership.org/partners/manufacturers/, confirmed by direct HTML inspection to be a fixed, non-paginated 28-entry list — no match for 'Kraft Heinz', 'Kraft', or 'Oscar Mayer']; (2) GAP's Shoppers/'Buy G.A.P. Certified' directory [globalanimalpartnership.org/shoppers/, confirmed fixed ~80-entry list — no match]; (3) site-restricted WebSearches (site:globalanimalpartnership.org \"Kraft Heinz\" and site:globalanimalpartnership.org \"Oscar Mayer\"), both returning zero GAP-hosted hits. This 3-method check is the same one that successfully surfaced real GAP portfolio pages for known-positive controls (Tyson Foods Inc., Applegate Farms) when run the same way, so this absence is a genuine completed search, not a tooling failure — upgraded from 'unknown' to 'none' on that basis. Kraft Heinz's 2017 pledge to source 100% of U.S. chicken to RSPCA/GAP-approved standards by 2024 remains a supplier-standard commitment, not a claim that Kraft Heinz itself holds a GAP certification or step rating, and no evidence was found confirming the 2024 target was met or independently verified by GAP.",
         url: 'https://globalanimalpartnership.org/partners/manufacturers/',
-        date: '2026-07-30',
+        date: '2026-08-03',
         basis: 'third-party-audit',
       },
       grassFinished: 'unknown',
@@ -77,18 +77,6 @@ module.exports = {
     // Supermarket Perimeter.
     enforcement: [
       {
-        year: 2025,
-        body: 'USDA Food Safety and Inspection Service (FSIS)',
-        action:
-          "On 2025-07-02, Kraft Heinz Foods Company recalled approximately 367,812 lbs of fully cooked Oscar Mayer Turkey Bacon Original (12 oz vacuum packs, UPC 071871548601, 'use by' dates 2025-07-18 through 2025-08-02, lot code RS40) due to possible Listeria monocytogenes contamination. Product was made 2025-04-24 through 2025-06-11 and distributed nationwide plus exports to the British Virgin Islands and Hong Kong. The contamination was discovered via Kraft Heinz's own internal lab testing; no illnesses were reported as of the recall notice. The FSIS.gov primary recall notice could not be independently fetched (HTTP 403), but ABC News and Food Dive independently corroborate the same figures and detail.",
-        status: 'settled',
-        amount: null,
-        source: {
-          name: 'FSIS recall notice, title matched via search — page not independently fetched (HTTP 403); ABC News and Food Dive corroborate the same figures',
-          url: 'https://www.fsis.usda.gov/recalls-alerts/kraft-heinz-foods-company-recalls-turkey-bacon-products-due-possible-listeria-contamination',
-        },
-      },
-      {
         year: 2018,
         body: 'U.S. Occupational Safety and Health Administration (OSHA)',
         action:
@@ -98,6 +86,23 @@ module.exports = {
         source: {
           name: 'U.S. Department of Labor press release (primary government source, URL located via search, not independently re-fetched in this research pass)',
           url: 'https://www.dol.gov/newsroom/releases/osha/osha20180316-3',
+        },
+      },
+    ],
+
+    recalls: [
+      {
+        year: 2025,
+        agency: 'USDA-FSIS',
+        product: 'Oscar Mayer Turkey Bacon Original (12 oz vacuum packs, UPC 071871548601, lot code RS40)',
+        reason: 'Possible Listeria monocytogenes contamination',
+        scope: 'Approximately 367,812 lbs; produced 2025-04-24 through 2025-06-11, distributed nationwide plus exports to the British Virgin Islands and Hong Kong',
+        scale: 'own-facility',
+        healthImpact: { illnesses: 0, hospitalizations: 0, deaths: 0 },
+        source: {
+          name: 'FSIS recall notice, title matched via search — page not independently fetched (HTTP 403); ABC News and Food Dive corroborate the same figures. Contamination discovered via Kraft Heinz\'s own internal lab testing; no illnesses reported as of the recall notice.',
+          url: 'https://www.fsis.usda.gov/recalls-alerts/kraft-heinz-foods-company-recalls-turkey-bacon-products-due-possible-listeria-contamination',
+          date: '2025-07-02',
         },
       },
     ],

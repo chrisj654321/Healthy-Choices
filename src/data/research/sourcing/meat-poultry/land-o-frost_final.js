@@ -18,9 +18,9 @@ module.exports = {
     welfareMeatPoultry: {
       gapStep: 'none',
       gapStepSource: {
-        name: "Global Animal Partnership's Shoppers partner-list page does not include Land O'Frost or its Ambassador brand; independently re-confirmed on a second fetch of the live directory.",
-        url: 'https://globalanimalpartnership.org/shoppers/',
-        date: '2026-07-30',
+        name: "Re-checked 2026-08-03 using the same 3-method process applied uniformly across all 8 meat-poultry companies in this pass (previously this company was checked via the Shoppers directory alone, an inconsistent method vs. the Manufacturers-directory check used for Tyson/Hormel/Kraft Heinz — corrected here): (1) GAP's Manufacturers directory [globalanimalpartnership.org/partners/manufacturers/, confirmed by direct HTML inspection to be a fixed, non-paginated 28-entry list — no match]; (2) GAP's Shoppers/'Buy G.A.P. Certified' directory [globalanimalpartnership.org/shoppers/, confirmed fixed ~80-entry list — no match for Land O'Frost or its Ambassador brand, reconfirmed]; (3) a site-restricted WebSearch (site:globalanimalpartnership.org \"Land O'Frost\"), which returned zero GAP-hosted hits. Method validated against known-positive controls (Tyson Foods Inc., Applegate Farms), so the absence is a genuine completed search. 'none' confirmed and retained.",
+        url: 'https://globalanimalpartnership.org/partners/manufacturers/',
+        date: '2026-08-03',
         basis: 'third-party-audit',
       },
       grassFinished: 'not-applicable',
@@ -49,30 +49,6 @@ module.exports = {
 
     enforcement: [
       {
-        year: 2015,
-        body: 'USDA Food Safety and Inspection Service',
-        action:
-          "Land O'Frost, Inc. (Lansing, IL establishment, EST. 500) recalled approximately 17 lb of 12 oz. packages of Ambassador Beef Summer Sausage (produced July 25, 2015, shipped to Minnesota retail locations) due to misbranding — the product contained undeclared pork. Discovered and self-reported to FSIS by the establishment; no adverse reactions were reported.",
-        status: 'adjudicated',
-        amount: null,
-        source: {
-          name: 'Perishable News and Food Poisoning Bulletin (accessed via WebSearch restatement, direct fsis.usda.gov fetch blocked); FSIS establishment page title independently corroborates',
-          url: 'https://www.fsis.usda.gov/',
-        },
-      },
-      {
-        year: 2018,
-        body: 'USDA Food Safety and Inspection Service',
-        action:
-          "Land O'Frost, Inc. (Madisonville, KY establishment) recalled approximately 4,944 lb of Premium Black Forest Ham product (produced April 27, 2018; shipped to AZ, CA, OR, TX, WA) under FSIS Recall Notification Report 054-2018 (Ham Products), after the front panel correctly read \"Black Forest Ham\" but the back panel was mislabeled \"Honey Smoked Turkey Breast.\" The issue was discovered via a June 20, 2018 consumer complaint; the firm notified FSIS June 22, 2018. This was a mislabeling event, not a pathogen-contamination event; no adverse reactions were reported. This is a distinct, separately-titled FSIS notice from the 2015 Ambassador summer sausage recall above.",
-        status: 'adjudicated',
-        amount: null,
-        source: {
-          name: 'Food Safety News, The National Provisioner, Legal Reader, Hip2Save, and corp.commissaries.com — five independent outlets (accessed via WebSearch restatement, direct fsis.usda.gov fetch blocked)',
-          url: 'https://www.fsis.usda.gov/recalls-alerts/recall-notification-report-054-2018-ham-products',
-        },
-      },
-      {
         year: 2020,
         body: 'Occupational Safety and Health Administration',
         action:
@@ -94,6 +70,37 @@ module.exports = {
         source: {
           name: 'OSHA establishment inspection detail page (direct fetch, independently re-confirmed on a second fetch)',
           url: 'https://www.osha.gov/ords/imis/establishment.inspection_detail?id=1721385.015',
+        },
+      },
+    ],
+
+    recalls: [
+      {
+        year: 2015,
+        agency: 'USDA-FSIS',
+        product: 'Ambassador Beef Summer Sausage (12 oz. packages)',
+        reason: 'Misbranding — contained undeclared pork',
+        scope: 'Approximately 17 lb; produced July 25, 2015, shipped to Minnesota retail locations; discovered and self-reported to FSIS by the establishment',
+        scale: 'own-facility',
+        healthImpact: { illnesses: 0, hospitalizations: 0, deaths: 0 },
+        source: {
+          name: 'Perishable News and Food Poisoning Bulletin (accessed via WebSearch restatement, direct fsis.usda.gov fetch blocked); FSIS establishment page title independently corroborates',
+          url: 'https://www.fsis.usda.gov/',
+          date: '2015-07-25',
+        },
+      },
+      {
+        year: 2018,
+        agency: 'USDA-FSIS',
+        product: 'Premium Black Forest Ham',
+        reason: "Mislabeling — front panel correctly read \"Black Forest Ham\" but the back panel was mislabeled \"Honey Smoked Turkey Breast\"",
+        scope: 'Approximately 4,944 lb; produced April 27, 2018, shipped to AZ, CA, OR, TX, WA; discovered via a June 20, 2018 consumer complaint',
+        scale: 'own-facility',
+        healthImpact: { illnesses: 0, hospitalizations: 0, deaths: 0 },
+        source: {
+          name: 'Food Safety News, The National Provisioner, Legal Reader, Hip2Save, and corp.commissaries.com — five independent outlets (accessed via WebSearch restatement, direct fsis.usda.gov fetch blocked)',
+          url: 'https://www.fsis.usda.gov/recalls-alerts/recall-notification-report-054-2018-ham-products',
+          date: '2018-04-27',
         },
       },
     ],

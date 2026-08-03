@@ -21,11 +21,11 @@ module.exports = {
     certifications: [],
 
     welfareMeatPoultry: {
-      gapStep: 'unknown',
+      gapStep: 'none',
       gapStepSource: {
-        name: "Global Animal Partnership's interactive producer directory was not queryable (documented tooling limitation). A targeted WebSearch for Johnsonville + GAP/Certified Humane/AWA returned no relevant hit in the Stage 2 pass, and an independent Stage 3 re-run of the same search also returned zero Johnsonville-specific hits. Two independent negative searches with no positive result; still recorded as unknown rather than a confirmed absence, since GAP's own directory itself could not be directly queried.",
+        name: "Re-checked 2026-08-03 using the same 3-method process applied uniformly across all 8 meat-poultry companies in this pass (previously the interactive producer directory attempt failed as a tooling limitation — replaced here with the two working static directories plus search): (1) GAP's Manufacturers directory [globalanimalpartnership.org/partners/manufacturers/, confirmed by direct HTML inspection to be a fixed, non-paginated 28-entry list — no match for 'Johnsonville']; (2) GAP's Shoppers/'Buy G.A.P. Certified' directory [globalanimalpartnership.org/shoppers/, confirmed fixed ~80-entry list — no match]; (3) a site-restricted WebSearch (site:globalanimalpartnership.org Johnsonville), which returned zero GAP-hosted hits (only Wikipedia and GAP's own general homepage/certification pages). This 3-method check is the same one that successfully surfaced real GAP portfolio pages for known-positive controls (Tyson Foods Inc., Applegate Farms) when run the same way, so this absence is a genuine completed search — upgraded from 'unknown' to 'none' on that basis.",
         url: 'https://globalanimalpartnership.org/partners/manufacturers/',
-        date: '2026-07-30',
+        date: '2026-08-03',
         basis: 'third-party-audit',
       },
       grassFinished: 'not-applicable',
@@ -61,45 +61,62 @@ module.exports = {
     // as a welfare/consumer-protection finding.
     enforcement: [],
 
-    practices: [
+    // These 4 entries were originally mislabeled as practices[] with
+    // basis: 'company-disclosure' -- a recall is fundamentally a
+    // government/regulatory action, not something a company voluntarily
+    // discloses. Moved to the dedicated recalls[] array (Stage 5
+    // follow-up, 2026-07-31) alongside the same basis correction.
+    recalls: [
       {
-        claim:
-          "According to secondary aggregator reporting (Fox News), Johnsonville recalled approximately 100,000 lbs of Jalapeño Cheddar smoked sausage in 2019 after a customer complaint of hard green plastic found in the product. Not independently confirmed against a primary FSIS recall notice — direct fetches of fsis.usda.gov returned 403/404 throughout this research pass.",
-        // A recall is fundamentally a government/regulatory action, not a
-        // company disclosure -- Johnsonville didn't volunteer this, FSIS
-        // required it and a news outlet reported it. 'company-disclosure'
-        // was a real mislabel (Stage 5 review, 2026-07-30); corrected.
-        basis: 'government-record',
+        year: 2019,
+        agency: 'USDA-FSIS',
+        product: 'Jalapeño Cheddar smoked sausage',
+        reason: 'Hard green plastic foreign-matter contamination',
+        scope: 'Approximately 100,000 lbs',
+        scale: 'own-facility',
+        healthImpact: null,
         source: {
-          name: 'Fox News (secondary aggregator; FSIS primary notice not independently fetched)',
+          name: 'Fox News (secondary aggregator; FSIS primary notice not independently fetched — direct fetches of fsis.usda.gov returned 403/404 throughout this research pass)',
           url: 'https://www.foxnews.com/health/johnsonville-recalls-nearly-100000-pounds-of-sausage',
-          date: '2026-07-30',
+          date: '2019-01-01',
         },
       },
       {
-        claim:
-          "According to secondary aggregator reporting (TopClassActions), Johnsonville recalled approximately 42,000 lbs of ready-to-eat pork sausage links in June 2023 over possible black plastic fiber contamination. Not independently confirmed against a primary FSIS recall notice.",
-        basis: 'government-record', // corrected same as the entry above -- a recall is a regulatory action, not a company disclosure
+        year: 2023,
+        agency: 'USDA-FSIS',
+        product: 'Ready-to-eat pork sausage links',
+        reason: 'Possible black plastic fiber contamination',
+        scope: 'Approximately 42,000 lbs, June 2023',
+        scale: 'own-facility',
+        healthImpact: null,
         source: {
           name: 'TopClassActions (secondary aggregator; FSIS primary notice not independently fetched)',
           url: 'https://topclassactions.com/lawsuit-settlements/consumer-products/recalls/johnsonville-initiates-recall-for-pork-sausage-links-due-to-plastic-contamination/',
-          date: '2026-07-30',
+          date: '2023-06-01',
         },
       },
       {
-        claim:
-          "According to secondary aggregator reporting (AARP, TopClassActions), Johnsonville recalled approximately 35,000+ lbs of turkey kielbasa sausage in March 2024 over possible rubber contamination. Not independently confirmed against a primary FSIS recall notice.",
-        basis: 'government-record', // corrected same as the entries above -- a recall is a regulatory action, not a company disclosure
+        year: 2024,
+        agency: 'USDA-FSIS',
+        product: 'Turkey kielbasa sausage',
+        reason: 'Possible rubber contamination',
+        scope: 'Approximately 35,000+ lbs, March 2024',
+        scale: 'own-facility',
+        healthImpact: null,
         source: {
           name: 'AARP; TopClassActions (secondary aggregators; FSIS primary notice not independently fetched)',
           url: 'https://www.aarp.org/health/conditions-treatments/info-2024/johnsonville-sausage-recall.html',
-          date: '2026-07-30',
+          date: '2024-03-01',
         },
       },
       {
-        claim:
-          "FSIS recall page title (fsis.usda.gov) indicates Johnsonville LLC recalled approximately 22,672 lbs of cheddar bratwurst (produced Feb. 5, 2025 at its Momence, IL establishment) on April 5, 2025 for possible hard plastic/foreign-matter contamination, shipped to retail in GA, IN, KS, KY, MI, MN, OH, TN, VA, and WI. Page title/URL located; full page content was not independently fetched (403).",
-        basis: 'government-record',
+        year: 2025,
+        agency: 'USDA-FSIS',
+        product: 'Cheddar bratwurst (Momence, IL establishment)',
+        reason: 'Possible hard plastic/foreign-matter contamination',
+        scope: 'Approximately 22,672 lbs; produced Feb. 5, 2025; shipped to retail in GA, IN, KS, KY, MI, MN, OH, TN, VA, WI',
+        scale: 'own-facility',
+        healthImpact: null,
         source: {
           name: 'FSIS recall notice (page existence confirmed via search-result title match; full content not independently fetched — HTTP 403)',
           url: 'https://www.fsis.usda.gov/recalls-alerts/johnsonville-llc-recalls-cheddar-bratwurst-product-due-possible-foreign-matter',
@@ -107,5 +124,7 @@ module.exports = {
         },
       },
     ],
+
+    practices: [],
   },
 };

@@ -18,9 +18,9 @@ module.exports = {
     welfareMeatPoultry: {
       gapStep: 'unknown',
       gapStepSource: {
-        name: "Global Animal Partnership's own Manufacturers directory page does not list Tyson (checked directly, 2026-07-30). A separate, uncorroborated secondary claim attributed to Open Philanthropy Project states GAP achieves scale partly through contracts with large producers 'including Tyson Foods' — this was not traced to Open Philanthropy's original publication and conflicts with the directory finding. Independent fact-check WebSearch reconfirmed both sides exist with no resolution either way. Status stays genuinely DISPUTED/unresolved — not a confirmed absence of any GAP relationship, and not confirmed presence either.",
-        url: 'https://globalanimalpartnership.org/partners/manufacturers/',
-        date: '2026-07-30',
+        name: "RESOLVES the prior disputed status (previously an unresolved conflict between GAP's Manufacturers directory absence and an uncorroborated Open Philanthropy secondary claim). Re-checked 2026-08-03 using the same 3-method process applied uniformly across all 8 meat-poultry companies in this pass: (1) GAP's Manufacturers directory [globalanimalpartnership.org/partners/manufacturers/, confirmed by direct HTML inspection to be a fixed, non-paginated 28-entry list — no match for 'Tyson']; (2) GAP's Shoppers/'Buy G.A.P. Certified' directory [globalanimalpartnership.org/shoppers/, confirmed fixed ~80-entry list — no match for 'Tyson']; (3) a site-restricted WebSearch (site:globalanimalpartnership.org Tyson), which surfaced a real GAP-hosted page: globalanimalpartnership.org/portfolio/tyson-foods-inc/ (posted 2017-08-15, titled 'Tyson Foods, Inc.', header image filename 'tyson-open-prairie'). Cross-referencing that image label against Tyson's own brand pages (tysonfreshmeats.com/our-brands/open-prairie-natural-meats; openprairienatural.com) confirms it refers to Tyson Fresh Meats' 'Open Prairie Natural Meats' brand, which Tyson's own sites state is certified to GAP Step 1. This is a REAL, confirmed GAP relationship — but scoped to one specific 'Never Ever' sub-brand (Open Prairie), not a company-wide Tyson-brand certification. Per the same company-wide-vs-subsidiary-scoping convention used for Hormel/Applegate, this field stays 'unknown' (not 'none' — a genuine relationship exists — and not a step level, since that would flatter the flagship Tyson brand with a sub-brand's rating). Method validated against known-positive controls (this Tyson hit itself, plus Applegate Farms' portfolio page) and known-negative controls (Kraft Heinz, Boar's Head, Dietz & Watson, Land O'Frost, Johnsonville, Smithfield — see their files).",
+        url: 'https://globalanimalpartnership.org/portfolio/tyson-foods-inc/',
+        date: '2026-08-03',
         basis: 'third-party-audit',
       },
       grassFinished: 'not-claimed',
@@ -66,7 +66,7 @@ module.exports = {
         action:
           "According to Food Dive and Food & Power, Tyson was the first company to cooperate under the DOJ's Corporate Leniency Program in connection with a criminal investigation into chicken price-fixing (conduct alleged 2012-2017), and as a result avoided criminal prosecution; Tyson separately paid a reported $80 million to resolve related civil claims. The exact date of Tyson's own civil payment was not independently confirmed in this research; presented here in the context of the investigation's broader resolution window.",
         status: 'settled',
-        amount: null,
+        amount: 80000000,
         source: {
           name: 'Food Dive; Food & Power (secondary trade/news reporting, consistent detail, not independently confirmed against a DOJ primary document)',
           url: 'https://www.fooddive.com/news/tyson-foods-exchanges-cooperation-for-leniency-in-price-fixing-probe/579602/',
@@ -86,11 +86,23 @@ module.exports = {
       },
       {
         year: 2025,
-        body: 'Direct-purchaser and consumer plaintiffs — In re Cattle and Beef Antitrust Litigation, D. Minnesota',
+        body: 'Direct-purchaser plaintiffs — In re Cattle and Beef Antitrust Litigation, D. Minnesota',
         action:
-          "According to Bloomberg Law, Feedstuffs, Meatingplace, and JDJournal, Tyson agreed in December 2025 to an $82.5 million settlement with direct-purchaser plaintiffs in the cattle/beef antitrust litigation (reported structure: $80 million settlement fund plus $2.5 million in notice/administration costs), with preliminary court approval granted May 2026 by Judge John Tunheim. Tyson also previously agreed to pay a reported $55 million to resolve related consumer price-fixing claims in the same litigation. Both figures were reported consistently across four independent outlets but not independently confirmed against the underlying court filing.",
+          "According to Bloomberg Law, Feedstuffs, Meatingplace, and JDJournal, Tyson agreed in December 2025 to an $82.5 million settlement with direct-purchaser plaintiffs in the cattle/beef antitrust litigation (reported structure: $80 million settlement fund plus $2.5 million in notice/administration costs), with preliminary court approval granted May 2026 by Judge John Tunheim. Reported consistently across four independent outlets but not independently confirmed against the underlying court filing.",
         status: 'settled',
-        amount: null,
+        amount: 82500000,
+        source: {
+          name: 'Bloomberg Law; Feedstuffs; Meatingplace; JDJournal — four independent outlets reporting consistent figures and structure',
+          url: 'https://news.bloomberglaw.com/antitrust/tyson-foods-wins-first-approval-of-83-million-price-fixing-deal',
+        },
+      },
+      {
+        year: 2025,
+        body: 'Consumer plaintiffs — In re Cattle and Beef Antitrust Litigation, D. Minnesota',
+        action:
+          "Separate from the direct-purchaser settlement above (split into its own entry so the two distinct dollar figures don't collapse into one field): Tyson also agreed to pay a reported $55 million to resolve related consumer price-fixing claims in the same litigation. Reported consistently across the same four independent outlets but not independently confirmed against the underlying court filing.",
+        status: 'settled',
+        amount: 55000000,
         source: {
           name: 'Bloomberg Law; Feedstuffs; Meatingplace; JDJournal — four independent outlets reporting consistent figures and structure',
           url: 'https://news.bloomberglaw.com/antitrust/tyson-foods-wins-first-approval-of-83-million-price-fixing-deal',
@@ -102,7 +114,7 @@ module.exports = {
         action:
           "According to NBC News, Insurance Journal, Food Dive, Supply Chain Dive, and Talk Business & Politics, Tyson agreed to pay a reported $85 million in 2025 to settle a proposed class action alleging collusion to inflate pork prices — described by these outlets as the largest settlement to date in the pork antitrust MDL. Not independently confirmed against the underlying court filing; exact article URLs for this specific figure were not captured during research.",
         status: 'settled',
-        amount: null,
+        amount: 85000000,
         source: {
           name: 'NBC News; Insurance Journal; Food Dive; Supply Chain Dive; Talk Business & Politics',
           url: 'https://www.fooddive.com/',

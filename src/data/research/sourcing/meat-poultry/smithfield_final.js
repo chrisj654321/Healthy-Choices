@@ -21,11 +21,11 @@ module.exports = {
     certifications: [],
 
     welfareMeatPoultry: {
-      gapStep: 'unknown',
+      gapStep: 'none',
       gapStepSource: {
-        name: "Global Animal Partnership's find-a-producer directory was not genuinely queried in this pass — the URL attempted (globalanimalpartnership.org/find-a-producer) returned 404, and the correct interactive directory URL was not located. A site-restricted WebSearch (site:globalanimalpartnership.org Smithfield) returned no producer-specific hit. Recorded as NOT CHECKED / unknown, not as confirmed absence, since GAP's own directory was never successfully loaded.",
-        url: 'https://globalanimalpartnership.org/',
-        date: '2026-07-30',
+        name: "Re-checked 2026-08-03 using the same 3-method process applied uniformly across all 8 meat-poultry companies in this pass (previously the wrong URL was attempted (globalanimalpartnership.org/find-a-producer, 404) and no correct directory was located — replaced here with the two working static directories plus search): (1) GAP's Manufacturers directory [globalanimalpartnership.org/partners/manufacturers/, confirmed by direct HTML inspection to be a fixed, non-paginated 28-entry list — no match for 'Smithfield']; (2) GAP's Shoppers/'Buy G.A.P. Certified' directory [globalanimalpartnership.org/shoppers/, confirmed fixed ~80-entry list — no match]; (3) a site-restricted WebSearch (site:globalanimalpartnership.org Smithfield), which surfaced a false-positive lead — GAP's portfolio page for 'Maid-Rite Specialty Foods, LLC' — that was individually checked and confirmed unrelated: Maid-Rite is headquartered in Smithfield, Rhode Island, a place-name collision, not a reference to Smithfield Foods the company (the Maid-Rite page itself contains no mention of Smithfield Foods). No other GAP-hosted hit was found for Smithfield Foods across any of the three methods. This check is the same one that successfully surfaced real GAP portfolio pages for known-positive controls (Tyson Foods Inc., Applegate Farms) when run the same way, so this absence is a genuine completed search — upgraded from 'unknown' to 'none' on that basis.",
+        url: 'https://globalanimalpartnership.org/partners/manufacturers/',
+        date: '2026-08-03',
         basis: 'third-party-audit',
       },
       grassFinished: 'not-applicable',
@@ -207,10 +207,17 @@ module.exports = {
           date: '2006-05-01',
         },
       },
+    ],
+
+    recalls: [
       {
-        claim:
-          "According to an FSIS recall page title, Smithfield Packaged Meats Corp. recalled approximately 185,610 lbs of ready-to-eat bacon topping product in 2022 for possible metal contamination, following a customer complaint. Page title/URL located via search; full page content was not independently fetched (403).",
-        basis: 'government-record',
+        year: 2022,
+        agency: 'USDA-FSIS',
+        product: 'Ready-to-eat bacon topping product',
+        reason: 'Possible metal contamination',
+        scope: 'Approximately 185,610 lbs, following a customer complaint',
+        scale: 'own-facility',
+        healthImpact: null,
         source: {
           name: 'FSIS recall notice (page existence confirmed via search-result title match; full content not independently fetched — HTTP 403)',
           url: 'https://www.fsis.usda.gov/recalls-alerts/smithfield-packaged-meats-corp--recalls-a-ready-eat-bacon-topping-products-due',
