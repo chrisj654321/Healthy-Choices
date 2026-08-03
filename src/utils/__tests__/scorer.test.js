@@ -696,7 +696,33 @@ describe('scoreProduct: sourcing/housing adjustment (meat-poultry, seafood)', ()
 
   test('a real beef product from a company with no grass-finished claim gets the confirmed-conventional penalty', () => {
     const result = scoreProduct(beefFranks);
-    expect(result.sourcingAdjustment).toBe(-4);
+    expect(result.sourcingAdjustment).toBe(-16);
+  });
+
+  test('grass-finished tiers are ordered by how VERIFIED the 100% claim is, not by "some grass exposure"', () => {
+    const grassBase = { ingredients: ['beef'], nutrition: {}, category: 'Deli & Lunch' };
+    const scoreFor = (grassFinished) => {
+      // Synthetic company with only grassFinished varied -- isolates the
+      // factor being tested without needing 4 different real companies.
+      const fakeId = '__test-beef-co__';
+      require('../../data/companies').COMPANY_DB[fakeId] = {
+        id: fakeId,
+        sourcing: { industry: 'meat-poultry', welfareMeatPoultry: { grassFinished } },
+      };
+      const result = scoreProduct({ ...grassBase, name: 'Beef Franks', companyId: fakeId });
+      delete require('../../data/companies').COMPANY_DB[fakeId];
+      return result.sourcingAdjustment;
+    };
+    const certified = scoreFor('certified');
+    const claims100 = scoreFor('company-claims-100-percent');
+    const vague = scoreFor('company-disclosure-vague');
+    const notClaimed = scoreFor('not-claimed');
+    expect(certified).toBeGreaterThan(claims100);
+    expect(claims100).toBeGreaterThan(vague);
+    // A vague, uncompleted "grass-fed" claim earns NO credit -- the 2026
+    // study found some such retail products test identical to grain-fed.
+    expect(vague).toBe(0);
+    expect(vague).toBeGreaterThan(notClaimed);
   });
 
   test('a real pork product from a company confirmed using gestation crates gets the crate penalty', () => {

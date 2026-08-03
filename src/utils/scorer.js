@@ -739,20 +739,64 @@ function calcEggsSourcingAdjustment(product) {
 // own discipline (e.g. eggs left 'organic' with no fabricated generic
 // standard when no verifiable figure existed).
 
-// Beef/lamb: grass-finished vs. grain-finished. Real, peer-reviewed
-// evidence (2025 Journal of Animal Science commercial-system comparison;
-// Daley et al. 2010 review, Nutrition Journal) — grass-finished beef has
-// roughly a 4x better omega-6:omega-3 ratio (~2.1 vs. ~8.3), up to 2x the
-// CLA (conjugated linoleic acid), and elevated vitamin A/E precursors and
-// antioxidants vs. grain-finished. Magnitude kept smaller than eggs'
-// pasture-raised bonus deliberately: the research itself flags the
-// absolute omega-3 gain as "modest" and there are no RCTs yet proving a
-// disease-outcome difference in humans, unlike the more clear-cut egg
-// nutrient-density comparison.
+// Beef/lamb: grass-finished vs. grain-finished. Revised 2026-08-03 after
+// checking real evidence against the founder's specific question — is
+// there a meaningful difference between "traditional," "grass-fed,"
+// "grass-finished," and "100% grass-fed" claims, and does the SCIENCE
+// support graduated credit between them? Two real findings changed the
+// design:
+//
+// 1. A 2026 Journal of Animal Science commercial-system study (the newest,
+//    most rigorous data available) found a broader and STRONGER nutrient
+//    gap than initially cited: omega-6:3 ratio 2.14 vs. 8.28 (~3.9x),
+//    total omega-3 1.79% vs. 0.57% (~3.1x), EPA 4x, calcium 3x, selenium
+//    6x, CLA ~1.6x — comparable to or exceeding the egg pasture-raised
+//    case across MORE independently measured nutrients (P<0.001 on nearly
+//    all). The magnitude below is revised up accordingly, no longer
+//    treated as more "modest" than eggs.
+// 2. Critically, that same study tested UNCERTIFIED retail "grass-fed"
+//    products directly and found some had omega ratios INDISTINGUISHABLE
+//    from grain-fed beef — i.e., an unverified "grass-fed" claim (no
+//    "100%," no certification) does NOT reliably predict the nutrient
+//    benefit. There is no USDA definition of "grass-fed" (the voluntary
+//    label standard was withdrawn in 2016) and "grass-finished" alone has
+//    no legal definition either — AGA's own materials call an uncertified
+//    "grass-finished" claim "meaningless" without their standard (100%
+//    forage, birth to harvest) behind it. This is exactly the "biggest
+//    misleading claim in the category" this module already flagged — the
+//    real data now shows WHY: a vague claim doesn't verify the mechanism.
+//
+// Net effect: the graduated tiers below aren't about rewarding "some
+// grass exposure" progressively — they're about how VERIFIED the 100%
+// claim is. A bare, uncompleted "grass-fed"/"grass-finished" claim earns
+// no credit (not because it's assumed false, but because the real data
+// shows it doesn't reliably predict the outcome); an explicit, specific
+// "100%" self-declaration is a stronger, more falsifiable claim and earns
+// partial credit; only independent certification (AGA or equivalent,
+// verified 100% forage birth-to-harvest) earns the full credit the study
+// actually measured.
 const GRASS_FINISHED_ADJUSTMENT = {
-  certified: 6,               // independently certified (e.g. American Grassfed Association)
-  'company-disclosure-only': 2, // real claim, not independently audited
-  'not-claimed': -4,          // confirmed no claim made -> the industry default is grain-finished
+  // Independently certified 100% grass-fed AND grass-finished (e.g.
+  // American Grassfed Association: birth-to-harvest forage diet, audited
+  // every 15 months). The only tier with the confirmed mechanism the 2026
+  // study measured — scaled to match, not undersell, that evidence.
+  certified: 12,
+  // Company explicitly states "100% grass-fed" / "grass-fed and
+  // grass-finished" (a specific, falsifiable claim — if untrue, it's
+  // false advertising) but not independently audited. Real signal, partial
+  // credit, well below certified.
+  'company-claims-100-percent': 5,
+  // A bare "grass-fed" or "grass-finished" claim with no completion
+  // language — the exact claim type the 2026 study found sometimes
+  // matches grain-fed nutritionally. No credit, not because it's assumed
+  // false, but because the real data shows it doesn't reliably predict
+  // the benefit either way.
+  'company-disclosure-vague': 0,
+  // Confirmed no grass-fed/grass-finished claim at all -> the industry
+  // default is grain-finished feedlot, matching the study's grain-finished
+  // comparison group. Penalty scaled to the same real multi-nutrient gap
+  // that earns 'certified' its bonus above.
+  'not-claimed': -16,
   unknown: 0,                 // genuinely couldn't be determined, never penalized for a data gap
   'not-applicable': 0,        // company doesn't sell beef/lamb at all
 };
