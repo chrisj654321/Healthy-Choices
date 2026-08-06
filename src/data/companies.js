@@ -1765,6 +1765,204 @@ export const COMPANY_DB = {
     ],
     subsidiaries: ['Perdue', 'Niman Ranch', 'Coleman Natural', 'Panorama Organic', 'Draper Valley Farms'],
     sustainabilityScore: 52,
+  
+    sourcing: {
+      industry: 'meat-poultry',
+      lastVerified: '2026-08-05',
+      model: 'unknown',
+      modelSource: {
+        name: 'No company-wide sourcing-model disclosure (owned farms vs. contract growers vs. open-market) was located for Perdue Farms in this research pass. Perdue states it holds a USDA AMS Process Verified Program certification (see practices[]) covering the hatchery, the feed mill and the farm; that statement was not independently confirmed against a USDA record, and in any case does not state whether those farms are company-owned or independently contracted.',
+        url: 'https://corporate.perduefarms.com/responsibility/animal-care/programs-practices',
+        date: '2026-08-05',
+        basis: 'company-disclosure',
+      },
+      certifications: [
+        {
+          name: 'Certified Humane',
+          verifier: 'Humane Farm Animal Care',
+          scope: 'Niman Ranch (Perdue subsidiary) — all pork, beef, lamb, and processed products (bacon, sausages, hot dogs, hams) across 720+ independent family farms and ranches. NOT Perdue-brand chicken, NOT Coleman Natural, Panorama Organic, or Draper Valley Farms — no Certified Humane hit was found for any of those.',
+          standard: 'unknown',
+          verifiedDate: '2026-08-05',
+          source: {
+            name: 'Certified Humane\'s own press page, "Niman Ranch Joins Certified Humane" — certifier\'s-own-page primary source, VERIFIED per fact-check',
+            url: 'https://certifiedhumane.org/niman-ranch-joins-certified-humane/',
+          },
+        },
+        {
+          name: 'Global Animal Partnership (GAP) Animal Welfare Certified',
+          verifier: 'Global Animal Partnership',
+          scope: 'Panorama Organic (Perdue subsidiary) — Panorama Grass-Fed Meats, organic, 100% grass-fed ranches only. NOT Perdue-brand chicken or any other subsidiary.',
+          standard: 'Step 4 (of GAP\'s 5+ step scale), held "since the program launch in 2010" per GAP\'s own announcement',
+          verifiedDate: '2026-08-05',
+          source: {
+            name: 'GAP\'s own 2021 announcement post, corroborated by a Whole Foods Market product listing and Panorama\'s own marketing copy — VERIFIED per fact-check (certifier\'s own page + independent retailer corroboration)',
+            url: 'https://globalanimalpartnership.org/about/news/post/panorama-grass-fed-meats-organic-step-4-rated-100-grass-fed-ranchers/',
+          },
+        },
+        {
+          name: 'Global Animal Partnership (GAP) Animal Welfare Certified',
+          verifier: 'Global Animal Partnership',
+          scope: 'Draper Valley Farms (Perdue subsidiary) only. NOT Perdue-brand chicken or any other subsidiary. Step level not stated anywhere on Draper Valley\'s own site or elsewhere found — record certification without a step number rather than infer one.',
+          standard: 'unknown',
+          verifiedDate: '2026-08-05',
+          source: {
+            name: 'Draper Valley Farms\' own site — VERIFIED (as a negative finding: certification confirmed, step number genuinely absent from the page)',
+            url: 'https://drapervalleyfarms.com/practices/global-animal-partnership/',
+          },
+        },
+      ],
+      welfareMeatPoultry: {
+        gapStep: 'unknown',
+        gapStepSource: {
+          name: 'Perdue\'s own corporate animal-care page states its organic chicken is raised on farms "GAP 2 or higher" — a company disclosure (UNVERIFIED per fact-check), not a confirmed GAP directory hit (GAP does not expose a queryable public producer directory). Kept as company-disclosure-only evidence in practices[] rather than populating this company-wide field with an unverified self-report; the two subsidiary-scoped GAP hits that WERE independently corroborated (Panorama Organic Step 4, Draper Valley step-unknown) are recorded in certifications[] instead, scoped to those brands only.',
+          url: 'https://corporate.perduefarms.com/responsibility/animal-care/programs-practices',
+          date: '2026-08-05',
+          basis: 'company-disclosure',
+        },
+        grassFinished: 'unknown',
+        grassFinishedSource: {
+          name: 'Not applicable to the Perdue-brand product line (poultry). Panorama Organic, a Perdue subsidiary, markets 100% grass-fed beef and holds GAP Step 4 (see certifications[]), but that is scoped to the Panorama brand, not carried up to the parent company-wide field.',
+          url: 'https://corporate.perduefarms.com/responsibility/animal-care/programs-practices',
+          date: '2026-08-05',
+          basis: 'company-disclosure',
+        },
+        gestationCrateStatus: 'unknown',
+        gestationCrateSource: {
+          name: 'Coleman Natural Foods (Perdue subsidiary) states its pork is "100% crate-free" (gestation and farrowing) per trade press (meatpoultry.com, refrigeratedfrozenfood.com, 2018) and Coleman\'s own site — a subsidiary-scoped, company-disclosure-level claim (UNVERIFIED, not an independent auditor\'s confirmation of the crate-free claim itself, though Coleman is separately American Humane Certified for pork under a different standard, see practices[]). Not carried up to a Perdue-company-wide gestation-crate status.',
+          url: 'https://www.colemannatural.com/standards/',
+          date: '2026-08-05',
+          basis: 'company-disclosure',
+        },
+        chillMethod: 'water-chilled',
+        chillMethodSource: {
+          name: 'Perdue\'s own consumer-facing FAQ content states birds are held in a chilled water bath lowering temperature from 90°F to about 37°F over two hours, with no chlorine used in the chill water. Company disclosure (UNVERIFIED per fact-check — not third-party audited), but a specific, detailed technical description with no contradicting source found. Draper Valley Farms (subsidiary) markets an "air-chilled" line separately in its own marketing copy — not confirmed against Perdue\'s water-chilling description directly, and not carried into this company-wide field; flagged as an open follow-up item for a future research pass.',
+          url: 'https://corporate.perduefarms.com',
+          date: '2026-08-05',
+          basis: 'company-disclosure',
+        },
+        scorecards: [
+          {
+            name: 'Cornucopia Institute Organic Beef Scorecard',
+            ratedLine: 'Panorama Organic',
+            appliesTo: 'organic-line',
+            rating: '950/1100',
+            tier: '5-star',
+            spacePerAnimal: null,
+            year: 2026,
+            url: 'https://www.cornucopia.org/scorecard/organic-beef-scorecard/panorama-organic/',
+          },
+          {
+            name: 'Cornucopia Institute Organic Poultry Scorecard',
+            ratedLine: 'Draper Valley Farms / Roxy the Organic Chicken',
+            appliesTo: 'organic-line',
+            rating: '0/1800',
+            tier: '1-star',
+            spacePerAnimal: null,
+            year: 2026,
+            url: 'https://www.cornucopia.org/scorecard/organic-poultry-scorecard/roxy-the-organic-chicken-draper-valley-farms-perdue/',
+          },
+        ],
+      },
+      enforcement: [
+        {
+          year: 2023,
+          body: 'U.S. District Court, District of Maryland — Jien v. Perdue Farms, Inc. (1:19-cv-02521)',
+          action: 'Perdue Farms, Inc. and Perdue Foods LLC were among ~50 poultry-industry defendants (plus two compensation-survey firms, Agri Stats and Webber, Meng, Sahl & Co.) in a labor antitrust class action brought by poultry-plant workers alleging wage-fixing through shared compensation-survey data. Perdue\'s own settlement was preliminarily approved April 3, 2023 by Judge Stephanie A. Gallagher; the case resolved across the full defendant class with $398.05 million in total settlements granted final approval June 5, 2025 (a separate non-monetary injunctive settlement with data-aggregator Agri Stats received final approval March 10, 2026). This is a worker/labor wage-fixing case, distinct from the separate consumer/purchaser broiler-chicken price-fixing MDL. The case resolved by settlement; there was no trial and no adjudication of liability, and the underlying wage-fixing claims remain allegations.',
+          status: 'settled',
+          amount: 60700000,
+          source: {
+            name: 'Cohen Milstein case page, corroborated by Bloomberg Law (legal-wire reporting on the court\'s own order) and meatpoultry.com trade press. Stage 5 provenance correction: the fact-check called these "two independent sources" — Cohen Milstein is plaintiffs\' counsel, i.e. a PARTY to the case, not an independent source. The real basis is one arm\'s-length wire report (Bloomberg Law) plus trade press plus a party\'s own case page; CourtListener 403\'d on all three passes, so no primary court document was ever opened for the $60.7M figure. Retained with direct language because the figure is a neutral procedural fact reported consistently across outlets (headline rounding to "$60M" is the only variance found, per fact-check), not because it met the primary-source VERIFIED bar.',
+            url: 'https://cohenmilstein.com/case-study/jien-et-al-v-perdue-farms-inc-et-al/',
+          },
+        },
+        {
+          year: 2014,
+          body: 'U.S. District Court, District of New Jersey — Hemy v. Perdue Farms, Inc. (3:11-cv-00888)',
+          action: 'A putative class action asserting New Jersey Consumer Fraud Act, common-law fraud, negligent-misrepresentation, and breach-of-warranty claims over a "Humanely Raised" label and a "Raised Cage Free" label used specifically on Perdue\'s Harvestland chicken brand (not Perdue\'s flagship brand). The case resolved via a label change, not a monetary payment: Perdue and the Humane Society of the United States announced an agreement on November 8, 2014 in which Perdue removed the "Humanely Raised" claim from Harvestland packaging, in exchange for dismissal of related New Jersey and Florida cases. Perdue\'s general counsel stated the company "vigorously opposed" the claims and maintained its labels were not misleading — this was a negotiated settlement, not a court finding that the label was false.',
+          status: 'settled',
+          amount: null,
+          source: {
+            name: 'lancasterfarming.com, corroborated by topclassactions.com, foodnavigator-usa.com, feedstuffs.com, and fortune.com — five independent outlets describing the same label-removal outcome with no contradiction. UNVERIFIED per the strict fact-check flag rubric (no primary court document re-opened, CourtListener 403\'d both research passes), but well-corroborated by independent secondary press.',
+            url: 'https://www.lancasterfarming.com/perdue-settles-lawsuit-over-humanely-raised-label/',
+          },
+        },
+        {
+          year: 2024,
+          body: 'U.S. District Court, District of Maryland — Chaney v. Perdue Farms Inc. (1:24-cv-02975)',
+          action: 'Five individual plaintiffs, all Salisbury, MD-area residents relying on private wells, filed suit October 11, 2024 on behalf of a putative class alleging Perdue\'s Salisbury, MD Agribusiness Facility released PFAS ("forever chemicals," including PFOS, PFOA, and PFHxS) into groundwater via wastewater spray irrigation and stream discharge over 20+ years. The complaint further alleges that Maryland\'s Dept. of the Environment identified elevated PFAS in Perdue\'s wastewater in September 2023, and that Perdue knew PFAS had reached residents\' private wells by April 2024 but did not notify the surrounding community (500+ homes on private wells within roughly two miles) until October 1, 2024. On August 12, 2025, the court denied Perdue\'s motion to stay the case and granted Perdue\'s motion to dismiss only in part — claims tied to vague "health effects" and future-cancer-risk-only injuries were dismissed without prejudice for insufficient causation pleading, while strict-liability, negligence, private/public nuisance, and trespass claims survived and the case proceeds to discovery. No liability finding, no settlement — case is active. PFAS contamination and causation remain allegations, not established fact.',
+          status: 'pending',
+          amount: null,
+          source: {
+            name: 'Court memorandum opinion (Case No. SAG-24-02975, ECF 44, filed 2025-08-12), independently corroborated by the Baltimore Sun, wboc.com, CBS News Baltimore, and daily-record.com — VERIFIED per fact-check via a directly-fetchable primary court document plus independent press. Scope note (Stage 5): the opinion is a primary source for the PROCEDURAL POSTURE and for what the complaint ALLEGES — on a motion to dismiss the court recites the plaintiffs\' allegations as true without finding them so. It is not a source establishing contamination, causation, or what Perdue knew and when. All such content is stated here as allegation only.',
+            url: 'https://thenewlede.org/wp-content/uploads/2025/08/judges-opinion-on-defendants-mtd-or-stay-8122025.pdf',
+          },
+        },
+      ],
+      recalls: [
+        {
+          year: 2024,
+          agency: 'USDA-FSIS',
+          product: 'PERDUE Simply Smart ORGANICS Breaded Chicken Breast Nuggets (22-oz), PERDUE Chicken Breast Tenders (29-oz), and Butcher Box Organic Chicken Breast Nuggets',
+          reason: 'Possible contamination with metal wire, discovered after consumer complaints of metal wire embedded in product.',
+          scope: 'Approximately 167,171 lbs, frozen ready-to-eat chicken breast nugget and tender products produced March 23, 2024 at the Perry, GA establishment.',
+          scale: 'own-facility',
+          healthImpact: null,
+          source: {
+            name: 'FSIS recall notice (fsis.usda.gov 403\'d direct fetch both research passes), independently corroborated by ABC News/GMA, Today.com, CBS News, and NPR, plus a direct quote from Perdue\'s own SVP of food safety and quality — UNVERIFIED per the strict flag rubric (primary FSIS page not independently reached) but strongly corroborated by 5 independent outlets with zero discrepancy',
+            url: 'https://www.fsis.usda.gov/recalls-alerts/perdue-foods-llc-recalls-frozen-ready-eat-chicken-breast-nugget-and-tender-products',
+            date: '2024-08-16',
+          },
+        },
+      ],
+      practices: [
+        {
+          claim: 'Perdue states it holds a USDA AMS Process Verified Program (PVP) certification for its "No Antibiotics Ever" claim, under which USDA AMS auditors review the hatchery, the feed mill, and the farm. Perdue also states it eliminated routine use of all human antibiotics from every production step by the end of 2014. The USDA AMS page for this certification returned HTTP 403 on direct fetch in both the research and fact-check passes, so the certificate itself was not independently confirmed; recorded as a company statement rather than as a retrieved government record.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Perdue\'s own animal-care page. Fact-check flagged the program-level fact VERIFIED, but the only corroboration found was a 2015 PR Newswire item — a paid press-release wire, i.e. company-issued, not arm\'s-length reporting — and the canonical USDA AMS page 403\'d. Basis recorded as company-disclosure on that ground (Stage 5 downgrade from \'government-record\'). Facility-level PVP detail was UNVERIFIED and is deliberately omitted.',
+            url: 'https://corporate.perduefarms.com/responsibility/animal-care/programs-practices',
+            date: '2026-08-05',
+          },
+        },
+        {
+          claim: 'Perdue\'s own corporate site states its organic chicken is raised on farms "GAP 2 or higher." This is a company self-report about the Perdue brand itself, not an independently confirmed GAP directory hit (GAP has no queryable public producer directory) — kept distinct from the subsidiary-scoped, independently-corroborated GAP certifications for Panorama Organic (Step 4) and Draper Valley Farms (step unknown) in certifications[].',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Perdue Farms corporate site, animal-care programs-and-practices page. UNVERIFIED per fact-check.',
+            url: 'https://corporate.perduefarms.com/responsibility/animal-care/programs-practices',
+            date: '2026-08-05',
+          },
+        },
+        {
+          claim: 'Coleman Natural Foods (Perdue subsidiary) pork is certified "American Humane Certified" (administered by American Humane, a different certifier from Certified Humane/Humane Farm Animal Care — do not conflate) and marketed as "100% crate-free" (gestation and farrowing). Scoped to Coleman Natural\'s pork line only, not the Perdue brand or other subsidiaries.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'meatpoultry.com and refrigeratedfrozenfood.com trade press (2018), corroborated by colemannatural.com/standards/. UNVERIFIED per fact-check (trade press + company site, not American Humane\'s own directory).',
+            url: 'https://www.colemannatural.com/standards/',
+            date: '2026-08-05',
+          },
+        },
+        {
+          claim: 'GAP portfolio-page search-engine summaries describe Coleman Natural Foods farms/ranches as certified at GAP Pork Step 1 and Chicken Step 2, Step 3 (organic), and Step 5. Recorded here rather than in certifications[] or welfareMeatPoultry.gapStep because the underlying GAP portfolio page 404\'d on direct fetch in both the research and fact-check passes — these numbers are search-engine-synthesis-only, lower confidence than the Panorama Organic Step 4 finding, and should not be presented with equal confidence.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Search-engine-indexed summary of globalanimalpartnership.org/portfolio/coleman-natural-foods/ (direct fetch 404\'d twice, independently, in both research and fact-check passes). UNVERIFIED, explicitly lower-confidence per fact-check.',
+            url: 'https://globalanimalpartnership.org/portfolio/coleman-natural-foods/',
+            date: '2026-08-05',
+          },
+        },
+        {
+          claim: 'Panorama Organic and Coleman Natural/Coleman Organic product lines are marketed as "USDA Certified Organic," per the brands\' own marketing and (for Panorama) Whole Foods retail listings. Not independently confirmed against the USDA Organic Integrity Database directly — the live database could not be queried in this research pass.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Panorama Organic and Coleman Natural\'s own marketing/product pages; Whole Foods Market product listing for Panorama. UNVERIFIED — no direct USDA Organic Integrity DB query performed.',
+            url: 'https://www.colemannatural.com/standards/',
+            date: '2026-08-05',
+          },
+        },
+      ],
+    },
+
   },
 
   'butterball': {
@@ -1814,6 +2012,145 @@ export const COMPANY_DB = {
     ],
     subsidiaries: ['Butterball'],
     sustainabilityScore: 33,
+  
+    sourcing: {
+      industry: 'meat-poultry',
+      lastVerified: '2026-08-05',
+      model: 'unknown',
+      modelSource: {
+        name: 'Butterball\'s sourcing model (company-owned flocks vs. contract growers) was not resolved in this research pass. Seaboard Corporation\'s FY2021-FY2023 10-K filings (Seaboard holds a noncontrolling equity interest in Butterball — see practices[] — and does not consolidate Butterball\'s financials, since it is an equity-method investee) contain no turkey-specific sourcing-model disclosure. The only \'contract grower\' language found in the FY2023 10-K explicitly describes Seaboard\'s separate PORK segment, not Butterball/turkey, and should not be inferred to apply to Butterball. No Butterball-direct source describing its own sourcing model was found.',
+        url: 'https://www.sec.gov/Archives/edgar/data/88121/000008812124000025/seb-20231231x10k.htm',
+        date: '2026-08-05',
+        basis: 'company-disclosure',
+      },
+      certifications: [
+        {
+          name: 'American Humane Certified',
+          verifier: 'American Humane Association, via its American Humane Certified™ Farm program',
+          scope: 'Per Butterball\'s own description, the certification covers \'contract farmers, operations team, transportation partners and harvest facilities\' — i.e., described by Butterball as covering its full turkey supply chain. The certification\'s existence and AHA as verifier are independently confirmed (certifier\'s own materials plus Butterball\'s own press release); this specific SCOPE claim is Butterball\'s own statement, recorded as company-disclosure even though the certification itself is third-party.',
+          standard: 'The certifier\'s own description of its standard, quoted and attributed rather than adopted: AHA\'s materials describe \'200 rigorous, science-based standards,\' annually audited (audits may be unannounced). \'Rigorous\' is AHA\'s word, not this record\'s. That rigor has been publicly contested: in a 2014 FTC complaint (see enforcement[]), PETA characterized the certified standard as close to standard industry practice. No agency or court has ruled on either characterization, so both are recorded and neither is endorsed here.',
+          verifiedDate: '2026-08-05',
+          source: {
+            name: 'American Humane Society, "American Humane Certified™ Producer Spotlight: Butterball"; Butterball Foodservice press release, "Butterball to Earn American Humane Certified™ Program Recognition for Third Consecutive Year." Exact first-certification year is disputed across sources (2013 vs. 2014) — not asserted here.',
+            url: 'https://www.americanhumane.org/article/american-humane-certified-producer-spotlight-butterball/',
+          },
+        },
+      ],
+      welfareMeatPoultry: {
+        gapStep: 'none',
+        gapStepSource: {
+          name: 'Confirmed absent via direct search of GAP\'s own public directories: the \'For Shoppers\' full partner/brand directory (globalanimalpartnership.org/shoppers/) does not list Butterball among its turkey partners (Diestel Turkey, Mary\'s Turkey, JD Farms Specialty Turkey, and others are listed; Butterball is not). Independently re-fetched and confirmed at fact-check (separate fetch, same result).',
+          url: 'https://globalanimalpartnership.org/shoppers/',
+          date: '2026-08-05',
+          basis: 'third-party-audit',
+        },
+        grassFinished: 'not-applicable',
+        grassFinishedSource: {
+          name: 'Butterball is a turkey producer/processor; grass-fed/grass-finished is a beef/lamb claim type and does not apply to its product line.',
+          url: 'https://www.butterball.com/',
+          date: '2026-08-05',
+          basis: 'company-disclosure',
+        },
+        gestationCrateStatus: 'not-applicable',
+        gestationCrateSource: {
+          name: 'Butterball is a turkey producer/processor; gestation-crate status is a pork-industry claim type and does not apply to its product line.',
+          url: 'https://www.butterball.com/',
+          date: '2026-08-05',
+          basis: 'company-disclosure',
+        },
+        chillMethod: 'unknown',
+        chillMethodSource: {
+          name: 'Butterball\'s company-wide chilling method is unresolved. The only chilling-method evidence found is scoped to one plant: a MEAT+POULTRY trade-press profile reports that the Mount Olive, NC plant uses a water-chilled (immersion) system (recorded as a plant-scoped, secondary-sourced claim in practices[]). No equivalent report was found for the Huntsville, AR or Raeford, NC plants, and no company-wide statement was found on Butterball\'s own sites, so this field stays \'unknown\' rather than generalizing the single-plant finding.',
+          url: 'https://www.meatpoultry.com/articles/29906-butterball-implements-controlled-growth',
+          date: '2026-08-05',
+          basis: 'investigative-journalism',
+        },
+        scorecards: [],
+      },
+      enforcement: [
+        {
+          year: 2026,
+          body: 'U.S. Court of Appeals for the Fourth Circuit — Figueroa v. Butterball, LLC, No. 24-1861',
+          action: 'Osvaldo Figueroa, a Butterball turkey loader paid on a piece-rate basis, brought FLSA and North Carolina Wage and Hour Act claims alleging Butterball owed him unpaid overtime, framed as a proposed collective/class action (E.D.N.C., filed 2020). The district court ruled against Figueroa\'s claims (finding his own paystubs reflected a piece-rate, not hourly, pay scheme), and on Jan. 13, 2026 a Fourth Circuit panel affirmed, per Bloomberg Law, Law360, and Littler Mondaq legal-press coverage (the primary docket/opinion could not be independently fetched — CourtListener and Justia both blocked direct requests). Figueroa filed a petition for rehearing en banc on Jan. 26, 2026; as of this record\'s research date (2026-08-05), no outcome of that petition has been confirmed, so this case\'s final resolution is not yet settled.',
+          status: 'pending',
+          amount: null,
+          source: {
+            name: 'Bloomberg Law, "Butterball Gets Poultry Worker\'s Would-Be OT Class Suit Tossed"; corroborated by Law360 ("4th Circ. Keeps Butterball\'s Win In Wage Dispute") and Littler Mondaq\'s "January 2026 Appellate Roundup" — all secondary legal press; primary CourtListener docket/opinion not independently confirmed (blocked fetch on both research and fact-check passes)',
+            url: 'https://news.bloomberglaw.com/litigation/butterball-gets-poultry-workers-would-be-ot-class-suit-tossed',
+          },
+        },
+        {
+          year: 2014,
+          body: 'NO AGENCY ACTION — third-party complaint filed by PETA (People for the Ethical Treatment of Animals). The Federal Trade Commission is named here only as the office the complaint was mailed to; the FTC is not a party to this entry, opened no confirmed proceeding, and made no finding. This entry records a private advocacy group\'s filing, not a government enforcement action.',
+          action: 'NOT AN ENFORCEMENT ACTION. No FTC investigation, enforcement action, consent order, or public finding on this complaint has ever been confirmed — anyone reading this entry should not infer that any federal agency acted, reviewed, or agreed with the complaint. What is confirmed is only this: PETA, an advocacy organization, filed a complaint with the FTC around Nov. 2014, in which PETA argued that Butterball\'s American Humane Certified label was misleading and characterized the certified standard as close to standard industry practice. Those are PETA\'s own contentions, not findings by anyone. The fact that the filing occurred is independently confirmed via PETA\'s own press release and contemporaneous Washington Post coverage; the contentions themselves remain unadjudicated. The FTC does not make complaint status public, so the absence of any FTC record is not evidence in either direction.',
+          status: 'alleged',
+          amount: null,
+          source: {
+            name: 'PETA press release, "PETA Files FTC Complaint Over Inhumane Treatment of Butterball Birds"; corroborated by Washington Post, "PETA wants \'humanely raised\' label stripped from Butterball turkeys" (Nov. 2014)',
+            url: 'https://www.peta.org/news/consumer-alert-dont-fooled-butterballs-humane-label/',
+          },
+        },
+      ],
+      recalls: [
+        {
+          year: 2019,
+          agency: 'USDA-FSIS',
+          product: 'Raw ground turkey products (multiple fat percentages, including a Food Lion-branded line)',
+          reason: 'Possible Salmonella Schwarzengrund contamination',
+          scope: 'Approximately 78,164 lbs, produced at the Mount Olive, NC establishment (sell/freeze-by 7/26/18, lot code 8188), shipped to institutional and retail locations nationwide',
+          scale: 'own-facility',
+          healthImpact: {
+            illnesses: 7,
+            hospitalizations: 1,
+            deaths: 0,
+          },
+          source: {
+            name: 'CDC\'s own archived outbreak page (primary government source, final tally: 7 illnesses, 3 states — MN/NC/WI, 1 hospitalization, 0 deaths). Note: contemporaneous Food Safety News reporting from March 2019 cited an early count of 6 illnesses before the investigation closed; CDC\'s 7 is used here as the final, authoritative figure.',
+            url: 'https://archive.cdc.gov/www_cdc_gov/salmonella/schwarzengrund-03-19/index.html',
+            date: '2019-03-13',
+          },
+        },
+      ],
+      practices: [
+        {
+          claim: 'Butterball holds an active USDA AMS Process Verified Program listing covering its Huntsville, AR (Est. P7174), Mount Olive, NC (Est. P7345), and Raeford, NC (Est. P46870) plants, with a verified process point: \'No Antibiotics Ever – from the egg to the day of hatch to processing, these birds receive absolutely no antibiotics of any kind.\' This is a government-audited claim (USDA AMS auditors verify compliance against a company-submitted quality manual) for output from these three plants, not merely a company disclosure; whether it covers 100% of Butterball\'s company-wide turkey output was not confirmed.',
+          basis: 'government-record',
+          source: {
+            name: 'USDA Agricultural Marketing Service, "Butterball, LLC Process Verified Program" (direct fetch blocked, HTTP 403; page content independently corroborated via WebSearch on both the research and fact-check passes)',
+            url: 'https://www.ams.usda.gov/content/butterball-llc-process-verified-program',
+            date: '2026-08-05',
+          },
+        },
+        {
+          claim: 'No GAP (Global Animal Partnership), Certified Humane, or A Greener World (Animal Welfare Approved) certification was found for Butterball as of 2026-08-05, based on direct searches of each certifier\'s own public directory.',
+          basis: 'third-party-audit',
+          source: {
+            name: 'Global Animal Partnership \'For Shoppers\' directory; Certified Humane \'Who\'s Certified\' database; A Greener World directory search. GAP and Certified Humane absences were independently re-confirmed at fact-check via separate direct re-fetches; the AGW re-fetch returned HTTP 403 on retry, but is corroborated by an independent WebSearch turning up no connection and by the same methodology succeeding for the other two certifiers.',
+            url: 'https://globalanimalpartnership.org/shoppers/',
+            date: '2026-08-05',
+          },
+        },
+        {
+          claim: 'According to an on-site MEAT+POULTRY trade-press profile citing named Butterball plant staff, Butterball\'s Mount Olive, NC plant uses a water-chilled (immersion/agitation) processing system — a \'Morris chilling system\' with a peracetic acid additive, bringing carcass temperature from 104°F to 40°F over approximately 5 hours. This is a single secondary source, not a primary record, and it describes the Mount Olive plant only; no equivalent report was found for the Huntsville, AR or Raeford, NC plants, and it is NOT a company-wide claim about Butterball.',
+          basis: 'investigative-journalism',
+          source: {
+            name: 'MEAT+POULTRY (Sosland Publishing), "Controlled growth" — on-site trade-press profile based on an interview with named Butterball plant staff; a secondary source, not independently re-fetched by the fact-checker',
+            url: 'https://www.meatpoultry.com/articles/29906-butterball-implements-controlled-growth',
+            date: '2026-08-05',
+          },
+        },
+        {
+          claim: 'Seaboard Corporation holds a 52.5% noncontrolling equity interest in Butterball, LLC as of its FY2022 and FY2023 10-K filings, increased from a 50% interest reported in the FY2021 10-K. Trade press (WATTPoultry.com) attributes at least part of the increase to Seaboard\'s exercise of warrants held since the original 2010 investment, allowing it to acquire an additional 5% equity interest for a nominal price — not a renegotiated buy-in. Seaboard accounts for its Butterball stake as an equity-method investee, not a consolidated subsidiary.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Seaboard Corporation FY2021, FY2022, and FY2023 10-K filings, Item 1 (Business) (direct SEC.gov fetch blocked, HTTP 403 on both research and fact-check passes; exact quoted 10-K language independently corroborated via WebSearch on both passes); WATTPoultry.com, "Did Seaboard up Butterball investment at an opportune time?" for the warrant-exercise mechanism',
+            url: 'https://www.sec.gov/Archives/edgar/data/88121/000008812123000020/seb-20221231x10k.htm',
+            date: '2026-08-05',
+          },
+        },
+      ],
+    },
+
   },
 
   'foster-farms': {
@@ -1855,6 +2192,219 @@ export const COMPANY_DB = {
     ],
     subsidiaries: ['Foster Farms'],
     sustainabilityScore: 38,
+  
+    sourcing: {
+      industry: 'meat-poultry',
+      lastVerified: '2026-08-05',
+      model: 'contract-farms',
+      modelSource: {
+        name: 'Foster Farms is vertically integrated: it hatches, raises (via a mix of company-owned farms AND independent contract growers in California, Washington, and Oregon), manufactures its own feed, slaughters/processes at its own plants (Livingston, Fresno, Creswell OR, Kelso WA), and runs its own distribution trucking. Contract-grower relationships with independent Central Valley growers date to the 1940s-50s and continue today. This is UNVERIFIED at the primary-source level — no single Foster-Farms-authored disclosure confirming the exact company-farm/contract-grower ratio was found; the claim rests on cross-corroborated secondary company-history sources (Wikipedia, Encyclopedia.com, PortersFiveForces.com, Meatpoultry.com trade press), consistent across all of them. Classified as \'contract-farms\' (mixed with some company-owned operations) rather than single-farm or pure-aggregator; not a co-op.',
+        url: 'https://www.fosterfarms.com/our-story/',
+        date: '2026-08-05',
+        basis: 'company-disclosure',
+      },
+      certifications: [],
+      welfareMeatPoultry: {
+        gapStep: 'unknown',
+        gapStepSource: {
+          name: 'GAP\'s "Manufacturers | 5-Step Partners" directory (globalanimalpartnership.org/partners/manufacturers/) was fetched directly on 2026-08-05 and lists ~27 companies (Great American Foods, Wayne Farms, Bell & Evans, Perdue Farms, Miller Poultry, etc.) — Foster Farms does NOT appear. However, GAP\'s separate "Farms & Ranches" directory is multi-page and was NOT paginated through in this research pass, so this is a partial, not exhaustive, check. Recorded as unresolved/not-found-on-the-page-checked, not as a confirmed absence.',
+          url: 'https://globalanimalpartnership.org/partners/manufacturers/',
+          date: '2026-08-05',
+          basis: 'third-party-audit',
+        },
+        grassFinished: 'not-applicable',
+        grassFinishedSource: {
+          name: 'Foster Farms is a poultry (chicken) producer with no beef or lamb product line — the grass-fed/grass-finished claim type does not apply.',
+          url: 'https://www.fosterfarms.com/',
+          date: '2026-08-05',
+          basis: 'company-disclosure',
+        },
+        gestationCrateStatus: 'not-applicable',
+        gestationCrateSource: {
+          name: 'Foster Farms is a poultry (chicken) producer with no hog/pork operations — the gestation-crate claim type does not apply.',
+          url: 'https://www.fosterfarms.com/',
+          date: '2026-08-05',
+          basis: 'company-disclosure',
+        },
+        chillMethod: 'unknown',
+        chillMethodSource: {
+          name: 'Foster Farms sells specific labeled air-chilled SKUs (e.g. retail listing "Foster Farms Air Chilled Chicken Breasts Bone" at Vons/Shaws; "Simply Raised" air-chilled wings) and its own "Our Story / Healthy" page lists air-chilled among several attributes it offers across its portfolio ("air chilled, free range, organic, antibiotic free, hormone free, cage free, & vegetarian-fed options") without stating this applies company-wide. Water-chilling is the more conventional/majority method industry-wide (general industry context, not a Foster-Farms-specific statement). No direct Foster Farms statement on its default/majority processing method for core/commodity chicken was found — this field stays \'unknown\' rather than reading as company-wide air-chilling.',
+          url: 'https://www.fosterfarms.com/our-story/healthy/',
+          date: '2026-08-05',
+          basis: 'company-disclosure',
+        },
+        scorecards: [],
+      },
+      enforcement: [
+        {
+          year: 2013,
+          body: 'USDA Food Safety and Inspection Service',
+          action: 'FSIS issued a Public Health Alert on 2013-10-07 for chicken products from three Foster Farms California facilities, tied to the Salmonella Heidelberg outbreak that ultimately grew to 634 illnesses across 29 states and Puerto Rico (see recalls[]). Per secondary reporting (Food Safety News), FSIS also issued Notices of Intended Enforcement (NOIE) for the Livingston and Fresno plants around the same period, warning it would close the plants within three days absent adequate corrective action — this specific NOIE detail is UNVERIFIED at the primary-document level; the underlying FSIS letter (found only as a corrupted, unreadable PDF mirror) could not be read by either the research or fact-check pass. Foster Farms implemented corrective changes to slaughter/processing on 2013-10-10, and FSIS made a final regulatory determination that the corrective measures were successful — no suspension of inspection was issued in 2013. Separately, in January 2014 USDA ordered a suspension of operations at the Livingston plant; secondary reporting attributes this specifically to a cockroach infestation finding, not the Salmonella outbreak, though this attribution was NOT independently confirmed at the primary-document level (delauro.house.gov source blocked; low-priority, not re-attempted).',
+          status: 'adjudicated',
+          amount: null,
+          source: {
+            name: 'CDC outbreak page (VERIFIED primary source for the Oct 7/Oct 10, 2013 dates and "no suspension" outcome); FSIS Public Health Alert page (title/existence confirmed via search, content blocked — HTTP 403 on direct fetch, confirmed on two independent attempts); Food Safety News (secondary, for the NOIE detail specifically)',
+            url: 'https://www.fsis.usda.gov/recalls-alerts/fsis-issues-public-health-alert-chicken-products-produced-three-foster-farms',
+          },
+        },
+        {
+          year: 2018,
+          body: 'U.S. District Court, District of Arizona — Craten v. Foster Poultry Farms Incorporated (2:15-cv-02587)',
+          action: 'A jury found Foster Farms 30% at fault (70% allocated to the family\'s own food handling) in a $6.5 million gross verdict awarded to the family of a 5-year-old child who suffered a brain injury following a Salmonella Heidelberg infection linked to Foster Farms chicken as part of the CDC-identified 2013-14 outbreak. Causation and injury here are the jury\'s findings in this one individual case — not a general health claim about the product. Net recovery from Foster Farms specifically was approximately $1.95 million. This is the litigation tail of the already-counted 2013-14 outbreak, not a separate incident. Figures confirmed consistently across four independent secondary legal-news outlets (Food Business News, Pritzker Hageman, Feedstuffs, Food Poisoning Bulletin); not independently read from the court docket/opinion text itself.',
+          status: 'adjudicated',
+          amount: 1950000,
+          source: {
+            name: 'Food Business News, "Foster Farms responsible in Salmonella case, court says" (2018-03-12); Pritzker Hageman Law Firm; corroborated by Feedstuffs and Food Poisoning Bulletin',
+            url: 'https://www.foodbusinessnews.net/articles/11498-foster-farms-responsible-in-salmonella-case-court-says',
+          },
+        },
+        {
+          year: 2021,
+          body: 'California Court of Appeal, Second District, Division 5 — Leining v. Foster Poultry Farms, Inc. (and American Humane Association), B291600 (orig. LA County Superior Court BC588004)',
+          action: 'A putative class action alleged Foster Farms\' "American Humane Certified" labeling misled consumers, citing footage the plaintiffs said showed chickens were not raised/slaughtered humanely, and that American Humane\'s certification standard itself was too lax to support the claim. The trial court granted summary judgment for both Foster Farms and American Humane Association; the Court of Appeal affirmed on 2021-02-23. The dismissal\'s basis was federal preemption under the Poultry and Poultry Products Inspection Act (the labels had been pre-approved by FSIS), plus separate pleading failures on the negligent-misrepresentation claim — not a ruling on whether the underlying welfare claims were true or false. Independently corroborated by FindLaw, Bloomberg Law, Lexology, vLex, and TopClassActions.',
+          status: 'adjudicated',
+          amount: null,
+          source: {
+            name: 'FindLaw, "Leining v. Foster Poultry Farms Inc (2021)"; Bloomberg Law, "Foster Farms Avoids Chicken Treatment Claims in Labeling Suit"',
+            url: 'https://caselaw.findlaw.com/court/ca-court-of-appeal/2112707.html',
+          },
+        },
+        {
+          year: 2024,
+          body: 'District of Columbia Superior Court — Organic Consumers Association v. Foster Farms, LLC et al.',
+          action: 'Organic Consumers Association alleges Foster Farms\' "five freedoms" marketing claims ("freedom from discomfort," "freedom from injury, pain, or disease," "room to run around") are false, citing undercover investigation footage and 2018 USDA inspection records the complaint characterizes as documenting mistreatment of poultry, including birds allegedly entering scalders alive. These substantive allegations are UNVERIFIED/ALLEGED — this research did not independently locate or read the cited inspection records or investigation footage. Procedurally: Foster Farms removed the case to federal court (D.D.C. 1:2024cv01703); on 2025-03-26 Judge Tanya Chutkan granted OCA\'s motion to remand (denying OCA fees, finding the removal "objectively reasonable"), returning the case to DC Superior Court. No ruling on the underlying merits has been found. The complaint seeks injunctive relief only, no monetary damages.',
+          status: 'pending',
+          amount: null,
+          source: {
+            name: 'Organic Consumers Association press release; Justia docket (D.D.C. 1:2024cv01703, primary court record); Capital Press',
+            url: 'https://organicconsumers.org/organic-consumers-association-takes-legal-action-against-foster-farms/',
+          },
+        },
+        {
+          year: 2025,
+          body: 'Superior Court of California, County of Merced — Animal Legal Defense Fund v. Foster Poultry Farms',
+          action: 'Filed 2020-09-02, ALDF alleged Foster Farms\' Livingston, CA slaughterhouse (drawing an estimated ~4 million gallons/day, reportedly over 60% of the city\'s water usage, from the "critically overdrafted" Merced Subbasin) violates the California Constitution\'s ban on "unreasonable use" of water, specifically targeting Foster Farms\' live-hang slaughter method with electric immobilization, which ALDF\'s own complaint characterized as cruel (an advocacy-party characterization, not an adjudicated finding). A December 2020 ruling allowed the case to proceed on standing grounds. Foster Farms denies ALDF\'s allegations. The case settled (confirmed via ALDF\'s own case page, updated 2025-04-21); per the Water Education Foundation, the settlement includes a forward-looking commitment by Foster Farms to "continue to work to improve water conservation and animal welfare" at the Livingston plant. Specific numeric/binding settlement terms remain non-public; no admission of wrongdoing.',
+          status: 'settled',
+          amount: null,
+          source: {
+            name: 'Animal Legal Defense Fund, "Challenging Foster Farms Slaughterhouse\'s Illegal Water Use" (plaintiff\'s own case page); corroborated by Water Education Foundation, Yahoo News, Courthouse News, and the Climate Litigation Database',
+            url: 'https://aldf.org/case/challenging-foster-farms-slaughterhouses-illegal-water-use/',
+          },
+        },
+        {
+          year: 2025,
+          body: 'USDA Agricultural Marketing Service — Packers and Stockyards Act stipulation, Foster Farms LLC (Livingston, CA)',
+          action: 'USDA entered a stipulation agreement with Foster Farms LLC on 2025-11-25 (AMS announcement dated 2026-05-18) resolving an alleged Packers and Stockyards Act violation: Foster Farms had last submitted a required scale-test report on 2024-10-10 but continued weighing poultry to determine sale prices throughout 2025 without a current scale-test report on file. Foster Farms agreed to pay a $1,600 civil penalty and waived its right to a hearing. This is a scale-certification/reporting-compliance lapse — not a welfare finding or a pricing-fraud/manipulation finding. UNVERIFIED at the primary-document level (the AMS page itself returned HTTP 403 on repeated direct-fetch attempts by both the research and fact-check passes); substance confirmed via search-engine synthesis of the AMS page\'s indexed content, not an independently-read primary document.',
+          status: 'settled',
+          amount: 1600,
+          source: {
+            name: 'USDA Agricultural Marketing Service (page title-matched via search; content not independently fetched — HTTP 403 on repeated attempts)',
+            url: 'https://www.ams.usda.gov/content/usda-settles-packers-and-stockyards-case-foster-farms-llc',
+          },
+        },
+      ],
+      recalls: [
+        {
+          year: 2014,
+          agency: 'USDA-FSIS',
+          product: 'Fresh chicken products',
+          reason: 'Salmonella Heidelberg contamination',
+          scope: 'Over 1 million lbs; produced March 8/10/11, 2014; sold in 9 Western states (CA, HI, WA, AZ, NV, ID, UT, OR, AK)',
+          scale: 'own-facility',
+          healthImpact: {
+            illnesses: 634,
+            hospitalizations: null,
+            deaths: 0,
+          },
+          source: {
+            name: 'CDC (archived), "2013 Salmonella Outbreak Linked to Foster Farms Brand Chicken" (VERIFIED, directly fetched, independently re-confirmed in fact-check); Food Safety News and Marler Clark for the recall-specific scope details (secondary, UNVERIFIED at FSIS-primary level)',
+            url: 'https://archive.cdc.gov/www_cdc_gov/salmonella/heidelberg-10-13/index.html',
+            date: '2014-07-01',
+          },
+        },
+        {
+          year: 2016,
+          agency: 'USDA-FSIS',
+          product: 'Fully cooked frozen chicken nuggets',
+          reason: 'Possible foreign-matter contamination (blue plastic and black rubber material fragments)',
+          scope: 'Approximately 220,450 lbs',
+          scale: 'own-facility',
+          healthImpact: null,
+          source: {
+            name: 'FSIS recall listing (title-matched via search; fsis.gov page content not independently fetched in this pass) — UNVERIFIED at title level only',
+            url: 'https://www.fsis.usda.gov/recalls-alerts',
+            date: '2026-08-05',
+          },
+        },
+        {
+          year: 2017,
+          agency: 'USDA-FSIS',
+          product: 'Frozen ready-to-eat breaded chicken patty products',
+          reason: 'Possible foreign-matter (plastic) contamination',
+          scope: 'Approximately 131,880 lbs',
+          scale: 'own-facility',
+          healthImpact: null,
+          source: {
+            name: 'FSIS, "Foster Poultry Farms Recalls Frozen Ready-To-Eat Breaded Chicken Patty Products Due to Possible Foreign Matter Contamination" (title/URL confirmed via search, page content not directly fetched) — UNVERIFIED at title level only',
+            url: 'https://www.fsis.usda.gov/recalls-alerts/foster-poultry-farms-recalls-frozen-ready-eat-breaded-chicken-patty-products-due',
+            date: '2017-01-01',
+          },
+        },
+        {
+          year: 2022,
+          agency: 'USDA-FSIS',
+          product: 'Fully cooked frozen chicken breast patty products',
+          reason: 'Possible foreign-matter (hard clear plastic) contamination',
+          scope: 'Approximately 148,000 lbs',
+          scale: 'own-facility',
+          healthImpact: null,
+          source: {
+            name: 'FSIS, "Foster Farms Recalls Fully Cooked Frozen Chicken Patty Products Due to Possible Foreign Matter Contamination" (title/URL confirmed via search, content not directly fetched) — UNVERIFIED at title level only',
+            url: 'https://www.fsis.usda.gov/recalls-alerts/foster-farms-recalls-fully-cooked-frozen-chicken-patty-products-due-possible-foreign',
+            date: '2022-01-01',
+          },
+        },
+      ],
+      practices: [
+        {
+          claim: 'Foster Farms was "American Humane Certified" (administered by the American Humane Association — a separate certifier/program from "Certified Humane"/Humane Farm Animal Care, see below) on its fresh chicken products as of at least February 2021, per American Humane\'s own press release describing an eighth consecutive year of audits; press coverage described Foster Farms as the first West Coast fresh-chicken producer to earn the certification. Historical certification through at least 2021 is well-documented. However, American Humane\'s own current, primary "Certified Farm Producers" directory (101 producer entries, fetched directly and in full on 2026-08-05, including the poultry/broiler category) does NOT list Foster Farms, and the directory page\'s 10 featured-producer logos also exclude Foster Farms. No renewal, audit, or listing dated later than February 2021 was found despite a direct search. As of 2026-08-05, current/ongoing certification status is unconfirmed and the certifier\'s own directory suggests it has lapsed — this should be read as a historical certification, not an active current one. Advocacy groups have separately criticized the American Humane Certified standard itself as permissive; that critique is advocacy framing, not adjudicated fact, and is not asserted here.',
+          basis: 'third-party-audit',
+          source: {
+            name: 'American Humane Association press release announcing an eighth consecutive year of third-party welfare audits of Foster Farms broiler operations (historical, dated ~Feb 2021 — the release\'s own title carries the certifier\'s promotional characterization of the result and is deliberately not reproduced here, per the no-praise-adjective rule); American Humane, "Certified Farm Producers" current directory (fetched directly and in full, 2026-08-05, showing absence)',
+            url: 'https://www.americanhumane.org/what-we-do/certify-humane-treatment/farms/certified-farm-producers/',
+            date: '2026-08-05',
+          },
+        },
+        {
+          claim: 'Certified Humane (Humane Farm Animal Care) does not list Foster Farms / Foster Poultry Farms as a certified producer. This is a confirmed absence, not an unchecked gap: the certifier\'s full A-Z "Who\'s Certified" directory (300+ entries) and its "Shop by Brand" page were both fetched directly and in full, independently, twice — once during research and once during fact-check — and Foster Farms does not appear on either. (Note: this is a different certifier/program from "American Humane Certified," the historical certification described above — the two names are similar but are separate organizations with separate standards.)',
+          basis: 'third-party-audit',
+          source: {
+            name: 'Humane Farm Animal Care, "Who\'s Certified" (full directory, fetched directly and independently re-confirmed)',
+            url: 'https://certifiedhumane.org/whos-certified/',
+            date: '2026-08-05',
+          },
+        },
+        {
+          claim: 'Foster Farms states, and secondary/search-indexed sources indicate, that it holds USDA AMS Process Verified Program (PVP) certificates for its "No Antibiotics Ever" (NAE) claim — birds hatched, raised, and harvested with no antibiotics ever, fed an all-vegetarian diet, and (for at least one certificate) meeting a "No Antibiotics Important to Human Medicine" (NAIHM) standard. This is NOT recorded as a government-verified fact and must not render as one: the USDA AMS page describing it (ams.usda.gov/content/foster-farms-process-verified-program) returned HTTP 403 on repeated direct-fetch attempts across both the research and fact-check passes, and a Wayback Machine workaround was also blocked. The existence of a PVP-audited NAE certification is corroborated across two independent secondary/search-snippet sources, but specific certificate numbers were not confirmed against a source either pass directly read. Basis is deliberately recorded as \'company-disclosure\' rather than \'government-record\': the only source either pass actually read on this point is Foster Farms\' own consumer blog. Upgrading the basis would let a search-engine snippet render to users as a government-verified certification.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'USDA Agricultural Marketing Service, "Foster Farms Process Verified Program" (page existence/content confirmed only via search-engine-indexed snippets; direct WebFetch 403\'d on repeated attempts — ams.usda.gov and fsis.usda.gov appear to systematically block WebFetch in this environment); Foster Farms\' own consumer blog corroborates the underlying NAE claim as company-disclosure',
+            url: 'https://www.ams.usda.gov/content/foster-farms-process-verified-program',
+            date: '2026-08-05',
+          },
+        },
+        {
+          claim: 'Foster Farms markets specific labeled SKUs as air-chilled — e.g. "Foster Farms Air Chilled Chicken Breasts Bone" (retail listing at Vons/Shaws) and "Simply Raised" air-chilled wings — but this is scoped to those specific premium/branded product lines only. No company-wide statement of Foster Farms\' default/majority chilling method for its core commodity chicken line was found; industry-wide, water-chilling is the more conventional majority method, but that is general industry context, not a Foster-Farms-specific disclosure. Do not read this as "Foster Farms is air-chilled" company-wide.',
+          basis: 'company-disclosure',
+          source: {
+            name: 'Foster Farms / retailer product listings (e.g. Vons.com); Foster Farms, "Our Story / Healthy" page',
+            url: 'https://www.fosterfarms.com/our-story/healthy/',
+            date: '2026-08-05',
+          },
+        },
+      ],
+    },
+
   },
 
   'bob-evans': {
