@@ -12,15 +12,21 @@ import {
   purchaseRCPackage,
   getProStatus,
 } from '../utils/subscription';
-import { computeOfferPricing } from '../utils/paywallPricing';
+import { computeYearlySavings, introOffer, FALLBACK_TRIAL_FINE } from '../utils/paywallPricing';
 import { maybeRequestAppReview } from '../utils/reviewPrompt';
 import { logAppEvent } from '../utils/appAnalytics';
 import SpecsMascot from './SpecsMascot';
 
 // ─── Pure exit-offer content ───────────────────────────────────────────────────
-// The one-per-visit "wait, one-time offer" screen shown after a user backs
-// out of the main paywall. Renders BEFORE the NavigationContainer when used
-// from onboarding, so this takes only callbacks — never a navigation prop.
+// The one-per-visit "wait, don't go" screen shown after a user backs out of
+// the main paywall. Same real offer as the main paywall (yearly, 3-day free
+// trial, $49.99/yr after) — just reframed through a savings-vs-monthly lens
+// instead of the main paywall's per-month-breakdown lens. Changed 2026-07-24
+// post Apple 3.1.2(c) rejection: previously pitched a 50%-off first-year
+// discount that no longer exists; the billed amount must stay the most
+// prominent element here too, with the savings % subordinate.
+// Renders BEFORE the NavigationContainer when used from onboarding, so this
+// takes only callbacks — never a navigation prop.
 //
 // Background: assets/mascot/grocery-aisle-bg.jpg, a founder-approved
 // Higgsfield generation (nano_banana_pro, 2026-07-20) — cartoon toy-render
@@ -51,7 +57,10 @@ export default function OfferContent({ onPurchased, onPayFullPrice, onDismiss })
     return () => { active = false; };
   }, []);
 
-  const pricing = computeOfferPricing(rcPackages.yearly, rcPackages.monthly);
+  const pricing = computeYearlySavings(rcPackages.yearly, rcPackages.monthly);
+  const trialFine = rcPackages.yearly
+    ? (introOffer(rcPackages.yearly, '/year')?.fine ?? FALLBACK_TRIAL_FINE)
+    : FALLBACK_TRIAL_FINE;
 
   const handleClaim = async () => {
     const pkg = rcPackages.yearly;
@@ -61,10 +70,10 @@ export default function OfferContent({ onPurchased, onPayFullPrice, onDismiss })
     }
 
     setLoading(true);
-    // step: 'offer' — this is the 50%-off exit offer, a distinct purchase
-    // path from the main paywall (see appAnalytics.js's app_events_setup.sql
-    // conversion query for the caveat this creates: a purchase completed
-    // here can't be attributed back to whichever paywall trigger led here).
+    // step: 'offer' — this is the exit-offer path, distinct from the main
+    // paywall (see appAnalytics.js's app_events_setup.sql conversion query
+    // for the caveat this creates: a purchase completed here can't be
+    // attributed back to whichever paywall trigger led here).
     logAppEvent('purchase_started', { step: 'offer' }).catch(() => {});
     try {
       let isPro = await purchaseRCPackage(pkg);
@@ -105,20 +114,22 @@ export default function OfferContent({ onPurchased, onPayFullPrice, onDismiss })
           <SpecsMascot clip="backflip" size={140} />
         </View>
 
-        <Text style={s.eyebrow}>WAIT — ONE-TIME OFFER</Text>
-        <Text style={s.headline}>Limited-time: 50% off{'\n'}your first year.</Text>
+        <Text style={s.eyebrow}>WAIT — DON'T MISS THIS</Text>
+        <Text style={s.headline}>Try Premium free{'\n'}for 3 days.</Text>
 
-        {/* Price math */}
+        {/* Price card — billed amount is the prominent element (Apple
+            3.1.2(c)); the per-month breakdown and savings % are subordinate,
+            below and smaller. No strike-through/fake discount — this is the
+            real price, same as the main paywall, just framed around the
+            savings-vs-monthly comparison instead of the per-month number. */}
         <View style={s.priceCard}>
-          <View style={s.priceRow}>
-            <Text style={s.priceStrike}>{pricing.standardPrice}/yr</Text>
-            <Text style={s.priceArrow}>→</Text>
-            <Text style={s.priceIntro}>{pricing.introPrice}</Text>
-          </View>
-          <Text style={s.priceIntroMonthly}>{pricing.introMonthly} for your first year</Text>
+          <Text style={s.priceBig}>
+            {pricing.yearlyPrice}<Text style={s.pricePeriod}>/year</Text>
+          </Text>
+          <Text style={s.priceToday}>$0 due today — 3-day free trial</Text>
           <View style={s.priceDivider} />
           <View style={s.priceVsRow}>
-            <Text style={s.priceVsLabel}>vs. paying monthly</Text>
+            <Text style={s.priceVsLabel}>{pricing.monthlyEquivPrice} · vs. paying monthly</Text>
             <Text style={s.priceVsValue}>{pricing.monthlyPlanPrice}/mo</Text>
           </View>
           {pricing.savePctVsMonthly ? (
@@ -138,16 +149,16 @@ export default function OfferContent({ onPurchased, onPayFullPrice, onDismiss })
           {loading ? (
             <ActivityIndicator color={Colors.primary} size="small" />
           ) : (
-            <Text style={s.ctaText}>Claim my one-time offer</Text>
+            <Text style={s.ctaText}>Start My Free Trial</Text>
           )}
         </TouchableOpacity>
 
         <TouchableOpacity style={s.secondaryBtn} onPress={onPayFullPrice} disabled={loading}>
-          <Text style={s.secondaryText}>I'd rather pay full price</Text>
+          <Text style={s.secondaryText}>See other plans</Text>
         </TouchableOpacity>
 
         <Text style={s.finePrint}>
-          {pricing.introPrice} for the first year, then {pricing.standardPrice}/yr. Cancel anytime.
+          {trialFine}. Cancel anytime.
         </Text>
 
         <TouchableOpacity onPress={onDismiss} disabled={loading}>
@@ -172,11 +183,11 @@ const s = StyleSheet.create({
     width: '100%', backgroundColor: '#fff', borderRadius: 18, padding: 18,
     marginBottom: 20,
   },
-  priceRow:    { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, marginBottom: 4 },
-  priceStrike: { fontSize: 16, color: Colors.textMuted, textDecorationLine: 'line-through' },
-  priceArrow:  { fontSize: 16, color: Colors.textMuted },
-  priceIntro:  { fontSize: 26, fontWeight: '800', color: Colors.primary },
-  priceIntroMonthly: { fontSize: 13, color: Colors.textSecondary, textAlign: 'center', marginBottom: 12 },
+  // Billed amount — the prominent element on this card, matching the main
+  // paywall's treatment. Period suffix styled smaller than the price itself.
+  priceBig:    { fontSize: 32, fontWeight: '800', color: Colors.primary, textAlign: 'center' },
+  pricePeriod: { fontSize: 16, fontWeight: '600', color: Colors.textSecondary },
+  priceToday:  { fontSize: 13, fontWeight: '700', color: Colors.textSecondary, textAlign: 'center', marginTop: 4, marginBottom: 12 },
   priceDivider: { height: 1, backgroundColor: Colors.border, marginBottom: 12 },
   priceVsRow:  { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   priceVsLabel: { fontSize: 13, color: Colors.textSecondary },

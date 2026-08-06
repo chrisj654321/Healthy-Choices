@@ -15,7 +15,7 @@ import {
   restorePurchases,
   getProStatus,
 } from '../utils/subscription';
-import { FALLBACK_PRICES, monthlyEquiv } from '../utils/paywallPricing';
+import { FALLBACK_PRICES, FALLBACK_TRIAL_FINE, monthlyEquiv, introOffer } from '../utils/paywallPricing';
 import { maybeRequestAppReview } from '../utils/reviewPrompt';
 import { logAppEvent } from '../utils/appAnalytics';
 
@@ -31,9 +31,10 @@ const FEATURES = [
 ];
 
 // ─── Headline copy per triggering feature ─────────────────────────────────────
-// No intro-offer pill/CTA copy is derived here on purpose — the introductory
-// offer is reserved for the exit-offer screen (OfferContent) so this main
-// paywall reads as a clean, honest per-month price.
+// The yearly plan's free-trial terms ARE shown on this main paywall now
+// (changed 2026-07-24, post Apple 3.1.2(c) rejection) — the real billed
+// amount is the prominent number on every card; the trial/per-month figures
+// are subordinate, per Apple's disclosure requirement for free trials.
 
 function headlineCopy(feature) {
   switch (feature) {
@@ -69,6 +70,7 @@ export default function PaywallContent({ feature = null, onPurchased, onDismiss 
   const [loading,      setLoading]      = useState(false);
   const [rcPackages,   setRcPackages]   = useState({ yearly: null, monthly: null });
   const [prices,       setPrices]       = useState(FALLBACK_PRICES);
+  const [yearlyTrialFine, setYearlyTrialFine] = useState(FALLBACK_TRIAL_FINE);
 
   const fadeAnim  = useRef(new Animated.Value(0)).current;
   const slideAnim = useRef(new Animated.Value(24)).current;
@@ -101,16 +103,11 @@ export default function PaywallContent({ feature = null, onPurchased, onDismiss 
       const { yearly: yearlyPkg, monthly: monthlyPkg } = extractPackages(offering);
       setRcPackages({ yearly: yearlyPkg, monthly: monthlyPkg });
 
-      // Savings claim is computed from the real store prices — never hardcoded.
-      let savePct = null;
-      if (yearlyPkg && monthlyPkg && monthlyPkg.product.price > 0) {
-        const pct = Math.round(
-          (1 - yearlyPkg.product.price / 12 / monthlyPkg.product.price) * 100
-        );
-        if (pct > 0) savePct = pct;
-      }
-
-      // Use real localized prices from the App Store when available.
+      // Use real localized prices from the App Store when available. The
+      // billed amount (`price`) is what gets shown PROMINENTLY on each card;
+      // `monthlyBig` is the calculated per-month breakdown, shown small and
+      // subordinate — never the other way around (that's the exact thing
+      // Apple flagged under 3.1.2(c)).
       setPrices({
         yearly: {
           price:      yearlyPkg?.product.priceString ?? FALLBACK_PRICES.yearly.price,
@@ -118,15 +115,19 @@ export default function PaywallContent({ feature = null, onPurchased, onDismiss 
           monthlyBig: yearlyPkg
             ? (monthlyEquiv(yearlyPkg.product.price, yearlyPkg.product.currencyCode) ?? FALLBACK_PRICES.yearly.monthlyBig)
             : FALLBACK_PRICES.yearly.monthlyBig,
-          savePct: savePct ?? FALLBACK_PRICES.yearly.savePct,
         },
         monthly: {
           price:      monthlyPkg?.product.priceString ?? FALLBACK_PRICES.monthly.price,
           period:     '/month',
           monthlyBig: monthlyPkg?.product.priceString ?? FALLBACK_PRICES.monthly.monthlyBig,
-          savePct:    null,
         },
       });
+
+      // Free-trial disclosure ("3 Days Free, then $49.99/year") — only the
+      // yearly plan carries a trial. Falls back to the real configured trial
+      // terms if RC's introPrice hasn't loaded yet, never a guess.
+      const offer = yearlyPkg ? introOffer(yearlyPkg, '/year') : null;
+      setYearlyTrialFine(offer?.fine ?? FALLBACK_TRIAL_FINE);
     })();
     return () => { active = false; };
   }, []);
@@ -223,7 +224,7 @@ export default function PaywallContent({ feature = null, onPurchased, onDismiss 
             ))}
           </View>
 
-          {/* ── Plan selector — side-by-side cards, per-month price leads ── */}
+          {/* ── Plan selector — side-by-side cards, billed amount leads ── */}
           <View style={s.plans}>
             {(['yearly', 'monthly']).map((planId) => {
               const selected = selectedPlan === planId;
@@ -236,9 +237,9 @@ export default function PaywallContent({ feature = null, onPurchased, onDismiss 
                   onPress={() => setSelectedPlan(planId)}
                   activeOpacity={0.8}
                 >
-                  {isYearly && p.savePct ? (
-                    <View style={s.saveBadge}>
-                      <Text style={s.saveBadgeText}>SAVE ~{p.savePct}%</Text>
+                  {isYearly ? (
+                    <View style={s.trialBadge}>
+                      <Text style={s.trialBadgeText}>3-DAY FREE TRIAL</Text>
                     </View>
                   ) : null}
 
@@ -249,12 +250,20 @@ export default function PaywallContent({ feature = null, onPurchased, onDismiss 
                   <Text style={[s.planLabel, selected && s.planLabelSelected]}>
                     {planId.toUpperCase()}
                   </Text>
+
+                  {/* Billed amount — the most prominent pricing element on the
+                      card, per Apple 3.1.2(c). The calculated per-month price
+                      is shown smaller, below, never the reverse. The period
+                      suffix (/year, /month) is styled smaller than the price
+                      itself so the actual number reads as the dominant part. */}
                   <Text style={[s.planPriceBig, selected && s.planPriceBigSelected]}>
-                    {p.monthlyBig}
+                    {p.price}<Text style={s.planPricePeriod}>{p.period}</Text>
                   </Text>
-                  <Text style={s.planBilled}>
-                    {isYearly ? `billed yearly at ${p.price}` : 'billed monthly'}
-                  </Text>
+                  {isYearly ? (
+                    <Text style={s.planBilled}>{p.monthlyBig} · $0 due today</Text>
+                  ) : (
+                    <Text style={s.planBilled}>billed monthly</Text>
+                  )}
                 </TouchableOpacity>
               );
             })}
@@ -271,15 +280,20 @@ export default function PaywallContent({ feature = null, onPurchased, onDismiss 
               <ActivityIndicator color="#fff" size="small" />
             ) : (
               <>
-                <Text style={s.ctaText}>Unlock Premium Now</Text>
+                <Text style={s.ctaText}>
+                  {selectedPlan === 'yearly' ? 'Start Free Trial' : 'Unlock Premium Now'}
+                </Text>
                 <Ionicons name="arrow-forward" size={17} color="#fff" />
               </>
             )}
           </TouchableOpacity>
 
-          {/* Fine print — real renewal terms, no intro-offer language on this screen */}
+          {/* Fine print — real renewal terms. Yearly explicitly states the
+              trial duration AND the price billed once it ends, per Apple's
+              free-trial disclosure requirement; both stay subordinate
+              (small, plain text) to the billed amount shown on the card. */}
           <Text style={s.finePrint}>
-            {plan.price}{plan.period} — cancel anytime
+            {selectedPlan === 'yearly' ? yearlyTrialFine : `${plan.price}${plan.period}`} — cancel anytime
           </Text>
 
           {/* Continue free / Restore */}
@@ -380,14 +394,15 @@ const s = StyleSheet.create({
   planLabelSelected:{ color: Colors.primaryDark ?? Colors.primary },
   planPriceBig:        { fontSize: 22, fontWeight: '800', color: Colors.textSecondary },
   planPriceBigSelected: { color: Colors.primary },
+  planPricePeriod:     { fontSize: 13, fontWeight: '600' },
   planBilled:       { fontSize: 11, color: Colors.textMuted, marginTop: 4 },
-  saveBadge:        {
+  trialBadge:       {
     position: 'absolute', top: 0, right: 0,
     backgroundColor: Colors.primary,
     paddingHorizontal: 10, paddingVertical: 3,
     borderBottomLeftRadius: 10,
   },
-  saveBadgeText:    { fontSize: 9, fontWeight: '800', color: '#fff', letterSpacing: 0.5 },
+  trialBadgeText:   { fontSize: 9, fontWeight: '800', color: '#fff', letterSpacing: 0.5 },
 
   // CTA
   ctaBtn:       {

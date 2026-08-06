@@ -4,23 +4,26 @@
  * no navigation. Every displayed price is derived from a real RevenueCat
  * `product`/`introPrice`; the FALLBACK_* constants below are display-only
  * stand-ins shown while RC offerings are still loading (or unavailable),
- * never an invented discount. They mirror the real configured intro offer
- * (50% off the first year: $49.99 -> $24.99, i.e. ~$2.08/mo).
+ * never an invented number. They mirror the real configured offer: a 3-day
+ * free trial on yearly only ($49.99/yr after trial), monthly at $7.99/mo
+ * flat, no trial. (Changed 2026-07-24 — the prior 50%-off-first-year intro
+ * offer was replaced after an Apple 3.1.2(c) rejection: the calculated
+ * per-month price was shown more prominently than the real billed amount.
+ * See FALLBACK_TRIAL_FINE and computeYearlySavings below.)
  */
 
 // ─── Fallback prices (shown before RC offerings load) ──────────────────────
 
 export const FALLBACK_PRICES = {
-  yearly:  { price: '$49.99', period: '/year',  monthlyBig: '$4.17/mo', savePct: 48 },
-  monthly: { price: '$7.99',  period: '/month', monthlyBig: '$7.99/mo', savePct: null },
+  yearly:  { price: '$49.99', period: '/year',  monthlyBig: '$4.17/mo' },
+  monthly: { price: '$7.99',  period: '/month', monthlyBig: '$7.99/mo' },
 };
 
-// Exit-offer fallback — used only until RC's real introPrice loads.
-export const OFFER_FALLBACK = {
-  standardPrice: '$49.99',
-  introPrice:    '$24.99',
-  introMonthly:  '$2.08/mo',
-};
+// Shown until RC's real introPrice (the 3-day trial) loads. Must always
+// read "<duration> free, then <billed amount><period>" per Apple's free-
+// trial disclosure requirement — never just a price.
+export const FALLBACK_TRIAL_FINE = '3 Days Free, then $49.99/year';
+export const FALLBACK_SAVE_PCT_VS_MONTHLY = 48;
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
@@ -87,48 +90,28 @@ export function introOffer(pkg, periodLabel) {
 }
 
 /**
- * Exit-offer (OfferContent) pricing — strike-through standard price -> real
- * configured intro price, expressed per-month, plus savings vs. paying full
- * price monthly for a year. Only trusts a real RC introPrice that is
- * actually cheaper than the standard price; otherwise falls back to the
- * OFFER_FALLBACK constants (which match the real configured offer) so the
- * screen never shows a blank price while RC is still loading.
+ * Exit-offer (OfferContent) pricing — the real yearly billed amount, its
+ * per-month breakdown, and an honest savings-vs-monthly percentage (yearly
+ * price vs. 12x the monthly price). No discount/strike-through math here —
+ * the yearly price IS the price, trial or not. Every number is a real
+ * comparison, never a fabricated "was/now".
  */
-export function computeOfferPricing(yearlyPkg, monthlyPkg) {
-  const product = yearlyPkg?.product;
-  const introPrice = product?.introPrice;
-  const hasRealIntro = !!(product && introPrice && introPrice.price > 0 && introPrice.price < product.price);
+export function computeYearlySavings(yearlyPkg, monthlyPkg) {
+  const yearlyProduct = yearlyPkg?.product;
+  const yearlyPrice = yearlyProduct?.priceString ?? FALLBACK_PRICES.yearly.price;
+  const yearlyNumeric = yearlyProduct?.price ?? 49.99;
 
-  const standardPrice = product?.priceString ?? OFFER_FALLBACK.standardPrice;
-  const introPriceStr = hasRealIntro
-    ? (introPrice.priceString || `$${Number(introPrice.price).toFixed(2)}`)
-    : OFFER_FALLBACK.introPrice;
-  const introMonthly = hasRealIntro
-    ? (monthlyEquiv(introPrice.price, product.currencyCode) ?? OFFER_FALLBACK.introMonthly)
-    : OFFER_FALLBACK.introMonthly;
+  const monthlyEquivPrice = yearlyProduct
+    ? (monthlyEquiv(yearlyProduct.price, yearlyProduct.currencyCode) ?? FALLBACK_PRICES.yearly.monthlyBig)
+    : FALLBACK_PRICES.yearly.monthlyBig;
+
   const monthlyPlanPrice = monthlyPkg?.product?.priceString ?? FALLBACK_PRICES.monthly.price;
-
-  // Savings vs. the real standard yearly price (Apple's own intro-offer framing).
-  const introNumeric = hasRealIntro ? introPrice.price : 24.99;
-  const standardNumeric = hasRealIntro ? product.price : 49.99;
-  const savePctVsStandard = standardNumeric > 0
-    ? Math.round((1 - introNumeric / standardNumeric) * 100)
-    : null;
-
-  // Savings vs. paying full price monthly for a year (12x the monthly price).
   const monthlyNumeric = monthlyPkg?.product?.price ?? 7.99;
+
   const yearOfMonthly = monthlyNumeric * 12;
   const savePctVsMonthly = yearOfMonthly > 0
-    ? Math.round((1 - introNumeric / yearOfMonthly) * 100)
-    : null;
+    ? Math.round((1 - yearlyNumeric / yearOfMonthly) * 100)
+    : FALLBACK_SAVE_PCT_VS_MONTHLY;
 
-  return {
-    standardPrice,
-    introPrice: introPriceStr,
-    introMonthly,
-    monthlyPlanPrice,
-    savePctVsStandard,
-    savePctVsMonthly,
-    fromRC: hasRealIntro,
-  };
+  return { yearlyPrice, monthlyEquivPrice, monthlyPlanPrice, savePctVsMonthly };
 }
