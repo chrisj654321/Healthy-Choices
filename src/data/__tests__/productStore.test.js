@@ -53,9 +53,17 @@ jest.mock('expo-file-system/legacy', () => ({
 
 jest.mock('../../utils/sentry', () => ({ captureException: jest.fn() }));
 
+// getRemoteDbConfig() is remoteConfig.js's own concern (see
+// remoteConfig.test.js) — here it's mocked so productStore's existing
+// hardcoded-constant behavior stays pinned by default (resolves null, same
+// as "manifest unreachable"), with a couple of dedicated tests below for the
+// override/fallback wiring itself.
+jest.mock('../../utils/remoteConfig', () => ({ getRemoteDbConfig: jest.fn() }));
+
 import * as SQLite from 'expo-sqlite';
 import * as FileSystem from 'expo-file-system/legacy';
 import { captureException } from '../../utils/sentry';
+import { getRemoteDbConfig } from '../../utils/remoteConfig';
 import { DB_VERSION, REMOTE_DB_URL } from '../productStore';
 
 // productStore.js caches its init promise at module scope, so it must be
@@ -79,6 +87,9 @@ beforeEach(() => {
   SQLite.openDatabaseAsync.mockResolvedValue(mockDb);
   mockDb.getFirstAsync.mockReset();
   mockDb.getAllAsync.mockReset();
+  // Default: no remote manifest override — same behavior as "manifest
+  // unreachable," which is what every pre-existing test below pins.
+  getRemoteDbConfig.mockResolvedValue(null);
 });
 
 // Minimal raw-row fixture shared by the new-function tests below — same
@@ -186,6 +197,60 @@ describe('initProductStore', () => {
       expect.any(Error),
       expect.objectContaining({ function: 'initProductStore' })
     );
+  });
+});
+
+// ─── remote manifest wiring (Phase 2 — see remoteConfig.js) ────────────────
+
+describe('remote manifest dbVersion/dbUrl override', () => {
+  test('downloads from the manifest dbUrl/dbVersion when getRemoteDbConfig resolves both', async () => {
+    getRemoteDbConfig.mockResolvedValue({
+      dbVersion: '2026-09-01-remote',
+      dbUrl: 'https://huvxeaegygaeotomdqpc.supabase.co/storage/v1/object/public/Catalog/products-v2.db',
+    });
+    const { initProductStore } = loadProductStore();
+
+    await initProductStore();
+
+    expect(FileSystem.downloadAsync).toHaveBeenCalledWith(
+      'https://huvxeaegygaeotomdqpc.supabase.co/storage/v1/object/public/Catalog/products-v2.db',
+      'file:///documents/SQLite/products.db'
+    );
+    expect(FileSystem.writeAsStringAsync).toHaveBeenCalledWith(
+      'file:///documents/SQLite/products.db.version',
+      '2026-09-01-remote'
+    );
+  });
+
+  test('falls back to the hardcoded DB_VERSION/REMOTE_DB_URL when the manifest resolves null', async () => {
+    getRemoteDbConfig.mockResolvedValue(null);
+    const { initProductStore } = loadProductStore();
+
+    await initProductStore();
+
+    expect(FileSystem.downloadAsync).toHaveBeenCalledWith(REMOTE_DB_URL, 'file:///documents/SQLite/products.db');
+  });
+
+  test('falls back to the hardcoded constants (never throws) if getRemoteDbConfig itself rejects', async () => {
+    getRemoteDbConfig.mockRejectedValue(new Error('remoteConfig blew up'));
+    const { initProductStore } = loadProductStore();
+
+    await expect(initProductStore()).resolves.toBeUndefined();
+    expect(FileSystem.downloadAsync).toHaveBeenCalledWith(REMOTE_DB_URL, 'file:///documents/SQLite/products.db');
+  });
+
+  test('skips downloading when the on-device version already matches the manifest dbVersion', async () => {
+    getRemoteDbConfig.mockResolvedValue({
+      dbVersion: 'matching-remote-version',
+      dbUrl: 'https://huvxeaegygaeotomdqpc.supabase.co/storage/v1/object/public/Catalog/products-v2.db',
+    });
+    FileSystem.getInfoAsync.mockResolvedValue({ exists: true });
+    FileSystem.readAsStringAsync.mockResolvedValue('matching-remote-version');
+    const { initProductStore } = loadProductStore();
+
+    await initProductStore();
+
+    expect(FileSystem.downloadAsync).not.toHaveBeenCalled();
   });
 });
 

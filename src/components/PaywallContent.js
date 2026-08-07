@@ -16,40 +16,17 @@ import {
   getProStatus,
 } from '../utils/subscription';
 import { FALLBACK_PRICES, FALLBACK_TRIAL_FINE, monthlyEquiv, introOffer } from '../utils/paywallPricing';
+import { getPaywallContent, resolveFeatureColor, headlineFor } from '../utils/paywallContent';
 import { maybeRequestAppReview } from '../utils/reviewPrompt';
 import { logAppEvent } from '../utils/appAnalytics';
 
-// ─── Static feature list ──────────────────────────────────────────────────────
-// 'Share product health scores' removed (share is now free — see Part A) and
-// 'Support independent food research' removed (wasn't literally true).
-
-const FEATURES = [
-  { icon: 'business-outline', color: Colors.primary,    text: 'Company lobbying & donation data' },
-  { icon: 'search-outline',   color: Colors.primary,    text: 'Search any product by name' },
-  { icon: 'time-outline',     color: Colors.primary,    text: 'Unlimited scan history' },
-  { icon: 'warning-outline',  color: Colors.flagOrange, text: 'Priority ingredient alerts' },
-];
-
-// ─── Headline copy per triggering feature ─────────────────────────────────────
-// The yearly plan's free-trial terms ARE shown on this main paywall now
-// (changed 2026-07-24, post Apple 3.1.2(c) rejection) — the real billed
-// amount is the prominent number on every card; the trial/per-month figures
-// are subordinate, per Apple's disclosure requirement for free trials.
-
-function headlineCopy(feature) {
-  switch (feature) {
-    case 'company':
-      return { title: 'See who funds\nyour food.',      sub: 'Company transparency is a Premium feature.' };
-    case 'search':
-      return { title: 'Find any\nproduct instantly.',   sub: 'Product search is a Premium feature.' };
-    case 'history':
-      return { title: 'Your complete\nscan history.',   sub: 'Full history is a Premium feature.' };
-    case 'alternatives':
-      return { title: 'See every\ncleaner option.',     sub: 'Full better-picks lists are a Premium feature.' };
-    default:
-      return { title: 'Know everything\nabout your food.', sub: 'Everything you need to eat better.' };
-  }
-}
+// ─── Remote-editable content ────────────────────────────────────────────────
+// Headlines, feature-list rows, the yearly badge, and CTA labels are driven
+// by RevenueCat's Offering `metadata` (see src/utils/paywallContent.js) —
+// editable from the RC dashboard with no app build and no OTA update. Price
+// rendering, price hierarchy, trial disclosure, and legal links stay
+// hardcoded below (see plan-decouple-from-apple.md, Phase 1) so a dashboard
+// copy edit can never re-break the Apple 3.1.2(c) price-prominence fix.
 
 // ─── Pure paywall content ──────────────────────────────────────────────────────
 // Renders BEFORE the NavigationContainer when used from onboarding, so this
@@ -59,7 +36,6 @@ function headlineCopy(feature) {
 
 export default function PaywallContent({ feature = null, onPurchased, onDismiss }) {
   const insets  = useSafeAreaInsets();
-  const { title, sub } = headlineCopy(feature);
 
   // Funnel analytics: 'onboarding' when this renders as the onboarding
   // "paywall" step (feature is never passed there) — every other call site
@@ -71,6 +47,12 @@ export default function PaywallContent({ feature = null, onPurchased, onDismiss 
   const [rcPackages,   setRcPackages]   = useState({ yearly: null, monthly: null });
   const [prices,       setPrices]       = useState(FALLBACK_PRICES);
   const [yearlyTrialFine, setYearlyTrialFine] = useState(FALLBACK_TRIAL_FINE);
+  // Content defaults to the in-code fallbacks synchronously (byte-identical
+  // to pre-remote behavior) and is replaced once the RC offering's metadata
+  // loads and validates — see the "Load RC offering" effect below.
+  const [content, setContent] = useState(() => getPaywallContent(null));
+
+  const { title, sub } = headlineFor(content, feature);
 
   const fadeAnim  = useRef(new Animated.Value(0)).current;
   const slideAnim = useRef(new Animated.Value(24)).current;
@@ -128,6 +110,11 @@ export default function PaywallContent({ feature = null, onPurchased, onDismiss 
       // terms if RC's introPrice hasn't loaded yet, never a guess.
       const offer = yearlyPkg ? introOffer(yearlyPkg, '/year') : null;
       setYearlyTrialFine(offer?.fine ?? FALLBACK_TRIAL_FINE);
+
+      // Remote copy — validated field-by-field, never all-or-nothing (see
+      // src/utils/paywallContent.js). No metadata / an unreachable offering
+      // both resolve to the same in-code defaults already set above.
+      setContent(getPaywallContent(offering));
     })();
     return () => { active = false; };
   }, []);
@@ -213,15 +200,18 @@ export default function PaywallContent({ feature = null, onPurchased, onDismiss 
 
           {/* ── Feature list ── */}
           <View style={s.featureList}>
-            {FEATURES.map(({ icon, color, text }) => (
-              <View key={text} style={s.featureRow}>
-                <View style={[s.featureIcon, { backgroundColor: color + '18' }]}>
-                  <Ionicons name={icon} size={17} color={color} />
+            {content.features.map(({ icon, colorKey, text }, i) => {
+              const color = resolveFeatureColor(colorKey);
+              return (
+                <View key={`${i}-${text}`} style={s.featureRow}>
+                  <View style={[s.featureIcon, { backgroundColor: color + '18' }]}>
+                    <Ionicons name={icon} size={17} color={color} />
+                  </View>
+                  <Text style={s.featureText}>{text}</Text>
+                  <Ionicons name="checkmark-circle" size={18} color={Colors.primary} />
                 </View>
-                <Text style={s.featureText}>{text}</Text>
-                <Ionicons name="checkmark-circle" size={18} color={Colors.primary} />
-              </View>
-            ))}
+              );
+            })}
           </View>
 
           {/* ── Plan selector — side-by-side cards, billed amount leads ── */}
@@ -239,7 +229,7 @@ export default function PaywallContent({ feature = null, onPurchased, onDismiss 
                 >
                   {isYearly ? (
                     <View style={s.trialBadge}>
-                      <Text style={s.trialBadgeText}>3-DAY FREE TRIAL</Text>
+                      <Text style={s.trialBadgeText}>{content.yearlyBadge}</Text>
                     </View>
                   ) : null}
 
@@ -281,7 +271,7 @@ export default function PaywallContent({ feature = null, onPurchased, onDismiss 
             ) : (
               <>
                 <Text style={s.ctaText}>
-                  {selectedPlan === 'yearly' ? 'Start Free Trial' : 'Unlock Premium Now'}
+                  {content.ctaLabels[selectedPlan]}
                 </Text>
                 <Ionicons name="arrow-forward" size={17} color="#fff" />
               </>

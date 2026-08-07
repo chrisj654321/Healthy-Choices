@@ -37,10 +37,16 @@
 import * as SQLite from 'expo-sqlite';
 import * as FileSystem from 'expo-file-system/legacy';
 import { captureException } from '../utils/sentry';
+import { getRemoteDbConfig } from '../utils/remoteConfig';
 
-// Hosted in the "Catalog" Supabase Storage bucket (public). Bump DB_VERSION
-// any time you re-upload a rebuilt products.db so devices that already
-// downloaded a copy pick up the new one — see scripts/upload-products-db.js.
+// Hardcoded safety net — used whenever the remote manifest (see
+// src/utils/remoteConfig.js) is unreachable, malformed, or this is a cold
+// first launch with no network yet. Bump DB_VERSION any time you re-upload a
+// rebuilt products.db AND aren't already announcing the change via the
+// manifest — see scripts/upload-products-db.js and
+// scripts/README-remote-manifest.md (the manifest is now the preferred way
+// to ship a new catalog; these constants stay so a manifest outage never
+// breaks catalog downloads).
 export const REMOTE_DB_URL = 'https://huvxeaegygaeotomdqpc.supabase.co/storage/v1/object/public/Catalog/products.db';
 export const DB_VERSION = '2026-08-03-1';
 
@@ -78,14 +84,34 @@ async function currentOnDeviceVersion() {
   }
 }
 
+/**
+ * Prefers the remote manifest's { dbVersion, dbUrl } (see remoteConfig.js)
+ * when it resolves both fields; falls back to the hardcoded DB_VERSION /
+ * REMOTE_DB_URL constants above whenever the manifest is unreachable,
+ * malformed, or this is a cold first launch with no network yet.
+ * getRemoteDbConfig() never throws, but this stays defensive on top of that
+ * contract since a bad resolution here would otherwise point the download
+ * at nothing.
+ */
+async function resolveDbConfig() {
+  try {
+    const remote = await getRemoteDbConfig();
+    if (remote && remote.dbVersion && remote.dbUrl) return remote;
+  } catch (error) {
+    captureException(error, { function: 'resolveDbConfig' });
+  }
+  return { dbVersion: DB_VERSION, dbUrl: REMOTE_DB_URL };
+}
+
 async function downloadDbIfNeeded() {
+  const { dbVersion, dbUrl } = await resolveDbConfig();
   const dbInfo = await FileSystem.getInfoAsync(DEST_PATH);
   const onDeviceVersion = await currentOnDeviceVersion();
-  if (dbInfo.exists && onDeviceVersion === DB_VERSION) return;
+  if (dbInfo.exists && onDeviceVersion === dbVersion) return;
 
   await ensureSqliteDirExists();
-  await FileSystem.downloadAsync(REMOTE_DB_URL, DEST_PATH);
-  await FileSystem.writeAsStringAsync(VERSION_PATH, DB_VERSION);
+  await FileSystem.downloadAsync(dbUrl, DEST_PATH);
+  await FileSystem.writeAsStringAsync(VERSION_PATH, dbVersion);
 }
 
 /**
