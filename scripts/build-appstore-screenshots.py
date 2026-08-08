@@ -26,6 +26,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 RAW_DIR = os.path.join(REPO_ROOT, "marketing", "app-store-screenshots", "raw")
+PLATES_DIR = os.path.join(REPO_ROOT, "marketing", "app-store-screenshots", "plates")
 OUT_DIR = os.path.join(REPO_ROOT, "marketing", "app-store-screenshots", "out")
 MASCOT_DIR = os.path.join(REPO_ROOT, "assets", "mascot")
 
@@ -130,32 +131,132 @@ CONFIG = {
     # effect, the status bar too -- 298 > status_bar_crop_top), starting
     # the visible capture right at the verdict chips.
     "ingredients_defect_crop_top": 298,
+
+    # ------------------------------------------------------------------
+    # PHOTO panel (full-bleed lifestyle plate + scrim + score card).
+    # Geometry founder-approved via out/01-hook-PROOF.png -- replicated
+    # exactly, do not retune without re-running that approval.
+    # ------------------------------------------------------------------
+
+    # Scrim: vertical dark gradient over the top N% of the canvas so white
+    # headline type stays legible against the photo. Built as a 1px-wide,
+    # `photo_scrim_mask_h`-tall alpha ramp (value = max_alpha * max(0, 1 -
+    # (y/255)*falloff)), then resized to the full canvas width and to
+    # `photo_scrim_height_pct` of the canvas height.
+    "photo_scrim_height_pct": 0.46,
+    "photo_scrim_mask_h": 256,
+    "photo_scrim_max_alpha": 205,
+    "photo_scrim_falloff": 1.7,
+    "photo_scrim_color": (6, 32, 24),
+
+    # Headline sits higher and starts smaller on PHOTO panels than on flat
+    # DEVICE/hook panels -- it has a real photo behind it, not a big empty
+    # field, so it needs less vertical room.
+    "photo_headline_top_y": 150,
+    "photo_headline_start_size": 92,
+
+    # Score card cropped from a real capture, rounded, drop-shadowed, and
+    # centred horizontally. Width and vertical position are per-card (see
+    # CARD_CROPS below) -- each plate/card pairing has a different subject
+    # position and card height, so a single shared y doesn't clear every
+    # subject's head. These two are just the fallback defaults used if a
+    # CARD_CROPS entry omits "width"/"y".
+    "photo_card_default_width": 900,
+    "photo_card_radius": 32,
+    "photo_card_y": 430,
+    "photo_card_shadow_color": (0, 0, 0),
+    "photo_card_shadow_alpha": 120,
+    "photo_card_shadow_blur": 20,
+    "photo_card_shadow_offset_y": 6,
+    "photo_card_shadow_expand": 0,
+
+    # Specs + wordmark (panel 1 only). Wordmark sits to Specs' right,
+    # vertically centred against Specs' full height.
+    "photo_specs_height": 380,
+    "photo_specs_x": 70,
+    "photo_specs_bottom_margin": 150,
+    "photo_wordmark_size": 58,
+    "photo_wordmark_gap": 32,
+}
+
+# Score-card crop coordinates, verified by pixel inspection against the raw
+# captures. Each card is cropped out of a real on-device capture -- no score
+# is ever re-rendered or altered; the number shown is whatever the capture
+# shows.
+#
+# `y` is per-card, not a shared constant: it was originally set as one
+# global CONFIG value (photo_card_y = 430) on the assumption that every
+# card+plate pairing needed the same clearance, but that only held for
+# panel 1's card height + subject position. Verified per-panel against each
+# plate's actual subject position and each card's actual scaled height:
+#   - wild_planet / n-aisle-2.png: 900w -> 355 tall, y=430 clears her hair
+#     with room to spare (founder-verified, this is the locked reference).
+#   - rxbar_duo / n-smile-1.png: her hair starts ~y=825 after the
+#     cover-crop; a single-card portrait crop at 620w came out 692 tall and
+#     covered her face. Swapped to a wider two-product crop (RXBar + That's
+#     It, both real 96s) at 700w -> ~375 tall, y=390, clearing her hair by
+#     ~60px.
+#   - vital_farms / n-kitchen-1.png: at the original y=430 the card's
+#     bottom edge landed on the headline's second-line descenders (no gap).
+#     The family is low in frame (heads ~y=1350) so there's room to drop
+#     the card to y=540 without approaching them; card is unchanged
+#     otherwise (900w -> ~430 tall).
+CARD_CROPS = {
+    "wild_planet": {
+        "source": "high-score-hero.png",
+        "box": (40, 690, 1130, 1120),
+        "width": 900,
+        "y": 430,
+    },
+    "vital_farms": {
+        "source": "vital-farms-eggs-hero.png",
+        "box": (40, 330, 1130, 850),
+        "width": 900,
+        "y": 540,
+    },
+    # Two-product wide crop (RXBar + That's It, both real 96s) -- replaces
+    # an earlier narrow single-card portrait crop that was too tall for
+    # its y position (see note above).
+    "rxbar_duo": {
+        "source": "better-picks.png",
+        "box": (40, 1495, 935, 1975),
+        "width": 700,
+        "y": 390,
+    },
 }
 
 # ---------------------------------------------------------------------------
 # Panel specs
 # ---------------------------------------------------------------------------
 
+# Final 8-panel App Store set. This table supersedes the panel list in
+# STORYBOARD.md (founder-revised order/copy, 2026-08-08) -- the design
+# system (canvas, headline typography, device-frame geometry) documented
+# there is unchanged; only per-panel content moved.
 PANELS = [
     {
         "file": "01-hook.png",
-        "bg": "dark",
+        "kind": "photo",
+        "plate": "n-aisle-2.png",
         "headline": "Know what's really in your food.",
         "emphasis": None,
-        "kind": "hook",
+        "card": "wild_planet",
+        "specs": True,
     },
     {
         "file": "02-specs.png",
         "bg": "light",
         "headline": "Hi, I'm Specs. I read every label so you don't have to.",
         "emphasis": None,
-        "kind": "specs_intro",
+        "kind": "device",
+        "capture": "ingredients-breakdown.png",
+        "source_crop_top": CONFIG["ingredients_defect_crop_top"],
     },
     {
-        "file": "03-problem.png",
+        "file": "03-simple.png",
         "bg": "dark",
-        "headline": "The front of the box is marketing.",
-        "emphasis": "marketing.",
+        "headline": "Everyday products explained simply.",
+        "emphasis": "explained simply.",
         "kind": "device",
         "capture": "low-score-hero.png",
         "source_crop_top": CONFIG["status_bar_crop_top"],
@@ -170,16 +271,16 @@ PANELS = [
         "source_crop_top": CONFIG["status_bar_crop_top"],
     },
     {
-        "file": "05-ingredients.png",
-        "bg": "light",
-        "headline": "Every ingredient, in plain English.",
-        "emphasis": "plain English.",
-        "kind": "device",
-        "capture": "ingredients-breakdown.png",
-        "source_crop_top": CONFIG["ingredients_defect_crop_top"],
+        "file": "05-real.png",
+        "kind": "photo",
+        "plate": "n-smile-1.png",
+        "headline": "Real food, real scores.",
+        "emphasis": "real scores.",
+        "card": "rxbar_duo",
+        "specs": False,
     },
     {
-        "file": "07-better.png",
+        "file": "06-better.png",
         "bg": "dark",
         "headline": "Find the better option.",
         "emphasis": "better option.",
@@ -187,15 +288,32 @@ PANELS = [
         "capture": "better-picks.png",
         "source_crop_top": CONFIG["status_bar_crop_top"],
     },
+    {
+        "file": "07-scan.png",
+        "bg": "light",
+        "headline": "Scan anything in the aisle.",
+        "emphasis": "anything",
+        "kind": "device",
+        "capture": "home-screen.png",
+        "source_crop_top": CONFIG["status_bar_crop_top"],
+    },
+    {
+        "file": "08-family.png",
+        "kind": "photo",
+        "plate": "n-kitchen-1.png",
+        "headline": "Eat better without the guesswork.",
+        "emphasis": "without the guesswork.",
+        "card": "vital_farms",
+        "specs": False,
+    },
 ]
 
-# Panels 06 and 08 are lifestyle panels awaiting imagery (Emily / Maya+Matt
-# composites per STORYBOARD.md). Hooks left here intentionally -- do not
-# fabricate placeholder people. When the plates exist, add entries with
-# kind="lifestyle" and extend build_panel() with a lifestyle branch that
-# composites the plate + device-frame score card, matching this same
-# CONFIG-driven headline/background system.
-LIFESTYLE_PANELS_PENDING = ["06-know-before-you-buy.png", "08-guesswork.png"]
+# Outputs from the previous panel order/naming that no longer correspond to
+# any file in PANELS above. Removed on every run so the out/ directory holds
+# exactly the 8 current panels + the contact sheet (does not touch
+# 01-hook-PROOF.png -- that's the founder-approval reference artifact for
+# the PHOTO panel treatment, not a numbered panel output).
+STALE_OUTPUTS = ["03-problem.png", "05-ingredients.png", "07-better.png"]
 
 
 # ---------------------------------------------------------------------------
@@ -549,7 +667,128 @@ def build_device_panel(spec, cfg, capture_path):
     return canvas
 
 
+# ---------------------------------------------------------------------------
+# PHOTO panel: full-bleed lifestyle plate + scrim + headline + real score
+# card, optionally + Specs/wordmark. Geometry founder-approved via
+# out/01-hook-PROOF.png -- replicated exactly.
+# ---------------------------------------------------------------------------
+
+def cover_crop(im, target_w, target_h):
+    """Scale `im` up just enough to fully cover target_w x target_h, then
+    centre-crop to exactly that size."""
+    scale = max(target_w / im.width, target_h / im.height)
+    w = max(target_w, round(im.width * scale))
+    h = max(target_h, round(im.height * scale))
+    im = im.resize((w, h), Image.LANCZOS)
+    left = (w - target_w) // 2
+    top = (h - target_h) // 2
+    return im.crop((left, top, left + target_w, top + target_h))
+
+
+def build_photo_scrim_mask(cfg):
+    """1px-wide alpha ramp, resized to the full canvas width and to
+    `photo_scrim_height_pct` of the canvas height."""
+    mask_h = cfg["photo_scrim_mask_h"]
+    max_alpha = cfg["photo_scrim_max_alpha"]
+    falloff = cfg["photo_scrim_falloff"]
+    base = Image.new("L", (1, mask_h))
+    px = base.load()
+    for y in range(mask_h):
+        v = int(max_alpha * max(0, 1 - (y / 255) * falloff))
+        px[0, y] = v
+    scrim_h = int(cfg["canvas_h"] * cfg["photo_scrim_height_pct"])
+    mask = base.resize((cfg["canvas_w"], scrim_h), Image.LANCZOS)
+    return mask, scrim_h
+
+
+def apply_photo_scrim(canvas_rgb, cfg):
+    mask, scrim_h = build_photo_scrim_mask(cfg)
+    color_layer = Image.new("RGB", (cfg["canvas_w"], scrim_h), cfg["photo_scrim_color"])
+    canvas_rgb.paste(color_layer, (0, 0), mask)
+
+
+def build_score_card(cfg, card_key):
+    """Crop a real score-card region out of a real capture, resized to its
+    configured width (aspect-locked), corners rounded. Never re-renders or
+    alters the number shown -- it's whatever pixels the capture has."""
+    spec = CARD_CROPS[card_key]
+    src_path = require_file(os.path.join(RAW_DIR, spec["source"]), f"score card '{card_key}'")
+    im = Image.open(src_path).convert("RGB")
+    card = im.crop(spec["box"])
+    target_w = spec.get("width", cfg["photo_card_default_width"])
+    scale = target_w / card.width
+    target_h = round(card.height * scale)
+    card = card.resize((target_w, target_h), Image.LANCZOS)
+    mask = rounded_rect_mask(target_w, target_h, cfg["photo_card_radius"])
+    return card, mask
+
+
+def paste_photo_card(canvas_rgb, card_img, mask, y, cfg):
+    x = (cfg["canvas_w"] - card_img.width) // 2
+    box = (x, y, x + card_img.width, y + card_img.height)
+
+    # Card shadow is softer/tighter than the device-frame shadow, so it
+    # gets its own offset/blur/alpha -- reuse draw_drop_shadow() via a cfg
+    # copy with those keys overridden rather than duplicating the routine.
+    shadow_cfg = dict(cfg)
+    shadow_cfg["shadow_color"] = cfg["photo_card_shadow_color"]
+    shadow_cfg["shadow_alpha"] = cfg["photo_card_shadow_alpha"]
+    shadow_cfg["shadow_blur_radius"] = cfg["photo_card_shadow_blur"]
+    shadow_cfg["shadow_offset_y"] = cfg["photo_card_shadow_offset_y"]
+    shadow_cfg["shadow_expand"] = cfg["photo_card_shadow_expand"]
+
+    overlay = Image.new("RGBA", canvas_rgb.size, (0, 0, 0, 0))
+    draw_drop_shadow(overlay, box, cfg["photo_card_radius"], shadow_cfg)
+    canvas_rgba = canvas_rgb.convert("RGBA")
+    canvas_rgba.alpha_composite(overlay)
+    canvas_rgb.paste(canvas_rgba.convert("RGB"), (0, 0))
+
+    canvas_rgb.paste(card_img, (x, y), mask)
+
+
+def build_photo_panel(spec, cfg):
+    plate_path = require_file(os.path.join(PLATES_DIR, spec["plate"]), spec["file"])
+    plate = Image.open(plate_path).convert("RGB")
+    canvas = cover_crop(plate, cfg["canvas_w"], cfg["canvas_h"])
+
+    apply_photo_scrim(canvas, cfg)
+
+    draw = ImageDraw.Draw(canvas)
+    photo_cfg = dict(cfg)
+    photo_cfg["headline_top_y"] = cfg["photo_headline_top_y"]
+    photo_cfg["headline_start_size"] = cfg["photo_headline_start_size"]
+    render_headline(draw, spec["headline"], spec["emphasis"], photo_cfg, on_dark=True)
+
+    card_img, card_mask = build_score_card(cfg, spec["card"])
+    card_y = CARD_CROPS[spec["card"]].get("y", cfg["photo_card_y"])
+    paste_photo_card(canvas, card_img, card_mask, card_y, cfg)
+
+    if spec.get("specs"):
+        specs_img = load_specs(cfg["photo_specs_height"], cfg)
+        specs_x = cfg["photo_specs_x"]
+        specs_y = cfg["canvas_h"] - cfg["photo_specs_height"] - cfg["photo_specs_bottom_margin"]
+        paste_rgba(canvas, specs_img, (specs_x, specs_y))
+
+        wordmark_font = get_font(cfg["wordmark_font_path"], cfg["photo_wordmark_size"])
+        draw = ImageDraw.Draw(canvas)
+        wm_bbox = draw.textbbox((0, 0), cfg["wordmark_text"], font=wordmark_font)
+        wm_h = wm_bbox[3] - wm_bbox[1]
+        wm_x = specs_x + specs_img.width + cfg["photo_wordmark_gap"]
+        specs_center_y = specs_y + specs_img.height / 2
+        wm_y = specs_center_y - wm_h / 2
+        draw.text(
+            (wm_x - wm_bbox[0], wm_y - wm_bbox[1]),
+            cfg["wordmark_text"],
+            font=wordmark_font,
+            fill=cfg["wordmark_color"],
+        )
+
+    return canvas
+
+
 def build_panel(spec, cfg):
+    if spec["kind"] == "photo":
+        return build_photo_panel(spec, cfg)
     if spec["kind"] == "hook":
         return build_hook_panel(spec, cfg)
     if spec["kind"] == "specs_intro":
@@ -601,8 +840,17 @@ def build_contact_sheet(built_paths, cfg):
 # Main
 # ---------------------------------------------------------------------------
 
+def cleanup_stale_outputs():
+    for name in STALE_OUTPUTS:
+        path = os.path.join(OUT_DIR, name)
+        if os.path.isfile(path):
+            os.remove(path)
+            print(f"removed stale {path}")
+
+
 def main():
     os.makedirs(OUT_DIR, exist_ok=True)
+    cleanup_stale_outputs()
 
     built_paths = []
     for spec in PANELS:
@@ -622,10 +870,7 @@ def main():
     sheet_path, sheet_size = build_contact_sheet(built_paths, CONFIG)
     print(f"built {sheet_path}  ({sheet_size[0]}x{sheet_size[1]})")
 
-    print(
-        f"\n{len(built_paths)} panels built. Pending lifestyle panels "
-        f"(no imagery yet, not fabricated): {', '.join(LIFESTYLE_PANELS_PENDING)}"
-    )
+    print(f"\n{len(built_paths)} panels built.")
 
 
 if __name__ == "__main__":
