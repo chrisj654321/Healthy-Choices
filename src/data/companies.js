@@ -12398,6 +12398,195 @@ export const COMPANY_DB = {
     sustainabilityScore: null,
     ownershipSource: 'Public (NYSE: CVS). CVS Pharmacy, Inc. is its retail-pharmacy operating subsidiary',
   },
+
+  'wayne-sanderson': {
+    id: 'wayne-sanderson',
+    name: 'Wayne-Sanderson Farms',
+    hq: 'Oakwood, Georgia, USA',
+    revenue: null,
+    employees: '27,000',
+    logo: 'https://www.google.com/s2/favicons?domain=waynesandersonfarms.com&sz=256',
+    parentCompany:
+      'Jointly owned by Cargill, Incorporated and Continental Grain Company through a joint venture that acquired Sanderson Farms in July 2022; the ownership percentage held by each parent has not been publicly disclosed.',
+    lobbyingSpend: null,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'ownership-change-2022',
+        title: 'Formed by 2022 Cargill and Continental Grain Deal',
+        severity: 'low',
+        description:
+          'Cargill and Continental Grain Company completed their joint acquisition of Sanderson Farms, Inc. on July 22, 2022, at $203.00 per share in an all-cash transaction valued at approximately $4.53 billion. The buyers combined Sanderson Farms with Wayne Farms, an existing Continental Grain subsidiary, to form Wayne-Sanderson Farms, a privately held company headquartered in Oakwood, Georgia, led by former Wayne Farms CEO Clint Rivers. The ownership percentages held by each parent have not been publicly disclosed.',
+        source: 'Cargill and Continental Grain joint press release (PR Newswire), July 22, 2022',
+      },
+      {
+        id: 'broiler-grower-antitrust-settlement',
+        title: 'Grower Pay Antitrust Settlement (~$17.75M)',
+        severity: 'medium',
+        description:
+          'According to the court-appointed settlement administrator\'s claims site and multiple independent reports, Sanderson Farms agreed to a settlement reported at $17.75 million (cited as $17.78 million in some accounts), reported as finalized in February 2023, resolving claims in the broiler chicken grower antitrust litigation. That litigation alleged that poultry processors suppressed the compensation paid to independent contract farmers who raise broiler chickens between January 27, 2013 and December 31, 2019. The settlement is reported to have been reached without any admission of wrongdoing. This settlement is separate from, and not additive to, the consumer-class settlement listed below.',
+        source: 'Broiler grower antitrust settlement administrator site and multiple independent reports, February 2023 — no court-filed settlement document or approval order was opened directly for this entry; re-verify against the court docket when accessible',
+      },
+      {
+        id: 'broiler-enduser-consumer-settlement-2025',
+        title: 'One of Ten Defendants in $22.35M Consumer Deal',
+        severity: 'medium',
+        description:
+          'On June 30, 2025, the U.S. District Court for the Northern District of Illinois granted final approval of a $22.35 million End-User Consumer Class settlement in the In re Broiler Chicken Antitrust Litigation covering ten defendants, listed as Claxton, Foster Farms, House of Raeford, Koch Foods, Mountaire, O.K. Foods, Perdue, Sanderson, Simmons, and Wayne. Sanderson was one of those ten defendants; the individual company shares of the $22.35 million were not separately disclosed in the sources reviewed, so no amount can be attributed to Sanderson alone. A separate, earlier $181 million consumer settlement approved December 20, 2021 covered six other defendants and did not include Sanderson.',
+        source: 'Cohen Milstein litigation case page and Class Action.org, June 2025',
+      },
+      {
+        id: 'broiler-antitrust-dap-verdict-2023',
+        title: 'Jury Cleared Sanderson in Price-Fixing Trial (2023)',
+        severity: 'low',
+        description:
+          'On October 30, 2023, after a six-week jury trial in the U.S. District Court for the Northern District of Illinois, a unanimous jury returned a verdict in favor of Sanderson Farms, rejecting claims brought by a group of large direct purchasers that the company conspired to inflate broiler chicken prices between 2008 and 2012. Sanderson Farms was found not liable and paid nothing in this proceeding. This verdict resolved only the direct-purchaser claims tried in that case; it is a separate track from the grower and consumer-class settlements listed above, which involve different plaintiff classes and different case periods, and it neither reverses nor offsets them. It is recorded here for completeness.',
+        source: 'Food Dive; Bloomberg Law, October 2023',
+      },
+      {
+        id: 'eeoc-ada-lawsuit-2021',
+        title: 'EEOC Disability Discrimination Suit (Pending)',
+        severity: 'medium',
+        description:
+          'The U.S. Equal Employment Opportunity Commission filed suit against Sanderson Farms, Inc. in the U.S. District Court for the Southern District of Mississippi (Case No. 5:21-cv-0084-KS-JCG), alleging that the company violated the Americans with Disabilities Act by refusing a night-shift schedule accommodation to an employee with cluster headaches and then terminating the employee. These are allegations in a filed civil complaint, not findings of liability. No settlement, consent decree, or verdict was located in the sources reviewed, and the matter has not been shown to be adjudicated.',
+        source: 'US EEOC newsroom release (eeoc.gov), 2021 filing; status unresolved as reviewed August 2026',
+      },
+      {
+        id: 'usda-fsis-recalls-2022-2023',
+        title: 'Two USDA FSIS Recalls (2022 and 2023)',
+        severity: 'medium',
+        description:
+          'USDA FSIS recall notices were issued for two Wayne Farms products. On December 7, 2023, approximately 1,377 pounds of Chef\'s Line Fire Grilled Chicken Breast produced at the Decatur, Alabama facility were recalled following a customer complaint indicating the product may have been undercooked. In April 2022, approximately 585,030 pounds of product were recalled. Only these two recall actions were confirmed in the sources reviewed; a further trade-press headline could not be resolved as either a duplicate reference or a separate action and is therefore not counted.',
+        source: 'USDA FSIS recall notices, April 2022 and December 2023',
+      },
+      {
+        id: 'nlrb-union-certification-2025',
+        title: 'UFCW Certified at Hammond, LA Plant (2025)',
+        severity: 'low',
+        description:
+          'In NLRB Case No. 15-RD-372826, captioned "Sanderson Farms, LLC d/b/a Wayne-Sanderson Farms," a representation election was held at the company\'s Hammond, Louisiana facility after a petition filed September 5, 2025. Of 510 eligible voters, 376 ballots were cast, and United Food and Commercial Workers Local 455 was retained as the employees\' bargaining representative by a vote of 242 to 134. The National Labor Relations Board certified the result on November 17, 2025 and the case is closed. This is a procedural election outcome, not a finding of any violation by the company.',
+        source: 'National Labor Relations Board case docket 15-RD-372826 (nlrb.gov), certified November 17, 2025',
+      },
+      {
+        id: 'osha-ammonia-citation-2019',
+        title: 'Pre-Merger OSHA Ammonia Citation (Jan 2019)',
+        severity: 'low',
+        description:
+          'As of January 2019 — before the 2022 merger that created Wayne-Sanderson Farms — OSHA was reported to have proposed penalties of $119,341 against Wayne Farms following an ammonia release at its Laurel, Mississippi plant that sent employees to the hospital. This figure appears consistently across trade-press reports and a matching US Department of Labor news release title, but no OSHA primary record was successfully retrieved in either research pass, and the matter concerns the pre-merger Wayne Farms entity rather than the combined company. An aggregate penalty total circulating for the combined company could not be verified or broken out by incident and is not reproduced here.',
+        source: 'Trade press reporting of a US Department of Labor OSHA news release, August 2019 (incident January 2019)',
+      },
+    ],
+    subsidiaries: [
+      'Wayne Farms',
+      'Sanderson Farms',
+      'Covington Farms',
+      'Platinum Harvest',
+      "Chef's Craft",
+      'Naked Truth',
+      'Harrison Poultry',
+    ],
+    sustainabilityScore: null,
+  },
+
+  'pilgrims-pride': {
+    id: 'pilgrims-pride',
+    name: "Pilgrim's Pride",
+    hq: 'Greeley, Colorado, USA',
+    revenue: '18.5B',
+    employees: '62,200',
+    logo: 'https://www.google.com/s2/favicons?domain=pilgrims.com&sz=256',
+    parentCompany:
+      "JBS S.A. — company proxy filings place JBS's stake in Pilgrim's Pride at approximately 82–83%.",
+    lobbyingSpend: null,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    donationSplit: null,
+    issues: [
+      {
+        id: 'price-fixing-guilty-plea',
+        title: 'Criminal Price-Fixing Conviction, $107.9M Fine (2021)',
+        severity: 'high',
+        description:
+          "Pilgrim's Pride Corporation pleaded guilty to one count of conspiracy in restraint of trade under Section 1 of the Sherman Act (15 U.S.C. § 1) for fixing prices and rigging bids for broiler chicken products. The plea agreement was announced in October 2020, and at a February 23, 2021 sentencing hearing before Judge Raymond P. Moore in the U.S. District Court for the District of Colorado (United States v. Pilgrim's Pride Corporation, No. 1:20-cr-00330-RM), the court assessed a criminal fine of $107,923,572. Separately, no individual was convicted in the related prosecutions: a Denver jury acquitted three Pilgrim's Pride executives on July 7, 2022, and charges against four other Pilgrim's Pride executives were dismissed in August and October 2022. Those outcomes concern individual liability and do not affect the company's own guilty plea.",
+        source:
+          "U.S. District Court, District of Colorado, No. 1:20-cr-00330-RM, judgment entered March 23, 2021; DOJ Antitrust Division, February 2021 — court records accessed indirectly (docket data and DOJ release corroborated across multiple independent reports rather than read from a single direct primary open); re-verify against the court docket when accessible",
+      },
+      {
+        id: 'broiler-purchaser-class-settlements',
+        title: 'Broiler Chicken Purchaser-Class Settlements (~$195.5M)',
+        severity: 'high',
+        description:
+          "In the multidistrict broiler chicken antitrust litigation in the Northern District of Illinois, Pilgrim's Pride settled claims brought by three certified purchaser classes — direct purchasers, commercial and institutional indirect purchasers, and end-user consumers. Case-tracking and trade-press reports put the aggregate of those settlements at approximately $195.5 million, a figure that appears to include, rather than add to, the $75 million direct-purchaser settlement the company disclosed in January 2021. The individual class-by-class breakdown has not been independently confirmed against the court's approval orders.",
+        source:
+          'In re Broiler Chicken Antitrust Litigation (N.D. Ill.); company 8-K disclosure, January 2021, as reported by case-tracking and trade-press sources — settlement approval orders not independently opened',
+      },
+      {
+        id: 'broiler-grower-settlement-2024',
+        title: '$100M Chicken-Grower Antitrust Settlement (2024)',
+        severity: 'high',
+        description:
+          "Pilgrim's Pride reached a $100 million settlement on June 24, 2024 to resolve antitrust claims brought by chicken growers, according to trade-press reporting. This grower litigation is a separate track from the broiler chicken purchaser-class settlements above, brought by different plaintiffs on a different theory, and the figures are not overlapping.",
+        source: 'Food Dive, June 2024 — court settlement order not independently opened',
+      },
+      {
+        id: 'securities-settlement-2025',
+        title: '$41.5M Shareholder Securities Settlement (2025)',
+        severity: 'high',
+        description:
+          "A securities class action filed in 2016 in the U.S. District Court for the District of Colorado alleged that Pilgrim's Pride misled investors about the basis of its reported profits during a February 2014 to November 2016 class period. According to reports from two independent legal-news outlets, a $41.5 million settlement received final approval on June 17, 2025. This case is distinct from the antitrust matters above.",
+        source:
+          'Courthouse News Service and Law360, June 2025 — final approval order not independently opened',
+      },
+      {
+        id: 'osha-ammonia-canton-2022',
+        title: 'OSHA Citations After Ammonia Leak, Canton GA (2022)',
+        severity: 'medium',
+        description:
+          "Following a January 19, 2022 ammonia release at the Canton, Georgia poultry processing plant that hospitalized two workers and prompted an evacuation, OSHA issued nine serious citations and proposed a penalty of $110,630, according to the agency's news release as reported by seven independent outlets.",
+        source: 'OSHA news release, August 2022, as reported across independent trade and legal press',
+      },
+      {
+        id: 'clean-water-act-suwannee-2017',
+        title: '$1.43M Clean Water Act Settlement, Suwannee River (2017)',
+        severity: 'medium',
+        description:
+          "Environmental groups brought a Clean Water Act citizen suit alleging that wastewater discharges from the Live Oak, Florida plant exceeded permitted pollution limits. In November 2017, Pilgrim's Pride agreed to a $1.43 million settlement — $1.3 million funding a Sustainable Farming Fund for water-quality improvement in the Suwannee Basin and a $130,000 civil penalty paid to the U.S. Treasury.",
+        source:
+          'Environment Florida / Sierra Club v. Pilgrim\'s Pride Corp., M.D. Fla., November 2017, as reported by Law360 and the plaintiff organizations — consent decree not independently opened',
+      },
+      {
+        id: 'fsis-foreign-matter-recalls',
+        title: 'USDA Recalls for Foreign Matter (2016–2020)',
+        severity: 'low',
+        description:
+          "USDA FSIS announced a recall on April 7, 2016 of Gold Kist Farms-labeled fully cooked chicken nugget and patty products produced at the Waco, Texas establishment for possible plastic contamination, initially covering about 40,780 pounds. The recall was expanded through May 2016 to a combined total of roughly 5,550,904 pounds. FSIS recall listings also record further Pilgrim's Pride foreign-matter recalls between 2018 and 2020; the dates and volumes of those later notices were not independently confirmed.",
+        source: 'USDA FSIS recall notices, April–May 2016 (fsis.usda.gov listing content)',
+      },
+      {
+        id: 'inaugural-committee-donation-2025',
+        title: "$5M Inaugural Committee Donation; Senator's Letter (2025)",
+        severity: 'low',
+        description:
+          "Pilgrim's Pride donated $5 million to the Trump-Vance Inaugural Committee, described in Sen. Elizabeth Warren's May 19, 2025 letter to the company as the single largest donation that committee received. The donation is a lawful, disclosed contribution. In her letter, Sen. Warren asked the company about the timing of the donation relative to three subsequent administration actions she identified — SEC approval of a JBS listing on the New York Stock Exchange, the Department of Justice's suspension of Foreign Corrupt Practices Act enforcement, and a USDA waiver of certain workplace-safety requirements for poultry and pork producers. Those questions are a senator's stated concerns; no finding of wrongdoing has been made, and no connection between the donation and any of those actions has been established.",
+        source: 'Sen. Elizabeth Warren press release and letter, warren.senate.gov, May 19, 2025',
+      },
+    ],
+    subsidiaries: [
+      "Pilgrim's",
+      'Just BARE',
+      "Gold'n Plump",
+      'County Line',
+      'Pierce Chicken',
+      'Gold Kist',
+      'Country Pride',
+      'To-Ricos',
+      'Moy Park',
+      "Pilgrim's Food Masters",
+    ],
+    sustainabilityScore: null,
+  },
 };
 
 /**
@@ -13442,6 +13631,15 @@ export const BRAND_TO_COMPANY = {
 
   // Foster Farms
   'foster farms': 'foster-farms',
+
+  // Wayne-Sanderson Farms
+  'wayne-sanderson farms': 'wayne-sanderson',
+  'sanderson farms': 'wayne-sanderson',
+  'wayne farms': 'wayne-sanderson',
+
+  // Pilgrim's Pride
+  "pilgrim's pride": 'pilgrims-pride',
+  'pilgrims pride': 'pilgrims-pride',
 
   // Bob Evans
   'bob evans': 'bob-evans',

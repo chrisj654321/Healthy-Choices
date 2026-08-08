@@ -482,6 +482,31 @@ export default function ProductScoreScreen({ route, navigation }) {
 
   const TABS = ['ingredients', 'nutrition', 'company'];
 
+  // The tab bar is a sticky header, so on scroll it parks at the very top —
+  // exactly where the fixed BackButton floats. Without this the button sits
+  // on top of the "Ingredients" tab and hides it (regression introduced when
+  // the old in-tab-bar back chevron was removed in favor of one fixed
+  // button; that second chevron had been solving this collision). Track when
+  // the bar is actually stuck and inset its content past the button only
+  // then, so the unstuck layout keeps its normal even spacing.
+  const [tabBarStuck, setTabBarStuck] = useState(false);
+  const tabBarYRef = useRef(Infinity);
+  const stuckRef = useRef(false);
+
+  const handleTabBarLayout = (e) => {
+    tabBarYRef.current = e.nativeEvent.layout.y;
+  };
+
+  // setState only on the transition, never per scroll frame.
+  const handleScroll = (e) => {
+    const y = e.nativeEvent.contentOffset.y;
+    const next = y >= tabBarYRef.current - insets.top - 8;
+    if (next !== stuckRef.current) {
+      stuckRef.current = next;
+      setTabBarStuck(next);
+    }
+  };
+
   const showBetterPicks = (displayGrade === 'D' || displayGrade === 'F') && alternatives.length > 0;
   // Product-level "how was this raised" card — narrow gate, eggs only for
   // now (see LivingConditionsCard.js / isEggsHousingEligible in
@@ -509,6 +534,8 @@ export default function ProductScoreScreen({ route, navigation }) {
         bounces
         showsVerticalScrollIndicator={false}
         stickyHeaderIndices={[stickyIndex]}
+        scrollEventThrottle={32}
+        onScroll={handleScroll}
       >
         {/* ── 0: Hero image ── */}
         <View style={s.heroWrap}>
@@ -675,8 +702,8 @@ export default function ProductScoreScreen({ route, navigation }) {
         )}
 
         {/* ── 3: Tabs (sticky) ── */}
-        <View style={s.tabBarSticky}>
-          <View style={s.tabBar}>
+        <View style={s.tabBarSticky} onLayout={handleTabBarLayout}>
+          <View style={[s.tabBar, tabBarStuck && s.tabBarStuckInset]}>
             {TABS.map((tab) => (
               <TouchableOpacity
                 key={tab}
@@ -1121,6 +1148,9 @@ const s = StyleSheet.create({
 
   // Tabs (sticky)
   tabBarSticky: { backgroundColor: '#fff' },
+  // Clears the fixed BackButton (left:16, 44 wide) when the bar is stuck at
+  // the top; not applied while it sits inline below the hero.
+  tabBarStuckInset: { paddingLeft: 68 },
   tabBar: {
     flexDirection: 'row', backgroundColor: '#fff',
     borderBottomWidth: 1, borderBottomColor: '#EDF2F0',
