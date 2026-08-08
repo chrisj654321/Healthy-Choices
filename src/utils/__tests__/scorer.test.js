@@ -443,26 +443,27 @@ describe('classifyUnknown (via scoreProduct on unmatched ingredients)', () => {
 
 describe('scoreProduct: whole-food clean path', () => {
   test('single clean whole-food ingredient with modest sugar scores >= 95 and is marked wholeFoodClean', () => {
-    // No `packaging` field on this fixture -> packaging is unresearched, so
-    // this doesn't qualify for the literal-100 raw-whole-food ceiling (2026-07-09
-    // rule: assume plastic/unverified packaging until proven otherwise) even
-    // though "blackberries" itself has no processing indicator. It lands at
-    // the processed-clean ceiling (96) instead.
+    // No `packaging` field on this fixture. Since 2026-08-08 that is treated
+    // as NEUTRAL rather than as assumed-plastic: missing packaging data no
+    // longer costs points and no longer blocks the literal-100 raw-whole-food
+    // ceiling. A single raw ingredient with no processing indicator and no
+    // known packaging concern therefore reaches 100.
     const result = scoreProduct({ ingredients: ['blackberries'], nutrition: { sugars: 7 } });
     expect(result.wholeFoodClean).toBe(true);
-    expect(result.isRawWholeFood).toBe(false);
+    expect(result.isRawWholeFood).toBe(true);
     expect(result.score).toBeGreaterThanOrEqual(95);
-    expect(result.score).toBe(96);
+    expect(result.score).toBe(100);
   });
 
   test('whole-food clean nutrition penalty is waived to at most 5 points even with high sugar', () => {
     // sugars: 35 -> raw nutritionPenalty would be 12, but the whole-food-clean
     // path only applies min(nutritionPenalty * 0.25, 5) => min(3, 5) = 3.
-    // Packaging is unresearched -> default assume-plastic penalty of 2 applies.
+    // Unresearched packaging is neutral since 2026-08-08, so nothing further
+    // is deducted.
     const result = scoreProduct({ ingredients: ['blackberries'], nutrition: { sugars: 35 } });
     expect(result.wholeFoodClean).toBe(true);
     expect(result.nutritionPenalty).toBe(12);
-    expect(result.score).toBe(95); // 100 - 3 (waived nutrition hit) - 2 (assumed packaging)
+    expect(result.score).toBe(97); // 100 - 3 (waived nutrition hit)
   });
 
   test('a raw single-ingredient product with packaging verified clean reaches the literal 100 ceiling', () => {
@@ -513,9 +514,9 @@ describe('scoreProduct: processing-ceiling clamp', () => {
     expect(result.markerLoad).toBe(2);
     expect(result.upfCeiling).toBe(56);
     expect(result.score).toBeLessThanOrEqual(result.upfCeiling);
-    // raw penalty (25 + 22.5 = 47.5) drives it below the ceiling; -2 more from
-    // the default assume-plastic packaging penalty (no packaging data here).
-    expect(result.score).toBe(51);
+    // raw penalty (25 + 22.5 = 47.5) drives it below the ceiling. No further
+    // packaging deduction — unresearched packaging is neutral since 2026-08-08.
+    expect(result.score).toBe(53);
   });
 });
 
@@ -526,28 +527,28 @@ describe('scoreProduct: allergen flag = zero penalty', () => {
     expect(item.flag).toBe('allergen');
     expect(item.penalty).toBe(0);
     // allergen is not a "concern" flag for wholeFoodClean purposes, so this is
-    // still wholeFoodClean — but with no packaging data present it isn't
-    // eligible for the literal-100 raw-whole-food ceiling, so it lands at the
-    // processed-clean ceiling (96) instead.
-    expect(result.score).toBe(96);
+    // still wholeFoodClean. Since 2026-08-08 missing packaging data no longer
+    // blocks the literal-100 raw-whole-food ceiling, so a single raw
+    // ingredient with no known packaging concern reaches 100.
+    expect(result.score).toBe(100);
   });
 });
 
 describe('scoreProduct: certification bonus', () => {
   test('a product with one certification scores +3 over the same product with none, when not clamped by the ceiling', () => {
     // 'sugar' (risk 4, flag moderate) is not a upfMarker (sweeteners only count
-    // as markers when flag is avoid/caution), so the ceiling (96, since no
-    // packaging data is present) stays well above the computed score and
-    // doesn't interfere with reading the cert bonus directly. No packaging
-    // data -> the default assume-plastic penalty (2) applies to both.
+    // as markers when flag is avoid/caution), so the ceiling stays well above
+    // the computed score and doesn't interfere with reading the cert bonus
+    // directly. Unresearched packaging is neutral since 2026-08-08, so no
+    // packaging deduction applies to either side of the comparison.
     const base = { ingredients: ['sugar'], nutrition: {} };
     const withoutCert = scoreProduct(base);
     const withCert = scoreProduct({ ...base, certifications: ['USDA Organic'] });
     expect(withoutCert.certBonus).toBe(0);
     expect(withCert.certBonus).toBe(3);
     expect(withCert.score).toBe(withoutCert.score + 3);
-    expect(withoutCert.score).toBe(88);
-    expect(withCert.score).toBe(91);
+    expect(withoutCert.score).toBe(90);
+    expect(withCert.score).toBe(93);
   });
 
   test('certifications are tiered by what they actually verify, not a flat bonus', () => {
@@ -607,11 +608,17 @@ describe('scoreProduct: sourcing/housing adjustment (eggs)', () => {
     // pasture-raised rather than near-tying it — ordered by how much
     // outdoor-access requirement each legally carries (organic's 2023 rule
     // > free-range's unstandardized access > cage-free's none at all).
-    expect(scoreProduct({ ...eggBase, name: 'Some Brand Grade A Large Eggs' }).sourcingAdjustment).toBe(-18);
-    expect(scoreProduct({ ...eggBase, name: 'Some Brand Cage Free Eggs' }).sourcingAdjustment).toBe(-13);
-    expect(scoreProduct({ ...eggBase, name: 'Some Brand Free Range Eggs' }).sourcingAdjustment).toBe(-8);
-    expect(scoreProduct({ ...eggBase, name: 'Some Brand Organic Eggs' }).sourcingAdjustment).toBe(-7);
-    expect(scoreProduct({ ...eggBase, name: 'Some Brand Pasture-Raised Eggs' }).sourcingAdjustment).toBe(10);
+    //
+    // Every value below was shifted down 4 on 2026-08-08 when the
+    // unresearched-packaging penalty was removed. That raised a clean egg's
+    // base from 96 to 100, so the offset keeps each tier's FINAL score
+    // exactly where it was tuned (89/88/83/78) while letting pasture-raised
+    // reach the literal 100 it was always meant to.
+    expect(scoreProduct({ ...eggBase, name: 'Some Brand Grade A Large Eggs' }).sourcingAdjustment).toBe(-22);
+    expect(scoreProduct({ ...eggBase, name: 'Some Brand Cage Free Eggs' }).sourcingAdjustment).toBe(-17);
+    expect(scoreProduct({ ...eggBase, name: 'Some Brand Free Range Eggs' }).sourcingAdjustment).toBe(-12);
+    expect(scoreProduct({ ...eggBase, name: 'Some Brand Organic Eggs' }).sourcingAdjustment).toBe(-11);
+    expect(scoreProduct({ ...eggBase, name: 'Some Brand Pasture-Raised Eggs' }).sourcingAdjustment).toBe(6);
   });
 
   test('a real catalog case: Eggland\'s Best Classic (conventional) drops two full letter grades vs. before this feature, grounded in the real Penn State nutrient-gap study', () => {

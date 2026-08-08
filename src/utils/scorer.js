@@ -629,12 +629,21 @@ function isRawIngredientName(name) {
 // unreachable, not a typical outcome.
 const PROCESSED_CLEAN_CEILING = 96;
 
-// Applied when a product has no packaging data at all — most retail grocery
-// packaging is plastic or plastic-lined, so silently treating "unresearched"
-// the same as "verified clean" understated how common plastic contact is.
-// Founder rule (2026-07-09): assume plastic until packaging is actually
-// verified otherwise, rather than let missing data default to a free pass.
-const UNRESEARCHED_PACKAGING_PENALTY = 2;
+// REVERSED 2026-08-08 (founder). The prior rule (2026-07-09) was "assume
+// plastic until packaging is actually verified otherwise" — a flat penalty
+// whenever packaging data was missing. It was withdrawn after Vital Farms
+// Pasture-Raised Eggs surfaced the failure case: a single-ingredient,
+// Certified Humane product in a paperboard carton was capped at 96 purely
+// because WE had never recorded the carton, with no packaging note on screen
+// to explain the missing points. Docking a product for a gap in our own data,
+// invisibly, is the opposite of what a transparency app should do.
+//
+// Unknown packaging is now NEUTRAL: no penalty, and it no longer blocks a
+// literal 100. A real, researched packaging CONCERN still carries its own
+// penalty (see analyzePackagingConcern) — that path is unchanged, because
+// that one is an actual finding about the product rather than an absence of
+// data about it.
+const UNRESEARCHED_PACKAGING_PENALTY = 0;
 
 // Housing/living-conditions scoring adjustment. Founder directive
 // (2026-07-30): "the chicken condition should weigh heavily into the
@@ -687,12 +696,21 @@ const UNRESEARCHED_PACKAGING_PENALTY = 2;
 // credit for the full nutrient gap; everything else is a real but modest
 // welfare/regulatory step, clustered well below pasture and well above
 // conventional rather than near-tied with either end.
+// NOTE (2026-08-08): every tier below was shifted down by 4 when the
+// unresearched-packaging penalty was removed (see
+// UNRESEARCHED_PACKAGING_PENALTY). That change raised a clean egg's base
+// score from 96 to 100, which would otherwise have lifted every housing tier
+// by 4 and compressed the gap this table exists to create. The offset keeps
+// each tier's final score exactly where it was tuned, while letting
+// pasture-raised finally reach the literal 100 this table's own comment
+// always claimed for it (the packaging gate had been silently capping it
+// at 96).
 const SOURCING_ADJUSTMENT = {
   // The only tier with a real foraging + sun-exposure mechanism behind it
   // — this is what the Penn State 2.5x-omega-3/2x-vitamin-E/4x-vitamin-D
   // gap actually measured. Pushes a typical clean egg to the literal 100
   // ceiling, standing alone as the sole tier that reaches grade A.
-  'pasture-raised': 10,
+  'pasture-raised': 6,
   // USDA's 2023 Organic Livestock & Poultry Standards rule is the newest,
   // most specific outdoor-access requirement short of pasture-raised
   // (prohibits total confinement, requires vegetated outdoor space "to
@@ -702,18 +720,18 @@ const SOURCING_ADJUSTMENT = {
   // organic line measured 1.2 sq ft/hen indoors, below even the cage-free
   // floor), so this stays a meaningful but bounded improvement, not
   // treated as pasture-equivalent.
-  organic: -7,
+  organic: -11,
   // USDA free-range requires SOME outdoor access but sets no minimum
   // space, no vegetation requirement, and no standard for what's actually
   // out there — a concrete-and-fence yard satisfies the legal term. Real,
   // but doesn't carry the foraging mechanism the nutrient study measured.
-  'free-range': -8,
+  'free-range': -12,
   // No outdoor access requirement at all — a real welfare improvement
   // (no cage confinement) but zero mechanistic basis for the nutrient
   // gap this whole adjustment is grounded in, so it sits closest to
   // conventional of the non-conventional tiers.
-  'cage-free': -13,
-  conventional: -18,
+  'cage-free': -17,
+  conventional: -22,
 };
 
 function calcEggsSourcingAdjustment(product) {
@@ -936,13 +954,15 @@ export function scoreProduct(product) {
   const wholeFoodClean = !insufficientData && markerCount === 0 && !hasConcern;
 
   // The stricter subset eligible for a literal 100: exactly one ingredient,
-  // that ingredient carries no processing indicator, and packaging has been
-  // actually checked (not just assumed) and found clean.
+  // that ingredient carries no processing indicator, and no packaging concern
+  // on file. Note this requires the ABSENCE of a known concern, not the
+  // PRESENCE of packaging research — the `packagingResearched` gate was
+  // removed 2026-08-08 (see UNRESEARCHED_PACKAGING_PENALTY above): missing
+  // packaging data should not silently hold a clean whole food below 100.
   const isRawWholeFood =
     wholeFoodClean &&
     ingredients.length === 1 &&
     isRawIngredientName(ingredients[0]) &&
-    packagingResearched &&
     !packagingConcern;
 
   let score;
