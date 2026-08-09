@@ -132,6 +132,20 @@ CONFIG = {
     # the visible capture right at the verdict chips.
     "ingredients_defect_crop_top": 298,
 
+    # ingredients-expanded.png (the re-capture used by panel 02) carries the
+    # same floating-back-button-over-tab-row defect. 180 clears the status bar,
+    # the tab row and the button, landing the visible capture on the
+    # "Avoid & Caution" header so the expanded explanations lead.
+    "expanded_defect_crop_top": 180,
+
+    # Specs on a DEVICE panel (panel 02 only). Smaller than the photo-panel
+    # treatment so he reads as a companion to the phone rather than competing
+    # with it, and overlaps the frame's lower-left so he sits in the
+    # composition instead of beside it.
+    "device_specs_height": 300,
+    "device_specs_x": 40,
+    "device_specs_bottom_inset": 40,
+
     # ------------------------------------------------------------------
     # PHOTO panel (full-bleed lifestyle plate + scrim + score card).
     # Geometry founder-approved via out/01-hook-PROOF.png -- replicated
@@ -244,21 +258,34 @@ PANELS = [
         "specs": True,
     },
     {
+        # Uses ingredients-expanded.png (founder re-capture, 2026-08-08) rather
+        # than ingredients-breakdown.png: the earlier capture only listed
+        # ingredient NAMES, so a panel headlined "I read every label so you
+        # don't have to" never actually showed a single explanation. This one
+        # has BHA, Mechanically Separated Chicken and Sodium Nitrite expanded
+        # with their real source-cited explanations, which is the product.
+        # Crop coordinates are tied to THIS capture's scroll position.
         "file": "02-specs.png",
         "bg": "light",
         "headline": "Hi, I'm Specs. I read every label so you don't have to.",
         "emphasis": None,
         "kind": "device",
-        "capture": "ingredients-breakdown.png",
-        "source_crop_top": CONFIG["ingredients_defect_crop_top"],
+        "capture": "ingredients-expanded.png",
+        "source_crop_top": CONFIG["expanded_defect_crop_top"],
+        "specs": True,
     },
     {
+        # low-score-hero-clean.png swaps the hero product photo for a clean
+        # retail shot (the catalog's own image was a user-submitted hand-held
+        # photo). src/data/product_images.json was updated to the same image,
+        # so the app renders what this panel shows -- the screenshot is not
+        # ahead of the product.
         "file": "03-simple.png",
         "bg": "dark",
         "headline": "Everyday products explained simply.",
         "emphasis": "explained simply.",
         "kind": "device",
-        "capture": "low-score-hero.png",
+        "capture": "low-score-hero-clean.png",
         "source_crop_top": CONFIG["status_bar_crop_top"],
     },
     {
@@ -664,6 +691,16 @@ def build_device_panel(spec, cfg, capture_path):
     render_headline(draw, spec["headline"], spec["emphasis"], cfg, on_dark=on_dark)
 
     draw_device_frame(canvas, capture_path, cfg, source_crop_top=spec.get("source_crop_top", 0))
+
+    # Optional Specs on a device panel (panel 02 only). The headline there
+    # introduces him by name, so the panel has to actually contain him.
+    if spec.get("specs"):
+        specs = load_specs(cfg["device_specs_height"], cfg)
+        _fx, fy, _fw, fh = frame_geometry(cfg)
+        frame_bottom = fy + fh
+        y = frame_bottom - specs.height + cfg["device_specs_bottom_inset"]
+        canvas.paste(specs, (cfg["device_specs_x"], y), specs)
+
     return canvas
 
 
