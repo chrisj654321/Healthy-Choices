@@ -20,6 +20,27 @@ lives in:
 https://huvxeaegygaeotomdqpc.supabase.co/storage/v1/object/public/Catalog/manifest.json
 ```
 
+**Live since 2026-08-08.** Before that date the object did not exist and the
+app fell back to the hardcoded constants on every launch.
+
+## How to change it (do NOT edit it in the Supabase dashboard)
+
+`scripts/manifest.json` in this repo is the source of truth. Edit that file,
+then publish it:
+
+```
+node scripts/publish-manifest.js --dry-run   # validate only, no upload
+node scripts/publish-manifest.js             # validate, then upload
+```
+
+The script applies the same checks the device applies, so a manifest the app
+would silently reject fails on your machine instead of shipping. A dashboard
+edit works, but it leaves no git history and the next run of this script
+overwrites it — so keep every change in the file.
+
+The upload sets a 300-second CDN cache. A change takes up to 5 minutes to
+reach devices.
+
 ## Manifest shape
 
 ```json
