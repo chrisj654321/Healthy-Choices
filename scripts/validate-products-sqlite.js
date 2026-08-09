@@ -88,6 +88,13 @@ function loadManualProducts() {
   );
 }
 
+function loadCompanies() {
+  return evalObjectLiteral(
+    objectLiteralAfter(readSource('src/data/companies.js'), 'export const COMPANY_DB ='),
+    'COMPANY_DB'
+  );
+}
+
 function loadHealthyCategories() {
   let source = readSource('src/data/healthyCategories.js');
   source = source
@@ -200,6 +207,7 @@ function main() {
   const manualProducts = loadManualProducts();
   const manualBarcodes = Object.keys(manualProducts);
   const categories = loadHealthyCategories();
+  const companies = loadCompanies();
   const productImages = require(path.join(DATA_DIR, 'product_images.json'));
 
   // products_generated.json (~136k OFF bulk rows) is deliberately excluded
@@ -296,6 +304,48 @@ function main() {
     const count = db.prepare(`SELECT COUNT(*) AS count FROM ${table}`).get().count;
     allOk = check(`summary table populated ${table}`, count > 0, `rows=${count}`) && allOk;
   }
+
+  // Reference data (schemaVersion 2). The app overlays these tables onto its
+  // bundled companies.js / ingredientCache.js at startup. A build that
+  // silently dropped them would still pass every check above and would still
+  // run — the app would just quietly fall back to bundled data forever, which
+  // is exactly the failure this phase exists to end. So check them loudly.
+  const schemaVersion = db.prepare("SELECT value FROM schema_meta WHERE key = 'schemaVersion'").get()?.value;
+  allOk = check('schema version is 2', schemaVersion === '2', `value=${schemaVersion}`) && allOk;
+
+  const companyRows = db.prepare('SELECT COUNT(*) AS count FROM companies').get().count;
+  const sourceCompanyCount = Object.keys(companies).length;
+  allOk = check(
+    'companies table matches source',
+    companyRows === sourceCompanyCount,
+    `db=${companyRows}, source=${sourceCompanyCount}`
+  ) && allOk;
+
+  const brandRows = db.prepare('SELECT COUNT(*) AS count FROM brand_company_map').get().count;
+  allOk = check('brand_company_map populated', brandRows > 0, `rows=${brandRows}`) && allOk;
+
+  const brandKinds = db.prepare('SELECT DISTINCT kind FROM brand_company_map ORDER BY kind').all().map((r) => r.kind);
+  allOk = check(
+    'brand_company_map carries both kinds',
+    sameJson(brandKinds, ['company', 'parent']),
+    `kinds=${brandKinds.join(',')}`
+  ) && allOk;
+
+  const ingredientRows = db.prepare('SELECT COUNT(*) AS count FROM ingredient_analysis').get().count;
+  allOk = check('ingredient_analysis populated', ingredientRows > 0, `rows=${ingredientRows}`) && allOk;
+
+  // Every reference row is JSON the app parses at startup. One unparseable
+  // row is silently skipped there, so catch it here instead.
+  let badJson = 0;
+  for (const row of db.prepare('SELECT id, json FROM companies').all()) {
+    try {
+      const parsed = JSON.parse(row.json);
+      if (!parsed || typeof parsed !== 'object') badJson += 1;
+    } catch (error) {
+      badJson += 1;
+    }
+  }
+  allOk = check('every company row is valid JSON', badJson === 0, `bad=${badJson}`) && allOk;
 
   const barcodeForTiming = manualSamples[0];
   timeQuery(`barcode lookup ${barcodeForTiming}`, () => productQuery.get(barcodeForTiming));

@@ -132,6 +132,43 @@ function loadCompanies() {
   return evalObjectLiteral(literal, 'COMPANY_DB');
 }
 
+function loadBrandMaps() {
+  const source = readSource('src/data/companies.js');
+  return {
+    brandToCompany: evalObjectLiteral(
+      objectLiteralAfter(source, 'export const BRAND_TO_COMPANY ='),
+      'BRAND_TO_COMPANY'
+    ),
+    brandParentMap: evalObjectLiteral(
+      objectLiteralAfter(source, 'export const BRAND_PARENT_MAP ='),
+      'BRAND_PARENT_MAP'
+    ),
+  };
+}
+
+// CACHED_INGREDIENT_ANALYSIS's values reference the IngredientRisk enum
+// declared above it in the same file, so the object literal cannot be
+// evaluated on its own the way COMPANY_DB can. Run the whole module in a
+// sandbox instead, the same way loadScorer() does.
+function loadIngredientAnalysis() {
+  const sandbox = { module: { exports: {} }, exports: {} };
+  const bundle = [
+    transformExports(readSource('src/data/ingredientCache.js')),
+    '\nmodule.exports = CACHED_INGREDIENT_ANALYSIS;',
+  ].join('\n');
+
+  vm.runInNewContext(bundle, sandbox, {
+    filename: 'ingredientCache.js',
+    timeout: 30000,
+  });
+
+  const analysis = sandbox.module.exports;
+  if (!analysis || typeof analysis !== 'object') {
+    throw new Error('CACHED_INGREDIENT_ANALYSIS was not exported from ingredientCache.js');
+  }
+  return analysis;
+}
+
 function transformExports(source) {
   return source
     // Pre-existing bug found 2026-07-30: this only matched single-line
@@ -331,7 +368,69 @@ function createSchema(db) {
       key TEXT PRIMARY KEY,
       value TEXT NOT NULL
     );
+
+    -- Reference data (schemaVersion 2, Phase 3 of the decouple-from-Apple
+    -- plan). These three tables mirror what src/data/companies.js and
+    -- src/data/ingredientCache.js hold in the JS bundle. The app keeps the
+    -- bundled copies as its offline seed and overlays these rows on top at
+    -- startup, so company and sourcing research reaches users by uploading a
+    -- new products.db instead of by shipping an app build.
+    CREATE TABLE companies (
+      id TEXT PRIMARY KEY,
+      json TEXT NOT NULL
+    );
+
+    -- Both brand lookups live in one table, separated by the kind column:
+    --   'company' — BRAND_TO_COMPANY, brand -> COMPANY_DB id
+    --   'parent'  — BRAND_PARENT_MAP, brand -> parent company display name
+    -- A brand can legitimately appear under both kinds, so the primary key
+    -- is the pair, not the brand alone.
+    CREATE TABLE brand_company_map (
+      brand TEXT NOT NULL,
+      kind TEXT NOT NULL,
+      value TEXT NOT NULL,
+      PRIMARY KEY (brand, kind)
+    );
+
+    CREATE TABLE ingredient_analysis (
+      name TEXT PRIMARY KEY,
+      json TEXT NOT NULL
+    );
   `);
+}
+
+function insertReferenceData(db, companies, brandMaps, ingredientAnalysis) {
+  const insertCompany = db.prepare('INSERT INTO companies (id, json) VALUES (?, ?)');
+  const insertBrand = db.prepare(
+    'INSERT OR REPLACE INTO brand_company_map (brand, kind, value) VALUES (?, ?, ?)'
+  );
+  const insertIngredient = db.prepare(
+    'INSERT INTO ingredient_analysis (name, json) VALUES (?, ?)'
+  );
+
+  let companyCount = 0;
+  for (const [id, company] of Object.entries(companies)) {
+    insertCompany.run(id, JSON.stringify(company));
+    companyCount += 1;
+  }
+
+  let brandCount = 0;
+  for (const [brand, companyId] of Object.entries(brandMaps.brandToCompany)) {
+    insertBrand.run(brand, 'company', String(companyId));
+    brandCount += 1;
+  }
+  for (const [brand, parentName] of Object.entries(brandMaps.brandParentMap)) {
+    insertBrand.run(brand, 'parent', String(parentName));
+    brandCount += 1;
+  }
+
+  let ingredientCount = 0;
+  for (const [name, analysis] of Object.entries(ingredientAnalysis)) {
+    insertIngredient.run(name, JSON.stringify(analysis));
+    ingredientCount += 1;
+  }
+
+  return { companyCount, brandCount, ingredientCount };
 }
 
 function insertSummaries(db, categories, companies) {
@@ -434,6 +533,14 @@ function main() {
   const companies = loadCompanies();
   log(`Loaded ${categories.length} healthy category definitions and ${Object.keys(companies).length} companies.`);
 
+  const brandMaps = loadBrandMaps();
+  const ingredientAnalysis = loadIngredientAnalysis();
+  log(
+    `Loaded ${Object.keys(brandMaps.brandToCompany).length} brand-to-company and ` +
+    `${Object.keys(brandMaps.brandParentMap).length} brand-to-parent entries, ` +
+    `${Object.keys(ingredientAnalysis).length} cached ingredient analyses.`
+  );
+
   const productImages = require(path.join(DATA_DIR, 'product_images.json'));
   log(`Loaded ${Object.keys(productImages).length} product image backfills.`);
 
@@ -511,13 +618,17 @@ function main() {
   log('Building summary tables.');
   db.exec('BEGIN');
   insertSummaries(db, categories, companies);
+  const referenceCounts = insertReferenceData(db, companies, brandMaps, ingredientAnalysis);
   insertMeta(db, {
-    schemaVersion: '1',
+    schemaVersion: '2',
     generatedAt: new Date().toISOString(),
     scorerVersion: scorerNote,
     generatedSourceRows: generatedProducts.length,
     manualSourceRows: manualBarcodes.size,
     generatedSkippedForManual,
+    companyRows: referenceCounts.companyCount,
+    brandMapRows: referenceCounts.brandCount,
+    ingredientAnalysisRows: referenceCounts.ingredientCount,
   });
   db.exec('COMMIT');
 
@@ -530,6 +641,11 @@ function main() {
   log(`Build complete in ${seconds}s.`);
   log(`Database: ${path.relative(ROOT, DB_PATH)} (${(sizeBytes / 1024 / 1024).toFixed(2)} MB), rows=${rowCount}.`);
   log(`Score precompute: ${scoreProduct ? 'worked' : 'skipped'}.`);
+  log(
+    `Reference data: ${referenceCounts.companyCount} companies, ` +
+    `${referenceCounts.brandCount} brand map rows, ` +
+    `${referenceCounts.ingredientCount} ingredient analyses.`
+  );
 }
 
 try {

@@ -38,6 +38,19 @@ const mockDb = {
   getAllAsync: jest.fn(),
 };
 
+/**
+ * initProductStore() now also runs remoteDataOverlay.js, which probes
+ * sqlite_master for the reference tables and then reads whichever exist.
+ * Those calls share the getAllAsync mock with the product queries, so tests
+ * that assert "this function short-circuits without querying" must exclude
+ * them. Returns only the calls that actually touch product data.
+ */
+const OVERLAY_TABLES = /sqlite_master|FROM companies|FROM brand_company_map|FROM ingredient_analysis/;
+
+function productQueries(mockFn) {
+  return mockFn.mock.calls.filter(([sql]) => !OVERLAY_TABLES.test(String(sql)));
+}
+
 jest.mock('expo-sqlite', () => ({
   openDatabaseAsync: jest.fn(),
 }));
@@ -542,7 +555,10 @@ describe('getFeaturedProducts', () => {
 
     await expect(getFeaturedProducts([])).resolves.toEqual([]);
     await expect(getFeaturedProducts(undefined)).resolves.toEqual([]);
-    expect(mockDb.getAllAsync).not.toHaveBeenCalled();
+    // Startup now also overlays the catalog's reference data onto the
+    // bundled modules (remoteDataOverlay.js), which probes sqlite_master.
+    // Assert no PRODUCTS query ran rather than no query at all.
+    expect(productQueries(mockDb.getAllAsync)).toHaveLength(0);
   });
 
   test('returns [] (not a throw) if the query rejects, reports to Sentry', async () => {
@@ -603,7 +619,9 @@ describe('getProductsByCategory', () => {
 
     await expect(getProductsByCategory({ id: 'empty', productCategories: [] })).resolves.toEqual([]);
     await expect(getProductsByCategory(null)).resolves.toEqual([]);
-    expect(mockDb.getAllAsync).not.toHaveBeenCalled();
+    // See the note on getFeaturedProducts's equivalent test — startup's
+    // reference-data overlay makes one sqlite_master probe of its own.
+    expect(productQueries(mockDb.getAllAsync)).toHaveLength(0);
   });
 
   test('returns [] (not a throw) if the query rejects, reports to Sentry', async () => {

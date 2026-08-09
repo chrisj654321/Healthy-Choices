@@ -38,6 +38,7 @@ import * as SQLite from 'expo-sqlite';
 import * as FileSystem from 'expo-file-system/legacy';
 import { captureException } from '../utils/sentry';
 import { getRemoteDbConfig } from '../utils/remoteConfig';
+import { applyRemoteReferenceData } from './remoteDataOverlay';
 
 // Hardcoded safety net — used whenever the remote manifest (see
 // src/utils/remoteConfig.js) is unreachable, malformed, or this is a cold
@@ -126,6 +127,10 @@ export function initProductStore() {
       try {
         await downloadDbIfNeeded();
         _db = await SQLite.openDatabaseAsync(DB_NAME);
+        // Phase 3: overlay the catalog's company and ingredient reference
+        // data onto the bundled modules. Never throws, and a catalog built
+        // before schemaVersion 2 simply leaves the bundled data in place.
+        await applyRemoteReferenceData(_db);
       } catch (error) {
         captureException(error, { function: 'initProductStore' });
         _db = null;
