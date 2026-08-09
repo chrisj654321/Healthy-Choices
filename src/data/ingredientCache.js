@@ -4212,6 +4212,22 @@ export const CACHED_INGREDIENT_ANALYSIS = {
   'active malt flour': { risk: IngredientRisk.Medium, category: 'sweeteners', explanation: 'Concentrated barley syrup; medium risk because it contains gluten (concern for celiac individuals) and is essentially a concentrated sugar that raises blood glucose.' },
   'bicarbonate soda': { risk: IngredientRisk.Low, category: 'additives', explanation: 'Sodium bicarbonate for leavening; safe in small amounts.' },
   'canola and or soybean and or palm oil': { risk: IngredientRisk.Low, category: 'oils', explanation: 'Industrially refined oil; a near-universal ingredient in ultra-processed foods.' },
+  // --- Researched from the audit queue (2026-08-08): genuinely-new
+  // substances, each risk tied to the FDA/eCFR/EFSA citation in its src note.
+  // See scripts/ingredient-audit/add-researched.js for the source list. ---
+  'ferric phosphate': { risk: IngredientRisk.Low, category: 'vitamins', explanation: 'An iron compound added to fortify foods like flour and cereal; FDA-affirmed GRAS. A nutrient source, not a contaminant — low concern.' }, // src: 21 CFR 184.1301
+  'ferric pyrophosphate': { risk: IngredientRisk.Low, category: 'vitamins', explanation: 'Iron used to fortify foods without changing taste, often in milk powders; FDA-affirmed GRAS. Absorbs less readily than other iron forms but is a safe nutrient.' }, // src: 21 CFR 184.1304
+  'disodium pyrophosphate': { risk: IngredientRisk.Medium, category: 'additives', explanation: 'A leavening acid (SAPP) that helps baked goods rise and holds color; FDA-affirmed GRAS. A processed phosphate additive — medium concern mainly for high total phosphate intake.' }, // src: 21 CFR 182.1087
+  'ammonium phosphate': { risk: IngredientRisk.Medium, category: 'additives', explanation: 'A leavening agent, dough conditioner, and yeast nutrient; FDA-affirmed GRAS. A processed phosphate additive — medium concern for high total phosphate intake.' }, // src: 21 CFR 184.1141a
+  'distilled monoglyceride': { risk: IngredientRisk.Low, category: 'emulsifiers', explanation: 'A purified mono- and diglyceride emulsifier that keeps oil and water mixed; FDA-affirmed GRAS. A common processed fat-based emulsifier — low concern.' }, // src: 21 CFR 184.1505
+  'mixed triglycerides': { risk: IngredientRisk.Low, category: 'fats', explanation: 'The chemical name for fat, used as a carrier or texture fat; approved for food use and GRAS. It is dietary fat — low concern on its own.' }, // src: 21 CFR 172.861
+  'fd c red no': { risk: IngredientRisk.High, category: 'dyes', explanation: 'A synthetic FD&C red dye such as Red 40 or Red 3; petroleum-derived colors added only for appearance, linked to hyperactivity in children, with Red 3 banned by the FDA in 2025.' }, // src: FD&C red dye family
+  'fd c colors red': { risk: IngredientRisk.High, category: 'dyes', explanation: 'A synthetic FD&C red dye such as Red 40 or Red 3; petroleum-derived colors added only for appearance, linked to hyperactivity in children, with Red 3 banned by the FDA in 2025.' }, // src: FD&C red dye family
+  'artificial colors fd c red': { risk: IngredientRisk.High, category: 'dyes', explanation: 'A synthetic FD&C red dye such as Red 40 or Red 3; petroleum-derived colors added only for appearance, linked to hyperactivity in children, with Red 3 banned by the FDA in 2025.' }, // src: FD&C red dye family
+  'artificial color fd c red': { risk: IngredientRisk.High, category: 'dyes', explanation: 'A synthetic FD&C red dye such as Red 40 or Red 3; petroleum-derived colors added only for appearance, linked to hyperactivity in children, with Red 3 banned by the FDA in 2025.' }, // src: FD&C red dye family
+  'fd c colors': { risk: IngredientRisk.Medium, category: 'dyes', explanation: 'Synthetic FD&C artificial colors; petroleum-derived dyes added only for appearance, with no nutritional value. Some are linked to hyperactivity in children.' }, // src: FD&C dye family
+  'orange puree': { risk: IngredientRisk.Low, category: 'fruits', explanation: 'Pureed orange — the fruit, a source of vitamin C. Low concern (this is fruit, not an orange dye).' }, // src: whole fruit
+  'gluten free flour': { risk: IngredientRisk.Low, category: 'grains', explanation: 'A flour blend made without wheat, usually rice-, corn-, or starch-based. A refined flour base — low concern, but lower in fiber than whole grain.' }, // src: refined flour base
 };
 
 /** Converts a cache entry\'s numeric risk to the flag string used by INGREDIENT_DB / scorer. */
