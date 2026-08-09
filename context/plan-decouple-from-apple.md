@@ -37,8 +37,22 @@ What becomes remotely editable: headline/subhead per trigger, feature-list rows,
 ### Phase 2 — Remote catalog manifest + remote config
 Replace the hardcoded `DB_VERSION` with a small JSON manifest fetched from Supabase (`{ dbVersion, dbUrl }`), so shipping a new catalog is an upload plus a manifest edit — no code at all. Same fetch carries a general remote-config/feature-flag payload (kill switches, free-scan limit, feature toggles) with safe in-code defaults for offline/failure.
 
-### Phase 3 — Move remaining bundled data server-side
-`companies.js`, `ingredientCache.js` (~700KB, already flagged in backlog), the spotlight rotation list, and featured-product barcodes are frozen into the JS bundle today. Fold them into the downloadable SQLite DB so company/sourcing research reaches users same-day. Biggest win for the sourcing-transparency pipeline.
+### Phase 3 — Move remaining bundled data server-side — DONE 2026-08-08 (`0b85827`)
+`companies.js`, `ingredientCache.js` (~1.5MB, already flagged in backlog), the spotlight rotation list, and featured-product barcodes are frozen into the JS bundle today. Fold them into the downloadable SQLite DB so company/sourcing research reaches users same-day. Biggest win for the sourcing-transparency pipeline.
+
+**Built as an overlay, not a replacement.** `scorer.js` reads `COMPANY_DB` and `CACHED_INGREDIENT_ANALYSIS` synchronously from the render path, so those imports could not become awaited database reads without making the scorer async — against this plan's own guardrail. Instead the catalog carries the same data (`companies`, `brand_company_map`, `ingredient_analysis`; schemaVersion 2) and `src/data/remoteDataOverlay.js` assigns it onto the bundled objects at startup. No consumer changed. See the 2026-08-08 decision-log entry for the full reasoning and the accepted first-paint seam.
+
+**Bundle size is unchanged and deliberately so.** The bundled copies remain as the offline seed, which the guardrail below requires. Trimming them to a smaller seed is a separate, later decision — do not treat it as unfinished Phase 3 work.
+
+**Shipping a data change now looks like this:**
+```
+node scripts/build-products-sqlite.js
+node scripts/validate-products-sqlite.js
+node scripts/upload-products-db.js
+# edit dbVersion in scripts/manifest.json, then:
+node scripts/publish-manifest.js
+```
+No Apple build. No OTA. The one prerequisite is Phase 0 — an install only runs this code once a binary carrying it is approved.
 
 ### Phase 4 — Native-change discipline
 Keep a written list of what genuinely requires a build, batch such changes, and treat each native build as an OTA baseline reset (OTA only reaches matching binary versions).
