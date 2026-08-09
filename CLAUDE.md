@@ -25,6 +25,15 @@ Strategy questions assume full knowledge of the folders above. Format outputs in
 - **The manager (Fable → Opus from Jul 7, 2026) only plans, delegates, reviews, and keeps context files current.** Manager tokens are the scarcest resource — grunt work on a manager model is a routing failure.
 - Cheapest capable tier for everything: local scripts (deterministic) → **gpt-5.5 via `codex exec`** (bulk/mechanical/investigation — founder's ChatGPT sub = effectively free; binary path + mechanics in efficiency.md) → Sonnet (user-facing building, routine sessions — default `/model claude-sonnet-5`) → manager (planning/review only). Escalate without asking when output misses the bar; for anything that ships, intelligence > taste > cost; user-facing needs taste ≥ 7 (Sonnet+).
 - Agents: script-first test, named agents over re-briefing, pilot before fleet, incremental checkpoints, max 3 parallel (Opus 2).
+- **Keep the context window under 50% at all times.** There is no live gauge to read, so this is a set of disciplines, not a number to watch: grep for the lines you need instead of reading whole files; read a file range, not the file; delegate bulk reading and building to subagents and keep only their report; never paste large outputs back into the conversation; batch many images into one contact sheet rather than opening them one at a time; write findings to a file and reference the path instead of restating them. If a task cannot be done inside that budget, split it and delegate — do not spend the window and then compact.
+
+## Language: ASD-STE100 Simplified Technical English
+
+Write in ASD-STE100 Simplified Technical English: one word one meaning, short sentences, active voice, present tense, one instruction per sentence, no idiom or slang, keep the article ("the", "a"). This applies to **explanations to the founder, code comments, commit messages, plans, docs, and agent briefs.**
+
+Two deliberate exemptions, because STE would defeat their purpose:
+- **Customer-facing marketing copy** (Cicero's output: X, LinkedIn, video scripts, hooks, App Store text). That work is governed by the hook doctrine and the 8th-grade-voice rule, which need vivid and punchy language that STE forbids. STE and "every first line must earn the stop" cannot both apply.
+- **Teaching technical terms to the founder** ([[user-teach-dev-jargon]]): he wants the real term bolded, defined once, then used. STE's approved-word limit would block this, so the teaching rule wins.
 
 ## Non-negotiables (full list in instructions/)
 
