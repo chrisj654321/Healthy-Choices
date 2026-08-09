@@ -316,6 +316,16 @@ export default function ProductScoreScreen({ route, navigation }) {
   const [celebration, setCelebration] = useState(null);
   const gradeAnim = useRef(new Animated.Value(0)).current;
 
+  // Sticky-tab-bar / fixed-BackButton collision tracking. These MUST live
+  // above the `if (!product) return null` / `if (!result)` early returns
+  // below — a hook declared after a conditional return runs on some renders
+  // and not others, which crashes with "rendered more hooks than during the
+  // previous render" (Sentry, ProductScoreScreen). See handleScroll /
+  // handleTabBarLayout for how they are used.
+  const [tabBarStuck, setTabBarStuck] = useState(false);
+  const tabBarYRef = useRef(Infinity);
+  const stuckRef = useRef(false);
+
   useEffect(() => {
     if (!product) return;
     const r = scoreProduct(product);
@@ -489,10 +499,8 @@ export default function ProductScoreScreen({ route, navigation }) {
   // button; that second chevron had been solving this collision). Track when
   // the bar is actually stuck and inset its content past the button only
   // then, so the unstuck layout keeps its normal even spacing.
-  const [tabBarStuck, setTabBarStuck] = useState(false);
-  const tabBarYRef = useRef(Infinity);
-  const stuckRef = useRef(false);
-
+  // (tabBarStuck / tabBarYRef / stuckRef are declared above the early
+  // returns to keep hook order stable.)
   const handleTabBarLayout = (e) => {
     tabBarYRef.current = e.nativeEvent.layout.y;
   };
