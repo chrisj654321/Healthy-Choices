@@ -17,6 +17,7 @@ iOS food-transparency app (Expo RN): scan a product → health grade, plain-Engl
 | [context/backlog.md](context/backlog.md) | Idea backlog, impact-sorted + effort-sized | Add founder ideas here; delete when shipped (log outcome in decision-log) |
 | [VISION.md](VISION.md) | Product north star | Every feature and post serves it |
 | [memory/chad-memory.md](memory/chad-memory.md) | Durable Chad/ChatGPT preferences | Follow these defaults when generating prompts, creative concepts, and Chad-owned work |
+| [context/dev-glossary.md](context/dev-glossary.md) | Canonical wording for every technical term taught to the founder | Add a term the first time you use it with him; reuse the exact wording |
 
 Strategy questions assume full knowledge of the folders above. Format outputs in Markdown unless told otherwise. Always reference past decisions before new recommendations.
 
@@ -33,7 +34,17 @@ Write in ASD-STE100 Simplified Technical English: one word one meaning, short se
 
 Two deliberate exemptions, because STE would defeat their purpose:
 - **Customer-facing marketing copy** (Cicero's output: X, LinkedIn, video scripts, hooks, App Store text). That work is governed by the hook doctrine and the 8th-grade-voice rule, which need vivid and punchy language that STE forbids. STE and "every first line must earn the stop" cannot both apply.
-- **Teaching technical terms to the founder** ([[user-teach-dev-jargon]]): he wants the real term bolded, defined once, then used. STE's approved-word limit would block this, so the teaching rule wins.
+- **Teaching technical terms to the founder** ([[user-teach-dev-jargon]]): he wants the real term bolded, defined, then used. STE's approved-word limit would block this, so the teaching rule wins.
+
+### How to teach a term (updated 2026-08-08)
+
+One definition is not enough. The founder must see a word defined several times before it stays.
+
+- Define the term the **first time it appears in each session** — every session, not one time forever.
+- Later in the same session, add a short gloss in brackets (3-6 words), not the full definition again.
+- Keep the full definition until he uses the term back to you without help. Then use the short gloss only.
+- Form: **bold term** → one short plain sentence → then use the term naturally.
+- Add each new term to [context/dev-glossary.md](context/dev-glossary.md). The glossary keeps the wording the same each time, which is what makes repetition work. Do not track counts — the per-session rule replaces a counter.
 
 ## Non-negotiables (full list in instructions/)
 
