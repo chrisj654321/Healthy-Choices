@@ -15,6 +15,36 @@ _Briefs for Chad (ChatGPT). Claude writes them; the founder pastes them into Cha
 
 ## Active tasks
 
+### INGREDIENT AUDIT — FINISH HELD ITEMS + QUEUE (2026-08-08) — status: DRAFTED
+**Goal:** Finish the two parts of your ingredient audit that Claude could not do for you, now that you are back up.
+
+**Read first — what Claude already put in the app. Do NOT redo this work:**
+- Applied 89 of your 90 `proposed` score changes from `Score Change Proposals.csv`. One was a no-op after scale mapping.
+- Added 531 aliases. These are messy label strings from `Next Ingredient Queue.csv` that map to an ingredient the app already explains (example: "semi sweet chocolate" maps to chocolate). Claude used the app's own matcher to make them, so they are safe. Do not re-audit these as new ingredients.
+- Researched and added 13 genuinely-new substances from the queue, each with an FDA / eCFR / EFSA source: ferric phosphate, ferric pyrophosphate, disodium pyrophosphate, ammonium phosphate, distilled monoglyceride, mixed triglycerides, five FD&C red dye fragments, "fd c colors", orange puree, and gluten free flour.
+- Left your 60 `needs-more-research` proposals untouched. They are Task 1.
+- Left 11 tokens with no entry because they are not ingredients: "preserves freshness", "to retain freshness", "maintains freshness", "added to retain freshness", "to protect freshness", "non gmo", "gluten free", "granular", "leavening agents", "slat", "ntss". Mark these as non-ingredients in your workspace so they stop returning to the queue.
+
+**Risk scale — important:** the app uses only three levels: 2 (Low), 5 (Medium), 8 (High). Your finer scores are welcome, but know that Claude maps them to the nearest level by the flag they imply: a score of 8 to 10 becomes High, 5 to 7 becomes Medium, 2 to 4 becomes Low.
+
+**Task 1 (do first) — finish the 60 held score changes.**
+- File: `Score Change Proposals.csv`. Work only the rows with status `needs-more-research`.
+- For each row, find the evidence you were missing. Then confirm the change or reject it.
+- Set status to `proposed` when the source is solid. Add the source and a one-line rationale.
+- Set status to `rejected` when you cannot verify it. Say why in one line.
+- Every held row is a score LOWER or a no-change. None makes a product scarier. Do not raise a score here without a strong, cited reason.
+
+**Task 2 (do second) — keep processing `Next Ingredient Queue.csv`.**
+- About 1,693 of the 2,250 queue tokens already work in the app. Do not spend effort on label variants of a known ingredient. Claude's 531 aliases cover those.
+- Work only tokens that name a REAL substance the app does not explain yet.
+- For each real substance give: the normalized name, a risk score, a category, a plain one or two sentence explanation, and a source.
+- Send label fragments, purpose clauses, and OCR junk to a `could_not_verify` list. Do not force a classification.
+- Category must be one from the app's existing set. The list is in the WAVE 01 brief below.
+
+**Output files (Chad owns these for the run):** your audit workspace CSVs (`Score Change Proposals.csv`, `Next Ingredient Queue.csv`, and your master list). The founder gives them to Claude. Claude validates and integrates them into the app, the same way as this round.
+**Validation (Claude runs after):** parse each changed row; confirm risk and category are in the allowed sets; run the audit importer; `npm test` must stay green; rebuild the catalog; report the score drift.
+**Rules:** no fabrication — `could_not_verify` is a success, not a failure; source everything; regulatory or observational facts only, no medical-causation claims; stay consistent with existing entries for the same substance family.
+
 ### INGREDIENT-CACHE UNKNOWNS — WAVE 01 (recurring campaign) — status: MERGED (2026-07-05, 98.10%→98.90% coverage, 196/196 tests, see decision-log)
 **Goal:** Classify the top 150 currently-unrecognized ingredient strings so the app's scorer stops bucketing them as "unrecognized" (they fail every lookup in `src/utils/scorer.js` and fall to a heuristic).
 **Output files (Chad owns these for the run):** `src/data/batches/batch_15_unknowns_w01.js` (new file — do NOT edit `src/data/ingredientCache.js`, `src/data/ingredients.js`, or any other file).
