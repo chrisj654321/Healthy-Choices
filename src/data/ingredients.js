@@ -116,17 +116,17 @@ export const INGREDIENT_DB = {
   // ─── Flavor Enhancers ───
   'monosodium glutamate': {
     evidence: "FDA classifies MSG as GRAS and requires it to be declared by name on labels (21 CFR 182.1); a double-blind, placebo-controlled study in the Journal of Nutrition (2000) found no persistent or serious effects and that reported reactions in self-identified sensitive people were not reproducible on retesting.",
-    risk: 6, category: 'flavor-enhancers',
+    risk: 3, category: 'flavor-enhancers',
     label: 'MSG (Monosodium Glutamate)',
     note: 'Causes sensitivity reactions in some individuals.',
-    flag: 'caution',
+    flag: 'ok',
   },
   'msg': {
     evidence: "FDA classifies MSG as GRAS and requires it to be declared by name on labels (21 CFR 182.1); a double-blind, placebo-controlled study in the Journal of Nutrition (2000) found no persistent or serious effects and that reported reactions in self-identified sensitive people were not reproducible on retesting.",
-    risk: 6, category: 'flavor-enhancers',
+    risk: 3, category: 'flavor-enhancers',
     label: 'MSG',
     note: 'Causes sensitivity reactions in some individuals.',
-    flag: 'caution',
+    flag: 'ok',
   },
   // ─── Emulsifiers & Stabilizers ───
   'carrageenan': {
@@ -163,17 +163,17 @@ export const INGREDIENT_DB = {
   // ─── Flavor catch-alls ───
   'natural flavor': {
     evidence: "Under FDA regulation 21 CFR 101.22, 'natural flavor' must be declared on the label, but manufacturers are not required to disclose the specific constituent chemicals in the flavor blend, which may be treated as trade secrets (FDA, 21 CFR 101.22).",
-    risk: 4, category: 'flavor-enhancers',
+    risk: 2, category: 'flavor-enhancers',
     label: 'Natural Flavor',
     note: 'Umbrella term covering up to 100 undisclosed chemicals. Manufacturers aren\'t required to disclose individual compounds.',
-    flag: 'caution',
+    flag: 'ok',
   },
   'natural flavors': {
     evidence: "Under FDA regulation 21 CFR 101.22, 'natural flavor' must be declared on the label, but manufacturers are not required to disclose the specific constituent chemicals in the flavor blend, which may be treated as trade secrets (FDA, 21 CFR 101.22).",
-    risk: 4, category: 'flavor-enhancers',
+    risk: 2, category: 'flavor-enhancers',
     label: 'Natural Flavors',
     note: 'Umbrella term covering up to 100 undisclosed chemicals. Manufacturers aren\'t required to disclose individual compounds.',
-    flag: 'caution',
+    flag: 'ok',
   },
   'artificial flavor': {
     evidence: "Under FDA regulation 21 CFR 101.22, 'artificial flavor' covers flavoring not derived from a natural source; it must be declared on the label, but the specific chemical constituents need not be individually disclosed (FDA, 21 CFR 101.22).",
@@ -219,10 +219,10 @@ export const INGREDIENT_DB = {
   },
   'natural flavoring': {
     evidence: "Under FDA regulation 21 CFR 101.22, 'natural flavor' must be declared on the label, but manufacturers are not required to disclose the specific constituent chemicals in the flavor blend, which may be treated as trade secrets (FDA, 21 CFR 101.22).",
-    risk: 4, category: 'flavor-enhancers',
+    risk: 2, category: 'flavor-enhancers',
     label: 'Natural Flavoring',
     note: 'Umbrella term covering up to 100 undisclosed chemicals. Manufacturers aren\'t required to disclose individual compounds.',
-    flag: 'caution',
+    flag: 'ok',
   },
 
   // ─── Phase 2: artificial dyes & flagged additives (sourced from FDA/EFSA) ───
@@ -353,7 +353,7 @@ export const INGREDIENT_DB = {
     risk: 3, category: 'emulsifiers', label: 'DATEM',
     note: 'A dough-conditioning emulsifier common in commercial bread; widely considered safe at approved levels.',
     evidence: 'JECFA (2004) reviewed a 2-year rat study, found no dose-related lesion pattern, and set an ADI of 0–50 mg/kg body weight. FDA lists DATEM as GRAS (21 CFR 184.1101).',
-    flag: 'moderate', upfMarker: true,
+    flag: 'ok', upfMarker: true,
   },
   'sodium stearoyl lactylate': {
     risk: 3, category: 'emulsifiers', label: 'Sodium Stearoyl Lactylate (SSL)',
@@ -389,7 +389,7 @@ export const INGREDIENT_DB = {
     risk: 3, category: 'additives', label: 'Modified Food Starch',
     note: 'A chemically or enzymatically treated starch used as a thickener and stabilizer; considered safe within regulated limits but offers no nutritional value and is a reliable marker of ultra-processing.',
     evidence: 'FDA permits "food starch-modified" (21 CFR 172.892), which caps the degree of chemical modification. No carcinogenicity or genotoxicity concern has been identified by FDA, EFSA, or JECFA at approved levels.',
-    flag: 'moderate', upfMarker: true,
+    flag: 'ok', upfMarker: true,
   },
   'sodium phosphate': {
     risk: 4, category: 'additives', label: 'Sodium Phosphate',
@@ -448,10 +448,10 @@ export const INGREDIENT_DB = {
     flag: 'caution', upfMarker: true,
   },
   'calcium disodium edta': {
-    risk: 5, category: 'preservatives', label: 'Calcium Disodium EDTA',
+    risk: 3, category: 'preservatives', label: 'Calcium Disodium EDTA',
     note: 'A chelating agent used to preserve color and flavor in canned and processed foods; concerns exist around potential depletion of essential minerals such as zinc and iron at elevated intake.',
     evidence: 'FDA permits it as a food additive (21 CFR 172.120). EFSA opened a formal re-evaluation in June 2024, citing shortcomings in the toxicity database and requesting additional genotoxicity and use-level data.',
-    flag: 'caution', upfMarker: true,
+    flag: 'ok', upfMarker: true,
   },
   'calcium propionate': {
     risk: 3, category: 'preservatives', label: 'Calcium Propionate',
@@ -480,10 +480,10 @@ export const INGREDIENT_DB = {
     flag: 'caution', upfMarker: true,
   },
   'saccharin': {
-    risk: 4, category: 'sweeteners', label: 'Saccharin',
+    risk: 3, category: 'sweeteners', label: 'Saccharin',
     note: 'The oldest artificial sweetener; once required to carry a US cancer-warning label, a requirement repealed after the rodent bladder-tumor mechanism was found not relevant to humans.',
     evidence: 'The US National Toxicology Program delisted saccharin from its Report on Carcinogens (2000); the SWEETEST Act (2000) removed the mandatory warning label. WHO\'s 2023 non-sugar-sweetener guideline advises against use for weight control.',
-    flag: 'moderate', upfMarker: true,
+    flag: 'ok', upfMarker: true,
   },
   'erythritol': {
     risk: 6, category: 'sweeteners', label: 'Erythritol',
@@ -539,13 +539,13 @@ export const INGREDIENT_DB = {
     risk: 3, category: 'flavor-enhancers', label: 'Disodium Inosinate',
     note: 'A purine nucleotide used to amplify umami, almost always paired with glutamates; its presence reliably indicates industrial flavoring, and people managing gout are commonly advised to limit purine-rich additives.',
     evidence: 'FDA classifies disodium inosinate (E631) as GRAS; EFSA authorizes it. As a purine nucleotide, its breakdown produces uric acid, and clinical guidance advises gout/hyperuricemia patients to limit intake.',
-    flag: 'moderate', upfMarker: true,
+    flag: 'ok', upfMarker: true,
   },
   'disodium guanylate': {
     risk: 3, category: 'flavor-enhancers', label: 'Disodium Guanylate',
     note: 'A purine-based flavor enhancer that works synergistically with glutamates to intensify umami; marks foods that rely on industrial flavor amplification.',
     evidence: 'FDA classifies disodium guanylate (E627) as GRAS; EFSA and JECFA authorize it. Due to its purine content, gout-management guidance notes it may raise uric acid and recommends limiting intake.',
-    flag: 'moderate', upfMarker: true,
+    flag: 'ok', upfMarker: true,
   },
   'yeast extract': {
     risk: 3, category: 'flavor-enhancers', label: 'Yeast Extract',
