@@ -222,9 +222,15 @@ CARD_CROPS = {
         "width": 900,
         "y": 430,
     },
+    # Real 100/100 capture (founder re-shot 2026-08-11 after the egg-scoring
+    # fix went live via OTA — the app now genuinely scores Vital Farms 100, so
+    # this replaces the earlier synthetic 96->100 edit). Source is 1170 wide;
+    # the crop leads with the product title and the real 100 score circle
+    # (skips the carton hero band so the card stays short enough to clear the
+    # family's heads at y~1350 in n-kitchen-1.png).
     "vital_farms": {
-        "source": "vital-farms-eggs-hero.png",
-        "box": (40, 330, 1130, 850),
+        "source": "vital-farms-eggs-100.png",
+        "box": (0, 720, 1170, 1310),
         "width": 900,
         "y": 540,
     },
