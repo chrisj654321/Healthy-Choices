@@ -29,6 +29,14 @@ const DEFAULT_CONFIG = Object.freeze({
     safeZone: { top: 180, right: 240, bottom: 420, left: 96 },
     quality: 92,
   },
+  visualReview: {
+    primaryTextZone: 'center-safe-panel',
+    requireSlideVisualBrief: true,
+    requireReuseRationale: true,
+    maxSourceAssetUses: 2,
+    requiredCaptureStyle: 'casual_iphone_photo',
+    allowedSlideshowAssetRights: ['founder_created', 'ai_generated'],
+  },
   costControls: {
     weeklyBudgetUsd: 30,
     maxSlideshowUsd: 3,

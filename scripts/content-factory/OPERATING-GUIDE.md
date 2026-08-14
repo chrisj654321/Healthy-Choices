@@ -24,10 +24,18 @@ For live Buffer drafts, set these environment variables locally:
 ```text
 BUFFER_API_KEY=
 BUFFER_CHANNEL_ID=
-CONTENT_ASSET_BASE_URL=https://your-stable-public-media-host.example/content
+SUPABASE_SERVICE_ROLE_KEY=
+CONTENT_ASSET_BASE_URL=https://your-project.supabase.co/storage/v1/object/public/food-expose-content
 ```
 
-`CONTENT_ASSET_BASE_URL` must serve direct, public, permanent HTTPS files. Buffer does not accept file uploads or private preview links.
+Keep the service-role key only in `.env`; never place it in app code, chat, or Git. The content bucket must be public so Buffer can retrieve media, while the service-role key authorizes local uploads.
+
+Verify Buffer and Storage once:
+
+```powershell
+npm.cmd run content:buffer-channels
+npm.cmd run content:upload-assets -- --test
+```
 
 ## Weekly Workflow
 
@@ -101,7 +109,23 @@ npm run content:review -- --independent C:\path\to\reviews.json
 
 Both checks must pass before the review board allows final founder approval.
 
-### 6. Buffer Drafts
+### 6. Media Upload
+
+After final founder approval, inspect the upload paths:
+
+```powershell
+npm.cmd run content:upload-assets -- --dry-run
+```
+
+Then upload founder-approved media and verify every public URL:
+
+```powershell
+npm.cmd run content:upload-assets
+```
+
+Uploads are resumable and overwrite the same package slug and file name instead of creating duplicates.
+
+### 7. Buffer Drafts
 
 Always inspect a dry run first:
 
@@ -117,7 +141,7 @@ npm run content:buffer-drafts
 
 This creates Buffer **drafts** with notification publishing. It does not schedule or publish them. Use notification publishing when TikTok-native audio, effects, or final disclosures must be added in the TikTok app.
 
-### 7. Metrics
+### 8. Metrics
 
 Import 2-hour, 24-hour, and 7-day CSV or JSON snapshots:
 
@@ -164,7 +188,7 @@ The review board can approve or reject each draft. Approval only marks it ready 
 - The review board binds to `127.0.0.1`, so it is not exposed to the network.
 - No code automates comments, likes, replies, follows, or fake engagement.
 - AI visuals use generic packaging unless product media is founder-created, licensed, or independently cleared.
-- Realistic AI videos require TikTok’s AI disclosure. Content promoting Food Exposé requires commercial-content disclosure.
+- Realistic AI videos require TikTok's AI disclosure. Content promoting Food Exposé requires commercial-content disclosure.
 
 ## Verification
 

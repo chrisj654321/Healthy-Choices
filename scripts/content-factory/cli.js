@@ -2,10 +2,16 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
+const envPath = path.join(process.cwd(), '.env');
+if (fs.existsSync(envPath) && typeof process.loadEnvFile === 'function') {
+  process.loadEnvFile(envPath);
+}
+
 const {
   buildBufferDraftInput,
   createBufferDraft,
   exportBufferFallback,
+  listBufferChannels,
 } = require('./buffer');
 const { importClaims } = require('./claims');
 const { importCommunityTasks, readCommunityTasks } = require('./community');
@@ -34,7 +40,12 @@ const {
   markQaPassed,
   saveDeterministicReview,
 } = require('./review');
+const { auditPackageVisuals } = require('./visual-audit');
 const { startReviewBoard } = require('./server');
+const {
+  testStorageConnection,
+  uploadPackageAssets,
+} = require('./storage');
 const { parseArgs, readJson, toBoolean, writeJson } = require('./utils');
 
 function output(value) {
@@ -322,6 +333,43 @@ async function commandBuffer(db, config, args) {
   output({ fallback, results });
 }
 
+async function commandUploadAssets(db, args) {
+  if (toBoolean(args.test)) {
+    output(await testStorageConnection({ dryRun: toBoolean(args.dryRun) }));
+    return;
+  }
+
+  const rows = args.id
+    ? [db.prepare('SELECT * FROM packages WHERE id = ?').get(args.id)]
+    : db
+        .prepare(`SELECT * FROM packages WHERE status = 'founder_approved'`)
+        .all();
+  const packages = rows.filter(Boolean);
+  if (!packages.length) {
+    output({
+      uploaded: 0,
+      message: 'No founder-approved packages are waiting for upload.',
+    });
+    return;
+  }
+
+  const results = [];
+  for (const item of packages) {
+    if (item.status !== 'founder_approved') {
+      throw new Error(
+        `Package ${item.id} is ${item.status}; only founder-approved packages may upload.`
+      );
+    }
+    results.push({
+      package_id: item.id,
+      assets: await uploadPackageAssets(item, {
+        dryRun: toBoolean(args.dryRun),
+      }),
+    });
+  }
+  output({ uploaded: results.length, results });
+}
+
 async function main() {
   const [command = 'help', ...rest] = process.argv.slice(2);
   const args = parseArgs(rest);
@@ -350,6 +398,16 @@ async function main() {
       case 'review':
         await commandReview(db, config, args);
         break;
+      case 'visual-audit':
+        output(
+          auditPackageVisuals(
+            db,
+            config,
+            requireArg(args, 'id'),
+            !toBoolean(args.dryRun)
+          )
+        );
+        break;
       case 'founder-decision':
         founderDecision(
           db,
@@ -361,6 +419,12 @@ async function main() {
         break;
       case 'buffer-drafts':
         await commandBuffer(db, config, args);
+        break;
+      case 'buffer-channels':
+        output(await listBufferChannels());
+        break;
+      case 'upload-assets':
+        await commandUploadAssets(db, args);
         break;
       case 'metrics':
         if (toBoolean(args.dryRun)) {
@@ -433,7 +497,10 @@ async function main() {
             'claims --input claims.json',
             'produce [--input concepts.json] [--approve ID] [--id ID]',
             'review [--id ID] [--independent reviews.json]',
+            'visual-audit --id ID [--dry-run]',
             'founder-decision --id ID --approved true|false',
+            'upload-assets [--id ID] [--dry-run] [--test]',
+            'buffer-channels',
             'buffer-drafts [--id ID] [--dry-run]',
             'metrics [--input metrics.csv]',
             'backup',

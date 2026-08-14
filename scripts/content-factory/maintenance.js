@@ -56,6 +56,9 @@ function healthReport(db, config) {
       target: 0.9,
     },
     secrets: {
+      supabase_service_role_configured: Boolean(
+        process.env.SUPABASE_SERVICE_ROLE_KEY
+      ),
       buffer_api_key_configured: Boolean(process.env.BUFFER_API_KEY),
       buffer_channel_configured: Boolean(
         process.env.BUFFER_CHANNEL_ID || config.publishing.bufferChannelId

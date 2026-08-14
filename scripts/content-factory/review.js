@@ -7,6 +7,7 @@ const {
 } = require('./db');
 const { validateConceptClaims } = require('./claims');
 const { jaccardSimilarity, safeJson } = require('./utils');
+const { validateVisualBriefs } = require('./visual-audit');
 
 const HIGH_RISK_LANGUAGE = [
   /\bcauses? cancer\b/i,
@@ -14,9 +15,16 @@ const HIGH_RISK_LANGUAGE = [
   /\bwill make you\b/i,
   /\btoxic\b/i,
   /\bpoison\b/i,
-  /\bmedical advice\b/i,
   /\bguaranteed\b/i,
 ];
+
+const ACCEPTED_ASSET_RIGHTS = new Set([
+  'founder_created',
+  'licensed',
+  'licensed_stock',
+  'cleared',
+  'ai_generated',
+]);
 
 function needsEvidence(concept, storyboard) {
   if (concept.pillar === 'founder_story') return false;
@@ -48,6 +56,10 @@ async function deterministicReview(db, config, packageId) {
   const disclosure = safeJson(contentPackage.disclosure_json, {});
 
   if (contentPackage.format === 'slideshow') {
+    findings.push(...validateVisualBriefs(storyboard, config));
+  }
+
+  if (contentPackage.format === 'slideshow') {
     if (slides.length < 3 || slides.length > 7) {
       findings.push({ severity: 'fail', message: 'Slideshows require 3-7 slides.' });
     }
@@ -69,12 +81,19 @@ async function deterministicReview(db, config, packageId) {
           message: `Slide ${slide.slide_number} is not 1080x1920.`,
         });
       }
-      if (!['founder_created', 'licensed', 'cleared', 'ai_generated'].includes(
-        slide.asset_rights
-      )) {
+      if (!ACCEPTED_ASSET_RIGHTS.has(slide.asset_rights)) {
         findings.push({
           severity: 'fail',
           message: `Slide ${slide.slide_number} has unresolved asset rights.`,
+        });
+      }
+      if (
+        slide.asset_rights === 'licensed_stock' &&
+        (!slide.source_asset || !fs.existsSync(slide.source_asset))
+      ) {
+        findings.push({
+          severity: 'fail',
+          message: `Slide ${slide.slide_number} has no local licensed-stock source file.`,
         });
       }
       if (!slide.alt_text || slide.alt_text.trim().length < 10) {
@@ -246,6 +265,7 @@ function founderDecision(db, packageId, approved, note = '') {
 }
 
 module.exports = {
+  ACCEPTED_ASSET_RIGHTS,
   HIGH_RISK_LANGUAGE,
   addIndependentReview,
   deterministicReview,

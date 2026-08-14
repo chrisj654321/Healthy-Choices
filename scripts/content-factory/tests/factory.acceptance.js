@@ -30,6 +30,14 @@ const {
 const { evaluateFinding } = require('../scoring');
 const { createReviewServer } = require('../server');
 const { assertTransition } = require('../state');
+const { validateVisualBriefs } = require('../visual-audit');
+const { buildSlideSvg } = require('../renderer');
+const { renderBrandedCarousel, validateSpec: validateBrandedSpec } = require('../branded-carousel');
+const {
+  publicObjectUrl,
+  remoteObjectPath,
+  storageConnection,
+} = require('../storage');
 const { writeJson } = require('../utils');
 const sharp = require('sharp');
 
@@ -66,24 +74,49 @@ function verifiedClaim(db, suffix = 'one') {
 }
 
 function storyboard() {
+  const visualBrief = (goal, mustShow, mustNotShow) => ({
+    goal,
+    must_show: mustShow,
+      must_not_show: mustNotShow,
+      text_zone: 'center-safe-panel',
+      capture_style: 'casual_iphone_photo',
+      label_treatment: 'locally_composited_complete_label',
+      overlay_style: 'single_integrated_overlay',
+      proof: 'The visual is planned to directly demonstrate the main slide message.',
+  });
   return [
     {
       headline: 'The label detail most shoppers miss',
       body: 'A practical and non-alarmist opening.',
       theme: 'green',
       asset_rights: 'ai_generated',
+      visual_brief: visualBrief(
+        'Open with a package label that makes the topic concrete.',
+        ['a generic package back panel', 'a visible label detail'],
+        ['an unrelated lifestyle scene']
+      ),
     },
     {
       headline: 'Read the entire context',
       body: 'Check serving size, ingredients, and purpose together.',
       theme: 'evidence',
       asset_rights: 'ai_generated',
+      visual_brief: visualBrief(
+        'Show the label areas being read together.',
+        ['serving size', 'ingredients', 'nutrition context'],
+        ['a generic unrelated food photo']
+      ),
     },
     {
       headline: 'Choose what fits your family',
       body: 'Use the information without fear or fake certainty.',
       theme: 'warning',
       asset_rights: 'ai_generated',
+      visual_brief: visualBrief(
+        'End with a realistic family decision moment.',
+        ['a family comparing food choices', 'a practical grocery context'],
+        ['fear-based imagery']
+      ),
     },
   ];
 }
@@ -129,6 +162,174 @@ test('state machine blocks unsafe skips', () => {
     () => assertTransition('qa_passed', 'buffer_draft'),
     /Invalid content state transition/
   );
+});
+
+test('visual audit blocks a slideshow with no image-specific brief', () => {
+  const context = testContext();
+  try {
+    const findings = validateVisualBriefs(
+      [{ headline: 'Generic slide', body: 'This should not pass on copy alone.' }],
+      context.config
+    );
+    assert.equal(findings.some((finding) => /visual_brief/.test(finding.message)), true);
+  } finally {
+    context.close();
+  }
+});
+
+test('visual audit blocks blank label panels even when the brief is otherwise complete', () => {
+  const context = testContext();
+  try {
+    const findings = validateVisualBriefs(
+      [
+        {
+          headline: 'Count the servings',
+          body: 'Read the serving information before judging calories.',
+          asset_rights: 'ai_generated',
+          visual_brief: {
+            goal: 'Show a package serving panel in a realistic kitchen.',
+            must_show: ['generic bottle', 'blank label panel'],
+            must_not_show: ['an unrelated lifestyle image'],
+            text_zone: 'center-safe-panel',
+            capture_style: 'casual_iphone_photo',
+            label_treatment: 'locally_composited_complete_label',
+            overlay_style: 'single_integrated_overlay',
+            proof: 'The package panel should make the serving-size point visible.',
+          },
+        },
+      ],
+      context.config
+    );
+    assert.equal(
+      findings.some((finding) => /blank or placeholder product panel/.test(finding.message)),
+      true
+    );
+  } finally {
+    context.close();
+  }
+});
+
+test('photo slides render one integrated overlay rather than a detached badge stack', () => {
+  const context = testContext();
+  try {
+    const svg = buildSlideSvg(
+      {
+        headline: 'Check the label',
+        body: 'Use the information in context.',
+        visual_badge: ['EXAMPLE', 'Servings per container: 5'],
+        visual_badge_style: 'success',
+      },
+      context.config,
+      0,
+      7,
+      true
+    );
+    assert.equal(svg.includes('<rect x="76" y="198"'), false);
+    assert.equal(svg.includes('Servings per container: 5'), true);
+  } finally {
+    context.close();
+  }
+});
+
+test('branded carousel rejects generic cards and renders named verified products', async () => {
+  const context = testContext();
+  try {
+    const invalid = validateBrandedSpec({
+      title: 'Bad products',
+      slides: [
+        {
+          type: 'grid',
+          headline: 'Avoid',
+          verdict: 'avoid',
+          products: [
+            {
+              brand: 'Generic',
+              name: 'Placeholder',
+              variant: 'Unknown',
+              barcode: '1',
+              image_path: 'missing.png',
+              image_origin: 'retailer',
+              image_source_url: 'https://example.com/image',
+              asset_rights: 'editorial_product_reference',
+              reason: 'Missing evidence.',
+              claim_ids: ['claim_1'],
+            },
+          ],
+        },
+      ],
+    });
+    assert.equal(invalid.some((error) => /generic or placeholder/.test(error)), true);
+
+    const imagePath = path.join(context.root, 'known-product.png');
+    await sharp({ create: { width: 300, height: 460, channels: 4, background: '#E9C45A' } })
+      .png()
+      .toFile(imagePath);
+    const product = (barcode, name) => ({
+      brand: 'Kettle Brand',
+      name,
+      variant: '5 oz bag',
+      barcode,
+      image_path: imagePath,
+      image_origin: 'founder_created',
+      image_source_url: 'file://fixture',
+      asset_rights: 'founder_created',
+      reason: 'Fixture reason with verified source.',
+      claim_ids: ['claim_fixture'],
+    });
+    const output = path.join(context.root, 'brand-grid');
+    const slides = await renderBrandedCarousel(
+      {
+        title: 'Snack swaps',
+        slides: [
+          { type: 'cover', headline: 'Snack swaps', body: 'Three named products to compare.' },
+          {
+            type: 'grid',
+            headline: 'Better choices',
+            verdict: 'better',
+            products: [
+              product('841001', 'Sea Salt Potato Chips'),
+              product('841002', 'Avocado Oil Chips'),
+              product('841003', 'Himalayan Salt Chips'),
+            ],
+          },
+          { type: 'cta', headline: 'Scan the next one', body: 'Use Food Exposé to compare the label.' },
+        ],
+      },
+      output
+    );
+    assert.equal(slides.length, 3);
+    const metadata = await sharp(slides[1]).metadata();
+    assert.equal(metadata.width, 1080);
+    assert.equal(metadata.height, 1920);
+  } finally {
+    context.close();
+  }
+});
+
+test('visual audit blocks the same source image after two uses', () => {
+  const context = testContext();
+  try {
+    const visualBrief = {
+      goal: 'Show a package label from a useful angle.',
+      must_show: ['a packaged food label'],
+      must_not_show: ['an unrelated stock photo'],
+      text_zone: 'center-safe-panel',
+      capture_style: 'casual_iphone_photo',
+      label_treatment: 'real_photo',
+      overlay_style: 'single_integrated_overlay',
+      proof: 'The package label directly supports the slide copy.',
+    };
+    const slides = [1, 2, 3].map((number) => ({
+      headline: `Slide ${number}`,
+      source_asset: 'assets/same-photo.jpg',
+      asset_reuse_rationale: 'This is an intentional product inspection.',
+      visual_brief: visualBrief,
+    }));
+    const findings = validateVisualBriefs(slides, context.config);
+    assert.equal(findings.some((finding) => /maximum is 2/.test(finding.message)), true);
+  } finally {
+    context.close();
+  }
 });
 
 test('research rejects stale and duplicate findings and preserves fallback inventory', () => {
@@ -371,5 +572,37 @@ test('research dry run validates input without writing findings', () => {
     db.close();
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('Supabase asset paths match the public Buffer URLs', () => {
+  const previousBase = process.env.CONTENT_ASSET_BASE_URL;
+  const previousKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  try {
+    process.env.CONTENT_ASSET_BASE_URL =
+      'https://project.supabase.co/storage/v1/object/public/food-expose-content';
+    process.env.SUPABASE_SERVICE_ROLE_KEY = 'test-service-key';
+    const connection = storageConnection();
+    const objectPath = remoteObjectPath(
+      connection,
+      'label-context',
+      'slide-01.jpg'
+    );
+    assert.equal(objectPath, 'label-context/slide-01.jpg');
+    assert.equal(
+      publicObjectUrl(connection, objectPath),
+      'https://project.supabase.co/storage/v1/object/public/food-expose-content/label-context/slide-01.jpg'
+    );
+  } finally {
+    if (previousBase === undefined) {
+      delete process.env.CONTENT_ASSET_BASE_URL;
+    } else {
+      process.env.CONTENT_ASSET_BASE_URL = previousBase;
+    }
+    if (previousKey === undefined) {
+      delete process.env.SUPABASE_SERVICE_ROLE_KEY;
+    } else {
+      process.env.SUPABASE_SERVICE_ROLE_KEY = previousKey;
+    }
   }
 });

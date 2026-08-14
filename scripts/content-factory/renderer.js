@@ -120,23 +120,87 @@ function renderTextLines(lines, x, startY, options = {}) {
     .join('\n');
 }
 
+function renderVisualBadge(lines, style = 'neutral') {
+  if (!Array.isArray(lines) || lines.length === 0) return '';
+  const palette = {
+    neutral: { fill: '#FFFFFF', accent: '#3568A8', text: '#182B42' },
+    success: { fill: '#F1FFF7', accent: '#1D9E75', text: '#12342C' },
+    warning: { fill: '#FFF6EE', accent: '#D96B2B', text: '#3A271E' },
+  }[style] || { fill: '#FFFFFF', accent: '#3568A8', text: '#182B42' };
+  const badgeLines = lines.slice(0, 3);
+  const badgeHeight = 70 + badgeLines.length * 46;
+
+  return `
+    <rect x="76" y="198" width="928" height="${badgeHeight}" rx="28" fill="${palette.fill}" opacity="0.96"/>
+    <rect x="108" y="236" width="90" height="10" rx="5" fill="${palette.accent}"/>
+    ${badgeLines
+      .map((line, index) => {
+        const isFirst = index === 0;
+        return `<text x="108" y="${294 + index * 46}" font-family="Arial, Helvetica, sans-serif" font-size="${
+          isFirst ? 27 : 35
+        }" font-weight="${isFirst ? 800 : 700}" fill="${palette.text}">${escapeXml(line)}</text>`;
+      })
+      .join('\n')}
+  `;
+}
+
+function renderInlineEvidence(lines, style = 'neutral') {
+  if (!Array.isArray(lines) || lines.length === 0) return '';
+  const palette = {
+    neutral: { accent: '#9EC6F8', text: '#EAF3FF' },
+    success: { accent: '#6FE0B5', text: '#ECFFF6' },
+    warning: { accent: '#FFC28E', text: '#FFF6EE' },
+  }[style] || { accent: '#9EC6F8', text: '#EAF3FF' };
+
+  return lines
+    .slice(0, 2)
+    .map((line, index) => {
+      const size = index === 0 ? 24 : 31;
+      const weight = index === 0 ? 800 : 700;
+      const fill = index === 0 ? palette.accent : palette.text;
+      return `<text x="96" y="${560 + index * 42}" font-family="Arial, Helvetica, sans-serif" font-size="${size}" font-weight="${weight}" fill="${fill}">${escapeXml(line)}</text>`;
+    })
+    .join('\n');
+}
+
 function buildSlideSvg(slide, config, index, total, hasSourceAsset = false) {
   const { width, height, safeZone } = config.rendering;
   const theme = THEMES[slide.theme] || THEMES.green;
   const contentWidth = width - safeZone.left - safeZone.right;
-  const headlineSize =
-    slide.headline.length > 100 ? 56 : slide.headline.length > 65 ? 64 : 72;
+  const panelY = hasSourceAsset ? Math.max(safeZone.top + 650, 830) : safeZone.top;
+  const panelHeight = height - panelY - safeZone.bottom;
+  const headlineSize = hasSourceAsset
+    ? slide.headline.length > 38
+      ? 58
+      : 68
+    : slide.headline.length > 100
+      ? 56
+      : slide.headline.length > 65
+        ? 64
+        : 72;
   const headlineLines = wrapText(
     slide.headline,
     Math.max(18, Math.floor(contentWidth / (headlineSize * 0.53)))
   );
-  const headlineY = safeZone.top + 180;
-  const bodyY =
-    headlineY + headlineLines.length * Math.round(headlineSize * 1.15) + 90;
   const bodyLines = wrapText(
     slide.body || '',
-    Math.max(24, Math.floor(contentWidth / 30))
+    hasSourceAsset
+      ? Math.max(28, Math.floor(contentWidth / 22))
+      : Math.max(24, Math.floor(contentWidth / 30))
   );
+  const headlineLineHeight = Math.round(headlineSize * 1.15);
+  const footerY = hasSourceAsset ? 1110 : height - safeZone.bottom + 95;
+  const headlineY = hasSourceAsset
+    ? 690
+    : panelY + 150;
+  const bodyY = hasSourceAsset
+    ? 910
+    : headlineY + headlineLines.length * headlineLineHeight + 90;
+  const textX = hasSourceAsset ? safeZone.left : safeZone.left + 48;
+  const textColor = hasSourceAsset ? '#FFFFFF' : theme.text;
+  const bodyColor = hasSourceAsset ? '#F0F7F4' : theme.muted;
+  const footerColor = hasSourceAsset ? '#FFFFFF' : theme.accent;
+  const accentY = hasSourceAsset ? 510 : panelY + 54;
 
   const footer =
     index === total - 1
@@ -145,35 +209,51 @@ function buildSlideSvg(slide, config, index, total, hasSourceAsset = false) {
 
   return `
   <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">
+    <defs>
+      <linearGradient id="photoShade" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#102C25" stop-opacity="0.05"/>
+        <stop offset="42%" stop-color="#102C25" stop-opacity="0.18"/>
+        <stop offset="100%" stop-color="#071510" stop-opacity="0.62"/>
+      </linearGradient>
+    </defs>
     <rect width="${width}" height="${height}" fill="${theme.background}" ${
-      hasSourceAsset ? 'opacity="0.22"' : ''
+      hasSourceAsset ? 'opacity="0.20"' : ''
     }/>
     ${
       hasSourceAsset
-        ? `<rect width="${width}" height="${height}" fill="#102C25" opacity="0.20"/>`
+        ? `<rect width="${width}" height="${height}" fill="url(#photoShade)"/>`
         : ''
     }
-    <circle cx="${width - 130}" cy="130" r="210" fill="${theme.accentSoft}" opacity="0.72"/>
-    <rect x="${safeZone.left}" y="${safeZone.top}" width="${contentWidth}"
-      height="${height - safeZone.top - safeZone.bottom}" rx="24" fill="${theme.panel}"/>
-    <rect x="${safeZone.left + 48}" y="${safeZone.top + 54}" width="112" height="12"
+    ${hasSourceAsset ? renderInlineEvidence(slide.visual_badge, slide.visual_badge_style) : ''}
+    ${
+      hasSourceAsset
+        ? ''
+        : `<circle cx="${width - 130}" cy="130" r="210" fill="${theme.accentSoft}" opacity="0.72"/>`
+    }
+    ${
+      hasSourceAsset
+        ? ''
+        : `<rect x="${safeZone.left}" y="${panelY}" width="${contentWidth}"
+          height="${panelHeight}" rx="24" fill="${theme.panel}" opacity="0.97"/>`
+    }
+    <rect x="${textX}" y="${accentY}" width="112" height="12"
       rx="6" fill="${theme.accent}"/>
-    ${renderTextLines(headlineLines, safeZone.left + 48, headlineY, {
+    ${renderTextLines(headlineLines, textX, headlineY, {
       fontSize: headlineSize,
-      fill: theme.text,
+      fill: textColor,
       weight: 800,
       maxLines: 6,
     })}
-    ${renderTextLines(bodyLines, safeZone.left + 48, bodyY, {
-      fontSize: 34,
-      lineHeight: 49,
-      fill: theme.muted,
+    ${renderTextLines(bodyLines, textX, bodyY, {
+      fontSize: hasSourceAsset ? 40 : 34,
+      lineHeight: hasSourceAsset ? 54 : 49,
+      fill: bodyColor,
       weight: 500,
       maxLines: 9,
     })}
-    <text x="${safeZone.left + 48}" y="${height - safeZone.bottom + 95}"
+    <text x="${textX}" y="${footerY}"
       font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700"
-      fill="${theme.accent}">${escapeXml(footer)}</text>
+      fill="${footerColor}">${escapeXml(footer)}</text>
   </svg>`;
 }
 
@@ -189,6 +269,8 @@ async function renderSlide(slide, outputPath, config, index, total) {
           fit: 'cover',
           position: 'centre',
         })
+        .modulate({ brightness: 1.03, saturation: 1.08 })
+        .sharpen({ sigma: 0.8 })
         .composite([{ input: Buffer.from(svg), blend: 'over' }])
     : sharp(Buffer.from(svg));
   await pipeline
@@ -226,5 +308,6 @@ module.exports = {
   buildSlideSvg,
   renderSlide,
   renderStoryboard,
+  renderInlineEvidence,
   wrapText,
 };

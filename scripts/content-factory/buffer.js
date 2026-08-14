@@ -17,6 +17,78 @@ mutation CreateDraftPost($input: CreatePostInput!) {
   }
 }`;
 
+async function bufferRequest(query, variables = {}) {
+  const apiKey = process.env.BUFFER_API_KEY;
+  if (!apiKey) {
+    throw new Error(
+      'BUFFER_API_KEY is missing. Add it to the local .env file first.'
+    );
+  }
+
+  const response = await fetch(BUFFER_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({ query, variables }),
+  });
+  const payload = await response.json();
+  if (!response.ok || payload.errors?.length) {
+    throw new Error(
+      payload.errors?.map((error) => error.message).join('; ') ||
+        `Buffer returned HTTP ${response.status}.`
+    );
+  }
+  return payload.data;
+}
+
+async function listBufferChannels() {
+  const organizationData = await bufferRequest(`
+    query GetOrganizations {
+      account {
+        organizations {
+          id
+          name
+        }
+      }
+    }
+  `);
+  const organizations = organizationData.account?.organizations || [];
+  const results = [];
+
+  for (const organization of organizations) {
+    const channelData = await bufferRequest(
+      `
+        query GetChannels($organizationId: OrganizationId!) {
+          channels(input: { organizationId: $organizationId }) {
+            id
+            name
+            displayName
+            service
+            isDisconnected
+            isLocked
+          }
+        }
+      `,
+      { organizationId: organization.id }
+    );
+    results.push({
+      organization: {
+        id: organization.id,
+        name: organization.name,
+      },
+      channels: channelData.channels || [],
+    });
+  }
+
+  return {
+    instructions:
+      'Copy the id from the TikTok channel into BUFFER_CHANNEL_ID in .env.',
+    organizations: results,
+  };
+}
+
 function publicAssetUrl(config, contentPackage, localPath) {
   const base = String(
     process.env.CONTENT_ASSET_BASE_URL ||
@@ -186,5 +258,6 @@ module.exports = {
   buildBufferDraftInput,
   createBufferDraft,
   exportBufferFallback,
+  listBufferChannels,
   publicAssetUrl,
 };

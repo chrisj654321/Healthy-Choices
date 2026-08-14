@@ -364,6 +364,11 @@ function insertPackage(db, contentPackage) {
       @generation_cost, @status, @created_at, @updated_at
     )
     ON CONFLICT(slug) DO UPDATE SET
+      package_type = excluded.package_type,
+      package_dir = excluded.package_dir,
+      caption_tiktok = excluded.caption_tiktok,
+      caption_reels = excluded.caption_reels,
+      caption_shorts = excluded.caption_shorts,
       asset_manifest_json = excluded.asset_manifest_json,
       disclosure_json = excluded.disclosure_json,
       generation_cost = excluded.generation_cost,
