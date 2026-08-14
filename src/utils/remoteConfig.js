@@ -28,7 +28,7 @@
  *     then to null/defaults — never a blank state, never a thrown error.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { fetchWithTimeout } from './fetchWithTimeout';
+import { fetchWithTimeout, isAbortError } from './fetchWithTimeout';
 import { captureException } from './sentry';
 
 // Hosted in the same "Catalog" Supabase Storage bucket as REMOTE_DB_URL
@@ -109,7 +109,14 @@ async function loadManifest() {
 
     return validated;
   } catch (error) {
-    captureException(error, { function: 'remoteConfig.loadManifest' });
+    // A timeout/background abort — our own AbortController firing, or the OS
+    // canceling the request when the app is backgrounded — is an EXPECTED
+    // condition, not a failure: we fall back to the cached manifest below
+    // either way. Reporting it to Sentry at error level is pure noise that
+    // buries real failures, so skip the capture for aborts/cancellations.
+    if (!isAbortError(error)) {
+      captureException(error, { function: 'remoteConfig.loadManifest' });
+    }
 
     try {
       return await loadLastGoodManifestFromCache();

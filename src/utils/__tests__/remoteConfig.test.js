@@ -16,7 +16,12 @@ jest.mock('@react-native-async-storage/async-storage', () =>
   require('@react-native-async-storage/async-storage/jest/async-storage-mock')
 );
 
-jest.mock('../fetchWithTimeout', () => ({ fetchWithTimeout: jest.fn() }));
+jest.mock('../fetchWithTimeout', () => ({
+  fetchWithTimeout: jest.fn(),
+  // Keep the real abort detector — remoteConfig uses it to decide what is
+  // Sentry-worthy; mocking it away would defeat the test below.
+  isAbortError: jest.requireActual('../fetchWithTimeout').isAbortError,
+}));
 jest.mock('../sentry', () => ({ captureException: jest.fn() }));
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -79,6 +84,47 @@ describe('network unreachable', () => {
     const { getRemoteManifest } = loadRemoteConfig();
 
     await expect(getRemoteManifest()).resolves.toEqual(goodManifest);
+  });
+});
+
+// ─── expected aborts/cancellations are NOT Sentry noise ─────────────────────
+
+describe('timeout / background cancellations are not reported to Sentry', () => {
+  test('a "Fetch request has been canceled" rejection falls back WITHOUT capturing to Sentry', async () => {
+    // The exact shape seen in production: the 8s AbortController timeout fires
+    // late (JS timers freeze while the app is backgrounded), aborting the
+    // manifest fetch. Expected, not a failure.
+    fetchWithTimeout.mockRejectedValue(new Error('fetch failed: Fetch request has been canceled'));
+    const { getRemoteManifest } = loadRemoteConfig();
+
+    await expect(getRemoteManifest()).resolves.toBeNull();
+    expect(captureException).not.toHaveBeenCalledWith(
+      expect.any(Error),
+      expect.objectContaining({ function: 'remoteConfig.loadManifest' })
+    );
+  });
+
+  test('a standard AbortError still falls back to the cached manifest, no capture', async () => {
+    const goodManifest = { dbVersion: '2026-09-01-1', dbUrl: VALID_DB_URL, config: {} };
+    await AsyncStorage.setItem(CACHE_KEY, JSON.stringify(goodManifest));
+    const abort = new Error('aborted');
+    abort.name = 'AbortError';
+    fetchWithTimeout.mockRejectedValue(abort);
+    const { getRemoteManifest } = loadRemoteConfig();
+
+    await expect(getRemoteManifest()).resolves.toEqual(goodManifest);
+    expect(captureException).not.toHaveBeenCalled();
+  });
+
+  test('a genuine network failure is STILL captured (guard did not over-suppress)', async () => {
+    fetchWithTimeout.mockRejectedValue(new Error('network down'));
+    const { getRemoteManifest } = loadRemoteConfig();
+
+    await expect(getRemoteManifest()).resolves.toBeNull();
+    expect(captureException).toHaveBeenCalledWith(
+      expect.any(Error),
+      expect.objectContaining({ function: 'remoteConfig.loadManifest' })
+    );
   });
 });
 
