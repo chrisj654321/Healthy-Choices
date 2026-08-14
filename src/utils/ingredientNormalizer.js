@@ -1,7 +1,7 @@
 /**
  * Shared ingredient-text normalizer used by BOTH the app runtime parser
  * (src/utils/productParser.js) and the build-time catalog ingestor
- * (scripts/ingest-products.js). Pure CommonJS-compatible module — no RN
+ * (scripts/catalog-database/ingest-products.js). Pure CommonJS-compatible module — no RN
  * imports — so it can be required from plain Node scripts as well as
  * bundled by Metro.
  *
@@ -243,7 +243,7 @@ function normalizeIngredientTokens(rawText) {
 // ─── Plausibility gate + fuzzy rescue ────────────────────────────────────────
 
 // Bare punt fragments that show up from OCR/parsing artifacts. Mirrors the
-// PERMANENTLY_UNCLASSIFIABLE set in scripts/ingredient-coverage.js (confirmed
+// PERMANENTLY_UNCLASSIFIABLE set in scripts/ingredients/ingredient-coverage.js (confirmed
 // unclassifiable across Wave 1/2 review — OCR noise/parser artifacts).
 const PUNT_FRAGMENTS = new Set(['', 'slat', 'ntss 31']);
 

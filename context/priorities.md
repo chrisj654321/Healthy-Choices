@@ -32,7 +32,7 @@ _Updated 2026-07-30: founder wanted to see the Living Conditions feature but isn
 - Local `main` is **27 commits ahead of `origin/main`** (everything since `af5d7f6`, including all of the above) — push before building if your EAS build source is GitHub-linked rather than local-CLI upload.
 - App Store Connect privacy label additions (Device ID → "Data Not Linked to You", Used for Tracking = No; Name) were flagged 2026-07-26 as still outstanding — re-check before submitting, can't verify from here.
 
-**Immediately AFTER the build ships:** upload `products.db` (`node scripts/upload-products-db.js`) and bump `DB_VERSION`. Not before — the rebuilt catalog references company records that only exist in the new binary, so a fresh install of the older live version would show blank company pages.
+**Immediately AFTER the build ships:** upload `products.db` (`node scripts/catalog-database/upload-products-db.js`) and bump `DB_VERSION`. Not before — the rebuilt catalog references company records that only exist in the new binary, so a fresh install of the older live version would show blank company pages.
 
 ---
 

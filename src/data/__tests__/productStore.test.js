@@ -1,7 +1,7 @@
 /**
  * Characterization tests for src/data/productStore.js — Wave 2 pilot of the
  * product-catalog re-architecture (see context/research-catalog-rearchitecture.md
- * and scripts/verify-productstore-queries.js for the real-schema/real-data
+ * and scripts/catalog-database/verify-productstore-queries.js for the real-schema/real-data
  * proof this file doesn't attempt to duplicate).
  *
  * expo-sqlite and expo-file-system/legacy both wrap native modules that

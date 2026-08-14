@@ -9,7 +9,7 @@ import { normalizeIngredientTokens } from './ingredientNormalizer';
 // ─── Parse ingredient string → array ─────────────────────────────────────────
 // Normalization (paren-flattening, oil-disclosure resolution, advisory-phrase
 // filtering, dedup) lives in ingredientNormalizer.js — shared with the
-// build-time ingest script (scripts/ingest-products.js).
+// build-time ingest script (scripts/catalog-database/ingest-products.js).
 
 export function parseIngredients(p) {
   const text =

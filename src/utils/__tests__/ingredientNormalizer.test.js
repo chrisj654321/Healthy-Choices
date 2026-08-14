@@ -1,7 +1,7 @@
 /**
  * Tests for src/utils/ingredientNormalizer.js — the shared parser used by
  * both the app runtime (productParser.js) and the build-time ingest script
- * (scripts/ingest-products.js).
+ * (scripts/catalog-database/ingest-products.js).
  *
  * Fixtures are taken directly from real founder scan screenshots (see the
  * P0 ingredient data-quality brief): duplicate oils, "Added To Preserve

@@ -15,7 +15,35 @@ _Briefs for Chad (ChatGPT). Claude writes them; the founder pastes them into Cha
 
 ## Active tasks
 
-### INGREDIENT AUDIT — FINISH HELD ITEMS + QUEUE (2026-08-08) — status: DRAFTED
+### INGREDIENT QUEUE — 893 LOOSE MATCHES (2026-08-11) — status: SENT (running via `codex exec`, gpt-5.6-sol medium, session 01a001a1-381d-7bb1)
+**Goal:** Triage the 893 `imported` loose-match tokens in `Next Ingredient Queue.csv` into a final status each, working highest-impact first, in batches of 25.
+
+**What these 893 rows are:** tokens that fuzzy-hit an app ingredient but were NOT confirmed. Your job is the judgment a script cannot do: is the loose hit correct, or is this a real new substance, a label variant, or not an ingredient at all?
+
+**Order:** the file is already sorted by `productFrequency` (how many products use the token), highest first. Work top to bottom. Do NOT skip ahead — the top rows (cocoa 4970, chocolate 4194, vanilla 3572) touch the most products, so they matter most.
+
+**Batch size:** 25 rows per batch. About 36 batches total. Batches 001–005 (the first 117 rows) already carry a batch number; put a batch number (`Batch 006`, `Batch 007`, …) on each later block of 25 as you reach it.
+
+**Per row, decide ONE `currentStatus`** (same five buckets you used before):
+- `known-in-app` — the app already explains this token (check it against `Ingredient Master List.csv` first). No new entry. Fill `normalizedName` with the app key it maps to.
+- `existing-alias` — a label variant of a known ingredient (example: "milk chocolate sugar" → chocolate). Give the parent key in `normalizedName`. No new entry.
+- `new-substance` — a REAL substance the app does not explain yet. Fill `normalizedName`, `risk`, `category`, `explanation` (1–2 plain sentences), and `source` (a primary regulator: FDA / eCFR / EFSA / USDA). This is the only bucket that needs research.
+- `noningredient` — label boilerplate, a process phrase, or OCR junk (example: "preserves freshness", "granular"). No entry; mark so it stops returning.
+- `could_not_verify` — a real-looking token you cannot pin to a confirmed identity or source. Put the reason in `couldNotVerifyReason`. This is a success, not a failure.
+
+**Risk scale:** the app uses three levels only — 2 (Low), 5 (Medium), 8 (High). Give your finer score; Claude maps it (8–10 High, 5–7 Medium, 2–4 Low). Never raise a token to High without a strong cited reason.
+
+**Run all 36 batches in one pass.** Work top to bottom through every `imported` row. Write results back incrementally (do not hold all 893 to the end — save after each batch so a stop leaves finished batches intact). Claude validates the whole file once you finish; nothing merges to the app until Opus review.
+
+**Output file (Chad owns for the run):** `Next Ingredient Queue.csv` — edit only the `imported` rows' `currentStatus`, `normalizedName`, `risk`, `category`, `explanation`, `source`, `couldNotVerifyReason`, `batch`. Do not touch any other row or column, and do not touch any file in `HealthyChoices/`.
+
+**Validation (Claude runs after each batch):** every touched row has a valid `currentStatus`; every `new-substance` has risk + category + explanation + a reachable primary source; no `known-in-app`/`existing-alias` row invented a new entry; `could_not_verify` rows preserved with a reason; row count unchanged (still 2,250 unique). Nothing merges to the app until Opus reviews (creator ≠ reviewer).
+
+**Rules:** no fabrication — `could_not_verify` is a valid answer and a short honest batch beats a padded one; source every new substance to a primary regulator; do not generate a risk from memory (research it); don't touch files outside your list.
+
+### INGREDIENT AUDIT — FINISH HELD ITEMS + QUEUE (2026-08-08) — status: CHAD-DONE / VALIDATED (2026-08-11)
+**Update 2026-08-11:** Chad's sync is in and validated. Task 1 done (60 held resolved: 50 rejected, 10 proposed). Claude merged the 93 reviewed score changes into the app (`6766f0c`, 502/502 tests). Task 2 produced 1,326 known-in-app, 8 aliases, 3 new substances, 13 noningredients, 7 could_not_verify — and left **893 `imported` loose matches** for careful review. That residue is now its own batched brief: see **INGREDIENT QUEUE — 893 LOOSE MATCHES** below.
+
 **Goal:** Finish the two parts of your ingredient audit that Claude could not do for you, now that you are back up.
 
 **Read first — what Claude already put in the app. Do NOT redo this work:**
@@ -48,7 +76,7 @@ _Briefs for Chad (ChatGPT). Claude writes them; the founder pastes them into Cha
 ### INGREDIENT-CACHE UNKNOWNS — WAVE 01 (recurring campaign) — status: MERGED (2026-07-05, 98.10%→98.90% coverage, 196/196 tests, see decision-log)
 **Goal:** Classify the top 150 currently-unrecognized ingredient strings so the app's scorer stops bucketing them as "unrecognized" (they fail every lookup in `src/utils/scorer.js` and fall to a heuristic).
 **Output files (Chad owns these for the run):** `src/data/batches/batch_15_unknowns_w01.js` (new file — do NOT edit `src/data/ingredientCache.js`, `src/data/ingredients.js`, or any other file).
-**Format/schema:** Input list = `scripts/remaining-unknowns.json` (regenerated 2026-07-05 — 150 entries, `{ ingredient, count }`, sorted by occurrence count). For EACH entry, write exactly one line in the output file, matching the existing batch convention (see `src/data/batches/batch_14_bakery.js` for live examples):
+**Format/schema:** Input list = `scripts/ingredients/remaining-unknowns.json` (regenerated 2026-07-05 — 150 entries, `{ ingredient, count }`, sorted by occurrence count). For EACH entry, write exactly one line in the output file, matching the existing batch convention (see `src/data/batches/batch_14_bakery.js` for live examples):
 ```
   'exact input string': { risk: IngredientRisk.Low, category: 'additives', explanation: 'One or two sentences.' },
 ```
@@ -58,7 +86,7 @@ _Briefs for Chad (ChatGPT). Claude writes them; the founder pastes them into Cha
 - `explanation` = plain-English, one–two sentences, in the established voice: what it is + why the risk level, with regulatory framing where it applies (e.g. "FDA GRAS", "21 CFR ...", "IARC ..."). **No apostrophes inside explanations** (single-quoted strings; the merge script is line-parsed — if unavoidable, escape as `\'`).
 - **Many entries are label FRAGMENTS or purpose clauses, not ingredients** ("for color", "to prevent caking", "contains 2 or less of salt", "a natural mold inhibitor"). Classify what the phrase DENOTES at the class level and say so honestly: e.g. `'for color'` → category `dyes`, explanation that it marks an unspecified added colorant whose identity the label does not disclose. Pure quantity/prep fragments ("contains 2 or less of salt", "and salt", "boneless") → classify as the underlying substance/attribute at its established severity (salt is already Low in the cache — stay consistent with existing entries for the same substance).
 - If you genuinely cannot classify an entry on sourced grounds, OMIT it and list it under a `// could_not_verify:` comment block at the end of the file — that is a successful outcome, not a failure.
-**Validation (Claude runs after):** line-regex parse of every entry; keys ⊆ input list, lowercase, unique; category/risk from the allowed sets; harness-eval of the entries as an object literal; then `node scripts/merge-ingredient-batches.js` (dedupes against existing keys), `npm test` (196 tests must stay green), and a rerun of `node scripts/ingredient-coverage.js` — the matched-% delta is this wave's scorecard. Opus spot-review of classifications against sources before the founder commits.
+**Validation (Claude runs after):** line-regex parse of every entry; keys ⊆ input list, lowercase, unique; category/risk from the allowed sets; harness-eval of the entries as an object literal; then `node scripts/ingredients/merge-ingredient-batches.js` (dedupes against existing keys), `npm test` (196 tests must stay green), and a rerun of `node scripts/ingredients/ingredient-coverage.js` — the matched-% delta is this wave's scorecard. Opus spot-review of classifications against sources before the founder commits.
 **Rules:** no fabrication (could_not_verify is success), no invented health effects — sourced/regulatory classifications only, consistent with existing cache entries for the same substance family; don't touch files outside your list; this brief is the standing template — waves 02+ change only the wave number after Claude regenerates the input list.
 
 ### INGREDIENT-CACHE UNKNOWNS — WAVE 02 (recurring campaign) — status: MERGED (2026-07-05, 98.90%→99.11% coverage, 196/196 tests, see decision-log)
@@ -68,10 +96,10 @@ _Briefs for Chad (ChatGPT). Claude writes them; the founder pastes them into Cha
 **Output files:** `src/data/batches/batch_17_unknowns_w03.js`.
 **Routing change (2026-07-05):** run directly via the programmatic `codex exec` lane (`instructions/efficiency.md`'s Codex CLI mechanics) instead of the manual paste-bridge — no founder copy/paste needed. Same model (gpt-5.5), same validation pipeline after (Hadrian mechanical + Opus accuracy, both independent, before merge). Paste-bridge remains available for anything that doesn't fit a single self-contained CLI prompt.
 **Validation:** identical to Waves 01/02.
-**Goal:** Same as Wave 01 — classify the next top-150 unrecognized ingredient strings. `scripts/remaining-unknowns.json` was auto-regenerated as a side effect of Wave 01's coverage re-measure, so it's already fresh (2026-07-05) and ready to use as-is.
+**Goal:** Same as Wave 01 — classify the next top-150 unrecognized ingredient strings. `scripts/ingredients/remaining-unknowns.json` was auto-regenerated as a side effect of Wave 01's coverage re-measure, so it's already fresh (2026-07-05) and ready to use as-is.
 **Output files (Chad owns these for the run):** `src/data/batches/batch_16_unknowns_w02.js` (new file — same rules as Wave 01: do NOT edit `ingredientCache.js`, `ingredients.js`, or any other file).
 **Format/schema:** Identical to Wave 01 — see that brief above for the full spec (key format, allowed risk/category sets, label-fragment handling, could_not_verify rule). One heads-up specific to this wave: the top of the current input list is dominated by the same 6 fragments Wave 01 correctly punted (`'slat'`, `'5'`, `'1'`, `''`, `'3'`, `'ntss 31'`) plus `'4'` — they rank high by occurrence count but are still genuinely unclassifiable (OCR noise / numeric fragments). Punt them again to `could_not_verify` exactly as before — don't force a classification just because they resurfaced. (Note for Claude/founder: worth adding a permanent exclude-list for these specific strings before generating Wave 03's input, so they stop taking up slots in the top-150 every round.)
-**Validation (Claude runs after):** identical pipeline to Wave 01 — line-regex parse, keys check, enum check, harness-eval, `node scripts/merge-ingredient-batches.js`, `npm test` (must stay green), re-run `node scripts/ingredient-coverage.js` for the new coverage delta, independent Opus accuracy review before anything merges.
+**Validation (Claude runs after):** identical pipeline to Wave 01 — line-regex parse, keys check, enum check, harness-eval, `node scripts/ingredients/merge-ingredient-batches.js`, `npm test` (must stay green), re-run `node scripts/ingredients/ingredient-coverage.js` for the new coverage delta, independent Opus accuracy review before anything merges.
 **Rules:** same as Wave 01 — no fabrication, could_not_verify is success, sourced/regulatory classifications only, stay consistent with cache entries for the same substance family across waves (e.g. if Wave 01 classified a fragment a certain way, a related fragment in Wave 02 should match it, not drift).
 
 ### SHOPPING GUIDES V1 — VERIFIED-SOURCES RESEARCH — status: DRAFTED

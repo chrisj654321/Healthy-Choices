@@ -4214,7 +4214,7 @@ export const CACHED_INGREDIENT_ANALYSIS = {
   'canola and or soybean and or palm oil': { risk: IngredientRisk.Low, category: 'oils', explanation: 'Industrially refined oil; a near-universal ingredient in ultra-processed foods.' },
   // --- Researched from the audit queue (2026-08-08): genuinely-new
   // substances, each risk tied to the FDA/eCFR/EFSA citation in its src note.
-  // See scripts/ingredient-audit/add-researched.js for the source list. ---
+  // See scripts/ingredients/add-researched.js for the source list. ---
   'ferric phosphate': { risk: IngredientRisk.Low, category: 'vitamins', explanation: 'An iron compound added to fortify foods like flour and cereal; FDA-affirmed GRAS. A nutrient source, not a contaminant — low concern.' }, // src: 21 CFR 184.1301
   'ferric pyrophosphate': { risk: IngredientRisk.Low, category: 'vitamins', explanation: 'Iron used to fortify foods without changing taste, often in milk powders; FDA-affirmed GRAS. Absorbs less readily than other iron forms but is a safe nutrient.' }, // src: 21 CFR 184.1304
   'disodium pyrophosphate': { risk: IngredientRisk.Medium, category: 'additives', explanation: 'A leavening acid (SAPP) that helps baked goods rise and holds color; FDA-affirmed GRAS. A processed phosphate additive — medium concern mainly for high total phosphate intake.' }, // src: 21 CFR 182.1087

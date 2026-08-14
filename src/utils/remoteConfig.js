@@ -10,7 +10,7 @@
  *   2. A `config` bag of remote feature flags/kill switches, read through
  *      `getFlag(key, defaultValue)` with an in-code default for every flag.
  *
- * See scripts/README-remote-manifest.md for the manifest JSON shape and
+ * See scripts/catalog-database/README-remote-manifest.md for the manifest JSON shape and
  * publish steps.
  *
  * Contract (mirrors productStore.js's "must never throw" rule):

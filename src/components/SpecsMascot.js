@@ -7,7 +7,7 @@ const STATIC_SOURCE = require('../../assets/mascot/specs-standing.png');
 
 // All 5 approved animation clips + the static fallback. Loop-once vs.
 // infinite-loop playback is baked into each WebP's own frame metadata
-// (see scripts/build-mascot-webp.sh) — there is no runtime playback-control
+// (see scripts/media/build-mascot-webp.sh) — there is no runtime playback-control
 // code here at all.
 export const CLIPS = {
   wave: require('../../assets/mascot/webp/specs-wave.webp'),

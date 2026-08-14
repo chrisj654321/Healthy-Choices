@@ -21,10 +21,10 @@ src/data/products_generated.json
 
 # Internal docs / data-pipeline artifacts not needed to build the app
 scripts/ingestion_log.txt
-scripts/files.zip
-scripts/.ingestion_state.json
-business-financials.html
-competitor-pricing.html
+scripts/archive/files.zip
+scripts/catalog-database/.ingestion_state.json
+docs/business-financials.html
+docs/competitor-pricing.html
 web/
 supabase/
 

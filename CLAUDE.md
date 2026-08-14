@@ -18,6 +18,7 @@ iOS food-transparency app (Expo RN): scan a product → health grade, plain-Engl
 | [VISION.md](VISION.md) | Product north star | Every feature and post serves it |
 | [memory/chad-memory.md](memory/chad-memory.md) | Durable Chad/ChatGPT preferences | Follow these defaults when generating prompts, creative concepts, and Chad-owned work |
 | [context/dev-glossary.md](context/dev-glossary.md) | Canonical wording for every technical term taught to the founder | Add a term the first time you use it with him; reuse the exact wording |
+| [context/file-map.md](context/file-map.md) | The one rulebook for where every file lives and where new files go | Put every new file in its job folder per this map; never leave a file loose at the top of `scripts/` or the project root |
 
 Strategy questions assume full knowledge of the folders above. Format outputs in Markdown unless told otherwise. Always reference past decisions before new recommendations.
 
@@ -54,6 +55,12 @@ One definition is not enough. The founder must see a word defined several times 
 - EAS builds and submissions are metered/consequential and stay with the founder — Claude never runs `eas build`/`eas submit`; validate with logic checks and hand off exact commands instead.
 - Check `git status` before editing `src/data/` (Chad, a parallel ChatGPT session, runs product waves there); staging files; commit by explicit path.
 - Scripts for bulk HTTP, agents for judgment. Haiku never generates facts — transform-only (classify/extract/reformat) behind validators.
+
+## File organization (full rulebook in context/file-map.md)
+
+- Two zones. **Zone A — code (never rename/move):** all of `src/`, root config files, `assets/`, `web/`, `supabase/`, `.claude/`, and `CLAUDE.md`/`README.md`/`VISION.md` at root. Moving one breaks the app. **Zone B — workshop (organize freely):** `scripts/`, `docs/`, `context/`, `instructions/`, `memory/`, `marketing/`.
+- **Every new file goes in a job folder. Never leave a file loose at the top of `scripts/` or the project root.** Folders are named after their job, in plain words, lowercase-with-dashes. `scripts/` job folders: `catalog-database/`, `products/`, `ingredients/`, `media/`, `content-factory/` (path locked by package.json — do not move), `archive/` (spent one-offs). Reference docs for people go in `docs/`.
+- When you add a file, follow the "where does a new file go?" list in [context/file-map.md](context/file-map.md). Chad follows the same map.
 
 ## Key machinery
 
