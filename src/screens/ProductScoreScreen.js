@@ -211,8 +211,55 @@ const altS = StyleSheet.create({
   brand: { fontSize: 11, color: '#8AA49E', marginTop: 2 },
 });
 
+// "Best available" ceiling pick — shown instead of the normal Better Picks
+// gallery when the category has no 80+ product at all (see alternatives.js).
+// Deliberately NOT styled like an endorsement (no green, no "cleaner
+// options" framing, not Pro-gated): it's an honest disclosure that even the
+// best option here still misses the 80 bar, so a neutral/tan card with
+// plain-spoken copy and the real number, not a recommendation.
+function CeilingPickSection({ product, item, navigation }) {
+  const onCardPress = () => {
+    Haptics.selectionAsync().catch(() => {});
+    navigation.push('ProductScore', { product: item });
+  };
+  const categoryLabel = product.category && product.category !== 'General' ? product.category : 'category';
+
+  return (
+    <View style={cpS.wrap}>
+      <View style={cpS.headerRow}>
+        <Ionicons name="information-circle-outline" size={15} color="#8AA49E" />
+        <Text style={cpS.header}>Best in this category</Text>
+      </View>
+      <Text style={cpS.desc}>
+        Highest-scored {categoryLabel} we found — still only {item._score}/100. Nothing here clears our 80 bar.
+      </Text>
+      <View style={cpS.cardRow}>
+        <AlternativeCard item={item} onPress={onCardPress} />
+      </View>
+    </View>
+  );
+}
+const cpS = StyleSheet.create({
+  wrap: {
+    marginHorizontal: 16, marginTop: 14, marginBottom: 4,
+    backgroundColor: '#F7F5EF', borderRadius: 14, padding: 14,
+    borderWidth: 1, borderColor: '#EAE3D3',
+  },
+  headerRow: { flexDirection: 'row', alignItems: 'center', gap: 6, marginBottom: 6 },
+  header: { fontSize: 13, fontWeight: '700', color: '#5C7A72' },
+  desc: { fontSize: 13, color: '#6B7B76', lineHeight: 18, marginBottom: 12 },
+  cardRow: { flexDirection: 'row' },
+});
+
 function BetterPicksSection({ product, alternatives, isPro, altShowAll, setAltShowAll, navigation }) {
   if (!alternatives || alternatives.length === 0) return null;
+
+  // Ceiling fallback is always a single item and always sorts first when
+  // present (see alternatives.js) — branch to the honest-disclosure card
+  // instead of the normal "better picks" gallery.
+  if (alternatives[0]?.ceiling) {
+    return <CeilingPickSection product={product} item={alternatives[0]} navigation={navigation} />;
+  }
 
   const FREE_VISIBLE = 2;
   const PRO_VISIBLE = 6;
@@ -350,8 +397,14 @@ export default function ProductScoreScreen({ route, navigation }) {
       logFirstScanIfNeeded().catch(() => {});
     }
 
-    if (grade === 'D' || grade === 'F') {
-      getAlternatives(product, { limit: 12 })
+    // Below the 80 "recommend" bar (and a real score — insufficientData
+    // products don't get an honest score to compare against, so they're
+    // excluded here same as before). getAlternatives() itself decides
+    // whether that resolves to a curated 80+ list or a "best available"
+    // ceiling single-item fallback; either way, alternatives.length > 0
+    // is what actually gates the section (see showBetterPicks below).
+    if (!r.insufficientData && r.score < 80) {
+      getAlternatives(product, { limit: 12, scannedScore: r.score })
         .then(({ alternatives: alts }) => setAlternatives(alts))
         .catch(() => setAlternatives([]));
     }
@@ -515,7 +568,11 @@ export default function ProductScoreScreen({ route, navigation }) {
     }
   };
 
-  const showBetterPicks = (displayGrade === 'D' || displayGrade === 'F') && alternatives.length > 0;
+  // Broadened from the old D/F-only gate: any scan that fetched alternatives
+  // (see the score < 80 trigger above) and actually got a result — whether
+  // that's the curated 80+ list or the single "best available" ceiling pick
+  // — shows this section.
+  const showBetterPicks = alternatives.length > 0;
   // Product-level "how was this raised" card — narrow gate, eggs only for
   // now (see LivingConditionsCard.js / isEggsHousingEligible in
   // sourcingMatch.js, which also excludes plant-based egg substitutes like
@@ -697,7 +754,7 @@ export default function ProductScoreScreen({ route, navigation }) {
           </View>
         )}
 
-        {/* ── 2c: Better picks (D/F grades only) ── */}
+        {/* ── 2c: Better picks (any scan scoring below 80 with a real alternative) ── */}
         {showBetterPicks && (
           <BetterPicksSection
             product={product}

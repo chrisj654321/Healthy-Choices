@@ -36,6 +36,23 @@ _Updated 2026-07-30: founder wanted to see the Living Conditions feature but isn
 
 ---
 
+## P0 — Grading trust + staple-category coverage (2026-08-17)
+
+Kicked off after a catalog audit against the real shipping DB: 1,092 products, only 385 score 80+ (the "recommend" bar; = the old grade-A/B cutoff, `scoreToGrade` maps 80→B/90→A). Four linked workstreams. Full rationale in [decision-log.md](decision-log.md) 2026-08-17.
+
+1. **Scorer accuracy audit (keystone — do first).** Once we surface sub-80 products as "best available," the score IS the product; a wrong score misleads people who trust us. Build a ~40-product reference set with an obvious human verdict, run the scorer (free local script), flag every disagreement. Probe three rules: added-sugar (granola/bars/creamers), fried/oil credit (the avocado-oil hole — scorer treats "avocado oil" as a whole food, `scorer.js:310`), and a hard floor on processed/deli meat. Note: the 2026-07-09 cert overhaul already discounts marketing claims vs. verified certs — that part is sound.
+2. **Empty/low-category display → best-available, labeled honestly (Hadrian).** Founder chose Option B: when a category has no 80+ option, show the single highest-scored product, labeled e.g. *"Highest-scored [category] we found — still only X/100."* Requires relaxing the alternatives query to fall back to best-in-category when no 80+ exists, plus the honest label. Current trigger only fires alternatives on D/F scans (`ProductScoreScreen.js:518`) — revisit as part of this.
+3. **Remove letter grades from the UI (Hadrian).** Founder: never show A/B/C. Show the 0–100 number only; 80+ = recommend. Woven through `ProductScoreScreen.js` — GradeRing display, `scoreToVerdict`, grade-keyed haptics, better-picks trigger. Keep the score-driven logic; remove the letter as a shown value. `scoreToGrade` stays internal (drives color/notes only).
+4. **Staple-category product wave (Chad → review here).** Fill thin staple aisles (coffee creamer, bread, snack bars, granola, + top-ups) to ~12–15 best-of-each, even sub-80, so everyday aisles aren't empty. Brief + curated shortlist on the Chad board. Do AFTER the accuracy audit so we curate with a scorer we trust. Granola only clears 80+ with no-added-sugar products.
+
+**Also queued:** avocado-oil adulteration — verify from primary sources (UC Davis 2020 *Food Control*) BEFORE it becomes a scoring signal or in-app copy. Chad research brief drafted; nothing ships until verified + Opus-reviewed.
+
+## P2 — Paywall: "$0 today" free-trial framing (2026-08-17)
+
+Founder wants the yearly free-trial paywall to lead with **"$0 today"** (nothing charged now) as the prominent value, to lift trial starts. Trial display today reads "3 Days Free, then $49.99/year" via `introOffer()` + `FALLBACK_TRIAL_FINE` in [paywallPricing.js:25](../src/utils/paywallPricing.js), rendered in `PaywallContent.js` (and the exit-offer `OfferContent.js`).
+
+**Compliance rail (do NOT skip):** the 1.2.0 rejection was Apple 3.1.2(c) price-prominence, and Apple's free-trial rule requires the disclosure to still show the real billed amount ("then $49.99/year"). So add "$0 today" as the prominent number ALONGSIDE the required "3 Days Free, then $49.99/year" disclosure — never replace the billed-amount line with just "$0". Keep the RC-metadata override path intact. Small Hadrian task; update `paywallContent.test.js`.
+
 ## P0 — Catalog scale: make company resolution work at 10,000 products
 
 The founder's own framing: curating products one at a time cannot reach the ~10k needed to cover most-consumed goods. Company coverage is **not** a per-product problem — it's a per-owner problem, and that's what makes it tractable.

@@ -375,6 +375,67 @@ export async function getCuratedGradeABCandidates() {
 }
 
 /**
+ * Local copy of alternatives.js's category normalization (strip a leading
+ * "en:" taxonomy tag, trim, lowercase). Duplicated rather than imported —
+ * alternatives.js already imports FROM this file, so importing back would
+ * be circular.
+ */
+function normalizeCategoryForQuery(cat) {
+  if (!cat || typeof cat !== 'string') return null;
+  const stripped = cat.replace(/^en:/i, '').trim().toLowerCase();
+  return stripped || null;
+}
+
+/**
+ * "Best available" ceiling fallback for alternatives.js: the single
+ * highest-scoring product in `category`, regardless of grade/score band
+ * (unlike getCuratedGradeABCandidates, this is NOT restricted to A/B) —
+ * used when a category has no 80+ product at all, so a low-scoring category
+ * (e.g. fried chips) still surfaces the honest best-we-found option instead
+ * of showing nothing. Requires a real photo, like the other alternative
+ * queries. Excludes `excludeBarcode` (the scanned product itself). Rows
+ * with a null `score` (insufficientData products) are excluded — we don't
+ * recommend a product we don't have a real score for.
+ *
+ * The category match happens in SQL here (unlike getCuratedGradeABCandidates,
+ * which leaves it to JS) because this query isn't pre-narrowed to a small
+ * curated A/B subset first — filtering in JS would mean pulling the whole
+ * products table into memory. The `CASE WHEN category LIKE 'en:%'...`
+ * expression mirrors normalizeCategoryForQuery()'s regex (case-insensitive
+ * `^en:` strip, trim, lowercase) on the DB side.
+ *
+ * Returns null on no match, a bad/missing category, or failure/not-ready —
+ * never throws.
+ */
+export async function getBestInCategory(category, excludeBarcode) {
+  await initProductStore();
+  if (!_db) return null;
+
+  const targetCategory = normalizeCategoryForQuery(category);
+  if (!targetCategory) return null;
+
+  const excludeParam = excludeBarcode != null ? String(excludeBarcode) : null;
+
+  try {
+    const row = await _db.getFirstAsync(
+      `SELECT * FROM products
+        WHERE image IS NOT NULL AND image != ''
+          AND score IS NOT NULL
+          AND (? IS NULL OR barcode != ?)
+          AND lower(trim(CASE WHEN category LIKE 'en:%' THEN substr(category, 4) ELSE category END)) = ?
+        ORDER BY score DESC
+        LIMIT 1`,
+      [excludeParam, excludeParam, targetCategory]
+    );
+    if (!row) return null;
+    return { product: rowToProduct(row), score: row.score, grade: row.grade };
+  } catch (error) {
+    captureException(error, { function: 'getBestInCategory', category });
+    return null;
+  }
+}
+
+/**
  * Returns the raw rows of the precomputed spotlight_company_ids summary
  * table — companies that are ALREADY eligible for the weekly spotlight
  * (productCount > 0 AND hasHighIssue; the SQL filter that built this table

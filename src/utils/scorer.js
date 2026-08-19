@@ -380,9 +380,18 @@ function classifyUnknown(name) {
     return { flag: 'caution', risk: 3 };
   }
 
-  // If any significant word is a recognized whole food, treat as natural
+  // If any significant word is a recognized whole food, treat as natural.
+  // Rule 4 exclusion (2026-08-17 form-penalty model): when the candidate is
+  // clearly an OIL (contains the word "oil"), avocado/canola/sunflower/
+  // safflower/soybean/vegetable no longer count as a whole-food word for it
+  // — a whole avocado still does, only the refined oil pressed from it loses
+  // the free pass. See SNACK_FRYING_OIL_NAMES below for the dominant
+  // real-catalog path (exact cache-matched oil names); this covers any
+  // unresolved/garbled oil phrasing that reaches this fallback classifier.
+  const isOilForm = /\boil\b/.test(lower);
   const hasWholeFoodWord = words.some(
-    (w) => w.length > 3 && WHOLE_FOOD_WORDS.has(w)
+    (w) => w.length > 3 && WHOLE_FOOD_WORDS.has(w) &&
+      !(isOilForm && OIL_FORM_EXCLUDED_WHOLE_FOOD_WORDS.has(w))
   );
   if (hasWholeFoodWord) {
     return { flag: 'ok', risk: 0 };
@@ -923,6 +932,211 @@ function calcSourcingAdjustment(product) {
   return 0;
 }
 
+// ─── Form-penalty model (2026-08-17, founder-approved — see decision-log.md) ─
+//
+// Accuracy audit against the live catalog found the scorer rewarded short,
+// clean-looking ingredient LISTS while never asking whether the food's FORM
+// is inherently unhealthy — Lay's Classic 91, Fritos 91, Hebrew National
+// franks 96, Bob Evans pork sausage 96, Applegate deli turkey 96, Boulder
+// Canyon "avocado oil" chips 96. Four rules, all constants below so they stay
+// tunable after the re-grade:
+//   RULE 1 — processed/cured meat -> hard cap 40 (WHO Group 1 carcinogen).
+//   RULE 2 — fried snack -> hard cap 50.
+//   RULE 3 — refined-grain #1 ingredient -> -25 point PENALTY (not a cap).
+//   RULE 4 — snack/frying oils -> neutral, never a positive credit.
+// Deliberately form/ingredient-aware, not a blunt category cap: Simple Mills
+// almond-flour crackers and Mary's Gone whole-grain crackers are neither
+// fried nor refined-grain and must stay high; fresh/whole proteins (plain
+// chicken breast, salmon, ground beef, eggs) are not processed meat and the
+// cap must never touch them.
+
+const PROCESSED_CURED_MEAT_CAP = 40;
+const FRIED_SNACK_CAP = 50;
+const REFINED_GRAIN_PENALTY = 25;
+
+// Escapes regex metacharacters in a literal term, then builds a single
+// case-insensitive word-boundary regex matching any term in the list.
+// Multi-word terms (e.g. "hot dog") match on adjacent words separated by
+// whitespace; word boundaries mean "ham" never matches inside "graham" or
+// "hamburger", and "frank" never matches inside "frankfurter" (no boundary
+// between "frank" and the following letters) — "frankfurter" is its own
+// listed term instead.
+function buildWordBoundaryTester(terms) {
+  const escaped = terms.map((t) =>
+    t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/ /g, '\\s+')
+  );
+  return new RegExp('\\b(' + escaped.join('|') + ')\\b', 'i');
+}
+
+// RULE 1 — PROCESSED / CURED MEAT ─────────────────────────────────────────
+//
+// Trigger (a): nitrate/nitrite anywhere in the ingredient list (sodium
+// nitrite, potassium nitrate, etc.) — the direct WHO Group 1 curing-agent
+// marker.
+const NITRATE_NITRITE_PATTERN = /\bnitr(ate|ite)s?\b/i;
+
+// Trigger (b): a cured/processed-meat term in the product's own name.
+const PROCESSED_CURED_MEAT_NAME_TERMS = [
+  'hot dog', 'frank', 'frankfurter', 'wiener', 'sausage', 'bacon', 'salami',
+  'pepperoni', 'bologna', 'mortadella', 'prosciutto', 'deli meat',
+  'luncheon meat', 'lunch meat', 'ham', 'corned beef', 'pastrami', 'jerky',
+  'kielbasa', 'bratwurst', 'chorizo', 'hot link', 'vienna sausage', 'spam',
+  'potted meat',
+];
+const PROCESSED_CURED_MEAT_NAME_REGEX = buildWordBoundaryTester(PROCESSED_CURED_MEAT_NAME_TERMS);
+
+// Trigger (b, extended) — deli/lunch meat filed under this catalog's own
+// 'Deli & Lunch' / 'Deli Meat' categories. WHO Group 1 covers salted, cured,
+// smoked, or otherwise preserved meat — so a plain "uncured turkey breast"
+// deli slice with no disclosed nitrite still counts; the deli-counter
+// slicing/brining process itself is what WHO classifies, not only the
+// presence of a nitrite label word. Gated on a real meat/poultry word
+// because this same category ALSO holds hummus (Sabra, Cedar's, Hope
+// Foods) in the live catalog — category membership alone is never enough.
+const DELI_LUNCH_MEAT_CATEGORIES = new Set(['deli & lunch', 'deli meat']);
+const DELI_CATEGORY_MEAT_WORDS = ['turkey', 'chicken', 'beef', 'pork', 'ham', 'duck', 'lamb', 'veal'];
+const DELI_CATEGORY_MEAT_WORD_REGEX = buildWordBoundaryTester(DELI_CATEGORY_MEAT_WORDS);
+
+// Two real false positives found during the 2026-08-17 drift audit against
+// the live catalog. Both are stripped from a working copy of the name
+// before the main term regex runs, rather than blocking the whole branch —
+// so a genuine OTHER trigger word elsewhere in the same name still fires
+// normally, and only the specific false-positive phrase is neutralized.
+//
+// (1) "Frank's RedHot Original Cayenne Pepper Sauce" — bare "frank" word-
+// boundary-matches the possessive brand name "Frank's" (the apostrophe is a
+// non-word character, so "Frank" reads as its own whole word). A hot sauce
+// is not a hot dog.
+const FRANK_POSSESSIVE_REGEX = /\bfrank'?s\b/gi;
+
+// (2) "Wonder Classic Enriched Hot Dog Buns" — the literal phrase "hot dog"
+// appears inside a BREAD product's name (a bun to hold a hot dog, not the
+// hot dog itself) and wrongly capped a bread product as processed meat.
+// "frankfurter buns" gets the identical treatment for the same reason.
+const MEAT_BUN_PHRASE_REGEX = /\b(hot\s+dog|frankfurter)\s+buns?\b/gi;
+
+function detectProcessedCuredMeat(product, ingredients) {
+  const name = String(product?.name || '')
+    .replace(FRANK_POSSESSIVE_REGEX, ' ')
+    .replace(MEAT_BUN_PHRASE_REGEX, ' ');
+  const category = String(product?.category || '').toLowerCase().trim();
+
+  if ((ingredients || []).some((ing) => NITRATE_NITRITE_PATTERN.test(String(ing)))) {
+    return true;
+  }
+
+  // A product the catalog's own schema already declares vegan cannot be
+  // meat — real catalog false positive found during the drift audit:
+  // "sausage" in "MorningStar Farms Veggie Sausage Patties" bare-word-
+  // matched Rule 1's name trigger even though it's a soy/wheat-gluten
+  // product with isVegan: true. Scoped to the NAME/category-word triggers
+  // only (not nitrite above) — nitrite itself carries an independent
+  // curing-agent concern even in a rare vegan product that used it.
+  if (product?.isVegan === true) return false;
+
+  if (PROCESSED_CURED_MEAT_NAME_REGEX.test(name)) return true;
+
+  if (DELI_LUNCH_MEAT_CATEGORIES.has(category)) {
+    const hasMeatWord =
+      DELI_CATEGORY_MEAT_WORD_REGEX.test(name) ||
+      (ingredients || []).some((ing) => DELI_CATEGORY_MEAT_WORD_REGEX.test(String(ing)));
+    if (hasMeatWord) return true;
+  }
+
+  return false;
+}
+
+// RULE 2 — FRIED SNACK ────────────────────────────────────────────────────
+//
+// Gated to this catalog's actual chip/snack categories first — without that
+// gate, bare words like "puff" (Gerber baby Puffs), "kettle" (Kettle & Fire
+// bone broth), or "crisp" (Cookie Crisp cereal, "Crispy Chicken Fries") would
+// false-trigger on completely unrelated foods. Fried snacks only — baked
+// crackers are deliberately NOT capped here (Rule 3 handles refined ones).
+const FRIED_SNACK_CATEGORIES = new Set(['chips', 'chips & crackers', 'snacks']);
+const FRIED_SNACK_NAME_TERMS = [
+  'chip', 'chips', 'crisp', 'crisps', 'kettle', 'fried', 'puff', 'puffs',
+  'curl', 'curls', 'pork rind', 'pork rinds',
+];
+const FRIED_SNACK_NAME_REGEX = buildWordBoundaryTester(FRIED_SNACK_NAME_TERMS);
+
+// An explicit "oven baked" claim on the product's own name directly
+// contradicts a fried-form signal (real catalog case: Lay's Oven Baked
+// Original Potato Crisps) — Rule 2 exists to catch FRYING, and the rule's
+// own spec says baked items must not be capped here.
+const OVEN_BAKED_REGEX = /\boven[\s-]?baked\b/i;
+
+function detectFriedSnack(product) {
+  const name = String(product?.name || '');
+  const category = String(product?.category || '').toLowerCase().trim();
+  if (!FRIED_SNACK_CATEGORIES.has(category)) return false;
+  if (OVEN_BAKED_REGEX.test(name)) return false;
+  return FRIED_SNACK_NAME_REGEX.test(name);
+}
+
+// RULE 3 — REFINED-GRAIN BASE ─────────────────────────────────────────────
+//
+// A soft penalty (subtraction, not a cap) so a mostly-good product isn't
+// nuked — only fires when the refined grain is the #1 (primary-by-weight)
+// ingredient. Whole grains, almond/coconut/chickpea/other legume flours,
+// and seed-based bases are never matched.
+const REFINED_GRAIN_FIRST_INGREDIENT_TERMS = [
+  'enriched flour', 'enriched wheat flour', 'enriched bleached flour',
+  'white flour', 'bleached flour', 'white rice flour', 'refined rice flour',
+];
+const REFINED_GRAIN_REGEX = buildWordBoundaryTester(REFINED_GRAIN_FIRST_INGREDIENT_TERMS);
+
+function calcRefinedGrainPenalty(ingredients) {
+  const first = (ingredients || [])[0];
+  if (!first) return 0;
+  return REFINED_GRAIN_REGEX.test(String(first)) ? REFINED_GRAIN_PENALTY : 0;
+}
+
+// RULE 4 — SNACK / FRYING OILS: neutral, never a positive ────────────────
+//
+// (4a) Whole-food-word exclusion: a whole avocado, whole soybeans, or
+// sunflower seeds are real whole foods and keep their WHOLE_FOOD_WORDS
+// credit in classifyUnknown() below — but the refined OIL pressed from them
+// is a processed ingredient, not a whole food, so these specific words must
+// not grant a free "natural" pass when the candidate string is clearly an
+// oil (contains the word "oil"). Scoped to exactly the oils named in the
+// approved rule.
+const OIL_FORM_EXCLUDED_WHOLE_FOOD_WORDS = new Set([
+  'avocado', 'canola', 'sunflower', 'safflower', 'soybean', 'vegetable',
+]);
+
+// (4b) The real-catalog mechanism this rule exists to close: several of
+// these oils (avocado oil, and "high oleic"/"expeller pressed" qualified
+// variants) already resolve via the ingredient cache to a genuinely Low
+// risk/'ok' flag — correct on pure nutrition grounds, but because cache-
+// sourced ingredients never fed the UPF-marker system (only DB-sourced ones
+// did, see dbEntryIsMarker below), a chip whose only "processed-looking"
+// ingredient was a claimed frying oil could reach the same whole-food-clean
+// ceiling as an actual raw whole food. This list forces every listed oil —
+// regardless of its own risk tier — to always count as a processing marker,
+// so it can never make a product "wholeFoodClean" on its own. This does NOT
+// change any oil's individual risk/penalty number (a genuinely Medium-risk
+// oil like canola stays Medium-risk) — it only removes the free pass on
+// whether the PRODUCT counts as a clean whole food.
+const SNACK_FRYING_OIL_NAMES = new Set([
+  'avocado oil', 'organic avocado oil',
+  'canola oil', 'organic canola oil', 'expeller pressed canola oil',
+  'non-gmo expeller pressed canola oil', 'non-gmo canola oil',
+  'sunflower oil', 'organic sunflower oil', 'high oleic sunflower oil',
+  'expeller pressed sunflower oil', 'expeller pressed high oleic sunflower oil',
+  'organic expeller pressed sunflower oil', 'organic high oleic sunflower oil',
+  'organic expeller-pressed sunflower oil',
+  'safflower oil', 'organic safflower oil', 'high oleic safflower oil',
+  'expeller pressed high oleic safflower oil',
+  'vegetable oil',
+  'soybean oil', 'organic soybean oil', 'high oleic soybean oil',
+  'non-gmo soybean oil',
+]);
+
+function isSnackFryingOilIngredient(raw) {
+  return SNACK_FRYING_OIL_NAMES.has(normalize(raw));
+}
+
 export function scoreProduct(product) {
   const { ingredients = [], nutrition = {}, certifications = [] } = product;
 
@@ -986,6 +1200,26 @@ export function scoreProduct(product) {
   // drops a real letter grade instead of landing on the ceiling like a good
   // one. Still clamped to [0, 100] below like everything else.
   score = score + sourcingAdjustment;
+
+  // RULE 3 (2026-08-17) — refined-grain #1 ingredient: a soft penalty
+  // (subtraction, not a cap), floored at 0 so it can't push a product
+  // negative before Rules 1/2 get a chance to apply their own floor.
+  const refinedGrainPenalty = calcRefinedGrainPenalty(ingredients);
+  score = Math.max(0, score - refinedGrainPenalty);
+
+  // RULES 1 & 2 (2026-08-17) — processed/cured meat and fried snack hard
+  // caps, applied LAST as the final ceiling (per the approved application
+  // order: base score incl. Rule 4 -> Rule 3's penalty -> Rule 1/2 caps).
+  // If a product triggers both, the LOWER cap wins.
+  const isProcessedCuredMeat = detectProcessedCuredMeat(product, ingredients);
+  const isFriedSnack = detectFriedSnack(product);
+  let formCap = null;
+  if (isProcessedCuredMeat) formCap = PROCESSED_CURED_MEAT_CAP;
+  if (isFriedSnack) {
+    formCap = formCap === null ? FRIED_SNACK_CAP : Math.min(formCap, FRIED_SNACK_CAP);
+  }
+  if (formCap !== null) score = Math.min(score, formCap);
+
   score = Math.max(0, Math.min(100, Math.round(score)));
 
   const grade = scoreToGrade(score);
@@ -1011,6 +1245,10 @@ export function scoreProduct(product) {
     wholeFoodClean,
     isRawWholeFood,
     insufficientData,
+    refinedGrainPenalty,
+    isProcessedCuredMeat,
+    isFriedSnack,
+    formCap,
   };
 }
 
@@ -1185,7 +1423,18 @@ function analyzeIngredients(rawIngredients) {
       totalPenalty += penalty;
       flaggedCount++;
       if (data.flag === 'avoid') avoidCount++;
-      const isMarker = dbEntryIsMarker(data);
+      // Rule 4 (2026-08-17): a snack/frying oil that resolved to an 'ok'
+      // flag (Low risk — avocado oil and the "high oleic"/"expeller
+      // pressed" Low-risk variants) always counts as a processing marker,
+      // even though its own risk number is low — that's the specific gap
+      // this rule closes (see SNACK_FRYING_OIL_NAMES). A Medium-risk oil
+      // (canola, regular sunflower, etc.) is already excluded from
+      // wholeFoodClean by its own 'moderate' flag and already carries its
+      // own risk*2.5 penalty — forcing it into the marker system too would
+      // ALSO drag down the UPF ceiling for an otherwise-clean product that
+      // never had a free-pass problem in the first place (caught by the
+      // Simple Mills safeguard fixture during testing).
+      const isMarker = dbEntryIsMarker(data) || (isSnackFryingOilIngredient(raw) && data.flag === 'ok');
       if (isMarker) { markerCount++; markerLoad += markerWeight(data); }
 
       items.push({
@@ -1207,6 +1456,14 @@ function analyzeIngredients(rawIngredients) {
       totalPenalty += penalty;
       if (flag !== 'ok') flaggedCount++;
       if (flag === 'avoid') avoidCount++;
+      // Rule 4 (2026-08-17): cache-sourced ingredients normally never feed
+      // the UPF-marker system at all (only DB-sourced ones did) — this is
+      // the specific override that closes the "clean-looking oil" gap for
+      // the named snack/frying oils, scoped to the 'ok'-flagged (Low risk)
+      // ones — see the longer comment on the db-source branch above for why
+      // an already-'moderate'-flagged oil is deliberately left alone.
+      const isMarker = isSnackFryingOilIngredient(raw) && flag === 'ok';
+      if (isMarker) { markerCount++; markerLoad += markerWeight(cached); }
       items.push({
         raw,
         label: formatIngredientLabel(raw),
@@ -1216,6 +1473,7 @@ function analyzeIngredients(rawIngredients) {
         flag,
         flagInfo: FLAG_LEVELS[flag] || FLAG_LEVELS['ok'],
         penalty,
+        isMarker,
       });
     } else {
       const { flag, risk } = classifyUnknown(raw);

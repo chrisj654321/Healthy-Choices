@@ -786,6 +786,68 @@ describe('getCuratedGradeABCandidates', () => {
   });
 });
 
+// ─── getBestInCategory ──────────────────────────────────────────────────────
+
+describe('getBestInCategory', () => {
+  test('queries the normalized category, excludes the barcode, orders by score DESC LIMIT 1', async () => {
+    mockDb.getFirstAsync.mockResolvedValue(makeRow({ barcode: 'BEST', score: 62, grade: 'D' }));
+    const { getBestInCategory } = loadProductStore();
+
+    const result = await getBestInCategory('en:Snack Bars', 'SCANNED123');
+
+    expect(mockDb.getFirstAsync).toHaveBeenCalledWith(
+      expect.stringMatching(
+        /SELECT \* FROM products\s+WHERE image IS NOT NULL AND image != ''\s+AND score IS NOT NULL\s+AND \(\? IS NULL OR barcode != \?\)\s+AND lower\(trim\(CASE WHEN category LIKE 'en:%' THEN substr\(category, 4\) ELSE category END\)\) = \?\s+ORDER BY score DESC\s+LIMIT 1/
+      ),
+      ['SCANNED123', 'SCANNED123', 'snack bars']
+    );
+    expect(result).toEqual({ product: expect.objectContaining({ barcode: 'BEST' }), score: 62, grade: 'D' });
+  });
+
+  test('passes null for both exclude-barcode params when no barcode is given', async () => {
+    mockDb.getFirstAsync.mockResolvedValue(null);
+    const { getBestInCategory } = loadProductStore();
+
+    await getBestInCategory('Cereals', undefined);
+
+    expect(mockDb.getFirstAsync).toHaveBeenCalledWith(expect.any(String), [null, null, 'cereals']);
+  });
+
+  test('returns null when category is missing/blank, without querying', async () => {
+    const { getBestInCategory } = loadProductStore();
+
+    await expect(getBestInCategory(null, 'X')).resolves.toBeNull();
+    await expect(getBestInCategory('', 'X')).resolves.toBeNull();
+    expect(mockDb.getFirstAsync).not.toHaveBeenCalled();
+  });
+
+  test('returns null when no row matches', async () => {
+    mockDb.getFirstAsync.mockResolvedValue(null);
+    const { getBestInCategory } = loadProductStore();
+
+    await expect(getBestInCategory('Cereals', 'X')).resolves.toBeNull();
+  });
+
+  test('returns null (not a throw) if the store never opens', async () => {
+    SQLite.openDatabaseAsync.mockRejectedValue(new Error('open failed'));
+    const { getBestInCategory } = loadProductStore();
+
+    await expect(getBestInCategory('Cereals', 'X')).resolves.toBeNull();
+    expect(mockDb.getFirstAsync).not.toHaveBeenCalled();
+  });
+
+  test('returns null (not a throw) if the query rejects, reports to Sentry', async () => {
+    mockDb.getFirstAsync.mockRejectedValue(new Error('query failed'));
+    const { getBestInCategory } = loadProductStore();
+
+    await expect(getBestInCategory('Cereals', 'X')).resolves.toBeNull();
+    expect(captureException).toHaveBeenCalledWith(
+      expect.any(Error),
+      expect.objectContaining({ function: 'getBestInCategory', category: 'Cereals' })
+    );
+  });
+});
+
 // ─── getSpotlightEligibleCompanies ──────────────────────────────────────────
 
 describe('getSpotlightEligibleCompanies', () => {

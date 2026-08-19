@@ -514,9 +514,15 @@ describe('scoreProduct: processing-ceiling clamp', () => {
     expect(result.markerLoad).toBe(2);
     expect(result.upfCeiling).toBe(56);
     expect(result.score).toBeLessThanOrEqual(result.upfCeiling);
-    // raw penalty (25 + 22.5 = 47.5) drives it below the ceiling. No further
-    // packaging deduction — unresearched packaging is neutral since 2026-08-08.
-    expect(result.score).toBe(53);
+    // UPDATED 2026-08-17 (form-penalty model): this fixture's own ingredient
+    // list contains "sodium nitrite", which is now ALSO Rule 1's trigger (a)
+    // for processed/cured meat (WHO Group 1) — so the hard cap of 40 now
+    // applies on top of the UPF-ceiling clamp this test exists to pin down.
+    // Before this rule the raw penalty (25 + 22.5 = 47.5) landed the score at
+    // 53, under the 56 ceiling but above 40; the cap now dominates. Confirms
+    // the cap is enforced as the true final ceiling, not just the UPF curve.
+    expect(result.isProcessedCuredMeat).toBe(true);
+    expect(result.score).toBe(40);
   });
 });
 
@@ -953,5 +959,381 @@ describe('scoreProduct: weak-hit boilerplate gate + merged-token expansion', () 
     });
     expect(result.analyzedIngredients).toHaveLength(1);
     expect(result.analyzedIngredients[0].raw).toBe('blackberry juice concentrate');
+  });
+});
+
+// ─── Form-penalty model (2026-08-17, founder-approved) ────────────────────
+//
+// Fixtures below mirror real catalog products' name/category/ingredients
+// exactly (see src/data/products.js) so these tests double as the accuracy
+// audit's own regression pins. `isProcessedCuredMeat`, `isFriedSnack`,
+// `refinedGrainPenalty`, and `formCap` are read directly off scoreProduct's
+// return value (added for this feature) rather than re-implemented here.
+
+describe('scoreProduct: form-penalty model — Rule 1 (processed/cured meat cap 40)', () => {
+  test('Hebrew National Beef Franks (name trigger "frank" + nitrite) caps at 40', () => {
+    const result = scoreProduct({
+      name: 'Beef Franks',
+      category: 'Deli & Lunch',
+      ingredients: ['beef', 'water', 'contains 2% or less of: salt', 'spice', 'sodium lactate', 'paprika', 'hydrolyzed soy protein', 'garlic powder', 'sodium diacetate', 'sodium erythorbate', 'flavoring', 'sodium nitrite'],
+      nutrition: { fat: 15, saturatedFat: 6, sodium: 500, carbs: 1, sugars: 0, protein: 7 },
+    });
+    expect(result.isProcessedCuredMeat).toBe(true);
+    // Real product's own high sodium/sat-fat + flagged additives already
+    // drive the base score to 32, BELOW the 40 cap — the cap is a ceiling,
+    // not a floor, so it stays at 32 rather than getting pulled UP to 40.
+    expect(result.score).toBeLessThanOrEqual(40);
+    expect(result.score).toBe(32);
+  });
+
+  test('Bob Evans Original Pork Sausage Links (name trigger "sausage", no nitrite) caps at 40', () => {
+    const result = scoreProduct({
+      name: 'Bob Evans Original Pork Sausage Links',
+      category: 'Frozen Breakfast',
+      ingredients: ['pork', 'water', 'seasoning (salt, contains 2% or less of each of the following: dextrose, spices, flavoring, monosodium glutamate, maltodextrin, natural flavor)', 'potassium lactate', 'formed in collagen casing'],
+      nutrition: { fat: 17, saturatedFat: 6, sodium: 530, carbs: 1, sugars: 0, protein: 10 },
+    });
+    expect(result.isProcessedCuredMeat).toBe(true);
+    expect(result.score).toBe(40);
+  });
+
+  test('Applegate deli turkey (category "Deli & Lunch" + meat word, NO nitrite, NO name trigger word) still caps at 40 — WHO Group 1 covers the deli-slicing/brining process itself, not only a disclosed nitrite', () => {
+    const result = scoreProduct({
+      name: 'Naturals Oven Roasted Turkey Breast',
+      brand: 'Applegate',
+      category: 'Deli & Lunch',
+      ingredients: ['turkey breast', 'water', 'sea salt', 'potato starch', 'salt', 'chicken broth', 'rosemary extract'],
+      nutrition: { fat: 0, saturatedFat: 0, sodium: 290, carbs: 0, sugars: 0, protein: 14 },
+    });
+    expect(result.isProcessedCuredMeat).toBe(true);
+    expect(result.score).toBe(40);
+  });
+
+  test('nitrate/nitrite alone (trigger a) caps at 40 even with a generic, non-meat-sounding name', () => {
+    const result = scoreProduct({
+      name: 'Generic Snack Product',
+      ingredients: ['sodium nitrite'],
+      nutrition: {},
+    });
+    expect(result.isProcessedCuredMeat).toBe(true);
+    expect(result.score).toBeLessThanOrEqual(40);
+  });
+});
+
+describe('scoreProduct: form-penalty model — Rule 2 (fried snack cap 50)', () => {
+  test("Lay's Classic Potato Chips caps at 50", () => {
+    const result = scoreProduct({
+      name: "Lay's Classic Potato Chips",
+      category: 'Chips',
+      ingredients: ['potatoes', 'sunflower oil', 'corn oil', 'canola oil', 'salt'],
+      nutrition: { fat: 10, saturatedFat: 1.5, sodium: 170, carbs: 15, sugars: 0, protein: 2 },
+    });
+    expect(result.isFriedSnack).toBe(true);
+    expect(result.score).toBe(50);
+  });
+
+  test('Fritos Original Corn Chips caps at 50', () => {
+    const result = scoreProduct({
+      name: 'Fritos Original Corn Chips',
+      category: 'Chips & Crackers',
+      ingredients: ['CORN', 'VEGETABLE OIL (CORN AND/OR CANOLA OIL)', 'AND SALT'],
+      nutrition: { fat: 10, saturatedFat: 1.5, sodium: 170, carbs: 16, sugars: 0, protein: 2 },
+    });
+    expect(result.isFriedSnack).toBe(true);
+    expect(result.score).toBe(50);
+  });
+
+  test('Boulder Canyon "Avocado Oil" Kettle Chips caps at 50 — the claimed frying oil does not rescue it', () => {
+    const result = scoreProduct({
+      name: 'Boulder Canyon Avocado Oil Classic Sea Salt Kettle Chips',
+      category: 'Chips & Crackers',
+      ingredients: ['potatoes', 'avocado oil', 'sea salt'],
+      nutrition: { fat: 9, saturatedFat: 1.5, sodium: 120, carbs: 16, sugars: 0, protein: 3 },
+    });
+    expect(result.isFriedSnack).toBe(true);
+    expect(result.score).toBe(50);
+    // Rule 4: avocado oil must not make this "wholeFoodClean" on its own.
+    expect(result.wholeFoodClean).toBe(false);
+  });
+
+  test('category gate: a chip/crisp/kettle/puff word OUTSIDE a chip-relevant category does not trigger (Gerber Puffs baby food, Kettle & Fire bone broth, Cookie Crisp cereal)', () => {
+    const babyPuffs = scoreProduct({
+      name: 'Gerber Puffs Strawberry Apple',
+      category: 'Baby Food',
+      ingredients: ['rice flour', 'whole wheat flour'],
+      nutrition: {},
+    });
+    expect(babyPuffs.isFriedSnack).toBe(false);
+
+    const boneBroth = scoreProduct({
+      name: 'Kettle & Fire Classic Chicken Bone Broth',
+      category: 'Soups & Broths',
+      ingredients: ['chicken broth', 'water'],
+      nutrition: {},
+    });
+    expect(boneBroth.isFriedSnack).toBe(false);
+
+    const cerealChip = scoreProduct({
+      name: 'Cookie Crisp Chocolate Chip',
+      category: 'Cereals',
+      ingredients: ['whole grain corn', 'sugar', 'corn flour'],
+      nutrition: {},
+    });
+    expect(cerealChip.isFriedSnack).toBe(false);
+  });
+
+  test('"chocolate chip" in a Snack Bar/Cereal-category name never trips the bare "chip" trigger', () => {
+    const result = scoreProduct({
+      name: 'Quaker Chewy Chocolate Chip Granola Bar',
+      category: 'Snack Bars',
+      ingredients: ['granola', 'sugar', 'chocolate chips'],
+      nutrition: {},
+    });
+    expect(result.isFriedSnack).toBe(false);
+  });
+
+  test('an explicit "Oven Baked" claim exempts a Chips & Crackers item from the fried-snack cap (real catalog case: Lay\'s Oven Baked Potato Crisps)', () => {
+    const result = scoreProduct({
+      name: "Lay's Oven Baked Original Potato Crisps",
+      category: 'Chips & Crackers',
+      ingredients: ['dried potatoes', 'corn starch', 'sunflower oil'],
+      nutrition: {},
+    });
+    expect(result.isFriedSnack).toBe(false);
+  });
+
+  test('the lower cap wins when a product triggers both Rule 1 and Rule 2 (fried, cured-meat-named snack)', () => {
+    const result = scoreProduct({
+      name: 'Fried Pork Rinds Bacon Flavor',
+      category: 'Chips & Crackers',
+      ingredients: ['pork skins', 'salt', 'sodium nitrite'],
+      nutrition: {},
+    });
+    expect(result.isProcessedCuredMeat).toBe(true);
+    expect(result.isFriedSnack).toBe(true);
+    expect(result.formCap).toBe(40);
+    expect(result.score).toBeLessThanOrEqual(40);
+  });
+});
+
+describe('scoreProduct: form-penalty model — Rule 3 (refined-grain #1 ingredient, -25 penalty)', () => {
+  test('enriched wheat flour as the #1 ingredient takes the -25 penalty', () => {
+    const withRefined = scoreProduct({
+      name: 'Refined Flour Muffin',
+      category: 'Bread',
+      ingredients: ['enriched wheat flour', 'malted barley flour', 'water', 'sugar', 'salt', 'yeast'],
+      nutrition: { sugars: 2, sodium: 200, saturatedFat: 0.5 },
+    });
+    const withoutRefined = scoreProduct({
+      name: 'Refined Flour Muffin',
+      category: 'Bread',
+      ingredients: ['whole wheat flour', 'malted barley flour', 'water', 'sugar', 'salt', 'yeast'],
+      nutrition: { sugars: 2, sodium: 200, saturatedFat: 0.5 },
+    });
+    expect(withRefined.refinedGrainPenalty).toBe(25);
+    expect(withoutRefined.refinedGrainPenalty).toBe(0);
+    // Not an exact -25 delta on the FINAL score: swapping "enriched wheat
+    // flour" for "whole wheat flour" also changes that one ingredient's own
+    // DB-matched risk (enriched = moderate/risk 5/penalty 12.5; whole wheat
+    // = ok/risk 2/penalty 0), which is separate from and additional to
+    // Rule 3's -25. Directional check instead — refined scores meaningfully
+    // lower, and by at least the 25-point penalty itself.
+    expect(withRefined.score).toBeLessThan(withoutRefined.score);
+    expect(withoutRefined.score - withRefined.score).toBeGreaterThanOrEqual(25);
+  });
+
+  test('a refined grain further down the list (not #1) does not trigger the penalty', () => {
+    const result = scoreProduct({
+      name: 'Not First Ingredient',
+      ingredients: ['tomatoes', 'water', 'enriched wheat flour', 'salt'],
+      nutrition: {},
+    });
+    expect(result.refinedGrainPenalty).toBe(0);
+  });
+
+  test('whole-grain, almond-flour, and legume-flour #1 ingredients are never penalized', () => {
+    for (const first of ['whole wheat flour', 'brown rice', 'oats', 'almond flour', 'chickpea flour', 'coconut flour']) {
+      const result = scoreProduct({ ingredients: [first, 'water', 'salt'], nutrition: {} });
+      expect(result.refinedGrainPenalty).toBe(0);
+    }
+  });
+
+  test('the -25 penalty floors at 0, never goes negative', () => {
+    const result = scoreProduct({
+      name: 'Terrible Refined Product',
+      ingredients: ['enriched flour', 'partially hydrogenated oil', 'sodium nitrite', 'red 40', 'yellow 5'],
+      nutrition: { sugars: 40, sodium: 900, saturatedFat: 15 },
+    });
+    expect(result.score).toBeGreaterThanOrEqual(0);
+  });
+});
+
+describe('scoreProduct: form-penalty model — Rule 4 (snack/frying oils neutral, never a positive)', () => {
+  test('"avocado oil" as an ingredient does not make a product wholeFoodClean or count toward the raw-100 path', () => {
+    const result = scoreProduct({
+      ingredients: ['potatoes', 'avocado oil', 'sea salt'],
+      nutrition: { sugars: 0, sodium: 120, saturatedFat: 1.5 },
+    });
+    expect(result.wholeFoodClean).toBe(false);
+    expect(result.markerCount).toBeGreaterThan(0);
+  });
+
+  test('a whole avocado (no "oil") still gets full whole-food credit', () => {
+    const result = scoreProduct({
+      ingredients: ['avocado'],
+      nutrition: { sugars: 1, sodium: 5, saturatedFat: 2 },
+    });
+    expect(result.wholeFoodClean).toBe(true);
+  });
+
+  test('canola / sunflower / safflower / soybean / vegetable oil are all treated as processing markers, not a whole-food credit', () => {
+    for (const oil of ['canola oil', 'sunflower oil', 'safflower oil', 'soybean oil', 'vegetable oil']) {
+      const result = scoreProduct({
+        ingredients: ['oats', oil, 'salt'],
+        nutrition: { sugars: 0, sodium: 100, saturatedFat: 1 },
+      });
+      expect(result.wholeFoodClean).toBe(false);
+    }
+  });
+});
+
+describe('scoreProduct: form-penalty model — safeguards (accuracy, not blunt category caps)', () => {
+  test('Simple Mills Almond Flour Crackers (fried-snack category, but not fried or refined-grain; contains organic sunflower oil) is untouched by every new rule and stays at its real 93 — proves Rule 4 does not double-penalize an already-flagged Medium-risk oil via the UPF ceiling', () => {
+    const result = scoreProduct({
+      name: 'Simple Mills Almond Flour Crackers Fine Ground Sea Salt',
+      category: 'Chips & Crackers',
+      ingredients: ['nut and seed flour blend (almonds, sunflower seeds, flax seeds)', 'tapioca', 'cassava', 'organic sunflower oil', 'sea salt', 'organic onion', 'organic garlic', 'rosemary extract (for freshness)'],
+      nutrition: { fat: 9, saturatedFat: 0.5, sodium: 230, carbs: 17, sugars: 0, protein: 3 },
+      certifications: ['Gluten-Free Certified', 'Non-GMO Project Verified'],
+    });
+    expect(result.isProcessedCuredMeat).toBe(false);
+    expect(result.isFriedSnack).toBe(false);
+    expect(result.refinedGrainPenalty).toBe(0);
+    expect(result.formCap).toBeNull();
+    expect(result.score).toBe(93);
+  });
+
+  test("Mary's Gone Crackers (whole-grain, fried-snack category) is untouched by every new rule and stays at its real 94", () => {
+    const result = scoreProduct({
+      name: "Mary's Gone Crackers Original Crackers",
+      category: 'Chips & Crackers',
+      ingredients: ['brown rice', 'quinoa', 'flax seeds', 'sesame seeds', 'tamari (water, soybeans, salt, vinegar)', 'sea salt'],
+      nutrition: { fat: 5, saturatedFat: 0.5, sodium: 180, carbs: 20, sugars: 0, protein: 4 },
+      certifications: ['USDA Organic', 'Non-GMO Project'],
+    });
+    expect(result.isProcessedCuredMeat).toBe(false);
+    expect(result.isFriedSnack).toBe(false);
+    expect(result.refinedGrainPenalty).toBe(0);
+    expect(result.formCap).toBeNull();
+    expect(result.score).toBe(94);
+  });
+
+  test('a plain fresh chicken breast is never treated as processed/cured meat', () => {
+    const result = scoreProduct({
+      name: 'Grilled Chicken Breast Strips',
+      category: 'Meat & Seafood / Primary Proteins',
+      ingredients: ['chicken breast', 'water', 'salt'],
+      nutrition: { fat: 2, saturatedFat: 0.5, sodium: 300, carbs: 0, sugars: 0, protein: 20 },
+    });
+    expect(result.isProcessedCuredMeat).toBe(false);
+  });
+
+  test('plain fresh salmon, ground beef, and eggs are never treated as processed/cured meat', () => {
+    for (const fixture of [
+      { name: 'Fresh Atlantic Salmon Fillet', category: 'Meat & Seafood / Primary Proteins', ingredients: ['salmon'] },
+      { name: '80/20 Ground Beef', category: 'Meat & Seafood / Primary Proteins', ingredients: ['beef'] },
+      { name: 'Grade A Large Eggs', category: 'Eggs', ingredients: ['eggs'] },
+    ]) {
+      const result = scoreProduct({ ...fixture, nutrition: {} });
+      expect(result.isProcessedCuredMeat).toBe(false);
+    }
+  });
+
+  test('word-boundary matching: "graham" and "hamburger" are never matched by the "ham" trigger', () => {
+    const graham = scoreProduct({
+      name: 'Honey Graham Crackers',
+      category: 'Chips & Crackers',
+      ingredients: ['whole wheat flour', 'sugar', 'honey'],
+      nutrition: {},
+    });
+    expect(graham.isProcessedCuredMeat).toBe(false);
+
+    const hamburgerBun = scoreProduct({
+      name: 'Hamburger Buns',
+      category: 'Bread',
+      ingredients: ['whole wheat flour', 'water', 'yeast', 'sugar', 'salt'],
+      nutrition: {},
+    });
+    expect(hamburgerBun.isProcessedCuredMeat).toBe(false);
+  });
+
+  test('"Hot Dog Buns" and "Frankfurter Buns" are bread, not the meat itself, and are not capped (real catalog case: Wonder Classic Enriched Hot Dog Buns)', () => {
+    const hotDogBuns = scoreProduct({
+      name: 'Wonder Classic Enriched Hot Dog Buns',
+      category: 'Bread',
+      ingredients: ['enriched wheat flour', 'water', 'yeast'],
+      nutrition: {},
+    });
+    expect(hotDogBuns.isProcessedCuredMeat).toBe(false);
+
+    const frankfurterBuns = scoreProduct({
+      name: 'Frankfurter Buns',
+      category: 'Bread',
+      ingredients: ['enriched wheat flour', 'water', 'yeast'],
+      nutrition: {},
+    });
+    expect(frankfurterBuns.isProcessedCuredMeat).toBe(false);
+  });
+
+  test('"Frank\'s RedHot" (possessive brand name) is not matched by bare "frank" (real catalog case: Frank\'s RedHot Original Cayenne Pepper Sauce)', () => {
+    const hotSauce = scoreProduct({
+      name: "Frank's RedHot Original Cayenne Pepper Sauce",
+      category: 'Condiments & Sauces',
+      ingredients: ['cayenne red peppers', 'distilled vinegar', 'water', 'salt', 'garlic powder'],
+      nutrition: {},
+    });
+    expect(hotSauce.isProcessedCuredMeat).toBe(false);
+  });
+
+  test('a genuine trigger word elsewhere in the same name still fires even when the bun/possessive exception also applies', () => {
+    const result = scoreProduct({
+      name: "Frank's Bacon Hot Dog Buns",
+      category: 'Bread',
+      ingredients: ['enriched wheat flour', 'water', 'bacon bits'],
+      nutrition: {},
+    });
+    expect(result.isProcessedCuredMeat).toBe(true);
+  });
+
+  test('a product the catalog\'s own schema declares vegan is never treated as processed/cured meat, even when its name says "sausage" (real catalog case: MorningStar Farms Veggie Sausage Patties)', () => {
+    const result = scoreProduct({
+      name: 'MorningStar Farms Veggie Sausage Patties Original',
+      category: 'Frozen Breakfast',
+      isVegan: true,
+      ingredients: ['water', 'wheat gluten', 'soy protein concentrate', 'vegetable oil (corn, canola and/or sunflower)', 'soy flour', 'soy protein isolate'],
+      nutrition: { fat: 7, saturatedFat: 1, sodium: 520, carbs: 8, sugars: 1, protein: 16 },
+    });
+    expect(result.isProcessedCuredMeat).toBe(false);
+  });
+
+  test('a whole-wheat bread #1 ingredient is never refined-grain-penalized', () => {
+    const result = scoreProduct({
+      name: 'Whole Wheat Bread',
+      category: 'Bread',
+      ingredients: ['whole wheat flour', 'water', 'yeast', 'salt'],
+      nutrition: {},
+    });
+    expect(result.refinedGrainPenalty).toBe(0);
+  });
+
+  test('hummus filed under the same "Deli & Lunch" category as deli meat is never treated as processed/cured meat', () => {
+    const result = scoreProduct({
+      name: 'Classic Hummus',
+      brand: 'Sabra',
+      category: 'Deli & Lunch',
+      ingredients: ['cooked chickpeas', 'tahini', 'soybean oil', 'garlic', 'salt'],
+      nutrition: {},
+    });
+    expect(result.isProcessedCuredMeat).toBe(false);
   });
 });

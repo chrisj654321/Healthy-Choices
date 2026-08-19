@@ -15,6 +15,30 @@ _Briefs for Chad (ChatGPT). Claude writes them; the founder pastes them into Cha
 
 ## Active tasks
 
+### STAPLE-CATEGORY PRODUCT WAVE (2026-08-17) — status: DRAFTED
+**Goal:** Research and format the best real products for the staple categories the catalog is thin on, so every everyday-shopping aisle has representation. Aim ~12–15 per category. For granola especially, the score bar (80+) is only reachable with **no-added-sugar** products — prioritize those.
+
+**Why this list:** an audit of the shipping catalog (2026-08-17) found these staple categories under 12 products scoring 80+. These are aisles people buy from at every grocery trip, so they must not be empty. Where a category genuinely has no 80+ option, we still want the **best available** — the app will show it labeled honestly as the highest-scored item in that category. Do NOT assert a score yourself; the app's own scorer grades every product after Claude merges it. Your job is accurate data, not a grade.
+
+**Candidate products to research (start here; add obvious peers you find):**
+- **Coffee creamer (+10 needed):** nutpods (Original, French Vanilla — unsweetened), Elmhurst, Califia Farms Better Half, Laird Superfood, Forager Project cashew, Three Trees, Milkadamia, Chobani Oat barista, Trader Joe's oat creamer, So Delicious coconut (unsweetened).
+- **Bread (+7):** Food for Life Ezekiel 4:9 sprouted, Silver Hills sprouted, Alvarado St. Bakery sprouted, Angelic Bakehouse, Dave's Killer Bread (organic 21 Whole Grains), Base Culture (grain-free), Simple Kneads (GF sourdough), San Luis Sourdough.
+- **Snack bars (+6):** RXBAR, Larabar, That's It, GoMacro, Kate's Real Food, Autumn's Gold grain-free, 88 Acres, Skout Organic.
+- **Granola (+12; NO-ADDED-SUGAR ones first):** Wildway grain-free, Lark Ellen Farm sprouted, Struesli, Paleonola, Purely Elizabeth (lower-sugar lines), Michele's, GrandyOats, Nature's Path Organic.
+- **Top-ups:** Peanut/nut butter (Crazy Richard's 100% peanuts, Santa Cruz Organic, Fix & Fogg, Georgia Grinders); Yogurt (Siggi's plain, Maple Hill grass-fed, Stonyfield Organic, Straus, Fage plain); Eggs (Vital Farms pasture, Pete & Gerry's Organic, Happy Egg); Primary proteins (Wild Planet salmon/sardines, Mary's organic chicken, grass-fed ground beef).
+
+**Output files (Chad owns these for the run):** `src/data/batches/products/staples-wave-2026-08-17_raw.json` (raw research per product) and `src/data/batches/products/staples-wave-2026-08-17_formatted.js`.
+**Format/schema:** match `src/data/batches/products/deli-meat-2026-07-09_formatted.js` exactly (same keys, same shape). Every product needs a verified UPC/barcode, the real ingredient list off the actual label, nutrition, brand, category (reuse the existing category strings from the audit above), and an image URL if you can source one.
+**Validation (Claude runs after):** octavius validators + the SQLite build + scorer precompute; then Opus review; then Claude merges. Nothing reaches the app until reviewed here (creator ≠ reviewer).
+**Rules:** no fabrication — a verified UPC and a real label, or `could_not_verify` with the reason. Never invent a barcode, an ingredient, or a nutrition number. Don't assert a health score. Don't touch any file outside your two output files.
+
+### AVOCADO-OIL ADULTERATION — VERIFY BEFORE ANY APP USE (2026-08-17) — status: DRAFTED
+**Goal:** Verify, from primary sources, the claim that a large share of retail "avocado oil" is adulterated (diluted with cheaper seed oils) or mislabeled. This gates a future app change (a scoring signal + possibly a displayed note) that does NOT ship until verified here.
+**Why:** the founder wants the finding in the app, but only if it is real and citable — the app's whole promise is that we never repeat a claim we can't stand behind. Anchor on the known study: **UC Davis 2020 (Green & Wang, *Food Control*)** — tested retail avocado oils, found the majority rancid before expiry or adulterated with other oils. Find that primary source plus any follow-ups (GAO/FDA notices, later peer-reviewed replications, third-party lab tests).
+**Output file (Chad owns for the run):** `context/research/avocado-oil-adulteration.md` — for each source: what was tested, sample size, the exact finding (real number, not "90%" unless a source says it), and a reachable citation. Separate "what's proven" from "what's claimed but unverified."
+**Validation (Claude runs after):** every stated figure traces to a primary source; no rounded-up number without a citation; conclusions match what the sources actually say. Claude + Opus review before it informs any scoring rule or in-app copy.
+**Rules:** no fabrication — a source or nothing. Do not launder a marketing blog's number as fact; go to the study. Flag anything you can't confirm as unverified rather than dropping it.
+
 ### INGREDIENT QUEUE — 893 LOOSE MATCHES (2026-08-11) — status: SENT (running via `codex exec`, gpt-5.6-sol medium, session 01a001a1-381d-7bb1)
 **Goal:** Triage the 893 `imported` loose-match tokens in `Next Ingredient Queue.csv` into a final status each, working highest-impact first, in batches of 25.
 

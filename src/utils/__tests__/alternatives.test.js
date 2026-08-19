@@ -12,9 +12,11 @@
  */
 
 const mockGetCuratedGradeABCandidates = jest.fn();
+const mockGetBestInCategory = jest.fn();
 
 jest.mock('../../data/productStore', () => ({
   getCuratedGradeABCandidates: (...args) => mockGetCuratedGradeABCandidates(...args),
+  getBestInCategory: (...args) => mockGetBestInCategory(...args),
 }));
 
 import { getAlternatives } from '../alternatives';
@@ -36,6 +38,7 @@ function makeCandidate({ barcode, category = 'Cereals', score = 80, grade = 'A' 
 
 beforeEach(() => {
   mockGetCuratedGradeABCandidates.mockReset();
+  mockGetBestInCategory.mockReset();
 });
 
 describe('getAlternatives', () => {
@@ -110,5 +113,82 @@ describe('getAlternatives', () => {
     const result = await getAlternatives({ barcode: 'SCANNED', category: 'Cereals' });
 
     expect(result).toEqual({ alternatives: [], count: 0 });
+    expect(mockGetBestInCategory).not.toHaveBeenCalled();
+  });
+});
+
+describe('getAlternatives — "best available" ceiling fallback', () => {
+  test('returns the top in-category item, flagged ceiling: true, when no 80+ match exists and it beats the scanned score', async () => {
+    mockGetCuratedGradeABCandidates.mockResolvedValue([]); // nothing 80+ in-category
+    mockGetBestInCategory.mockResolvedValue({
+      product: {
+        barcode: 'BEST', name: 'Best Chips', brand: 'Some Brand',
+        category: 'Chips', image: 'https://example.com/chips.png',
+      },
+      score: 55,
+      grade: 'F',
+    });
+
+    const result = await getAlternatives(
+      { barcode: 'SCANNED', category: 'Chips' },
+      { scannedScore: 40 }
+    );
+
+    expect(mockGetBestInCategory).toHaveBeenCalledWith('chips', 'SCANNED');
+    expect(result.count).toBe(1);
+    expect(result.alternatives).toEqual([
+      expect.objectContaining({ barcode: 'BEST', _score: 55, _grade: 'F', ceiling: true }),
+    ]);
+  });
+
+  test('returns nothing when the best-in-category item does not beat the scanned product (equal or worse)', async () => {
+    mockGetCuratedGradeABCandidates.mockResolvedValue([]);
+    mockGetBestInCategory.mockResolvedValue({
+      product: { barcode: 'BEST', name: 'Best Chips', category: 'Chips', image: 'https://example.com/chips.png' },
+      score: 40,
+      grade: 'F',
+    });
+
+    const result = await getAlternatives(
+      { barcode: 'SCANNED', category: 'Chips' },
+      { scannedScore: 40 } // equal, not strictly higher
+    );
+
+    expect(result).toEqual({ alternatives: [], count: 0 });
+  });
+
+  test('returns nothing when getBestInCategory itself finds nothing', async () => {
+    mockGetCuratedGradeABCandidates.mockResolvedValue([]);
+    mockGetBestInCategory.mockResolvedValue(null);
+
+    const result = await getAlternatives(
+      { barcode: 'SCANNED', category: 'Chips' },
+      { scannedScore: 40 }
+    );
+
+    expect(result).toEqual({ alternatives: [], count: 0 });
+  });
+
+  test('never calls the ceiling fallback when scannedScore is not provided', async () => {
+    mockGetCuratedGradeABCandidates.mockResolvedValue([]);
+
+    const result = await getAlternatives({ barcode: 'SCANNED', category: 'Chips' });
+
+    expect(mockGetBestInCategory).not.toHaveBeenCalled();
+    expect(result).toEqual({ alternatives: [], count: 0 });
+  });
+
+  test('never calls the ceiling fallback when an 80+ match already exists in-category', async () => {
+    mockGetCuratedGradeABCandidates.mockResolvedValue([
+      makeCandidate({ barcode: 'AAA', category: 'Chips', score: 85 }),
+    ]);
+
+    const result = await getAlternatives(
+      { barcode: 'SCANNED', category: 'Chips' },
+      { scannedScore: 40 }
+    );
+
+    expect(mockGetBestInCategory).not.toHaveBeenCalled();
+    expect(result.alternatives.map((a) => a.barcode)).toEqual(['AAA']);
   });
 });
