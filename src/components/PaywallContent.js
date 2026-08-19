@@ -249,8 +249,22 @@ export default function PaywallContent({ feature = null, onPurchased, onDismiss 
                   <Text style={[s.planPriceBig, selected && s.planPriceBigSelected]}>
                     {p.price}<Text style={s.planPricePeriod}>{p.period}</Text>
                   </Text>
+                  {/* "$0 due today" — a deliberately prominent badge (bold,
+                      colored pill) to make the trial's true cost-today
+                      obvious at a glance and lift trial starts. It sits
+                      BELOW the billed amount, never in place of it: the real
+                      billed price above (planPriceBig) and the trial
+                      disclosure fine print below (yearlyTrialFine, "3 Days
+                      Free, then $49.99/year") both stay visible per Apple's
+                      3.1.2(c) free-trial disclosure requirement. */}
                   {isYearly ? (
-                    <Text style={s.planBilled}>{p.monthlyBig} · $0 due today</Text>
+                    <View style={s.zeroTodayBadge}>
+                      <Ionicons name="checkmark-circle" size={12} color={Colors.primaryDark ?? Colors.primary} />
+                      <Text style={s.zeroTodayText}>$0 due today</Text>
+                    </View>
+                  ) : null}
+                  {isYearly ? (
+                    <Text style={s.planBilled}>{p.monthlyBig}</Text>
                   ) : (
                     <Text style={s.planBilled}>billed monthly</Text>
                   )}
@@ -385,6 +399,16 @@ const s = StyleSheet.create({
   planPriceBig:        { fontSize: 22, fontWeight: '800', color: Colors.textSecondary },
   planPriceBigSelected: { color: Colors.primary },
   planPricePeriod:     { fontSize: 13, fontWeight: '600' },
+  // "$0 due today" pill — deliberately more prominent than planBilled (bold,
+  // colored, its own chip) so it's the second thing the eye catches after
+  // the billed price, without outweighing it.
+  zeroTodayBadge:   {
+    flexDirection: 'row', alignItems: 'center', gap: 3,
+    backgroundColor: Colors.primary + '18',
+    borderRadius: 8, paddingHorizontal: 7, paddingVertical: 3,
+    marginTop: 7, alignSelf: 'flex-start',
+  },
+  zeroTodayText:    { fontSize: 11, fontWeight: '800', color: Colors.primaryDark ?? Colors.primary },
   planBilled:       { fontSize: 11, color: Colors.textMuted, marginTop: 4 },
   trialBadge:       {
     position: 'absolute', top: 0, right: 0,

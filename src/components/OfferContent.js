@@ -126,7 +126,16 @@ export default function OfferContent({ onPurchased, onPayFullPrice, onDismiss })
           <Text style={s.priceBig}>
             {pricing.yearlyPrice}<Text style={s.pricePeriod}>/year</Text>
           </Text>
-          <Text style={s.priceToday}>$0 due today — 3-day free trial</Text>
+          {/* "$0 due today" badge — deliberately prominent (bold, colored
+              pill) to make the trial's true cost-today obvious, matching the
+              main paywall's treatment. It sits below the real billed price
+              above (priceBig) and the trial disclosure in the fine print
+              below (trialFine, "3 Days Free, then $49.99/year") stays
+              visible too — never replaced, per Apple's 3.1.2(c) free-trial
+              disclosure requirement. */}
+          <View style={s.zeroTodayBadge}>
+            <Text style={s.priceToday}>$0 due today — 3-day free trial</Text>
+          </View>
           <View style={s.priceDivider} />
           <View style={s.priceVsRow}>
             <Text style={s.priceVsLabel}>{pricing.monthlyEquivPrice} · vs. paying monthly</Text>
@@ -187,7 +196,12 @@ const s = StyleSheet.create({
   // paywall's treatment. Period suffix styled smaller than the price itself.
   priceBig:    { fontSize: 32, fontWeight: '800', color: Colors.primary, textAlign: 'center' },
   pricePeriod: { fontSize: 16, fontWeight: '600', color: Colors.textSecondary },
-  priceToday:  { fontSize: 13, fontWeight: '700', color: Colors.textSecondary, textAlign: 'center', marginTop: 4, marginBottom: 12 },
+  zeroTodayBadge: {
+    alignSelf: 'center', backgroundColor: Colors.primaryLight,
+    borderRadius: 20, paddingHorizontal: 12, paddingVertical: 5,
+    marginTop: 6, marginBottom: 12,
+  },
+  priceToday:  { fontSize: 13, fontWeight: '800', color: Colors.primary, textAlign: 'center' },
   priceDivider: { height: 1, backgroundColor: Colors.border, marginBottom: 12 },
   priceVsRow:  { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   priceVsLabel: { fontSize: 13, color: Colors.textSecondary },

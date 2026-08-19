@@ -7,6 +7,8 @@
  * result.
  */
 
+import fs from 'fs';
+import path from 'path';
 import {
   getPaywallContent,
   resolveFeatureColor,
@@ -16,6 +18,7 @@ import {
   DEFAULT_YEARLY_BADGE,
   DEFAULT_CTA_LABELS,
 } from '../paywallContent';
+import { FALLBACK_TRIAL_FINE } from '../paywallPricing';
 import { Colors } from '../../constants/colors';
 
 const FULL_DEFAULTS = {
@@ -282,5 +285,59 @@ describe('headlineFor', () => {
 
   test('unrecognized trigger falls back to default rather than throwing', () => {
     expect(headlineFor(content, 'not-a-real-trigger')).toEqual(DEFAULT_HEADLINES.default);
+  });
+});
+
+/**
+ * "$0 today" element (2026-08-19) — added to lift trial starts by making the
+ * yearly trial's true cost-today visually obvious. Price/trial-disclosure
+ * rendering is deliberately hardcoded in PaywallContent.js / OfferContent.js
+ * (see this module's header comment: "Price rendering, price hierarchy,
+ * trial disclosure, and legal links stay hardcoded... so a dashboard copy
+ * edit can never re-break the Apple 3.1.2(c) price-prominence fix"), so it
+ * isn't reachable through getPaywallContent()'s metadata pipeline tested
+ * above. This codebase has no React renderer for components (see
+ * src/components/__tests__/SpecsMascot.test.js), so these are source-level
+ * checks — the closest available guard against the ONE regression that
+ * matters here: "$0 today" replacing (rather than sitting alongside) the
+ * real billed-amount disclosure that Apple's 3.1.2(c) rejection requires.
+ */
+describe('"$0 today" paywall element — additive only, billed amount stays visible', () => {
+  const paywallSrc = fs.readFileSync(
+    path.join(__dirname, '../../components/PaywallContent.js'), 'utf8'
+  );
+  const offerSrc = fs.readFileSync(
+    path.join(__dirname, '../../components/OfferContent.js'), 'utf8'
+  );
+
+  test('PaywallContent renders a "$0 due today" element on the yearly plan card', () => {
+    expect(paywallSrc).toMatch(/\$0 due today/);
+  });
+
+  test('OfferContent (exit-offer screen) renders a "$0 due today" element too', () => {
+    expect(offerSrc).toMatch(/\$0 due today/);
+  });
+
+  test('PaywallContent still shows the real billed price as the dominant card element (planPriceBig), not replaced by "$0"', () => {
+    expect(paywallSrc).toMatch(/planPriceBig[\s\S]{0,40}\{p\.price\}/);
+  });
+
+  test('PaywallContent still renders the full trial disclosure fine print (yearlyTrialFine) below the CTA, never dropped in favor of "$0"', () => {
+    expect(paywallSrc).toMatch(/\{selectedPlan === 'yearly' \? yearlyTrialFine/);
+    // The fine-print state defaults to FALLBACK_TRIAL_FINE, which must itself
+    // keep disclosing the real billed amount (covered in paywallPricing.test.js).
+    expect(paywallSrc).toContain('FALLBACK_TRIAL_FINE');
+  });
+
+  test('OfferContent still shows the real billed yearly price as the dominant card element (priceBig)', () => {
+    expect(offerSrc).toMatch(/priceBig[\s\S]{0,60}pricing\.yearlyPrice/);
+  });
+
+  test('OfferContent still renders the full trial disclosure fine print (trialFine) below the CTA', () => {
+    expect(offerSrc).toMatch(/\{trialFine\}\. Cancel anytime\./);
+  });
+
+  test('sanity: the shared FALLBACK_TRIAL_FINE constant these screens fall back to still discloses the billed amount', () => {
+    expect(FALLBACK_TRIAL_FINE).toMatch(/Free, then \$\d+\.\d{2}\/year/);
   });
 });
