@@ -1,0 +1,110 @@
+{
+  "batch": "staples-wave-2026-08-17",
+  "status": "CHAD-DONE",
+  "updatedAt": "2026-08-19",
+  "rules": { "market": "US", "healthScoresAsserted": false, "barcodePolicy": "Source-displayed UPC plus GS1 mod-10 required; never inferred.", "labelPolicy": "Exact variant-linked ingredients and per-serving nutrition required or could_not_verify." },
+  "summary": { "targetsReviewed": 29, "verifiedCandidates": 8, "formattedCandidates": 6, "parkedAfterResearch": 2, "duplicates": 16, "couldNotVerify": 5, "verifiedByCategory": { "Snack Bars": 4, "Nut Butters": 1, "Yogurt": 1, "Eggs": 1, "Canned Goods": 1, "Coffee Creamer": 0, "Bread": 0, "Granola": 0 } },
+  "independentReview": { "reviewer": "/root/staples_independent_review", "result": "5 PASS, 1 FIX applied, 2 correctly parked", "reviewedAt": "2026-08-19" },
+  "products": [
+    {
+      "researchId": "thats-it-apple-mango-5ct", "status": "verified_candidate", "barcode": "850397004606", "barcodeValidation": { "type": "UPC-A", "mod10Valid": true, "sourceDisplaysBarcode": true },
+      "name": "That's It Apple + Mango Fruit Bars, 5 Count", "brand": "That's It", "size": "6 oz / 5 bars", "category": "Snack Bars",
+      "parentCompanyCandidate": { "name": "That's It Nutrition, LLC", "companyId": "thats-it-fruit", "basis": "existing companies.js brand map" },
+      "servingSize": "1 bar (1.2 oz / 35g)", "calories": 100, "ingredients": ["apples", "mangoes"],
+      "nutrition": { "fat": 0, "saturatedFat": 0, "sodium": 25, "carbs": 27, "sugars": 23, "protein": 0, "fiber": 3, "addedSugars": 0 },
+      "certifications": ["Kosher", "Certified Gluten-Free", "Non-GMO Project Verified"], "dietaryFlags": { "isOrganic": false, "isVegan": true, "isGlutenFree": true }, "imageUrl": null,
+      "sources": [{ "role": "identity_barcode_label", "url": "https://www.target.com/p/-/A-53141086", "publisher": "Target" }, { "role": "barcode_crosscheck", "url": "https://www.gourmetgarage.com/product/thats-it-apple-mango-fruit-bar-12-oz-id-00850397004071", "publisher": "Gourmet Garage" }],
+      "uncertaintyNotes": ["Target structured label reports 0g protein despite a 1g marketing specification; Nutrition Facts value retained.", "Image null pending reviewed photo pipeline."]
+    },
+    {
+      "researchId": "thats-it-fiber-apple-mango-12ct", "status": "verified_candidate", "barcode": "810090991788", "barcodeValidation": { "type": "UPC-A", "mod10Valid": true, "sourceDisplaysBarcode": true },
+      "name": "That's It Fiber Fun Size Apple + Mango Fruit Bars, 12 Count", "brand": "That's It", "size": "4.2 oz / 12 bars", "category": "Snack Bars",
+      "parentCompanyCandidate": { "name": "That's It Nutrition, LLC", "companyId": "thats-it-fruit", "basis": "existing companies.js brand map" },
+      "servingSize": "1 bar (0.35 oz / 10g)", "calories": 30, "ingredients": ["apples", "mangoes", "apple fiber"],
+      "nutrition": { "fat": 0, "saturatedFat": 0, "sodium": 0, "carbs": 7, "sugars": 6, "protein": 0, "fiber": 2, "addedSugars": 0 },
+      "certifications": ["Certified Gluten-Free", "Non-GMO Project Verified"], "dietaryFlags": { "isOrganic": false, "isVegan": true, "isGlutenFree": true }, "imageUrl": null,
+      "sources": [{ "role": "identity_barcode_label", "url": "https://www.target.com/p/-/A-94920464", "publisher": "Target" }], "uncertaintyNotes": ["Current barcode-linked Target Nutrition Facts reports 2g fiber; separate marketing text says 4g. Nutrition Facts value retained.", "Image null pending reviewed photo pipeline."]
+    },
+    {
+      "researchId": "88-acres-dark-chocolate-sea-salt-seed-oat-bars", "status": "verified_candidate", "barcode": "810035110861", "barcodeValidation": { "type": "UPC-A", "mod10Valid": true, "sourceDisplaysBarcode": true },
+      "name": "88 Acres Dark Chocolate Sea Salt Seed & Oat Granola Bars, 5 Count", "brand": "88 Acres", "size": "8 oz / 5 bars", "category": "Snack Bars",
+      "parentCompanyCandidate": { "name": "88 Acres Foods, Inc.", "companyId": "eighty-eight-acres", "basis": "existing companies.js entry" },
+      "servingSize": "1 bar (45g)", "calories": 200, "ingredients": ["oats", "pumpkin seeds", "sunflower seeds", "dark chocolate (cane sugar, chocolate, cocoa butter, vanilla extract)", "brown rice syrup", "maple syrup", "ground flax seeds", "sea salt"],
+      "nutrition": { "fat": 11, "saturatedFat": 2.5, "sodium": 115, "carbs": 22, "sugars": 9, "protein": 6, "fiber": 3, "addedSugars": 5 },
+      "certifications": ["Certified Gluten-Free", "Non-GMO", "Vegan", "Kosher", "Certified B Corp"], "dietaryFlags": { "isOrganic": false, "isVegan": true, "isGlutenFree": true }, "imageUrl": null,
+      "sources": [{ "role": "identity_barcode_label", "url": "https://www.target.com/p/-/A-94945225", "publisher": "Target" }], "uncertaintyNotes": ["Image null pending reviewed photo pipeline."]
+    },
+    {
+      "researchId": "88-acres-dark-chocolate-brownie-protein-bar", "status": "verified_candidate", "barcode": "857851005919", "barcodeValidation": { "type": "UPC-A", "mod10Valid": true, "sourceDisplaysBarcode": true },
+      "name": "88 Acres Dark Chocolate Brownie Protein Bar", "brand": "88 Acres", "size": "1.9 oz / 55g", "category": "Snack Bars",
+      "parentCompanyCandidate": { "name": "88 Acres Foods, Inc.", "companyId": "eighty-eight-acres", "basis": "existing companies.js entry" },
+      "servingSize": "1 bar (55g)", "calories": 270, "ingredients": ["pumpkin seeds", "brown rice syrup", "dark chocolate (chocolate, cane sugar, cocoa butter, vanilla extract)", "maple syrup", "flax seed flour", "chia flour", "breakfast cocoa (alkalized)", "cocoa powder (alkalized)", "vanilla extract", "sea salt"],
+      "nutrition": { "fat": 16, "saturatedFat": 4.5, "sodium": 160, "carbs": 21, "sugars": 8, "protein": 12, "fiber": 4, "addedSugars": 8 },
+      "certifications": ["Gluten-Free", "Non-GMO", "Vegan"], "dietaryFlags": { "isOrganic": false, "isVegan": true, "isGlutenFree": true }, "imageUrl": null,
+      "sources": [{ "role": "identity_barcode_label", "url": "https://www.target.com/p/-/A-89574438", "publisher": "Target" }], "uncertaintyNotes": ["Retailer offers a nine-bar case; label facts and UPC identify the individual 55g bar variant."]
+    },
+    {
+      "researchId": "fix-fogg-everything-butter-10oz", "status": "verified_candidate", "barcode": "850012399278", "barcodeValidation": { "type": "UPC-A", "mod10Valid": true, "sourceDisplaysBarcode": true },
+      "name": "Fix & Fogg Everything Butter", "brand": "Fix & Fogg", "size": "10 oz", "category": "Nut Butters",
+      "parentCompanyCandidate": { "name": "Fix & Fogg", "companyId": null, "basis": "brand/manufacturer; no current companies.js mapping found" },
+      "servingSize": "2 Tbsp", "calories": 180, "ingredients": ["hi-oleic peanuts", "sunflower seeds", "almonds", "pepitas", "flax seeds", "hemp seeds", "chia seeds", "sesame oil", "New Zealand sea salt", "sesame seeds"],
+      "nutrition": { "fat": 14, "saturatedFat": 2, "sodium": 55, "carbs": 7, "sugars": null, "protein": 8, "fiber": 3, "addedSugars": 0 },
+      "certifications": ["Certified B Corp"], "dietaryFlags": { "isOrganic": false, "isVegan": true, "isGlutenFree": null }, "imageUrl": null,
+      "sources": [{ "role": "identity_barcode_label", "url": "https://www.target.com/p/-/A-1006723092", "publisher": "Target" }, { "role": "manufacturer_product", "url": "https://fixandfogg.com/products/everything-butter", "publisher": "Fix & Fogg" }, { "role": "barcode_crosscheck", "url": "https://www.martindalesnutrition.com/product/fix-fogg-nut-butter/", "publisher": "Martindale's Natural Market" }],
+      "uncertaintyNotes": ["Total sugars not displayed and remains null; do not infer.", "Parent company requires resolution before merge."]
+    },
+    {
+      "researchId": "maple-hill-plain-greek-yogurt-16oz", "status": "verified_candidate", "barcode": "855088005238", "barcodeValidation": { "type": "UPC-A", "mod10Valid": true, "sourceDisplaysBarcode": true },
+      "name": "Maple Hill Creamery Plain Whole Milk Greek Yogurt", "brand": "Maple Hill Creamery", "size": "16 oz", "category": "Yogurt",
+      "parentCompanyCandidate": { "name": "Maple Hill Creamery", "companyId": null, "basis": "brand/manufacturer; no current companies.js mapping found" },
+      "servingSize": "2/3 cup (170g)", "calories": 160, "ingredients": ["organic whole milk", "live and active cultures"],
+      "nutrition": { "fat": 7, "saturatedFat": 4.5, "sodium": 90, "carbs": 9, "sugars": 5, "protein": 15, "fiber": 0, "addedSugars": 0 },
+      "certifications": ["USDA Organic", "PCO Certified 100% Grass-Fed", "Kosher", "Gluten-Free"], "dietaryFlags": { "isOrganic": true, "isVegan": false, "isGlutenFree": true }, "imageUrl": null,
+      "sources": [{ "role": "identity_barcode_label", "url": "https://www.target.com/p/-/A-94438082", "publisher": "Target" }, { "role": "manufacturer_ingredients", "url": "https://www.maplehill.com/products/grass-fed-greek-yogurt", "publisher": "Maple Hill Creamery" }, { "role": "barcode_crosscheck", "url": "https://www.fairwaymarket.com/product/maple-hill-creamery-plain-greek-yogurt-16-oz-00855088005238", "publisher": "Fairway Market" }],
+      "uncertaintyNotes": ["Current Target label retained over older databases with different rounding.", "Parent company requires resolution before merge."]
+    },
+    {
+      "researchId": "vital-farms-organic-pasture-raised-eggs-18ct", "status": "verified_candidate", "barcode": "851387007416", "barcodeValidation": { "type": "UPC-A", "mod10Valid": true, "sourceDisplaysBarcode": true },
+      "name": "Vital Farms Organic Pasture-Raised Large Eggs, 18 Count", "brand": "Vital Farms", "size": "18 large eggs", "category": "Eggs",
+      "parentCompanyCandidate": { "name": "Vital Farms, Inc.", "companyId": "vital-farms", "basis": "existing companies.js entry" },
+      "servingSize": "1 egg (50g)", "calories": 70, "ingredients": ["eggs"], "nutrition": { "fat": 5, "saturatedFat": 1.5, "sodium": 70, "carbs": 0, "sugars": 0, "protein": 6, "fiber": 0, "addedSugars": 0 },
+      "certifications": ["USDA Organic", "Certified Humane"], "dietaryFlags": { "isOrganic": true, "isVegan": false, "isGlutenFree": true }, "imageUrl": null,
+      "sources": [{ "role": "identity_barcode_label", "url": "https://www.target.com/p/-/A-93718441", "publisher": "Target" }], "uncertaintyNotes": ["Distinct 18-count UPC; catalog contains other sizes but not this barcode."]
+    },
+    {
+      "researchId": "wild-planet-sardines-water-sea-salt-4-4oz", "status": "verified_candidate", "barcode": "829696000831", "barcodeValidation": { "type": "UPC-A", "mod10Valid": true, "sourceDisplaysBarcode": true },
+      "name": "Wild Planet Wild Sardines in Water with Sea Salt", "brand": "Wild Planet", "size": "4.4 oz", "category": "Canned Goods",
+      "parentCompanyCandidate": { "name": "Wild Planet Foods", "companyId": "wild-planet", "basis": "existing products.js Wild Planet companyId" },
+      "servingSize": "3 oz (85g)", "calories": 140, "ingredients": ["sardines (Sardinops sagax or Sardinops melanostictus)", "water", "sea salt"],
+      "nutrition": { "fat": 8, "saturatedFat": 2.5, "sodium": 280, "carbs": 0, "sugars": 0, "protein": 18, "fiber": 0, "addedSugars": 0 },
+      "certifications": ["Kosher", "Non-GMO"], "dietaryFlags": { "isOrganic": false, "isVegan": false, "isGlutenFree": true }, "imageUrl": null,
+      "sources": [{ "role": "identity_barcode_label", "url": "https://www.target.com/p/-/A-90128743", "publisher": "Target" }], "uncertaintyNotes": ["Target page is a case listing of twelve 4.4 oz cans; reviewer should confirm UPC granularity before formatting."]
+    }
+  ],
+  "duplicates": [
+    { "requested": "nutpods Original Unsweetened Dairy-Free Creamer", "category": "Coffee Creamer", "existingBarcode": "859922007587", "evidence": ["src/data/products.js", "src/data/batches/products/coffee_creamers_reviewed.js"] },
+    { "requested": "nutpods French Vanilla Unsweetened Almond + Coconut Creamer", "category": "Coffee Creamer", "evidence": ["src/data/products.js", "src/data/batches/products/cowork-batch-2026-07-20_reviewed.js"] },
+    { "requested": "Laird Superfood Original Coconut Creamer Powder", "category": "Coffee Creamer", "evidence": ["src/data/products.js"] },
+    { "requested": "Food For Life Ezekiel 4:9 Sprouted Whole Grain Bread", "category": "Bread", "existingBarcode": "073472001202", "evidence": ["src/data/products.js", "src/data/batches/products/bread_pt1_reviewed.js"] },
+    { "requested": "Dave's Killer Bread 21 Whole Grains and Seeds", "category": "Bread", "evidence": ["src/data/products.js"] },
+    { "requested": "RXBAR Blueberry Protein Bar", "category": "Snack Bars", "existingBarcode": "857777004195", "evidence": ["src/data/products.js", "src/data/batches/products/snack_bars_formatted.js"] },
+    { "requested": "GoMacro Protein Pleasure Peanut Butter Chocolate Chip MacroBar", "category": "Snack Bars", "evidence": ["src/data/products.js"] },
+    { "requested": "Purely Elizabeth Original Superfood Granola", "category": "Granola", "evidence": ["src/data/products.js"] },
+    { "requested": "Nature's Path Pumpkin Seed + Flax Granola", "category": "Granola", "evidence": ["src/data/products.js"] },
+    { "requested": "Crazy Richard's 100% Natural Creamy Peanut Butter", "category": "Nut Butters", "existingBarcode": "074822610631", "evidence": ["src/data/products.js", "src/data/batches/products/pb_nut_butters_reviewed.js"] },
+    { "requested": "Santa Cruz Organic Dark Roasted Creamy Peanut Butter", "category": "Nut Butters", "evidence": ["src/data/products.js"] },
+    { "requested": "Siggi's 0% Plain Icelandic Skyr", "category": "Yogurt", "existingBarcode": "898248001008", "evidence": ["src/data/products.js", "src/data/batches/products/yogurt_reresearched_reviewed.js"] },
+    { "requested": "Vital Farms Pasture-Raised Large Grade A Eggs", "category": "Eggs", "existingBarcode": "861745000010", "evidence": ["src/data/products.js", "src/data/batches/products/eggs_reviewed.js"] },
+    { "requested": "Happy Egg Organic Free Range Large Brown Eggs, 12 Count", "category": "Eggs", "existingBarcode": "887422000081", "evidence": ["src/data/products.js", "src/data/batches/products/eggs-2026-07-09_reviewed.js"] },
+    { "requested": "Pete & Gerry's Organic Free-Range Large Eggs", "category": "Eggs", "evidence": ["src/data/products.js"] },
+    { "requested": "Wild Planet Wild Albacore Tuna", "category": "Canned Goods", "existingBarcode": "829696000534", "evidence": ["src/data/products.js", "src/data/batches/products/canned_goods_reviewed.js"] }
+  ],
+  "could_not_verify": [
+    { "requested": "Struesli Original Organic Granola", "category": "Granola", "reason": "Manufacturer ingredients and nutrition found, but no reliable US consumer UPC verified.", "sources": ["https://struesli.com/products/struesli-organic-granola-original", "https://struesli.com/pages/nutritional-labels"] },
+    { "requested": "Wildway Vanilla Bean Espresso Grain-Free Granola", "category": "Granola", "reason": "Manufacturer ingredients found, but digit string inferred from retailer URL failed mod-10; barcode not guessed.", "sources": ["https://wildwayoflife.com/products/wildway-grain-free-granola-vanilla-bean-espresso", "https://www.kroger.com/p/wildway-vanilla-bean-espresso-granola/0085866000520"] },
+    { "requested": "Elmhurst Original Unsweetened Oat Creamer", "category": "Coffee Creamer", "reason": "Current label found, but no creamer-specific consumer UPC verified; search surfaced a distinct oatmilk UPC.", "sources": ["https://elmhurst1925.com/collections/creamer-barista/products/oat-creamer-original-unsweetened"] },
+    { "requested": "Silver Hills Organic Soft Wheat Sprouted Wheat Bread", "category": "Bread", "reason": "Label facts and valid case GTIN found, but no valid consumer-unit UPC tied to the 24 oz package.", "sources": ["https://www.target.com/p/-/A-76625882", "https://southphilly.provisions.coop/products/sh-sprtd-wheat-bread-og-8-24-oz-31156", "https://data.attribytes.com/products/sell_sheet/by_distributor_and_sku/ben-e-keith/132987.pdf"] },
+    { "requested": "Happy Egg Organic Free Range Eggs, 18 Count", "category": "Eggs", "reason": "Target displays UPC 887422000098, but accessible result lacked a complete UPC-specific label; 12-count data was not copied.", "sources": ["https://www.target.com/p/-/A-90864085"] }
+  ],
+  "researchNotes": ["Duplicate checks used exact UPC/name searches in products.js and reviewed batch files.", "All eight candidate UPCs passed mod-10 and returned no exact local barcode match.", "No health score was asserted.", "Images remain null unless a stable variant-specific asset can be separately reviewed."]
+}
