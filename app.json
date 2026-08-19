@@ -67,7 +67,8 @@
           "project": "react-native",
           "url": "https://sentry.io/"
         }
-      ]
+      ],
+      "expo-sharing"
     ],
     "scheme": "healthychoices",
     "runtimeVersion": {

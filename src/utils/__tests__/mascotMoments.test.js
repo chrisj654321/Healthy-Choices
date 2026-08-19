@@ -13,11 +13,12 @@ jest.mock('@react-native-async-storage/async-storage', () =>
 );
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { recordScanAndPickCelebration } from '../mascotMoments';
+import { recordScanAndPickCelebration, checkFirstHighScore } from '../mascotMoments';
 
 const FIRST_A_DONE_KEY = '@hc_mascot_first_a_done';
 const SCAN_COUNT_KEY   = '@hc_mascot_scan_count';
 const STREAK_KEY       = '@hc_mascot_streak';
+const FIRST_HIGH_SCORE_KEY = '@hc_first_high_score_celebrated';
 
 // Noon local time avoids any same-day/DST edge cases in the test dates
 // themselves (as opposed to the boundary being deliberately tested).
@@ -160,6 +161,44 @@ describe('priority ordering and consumption', () => {
     // and tenthScan's count no longer lines up -- nothing fires.
     const followUp = await recordScanAndPickCelebration({ displayGrade: 'A' });
     expect(followUp).toBeNull();
+  });
+});
+
+// ─── checkFirstHighScore (first-ever 90+ scan, full-screen celebration) ─────
+
+describe('checkFirstHighScore', () => {
+  test('fires exactly once: the first 90+ score returns true, every later 90+ score returns false', async () => {
+    expect(await checkFirstHighScore(90)).toBe(true);
+    expect(await AsyncStorage.getItem(FIRST_HIGH_SCORE_KEY)).toBe('true');
+
+    expect(await checkFirstHighScore(95)).toBe(false);
+    expect(await checkFirstHighScore(100)).toBe(false);
+    expect(await checkFirstHighScore(90)).toBe(false);
+  });
+
+  test('scores below 90 never trigger it and never spend the flag', async () => {
+    for (const score of [0, 50, 79, 89, 89.9]) {
+      // eslint-disable-next-line no-await-in-loop
+      expect(await checkFirstHighScore(score)).toBe(false);
+    }
+    expect(await AsyncStorage.getItem(FIRST_HIGH_SCORE_KEY)).toBeNull();
+
+    // The flag is still unspent, so the very next 90+ score still fires.
+    expect(await checkFirstHighScore(90)).toBe(true);
+  });
+
+  test('non-numeric / missing scores (insufficientData products) never trigger it', async () => {
+    for (const score of [null, undefined, NaN, '95']) {
+      // eslint-disable-next-line no-await-in-loop
+      expect(await checkFirstHighScore(score)).toBe(false);
+    }
+    expect(await AsyncStorage.getItem(FIRST_HIGH_SCORE_KEY)).toBeNull();
+  });
+
+  test('AsyncStorage throwing -> caught, returns false, never throws', async () => {
+    AsyncStorage.getItem.mockImplementationOnce(() => Promise.reject(new Error('storage unavailable')));
+    await expect(checkFirstHighScore(95)).resolves.toBe(false);
+    expect(console.warn).toHaveBeenCalled();
   });
 });
 

@@ -33,6 +33,7 @@ const FILES_TO_CHECK = [
   'src/screens/CompanyProfileScreen.js',
   'src/components/GradeRing.js',
   'src/components/ScanHistoryItem.js',
+  'src/components/ShareCard.js',
 ];
 
 // Matches a JSX text child rendering a bare grade-named variable, e.g.

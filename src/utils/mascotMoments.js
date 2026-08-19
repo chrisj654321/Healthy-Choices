@@ -7,6 +7,18 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const FIRST_A_DONE_KEY = '@hc_mascot_first_a_done';
 const SCAN_COUNT_KEY   = '@hc_mascot_scan_count';
 const STREAK_KEY       = '@hc_mascot_streak';
+// Deliberately its own key, separate from FIRST_A_DONE_KEY, even though the
+// first-ever 90+ score and the first-ever 'A' grade are usually the same
+// scan (grade 'A' == score >= 90, see scorer.js#scoreToGrade). This flag
+// gates the special full-screen celebration (ProductScoreScreen ->
+// FirstHighScoreCelebration), which is a bigger moment than the small
+// hero-corner backflip firstA plays, so it gets its own one-time trigger.
+const FIRST_HIGH_SCORE_KEY = '@hc_first_high_score_celebrated';
+
+// Score threshold for the special first-90+ celebration. Matches the 'A'
+// grade cutoff in scorer.js (scoreToGrade), but this checks the real
+// numeric score the caller already has, not the letter grade.
+const HIGH_SCORE_THRESHOLD = 90;
 
 // Celebrate every 10th scan (10, 20, 30, …).
 const TENTH_SCAN_INTERVAL = 10;
@@ -33,6 +45,39 @@ async function checkFirstA(displayGrade) {
   if (done === 'true') return false;
   await AsyncStorage.setItem(FIRST_A_DONE_KEY, 'true');
   return true;
+}
+
+/**
+ * Marks the first-ever 90+ score as celebrated with the special full-screen
+ * moment (ProductScoreScreen's FirstHighScoreCelebration). Returns true
+ * exactly once per install; every later 90+ scan returns false so the
+ * screen falls back to the normal recordScanAndPickCelebration flow below
+ * (which still runs firstA/streak/tenthScan as before).
+ *
+ * Separate export (not folded into recordScanAndPickCelebration) because
+ * the caller needs to know specifically whether THIS is the special moment,
+ * to decide which celebration UI to show and whether to fire the
+ * 'firstHighScore' review-prompt moment afterward.
+ *
+ * Wrapped in its own try/catch (mirroring recordScanAndPickCelebration's
+ * resilience below) so a storage failure here never blocks the score
+ * screen — it just falls back to "not the special moment" and behaves like
+ * a normal scan.
+ */
+export async function checkFirstHighScore(score) {
+  // Number.isFinite, not typeof === 'number' -- NaN is typeof 'number' but
+  // every comparison against it is false, so `NaN < HIGH_SCORE_THRESHOLD`
+  // would silently slip past a typeof-only guard and spend the flag.
+  if (!Number.isFinite(score) || score < HIGH_SCORE_THRESHOLD) return false;
+  try {
+    const done = await AsyncStorage.getItem(FIRST_HIGH_SCORE_KEY);
+    if (done === 'true') return false;
+    await AsyncStorage.setItem(FIRST_HIGH_SCORE_KEY, 'true');
+    return true;
+  } catch (e) {
+    console.warn('[MascotMoments] checkFirstHighScore failed:', e?.message ?? e);
+    return false;
+  }
 }
 
 /**

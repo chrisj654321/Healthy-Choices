@@ -7,6 +7,10 @@ import { Ionicons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+// react-native-view-shot + expo-sharing are lazy-required inside handleShare —
+// they are native modules absent from any binary built before this feature, so
+// keeping them out of module load lets an OTA reach those binaries without
+// crashing this screen at import time.
 import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
 import {
@@ -21,14 +25,17 @@ import { logProductEvent } from '../utils/scanAnalytics';
 import { logFirstScanIfNeeded } from '../utils/appAnalytics';
 import { useProStatus } from '../utils/subscription';
 import { getAlternatives } from '../utils/alternatives';
-import { recordScanAndPickCelebration } from '../utils/mascotMoments';
+import { recordScanAndPickCelebration, checkFirstHighScore } from '../utils/mascotMoments';
+import { maybeRequestAppReview } from '../utils/reviewPrompt';
 import { COMPANY_DB } from '../data/companies';
 import IngredientRow from '../components/IngredientRow';
 import GradeRing from '../components/GradeRing';
 import StatBar from '../components/StatBar';
 import SpecsMascot from '../components/SpecsMascot';
+import FirstHighScoreCelebration from '../components/FirstHighScoreCelebration';
 import BackButton from '../components/BackButton';
 import LivingConditionsCard from '../components/LivingConditionsCard';
+import ShareCard from '../components/ShareCard';
 import { isEggsHousingEligible } from '../utils/sourcingMatch';
 
 // ── Flag utils ────────────────────────────────────────────────────────────────
@@ -361,7 +368,13 @@ export default function ProductScoreScreen({ route, navigation }) {
   const [alternatives, setAlternatives] = useState([]);
   const [altShowAll, setAltShowAll] = useState(false);
   const [celebration, setCelebration] = useState(null);
+  // Separate from `celebration` above — this gates the special one-time
+  // full-screen "first 90+ ever" moment (FirstHighScoreCelebration), not
+  // the small hero-corner backflip the other milestone celebrations use.
+  const [firstHighScoreCelebration, setFirstHighScoreCelebration] = useState(false);
   const gradeAnim = useRef(new Animated.Value(0)).current;
+  // Off-screen ShareCard target for the image-share flow (see handleShare).
+  const shareCardRef = useRef(null);
 
   // Sticky-tab-bar / fixed-BackButton collision tracking. These MUST live
   // above the `if (!product) return null` / `if (!result)` early returns
@@ -380,6 +393,7 @@ export default function ProductScoreScreen({ route, navigation }) {
     setAlternatives([]);
     setAltShowAll(false);
     setCelebration(null);
+    setFirstHighScoreCelebration(false);
 
     const grade = r.displayGrade || r.grade;
 
@@ -388,8 +402,29 @@ export default function ProductScoreScreen({ route, navigation }) {
     // fromScanner gates. Errors resolve to null inside the util itself, so
     // this never blocks the score screen from rendering.
     if (route?.params?.fromScanner) {
-      recordScanAndPickCelebration({ displayGrade: grade })
-        .then(setCelebration)
+      // checkFirstHighScore uses the real numeric score, never the letter
+      // grade (see CLAUDE.md — scores render as numbers, not letters).
+      // insufficientData products don't get an honest score, so they're
+      // excluded the same way the "better picks" section excludes them
+      // below. Both calls run concurrently — they touch different
+      // AsyncStorage keys, so there's no race between them.
+      const scoreForCelebration = !r.insufficientData && Number.isFinite(r.score) ? r.score : null;
+      Promise.all([
+        checkFirstHighScore(scoreForCelebration),
+        recordScanAndPickCelebration({ displayGrade: grade }),
+      ])
+        .then(([isFirstHighScore, normalCelebration]) => {
+          // The first-ever 90+ scan gets the special full-screen moment
+          // INSTEAD of the normal celebration (they'd otherwise usually
+          // fire on the very same scan, since grade 'A' == score >= 90 —
+          // see mascotMoments.js). Every later 90+ scan already has the
+          // flag spent, so it falls through to the normal system as usual.
+          if (isFirstHighScore) {
+            setFirstHighScoreCelebration(true);
+          } else {
+            setCelebration(normalCelebration);
+          }
+        })
         .catch(() => {});
       // Funnel analytics: 'first_scan' fires once per install, no matter how
       // many real scans happen — logFirstScanIfNeeded() no-ops after the
@@ -443,6 +478,18 @@ export default function ProductScoreScreen({ route, navigation }) {
     }).start();
   }, [product]);
 
+  // Called by FirstHighScoreCelebration once its animation finishes. The
+  // review request fires AFTER the celebration, not during — a purchase-
+  // or-praise moment right as the user is delighted is exactly the timing
+  // Apple's guidance recommends, and firing it mid-animation would be a
+  // jarring interruption. maybeRequestAppReview's own guards (cooldown,
+  // once-per-moment, hasAction) still apply — this just supplies the
+  // 'firstHighScore' moment key.
+  const handleFirstHighScoreDone = useCallback(() => {
+    setFirstHighScoreCelebration(false);
+    maybeRequestAppReview('firstHighScore').catch(() => {});
+  }, []);
+
   // Post-first-scan setup prompt (Part B9, Trigger 1) — once, ever, right as
   // the user leaves the score screen after a real scan (not history/search),
   // offer the "personalize your scans?" nudge into ProfileSetupScreen.
@@ -489,8 +536,10 @@ export default function ProductScoreScreen({ route, navigation }) {
     return unsubscribe;
   }, [navigation, route]);
 
-  const handleShare = useCallback(async () => {
-    if (!result) return;
+  // Fallback text-only share — used when the image card can't be captured or
+  // shared for any reason. Kept as a separate function (not inlined into the
+  // catch block) so the exact same message is reachable from one place.
+  const shareTextFallback = useCallback(async () => {
     await Share.share({
       message:
         `${product.name} scored ${result.score}/100 on Food Exposé.\n` +
@@ -500,6 +549,49 @@ export default function ProductScoreScreen({ route, navigation }) {
         `\nGet the app: https://apps.apple.com/app/id6776718186`,
     });
   }, [result, product]);
+
+  const handleShare = useCallback(async () => {
+    if (!result || !product) return;
+    const company = product.companyId ? COMPANY_DB[product.companyId] : null;
+
+    try {
+      // Lazy-require the native modules (see import-site note above). A failed
+      // require on a pre-feature binary throws here and is caught below, falling
+      // back to the text share — never a crash.
+      const { captureRef } = require('react-native-view-shot');
+      const Sharing = require('expo-sharing');
+      // Best-effort logo preload before capture — captureRef only grabs what
+      // has actually painted, so a remote favicon that hasn't finished
+      // loading yet would otherwise capture as a blank tile. Raced against a
+      // short timeout so a slow/broken logo URL never blocks the share flow.
+      if (company?.logo) {
+        await Promise.race([
+          Image.prefetch(company.logo).catch(() => {}),
+          new Promise((resolve) => setTimeout(resolve, 1500)),
+        ]);
+      }
+
+      const isAvailable = await Sharing.isAvailableAsync();
+      if (isAvailable && shareCardRef.current) {
+        const uri = await captureRef(shareCardRef, {
+          format: 'png',
+          quality: 1,
+          result: 'tmpfile',
+          width: 1080,
+          height: 1920,
+        });
+        await Sharing.shareAsync(uri, {
+          mimeType: 'image/png',
+          dialogTitle: 'Share this scan',
+        });
+        return;
+      }
+    } catch (err) {
+      console.warn('[ProductScore] share-card capture failed, falling back to text share:', err?.message ?? err);
+    }
+
+    await shareTextFallback();
+  }, [result, product, shareTextFallback]);
 
   if (!product) return null;
   if (!result) {
@@ -1055,6 +1147,19 @@ export default function ProductScoreScreen({ route, navigation }) {
       </ScrollView>
 
       <BackButton navigation={navigation} />
+
+      {firstHighScoreCelebration && (
+        <FirstHighScoreCelebration score={result?.score} onDone={handleFirstHighScoreDone} />
+      )}
+
+      {/* Off-screen share-card render target for handleShare's captureRef
+          call above — pointerEvents 'none' + parked far outside the visible
+          area so it never intercepts touches or flashes on screen, but stays
+          mounted (and its remote logo image can load) the whole time this
+          screen is up. */}
+      <View style={s.shareCardOffscreen} pointerEvents="none">
+        <ShareCard ref={shareCardRef} product={product} result={result} company={company} />
+      </View>
     </View>
   );
 }
@@ -1156,6 +1261,10 @@ const HERO_H = 220;
 
 const s = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#fff' },
+
+  // Parked far outside the visible viewport (not just hidden) so it never
+  // affects layout or briefly flashes during the entrance animation.
+  shareCardOffscreen: { position: 'absolute', top: -10000, left: 0 },
 
   // Hero
   heroWrap: { height: HERO_H, overflow: 'hidden', backgroundColor: '#D5EAE3' },

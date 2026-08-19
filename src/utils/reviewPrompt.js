@@ -9,8 +9,9 @@ const SUCCESSFUL_SCAN_COUNT_KEY = '@hc_review_successful_scan_count';
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
-// Apple guidance is to wait 1-2 weeks between prompts for the same user.
-const GLOBAL_COOLDOWN_DAYS = 14;
+// Apple self-throttles the native prompt to ~3 times/year no matter what we
+// do, so this is just our own spacing between attempts (was 14 days).
+const GLOBAL_COOLDOWN_DAYS = 7;
 
 // Only prompt on the 3rd successful scan — never on first run (Apple 5.6.1).
 const FIRST_SCAN_TRIGGER_COUNT = 3;
