@@ -1092,7 +1092,7 @@ describe('scoreProduct: form-penalty model — Rule 2 (fried snack cap 50)', () 
     expect(result.isFriedSnack).toBe(false);
   });
 
-  test('an explicit "Oven Baked" claim exempts a Chips & Crackers item from the fried-snack cap (real catalog case: Lay\'s Oven Baked Potato Crisps)', () => {
+  test('an explicit "Oven Baked" claim exempts a Chips & Crackers item from the fried-snack cap, landing it on the Tier 2 baked-analogue cap instead (real catalog case: Lay\'s Oven Baked Potato Crisps)', () => {
     const result = scoreProduct({
       name: "Lay's Oven Baked Original Potato Crisps",
       category: 'Chips & Crackers',
@@ -1100,6 +1100,8 @@ describe('scoreProduct: form-penalty model — Rule 2 (fried snack cap 50)', () 
       nutrition: {},
     });
     expect(result.isFriedSnack).toBe(false);
+    expect(result.isBakedSnack).toBe(true);
+    expect(result.formCap).toBe(65);
   });
 
   test('the lower cap wins when a product triggers both Rule 1 and Rule 2 (fried, cured-meat-named snack)', () => {
@@ -1113,6 +1115,246 @@ describe('scoreProduct: form-penalty model — Rule 2 (fried snack cap 50)', () 
     expect(result.isFriedSnack).toBe(true);
     expect(result.formCap).toBe(40);
     expect(result.score).toBeLessThanOrEqual(40);
+  });
+});
+
+// 2026-08-19 — evidence review (context/research/baked-vs-fried-chips.md)
+// split the old single fried-snack cap into three tiers. Fixtures mirror
+// real catalog products exactly (see src/data/products.js) so these tests
+// double as the drift audit's own regression pins.
+describe('scoreProduct: form-penalty model — Rule 2, Tier 2 (baked/popped/puffed chip analogue, cap 65)', () => {
+  test("Popchips Original Sea Salt Potato Chips caps at 65, not 50 (no fried/kettle marker; Popchips' documented popped, non-fried process)", () => {
+    const result = scoreProduct({
+      name: 'Popchips Original Sea Salt Potato Chips',
+      brand: 'Popchips',
+      category: 'Chips & Crackers',
+      ingredients: ['dried potato', 'rice flour', 'sunflower and/or safflower oil', 'potato starch', 'sea salt', 'salt'],
+      nutrition: { fat: 4.5, saturatedFat: 0.5, sodium: 190, carbs: 21, sugars: 1, protein: 1 },
+    });
+    expect(result.isFriedSnack).toBe(false);
+    expect(result.isBakedSnack).toBe(true);
+    expect(result.formCap).toBe(65);
+    expect(result.score).toBeLessThanOrEqual(65);
+  });
+
+  test("Way Better Snacks Simply Sweet Potato Tortilla Chips defaults to the fried tier (cap 50) — a tortilla chip with no confirmed non-fried process", () => {
+    const result = scoreProduct({
+      name: 'Way Better Snacks Simply Sweet Potato Tortilla Chips',
+      brand: 'Way Better Snacks',
+      category: 'Chips & Crackers',
+      ingredients: ['non-gmo stone ground whole corn', 'sunflower oil', 'sweet potato', 'sprouted seed and grain blend (sprouted quinoa, sprouted chia seed)', 'pure sea salt'],
+      nutrition: { fat: 7, saturatedFat: 0.5, sodium: 80, carbs: 16, sugars: 0, protein: 2 },
+    });
+    expect(result.isFriedSnack).toBe(true);
+    expect(result.isBakedSnack).toBe(false);
+    expect(result.formCap).toBe(50);
+  });
+
+  test("LesserEvil Himalayan Pink Salt Paleo Puffs caps at 65 (name marker: Puffs)", () => {
+    const result = scoreProduct({
+      name: 'LesserEvil Himalayan Pink Salt Paleo Puffs',
+      brand: 'LesserEvil',
+      category: 'Chips & Crackers',
+      ingredients: ['organic cassava flour', 'organic coconut oil', 'organic tapioca starch', 'organic coconut flour', 'organic sweet potato flour', 'himalayan salt'],
+      nutrition: { fat: 6, saturatedFat: 5, sodium: 190, carbs: 18, sugars: 0, protein: 1 },
+    });
+    expect(result.isFriedSnack).toBe(false);
+    expect(result.isBakedSnack).toBe(true);
+    expect(result.formCap).toBe(65);
+  });
+
+  test('Harvest Snaps Green Pea Snack Crisps caps at 65 (name marker: Crisps)', () => {
+    const result = scoreProduct({
+      name: 'Harvest Snaps Green Pea Snack Crisps Lightly Salted',
+      brand: 'Harvest Snaps',
+      category: 'Chips & Crackers',
+      ingredients: ['green peas', 'canola oil', 'rice', 'salt', 'calcium carbonate', 'rosemary extract (for freshness)'],
+      nutrition: { fat: 5, saturatedFat: 0, sodium: 75, carbs: 16, sugars: 0, protein: 5 },
+    });
+    expect(result.isFriedSnack).toBe(false);
+    expect(result.isBakedSnack).toBe(true);
+    expect(result.formCap).toBe(65);
+  });
+
+  test('Off The Eaten Path Veggie Crisps caps at 65 (name marker: Veggie Crisps) — "veggie" itself earns no separate credit, it only helps classify the tier', () => {
+    const result = scoreProduct({
+      name: 'Off The Eaten Path Rice, Peas & Black Beans Veggie Crisps',
+      brand: 'Off The Eaten Path',
+      category: 'Chips & Crackers',
+      ingredients: ['rice flour', 'sunflower oil', 'dried green peas', 'dried yellow peas', 'dried black beans', 'sea salt', 'mixed tocopherols (antioxidant)'],
+      nutrition: { fat: 5, saturatedFat: 0, sodium: 140, carbs: 19, sugars: 0, protein: 3 },
+    });
+    expect(result.isFriedSnack).toBe(false);
+    expect(result.isBakedSnack).toBe(true);
+    expect(result.formCap).toBe(65);
+  });
+
+  test("Stacy's Simply Naked Pita Chips caps at 65 (name marker: Pita Chips) — refined enriched wheat flour as the #1 ingredient still stacks Rule 3's -25 penalty on top", () => {
+    const result = scoreProduct({
+      name: "Stacy's Simply Naked Pita Chips",
+      brand: "Stacy's",
+      category: 'Chips & Crackers',
+      ingredients: ['enriched wheat flour (wheat flour, niacin, reduced iron, thiamin mononitrate, riboflavin, folic acid)', 'sunflower oil and/or canola oil', 'sea salt', 'whole wheat flour'],
+      nutrition: { fat: 4, saturatedFat: 0.5, sodium: 210, carbs: 19, sugars: 0, protein: 3 },
+    });
+    expect(result.isFriedSnack).toBe(false);
+    expect(result.isBakedSnack).toBe(true);
+    expect(result.formCap).toBe(65);
+    expect(result.refinedGrainPenalty).toBe(25);
+  });
+
+  test('a real fried, formed potato-crisp product ("crisps" naming, no baked/popped marker) stays Tier 1 at the 50 cap (real catalog case: Pringles Original Potato Crisps) — the bare word "crisps" alone must not promote the classic potato/corn-chip naming variant to Tier 2', () => {
+    const result = scoreProduct({
+      name: 'Original Potato Crisps',
+      brand: 'Pringles',
+      category: 'Chips & Crackers',
+      ingredients: ['dried potatoes', 'vegetable oil (corn, cottonseed, high oleic soybean, and/or sunflower oil)', 'degerminated yellow corn flour', 'cornstarch', 'rice flour', 'maltodextrin', 'mono- and diglycerides', 'salt', 'wheat starch'],
+      nutrition: { fat: 9, saturatedFat: 2.5, sodium: 150, carbs: 15, sugars: 0, protein: 1 },
+    });
+    expect(result.isBakedSnack).toBe(false);
+    expect(result.isFriedSnack).toBe(true);
+    expect(result.formCap).toBe(50);
+  });
+
+  test('an explicit baked+chip-format claim promotes a product to Tier 2 even though a Tier 1 "potato crisps" phrase is also present (real catalog case: Lay\'s Oven Baked Original Potato Crisps)', () => {
+    const result = scoreProduct({
+      name: "Lay's Oven Baked Original Potato Crisps",
+      category: 'Chips & Crackers',
+      ingredients: ['dried potatoes', 'olive oil', 'corn starch', 'sugar', 'sea salt', 'soy lecithin', 'dextrose', 'annatto extract (color)'],
+      nutrition: { fat: 5, saturatedFat: 1, sodium: 135, carbs: 20, sugars: 2, protein: 2 },
+    });
+    expect(result.isFriedSnack).toBe(false);
+    expect(result.isBakedSnack).toBe(true);
+    expect(result.formCap).toBe(65);
+  });
+
+  test('a bare "baked" word with no chip-format word does not trigger Tier 2 — plain baked crackers stay untouched by this rule (real catalog case: Cheez-It Original Baked Snack Crackers, Goldfish Baked Snack Crackers)', () => {
+    const cheezIt = scoreProduct({
+      name: 'Cheez-It Original Baked Snack Crackers',
+      category: 'Chips & Crackers',
+      ingredients: ['enriched flour (wheat flour, niacin, reduced iron, thiamin mononitrate, riboflavin, folic acid)', 'vegetable oil (soybean and palm oil with tbhq for freshness)', 'cheese made with skim milk (skim milk, whey protein, cheese cultures, salt, enzymes, annatto extract color)', 'salt'],
+      nutrition: { fat: 8, saturatedFat: 2, sodium: 230, carbs: 15, sugars: 0, protein: 4 },
+    });
+    expect(cheezIt.isFriedSnack).toBe(false);
+    expect(cheezIt.isBakedSnack).toBe(false);
+    expect(cheezIt.formCap).toBeNull();
+
+    const goldfish = scoreProduct({
+      name: 'Goldfish Baked Snack Crackers, Original',
+      category: 'Chips & Crackers',
+      ingredients: ['enriched wheat flour', 'vegetable oil', 'cheddar cheese', 'salt'],
+      nutrition: {},
+    });
+    expect(goldfish.isBakedSnack).toBe(false);
+    expect(goldfish.formCap).toBeNull();
+  });
+
+  test('an extruded, oil-coated puff (real catalog case: Cheetos Puffs) moves to the 65 cap rather than 50 — matches the research review\'s own NOVA-marker framing for formed/extruded puffs', () => {
+    const result = scoreProduct({
+      name: 'Cheetos Puffs Cheese Flavored Snacks',
+      brand: 'Cheetos',
+      category: 'Chips & Crackers',
+      ingredients: ['enriched corn meal', 'vegetable oil (corn, canola, and/or sunflower oil)', 'whey', 'cheddar cheese', 'canola oil', 'maltodextrin (corn)', 'salt', 'whey protein concentrate', 'monosodium glutamate', 'natural and artificial flavors', 'lactic acid', 'citric acid', 'yellow 6'],
+      nutrition: { fat: 10, saturatedFat: 1.5, sodium: 370, carbs: 13, sugars: 1, protein: 2 },
+    });
+    expect(result.isFriedSnack).toBe(false);
+    expect(result.isBakedSnack).toBe(true);
+    expect(result.formCap).toBe(65);
+  });
+});
+
+describe('scoreProduct: form-penalty model — Rule 2, Tier 3 (simple whole-kernel popcorn, no process cap)', () => {
+  test('Angie\'s BOOMCHICKAPOP Sweet & Salty Kettle Corn is exempt from every process cap — the bare word "kettle" in "Kettle Corn" must NOT fall through to the Tier 1 fried default', () => {
+    const result = scoreProduct({
+      name: "Angie's BOOMCHICKAPOP Sweet & Salty Kettle Corn",
+      brand: "Angie's BOOMCHICKAPOP",
+      category: 'Chips & Crackers',
+      ingredients: ['popcorn', 'sunflower oil', 'cane sugar', 'sea salt'],
+      nutrition: { fat: 8, saturatedFat: 0.5, sodium: 110, carbs: 18, sugars: 8, protein: 1 },
+    });
+    expect(result.isFriedSnack).toBe(false);
+    expect(result.isBakedSnack).toBe(false);
+    expect(result.isSimplePopcorn).toBe(true);
+    expect(result.formCap).toBeNull();
+  });
+
+  test('LesserEvil plain popcorn (popcorn, oil, salt) is exempt from every process cap', () => {
+    const result = scoreProduct({
+      name: 'LesserEvil Organic Sea Salt Popcorn',
+      brand: 'LesserEvil',
+      category: 'Chips & Crackers',
+      ingredients: ['organic popcorn', 'organic coconut oil', 'himalayan salt'],
+      nutrition: { fat: 8, saturatedFat: 6, sodium: 115, carbs: 15, sugars: 0, protein: 2 },
+    });
+    expect(result.isFriedSnack).toBe(false);
+    expect(result.isBakedSnack).toBe(false);
+    expect(result.isSimplePopcorn).toBe(true);
+    expect(result.formCap).toBeNull();
+  });
+
+  test("Angie's BOOMCHICKAPOP Sea Salt Popcorn (plain, no kettle-corn sugar) is exempt from every process cap", () => {
+    const result = scoreProduct({
+      name: "Angie's BOOMCHICKAPOP Sea Salt Popcorn",
+      brand: "Angie's BOOMCHICKAPOP",
+      category: 'Chips & Crackers',
+      ingredients: ['popcorn', 'sunflower oil', 'sea salt'],
+      nutrition: { fat: 9, saturatedFat: 0.5, sodium: 135, carbs: 14, sugars: 0, protein: 2 },
+    });
+    expect(result.isSimplePopcorn).toBe(true);
+    expect(result.formCap).toBeNull();
+  });
+
+  test('within-brand split: LesserEvil Paleo Puffs (Tier 2, cap 65) and LesserEvil plain popcorn (Tier 3, exempt) resolve differently under the exact same brand', () => {
+    const puffs = scoreProduct({
+      name: 'LesserEvil Himalayan Pink Salt Paleo Puffs',
+      brand: 'LesserEvil',
+      category: 'Chips & Crackers',
+      ingredients: ['organic cassava flour', 'organic coconut oil', 'organic tapioca starch', 'organic coconut flour', 'organic sweet potato flour', 'himalayan salt'],
+      nutrition: { fat: 6, saturatedFat: 5, sodium: 190, carbs: 18, sugars: 0, protein: 1 },
+    });
+    const popcorn = scoreProduct({
+      name: 'LesserEvil Organic Sea Salt Popcorn',
+      brand: 'LesserEvil',
+      category: 'Chips & Crackers',
+      ingredients: ['organic popcorn', 'organic coconut oil', 'himalayan salt'],
+      nutrition: { fat: 8, saturatedFat: 6, sodium: 115, carbs: 15, sugars: 0, protein: 2 },
+    });
+    expect(puffs.isBakedSnack).toBe(true);
+    expect(puffs.formCap).toBe(65);
+    expect(popcorn.isSimplePopcorn).toBe(true);
+    expect(popcorn.formCap).toBeNull();
+  });
+
+  test('a flavored, reformulated popcorn with a NOVA/refined-starch marker does NOT qualify for the popcorn exemption (real catalog case: Smartfood White Cheddar Popcorn\'s "corn maltodextrin") — it was never form-capped either way, so this simply confirms the disqualifier works, not a score change', () => {
+    const result = scoreProduct({
+      name: 'Smartfood White Cheddar Popcorn',
+      brand: 'Smartfood',
+      category: 'Chips & Crackers',
+      ingredients: ['popcorn', 'vegetable oil (corn, canola, and/or sunflower oil)', 'natural flavors', 'whey', 'corn maltodextrin', 'buttermilk', 'cheddar cheese (milk, cheese cultures, salt, enzymes)', 'salt'],
+      nutrition: { fat: 9, saturatedFat: 2, sodium: 160, carbs: 15, sugars: 0, protein: 3 },
+    });
+    expect(result.isSimplePopcorn).toBe(false);
+    expect(result.isBakedSnack).toBe(false);
+    expect(result.isFriedSnack).toBe(false);
+    expect(result.formCap).toBeNull();
+  });
+
+  test('the popcorn exemption does not waive the added-sugar penalty — a sweetened kettle corn still loses points for sugar, it is just not force-capped at 50', () => {
+    const sweet = scoreProduct({
+      name: 'Test Brand Kettle Corn',
+      category: 'Chips & Crackers',
+      ingredients: ['popcorn', 'sunflower oil', 'sugar', 'salt'],
+      nutrition: { fat: 8, saturatedFat: 0.5, sodium: 100, carbs: 20, sugars: 22, protein: 1 },
+    });
+    const plain = scoreProduct({
+      name: 'Test Brand Sea Salt Popcorn',
+      category: 'Chips & Crackers',
+      ingredients: ['popcorn', 'sunflower oil', 'salt'],
+      nutrition: { fat: 8, saturatedFat: 0.5, sodium: 100, carbs: 15, sugars: 0, protein: 1 },
+    });
+    expect(sweet.isSimplePopcorn).toBe(true);
+    expect(sweet.formCap).toBeNull();
+    expect(sweet.score).toBeLessThan(plain.score);
   });
 });
 
@@ -1165,6 +1407,42 @@ describe('scoreProduct: form-penalty model — Rule 3 (refined-grain #1 ingredie
       nutrition: { sugars: 40, sodium: 900, saturatedFat: 15 },
     });
     expect(result.score).toBeGreaterThanOrEqual(0);
+  });
+
+  test('a compound first ingredient like "crust (cauliflower, brown rice flour, white rice flour, ...)" is evaluated by its TRUE primary component (the first item inside the parens), not the whole literal string — a refined flour buried as a non-first sub-component must not fire the penalty (real catalog false positive: Caulipower Margherita Cauliflower Crust Pizza, was wrongly capped at 40, corrected to ~65)', () => {
+    const result = scoreProduct({
+      name: 'Caulipower Margherita Cauliflower Crust Pizza',
+      brand: 'Caulipower',
+      category: 'Frozen Meals',
+      ingredients: [
+        'crust (cauliflower, brown rice flour, white rice flour, water, corn starch, tapioca starch, vegetable oil [contains one or more of the following: canola oil, sunflower oil, and/or olive oil], egg, baking powder [sodium acid pyrophosphate, sodium bicarbonate, corn starch, monocalcium phosphate], xanthan gum, sugar, yeast, vinegar, salt)',
+        'sauce (water, tomato paste, seasoning blend [granulated garlic, spices, onion], salt, granulated garlic, basil)',
+        'low moisture part skim mozzarella cheese (pasteurized part skim milk, cheese cultures, salt, enzymes)',
+        'tomatoes',
+        'parmesan cheese (pasteurized milk, cheese cultures, salt, enzymes)',
+        'basil',
+      ],
+      nutrition: { fat: 16, saturatedFat: 7, sodium: 800, carbs: 68, sugars: 12, protein: 24 },
+      certifications: ['Certified Gluten-Free'],
+    });
+    expect(result.refinedGrainPenalty).toBe(0);
+    expect(result.score).toBe(65);
+  });
+
+  test('a compound first ingredient whose LABEL itself is a refined-grain term (before the parens) still fires the penalty directly — no need to look inside (real catalog case: Stacy\'s Pita Chips\' "enriched wheat flour (wheat flour, niacin, ...)")', () => {
+    const result = scoreProduct({
+      ingredients: ['enriched wheat flour (wheat flour, niacin, reduced iron, thiamin mononitrate, riboflavin, folic acid)', 'water', 'salt'],
+      nutrition: {},
+    });
+    expect(result.refinedGrainPenalty).toBe(25);
+  });
+
+  test('a compound first ingredient whose generic label (e.g. "topping") wraps a non-refined-grain first sub-component never fires the penalty', () => {
+    const result = scoreProduct({
+      ingredients: ['topping (sugar, cinnamon)', 'water', 'salt'],
+      nutrition: {},
+    });
+    expect(result.refinedGrainPenalty).toBe(0);
   });
 });
 

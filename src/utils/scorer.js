@@ -941,7 +941,7 @@ function calcSourcingAdjustment(product) {
 // Canyon "avocado oil" chips 96. Four rules, all constants below so they stay
 // tunable after the re-grade:
 //   RULE 1 — processed/cured meat -> hard cap 40 (WHO Group 1 carcinogen).
-//   RULE 2 — fried snack -> hard cap 50.
+//   RULE 2 — snack form -> tiered hard cap (see below).
 //   RULE 3 — refined-grain #1 ingredient -> -25 point PENALTY (not a cap).
 //   RULE 4 — snack/frying oils -> neutral, never a positive credit.
 // Deliberately form/ingredient-aware, not a blunt category cap: Simple Mills
@@ -949,9 +949,16 @@ function calcSourcingAdjustment(product) {
 // fried nor refined-grain and must stay high; fresh/whole proteins (plain
 // chicken breast, salmon, ground beef, eggs) are not processed meat and the
 // cap must never touch them.
+//
+// RULE 2 UPDATE (2026-08-19, evidence review: context/research/
+// baked-vs-fried-chips.md): the original single fried-snack cap treated
+// every chip/crisp/puff-format snack the same, which wrongly hit baked/
+// popped snacks and simple popcorn as hard as an actually deep-fried chip.
+// Split into three tiers — see the RULE 2 section below for the full detail.
 
 const PROCESSED_CURED_MEAT_CAP = 40;
 const FRIED_SNACK_CAP = 50;
+const BAKED_SNACK_CAP = 65;
 const REFINED_GRAIN_PENALTY = 25;
 
 // Escapes regex metacharacters in a literal term, then builds a single
@@ -1046,32 +1053,178 @@ function detectProcessedCuredMeat(product, ingredients) {
   return false;
 }
 
-// RULE 2 — FRIED SNACK ────────────────────────────────────────────────────
+// RULE 2 — SNACK FORM TIERS (2026-08-19 refinement, evidence review in
+// context/research/baked-vs-fried-chips.md) ───────────────────────────────
 //
-// Gated to this catalog's actual chip/snack categories first — without that
-// gate, bare words like "puff" (Gerber baby Puffs), "kettle" (Kettle & Fire
-// bone broth), or "crisp" (Cookie Crisp cereal, "Crispy Chicken Fries") would
-// false-trigger on completely unrelated foods. Fried snacks only — baked
-// crackers are deliberately NOT capped here (Rule 3 handles refined ones).
-const FRIED_SNACK_CATEGORIES = new Set(['chips', 'chips & crackers', 'snacks']);
+// Originally a single hard cap at 50 for every chip/crisp/puff-format snack.
+// The evidence review found that cap was punishing baked/popped/puffed
+// snacks and simple popcorn the same as genuinely deep-fried ones, when the
+// real evidence (oil/calorie load, NOVA formulation markers, satiety data)
+// supports three distinct tiers instead of one blunt cap. All three tiers
+// stay gated to this catalog's real chip/snack categories first — without
+// that gate, bare words like "puff" (Gerber baby Puffs), "kettle" (Kettle &
+// Fire bone broth), or "crisp" (Cookie Crisp cereal, "Crispy Chicken Fries")
+// would false-trigger on completely unrelated foods.
+//
+//   TIER 1 — deep-fried (classic potato/corn/tortilla chips, kettle-cooked,
+//   or an explicit "fried" marker) -> hard cap 50, unchanged from before.
+//   TIER 2 — baked/popped/air-puffed/puffed chip ANALOGUE (formed/extruded
+//   starch snacks marked baked, popped, air-popped, air-puffed, puffs,
+//   puffed, crisps, veggie straws/chips/sticks/crisps, pita chips, or a
+//   documented non-fried brand process) -> new, milder cap of 65. Still
+//   capped, not exempt — "baked" only means less absorbed oil, not that the
+//   food is healthy (acrylamide, sodium, and refined-starch base are all
+//   unaffected by the cooking method per the research review).
+//   TIER 3 — simple whole-kernel popcorn/kettle corn (popcorn/corn is the
+//   #1 ingredient, everything else is oil/salt/sugar/ordinary seasoning, no
+//   refined-starch base or NOVA extrusion marker) -> NO process cap at all.
+//   Popcorn's real, evidence-backed advantage (intact kernel, satiety) earns
+//   the ONLY exemption in this rule — normal scoring (calories, oil,
+//   sat-fat, sodium, added sugar) still fully applies, so a sweet kettle
+//   corn still loses points for its sugar, it just isn't force-capped.
+//
+// None of the three tiers grant positive CREDIT for the words "baked",
+// "popped", "air-puffed", "veggie", or "sprouted" — they only decide which
+// cap (or no cap) applies; the words are never a health signal on their own.
+const SNACK_FORM_CATEGORIES = new Set(['chips', 'chips & crackers', 'snacks']);
+
+// TIER 1 — the classic/default chip vocabulary. Deliberately NOT "strong" or
+// unconditional: the approved spec is explicit that even an explicit
+// "fried" marker must yield to a baked/popped/puffed marker also present on
+// the same product (see detectBakedSnackMarker below) — the real catalog
+// case this protects is "Lay's Oven Baked Original Potato Crisps", which
+// contains both "Potato Crisps" (a Tier 1 term) and "Oven Baked" (a Tier 2
+// marker) and must land on the milder tier. "Potato crisp(s)"/"corn
+// crisp(s)" are included here (not just "chip(s)") because they're the
+// direct US/UK-naming twin of "potato chips"/"corn chips" — real catalog
+// case: Pringles "Original Potato Crisps" is a fried, formed snack, not a
+// baked-analogue, even though the bare word "crisps" also appears on the
+// Tier 2 marker list below.
 const FRIED_SNACK_NAME_TERMS = [
-  'chip', 'chips', 'crisp', 'crisps', 'kettle', 'fried', 'puff', 'puffs',
-  'curl', 'curls', 'pork rind', 'pork rinds',
+  'chip', 'chips', 'kettle', 'fried', 'curl', 'curls', 'pork rind', 'pork rinds',
+  'potato crisp', 'potato crisps', 'corn crisp', 'corn crisps',
 ];
 const FRIED_SNACK_NAME_REGEX = buildWordBoundaryTester(FRIED_SNACK_NAME_TERMS);
 
-// An explicit "oven baked" claim on the product's own name directly
-// contradicts a fried-form signal (real catalog case: Lay's Oven Baked
-// Original Potato Crisps) — Rule 2 exists to catch FRYING, and the rule's
-// own spec says baked items must not be capped here.
-const OVEN_BAKED_REGEX = /\boven[\s-]?baked\b/i;
+// TIER 2 — baked/popped/puffed chip-analogue marker words, straight off the
+// approved research recommendation. Bare "crisp"/"crisps" is included so
+// legume/veggie-format crisps (Harvest Snaps, Off The Eaten Path) are
+// caught — see POTATO_OR_CORN_CRISPS_REGEX below for the one carve-out.
+const BAKED_ANALOGUE_NAME_TERMS = [
+  'popped', 'air popped', 'air-popped', 'air puffed', 'air-puffed',
+  'puff', 'puffs', 'puffed', 'crisp', 'crisps',
+  'veggie straw', 'veggie straws', 'veggie stick', 'veggie sticks',
+  'veggie chip', 'veggie chips', 'veggie crisp', 'veggie crisps',
+  'pita chip', 'pita chips',
+];
+const BAKED_ANALOGUE_NAME_REGEX = buildWordBoundaryTester(BAKED_ANALOGUE_NAME_TERMS);
+
+// "Potato crisps"/"corn crisps" is Tier 1's own classic-chip vocabulary (see
+// above) — the bare word "crisp(s)" inside that specific two-word phrase
+// must not, on its own, promote a product to Tier 2 the way a real format
+// word (puffs, veggie crisps, pita chips) does. Scoped narrowly: if this
+// phrase is the ONLY Tier-2-looking word in the name, it doesn't count; a
+// second, independent Tier 2 marker (e.g. "Oven Baked ... Potato Crisps")
+// still promotes normally.
+const POTATO_OR_CORN_CRISPS_REGEX = /\b(potato|corn)\s+crisps?\b/i;
+function isOnlyPotatoOrCornCrispsMarker(name) {
+  const stripped = name.replace(POTATO_OR_CORN_CRISPS_REGEX, ' ');
+  return !BAKED_ANALOGUE_NAME_REGEX.test(stripped);
+}
+
+// An explicit "oven baked" claim PAIRED with a chip-format word in the same
+// name (real catalog case: "Lay's Oven Baked Original Potato Crisps") is a
+// Tier 2 signal. Scoped to require BOTH words — a bare "baked" alone must
+// never trigger this on its own, or it would sweep in ordinary baked
+// crackers that have nothing to do with this rule (real catalog case:
+// "Cheez-It Original Baked Snack Crackers", "Goldfish Baked Snack
+// Crackers" — plain wheat crackers, correctly untouched by every tier here,
+// matching Rule 2's original "baked crackers are not capped here" intent).
+const BAKED_WORD_REGEX = /\bbaked\b/i;
+const CHIP_FORMAT_CONTEXT_REGEX = /\b(chip|chips|crisp|crisps|potato|tortilla)\b/i;
+function hasBakedWordInChipContext(name) {
+  return BAKED_WORD_REGEX.test(name) && CHIP_FORMAT_CONTEXT_REGEX.test(name);
+}
+
+// A small number of real snack brands are documented as using a genuinely
+// non-fried process even though their own product name carries no baked/
+// popped/puffed marker word: Popchips ("popped" potato snack — the brand's
+// entire identity is built on being popped under heat and pressure, not
+// fried or baked) and Way Better Snacks (marketed as baked, not fried,
+// sprouted-grain tortilla chips). FLAGGED FOR REVIEWER VERIFICATION: this is
+// a brand-level manufacturing-process claim asserted from general knowledge
+// rather than an in-catalog citation, unlike every other marker in this
+// file — double-check before this ships.
+// Reviewer 2026-08-19: Way Better removed. Like most (even sprouted) tortilla
+// chips it is likely fried, so it defaults to the fried tier (50). Only
+// Popchips is kept — its whole brand identity is "popped, not fried".
+const BAKED_ANALOGUE_BRAND_TERMS = ['popchips'];
+const BAKED_ANALOGUE_BRAND_REGEX = buildWordBoundaryTester(BAKED_ANALOGUE_BRAND_TERMS);
+
+function detectBakedSnackMarker(product) {
+  const category = String(product?.category || '').toLowerCase().trim();
+  if (!SNACK_FORM_CATEGORIES.has(category)) return false;
+
+  const brand = String(product?.brand || '');
+  if (BAKED_ANALOGUE_BRAND_REGEX.test(brand)) return true;
+
+  const name = String(product?.name || '');
+  if (hasBakedWordInChipContext(name)) return true;
+
+  if (!BAKED_ANALOGUE_NAME_REGEX.test(name)) return false;
+  if (POTATO_OR_CORN_CRISPS_REGEX.test(name) && isOnlyPotatoOrCornCrispsMarker(name)) {
+    return false;
+  }
+  return true;
+}
 
 function detectFriedSnack(product) {
-  const name = String(product?.name || '');
   const category = String(product?.category || '').toLowerCase().trim();
-  if (!FRIED_SNACK_CATEGORIES.has(category)) return false;
-  if (OVEN_BAKED_REGEX.test(name)) return false;
+  if (!SNACK_FORM_CATEGORIES.has(category)) return false;
+  // A baked/popped/puffed marker anywhere on the same product overrides the
+  // Tier 1 default — see the FRIED_SNACK_NAME_TERMS comment above.
+  if (detectBakedSnackMarker(product)) return false;
+  const name = String(product?.name || '');
   return FRIED_SNACK_NAME_REGEX.test(name);
+}
+
+// TIER 3 — SIMPLE WHOLE-KERNEL POPCORN ────────────────────────────────────
+//
+// Popcorn's real advantage over a chip is the intact kernel (see the
+// research review's satiety citation) — not the word "popcorn" itself, so
+// this stays narrow: the name has to say popcorn/kettle corn AND the
+// ingredient list has to actually be simple (popcorn/corn first, nothing
+// beyond oil/salt/sugar/ordinary seasoning). A flavored, reformulated
+// popcorn with a NOVA extrusion/refined-starch marker (real catalog case:
+// Smartfood White Cheddar Popcorn's "corn maltodextrin") does NOT qualify —
+// it was never form-capped by this rule anyway (no chip/crisp/puff word in
+// its name), so it's simply left where it already was: scored on its own
+// nutrition/ingredient merits, same as before this feature existed.
+const POPCORN_NAME_TERMS = ['popcorn', 'kettle corn'];
+const POPCORN_NAME_REGEX = buildWordBoundaryTester(POPCORN_NAME_TERMS);
+const POPCORN_DISQUALIFYING_TERMS = [
+  'maltodextrin', 'dextrin', 'corn syrup solids',
+  'modified starch', 'modified corn starch', 'modified food starch',
+  'modified tapioca starch', 'protein isolate',
+  'rice flour', 'wheat flour', 'corn flour',
+  'potato starch', 'tapioca starch', 'wheat starch', 'rice starch',
+  'corn starch', 'cornstarch',
+];
+const POPCORN_DISQUALIFYING_REGEX = buildWordBoundaryTester(POPCORN_DISQUALIFYING_TERMS);
+
+function detectSimplePopcorn(product, ingredients) {
+  const category = String(product?.category || '').toLowerCase().trim();
+  if (!SNACK_FORM_CATEGORIES.has(category)) return false;
+
+  const name = String(product?.name || '');
+  if (!POPCORN_NAME_REGEX.test(name)) return false;
+
+  const list = ingredients || [];
+  const first = list[0];
+  if (!first) return false;
+  if (!/\b(popcorn|corn)\b/i.test(normalize(String(first)))) return false;
+
+  return !list.some((ing) => POPCORN_DISQUALIFYING_REGEX.test(String(ing)));
 }
 
 // RULE 3 — REFINED-GRAIN BASE ─────────────────────────────────────────────
@@ -1086,10 +1239,44 @@ const REFINED_GRAIN_FIRST_INGREDIENT_TERMS = [
 ];
 const REFINED_GRAIN_REGEX = buildWordBoundaryTester(REFINED_GRAIN_FIRST_INGREDIENT_TERMS);
 
+// A compound first ingredient like "crust (cauliflower, brown rice flour,
+// white rice flour, ...)" used to be tested as ONE literal string, which let
+// a refined flour buried as a NON-first sub-component inside the
+// parenthetical (here "white rice flour" is the 3rd item, not the 1st)
+// wrongly fire the penalty even though the food's actual primary-by-weight
+// substance is cauliflower. Real catalog false positive: Caulipower
+// Margherita Cauliflower Crust Pizza. Fixed by evaluating only the true
+// primary candidate: if the label BEFORE the parenthesis is itself a refined
+// grain term (e.g. "enriched wheat flour (wheat flour, niacin, ...)"), that
+// still fires directly — nothing to look inside for. Otherwise the label is
+// a generic compound name ("crust", "sauce", "seasoning blend") and the real
+// primary-by-weight ingredient is the FIRST comma-separated item inside the
+// parens (top-level only — a nested "[...]" group's own commas don't count).
+function firstTopLevelElement(str) {
+  let depth = 0;
+  for (let i = 0; i < str.length; i++) {
+    const ch = str[i];
+    if (ch === '(' || ch === '[') depth++;
+    else if (ch === ')' || ch === ']') depth--;
+    else if (ch === ',' && depth === 0) return str.slice(0, i);
+  }
+  return str;
+}
+
+function primaryIngredientCandidate(raw) {
+  const s = String(raw || '').trim();
+  const m = s.match(/^([^(]+)\(([\s\S]*)\)\s*$/);
+  if (!m) return s;
+  const label = m[1].trim();
+  if (REFINED_GRAIN_REGEX.test(label)) return label;
+  const firstInner = firstTopLevelElement(m[2]).trim();
+  return firstInner || label;
+}
+
 function calcRefinedGrainPenalty(ingredients) {
   const first = (ingredients || [])[0];
   if (!first) return 0;
-  return REFINED_GRAIN_REGEX.test(String(first)) ? REFINED_GRAIN_PENALTY : 0;
+  return REFINED_GRAIN_REGEX.test(primaryIngredientCandidate(first)) ? REFINED_GRAIN_PENALTY : 0;
 }
 
 // RULE 4 — SNACK / FRYING OILS: neutral, never a positive ────────────────
@@ -1207,16 +1394,26 @@ export function scoreProduct(product) {
   const refinedGrainPenalty = calcRefinedGrainPenalty(ingredients);
   score = Math.max(0, score - refinedGrainPenalty);
 
-  // RULES 1 & 2 (2026-08-17) — processed/cured meat and fried snack hard
-  // caps, applied LAST as the final ceiling (per the approved application
-  // order: base score incl. Rule 4 -> Rule 3's penalty -> Rule 1/2 caps).
-  // If a product triggers both, the LOWER cap wins.
+  // RULES 1 & 2 (2026-08-17, RULE 2 tiered 2026-08-19) — processed/cured
+  // meat and snack-form hard caps, applied LAST as the final ceiling (per
+  // the approved application order: base score incl. Rule 4 -> Rule 3's
+  // penalty -> Rule 1/2 caps). If a product triggers more than one, the
+  // LOWER cap wins. isSimplePopcorn is resolved FIRST and, when true, skips
+  // fried/baked-analogue detection entirely — Tier 3 is a full exemption,
+  // not a milder cap. Real catalog case this ordering protects: Angie's
+  // BOOMCHICKAPOP "Sweet & Salty Kettle Corn" contains the bare word
+  // "kettle", which would otherwise match Tier 1's default fried vocabulary.
   const isProcessedCuredMeat = detectProcessedCuredMeat(product, ingredients);
-  const isFriedSnack = detectFriedSnack(product);
+  const isSimplePopcorn = detectSimplePopcorn(product, ingredients);
+  const isFriedSnack = !isSimplePopcorn && detectFriedSnack(product);
+  const isBakedSnack = !isSimplePopcorn && !isFriedSnack && detectBakedSnackMarker(product);
   let formCap = null;
   if (isProcessedCuredMeat) formCap = PROCESSED_CURED_MEAT_CAP;
   if (isFriedSnack) {
     formCap = formCap === null ? FRIED_SNACK_CAP : Math.min(formCap, FRIED_SNACK_CAP);
+  }
+  if (isBakedSnack) {
+    formCap = formCap === null ? BAKED_SNACK_CAP : Math.min(formCap, BAKED_SNACK_CAP);
   }
   if (formCap !== null) score = Math.min(score, formCap);
 
@@ -1248,6 +1445,8 @@ export function scoreProduct(product) {
     refinedGrainPenalty,
     isProcessedCuredMeat,
     isFriedSnack,
+    isBakedSnack,
+    isSimplePopcorn,
     formCap,
   };
 }
