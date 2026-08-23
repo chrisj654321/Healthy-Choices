@@ -9,6 +9,10 @@ export const COMPANY_DB = {
   // ---- First 6 (checkpoint-approved 2026-08-22) ----
 
   'herr-foods': {
+    lobbyingSpend: null,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    issues: [],
     id: 'herr-foods',
     name: 'Herr Foods Inc.',
     hq: 'Nottingham, Pennsylvania, USA',
@@ -50,6 +54,10 @@ export const COMPANY_DB = {
   },
 
   'jel-sert': {
+    lobbyingSpend: null,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    issues: [],
     id: 'jel-sert',
     name: 'The Jel Sert Company',
     hq: 'West Chicago, Illinois, USA',
@@ -179,6 +187,10 @@ export const COMPANY_DB = {
   },
 
   'johanna-foods': {
+    lobbyingSpend: null,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    issues: [],
     id: 'johanna-foods',
     name: 'Johanna Foods, Inc.',
     hq: 'Flemington, New Jersey, USA',
@@ -190,6 +202,10 @@ export const COMPANY_DB = {
   },
 
   'beyond-better-foods': {
+    lobbyingSpend: null,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    issues: [],
     id: 'beyond-better-foods',
     name: 'Beyond Better Foods, LLC',
     hq: 'Doylestown, Pennsylvania, USA',
@@ -201,6 +217,10 @@ export const COMPANY_DB = {
   },
 
   'tropical-cheese': {
+    lobbyingSpend: null,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    issues: [],
     id: 'tropical-cheese',
     name: 'Tropical Cheese Industries, Inc.',
     hq: 'Perth Amboy, New Jersey, USA',
@@ -213,6 +233,10 @@ export const COMPANY_DB = {
   },
 
   'eilliens-candies': {
+    lobbyingSpend: null,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    issues: [],
     id: 'eilliens-candies',
     name: "Eillien's Candies, Inc.",
     hq: 'Green Bay, Wisconsin, USA',
@@ -224,6 +248,10 @@ export const COMPANY_DB = {
   },
 
   'galerie': {
+    lobbyingSpend: null,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    issues: [],
     id: 'galerie',
     name: 'Ross Acquisition Co. (dba Galerie Candy & Gifts)',
     hq: 'Hebron, Kentucky, USA',
@@ -266,6 +294,10 @@ export const COMPANY_DB = {
   },
 
   'finlays': {
+    lobbyingSpend: null,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    issues: [],
     id: 'finlays',
     name: 'Finlay Extracts & Ingredients USA, Inc. (Finlays)',
     hq: 'Lincoln, Rhode Island, USA (global parent HQ: London, UK)',
@@ -298,6 +330,10 @@ export const COMPANY_DB = {
   },
 
   'suja-life': {
+    lobbyingSpend: null,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    issues: [],
     id: 'suja-life',
     name: 'Suja Life, LLC',
     hq: 'San Diego, California, USA',
@@ -310,6 +346,10 @@ export const COMPANY_DB = {
   },
 
   'hometown-food-company': {
+    lobbyingSpend: null,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    issues: [],
     id: 'hometown-food-company',
     name: 'Hometown Food Company',
     hq: 'Chicago, Illinois, USA',
@@ -330,6 +370,10 @@ export const COMPANY_DB = {
   },
 
   'kent-precision-foods': {
+    lobbyingSpend: null,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    issues: [],
     id: 'kent-precision-foods',
     name: 'Kent Precision Foods Group, Inc.',
     hq: 'St. Louis, Missouri, USA',
@@ -342,6 +386,10 @@ export const COMPANY_DB = {
   },
 
   'maud-borup': {
+    lobbyingSpend: null,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    issues: [],
     id: 'maud-borup',
     name: 'Maud Borup, Inc.',
     hq: 'Plymouth, Minnesota, USA',
@@ -422,6 +470,10 @@ export const COMPANY_DB = {
   },
 
   'cibo-vita': {
+    lobbyingSpend: null,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    issues: [],
     id: 'cibo-vita',
     name: 'CIBO VITA Inc.',
     hq: 'Totowa, New Jersey, USA',
