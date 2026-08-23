@@ -164,6 +164,10 @@ export const COMPANY_DB = {
   },
 
   'frankford-candy': {
+    lobbyingSpend: null,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    issues: [],
     id: 'frankford-candy',
     name: 'Frankford Candy LLC',
     hq: 'Philadelphia, Pennsylvania, USA',
@@ -276,6 +280,12 @@ export const COMPANY_DB = {
   // ---- New from ranks 71-150 (deeper queue, 2026-08-22) ----
 
   'litehouse': {
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    issues: [
+      {"id":"allergen-labeling-fda-warning-2023","title":"Undeclared-Allergen Recalls and 2023 FDA Warning Letter","severity":"medium","description":"The FDA issued Litehouse, Inc. a Warning Letter dated November 29, 2023 (reference MARCS-CMS 662949) citing misbranding under section 403(w) of the Federal Food, Drug, and Cosmetic Act for failure to declare the major allergen soy on a finished product label. The letter followed an April 19, 2023 recall of Simple Truth Plant Based Ranch Dressing (Class II), which the company traced to work-in-progress bulk containers that were mislabeled and actually held soy-containing Caesar dressing. This was part of a documented pattern of undeclared-allergen recalls: in February 2021 the company also recalled Brite Harbor Caesar Dressing & Dip (Class II) for undeclared anchovies. Both recalls are listed as terminated in the FDA enforcement record.","source":"FDA Warning Letter MARCS-CMS 662949 (Nov 29, 2023), https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/warning-letters/litehouse-inc-662949-11292023; openFDA Food Enforcement API, https://api.fda.gov/food/enforcement.json?search=recalling_firm:%22Litehouse%22 (April 19, 2023 soy recall and Feb 2021 anchovies recall)"}
+    ],
     id: 'litehouse',
     name: 'Litehouse Inc.',
     hq: 'Sandpoint, Idaho, USA',
@@ -441,6 +451,12 @@ export const COMPANY_DB = {
   },
 
   'rm-palmer': {
+    lobbyingSpend: null,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    issues: [
+      {"id":"west-reading-explosion-2023","title":"2023 West Reading Plant Explosion (7 Killed)","severity":"high","description":"On March 24, 2023, a natural gas explosion at R.M. Palmer's West Reading, Pennsylvania plant killed 7 workers and injured 10, with about $42 million in property damage. The NTSB determined the probable cause was the degradation of a retired underground polyethylene gas service tee, which let gas migrate into the buildings; the NTSB also identified the company's insufficient emergency-response procedures and employee training as a contributing factor, noting that workers who smelled gas did not evacuate before the blast. After the explosion, OSHA cited the company for 10 violations; the company entered a formal settlement and the final penalty was $65,464 (OSHA inspection 1659063.015, case closed). Families of the victims have filed wrongful-death lawsuits, which were pending as of 2025; the gas utility UGI and DuPont are also named as defendants.","source":"NTSB report PIR2501 (2025); OSHA inspection 1659063.015 (closed, formal settlement); Philadelphia Inquirer, July 29 2025"}
+    ],
     id: 'rm-palmer',
     name: 'R.M. Palmer Company, LLC',
     hq: 'West Reading, Pennsylvania, USA',
