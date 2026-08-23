@@ -42,6 +42,12 @@ export const COMPANY_DB = {
   },
 
   'bolthouse-farms': {
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    issues: [
+      {"id":"bolthouse-prop65-cadmium-settlement-2025","title":"Prop 65 Cadmium Settlement","severity":"low","description":"In February 2025 a private enforcer filed a California Proposition 65 notice alleging that the cadmium level in \"Bolthouse Farms Immunity Juice – Carrot, Turmeric, Ginger\" was above the state warning threshold. Bolthouse Farms settled the matter in October 2025. The signed settlement set a $3,000 civil penalty plus $24,500 in attorney’s fees and costs, a total of $27,500, and required point-of-sale warnings and a stop to sale of the product at issue. Proposition 65 is a California labeling and exposure-warning law; the settlement resolves a warning-label matter and is not a finding that the product caused harm.","source":"California OAG Prop 65 settlement (AG# 2025-00655), 2025"}
+    ],
     id: 'bolthouse-farms',
     name: 'Bolthouse Farms',
     hq: 'Bakersfield, California, USA',
@@ -105,6 +111,13 @@ export const COMPANY_DB = {
   },
 
   'bellisio-foods': {
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: 0,
+    issues: [
+      {"id":"bellisio-brucepac-listeria-recall-2024","title":"Chicken Product Recall — Possible Listeria","severity":"medium","description":"In October 2024 Bellisio Foods issued a voluntary recall of certain Boston Market, Michelina’s, and Atkins products that contained chicken from BrucePac, a third-party supplier. The recall followed BrucePac’s own recall of ready-to-eat meat and poultry after routine USDA testing found possible Listeria monocytogenes contamination at a BrucePac facility. Bellisio said it stopped using ingredients from that facility. No confirmed adverse-reaction reports were listed at the time of the notice.","source":"FSIS/USDA recall notice (Recall-028-2024), 2024"},
+      {"id":"bellisio-undeclared-soy-recall-2021","title":"Undeclared Soy Allergen Recall","severity":"low","description":"In May 2021 Bellisio Foods recalled about 3,927 pounds of \"Michelina’s Spaghetti with Meat Sauce\" because soy-containing ingredients may have mixed into a product that does not normally contain soy, and the soy was not declared on the label. No confirmed adverse-reaction reports were listed at the time of the notice.","source":"FSIS/USDA recall notice, 2021"}
+    ],
     id: 'bellisio-foods',
     name: 'Bellisio Foods, Inc.',
     hq: 'Minneapolis, Minnesota, USA',
@@ -282,6 +295,13 @@ export const COMPANY_DB = {
   },
 
   'froneri': {
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    issues: [
+      {"id":"froneri-product-recalls-2023-2026","title":"Pattern of Product Recalls","severity":"medium","description":"Froneri’s US business, Dreyer’s Grand Ice Cream, has issued several voluntary recalls in recent years. In August 2026 it recalled select Outshine Fruit Bars nationwide because the bars might contain small pieces of glass; the recall was company-initiated and no injuries were reported. In November 2025 it recalled Häagen-Dazs Chocolate Dark Chocolate Mini Bars because the label did not declare wheat, a common allergen (FDA Class II). In July 2023 it recalled Outshine No Sugar Added Strawberry Fruit Bars because the label did not declare milk, a common allergen (FDA Class II). Each recall was voluntary.","source":"FDA enforcement reports F-1365-2023 and H-0227-2026; Dreyer’s/PR Newswire recall notice, 2023–2026"},
+      {"id":"froneri-caosha-bakersfield-2023","title":"Workplace Safety Citation","severity":"low","description":"In 2023 California workplace-safety regulators (Cal/OSHA) inspected the Dreyer’s Grand Ice Cream plant in Bakersfield, California. The inspection resulted in one Serious citation and one Other citation, with a total penalty of $5,060. The case is closed.","source":"Cal/OSHA (OSHA IMIS inspection 1651298.015), 2023"}
+    ],
     id: 'froneri',
     name: 'Froneri International Limited',
     hq: 'Leeming Bar, North Yorkshire, England, UK',
