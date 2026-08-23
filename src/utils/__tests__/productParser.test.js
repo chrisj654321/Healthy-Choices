@@ -123,21 +123,20 @@ describe('findCompanyId — COMPANY_DB name matching (stage 3)', () => {
     expect(findCompanyId('RIVERSIDE')).toBeNull();
   });
 
-  test('a manufacturer legal name we do not have a bridge for still returns null (known limitation)', () => {
+  test('a manufacturer legal name is bridged to its parent via a hand-curated BRAND_TO_COMPANY entry', () => {
     // COMPANY_DB['kelloggs'].name is "Kellanova (Kellogg's)" — Kellogg's
     // 2023 corporate rebrand. The real OFF brand text is the pre-rebrand
     // legal name ("The Kellogg Company", 707 SKUs) which shares no textual
     // root with "Kellanova" at all, so word-boundary/prefix matching cannot
-    // bridge it. Deliberately NOT solved by extracting the "(Kellogg's)"
-    // parenthetical as a generic alias: doing that for every COMPANY_DB
-    // record with a "(...)" aside produces real false positives elsewhere
-    // in this exact dataset (e.g. cleaneats' "(private label)" alias would
-    // wrongly capture the unrelated real brand string "Private Label
-    // Foods"). Fixing Kellogg's specifically needs a hand-curated
-    // BRAND_TO_COMPANY entry in src/data/companies.js, which is out of
-    // scope here — flagged as a follow-up, not silently attempted.
+    // bridge it. It is resolved instead by an explicit hand-curated
+    // BRAND_TO_COMPANY entry (added 2026-08-22, company-expansion pass) — the
+    // correct fix. A generic "(Kellogg's)"-parenthetical alias was rejected
+    // because doing that for every COMPANY_DB record with a "(...)" aside
+    // produces real false positives elsewhere in this exact dataset (e.g.
+    // cleaneats' "(private label)" alias would wrongly capture the unrelated
+    // real brand string "Private Label Foods").
     expect(COMPANY_DB.kelloggs.name).toBe("Kellanova (Kellogg's)");
-    expect(findCompanyId('The Kellogg Company')).toBeNull();
+    expect(findCompanyId('The Kellogg Company')).toBe('kelloggs');
   });
 
   test('every pre-existing BRAND_TO_COMPANY resolution is unchanged (no regressions)', () => {

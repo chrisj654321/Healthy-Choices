@@ -14242,4 +14242,44 @@ export const BRAND_TO_COMPANY = {
   "brookshire's": 'brookshire-grocery',
   'super 1 foods': 'brookshire-grocery',
   'cvs pharmacy, inc.': 'cvs-health',
+
+  // ── Wild-scan subsidiary aliases (2026-08-22) ──────────────────────────────
+  // These are manufacturer/legal-entity strings straight out of the Open Food
+  // Facts "brand" field — not consumer brand names — mapped to the existing
+  // parent-company record they belong to. Ownership verified against a live
+  // web source for every entry; see the report attached to this pass for
+  // citations. No new COMPANY_DB records were created for this batch.
+  'frito-lay company': 'pepsico',
+  'pinnacle foods group llc': 'conagra',
+  'the kellogg company': 'kelloggs',
+  'danone us, llc': 'danone',
+  'mars chocolate north america llc': 'mars',
+  'mars, inc.': 'mars',
+  'ferrara candy company': 'ferrero',
+  'bimbo bakeries usa, inc.': 'bimbo',
+  'small planet foods, inc.': 'general-mills',
+  'bay valley foods, llc': 'treehouse-foods',
+  'the hillshire brands company': 'tyson',
+  'post consumer brands, llc': 'post-holdings',
+  'conagra frozen foods': 'conagra',
+  'conagra foods-snack foods group': 'conagra',
+  'wells enterprises, inc.': 'ferrero',        // Ferrero acquired Wells (Blue Bunny, Bomb Pop, Halo Top) 2022/2023
+  'kemps llc': 'dfa',
+  'dfa dairy brands, llc': 'dfa',
+  'chicago bar company': 'kelloggs',            // RXBAR
+  'tasty baking company': 'flowers-foods',      // Tastykake
+  // 'sunshine biscuits, inc.' — INTENTIONALLY UNMAPPED. Two research passes
+  // disagreed: Cheez-It stayed with Kellanova, but Keebler cookies went to
+  // Ferrero (2019), and we can't tell at the brand-string level which the
+  // products are. Needs SKU-level verification before mapping — unresolved is
+  // safer than a wrong owner.
+  'abbott laboratories inc': 'abbott-nutrition',
+  // Extra subsidiaries found scanning the full unresolved queue, beyond the
+  // triage worklist:
+  'dean foods company': 'dfa',                  // Dean Foods' plants/brands sold to DFA out of 2020 bankruptcy
+  'star markets co.': 'albertsons',             // Star Market (New England) is an Albertsons banner
+  'relish labs llc': 'kroger',                  // Home Chef meal kits, Kroger subsidiary since 2018
+  "sam's club west": 'walmart',
+  'rexall sundown, inc.': 'nbty',               // Nature's Bounty Co. / Nestlé Health Science
+  'glencourt inc.': 'albertsons',               // Safeway (Albertsons) private-label manufacturer — O Organics, Open Nature
 };
