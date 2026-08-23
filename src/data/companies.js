@@ -20,6 +20,13 @@ export const COMPANY_DB = {
   },
 
   'prairie-farms': {
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    issues: [
+      {"id":"dry-ice-wrongful-death-verdict-2026","title":"Wrongful-Death Jury Verdict — $241M (Not Final)","severity":"high","description":"In February 2026, a Madison County, Illinois jury returned a $241 million verdict against Prairie Farms Dairy ($49.5 million compensatory and $191.5 million punitive) in a wrongful-death case tied to a 2016 dry-ice carbon-dioxide exposure during frozen-goods transport. This is a jury verdict that may be subject to post-trial motions or appeal; it is not a final judgment.","source":"Legal Newsline, February 2026; RiverBender.com, February 2026"},
+      {"id":"osha-fatality-inspection-2020","title":"OSHA Fatality Inspection — $67,084 in Penalties","severity":"medium","description":"After a June 2020 worker fatality in palletizer equipment at its Birmingham, Alabama facility, OSHA cited Prairie Farms Dairy for 8 violations (6 serious, 2 other) in December 2020, with total penalties of $67,084.","source":"OSHA Inspection #1480956.015, 2020"}
+    ],
     id: 'prairie-farms',
     name: 'Prairie Farms Dairy, Inc.',
     hq: 'Edwardsville, Illinois, USA',
@@ -63,6 +70,10 @@ export const COMPANY_DB = {
   },
 
   'lancaster-colony': {
+    lobbyingSpend: 160000,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    issues: [],
     id: 'lancaster-colony',
     name: 'The Marzetti Company (Lancaster Colony Corporation, NASDAQ: LANC)',
     hq: 'Westerville, Ohio, USA',
@@ -100,6 +111,12 @@ export const COMPANY_DB = {
   // ---- Remaining Bucket-2 / top-70-queue candidates ----
 
   'sigma-alimentos': {
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    issues: [
+      {"id":"bar-s-listeria-recall-2016","title":"Recall — Listeria Risk in Hot Dogs and Corn Dogs","severity":"medium","description":"In July 2016 Bar-S Foods recalled about 372,684 lbs of ready-to-eat chicken and pork hot dog and corn dog products, shipped nationwide, for possible Listeria monocytogenes contamination. FSIS stated the recall followed \"recurring Listeria species issues at the firm\" and was taken as a precautionary measure. No confirmed illnesses were reported.","source":"USDA FSIS recall notice, July 2016"}
+    ],
     id: 'sigma-alimentos',
     name: 'Sigma Alimentos, S.A. de C.V.',
     hq: 'San Pedro Garza García, Nuevo León, Mexico',
@@ -112,6 +129,12 @@ export const COMPANY_DB = {
   },
 
   'arca-continental': {
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    issues: [
+      {"id":"wise-foods-osha-berwick-2018","title":"OSHA Citations — Berwick Plant Safety Violations","severity":"medium","description":"In 2018 OSHA cited Wise Foods' Berwick, PA plant for six serious violations following a complaint-based inspection. The initial penalty of $36,584 was reduced to $25,609 through an informal settlement. The cited standards covered machine guarding and electrical safety.","source":"OSHA inspection record #1320417.015, 2018"}
+    ],
     id: 'arca-continental',
     name: 'Arca Continental, S.A.B. de C.V.',
     hq: 'Monterrey, Nuevo León, Mexico',
@@ -123,6 +146,13 @@ export const COMPANY_DB = {
   },
 
   'calavo-growers': {
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    issues: [
+      {"id":"fda-warning-letter-2024","title":"FDA Warning Letter — Produce Safety Violations","severity":"medium","description":"Calavo Growers received an FDA warning letter dated October 25, 2024 citing violations of the FDA Produce Safety regulation (21 CFR Part 112) at a contracted papaya-growing farm supplying its Hawaii operation, including inadequate toilet facilities for harvest workers. The FDA recorded it as a repeat finding from a prior 2023 inspection.","source":"FDA Warning Letter #687785, October 2024; Food Safety News, December 2024"},
+      {"id":"cal-osha-covid-2021","title":"Cal/OSHA COVID-19 Recordkeeping Citation","severity":"low","description":"In February 2021, Cal/OSHA cited Calavo Growers' Santa Paula, California facility for three items related to COVID-19 reporting, recordkeeping, and employee training, with proposed penalties totaling $5,850.","source":"California DIR / DOSH Citation, Inspection #1489305, February 2021"}
+    ],
     id: 'calavo-growers',
     name: 'Calavo Growers, Inc. (NASDAQ: CVGW)',
     hq: 'Santa Paula, California, USA',
@@ -201,6 +231,13 @@ export const COMPANY_DB = {
   },
 
   'turkey-hill-dairy': {
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    issues: [
+      {"id":"allergen-recall-2022","title":"Undeclared-Peanut Voluntary Recall","severity":"low","description":"On April 20, 2022 Turkey Hill Dairy issued a voluntary recall of select 48 oz. Chocolate Marshmallow Premium Ice Cream containers (about 385 units, UPC 020735420935) that may have been filled with a peanut-containing product, creating an undeclared-peanut allergen risk. The company stated it received no reports of illness.","source":"FDA recall notice and Turkey Hill Dairy press release, April 20, 2022"},
+      {"id":"osha-fatality-inspection-2017","title":"OSHA Inspection After Workplace Fatality","severity":"low","description":"A 2017 OSHA fatality/catastrophe inspection followed a workplace death at the Conestoga, Pennsylvania facility, after a worker was struck by a jockey (yard-spotter) truck on February 14, 2017. The inspection closed in August 2017; OSHA's public inspection record does not list itemized citations or penalty amounts.","source":"OSHA Inspection #1210764.015, opened February 2017, closed August 2017"}
+    ],
     id: 'turkey-hill-dairy',
     name: 'Turkey Hill Dairy, Inc.',
     hq: 'Conestoga, Pennsylvania, USA',
@@ -306,6 +343,13 @@ export const COMPANY_DB = {
   },
 
   'nissui': {
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    issues: [
+      {"id":"gortons-fish-sandwich-recall-2022","title":"Voluntary Recall — Bone Fragments in Fish Sandwich","severity":"low","description":"In 2022 Gorton's voluntarily recalled a small quantity of Fish Sandwich 100% Whole Fillets (18.3 oz) for the potential presence of large or sharp bone fragments, a choking hazard. The product was distributed to retailers including Hannaford and Giant. No injuries were reported.","source":"FDA.gov recall notice, 2022"},
+      {"id":"slade-gorton-salmon-listeria-2026","title":"Voluntary Recall — Listeria Risk in Salmon","severity":"low","description":"In February 2026 Slade Gorton & Co. voluntarily recalled one lot of Wellsley Farms Farm-Raised Atlantic Salmon (2-lb bags) sold at BJ's Wholesale Club after FDA random sampling detected potential Listeria monocytogenes. The recall covered seven states. No illnesses were reported.","source":"FDA.gov recall notice, 2026"}
+    ],
     id: 'nissui',
     name: 'Nissui (Nippon Suisan Kaisha, Ltd.)',
     hq: 'Tokyo, Japan',
@@ -317,6 +361,12 @@ export const COMPANY_DB = {
   },
 
   'glanbia': {
+    lobbyingSpend: 10000,
+    lobbyingTargets: ["Dairy industry policy"],
+    politicalDonations: null,
+    issues: [
+      {"id":"glanbia-osha-westhaven-burn-2021","title":"OSHA Serious Violation — Worker Burn Injury","severity":"low","description":"After a worker cleaning a tank at the Glanbia Nutritionals plant in West Haven, Connecticut was hospitalized in April 2021 with second-degree burns from a hot-water release, OSHA opened an inspection and issued three serious citations. One citation was upheld on review for a final penalty of $13,653; the other two were reduced or vacated to $0.","source":"OSHA.gov Inspection #1525146.015, 2021"}
+    ],
     id: 'glanbia',
     name: 'Glanbia plc',
     hq: 'Kilkenny, Ireland',
@@ -328,6 +378,10 @@ export const COMPANY_DB = {
   },
 
   'storck': {
+    lobbyingSpend: 220000,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    issues: [],
     id: 'storck',
     name: 'August Storck KG (Storck USA, L.P.)',
     hq: 'Berlin, Germany',
@@ -340,6 +394,13 @@ export const COMPANY_DB = {
   },
 
   'bonduelle': {
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    issues: [
+      {"id":"readypac-listeria-recall-2024","title":"Salad-Kit Recall — Possible Listeria","severity":"medium","description":"Ready Pac Foods recalled four salad-kit products in February 2024 over potential Listeria monocytogenes contamination, after its cheese supplier, Rizo-López Foods, reported that the cheese ingredient was believed contaminated. The recall covered about 15,751 cases; no illnesses were reported at the time of the notice.","source":"FDA.gov recall notice, 2024"},
+      {"id":"readypac-chicken-salad-recall-2017","title":"Chicken Salad Recall — Possible Listeria","severity":"low","description":"Ready Pac Foods recalled about 59,225 pounds of \"Puro Picante Blazin Hot\" chicken salad in February 2017 over possible Listeria monocytogenes contamination traced to a cheese supplier that had recalled its own product. No confirmed illnesses were reported.","source":"FSIS/USDA recall notice, 2017"}
+    ],
     id: 'bonduelle',
     name: 'Bonduelle Group',
     hq: "Villeneuve-d'Ascq, France",
@@ -363,6 +424,12 @@ export const COMPANY_DB = {
   },
 
   'just-born': {
+    lobbyingSpend: 0,
+    lobbyingTargets: [],
+    politicalDonations: null,
+    issues: [
+      {"id":"slack-fill-settlement-2020","title":"Candy-Box Slack-Fill Class Settlement","severity":"low","description":"Just Born agreed to a $3.3 million class-action settlement, granted final approval in December 2020, that resolved consolidated consumer suits alleging Mike & Ike and Hot Tamales boxes contained non-functional empty space (slack-fill). As part of the settlement the company agreed to add a fill line or an image of the actual candy on the packaging.","source":"White v. Just Born (W.D. Mo.) and Escobar/Mateski v. Just Born (C.D. Cal.), consolidated settlement, final approval December 2020"}
+    ],
     id: 'just-born',
     name: 'Just Born, Inc.',
     hq: 'Bethlehem, Pennsylvania, USA',
@@ -10203,6 +10270,30 @@ export const COMPANY_DB = {
     sustainabilityScore: 75,
   },
 
+  'wildway': {
+    id: 'wildway',
+    name: 'Wildway, LLC',
+    hq: 'San Antonio, Texas, USA',
+    parentCompany: null,
+    revenue: null,
+    employees: null,
+    logo: 'https://www.google.com/s2/favicons?domain=wildwayoflife.com&sz=256',
+    subsidiaries: ['Wildway'],
+    sustainabilityScore: null,
+  },
+
+  'megamex-foods': {
+    id: 'megamex-foods',
+    name: 'MegaMex Foods, LLC',
+    hq: 'Orange, California, USA',
+    parentCompany: 'Joint venture of Hormel Foods Corporation and Herdez del Fuerte, S.A. de C.V.',
+    revenue: null,
+    employees: null,
+    logo: 'https://www.google.com/s2/favicons?domain=megamexfoods.com&sz=256',
+    subsidiaries: ['Wholly Guacamole', 'Wholly Avocado', 'Herdez', "CHI-CHI'S", 'La Victoria'],
+    sustainabilityScore: null,
+  },
+
   'american-halal': {
     id: 'american-halal',
     name: 'American Halal Company, Inc. (dba Saffron Road Foods)',
@@ -14034,7 +14125,8 @@ export const BRAND_TO_COMPANY = {
   'spam': 'hormel',
   'skippy': 'hormel',
   'jennie-o': 'hormel',
-  'wholly guacamole': 'hormel',
+  'wholly guacamole': 'megamex-foods',
+  'wholly avocado': 'megamex-foods',
   'dinty moore': 'hormel',
   'hormel': 'hormel',
   'natural choice': 'hormel',
@@ -14192,6 +14284,8 @@ export const BRAND_TO_COMPANY = {
   "amy's": 'amy-kitchen',
   "amy's kitchen": 'amy-kitchen',
   "bob's red mill": 'bobs-red-mill',
+  'wildway': 'wildway',
+  'wildway granola': 'wildway',
   "nature's path": 'natures-path',
   'envirokidz': 'natures-path',
   'love crunch': 'natures-path',
