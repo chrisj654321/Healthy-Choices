@@ -51,3 +51,9 @@ Apple approved the resubmission (the build carrying the 5.6.3 rating-prompt fix,
 Launch context: ~13 months from dining-room table to shipped product, ~28 days before the founder's Aug 3 availability cliff. P0 shifts from "get approved" to "launch burst + revenue" ($1k/mo goal ≈ 40 annual subs). The launch-day marketing burst (P1) is now unblocked and time-critical.
 
 Same-day: shelfexpose.app marketing site went live on Cloudflare→Netlify DNS, and the new Higgsfield-built two-act site (dark detective investigation → bright food world) deployed to its preview URL awaiting founder review + motion pass. The site's "Coming to the App Store" copy is now outdated — needs the real App Store link.
+
+## 2026-08-20 — First revenue: 3 paying subscribers
+
+Founder reported the third paying subscriber. Total: **3 subscribers — 2 monthly, 1 yearly** (the first up-front annual commitment). This is the first real revenue traction since the 2026-07-06 launch. Context vs. the $1k/mo goal (~40 annual subs): early, but the funnel is producing paid conversions.
+
+Data note for reconciliation: the in-app funnel (`app_events`, src/utils/appAnalytics.js) logged only **1** `purchase_completed`, not 3. The gap is expected — two subscribers almost certainly signed up on a build shipped BEFORE the analytics code went live, so their purchase was never logged. RevenueCat (app.revenuecat.com) is the source of truth for the real count; the app funnel only counts subscribers from the analytics build forward. Do NOT read the funnel's subscriber count as the true total — always cross-check RevenueCat.

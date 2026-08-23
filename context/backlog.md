@@ -2,6 +2,11 @@
 
 _Founder brain-dump triaged 2026-07-01. Completed ideas get deleted; shipped items move to the decision log. Sizes: **tweak** (batchable in an afternoon), **feature** (a planned build), **overhaul** (architecture-level — schedule deliberately)._
 
+## ⏳ Queued for Hadrian (assigned, in sequence)
+
+### Source-label fix for scan_events — **tweak** · do right after guest mode
+`scan_events` records how a product was viewed (`source`: scan/search/category/home/history), but every screen except the camera navigates to `ProductScore` WITHOUT passing a `source` param, so `ProductScoreScreen.js:456` defaults them all to `'scan'`. Result: the engagement-by-route query shows 100% "camera" and is useless. Fix = pass the correct `source` from each `navigation.navigate('ProductScore', …)` call site (HomeScreen `'home'`, HealthyCategoryScreen `'category'`, CompanyProfileScreen `'category'` or a company source, ProductSearchScreen `'search'`, ScanHistory/MyRequests `'history'`). No schema change — the column + logger already support it. Founder wants real engagement data once guest mode lands (2026-08-20).
+
 ## 🔥 High impact — do first
 
 ### 0. Campbell lobbying/donation figures need reconciliation — **research follow-up**, structural fix done 2026-07-10
