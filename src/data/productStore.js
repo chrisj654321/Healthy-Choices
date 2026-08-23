@@ -177,9 +177,14 @@ export async function getProductByBarcode(barcode) {
   if (!_db) return null;
 
   try {
+    const rawBarcode = String(barcode ?? '').trim();
+    const withoutLeadingZeros = rawBarcode.replace(/^0+/, '');
+    const lookupBarcode = withoutLeadingZeros.length === 12
+      ? withoutLeadingZeros
+      : rawBarcode;
     const row = await _db.getFirstAsync(
       'SELECT * FROM products WHERE barcode = ?',
-      [barcode]
+      [lookupBarcode]
     );
     if (!row) return null;
     return rowToProduct(row);

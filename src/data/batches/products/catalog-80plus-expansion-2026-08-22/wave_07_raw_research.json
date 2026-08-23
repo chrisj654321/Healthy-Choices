@@ -1,0 +1,28 @@
+{
+  "wave": "07",
+  "status": "SCORED_AND_REVIEWED",
+  "updatedAt": "2026-08-22",
+  "products": [
+    {
+      "status": "verified_score_80plus",
+      "scorePreview": 96,
+      "barcode": "850029953616",
+      "name": "Saffron Road Crossroads Hatch Chile Chicken Pesto",
+      "brand": "Saffron Road",
+      "companyId": "american-halal",
+      "category": "Frozen Meals",
+      "servingSize": "1 package (269g)",
+      "calories": 410,
+      "ingredients": ["farfalle pasta (water, durum wheat semolina)", "fire grilled sliced chicken breast (white meat chicken, water, potato starch, vinegar, sea salt, yeast extract, citrus extract, spice)", "water", "parmesan cheese (part-skim milk, cheese culture, salt, vegetarian enzymes)", "basil leaves", "onions", "olive oil", "lemon juice", "garlic", "native cornstarch", "hatch chile pepper", "sea salt"],
+      "nutrition": { "fat": 10, "saturatedFat": 2.5, "sodium": 560, "carbs": 54, "sugars": 2, "protein": 27 },
+      "sources": ["https://www.saffronroad.com/products/hatch-chile-chicken-pesto", "https://www.shoprite.com/sm/planning/rsid/278/product/saffron-road-cross-roads-hatch-chile-chicken-pesto-95-oz-id-00850029953616", "https://www.kroger.com/p/saffron-road-crossroads-hatch-chile-chicken-pesto-pasta/0085002995361", "https://www.ewg.org/foodscores/products/0850029953616-SaffronRoadCrossRoadsHatchChileChickenPesto/"],
+      "notes": ["Manufacturer and multiple current retailers agree on the formula and serving nutrition; ShopRite and EWG independently identify GTIN-14 00850029953616 / 0850029953616, whose UPC-A payload is 850029953616.", "UPC is absent from the shipping catalog and passes UPC-A mod-10."]
+    }
+  ],
+  "could_not_verify": [
+    {
+      "name": "Saffron Road Slow-Roasted Adobo Garlic Chicken",
+      "reason": "Current formula and nutrition were verified, but no independent source exposed the complete 12-digit UPC. The retailer URL omits the check digit, so the barcode was not inferred."
+    }
+  ]
+}

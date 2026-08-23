@@ -1,0 +1,52 @@
+{
+  "wave": "04",
+  "status": "SCORED_AND_REVIEWED",
+  "updatedAt": "2026-08-22",
+  "products": [
+    {
+      "status": "verified_below_threshold",
+      "scorePreview": 71,
+      "barcode": "857063002041",
+      "name": "Saffron Road Chicken Biryani",
+      "brand": "Saffron Road",
+      "companyId": "american-halal",
+      "category": "Frozen Meals",
+      "servingSize": "1 package (283g)",
+      "calories": 420,
+      "ingredients": ["basmati rice (basmati rice, water)", "white meat chicken (white meat chicken, water, yogurt, potato starch, spices, sea salt, granulated garlic, turmeric)", "onions", "water", "tomato puree", "whole milk yogurt", "olive oil", "ginger", "garlic", "spices", "sea salt", "mirepoix concentrate (carrots, onions, water, celery, sea salt, mushrooms, garlic)", "butter", "turmeric", "spearmint leaves", "fenugreek leaves", "paprika"],
+      "nutrition": { "fat": 9, "saturatedFat": 1.5, "sodium": 490, "carbs": 62, "sugars": 1, "protein": 25 },
+      "sources": ["https://www.shoprite.com/sm/pickup/rsid/423/product/saffron-road-indian-recipe-chicken-biryani-10-oz-id-00857063002041", "https://www.saffronroad.com/products/chicken-biryani"],
+      "notes": ["Current retailer and manufacturer agree on exact identity, current seed-oil-free formula, serving nutrition, and complete-meal format.", "UPC is absent from the shipping catalog and passes UPC-A mod-10."]
+    },
+    {
+      "status": "verified_score_80plus",
+      "scorePreview": 84,
+      "barcode": "850446008715",
+      "name": "Saffron Road Vegetable Biryani",
+      "brand": "Saffron Road",
+      "companyId": "american-halal",
+      "category": "Frozen Meals",
+      "servingSize": "1 package (283g)",
+      "calories": 480,
+      "ingredients": ["basmati rice (basmati rice, water)", "chickpeas", "onions", "green peas", "water", "cashews", "cauliflower", "carrots", "olive oil", "tomato puree", "onions", "tomato paste", "ginger", "garlic", "avocado oil", "spices", "celery", "sea salt", "lemon juice", "turmeric", "cayenne pepper"],
+      "nutrition": { "fat": 15, "saturatedFat": 2.5, "sodium": 440, "carbs": 79, "sugars": 6, "protein": 11 },
+      "sources": ["https://www.saffronroad.com/products/vegetable-biryani", "https://www.heb.com/product-detail/saffron-road-vegetable-biryani-frozen-meal/6574001", "https://img1.wsimg.com/blobby/go/aa7b10cd-c46b-4154-9e6a-5baa0913363d/UNFI%2520CATALOG.pdf"],
+      "notes": ["Current manufacturer and retailer agree on the current seed-oil-free formula and serving nutrition; the distributor catalog supplies the full UPC.", "UPC is absent from the shipping catalog and passes UPC-A mod-10."]
+    },
+    {
+      "status": "verified_below_threshold",
+      "scorePreview": 71,
+      "barcode": "042272002405",
+      "name": "Amy's Vegetable Lasagna, Light in Sodium",
+      "brand": "Amy's Kitchen",
+      "companyId": "amy-kitchen",
+      "category": "Frozen Meals",
+      "servingSize": "1 tray (269g)",
+      "calories": 290,
+      "ingredients": ["organic lasagna pasta (organic whole durum flour, filtered water)", "organic diced tomatoes", "ricotta cheese (pasteurized whey, pasteurized part-skim milk, vinegar, salt)", "organic tomato puree", "organic zucchini", "part-skim mozzarella and parmesan cheeses (pasteurized part-skim milk, culture, salt, enzymes)", "filtered water", "organic spinach", "organic red onions", "organic carrots", "organic green onions", "organic mushrooms", "organic cane sugar", "extra virgin olive oil", "organic red wine vinegar", "organic garlic", "balsamic vinegar (wine vinegar, grape must)", "stoneground mustard (grain vinegar, water, ground mustard seeds, salt, spices)", "spices", "black pepper", "basil"],
+      "nutrition": { "fat": 8, "saturatedFat": 3.5, "sodium": 340, "carbs": 41, "sugars": 8, "protein": 15 },
+      "sources": ["https://www.wholefoodsmarket.com/grocery/product/amy-s-amy-s-frozen-meals-light-in-sodium-vegetable-lasagna-entr-e-9-5-oz-b000reiku6", "https://sunshineco-op.com/products/042272002405-amy-s-vegetable-lasagna-light-in-sodium-9-5-oz", "https://listex.online/product/42272002405-us-amys-vegetable-lasagna-light-in-sodium"],
+      "notes": ["Current Whole Foods listing confirms the complete meal and nutrition; the co-op listing and barcode-indexed label record supply exact UPC and ingredients.", "UPC is absent from the shipping catalog and passes UPC-A mod-10."]
+    }
+  ]
+}

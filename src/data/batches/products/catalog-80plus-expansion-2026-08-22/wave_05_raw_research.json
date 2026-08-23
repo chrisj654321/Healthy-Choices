@@ -1,0 +1,67 @@
+{
+  "wave": "05",
+  "status": "SCORED_AND_REVIEWED",
+  "updatedAt": "2026-08-22",
+  "products": [
+    {
+      "status": "verified_below_threshold",
+      "scorePreview": 74,
+      "barcode": "857063002843",
+      "name": "Saffron Road Chickpea Masala",
+      "brand": "Saffron Road",
+      "companyId": "american-halal",
+      "category": "Frozen Meals",
+      "servingSize": "1 package (283g)",
+      "calories": 370,
+      "ingredients": ["basmati rice (basmati rice, water)", "chickpeas", "water", "onions", "tomatoes", "tomato paste", "olive oil", "coconut milk", "garlic", "native cornstarch", "ginger", "spices", "cumin seeds", "sea salt", "parsley", "cane sugar", "turmeric", "fenugreek leaves"],
+      "nutrition": { "fat": 8, "saturatedFat": 1.5, "sodium": 440, "carbs": 67, "sugars": 5, "protein": 10 },
+      "sources": ["https://www.kroger.com/p/saffron-road-chickpea-masala-gluten-free-vegan-indian-frozen-meal/0085706300284", "https://www.saffronroad.com/products/chickpea-masala-with-basmati-rice"],
+      "notes": ["Current retailer and manufacturer agree on exact UPC, seed-oil-free formula, serving nutrition, and complete-meal format.", "UPC is absent from the shipping catalog and passes UPC-A mod-10."]
+    },
+    {
+      "status": "verified_score_80plus",
+      "scorePreview": 96,
+      "barcode": "857063002867",
+      "name": "Saffron Road Moroccan-Inspired Chicken and Potatoes",
+      "brand": "Saffron Road",
+      "companyId": "american-halal",
+      "category": "Frozen Meals",
+      "servingSize": "1 package (283g)",
+      "calories": 250,
+      "ingredients": ["white meat chicken (white meat chicken, water, potato starch, sea salt)", "potatoes", "water", "green peas", "red bell peppers", "roasted red peppers", "onions", "tomato puree", "tomato paste", "olive oil", "garlic", "lemon juice", "sea salt", "red chili peppers", "spices", "cumin", "paprika"],
+      "nutrition": { "fat": 6, "saturatedFat": 1, "sodium": 660, "carbs": 28, "sugars": 4, "protein": 23 },
+      "sources": ["https://www.kroger.com/p/saffron-road-moroccan-inspired-chicken-potatoes-gluten-free-frozen-dinner/0085706300286", "https://www.saffronroad.com/products/chicken-and-potatoes"],
+      "notes": ["Current retailer and manufacturer agree on exact UPC, new seed-oil-free formula, serving nutrition, and complete-meal format.", "UPC is absent from the shipping catalog and passes UPC-A mod-10."]
+    },
+    {
+      "status": "could_not_verify",
+      "scorePreview": 65,
+      "barcode": null,
+      "name": "Saffron Road Bibimbap Mixed Veggie and Rice Bowl",
+      "brand": "Saffron Road",
+      "companyId": "american-halal",
+      "category": "Frozen Meals",
+      "servingSize": "1 package (283g)",
+      "calories": 400,
+      "ingredients": ["white rice (water, white rice)", "tofu (water, soybeans, calcium sulfate, calcium chloride)", "carrots", "spinach", "red bell peppers", "water", "gochujang chili paste (water, tapioca syrup, brown rice, red pepper powder, salt, garlic, onion)", "white miso (water, soybeans, rice, salt)", "scallions", "raw cane sugar", "gluten free reduced sodium tamari (water, soybeans, salt)", "olive oil", "garlic", "sesame oil", "ginger", "native corn starch"],
+      "nutrition": { "fat": 8, "saturatedFat": 1.5, "sodium": 710, "carbs": 67, "sugars": 8, "protein": 12 },
+      "sources": ["https://www.kroger.com/p/saffron-road-gluten-free-vegetable-bibimbap-korean-style-rice/0085002995310", "https://www.saffronroad.com/products/bibimbap-mixed-veggie-and-rice-bowl", "https://www.myfooddiary.com/foods/7814475/saffron-road-bibimbap-mixed-veggie-and-rice-bowl"],
+      "notes": ["Current retailer and manufacturer agree on product identity, ingredients, nutrition, and bowl-meal format.", "The retailer exposes only a truncated product code and no second source verifies a complete check-digit-valid UPC. Parked rather than constructing a barcode."]
+    },
+    {
+      "status": "verified_below_threshold",
+      "scorePreview": 30,
+      "barcode": "857063002850",
+      "name": "Saffron Road Coconut Cauliflower Curry",
+      "brand": "Saffron Road",
+      "companyId": "american-halal",
+      "category": "Frozen Meals",
+      "servingSize": "1 package (283g)",
+      "calories": 370,
+      "ingredients": ["basmati rice (water, basmati rice)", "roasted cauliflower", "water", "cannellini beans", "coconut cream", "onions", "ginger", "raw cane sugar", "coconut oil", "expeller pressed sunflower oil", "garlic", "tomato paste", "spices", "sea salt", "native corn starch", "parsley", "red chili pepper", "turmeric"],
+      "nutrition": { "fat": 11, "saturatedFat": 8, "sodium": 490, "carbs": 61, "sugars": 8, "protein": 7 },
+      "sources": ["https://www.kroger.com/p/saffron-road-coconut-cauliflower-curry-gluten-free-frozen-dinner/0085706300285", "https://www.wholefoodsmarket.com/grocery/product/saffron-road-coconut-cauliflower-curry-10-oz-b0cb9bcs4w", "https://www.instacart.com/products/31542433-saffron-road-coconut-cauliflower-curry-with-basmati-rice-10-oz"],
+      "notes": ["Current retailers agree on exact UPC, complete ingredients, nutrition, and complete-meal format.", "UPC is absent from the shipping catalog and passes UPC-A mod-10."]
+    }
+  ]
+}

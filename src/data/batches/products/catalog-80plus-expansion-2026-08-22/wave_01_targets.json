@@ -1,0 +1,51 @@
+{
+  "wave": "01",
+  "status": "TARGETS_SELECTED",
+  "goal": "Verify at least five new products scoring 80+ in Frozen Breakfast, Granola, and Bread.",
+  "rules": {
+    "minimumPassingPerCategory": 5,
+    "scoreThreshold": 80,
+    "scoreSource": "src/utils/scorer.js using verified structured product data",
+    "market": "United States",
+    "barcode": "Exact source-displayed consumer UPC; never inferred",
+    "replacementPolicy": "Replace every unresolved or sub-80 candidate until the category reaches five passes"
+  },
+  "categories": {
+    "Frozen Breakfast": [
+      "Food for Life Ezekiel 4:9 Sprouted Grain Original Waffles",
+      "Food for Life Ezekiel 4:9 Sprouted Grain Golden Flax Waffles",
+      "Food for Life Ezekiel 4:9 Sprouted Grain Blueberry Waffles",
+      "Food for Life Ezekiel 4:9 Sprouted Grain Apple Nut Waffles",
+      "Nature's Path Organic Flax Plus Frozen Waffles",
+      "Nature's Path Organic Chia Plus Gluten Free Frozen Waffles",
+      "Nature's Path Organic Pumpkin Spice Gluten Free Frozen Waffles",
+      "Kashi 7 Grain Frozen Waffles",
+      "Good Food Made Simple Uncured Canadian Bacon Breakfast Burrito",
+      "Red's Organic Bean & Cheddar Burrito"
+    ],
+    "Granola": [
+      "Struesli Original Organic Granola",
+      "Struesli Cacao + Coffee Organic Granola",
+      "Struesli Savory + Seed Organic Granola",
+      "Wildway Original Grain-Free Granola",
+      "Wildway Apple Cinnamon Grain-Free Granola",
+      "Wildway Banana Nut Grain-Free Granola",
+      "Lark Ellen Farm Vanilla Cinnamon Sprouted Granola",
+      "Lark Ellen Farm Lemon Blueberry Sprouted Granola",
+      "Seven Sundays Rise & Shine Grain Free Muesli",
+      "Seven Sundays Simply Honey Oat Granola"
+    ],
+    "Bread": [
+      "Food for Life Ezekiel 4:9 Sesame Sprouted Whole Grain Bread",
+      "Food for Life Ezekiel 4:9 Flax Sprouted Whole Grain Bread",
+      "Food for Life Ezekiel 4:9 Low Sodium Sprouted Whole Grain Bread",
+      "Food for Life 7 Sprouted Grains Bread",
+      "Food for Life Genesis 1:29 Sprouted Grain and Seed Bread",
+      "Silver Hills The Big 16 Sprouted Grain Bread",
+      "Silver Hills Little Big Bread",
+      "Alvarado Street Bakery Sprouted Multi-Grain Bread",
+      "Alvarado Street Bakery Sprouted No Salt Bread",
+      "Angelic Bakehouse Sprouted 7-Grain Bread"
+    ]
+  }
+}

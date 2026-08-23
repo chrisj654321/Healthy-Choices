@@ -360,6 +360,36 @@ describe('getProductByBarcode', () => {
     expect(product.isGlutenFree).toBe(false);
   });
 
+  test('normalizes a leading-zero GTIN to its curated 12-digit UPC', async () => {
+    mockDb.getFirstAsync.mockResolvedValue({
+      barcode: '742365216701',
+      name: 'Horizon Organic Half & Half Pint',
+      brand: 'Horizon Organic',
+      companyId: 'horizon-family-brands',
+      category: 'Coffee Creamer',
+      image: 'https://example.com/horizon.jpg',
+      servingSize: '2 tbsp (30mL)',
+      calories: 40,
+      ingredients_json: JSON.stringify(['organic grade a milk', 'organic grade a cream']),
+      nutrition_json: JSON.stringify({ fat: 3, saturatedFat: 2, sodium: 15, carbs: 1, sugars: 1, protein: 1 }),
+      certifications_json: JSON.stringify(['USDA Organic']),
+      flags_json: JSON.stringify({}),
+      packaging_json: null,
+      isOrganic: 1,
+      isVegan: 0,
+      isGlutenFree: 1,
+    });
+
+    const { getProductByBarcode } = loadProductStore();
+    const product = await getProductByBarcode('00742365216701');
+
+    expect(product.barcode).toBe('742365216701');
+    expect(mockDb.getFirstAsync).toHaveBeenCalledWith(
+      'SELECT * FROM products WHERE barcode = ?',
+      ['742365216701']
+    );
+  });
+
   test('reshapes packaging_json into a real packaging object when present', async () => {
     mockDb.getFirstAsync.mockResolvedValue({
       barcode: '014500021830',
