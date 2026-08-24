@@ -4,6 +4,16 @@ _Founder brain-dump triaged 2026-07-01. Completed ideas get deleted; shipped ite
 
 ## ⏳ Queued for Hadrian (assigned, in sequence)
 
+### Ingredient-parsing accuracy overhaul — **the "keeps getting dropped" fix** (2026-08-23)
+Root cause finally found: the problem is in THREE layers, and past attempts only patched the parser (middle layer). Concrete trigger: Ben's Original Ready Rice stored as `["water","parboiled long grain brown rice (less than 2% canola oil that adds a trivial amount of saturated fat)","and bioengineered food ingredient"]` — should be `["parboiled long grain brown rice","water","canola oil"]` + a bioengineered flag. Note the editorial phrase "that adds a trivial amount of saturated fat" is NOT on any real label — the SOURCE DATA is contaminated (agents paraphrased instead of storing verbatim), which is why parser-only fixes never stuck.
+- **Phase 1 (IN PROGRESS, Hadrian, branch `parsing-overhaul`):** normalizer fixes in `src/utils/ingredientNormalizer.js` — block the USDA "bioengineered" disclosure as a non-ingredient (already blocks "genetically modified"); add `detectBioengineered()`; fix "contains less than 2% of: X,Y" so the minor ingredients survive as independent rows (currently the whole phrase is dropped, losing e.g. canola oil); strip editorial tails ("that adds…", "which is a source of…"); add a test corpus so it can't regress.
+- **Phase 2 (TODO):** re-clean the catalog — audit all 1,098 products for glued/editorialized ingredient rows, re-normalize (re-normalizing the stored contaminated string RECOVERS the right ingredients once Phase 1 lands), re-fetch verbatim from OFF where needed, produce a before/after drift report (scores may shift as recovered minor ingredients reappear).
+- **Phase 3 (TODO):** GMO transparency — founder decided FLAG + AVOIDANCE PREFERENCE, **no score penalty** (GMOs are not scientifically unhealthy; a health penalty would break the neutral-regulatory / no-fearmongering rail and invite Yuka-style liability). Neutral "Contains a bioengineered (GMO) ingredient" badge + a GMO toggle in the diet/allergen profile reusing the allergen-alert machinery.
+- **Phase 4 (TODO):** Octavius pipeline guardrail — store VERBATIM label ingredients, each separate, no paraphrasing; add a validator that rejects editorial commentary. This is what stops it coming back a 5th time.
+Also queued separately (Hadrian, same branch): the Specs mascot hero-image placement fix (was floating at top of the header band with a phantom divider line; move to bottom, feet on the white).
+
+
+
 ### Source-label fix for scan_events — **tweak** · do right after guest mode
 `scan_events` records how a product was viewed (`source`: scan/search/category/home/history), but every screen except the camera navigates to `ProductScore` WITHOUT passing a `source` param, so `ProductScoreScreen.js:456` defaults them all to `'scan'`. Result: the engagement-by-route query shows 100% "camera" and is useless. Fix = pass the correct `source` from each `navigation.navigate('ProductScore', …)` call site (HomeScreen `'home'`, HealthyCategoryScreen `'category'`, CompanyProfileScreen `'category'` or a company source, ProductSearchScreen `'search'`, ScanHistory/MyRequests `'history'`). No schema change — the column + logger already support it. Founder wants real engagement data once guest mode lands (2026-08-20).
 
