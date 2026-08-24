@@ -707,15 +707,30 @@ export default function ProductScoreScreen({ route, navigation }) {
               />
             </View>
           )}
-          <LinearGradient
-            colors={['rgba(0,0,0,0.5)', 'rgba(0,0,0,0.12)', 'rgba(0,0,0,0)']}
-            locations={[0, 0.22, 0.5]}
-            style={[s.heroOverlay, { paddingTop: insets.top + 10 }]}
-          >
-            <TouchableOpacity style={s.navBtn} onPress={handleShare}>
-              <Ionicons name="share-outline" size={20} color="#fff" />
-            </TouchableOpacity>
-          </LinearGradient>
+          {product.image ? (
+            // Dark scrim is only needed to keep the share icon legible over
+            // a bright/busy photo. Over the flat placeholder mint below,
+            // the scrim was redundant (the icon already sits on its own
+            // dark navBtn circle) and its fade-to-transparent stop showed
+            // up as a faint banding seam across the flat color — read as a
+            // phantom "surface" line under Specs. Skipped for the no-photo
+            // case so nothing renders under him there.
+            <LinearGradient
+              colors={['rgba(0,0,0,0.5)', 'rgba(0,0,0,0.12)', 'rgba(0,0,0,0)']}
+              locations={[0, 0.22, 0.5]}
+              style={[s.heroOverlay, { paddingTop: insets.top + 10 }]}
+            >
+              <TouchableOpacity style={s.navBtn} onPress={handleShare}>
+                <Ionicons name="share-outline" size={20} color="#fff" />
+              </TouchableOpacity>
+            </LinearGradient>
+          ) : (
+            <View style={[s.heroOverlay, { paddingTop: insets.top + 10 }]}>
+              <TouchableOpacity style={s.navBtn} onPress={handleShare}>
+                <Ionicons name="share-outline" size={20} color="#fff" />
+              </TouchableOpacity>
+            </View>
+          )}
           {celebration && (
             <SpecsMascot clip="backflip" size={96} style={s.heroCelebration} />
           )}
@@ -1269,8 +1284,15 @@ const s = StyleSheet.create({
   // Hero
   heroWrap: { height: HERO_H, overflow: 'hidden', backgroundColor: '#D5EAE3' },
   heroImg: { width: '100%', height: '100%' },
-  heroPlaceholder: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#D5EAE3' },
-  heroLogo: { width: '80%', height: HERO_H * 0.94 },
+  // Bottom-anchored (not centered) so Specs' feet land on the band's lower
+  // edge, flush with the white infoCard starting right below — reads as him
+  // standing on that white content instead of floating mid-band. heroLogo
+  // uses aspectRatio (not a fixed height) so its box matches the source
+  // art's own proportions exactly, with no leftover letterboxing space for
+  // resizeMode="contain" to center him inside — flex-end here is what
+  // actually controls his vertical position.
+  heroPlaceholder: { flex: 1, alignItems: 'center', justifyContent: 'flex-end', backgroundColor: '#D5EAE3' },
+  heroLogo: { width: '80%', aspectRatio: 1400 / 781 },
   heroOverlay: {
     ...StyleSheet.absoluteFillObject,
     flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'flex-start',
