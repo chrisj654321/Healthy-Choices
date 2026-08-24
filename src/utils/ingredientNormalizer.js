@@ -7,6 +7,7 @@
  *
  * Exports:
  *   normalizeIngredientTokens(rawText) -> string[]
+ *   detectBioengineered(rawText) -> boolean
  *   classifyTokenPlausibility(token, knownKeysSet) -> { verdict, rescuedTo? }
  *   segmentIntoKnownIngredients(token, knownKeysSet) -> string[] | null
  */
@@ -70,7 +71,102 @@ const ADVISORY_PATTERNS = [
   // ingredients field (vandalized or malformed third-party listings) — no
   // real ingredient declaration opens with "local" as a sourcing claim.
   /^local\s/i,
+  // USDA bioengineered-food disclosure ("Bioengineered Food Ingredient" /
+  // "Produced With Genetic Engineering") is a regulatory label statement,
+  // not an ingredient — see detectBioengineered() below, which flags its
+  // presence separately for later UI phases.
+  /bioengineered/i,
+  /produced with genetic engineering/i,
+  /partially produced with genetic engineering/i,
+  /may be produced with genetic engineering/i,
 ];
+
+// Same set as the bioengineered entries above, kept separate so
+// detectBioengineered() can run against the RAW (pre-normalized) label text
+// independent of ADVISORY_PATTERNS' token-level filtering.
+const BIOENGINEERED_PATTERNS = [
+  /bioengineered/i,
+  /produced with genetic engineering/i,
+  /partially produced with genetic engineering/i,
+  /may be produced with genetic engineering/i,
+];
+
+/**
+ * detectBioengineered(rawText) -> boolean
+ *
+ * True when the raw (un-normalized) ingredients text carries a USDA
+ * bioengineered-food disclosure — "Bioengineered Food Ingredient" or a
+ * "(partially/may be) produced with genetic engineering" statement. Pure
+ * function, independent of normalizeIngredientTokens's output, so a later
+ * UI phase can render a disclosure badge without the disclosure sentence
+ * itself ever showing up as a fake ingredient row.
+ */
+function detectBioengineered(rawText) {
+  const text = String(rawText || '');
+  if (!text) return false;
+  return BIOENGINEERED_PATTERNS.some((re) => re.test(text));
+}
+
+// ─── "Contains less than 2% of: ..." lead-in stripping ──────────────────────
+// A "Contains X% or less of:" / "Less than X% of:" clause introduces a list
+// of genuinely minor ingredients — it is NOT itself an ingredient. The OLD
+// behavior filtered the whole comma-token (lead-in + first ingredient) as
+// advisory text, which silently dropped real minor ingredients like canola
+// oil. These patterns strip ONLY the lead-in phrase, at the START of a
+// token, so whatever ingredient name follows survives as its own token.
+const LEAD_IN_STRIP_PATTERNS = [
+  // "contains 2% or less of:" / "contains less than 2% of:"
+  /^contains\s+(less than\s+)?\d+(\.\d+)?%\s*(or less)?\s*of\s*:?\s*/i,
+  // "2% or less of:"
+  /^\d+(\.\d+)?%\s*or less\s*of\s*:?\s*/i,
+  // "less than 2% of:"
+  /^less than\s+\d+(\.\d+)?%\s*of\s*:?\s*/i,
+  // "less than 2% <ingredient>" (no trailing "of" — the parenthetical form,
+  // e.g. "rice (less than 2% canola oil)")
+  /^less than\s+\d+(\.\d+)?%\s*/i,
+];
+
+/**
+ * Strip a "contains X% or less of:" / "less than X% of:" lead-in phrase from
+ * the START of a token, leaving whatever real ingredient name follows.
+ * Tries each pattern in turn; only one is expected to match.
+ */
+function stripLeadInPhrase(token) {
+  for (const re of LEAD_IN_STRIP_PATTERNS) {
+    const stripped = token.replace(re, '');
+    if (stripped !== token) return stripped.trim();
+  }
+  return token;
+}
+
+// ─── Editorial-tail stripping ────────────────────────────────────────────────
+// Some (usually third-party/scraped) listings glue an explanatory clause onto
+// a real ingredient name — "canola oil that adds a trivial amount of
+// saturated fat", "riboflavin which is a source of vitamin b2". These trim
+// the trailing clause, keeping the real ingredient head. Deliberately narrow
+// (specific verb sets only) so legitimate compound names are never
+// truncated — "reduced iron", "partially hydrogenated soybean oil", and
+// "sodium acid pyrophosphate" contain none of these connector+verb pairs.
+const EDITORIAL_TAIL_PATTERNS = [
+  /\s+(?:that|which)\s+(?:adds?|provides?|is\s+a\s+source\s+of|helps?)\b/i,
+  /\s+(?:to|for)\s+(?:adds?|provides?|preserve|protect|enhance|maintain|retain|freshness|color|colour|texture|quality)\b/i,
+  /\s+as\s+an?\s+(?:source\s+of|preservative|emulsifier|anticaking\s+agent|antioxidant|stabilizer|flavou?r\s+enhancer|colou?r(?:ing)?)\b/i,
+];
+
+/**
+ * Cut a trailing editorial clause off an already-advisory-filtered token
+ * (run AFTER the ADVISORY_PATTERNS filter — see normalizeIngredientTokens —
+ * so a token that is advisory text end-to-end, like "added to preserve
+ * freshness", is dropped whole rather than collapsed to a stray "added").
+ */
+function stripEditorialTail(token) {
+  let cut = -1;
+  for (const re of EDITORIAL_TAIL_PATTERNS) {
+    const m = re.exec(token);
+    if (m && (cut === -1 || m.index < cut)) cut = m.index;
+  }
+  return cut === -1 ? token : token.slice(0, cut).trim();
+}
 
 // ─── Label-section cutoff ────────────────────────────────────────────────────
 // Third-party listings are frequently populated by OCR'ing the WHOLE package,
@@ -228,9 +324,20 @@ function normalizeIngredientTokens(rawText) {
         .trim()
         .toLowerCase()
     )
+    // Strip a "contains X% or less of:" / "less than X% of:" lead-in phrase
+    // BEFORE the advisory/length filters, so the real ingredient that
+    // follows it (e.g. "canola oil") survives as its own token instead of
+    // the whole lead-in+ingredient token being dropped as advisory text.
+    .map((s) => stripLeadInPhrase(s))
     .filter((s) => s.length > 2)
     .filter((s) => !/^\d+(\.\d+)?\s*(%|g|mg|ml|oz|lb|kg|cal|kcal)?$/.test(s))
     .filter((s) => !ADVISORY_PATTERNS.some((re) => re.test(s)))
+    // Trim a glued-on editorial clause ("... that adds a trivial amount of
+    // saturated fat") AFTER the advisory filter, so a token that is
+    // advisory text end-to-end is dropped whole rather than collapsed to a
+    // meaningless leftover fragment.
+    .map((s) => stripEditorialTail(s))
+    .filter((s) => s.length > 2)
     .forEach((token) => {
       if (seen.has(token)) return;
       seen.add(token);
@@ -503,6 +610,7 @@ function segmentIntoKnownIngredients(token, knownKeysSet) {
 
 module.exports = {
   normalizeIngredientTokens,
+  detectBioengineered,
   classifyTokenPlausibility,
   isLabelBoilerplate,
   segmentIntoKnownIngredients,

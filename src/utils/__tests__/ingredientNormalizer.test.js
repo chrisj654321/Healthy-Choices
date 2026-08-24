@@ -9,6 +9,7 @@
  */
 import {
   normalizeIngredientTokens,
+  detectBioengineered,
   classifyTokenPlausibility,
   isLabelBoilerplate,
   segmentIntoKnownIngredients,
@@ -112,6 +113,87 @@ describe('normalizeIngredientTokens: regression — normal comma lists unchanged
       'soy lecithin',
       'natural flavor',
     ]);
+  });
+});
+
+describe('normalizeIngredientTokens: "contains less than 2% of:" lead-in stripping (Phase 1 parsing overhaul)', () => {
+  // Real founder scan (Ben's Original Ready Rice Whole Grain Brown): the OLD
+  // behavior filtered the WHOLE "less than 2% canola oil ..." phrase as
+  // advisory text, which silently dropped canola oil — a real ingredient —
+  // from the label. The lead-in phrase alone is not an ingredient; whatever
+  // follows it is.
+  test('a parenthetical "(less than 2% X that adds Y)" strips the lead-in AND the editorial tail, keeping X as its own ingredient', () => {
+    const text =
+      'Water, Parboiled Long Grain Brown Rice (Less Than 2% Canola Oil that Adds a Trivial Amount of Saturated Fat), and Bioengineered Food Ingredient';
+    const tokens = normalizeIngredientTokens(text);
+    expect(tokens).toEqual(['water', 'parboiled long grain brown rice', 'canola oil']);
+    // The bioengineered disclosure is dropped as a non-ingredient, not shown
+    // as an "unknown" row.
+    expect(tokens).not.toContain('bioengineered food ingredient');
+    expect(tokens.some((t) => t.includes('bioengineered'))).toBe(false);
+  });
+
+  test('"Enriched Flour, Sugar, Contains 2% or Less of: Salt, Baking Soda, Soy Lecithin." keeps every minor ingredient as its own row', () => {
+    const tokens = normalizeIngredientTokens(
+      'Enriched Flour, Sugar, Contains 2% or Less of: Salt, Baking Soda, Soy Lecithin.'
+    );
+    expect(tokens).toEqual(['enriched flour', 'sugar', 'salt', 'baking soda', 'soy lecithin']);
+  });
+});
+
+describe('normalizeIngredientTokens: bioengineered disclosure dropped as a non-ingredient', () => {
+  test('a standalone "Bioengineered" line is dropped, not rendered as an ingredient', () => {
+    const tokens = normalizeIngredientTokens('Water, Sugar, Salt, Bioengineered Food Ingredient');
+    expect(tokens).toEqual(['water', 'sugar', 'salt']);
+  });
+
+  test('"Produced With Genetic Engineering" is dropped the same way', () => {
+    const tokens = normalizeIngredientTokens('Water, Sugar, Salt, Produced With Genetic Engineering');
+    expect(tokens).toEqual(['water', 'sugar', 'salt']);
+  });
+});
+
+describe('detectBioengineered', () => {
+  test('true for a "Bioengineered" disclosure', () => {
+    expect(detectBioengineered('Water, Sugar, Bioengineered Food Ingredient')).toBe(true);
+  });
+
+  test('true for "produced with genetic engineering" variants', () => {
+    expect(detectBioengineered('Sugar Beets (Produced With Genetic Engineering)')).toBe(true);
+    expect(detectBioengineered('Corn (Partially Produced With Genetic Engineering)')).toBe(true);
+    expect(detectBioengineered('Soybean Oil (May Be Produced With Genetic Engineering)')).toBe(true);
+  });
+
+  test('false when no disclosure is present', () => {
+    expect(detectBioengineered('Water, Sugar, Salt')).toBe(false);
+  });
+
+  test('false/safe for empty or missing input', () => {
+    expect(detectBioengineered('')).toBe(false);
+    expect(detectBioengineered(undefined)).toBe(false);
+  });
+});
+
+describe('normalizeIngredientTokens: editorial-tail stripping', () => {
+  test('"X which is a source of Y" keeps only X', () => {
+    const tokens = normalizeIngredientTokens(
+      'Riboflavin which is a Source of Vitamin B2, Reduced Iron, Partially Hydrogenated Soybean Oil, Sodium Acid Pyrophosphate'
+    );
+    expect(tokens).toEqual([
+      'riboflavin',
+      'reduced iron',
+      'partially hydrogenated soybean oil',
+      'sodium acid pyrophosphate',
+    ]);
+  });
+
+  test('a token that is advisory text end-to-end is dropped whole, not collapsed to a leftover fragment', () => {
+    // Regression guard: "added to preserve freshness" must be dropped
+    // entirely by the ADVISORY_PATTERNS filter, not truncated by the
+    // editorial-tail stripper into a stray "added" row.
+    const tokens = normalizeIngredientTokens('Whey, Added To Preserve Freshness, Lactose');
+    expect(tokens).toEqual(['whey', 'lactose']);
+    expect(tokens).not.toContain('added');
   });
 });
 
