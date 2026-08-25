@@ -1,0 +1,43 @@
+{
+  "wave": "02",
+  "focus": "staples and proteins",
+  "targets": [
+    {
+      "category": "Bread",
+      "current80PlusBrands": 4,
+      "current80PlusOwners": 3,
+      "goal": "two additional score-80+ brands from two new owners"
+    },
+    {
+      "category": "Granola",
+      "current80PlusBrands": 4,
+      "current80PlusOwners": 4,
+      "goal": "one additional score-80+ brand and owner"
+    },
+    {
+      "category": "Meat & Seafood / Primary Proteins",
+      "current80PlusBrands": 4,
+      "current80PlusOwners": 3,
+      "goal": "two additional score-80+ brands from two new owners"
+    },
+    {
+      "category": "Soups & Broths",
+      "current80PlusBrands": 5,
+      "current80PlusOwners": 3,
+      "goal": "two additional score-80+ brands from two new owners"
+    },
+    {
+      "category": "Nut Butters",
+      "current80PlusBrands": 13,
+      "current80PlusOwners": 10,
+      "goal": "complete after category consolidation; no additions required"
+    },
+    {
+      "category": "Deli Meat",
+      "current80PlusBrands": 0,
+      "current80PlusOwners": 0,
+      "goal": "complete under best-available rule with 12 brands and 8 owners",
+      "fallback": "processed and cured meat is hard-capped at 40, so score 80 is impossible"
+    }
+  ]
+}

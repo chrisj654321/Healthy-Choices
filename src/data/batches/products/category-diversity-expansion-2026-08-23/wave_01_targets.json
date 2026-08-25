@@ -1,0 +1,33 @@
+{
+  "wave": "01",
+  "focus": "convenience categories",
+  "targets": [
+    {
+      "category": "Frozen Breakfast",
+      "current80PlusBrands": 1,
+      "current80PlusOwners": 1,
+      "goal": "four additional score-80+ brands from four additional owners",
+      "fallback": "document best available if four independent 80+ products cannot be verified"
+    },
+    {
+      "category": "Packaged Meals",
+      "current80PlusBrands": 1,
+      "current80PlusOwners": 1,
+      "goal": "four additional score-80+ brands from four additional owners",
+      "fallback": "keep category strict; do not pad it with plain grains that belong in Pasta & Grains"
+    },
+    {
+      "category": "Kids Lunch",
+      "current80PlusBrands": 0,
+      "current80PlusOwners": 0,
+      "goal": "five best-available brands from five owners; add at least two new owners",
+      "fallback": "scores may remain below 80; label honestly because existing maximum is 26"
+    },
+    {
+      "category": "Dips & Hummus",
+      "current80PlusBrands": 5,
+      "current80PlusOwners": 4,
+      "goal": "one additional score-80+ product from a fifth owner"
+    }
+  ]
+}

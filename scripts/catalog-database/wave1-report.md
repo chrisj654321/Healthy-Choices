@@ -1,83 +1,50 @@
 # Wave 1 SQLite Build Report
 
-[2026-08-23T03:50:49.099Z] Starting offline SQLite product build.
-[2026-08-23T03:50:49.127Z] Extracted 1128 manual products from src/data/products.js.
-[2026-08-23T03:50:49.145Z] Loaded 25 healthy category definitions and 334 companies.
-[2026-08-23T03:50:49.171Z] Loaded 848 brand-to-company and 784 brand-to-parent entries, 4100 cached ingredient analyses.
-[2026-08-23T03:50:49.172Z] Loaded 565 product image backfills.
-[2026-08-23T03:50:49.192Z] Loaded scorer; score and grade will be precomputed.
-[2026-08-23T03:50:49.196Z] Inserting generated products.
-[2026-08-23T03:50:49.196Z] Inserting manual override products.
-[2026-08-23T03:50:51.115Z] Inserted 0 generated rows and 1128 manual rows; skipped 0 generated barcode collisions.
-[2026-08-23T03:50:51.115Z] Creating product indexes.
-[2026-08-23T03:50:51.118Z] Building summary tables.
-[2026-08-23T03:50:51.144Z] Build complete in 2.05s.
-[2026-08-23T03:50:51.144Z] Database: assets\db\products.db (2.82 MB), rows=1128.
-[2026-08-23T03:50:51.144Z] Score precompute: worked.
-[2026-08-23T03:50:51.145Z] Reference data: 334 companies, 1632 brand map rows, 4100 ingredient analyses.
-[2026-08-23T03:50:51.200Z] Starting SQLite validation.
-[2026-08-23T03:50:51.247Z] PASS: row count is manual-only - db=1128, expected=1128
-[2026-08-23T03:50:51.247Z] PASS: manual source row count - db=1128, expected=1128
-[2026-08-23T03:50:51.247Z] PASS: generated rows deliberately excluded - db=0, expected=0
-[2026-08-23T03:50:51.248Z] PASS: manual override spot check 073472001233 - Food for Life Ezekiel 4:9 Sesame Sprouted Whole Grain Bread
-[2026-08-23T03:50:51.248Z] PASS: manual override spot check 073472001240 - Food for Life Ezekiel 4:9 Flax Sprouted Whole Grain Bread
-[2026-08-23T03:50:51.248Z] PASS: manual override spot check 073472001530 - Food for Life Ezekiel 4:9 Low Sodium Sprouted Whole Grain Bread
-[2026-08-23T03:50:51.249Z] PASS: manual override spot check 073472001011 - Food for Life 7 Sprouted Grains Bread
-[2026-08-23T03:50:51.249Z] PASS: manual override spot check 073472001417 - Food for Life Genesis 1:29 Sprouted Grain and Seed Bread
-[2026-08-23T03:50:51.250Z] PASS: manual packaging_json populated 014500021830 - Birds Eye Steamfresh Pure & Simple Broccoli Florets 10.8oz
-[2026-08-23T03:50:51.250Z] PASS: manual diet flags populated 014500021830 - isOrganic=0, isVegan=1, isGlutenFree=1
-[2026-08-23T03:50:51.251Z] PASS: index exists idx_products_category
-[2026-08-23T03:50:51.251Z] PASS: index exists idx_products_company
-[2026-08-23T03:50:51.251Z] PASS: index exists idx_products_brand
-[2026-08-23T03:50:51.251Z] PASS: index exists idx_products_search_text
-[2026-08-23T03:50:51.252Z] PASS: summary category count sanity beverages - summary=49, direct=49
-[2026-08-23T03:50:51.252Z] PASS: summary table populated category_counts - rows=25
-[2026-08-23T03:50:51.253Z] PASS: summary table populated category_hero_images - rows=25
-[2026-08-23T03:50:51.253Z] PASS: summary table populated company_product_counts - rows=224
-[2026-08-23T03:50:51.253Z] PASS: summary table populated spotlight_company_ids - rows=65
-[2026-08-23T03:50:51.254Z] PASS: summary table populated schema_meta - rows=9
-[2026-08-23T03:50:51.255Z] PASS: schema version is 2 - value=2
-[2026-08-23T03:50:51.255Z] PASS: companies table matches source - db=334, source=334
-[2026-08-23T03:50:51.256Z] PASS: brand_company_map populated - rows=1632
-[2026-08-23T03:50:51.256Z] PASS: brand_company_map carries both kinds - kinds=company,parent
-[2026-08-23T03:50:51.257Z] PASS: ingredient_analysis populated - rows=4100
-[2026-08-23T03:50:51.260Z] PASS: every company row is valid JSON - bad=0
-[2026-08-23T03:50:51.261Z] TIMING: barcode lookup 073472001233 0.103ms
-[2026-08-23T03:50:51.262Z] TIMING: LIKE search "%cheerios%" limit 6 0.589ms
-[2026-08-23T03:50:51.262Z] DB size 2.82 MB.
-[2026-08-23T03:50:51.262Z] Rows total=1128, generated=0, manual=1128.
-[2026-08-23T03:50:51.263Z] Score rows=1128; scorer meta=scoreProduct imported through VM bundle; score and grade precomputed.
-[2026-08-23T03:50:51.263Z] Validation PASS.
-[2026-08-23T03:53:54.607Z] Starting SQLite validation.
-[2026-08-23T03:53:54.654Z] PASS: row count is manual-only - db=1128, expected=1128
-[2026-08-23T03:53:54.654Z] PASS: manual source row count - db=1128, expected=1128
-[2026-08-23T03:53:54.655Z] PASS: generated rows deliberately excluded - db=0, expected=0
-[2026-08-23T03:53:54.656Z] PASS: manual override spot check 073472001233 - Food for Life Ezekiel 4:9 Sesame Sprouted Whole Grain Bread
-[2026-08-23T03:53:54.656Z] PASS: manual override spot check 073472001240 - Food for Life Ezekiel 4:9 Flax Sprouted Whole Grain Bread
-[2026-08-23T03:53:54.657Z] PASS: manual override spot check 073472001530 - Food for Life Ezekiel 4:9 Low Sodium Sprouted Whole Grain Bread
-[2026-08-23T03:53:54.657Z] PASS: manual override spot check 073472001011 - Food for Life 7 Sprouted Grains Bread
-[2026-08-23T03:53:54.657Z] PASS: manual override spot check 073472001417 - Food for Life Genesis 1:29 Sprouted Grain and Seed Bread
-[2026-08-23T03:53:54.658Z] PASS: manual packaging_json populated 014500021830 - Birds Eye Steamfresh Pure & Simple Broccoli Florets 10.8oz
-[2026-08-23T03:53:54.658Z] PASS: manual diet flags populated 014500021830 - isOrganic=0, isVegan=1, isGlutenFree=1
-[2026-08-23T03:53:54.659Z] PASS: index exists idx_products_category
-[2026-08-23T03:53:54.659Z] PASS: index exists idx_products_company
-[2026-08-23T03:53:54.659Z] PASS: index exists idx_products_brand
-[2026-08-23T03:53:54.660Z] PASS: index exists idx_products_search_text
-[2026-08-23T03:53:54.660Z] PASS: summary category count sanity beverages - summary=49, direct=49
-[2026-08-23T03:53:54.661Z] PASS: summary table populated category_counts - rows=25
-[2026-08-23T03:53:54.661Z] PASS: summary table populated category_hero_images - rows=25
-[2026-08-23T03:53:54.662Z] PASS: summary table populated company_product_counts - rows=224
-[2026-08-23T03:53:54.662Z] PASS: summary table populated spotlight_company_ids - rows=65
-[2026-08-23T03:53:54.663Z] PASS: summary table populated schema_meta - rows=9
-[2026-08-23T03:53:54.663Z] PASS: schema version is 2 - value=2
-[2026-08-23T03:53:54.664Z] PASS: companies table matches source - db=334, source=334
-[2026-08-23T03:53:54.665Z] PASS: brand_company_map populated - rows=1632
-[2026-08-23T03:53:54.666Z] PASS: brand_company_map carries both kinds - kinds=company,parent
-[2026-08-23T03:53:54.666Z] PASS: ingredient_analysis populated - rows=4100
-[2026-08-23T03:53:54.669Z] PASS: every company row is valid JSON - bad=0
-[2026-08-23T03:53:54.670Z] TIMING: barcode lookup 073472001233 0.141ms
-[2026-08-23T03:53:54.671Z] TIMING: LIKE search "%cheerios%" limit 6 0.438ms
-[2026-08-23T03:53:54.672Z] DB size 2.82 MB.
-[2026-08-23T03:53:54.672Z] Rows total=1128, generated=0, manual=1128.
-[2026-08-23T03:53:54.672Z] Score rows=1128; scorer meta=scoreProduct imported through VM bundle; score and grade precomputed.
-[2026-08-23T03:53:54.673Z] Validation PASS.
+[2026-08-24T02:02:07.778Z] Starting offline SQLite product build.
+[2026-08-24T02:02:07.809Z] Extracted 1146 manual products from src/data/products.js.
+[2026-08-24T02:02:07.825Z] Loaded 25 healthy category definitions and 344 companies.
+[2026-08-24T02:02:07.847Z] Loaded 863 brand-to-company and 784 brand-to-parent entries, 4100 cached ingredient analyses.
+[2026-08-24T02:02:07.849Z] Loaded 565 product image backfills.
+[2026-08-24T02:02:07.869Z] Loaded scorer; score and grade will be precomputed.
+[2026-08-24T02:02:07.873Z] Inserting generated products.
+[2026-08-24T02:02:07.873Z] Inserting manual override products.
+[2026-08-24T02:02:09.881Z] Inserted 0 generated rows and 1146 manual rows; skipped 0 generated barcode collisions.
+[2026-08-24T02:02:09.882Z] Creating product indexes.
+[2026-08-24T02:02:09.885Z] Building summary tables.
+[2026-08-24T02:02:09.909Z] Build complete in 2.13s.
+[2026-08-24T02:02:09.909Z] Database: assets\db\products.db (2.86 MB), rows=1146.
+[2026-08-24T02:02:09.909Z] Score precompute: worked.
+[2026-08-24T02:02:09.910Z] Reference data: 344 companies, 1647 brand map rows, 4100 ingredient analyses.
+[2026-08-24T02:02:10.038Z] Starting SQLite validation.
+[2026-08-24T02:02:10.084Z] PASS: row count is manual-only - db=1146, expected=1146
+[2026-08-24T02:02:10.084Z] PASS: manual source row count - db=1146, expected=1146
+[2026-08-24T02:02:10.085Z] PASS: generated rows deliberately excluded - db=0, expected=0
+[2026-08-24T02:02:10.086Z] PASS: manual override spot check 191011000872 - JUST Egg Folded Plant Eggs
+[2026-08-24T02:02:10.087Z] PASS: manual override spot check 810012620185 - Cauliflower Hash Browns
+[2026-08-24T02:02:10.087Z] PASS: manual override spot check 856017003813 - Paleo Toaster Waffles
+[2026-08-24T02:02:10.088Z] PASS: manual override spot check 075947401555 - All Natural Frozen Shredded Hash Browns
+[2026-08-24T02:02:10.088Z] PASS: manual override spot check 073416045378 - Organic Long Grain Brown Rice Bowl
+[2026-08-24T02:02:10.088Z] PASS: manual packaging_json populated 014500021830 - Birds Eye Steamfresh Pure & Simple Broccoli Florets 10.8oz
+[2026-08-24T02:02:10.089Z] PASS: manual diet flags populated 014500021830 - isOrganic=0, isVegan=1, isGlutenFree=1
+[2026-08-24T02:02:10.089Z] PASS: index exists idx_products_category
+[2026-08-24T02:02:10.089Z] PASS: index exists idx_products_company
+[2026-08-24T02:02:10.090Z] PASS: index exists idx_products_brand
+[2026-08-24T02:02:10.090Z] PASS: index exists idx_products_search_text
+[2026-08-24T02:02:10.091Z] PASS: summary category count sanity beverages - summary=49, direct=49
+[2026-08-24T02:02:10.091Z] PASS: summary table populated category_counts - rows=25
+[2026-08-24T02:02:10.092Z] PASS: summary table populated category_hero_images - rows=25
+[2026-08-24T02:02:10.092Z] PASS: summary table populated company_product_counts - rows=235
+[2026-08-24T02:02:10.092Z] PASS: summary table populated spotlight_company_ids - rows=65
+[2026-08-24T02:02:10.093Z] PASS: summary table populated schema_meta - rows=9
+[2026-08-24T02:02:10.093Z] PASS: schema version is 2 - value=2
+[2026-08-24T02:02:10.094Z] PASS: companies table matches source - db=344, source=344
+[2026-08-24T02:02:10.094Z] PASS: brand_company_map populated - rows=1647
+[2026-08-24T02:02:10.095Z] PASS: brand_company_map carries both kinds - kinds=company,parent
+[2026-08-24T02:02:10.095Z] PASS: ingredient_analysis populated - rows=4100
+[2026-08-24T02:02:10.098Z] PASS: every company row is valid JSON - bad=0
+[2026-08-24T02:02:10.099Z] TIMING: barcode lookup 191011000872 0.098ms
+[2026-08-24T02:02:10.099Z] TIMING: LIKE search "%cheerios%" limit 6 0.388ms
+[2026-08-24T02:02:10.100Z] DB size 2.86 MB.
+[2026-08-24T02:02:10.100Z] Rows total=1146, generated=0, manual=1146.
+[2026-08-24T02:02:10.100Z] Score rows=1146; scorer meta=scoreProduct imported through VM bundle; score and grade precomputed.
+[2026-08-24T02:02:10.101Z] Validation PASS.

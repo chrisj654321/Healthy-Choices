@@ -4512,7 +4512,7 @@ export const COMPANY_DB = {
         source: 'Milberg LLP complaint (filed October 30, 2023); classaction.org',
       },
     ],
-    subsidiaries: ['Green Giant', 'Ortega', 'Las Palmas', 'Cream of Wheat', 'Molly McButter', "Mrs. Dash", "Ac'cent", 'Polaner', 'Bear Creek Soup'],
+    subsidiaries: ['Green Giant', 'Ortega', 'Las Palmas', 'Cream of Wheat', 'Molly McButter', "Mrs. Dash", "Ac'cent", 'Polaner', 'Bear Creek Soup', 'College Inn'],
     sustainabilityScore: 40,
   },
 
@@ -7566,7 +7566,7 @@ export const COMPANY_DB = {
         source: 'Historical company records, 1977',
       },
     ],
-    subsidiaries: ['Del Monte', "S&W", "College Inn"],
+    subsidiaries: ['Del Monte', "S&W"],
     sustainabilityScore: 45,
   },
 
@@ -13145,6 +13145,78 @@ export const COMPANY_DB = {
     ],
     sustainabilityScore: null,
   },
+
+  // ── Category diversity expansion ownership records (2026-08-23) ──────────
+  'mccain': {
+    id: 'mccain', name: 'McCain Foods Group Inc.', hq: 'Canada', revenue: null, employees: null,
+    logo: 'https://www.google.com/s2/favicons?domain=mccain.com&sz=256',
+    lobbyingSpend: null, lobbyingTargets: [], lobbyingSpendYear: null, lobbyingSource: null,
+    politicalDonations: null, donationSplit: null, donationSplitYear: null, donationSplitSource: null,
+    issues: [], subsidiaries: ['McCain Foods Limited', 'McCain Foods', 'Strong Roots'], sustainabilityScore: null,
+  },
+  'verde-valle-foods': {
+    id: 'verde-valle-foods', name: 'Productos Verde Valle, S.A. de C.V.', hq: 'Zapopan, Jalisco, Mexico', revenue: null, employees: null,
+    logo: 'https://www.google.com/s2/favicons?domain=verdevallefoods.com&sz=256',
+    lobbyingSpend: null, lobbyingTargets: [], lobbyingSpendYear: null, lobbyingSource: null,
+    politicalDonations: null, donationSplit: null, donationSplitYear: null, donationSplitSource: null,
+    issues: [], subsidiaries: ['Verde Valle Foods, Inc.', 'Verde Valle', 'Isadora', 'A Dozen Cousins'], sustainabilityScore: null,
+  },
+  'little-sesame': {
+    id: 'little-sesame', name: 'Little Sesame Inc.', hq: 'Washington, District of Columbia, USA', revenue: null, employees: null,
+    logo: 'https://www.google.com/s2/favicons?domain=eatlittlesesame.com&sz=256',
+    lobbyingSpend: null, lobbyingTargets: [], lobbyingSpendYear: null, lobbyingSource: null,
+    politicalDonations: null, donationSplit: null, donationSplitYear: null, donationSplitSource: null,
+    issues: [], subsidiaries: ['Little Sesame'], sustainabilityScore: null,
+  },
+  'westin-foods': {
+    id: 'westin-foods', name: 'Westin Foods', hq: 'Omaha, Nebraska, USA', revenue: null, employees: null,
+    logo: 'https://www.google.com/s2/favicons?domain=westinfoods.com&sz=256',
+    lobbyingSpend: null, lobbyingTargets: [], lobbyingSpendYear: null, lobbyingSource: null,
+    politicalDonations: null, donationSplit: null, donationSplitYear: null, donationSplitSource: null,
+    issues: [], subsidiaries: ["Mr. Dell's Foods, LLC", "Mr. Dell's"], sustainabilityScore: null,
+  },
+  'mestemacher': {
+    id: 'mestemacher', name: 'Mestemacher GmbH', hq: 'Gütersloh, Germany', revenue: null, employees: null,
+    logo: 'https://www.google.com/s2/favicons?domain=mestemacher-gmbh.com&sz=256',
+    lobbyingSpend: null, lobbyingTargets: [], lobbyingSpendYear: null, lobbyingSource: null,
+    politicalDonations: null, donationSplit: null, donationSplitYear: null, donationSplitSource: null,
+    issues: [], subsidiaries: ['Mestemacher'], sustainabilityScore: null,
+  },
+  'base-culture': {
+    id: 'base-culture', name: 'Base Culture, Inc.', hq: 'Clearwater, Florida, USA', revenue: null, employees: null,
+    logo: 'https://www.google.com/s2/favicons?domain=baseculture.com&sz=256',
+    lobbyingSpend: null, lobbyingTargets: [], lobbyingSpendYear: null, lobbyingSource: null,
+    politicalDonations: null, donationSplit: null, donationSplitYear: null, donationSplitSource: null,
+    issues: [], subsidiaries: ['Base Culture'], sustainabilityScore: null,
+  },
+  'seven-sundays': {
+    id: 'seven-sundays', name: 'Seven Sundays, LLC', hq: 'Bloomington, Minnesota, USA', revenue: null, employees: null,
+    logo: 'https://www.google.com/s2/favicons?domain=sevensundays.com&sz=256',
+    lobbyingSpend: null, lobbyingTargets: [], lobbyingSpendYear: null, lobbyingSource: null,
+    politicalDonations: null, donationSplit: null, donationSplitYear: null, donationSplitSource: null,
+    issues: [], subsidiaries: ['Seven Sundays', 'Birch Packaging'], sustainabilityScore: null,
+  },
+  'safe-catch': {
+    id: 'safe-catch', name: 'Safe Catch, Inc.', hq: 'Sausalito, California, USA', revenue: null, employees: null,
+    logo: 'https://www.google.com/s2/favicons?domain=safecatch.com&sz=256',
+    lobbyingSpend: null, lobbyingTargets: [], lobbyingSpendYear: null, lobbyingSource: null,
+    politicalDonations: null, donationSplit: null, donationSplitYear: null, donationSplitSource: null,
+    issues: [], subsidiaries: ['Safe Catch'], sustainabilityScore: null,
+  },
+  'mutandis': {
+    id: 'mutandis', name: 'Mutandis SCA', hq: 'Casablanca, Morocco', revenue: null, employees: null,
+    logo: 'https://www.google.com/s2/favicons?domain=mutandis.com&sz=256',
+    lobbyingSpend: null, lobbyingTargets: [], lobbyingSpendYear: null, lobbyingSource: null,
+    politicalDonations: null, donationSplit: null, donationSplitYear: null, donationSplitSource: null,
+    issues: [], subsidiaries: ['Season Brand LLC', 'Season Brand'], sustainabilityScore: null,
+  },
+  'blount-fine-foods': {
+    id: 'blount-fine-foods', name: 'Blount Fine Foods Corp.', hq: 'Warren, Rhode Island, USA', revenue: null, employees: null,
+    logo: 'https://www.google.com/s2/favicons?domain=blountfinefoods.com&sz=256',
+    lobbyingSpend: null, lobbyingTargets: [], lobbyingSpendYear: null, lobbyingSource: null,
+    politicalDonations: null, donationSplit: null, donationSplitYear: null, donationSplitSource: null,
+    issues: [], subsidiaries: ['Blount Fine Foods', 'Bonafide Provisions', 'Bonafide Provisions, LLC'], sustainabilityScore: null,
+  },
 };
 
 /**
@@ -14467,7 +14539,7 @@ export const BRAND_TO_COMPANY = {
   'dole': 'dole-food',
   'del monte': 'del-monte-foods',
   's&w beans': 'del-monte-foods',
-  'college inn': 'del-monte-foods',
+  'college inn': 'b-and-g-foods',
   'ocean spray': 'ocean-spray',
   'craisins': 'ocean-spray',
   'sun-maid': 'sun-maid',
@@ -14475,6 +14547,23 @@ export const BRAND_TO_COMPANY = {
   "eggland's best": 'egglands-best',
   "boar's head": 'boars-head',
   'hint water': 'hint-water',
+
+  // Category diversity expansion (2026-08-23)
+  'strong roots': 'mccain',
+  'mccain foods': 'mccain',
+  'a dozen cousins': 'verde-valle-foods',
+  'verde valle': 'verde-valle-foods',
+  'verde valle foods': 'verde-valle-foods',
+  'little sesame': 'little-sesame',
+  "mr. dell's": 'westin-foods',
+  'mr dells': 'westin-foods',
+  'mr dell foods': 'westin-foods',
+  'mestemacher': 'mestemacher',
+  'base culture': 'base-culture',
+  'seven sundays': 'seven-sundays',
+  'safe catch': 'safe-catch',
+  'season brand': 'mutandis',
+  'bonafide provisions': 'blount-fine-foods',
 
   // ── Brands added 2026-06 batch ──
   'simple mills': 'simple-mills',
