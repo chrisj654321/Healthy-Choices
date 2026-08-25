@@ -197,6 +197,53 @@ describe('normalizeIngredientTokens: editorial-tail stripping', () => {
   });
 });
 
+describe('normalizeIngredientTokens: advisory-tail head rescue (Phase 2 prep)', () => {
+  // Real founder-catalog bug (Cheez-It Original Baked Snack Crackers): the
+  // stored token "vegetable oil (soybean and palm oil with tbhq for
+  // freshness)" flattens to "soybean and palm oil with tbhq for freshness",
+  // which the OLD code dropped WHOLE because it matched a "for freshness"
+  // advisory pattern — silently losing soybean oil, palm oil, AND tbhq (a
+  // real, disclosed preservative). The fix strips just the advisory tail and
+  // keeps the real ingredient head (including a preservative folded into it).
+  test('Cheez-It: keeps the oils and tbhq instead of dropping the whole glued token', () => {
+    const tokens = normalizeIngredientTokens(
+      'vegetable oil (soybean and palm oil with tbhq for freshness)'
+    );
+    expect(tokens).toEqual(['vegetable oil', 'soybean and palm oil with tbhq']);
+    // The old bug's exact failure mode: the whole clause vanishing because it
+    // ends in "for freshness".
+    expect(tokens).not.toContain('soybean and palm oil with tbhq for freshness');
+    expect(tokens.some((t) => t.includes('for freshness'))).toBe(false);
+    const joined = tokens.join(' ');
+    expect(joined).toContain('soybean');
+    expect(joined).toContain('palm');
+    expect(joined).toContain('tbhq');
+  });
+
+  test('"BHT Added To Preserve Freshness" keeps bht instead of dropping it whole (catalog: Club Crackers family)', () => {
+    const tokens = normalizeIngredientTokens('Whole Grain Wheat, BHT Added To Preserve Freshness');
+    expect(tokens).toEqual(['whole grain wheat', 'bht']);
+  });
+
+  test('"BHT is added to the packaging material to preserve product freshness" wording variant still rescues bht', () => {
+    const tokens = normalizeIngredientTokens(
+      'Whole Grain Wheat, BHT is Added to the Packaging Material to Preserve Product Freshness'
+    );
+    expect(tokens).toEqual(['whole grain wheat', 'bht']);
+  });
+
+  test('"Soybean Oil (with TBHQ for Freshness)" keeps tbhq as its own ingredient, not glued advisory text', () => {
+    const tokens = normalizeIngredientTokens('Soybean Oil (with TBHQ for Freshness)');
+    expect(tokens).toEqual(['soybean oil', 'tbhq']);
+  });
+
+  test('a token that is advisory text end-to-end is still dropped whole (regression guard)', () => {
+    const tokens = normalizeIngredientTokens('Whey, Added To Preserve Freshness, Lactose');
+    expect(tokens).toEqual(['whey', 'lactose']);
+    expect(tokens).not.toContain('added');
+  });
+});
+
 describe('classifyTokenPlausibility', () => {
   const knownKeys = new Set(['soybean oil', 'soybean', 'canola oil', 'sodium stearoyl lactylate']);
 

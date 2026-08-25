@@ -151,6 +151,14 @@ const EDITORIAL_TAIL_PATTERNS = [
   /\s+(?:that|which)\s+(?:adds?|provides?|is\s+a\s+source\s+of|helps?)\b/i,
   /\s+(?:to|for)\s+(?:adds?|provides?|preserve|protect|enhance|maintain|retain|freshness|color|colour|texture|quality)\b/i,
   /\s+as\s+an?\s+(?:source\s+of|preservative|emulsifier|anticaking\s+agent|antioxidant|stabilizer|flavou?r\s+enhancer|colou?r(?:ing)?)\b/i,
+  // "<preservative> (is) added to (the) (packaging material) (to preserve)
+  // freshness/color/quality" — a named preservative (bht, tbhq, vitamin e...)
+  // glued to a wordy "why it's there" clause. Bounded lookahead (.{0,64}?)
+  // covers every wording variant seen in the catalog ("bht added to preserve
+  // freshness", "bht is added to the packaging material to preserve product
+  // freshness") without risking a match inside an unrelated compound name —
+  // no real ingredient name contains the phrase "added to ... freshness".
+  /\s+(?:is\s+)?added\s+to\s+.{0,64}?\b(?:freshness|color|colour|quality)\b/i,
 ];
 
 /**
@@ -166,6 +174,43 @@ function stripEditorialTail(token) {
     if (m && (cut === -1 || m.index < cut)) cut = m.index;
   }
   return cut === -1 ? token : token.slice(0, cut).trim();
+}
+
+// Words that mean nothing on their own — if stripEditorialTail's remainder is
+// made up ENTIRELY of these, the token was advisory text end-to-end (no real
+// ingredient head), so the whole-token ADVISORY_PATTERNS filter should still
+// be the one to drop it. Keeps the pre-filter rescue below narrowly scoped to
+// tokens that genuinely have real content before the editorial clause.
+const FILLER_HEAD_WORDS = new Set([
+  'added', 'contains', 'and', 'or', 'with', 'a', 'an', 'also', 'plus', 'to', 'for', 'the', 'is',
+]);
+
+function looksLikeRealIngredientHead(s) {
+  const t = String(s || '').trim();
+  if (t.length <= 2) return false;
+  const words = t.split(/\s+/).filter(Boolean);
+  return !words.every((w) => FILLER_HEAD_WORDS.has(w.toLowerCase()));
+}
+
+/**
+ * Rescue a real ingredient head from a token that glues an advisory/editorial
+ * tail onto it — "soybean and palm oil with tbhq for freshness", "bht added
+ * to preserve freshness". Run BEFORE the whole-token ADVISORY_PATTERNS filter
+ * (unlike stripEditorialTail above) so the head survives instead of the
+ * entire token being dropped — see the Cheez-It bug this fixes: the old
+ * behavior lost soybean oil, palm oil, AND tbhq (a real preservative) because
+ * the whole glued token matched a "for freshness" advisory pattern.
+ *
+ * Only replaces the token when stripEditorialTail actually cut something AND
+ * what remains looks like a real ingredient name (not just filler words like
+ * "added"/"with a") — a token that is advisory text end-to-end, like "Added
+ * To Preserve Freshness", is left untouched here so it still reaches (and is
+ * dropped by) the whole-token filter exactly as before.
+ */
+function rescueAdvisoryTailHead(token) {
+  const head = stripEditorialTail(token);
+  if (head === token || !looksLikeRealIngredientHead(head)) return token;
+  return head;
 }
 
 // ─── Label-section cutoff ────────────────────────────────────────────────────
@@ -320,6 +365,11 @@ function normalizeIngredientTokens(rawText) {
         .trim()
         .replace(/^(and|or)\s+/i, '')
         .replace(/^&\s*/, '')
+        // A token starting with "with" only ever arises from flattening a
+        // "<ingredient> (with <sub-ingredient>...)" parenthetical into the
+        // comma stream — the "with" is never itself part of a declared
+        // ingredient name, exactly like the "and"/"or" continuations above.
+        .replace(/^with\s+/i, '')
         .replace(/\.$/, '')
         .trim()
         .toLowerCase()
@@ -329,6 +379,13 @@ function normalizeIngredientTokens(rawText) {
     // follows it (e.g. "canola oil") survives as its own token instead of
     // the whole lead-in+ingredient token being dropped as advisory text.
     .map((s) => stripLeadInPhrase(s))
+    // Rescue a real ingredient head glued to an advisory/editorial tail
+    // ("soybean and palm oil with tbhq for freshness", "bht added to
+    // preserve freshness") BEFORE the whole-token advisory filter below, so
+    // the head (and any preservative folded into it, e.g. tbhq) survives
+    // instead of the entire token being dropped. No-op when the token isn't
+    // this shape (see rescueAdvisoryTailHead's guard).
+    .map((s) => rescueAdvisoryTailHead(s))
     .filter((s) => s.length > 2)
     .filter((s) => !/^\d+(\.\d+)?\s*(%|g|mg|ml|oz|lb|kg|cal|kcal)?$/.test(s))
     .filter((s) => !ADVISORY_PATTERNS.some((re) => re.test(s)))
