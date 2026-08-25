@@ -29,6 +29,7 @@ export default function AuthScreen() {
   const insets = useSafeAreaInsets();
 
   const [tab,             setTab]             = useState('Sign In');
+  const [firstName,       setFirstName]       = useState('');
   const [email,           setEmail]           = useState('');
   const [password,        setPassword]        = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -50,12 +51,17 @@ export default function AuthScreen() {
     setTab(newTab);
     setPassword('');
     setConfirmPassword('');
+    setFirstName('');
   };
 
   // ── Email + password ───────────────────────────────────────────────────────
   const handleEmailAuth = async () => {
     if (!email.trim() || !password.trim()) {
       Alert.alert('Missing fields', 'Please enter your email and password.');
+      return;
+    }
+    if (tab === 'Create Account' && !firstName.trim()) {
+      Alert.alert('Missing fields', 'Please enter your first name.');
       return;
     }
     if (tab === 'Create Account' && password !== confirmPassword) {
@@ -68,20 +74,35 @@ export default function AuthScreen() {
     }
 
     setLoading(true);
-    const { error } =
+    const { data, error } =
       tab === 'Sign In'
         ? await supabase.auth.signInWithPassword({ email: email.trim(), password })
-        : await supabase.auth.signUp({ email: email.trim(), password });
+        : await supabase.auth.signUp({
+            email: email.trim(),
+            password,
+            options: { data: { first_name: firstName.trim() } },
+          });
 
     setLoading(false);
 
     if (error) {
       Alert.alert('Error', error.message);
     } else if (tab === 'Create Account') {
-      Alert.alert(
-        'Check your email ✉️',
-        'We sent a confirmation link to ' + email.trim() + '. Click it to activate your account.',
-      );
+      // Supabase returns a 200 with no error for an existing confirmed email
+      // (anti-enumeration at the API level) but sets identities to an empty
+      // array as the documented signal to detect this case client-side —
+      // no confirmation email is actually sent in that case.
+      if (data?.user?.identities?.length === 0) {
+        Alert.alert(
+          'Account already exists',
+          'An account with this email already exists. Try signing in, or use Forgot Password if you don\'t remember your password.',
+        );
+      } else {
+        Alert.alert(
+          'Check your email ✉️',
+          'We sent a confirmation link to ' + email.trim() + '. Click it to activate your account.',
+        );
+      }
     }
   };
 
@@ -92,7 +113,8 @@ export default function AuthScreen() {
       return;
     }
     setLoading(true);
-    const { error } = await supabase.auth.resetPasswordForEmail(email.trim());
+    const redirectUrl = AuthSession.makeRedirectUri({ scheme: 'healthychoices', path: 'reset-password' });
+    const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), { redirectTo: redirectUrl });
     setLoading(false);
     if (error) {
       Alert.alert('Error', error.message);
@@ -117,6 +139,19 @@ export default function AuthScreen() {
           provider: 'apple',
           token:    credential.identityToken,
         });
+
+        // Apple only ever sends the user's name on this FIRST authorization
+        // — later sign-ins with the same Apple ID won't include it again —
+        // so it has to be captured and persisted into user_metadata right
+        // here, or it's gone for good.
+        const givenName = credential.fullName?.givenName;
+        if (!error && givenName) {
+          const { error: metaError } = await supabase.auth.updateUser({
+            data: { first_name: givenName },
+          });
+          if (metaError) console.warn('[Auth] failed to save Apple given name:', metaError.message);
+        }
+
         setLoading(false);
         if (error) Alert.alert('Apple Sign In Error', error.message);
       }
@@ -147,14 +182,16 @@ export default function AuthScreen() {
       const result = await WebBrowser.openAuthSessionAsync(data?.url, redirectUrl);
 
       if (result.type === 'success') {
-        const url = new URL(result.url);
-        const params = new URLSearchParams(url.hash.slice(1));
-        const accessToken  = params.get('access_token');
-        const refreshToken = params.get('refresh_token');
+        const callbackUrl = new URL(result.url);
+        const oauthError = callbackUrl.searchParams.get('error_description') || callbackUrl.searchParams.get('error');
+        const code = callbackUrl.searchParams.get('code');
 
-        if (accessToken) {
-          await supabase.auth.setSession({ access_token: accessToken, refresh_token: refreshToken });
-        }
+        if (oauthError) { setLoading(false); Alert.alert('Google Sign In Error', oauthError); return; }
+        if (!code) { setLoading(false); Alert.alert('Google Sign In Error', 'No authorization code returned.'); return; }
+
+        // exchangeCodeForSession expects the bare code, not the full callback URL.
+        const { error: sessionError } = await supabase.auth.exchangeCodeForSession(code);
+        if (sessionError) { setLoading(false); Alert.alert('Google Sign In Error', sessionError.message); return; }
       }
 
       setLoading(false);
@@ -182,8 +219,8 @@ export default function AuthScreen() {
             <LinearGradient colors={[Colors.primary, Colors.primaryDark ?? '#157A5A']} style={s.logoWrap}>
               <Ionicons name="leaf" size={34} color="#fff" />
             </LinearGradient>
-            <Text style={s.appName}>Healthy Choices</Text>
-            <Text style={s.tagline}>Scan. Know. Choose better.</Text>
+            <Text style={s.appName}>Food Exposé</Text>
+            <Text style={s.tagline}>The truth behind your food.</Text>
           </View>
 
           {/* ── Tab switcher ── */}
@@ -202,6 +239,22 @@ export default function AuthScreen() {
 
           {/* ── Email + password form ── */}
           <View style={s.form}>
+            {tab === 'Create Account' && (
+              <View style={s.inputWrap}>
+                <Ionicons name="person-outline" size={18} color={Colors.textMuted} style={s.inputIcon} />
+                <TextInput
+                  style={s.input}
+                  placeholder="First name"
+                  placeholderTextColor={Colors.textMuted}
+                  value={firstName}
+                  onChangeText={setFirstName}
+                  autoCapitalize="words"
+                  autoCorrect={false}
+                  returnKeyType="next"
+                />
+              </View>
+            )}
+
             <View style={s.inputWrap}>
               <Ionicons name="mail-outline" size={18} color={Colors.textMuted} style={s.inputIcon} />
               <TextInput
@@ -294,19 +347,30 @@ export default function AuthScreen() {
             )}
 
             {/* Sign in with Google */}
-            <TouchableOpacity style={s.googleBtn} onPress={handleGoogleSignIn} activeOpacity={0.85}>
-              {/* Google logo — four-colour G per brand guidelines */}
-              <View style={s.googleIconWrap}>
-                <Text style={s.googleG}>
-                  <Text style={{ color: '#4285F4' }}>G</Text>
-                  <Text style={{ color: '#EA4335' }}>o</Text>
-                  <Text style={{ color: '#FBBC05' }}>o</Text>
-                  <Text style={{ color: '#4285F4' }}>g</Text>
-                  <Text style={{ color: '#34A853' }}>l</Text>
-                  <Text style={{ color: '#EA4335' }}>e</Text>
-                </Text>
-              </View>
-              <Text style={s.googleText}>Continue with Google</Text>
+            <TouchableOpacity
+              style={[s.googleBtn, loading && { opacity: 0.7 }]}
+              onPress={handleGoogleSignIn}
+              activeOpacity={0.85}
+              disabled={loading}
+            >
+              {loading ? (
+                <ActivityIndicator color={Colors.textPrimary} size="small" />
+              ) : (
+                <>
+                  {/* Google logo — four-colour G per brand guidelines */}
+                  <View style={s.googleIconWrap}>
+                    <Text style={s.googleG}>
+                      <Text style={{ color: '#4285F4' }}>G</Text>
+                      <Text style={{ color: '#EA4335' }}>o</Text>
+                      <Text style={{ color: '#FBBC05' }}>o</Text>
+                      <Text style={{ color: '#4285F4' }}>g</Text>
+                      <Text style={{ color: '#34A853' }}>l</Text>
+                      <Text style={{ color: '#EA4335' }}>e</Text>
+                    </Text>
+                  </View>
+                  <Text style={s.googleText}>Continue with Google</Text>
+                </>
+              )}
             </TouchableOpacity>
 
           </View>
@@ -314,11 +378,11 @@ export default function AuthScreen() {
           {/* ── Legal fine print ── */}
           <Text style={s.legal}>
             By continuing you agree to our{' '}
-            <Text style={s.legalLink} onPress={() => WebBrowser.openBrowserAsync('https://healthychoices.app/terms')}>
+            <Text style={s.legalLink} onPress={() => WebBrowser.openBrowserAsync('https://shelfexpose.app/terms')}>
               Terms of Service
             </Text>
             {' '}and{' '}
-            <Text style={s.legalLink} onPress={() => WebBrowser.openBrowserAsync('https://healthychoices.app/privacy')}>
+            <Text style={s.legalLink} onPress={() => WebBrowser.openBrowserAsync('https://shelfexpose.app/privacy')}>
               Privacy Policy
             </Text>.
           </Text>

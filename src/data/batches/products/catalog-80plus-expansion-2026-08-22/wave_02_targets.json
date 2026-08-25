@@ -1,0 +1,51 @@
+{
+  "wave": "02",
+  "status": "TARGETS_SELECTED",
+  "goal": "Verify at least five new products scoring 80+ in Coffee Creamer, Frozen Meals, and Dips & Hummus.",
+  "rules": {
+    "minimumPassingPerCategory": 5,
+    "scoreThreshold": 80,
+    "scoreSource": "src/utils/scorer.js using verified structured product data",
+    "market": "United States",
+    "barcode": "Exact source-displayed consumer UPC; never inferred",
+    "replacementPolicy": "Replace every unresolved or sub-80 candidate until the category reaches five passes"
+  },
+  "categories": {
+    "Coffee Creamer": [
+      "Elmhurst Unsweetened Cashew Creamer",
+      "Califia Farms Unsweetened Almond Creamer",
+      "Califia Farms Unsweetened Oat Creamer",
+      "nutpods Hazelnut Unsweetened Almond + Coconut Creamer",
+      "nutpods Caramel Unsweetened Almond + Coconut Creamer",
+      "nutpods Cinnamon Swirl Unsweetened Almond + Coconut Creamer",
+      "nutpods Original Unsweetened Oat Creamer",
+      "Forager Project Organic Dairy-Free Half & Half",
+      "MALK Organic Unsweetened Almond Milk Creamer",
+      "Laird Superfood Unsweetened Original Creamer"
+    ],
+    "Frozen Meals": [
+      "Amy's Light & Lean Quinoa and Black Beans Bowl",
+      "Amy's Light & Lean Spaghetti Italiano",
+      "Amy's Brown Rice & Vegetables Bowl",
+      "Healthy Choice Simply Steamers Chicken and Vegetable Stir Fry",
+      "Healthy Choice Simply Steamers Grilled Chicken and Broccoli Alfredo",
+      "Healthy Choice Power Bowls Falafel & Tahini",
+      "Sweet Earth General Tso's Tofu",
+      "Sweet Earth Curry Tiger Bowl",
+      "Dr. Praeger's California Veggie Burgers",
+      "Birds Eye Steamfresh Power Blend Southwest Style"
+    ],
+    "Dips & Hummus": [
+      "Hope Foods Original Recipe Hummus",
+      "Hope Foods Spicy Avocado Hummus",
+      "Cedar's Organic Garlic Hommus",
+      "Cedar's Organic Red Pepper Hommus",
+      "Ithaca Classic Hummus",
+      "Ithaca Lemon Garlic Hummus",
+      "Good Foods Chunky Guacamole",
+      "Good Foods Avocado Salsa",
+      "Wholly Guacamole Classic Minis",
+      "Fresh Cravings Restaurant Style Mild Salsa"
+    ]
+  }
+}

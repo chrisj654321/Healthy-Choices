@@ -1,0 +1,38 @@
+# Eggland's Best, LLC — fact-check annotations
+_Checked: 2026-07-28 | Agent 2 (fact-checker) | flags only, no rewriting_
+
+## Claim-by-claim
+
+| # | Claim (abbreviated) | Flag | Verification note (what source you loaded, what it said) | URL |
+|---|---|---|---|---|
+| 1 | Cornucopia score 20/1700, 1-star, "Indoor Spacing" only points earned | VERIFIED | Loaded cornucopia.org/scorecard/eggs/egglands-best/ directly myself. Confirms exact score 20/1700, 1-star, last updated March 22, 2024. Denominator IS visible (satisfies rule 1a). | https://www.cornucopia.org/scorecard/eggs/egglands-best/ |
+| 2 | Scope: this Cornucopia score rates the ORGANIC line, not the flagship conventional SKU | VERIFIED | Confirmed on the same page load — page explicitly scopes to the organic product; the brand's flagship conventional shell-egg product is a separate, unrated SKU. | https://www.cornucopia.org/scorecard/eggs/egglands-best/ |
+| 3 | Cornucopia editorial: "industrialized organic brand that focuses on profit margin rather than...animal welfare" | UNVERIFIED (advocacy editorial) | Confirmed the quote appears on Cornucopia's page, but per the absolute rules, an advocacy org's editorial characterization is never a verified FACT about the company — only the numeric score is fact-checkable. Recorded as Cornucopia's opinion, not independently verified. | https://www.cornucopia.org/scorecard/eggs/egglands-best/ |
+| 4 | Certified Humane (Humane Farm Animal Care) certifies Eggland's Best | **CORRECTED → VERIFIED (scoped)** | Raw file said "not independently confirmed on certifiedhumane.org's own producer list." I ran certifiedhumane.org's own "Who's Certified" directory search myself and found: **"Eggland's Best is also listed as a certified producer offering: Eggland's Best Free Range Eggs and Eggland's Best Pasture Raised Eggs."** This IS the certifier's own site confirming certification — but SCOPED ONLY to the Free Range and Pasture Raised lines. The flagship conventional Eggland's Best product is NOT covered by this certification. | https://certifiedhumane.org/whos-certified/ |
+| 5 | Company FAQ claim of "American Humane Association" certification (separate body from Certified Humane) | UNVERIFIED | Company's own claim only; AHA's (americanhumane.org) own certified-producer database was not queried by me. Company self-claims are not confirmation per the fact-check rules. Note: AHA and Certified Humane (HFAC) are confirmed as two distinct bodies — do not conflate. | https://www.egglandsbest.com/faqs/animal-welfare |
+| 6 | A Greener World / AWA — not found | UNVERIFIED (absence not directly queried against directory tool) | Not re-queried by me; raw file's search-based absence stands unconfirmed either way. | — |
+| 7 | Global Animal Partnership — not found | UNVERIFIED (same as above) | Not re-queried directly against GAP's own directory. | — |
+| 8 | FTC 1996 consent order: $100,000 civil fine, cholesterol/saturated-fat claims deceptive | UNVERIFIED (primary source blocked) | Attempted to load ftc.gov press release directly myself — returned HTTP 403 (confirms researcher's experience is reproducible, not a one-off). Corroborated by secondary mirrors (quackwatch.org, casewatch.net) which appear to reproduce the FTC's own release text, including the exact "$100,000" figure and the required corrective label language. Not independently loaded from ftc.gov itself, so flag stands at UNVERIFIED despite strong secondary corroboration. | https://www.ftc.gov/news-events/news/press-releases/1996/03/egglands-best-cholesterol-claims-called-deceptive (403) |
+| 9 | Saturated-fat class action (2024, CA) — pending, status of motion not confirmed | UNVERIFIED | Not independently re-searched for resolution; raw file's "not confirmed" stands. | https://topclassactions.com/lawsuit-settlements/consumer-products/food/egglands-best-class-action-falsely-advertises-25-less-saturated-fat-than-regular-eggs/ |
+| 10 | Janecyk v. Eggland's Best, No. 1:24-cv-06222 (N.D. Ill.) — motion to dismiss denied Feb 27, 2026, case proceeding | UNVERIFIED (court record itself not loaded), but CURRENT STATUS CONFIRMED via secondary legal press | Attempted CourtListener directly (search page and API) — HTTP 403 both times, could not reach the docket itself. Re-confirmed via WebSearch (checked 2026-07-29) against Holland & Knight (hklaw.com, June 2026) and Inside Class Actions (2026-03-19): case is in active discovery, NOT dismissed or settled; discovery deadlines set (initial disclosures March 30, fact discovery close Jan 29, 2027). This is more current than raw file's "reported ~2026" hedge, but remains a secondary-source confirmation, not a docket pull. | https://www.hklaw.com/en/insights/publications/2026/06/roaming-charges-cage-free-claims-cramped-coops-and-a-costly-carton ; https://www.insideclassactions.com/2026/03/19/egglands-best-cant-scramble-cage-free-consumer-class-action-illinois-court-rules/ |
+| 11 | Reimer related case — relationship to Janecyk undisambiguated | UNVERIFIED | Not independently resolved; stands as a gap. | https://www.feedstuffs.com/agribusiness-news/eggland-s-best-motion-to-dismiss-class-action-denied |
+| 12 | Franchise/licensing model; named franchisees (Cal-Maine, Herbruck's, Braswell, Kreher, Southwest Specialty) | UNVERIFIED | Trade press (feedstuffs.com, wattagnet.com) and company "about us" page, not independently re-verified by me. Company itself does not publish a full franchisee roster — this remains a partial list from secondary sources. | https://www.egglandsbest.com/about-us |
+| 13 | Mercy For Animals 2016 undercover investigation at Briarwood Farms | UNVERIFIED (advocacy source, per rule never upgradable to VERIFIED without court/agency confirmation) | No court finding, agency action, or company admission located. Stays as an advocacy-sourced lead, not a fact. | https://www.prnewswire.com/news-releases/hidden-camera-video-uncovers-animal-abuse-and-neglect-at-egglands-best-supplier-300288379.html |
+
+## Corrections to the raw file (factual errors found)
+
+- **Certified Humane status was understated.** The raw file treated Certified Humane certification as unconfirmed. I loaded certifiedhumane.org's own "Who's Certified" directory and found Eggland's Best IS listed — but only for its Free Range and Pasture Raised lines, not the flagship conventional product. This should be recorded as VERIFIED-but-scoped, not "not independently confirmed."
+- No other factual errors found in the raw file; its hedges on FTC/litigation primary-source access were reproduced by me independently (same 403s).
+
+## Claims that must NOT be used (unverifiable / advocacy prose / wrong scope)
+
+- Cornucopia's "industrialized organic brand that focuses on profit margin" and "corporate veiling" characterizations — advocacy opinion, not fact.
+- American Humane Association certification claim — company-only assertion, not confirmed on americanhumane.org.
+- Mercy For Animals investigation narrative — advocacy-sourced, no independent adjudication.
+- Any framing that treats the Cornucopia 20/1700 score as describing the everyday/flagship Eggland's Best carton — it rates the organic line only.
+
+## Confirmed-current litigation status
+
+- **Janecyk et al. v. Eggland's Best, Inc.** (1:24-cv-06222, N.D. Ill.): ACTIVE/PENDING as of 2026-07-29 (confirmed via secondary legal press, not docket pull) — motion to dismiss denied Feb. 27, 2026; in discovery; fact-discovery deadline Jan. 29, 2027.
+- **FTC 1996 matter**: CLOSED (consent order/settlement, historical, not an ongoing case).
+- **Saturated-fat class action, Reimer-related case**: status unresolved/unconfirmed, unchanged from raw file.

@@ -2,24 +2,120 @@ import React, { useState, useCallback } from 'react';
 import {
   View,
   Text,
+  Image,
   ScrollView,
   StyleSheet,
   TouchableOpacity,
   Switch,
   Alert,
   ActivityIndicator,
+  Linking,
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
+import * as Haptics from 'expo-haptics';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
 import { getUserPrefs, saveUserPrefs, clearScanHistory, getScanHistory } from '../utils/storage';
+import { getRequests } from '../utils/productRequests';
+import { getPantryStats } from '../utils/pantryStats';
+import { scoreToColor } from '../utils/scorer';
+import {
+  getPermissionStatus,
+  isOptedIn,
+  isWeeklyEnabled,
+  optInToNotifications,
+  optBackIntoNotifications,
+  optOutOfNotifications,
+  setWeeklyReminders,
+} from '../utils/notifications';
 import { STORES } from '../data/stores';
+import { COMPANY_DB } from '../data/companies';
+import { STORE_LOGOS } from '../data/onboardingAssets';
 import { DIET_PREFERENCE_OPTIONS, PRIMARY_GOAL_OPTIONS } from '../data/preferences';
 import { useAuth } from '../context/AuthContext';
-import { useProStatus } from '../utils/subscription';
+import { supabase } from '../utils/supabase';
+import { useProStatus, restorePurchases } from '../utils/subscription';
 import RevenueCatUI from 'react-native-purchases-ui';
+
+// Store id (src/data/stores.js) → companies.js key, for the retailers that
+// already have a `logo` entry in COMPANY_DB. Stores not listed here (and any
+// whose companies.js entry has no logo) fall back to a letter tile.
+// Shared with OnboardingScreen's "favorite stores" step — single source of truth.
+export const STORE_LOGO_MAP = {
+  walmart: 'walmart',
+  kroger: 'kroger',
+  costco: 'costco',
+  target: 'target',
+  'trader-joes': 'trader-joes',
+  aldi: 'aldi',
+  publix: 'publix',
+  heb: 'heb',
+  wegmans: 'wegmans',
+  'whole-foods': 'amazon',
+};
+
+export function StoreLogo({ storeId, label, size = 40 }) {
+  const localLogo = STORE_LOGOS[storeId];
+  const companyKey = STORE_LOGO_MAP[storeId];
+  const logoUri = companyKey ? COMPANY_DB[companyKey]?.logo : null;
+  const tileStyle = [
+    logoStyles.tile,
+    { width: size, height: size, borderRadius: size * 0.28 },
+    (localLogo || logoUri) && logoStyles.tileWithLogo,
+  ];
+  if (localLogo) {
+    return (
+      <View style={tileStyle}>
+        <Image
+          source={localLogo}
+          style={{ width: size * 0.68, height: size * 0.68 }}
+          resizeMode="contain"
+        />
+      </View>
+    );
+  }
+  if (logoUri) {
+    return (
+      <View style={tileStyle}>
+        <Image
+          source={{ uri: logoUri }}
+          style={{ width: size * 0.68, height: size * 0.68 }}
+          resizeMode="contain"
+        />
+      </View>
+    );
+  }
+  return (
+    <View style={[tileStyle, logoStyles.tileFallback]}>
+      <Text style={[logoStyles.fallbackText, { fontSize: size * 0.4 }]}>
+        {(label || '?').charAt(0).toUpperCase()}
+      </Text>
+    </View>
+  );
+}
+
+const logoStyles = StyleSheet.create({
+  tile: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    marginBottom: 5,
+  },
+  tileWithLogo: {
+    backgroundColor: Colors.white,
+    borderWidth: 1,
+    borderColor: Colors.border,
+  },
+  tileFallback: {
+    backgroundColor: Colors.primaryLight,
+  },
+  fallbackText: {
+    fontWeight: Font.weights.heavy,
+    color: Colors.primary,
+  },
+});
 
 const DIETARY_OPTIONS = [
   { id: 'vegan', label: 'Vegan', icon: 'leaf' },
@@ -49,6 +145,9 @@ export default function ProfileScreen({ navigation }) {
   const { isPro } = useProStatus();
   const [prefs,     setPrefs]     = useState(null);
   const [scanCount, setScanCount] = useState(0);
+  const [notifStatus, setNotifStatus] = useState({ permission: 'undetermined', optedIn: false, weekly: true });
+  const [requestCount, setRequestCount] = useState(0);
+  const [pantryStats, setPantryStats] = useState(null);
 
   useFocusEffect(
     useCallback(() => {
@@ -57,18 +156,72 @@ export default function ProfileScreen({ navigation }) {
   );
 
   const loadData = async () => {
-    const [p, history] = await Promise.all([getUserPrefs(), getScanHistory()]);
+    const [p, history, permission, optedIn, weekly, requests, stats] = await Promise.all([
+      getUserPrefs(),
+      getScanHistory(),
+      getPermissionStatus(),
+      isOptedIn(),
+      isWeeklyEnabled(),
+      getRequests(),
+      getPantryStats(),
+    ]);
     setPrefs(p);
     setScanCount(history.length);
+    setNotifStatus({ permission, optedIn, weekly });
+    setRequestCount(requests.length);
+    setPantryStats(stats);
+  };
+
+  const handleSeeBetterPicks = () => {
+    Haptics.selectionAsync().catch(() => {});
+    navigation.navigate('ProductScore', { product: pantryStats.lowestProduct.product });
+  };
+
+  // Master toggle reflects "OS permission granted AND user opted in".
+  const notifMasterOn = notifStatus.permission === 'granted' && notifStatus.optedIn;
+
+  const handleNotifMasterToggle = async (value) => {
+    if (value) {
+      if (notifStatus.permission === 'denied') {
+        // Can't re-prompt the system dialog once denied — send the user to Settings.
+        Linking.openSettings();
+        return;
+      }
+      if (notifStatus.permission === 'undetermined') {
+        const granted = await optInToNotifications();
+        setNotifStatus((s) => ({ ...s, permission: granted ? 'granted' : 'denied', optedIn: granted }));
+        return;
+      }
+      // Already granted at the OS level — just resume our own schedule.
+      await optBackIntoNotifications();
+      setNotifStatus((s) => ({ ...s, optedIn: true }));
+    } else {
+      await optOutOfNotifications();
+      setNotifStatus((s) => ({ ...s, optedIn: false }));
+    }
+  };
+
+  const handleWeeklyToggle = async (value) => {
+    await setWeeklyReminders(value);
+    setNotifStatus((s) => ({ ...s, weekly: value }));
   };
 
   const updatePref = async (key, value) => {
-    const updated = { ...prefs, [key]: value };
+    // Editing a setup section also marks it reviewed (clears the Home nudge).
+    const reviewKey = {
+      allergens: 'allergensReviewed',
+      dietaryFlags: 'dietaryReviewed',
+      dietStyle: 'dietaryReviewed',
+      primaryGoal: 'goalReviewed',
+      favoriteStores: 'storesReviewed',
+    }[key];
+    const updated = { ...prefs, [key]: value, ...(reviewKey ? { [reviewKey]: true } : {}) };
     setPrefs(updated);
     await saveUserPrefs(updated);
   };
 
   const toggleArrayPref = async (key, id) => {
+    Haptics.selectionAsync().catch(() => {});
     const current = prefs[key] ?? [];
     const updated = current.includes(id) ? current.filter((x) => x !== id) : [...current, id];
     await updatePref(key, updated);
@@ -82,6 +235,44 @@ export default function ProfileScreen({ navigation }) {
         Alert.alert('Error', 'Unable to open subscription management. Please try again.');
       }
     }
+  };
+
+  const handleDeleteAccount = () => {
+    Alert.alert(
+      'Delete Account',
+      'This will permanently delete your account and all associated data. This cannot be undone.',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Delete Account',
+          style: 'destructive',
+          onPress: async () => {
+            try {
+              // Server-side deletion first — the edge function removes the
+              // Supabase auth user with the service-role key.
+              const { error } = await supabase.functions.invoke('delete-account');
+              if (error) throw error;
+
+              await clearScanHistory();
+              try {
+                await signOut();
+              } catch {
+                // Session is already invalid after deletion — ignore.
+              }
+              Alert.alert(
+                'Account Deleted',
+                'Your account and all associated data have been permanently deleted.'
+              );
+            } catch (e) {
+              Alert.alert(
+                'Deletion Failed',
+                'We could not delete your account right now. Please check your connection and try again, or contact jamesadventuremarketing@gmail.com.'
+              );
+            }
+          },
+        },
+      ]
+    );
   };
 
   const handleClearHistory = () => {
@@ -126,23 +317,8 @@ export default function ProfileScreen({ navigation }) {
             <Text style={styles.proBadgeText}>PRO</Text>
           </View>
         )}
-        <Text style={styles.profileSub}>{scanCount} products scanned</Text>
+        <Text style={styles.profileSub}>{scanCount} product{scanCount !== 1 ? 's' : ''} scanned</Text>
       </View>
-
-      {/* Sign out */}
-      <TouchableOpacity
-        style={styles.signOutBtn}
-        onPress={() =>
-          Alert.alert('Sign Out', 'Are you sure you want to sign out?', [
-            { text: 'Cancel', style: 'cancel' },
-            { text: 'Sign Out', style: 'destructive', onPress: signOut },
-          ])
-        }
-        activeOpacity={0.75}
-      >
-        <Ionicons name="log-out-outline" size={18} color="#D93B3B" />
-        <Text style={styles.signOutText}>Sign Out</Text>
-      </TouchableOpacity>
 
       {/* Dietary preferences */}
       <SectionHeader title="Dietary Preferences" subtitle="Used to personalize ingredient flags" />
@@ -199,6 +375,17 @@ export default function ProfileScreen({ navigation }) {
       {/* Allergens */}
       <SectionHeader title="Allergen Alerts" subtitle="Get warnings when these are detected" />
       <View style={styles.allergenList}>
+        <TouchableOpacity
+          style={styles.allergenRow}
+          onPress={() => updatePref('allergens', [])}
+        >
+          <View style={styles.allergenLeft}>
+            <View style={[styles.allergenCheck, (prefs.allergens?.length ?? 0) === 0 && styles.allergenCheckActive]}>
+              {(prefs.allergens?.length ?? 0) === 0 && <Ionicons name="checkmark" size={12} color={Colors.white} />}
+            </View>
+            <Text style={styles.allergenLabel}>No allergies</Text>
+          </View>
+        </TouchableOpacity>
         {ALLERGEN_OPTIONS.map((opt) => {
           const active = prefs.allergens?.includes(opt.id);
           return (
@@ -240,7 +427,7 @@ export default function ProfileScreen({ navigation }) {
               onPress={() => toggleArrayPref('favoriteStores', item.id)}
               activeOpacity={0.75}
             >
-              <Text style={styles.storeEmoji}>{item.emoji}</Text>
+              <StoreLogo storeId={item.id} label={item.label} size={40} />
               <Text style={[styles.storeLabel, active && styles.storeLabelActive]}>
                 {item.label}
               </Text>
@@ -248,6 +435,77 @@ export default function ProfileScreen({ navigation }) {
           );
         })}
       </ScrollView>
+
+      {/* Pantry Report Card */}
+      {pantryStats && (
+        <>
+          <SectionHeader title="Your Pantry Report Card" subtitle="A quick look at what you've scanned so far" />
+          <View style={styles.settingsCard}>
+            <View style={styles.pantryScoreRow}>
+              <View>
+                <Text style={styles.pantryScanCount}>
+                  {pantryStats.totalScans} product{pantryStats.totalScans !== 1 ? 's' : ''} scanned
+                </Text>
+                {pantryStats.scansThisWeek > 0 && (
+                  <Text style={styles.pantryScanSub}>{pantryStats.scansThisWeek} this week</Text>
+                )}
+              </View>
+              <View style={styles.pantryAverageWrap}>
+                <Text style={[styles.pantryAverageNumber, { color: scoreToColor(pantryStats.averageScore) }]}>
+                  {pantryStats.averageScore}
+                </Text>
+                <Text style={styles.pantryAverageLabel}>avg score</Text>
+              </View>
+            </View>
+
+            <View style={styles.pantryDivider} />
+
+            <View style={styles.pantryHighlightRow}>
+              <Ionicons name="trophy-outline" size={16} color={Colors.primary} />
+              <Text style={styles.pantryHighlightText}>
+                Your best pick: <Text style={styles.pantryHighlightStrong}>{pantryStats.bestProduct.name}</Text>{' '}
+                ({pantryStats.bestProduct.score})
+              </Text>
+            </View>
+
+            {pantryStats.lowestProduct?.product && (
+              <TouchableOpacity style={styles.pantryHighlightRowTappable} onPress={handleSeeBetterPicks}>
+                <Ionicons name="trending-up-outline" size={16} color={Colors.textSecondary} />
+                <View style={{ flex: 1 }}>
+                  <Text style={styles.pantryHighlightText}>
+                    Room to improve: <Text style={styles.pantryHighlightStrong}>{pantryStats.lowestProduct.name}</Text>{' '}
+                    ({pantryStats.lowestProduct.score})
+                  </Text>
+                </View>
+                <Ionicons name="chevron-forward" size={16} color={Colors.textMuted} />
+              </TouchableOpacity>
+            )}
+          </View>
+        </>
+      )}
+
+      {/* Notifications */}
+      <SectionHeader title="Notifications" subtitle="Gentle nudges — never required, always optional" />
+      <View style={styles.settingsCard}>
+        <ToggleRow
+          label="Reminders"
+          sublabel={
+            notifStatus.permission === 'denied'
+              ? 'Blocked in iOS Settings — tap to open'
+              : 'Occasional nudges to check your pantry'
+          }
+          value={notifMasterOn}
+          onToggle={handleNotifMasterToggle}
+        />
+        <ToggleRow
+          label="Weekly reminders"
+          sublabel="One reminder on Saturday morning, grocery-run timing"
+          value={notifMasterOn && notifStatus.weekly}
+          onToggle={handleWeeklyToggle}
+          disabled={!notifMasterOn}
+          last
+        />
+      </View>
 
       {/* App settings */}
       <SectionHeader title="Display Settings" />
@@ -263,12 +521,6 @@ export default function ProfileScreen({ navigation }) {
           sublabel="Display donation split on company profiles"
           value={prefs.showDonations}
           onToggle={(v) => updatePref('showDonations', v)}
-        />
-        <ToggleRow
-          label="New Flag Notifications"
-          sublabel="Alert when flagged ingredients are scanned"
-          value={prefs.notifyNewFlags}
-          onToggle={(v) => updatePref('notifyNewFlags', v)}
           last
         />
       </View>
@@ -276,7 +528,7 @@ export default function ProfileScreen({ navigation }) {
       {/* Data */}
       <SectionHeader title="Data & Privacy" />
       <View style={styles.settingsCard}>
-        {isPro && (
+        {isPro ? (
           <TouchableOpacity style={styles.manageRow} onPress={handleManageSubscription}>
             <Ionicons name="card-outline" size={18} color={Colors.primary} />
             <View style={{ flex: 1 }}>
@@ -285,7 +537,61 @@ export default function ProfileScreen({ navigation }) {
             </View>
             <Ionicons name="chevron-forward" size={16} color={Colors.textMuted} />
           </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            style={styles.manageRow}
+            onPress={async () => {
+              const success = await restorePurchases();
+              if (success) {
+                Alert.alert('Restored', 'Your Pro access has been restored!');
+              } else {
+                Alert.alert('Nothing to Restore', 'No active subscription found for this Apple ID.');
+              }
+            }}
+          >
+            <Ionicons name="refresh-outline" size={18} color={Colors.primary} />
+            <View style={{ flex: 1 }}>
+              <Text style={styles.manageLabel}>Restore Purchases</Text>
+              <Text style={styles.manageSub}>Already subscribed? Tap to restore access.</Text>
+            </View>
+            <Ionicons name="chevron-forward" size={16} color={Colors.textMuted} />
+          </TouchableOpacity>
         )}
+        <TouchableOpacity
+          style={styles.manageRow}
+          onPress={() => navigation.navigate('MyRequests')}
+        >
+          <Ionicons name="file-tray-outline" size={18} color={Colors.primary} />
+          <View style={{ flex: 1 }}>
+            <Text style={styles.manageLabel}>My Requests</Text>
+            <Text style={styles.manageSub}>
+              {requestCount === 0 ? 'Products you\'ve asked us to add' : `${requestCount} product${requestCount !== 1 ? 's' : ''} requested`}
+            </Text>
+          </View>
+          <Ionicons name="chevron-forward" size={16} color={Colors.textMuted} />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.manageRow}
+          onPress={() => navigation.navigate('SuggestProduct')}
+        >
+          <Ionicons name="add-circle-outline" size={18} color={Colors.primary} />
+          <View style={{ flex: 1 }}>
+            <Text style={styles.manageLabel}>Suggest a Product</Text>
+            <Text style={styles.manageSub}>Don't have it in hand? Tell us what to add by name.</Text>
+          </View>
+          <Ionicons name="chevron-forward" size={16} color={Colors.textMuted} />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.manageRow}
+          onPress={() => navigation.navigate('SuggestFeature')}
+        >
+          <Ionicons name="bulb-outline" size={18} color={Colors.primary} />
+          <View style={{ flex: 1 }}>
+            <Text style={styles.manageLabel}>Suggest a Feature</Text>
+            <Text style={styles.manageSub}>Tell us what the app should do next.</Text>
+          </View>
+          <Ionicons name="chevron-forward" size={16} color={Colors.textMuted} />
+        </TouchableOpacity>
         <TouchableOpacity style={styles.dangerRow} onPress={handleClearHistory}>
           <Ionicons name="trash-outline" size={18} color={Colors.flagRed} />
           <View style={{ flex: 1 }}>
@@ -294,13 +600,37 @@ export default function ProfileScreen({ navigation }) {
           </View>
           <Ionicons name="chevron-forward" size={16} color={Colors.textMuted} />
         </TouchableOpacity>
+        <TouchableOpacity style={[styles.dangerRow, { borderTopWidth: 1, borderTopColor: Colors.border }]} onPress={handleDeleteAccount}>
+          <Ionicons name="person-remove-outline" size={18} color={Colors.flagRed} />
+          <View style={{ flex: 1 }}>
+            <Text style={styles.dangerLabel}>Delete Account</Text>
+            <Text style={styles.dangerSub}>Permanently remove your account and data</Text>
+          </View>
+          <Ionicons name="chevron-forward" size={16} color={Colors.textMuted} />
+        </TouchableOpacity>
       </View>
+
+      {/* Sign out */}
+      <TouchableOpacity
+        style={styles.signOutBtn}
+        onPress={() =>
+          Alert.alert('Sign Out', 'Are you sure you want to sign out?', [
+            { text: 'Cancel', style: 'cancel' },
+            { text: 'Sign Out', style: 'destructive', onPress: signOut },
+          ])
+        }
+        activeOpacity={0.75}
+      >
+        <Ionicons name="log-out-outline" size={18} color="#D93B3B" />
+        <Text style={styles.signOutText}>Sign Out</Text>
+      </TouchableOpacity>
 
       {/* About */}
       <View style={styles.about}>
-        <Text style={styles.aboutText}>Healthy Choices v1.0</Text>
+        <Text style={styles.aboutText}>Food Exposé v1.0</Text>
         <Text style={styles.aboutSub}>
-          Ingredient scoring, corporate transparency, and dietary personalization — all offline & private.
+          Ingredient scoring, corporate transparency, and dietary personalization.
+          Your scan history and preferences stay on your device.
         </Text>
       </View>
     </ScrollView>
@@ -321,16 +651,17 @@ const shStyles = StyleSheet.create({
   sub: { fontSize: Font.sizes.sm, color: Colors.textSecondary, marginTop: 2 },
 });
 
-function ToggleRow({ label, sublabel, value, onToggle, last = false }) {
+function ToggleRow({ label, sublabel, value, onToggle, last = false, disabled = false }) {
   return (
-    <View style={[trStyles.row, !last && trStyles.rowBorder]}>
+    <View style={[trStyles.row, !last && trStyles.rowBorder, disabled && { opacity: 0.45 }]}>
       <View style={{ flex: 1, marginRight: 12 }}>
         <Text style={trStyles.label}>{label}</Text>
         {sublabel && <Text style={trStyles.sub}>{sublabel}</Text>}
       </View>
       <Switch
         value={value}
-        onValueChange={onToggle}
+        onValueChange={disabled ? undefined : onToggle}
+        disabled={disabled}
         trackColor={{ false: Colors.border, true: Colors.primary }}
         thumbColor={Colors.white}
       />
@@ -355,7 +686,7 @@ const styles = StyleSheet.create({
   profileSub:   { fontSize: Font.sizes.sm, color: Colors.textSecondary, marginTop: 4 },
   signOutBtn:   {
     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 7,
-    marginHorizontal: 24, marginBottom: 10, paddingVertical: 12,
+    marginHorizontal: 24, marginTop: 24, marginBottom: 10, paddingVertical: 12,
     borderRadius: 12, backgroundColor: '#FEF0F0',
     borderWidth: 1, borderColor: '#FBDADA',
   },
@@ -398,11 +729,25 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primaryLight,
     borderColor: Colors.primary,
   },
-  storeEmoji: { fontSize: 22 },
   storeLabel: { fontSize: Font.sizes.xs, fontWeight: Font.weights.medium, color: Colors.textSecondary, textAlign: 'center' },
   storeLabelActive: { color: Colors.primary },
 
   settingsCard: { backgroundColor: Colors.white, borderRadius: 14, paddingHorizontal: 16, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.06, shadowRadius: 8, elevation: 2 },
+
+  pantryScoreRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 16 },
+  pantryScanCount: { fontSize: Font.sizes.base, fontWeight: Font.weights.bold, color: Colors.textPrimary },
+  pantryScanSub: { fontSize: Font.sizes.xs, color: Colors.textMuted, marginTop: 2 },
+  pantryAverageWrap: { alignItems: 'center' },
+  pantryAverageNumber: { fontSize: 32, fontWeight: Font.weights.heavy, lineHeight: 36 },
+  pantryAverageLabel: { fontSize: Font.sizes.xs, color: Colors.textMuted, marginTop: 2 },
+  pantryDivider: { height: 1, backgroundColor: Colors.border },
+  pantryHighlightRow: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 14 },
+  pantryHighlightRowTappable: {
+    flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 14,
+    borderTopWidth: 1, borderTopColor: Colors.border,
+  },
+  pantryHighlightText: { flex: 1, fontSize: Font.sizes.sm, color: Colors.textSecondary },
+  pantryHighlightStrong: { color: Colors.textPrimary, fontWeight: Font.weights.medium },
 
   proBadge: {
     flexDirection: 'row', alignItems: 'center', gap: 4,

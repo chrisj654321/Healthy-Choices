@@ -1,53 +1,50 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import {
   View, Text, ScrollView, StyleSheet, TouchableOpacity,
-  Share, StatusBar, Image, ActivityIndicator,
+  Share, StatusBar, Image, ActivityIndicator, Animated, Alert,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import * as Haptics from 'expo-haptics';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+// react-native-view-shot + expo-sharing are lazy-required inside handleShare —
+// they are native modules absent from any binary built before this feature, so
+// keeping them out of module load lets an OTA reach those binaries without
+// crashing this screen at import time.
 import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
 import {
-  scoreProduct, gradeToColor, scoreToVerdict, generateScoreExplanation, getPersonalisedWarnings,
+  scoreProduct, scoreToColor, scoreToVerdict, generateScoreExplanation, getPersonalisedWarnings,
 } from '../utils/scorer';
-import { addScanToHistory, getUserPrefs } from '../utils/storage';
+import {
+  addScanToHistory, getUserPrefs,
+  hasBeenPromptedForSetup, markSetupPrompted,
+} from '../utils/storage';
+import { logProductRequest } from '../utils/productRequests';
+import { logProductEvent } from '../utils/scanAnalytics';
+import { logFirstScanIfNeeded } from '../utils/appAnalytics';
 import { useProStatus } from '../utils/subscription';
+import { getAlternatives } from '../utils/alternatives';
+import { recordScanAndPickCelebration, checkFirstHighScore } from '../utils/mascotMoments';
+import { maybeRequestAppReview } from '../utils/reviewPrompt';
 import { COMPANY_DB } from '../data/companies';
 import IngredientRow from '../components/IngredientRow';
 import GradeRing from '../components/GradeRing';
 import StatBar from '../components/StatBar';
+import SpecsMascot from '../components/SpecsMascot';
+import FirstHighScoreCelebration from '../components/FirstHighScoreCelebration';
+import BackButton from '../components/BackButton';
+import LivingConditionsCard from '../components/LivingConditionsCard';
+import ShareCard from '../components/ShareCard';
+import { isEggsHousingEligible } from '../utils/sourcingMatch';
 
 // ── Flag utils ────────────────────────────────────────────────────────────────
 
-const FLAG_RANK = { avoid: 0, caution: 1, allergen: 1, moderate: 2, ok: 3 };
-function sortIngredients(a, b) {
-  const rank = (x) => x.category === 'unknown' ? 4 : (FLAG_RANK[x.flag] ?? 3);
-  return rank(a) - rank(b);
-}
+const FLAG_RANK = { avoid: 0, caution: 1, moderate: 2, ok: 3, allergen: 3 };
 
-const isBad = (item) => item.flag === 'avoid' || item.flag === 'caution' || item.flag === 'allergen';
+const isBad = (item) => item.flag === 'avoid' || item.flag === 'caution';
 const isOkay = (item) => item.flag === 'moderate';
-const isGood = (item) => item.flag === 'ok';
-
-const CATEGORY_META = {
-  grains:           { emoji: '🌾', label: 'Grains & Flours' },
-  sweeteners:       { emoji: '🍬', label: 'Sweeteners' },
-  fats:             { emoji: '🫒', label: 'Fats & Oils' },
-  dyes:             { emoji: '🎨', label: 'Artificial Dyes' },
-  preservatives:    { emoji: '🧪', label: 'Preservatives' },
-  emulsifiers:      { emoji: '⚗️', label: 'Emulsifiers & Stabilizers' },
-  'flavor-enhancers': { emoji: '✨', label: 'Flavor Enhancers' },
-  dairy:            { emoji: '🥛', label: 'Dairy & Alternatives' },
-  proteins:         { emoji: '🥩', label: 'Proteins & Legumes' },
-  spices:           { emoji: '🌿', label: 'Spices & Herbs' },
-  additives:        { emoji: '🔬', label: 'Additives & Processing Aids' },
-  probiotics:       { emoji: '🦠', label: 'Probiotics & Fermented' },
-  cacao:            { emoji: '🍫', label: 'Cacao & Chocolate' },
-  'sugar-alcohols': { emoji: '🍭', label: 'Sugar Alcohols' },
-  vitamins:         { emoji: '💊', label: 'Vitamins & Minerals' },
-  unknown:          { emoji: '❓', label: 'Unknown' },
-};
+const isGood = (item) => item.flag === 'ok' || item.flag === 'allergen';
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 
@@ -83,34 +80,61 @@ const sumS = StyleSheet.create({
   label: { fontSize: 12, fontWeight: '600' },
 });
 
-function CategorySection({ catKey, items, collapsed, onToggle }) {
-  const meta = CATEGORY_META[catKey] ?? CATEGORY_META.unknown;
-  const badCount = items.filter(isBad).length;
-  const okayCount = items.filter(isOkay).length;
-  const goodCount = items.filter(isGood).length;
-  const sorted = [...items].sort(sortIngredients);
+const ALLERGEN_NEUTRAL_INFO = { color: '#5C7A72', bg: '#EDF2F0', label: 'Common allergen' };
+
+const VERDICT_META = {
+  bad:      { label: 'Avoid & Caution', color: '#D93B3B', bg: '#FDE8E8' },
+  okay:     { label: 'Moderate',        color: '#F5A623', bg: '#FEF9E7' },
+  good:     { label: 'Good',            color: '#1D9E75', bg: '#E8F7F2' },
+};
+
+function sortWithinVerdict(a, b) {
+  if (a.category === 'unknown' && b.category !== 'unknown') return 1;
+  if (b.category === 'unknown' && a.category !== 'unknown') return -1;
+  const rank = (x) => FLAG_RANK[x.flag] ?? 3;
+  const r = rank(a) - rank(b);
+  if (r !== 0) return r;
+  return (a.label ?? '').localeCompare(b.label ?? '');
+}
+
+function groupByVerdict(analyzedIngredients, personalAllergenLabels) {
+  const bad = [];
+  const okay = [];
+  const good = [];
+
+  analyzedIngredients.forEach((item) => {
+    if (item.flag === 'allergen') {
+      const isPersonalHit = personalAllergenLabels?.has(item.label);
+      if (isPersonalHit) {
+        bad.push(item);
+      } else {
+        good.push({ ...item, flagInfo: ALLERGEN_NEUTRAL_INFO });
+      }
+      return;
+    }
+    if (isBad(item)) bad.push(item);
+    else if (isOkay(item)) okay.push(item);
+    else good.push(item);
+  });
+
+  bad.sort(sortWithinVerdict);
+  okay.sort(sortWithinVerdict);
+  good.sort(sortWithinVerdict);
+
+  return { bad, okay, good };
+}
+
+function VerdictSection({ verdictKey, items, collapsed, onToggle }) {
+  const meta = VERDICT_META[verdictKey];
 
   return (
     <View style={catS.wrap}>
       <TouchableOpacity style={catS.header} onPress={onToggle} activeOpacity={0.7}>
-        <Text style={catS.emoji}>{meta.emoji}</Text>
         <Text style={catS.name}>{meta.label}</Text>
         <View style={catS.right}>
-          {badCount > 0 && (
-            <View style={[catS.pill, catS.pillBad]}>
-              <Text style={[catS.pillText, catS.pillTextBad]}>{badCount} bad</Text>
-            </View>
-          )}
-          {okayCount > 0 && (
-            <View style={[catS.pill, catS.pillOkay]}>
-              <Text style={[catS.pillText, catS.pillTextOkay]}>{okayCount} okay</Text>
-            </View>
-          )}
-          {goodCount > 0 && badCount === 0 && okayCount === 0 && (
-            <View style={[catS.pill, catS.pillGood]}>
-              <Text style={[catS.pillText, catS.pillTextGood]}>{goodCount} good</Text>
-            </View>
-          )}
+          <View style={[catS.pill, { backgroundColor: meta.bg }]}>
+            <Text style={[catS.pillText, { color: meta.color }]}>{items.length}</Text>
+          </View>
           <Ionicons
             name={collapsed ? 'chevron-down' : 'chevron-up'}
             size={14}
@@ -120,7 +144,7 @@ function CategorySection({ catKey, items, collapsed, onToggle }) {
       </TouchableOpacity>
       {!collapsed && (
         <View style={catS.body}>
-          {sorted.map((item, i) => <IngredientRow key={i} item={item} />)}
+          {items.map((item, i) => <IngredientRow key={i} item={item} />)}
         </View>
       )}
     </View>
@@ -143,6 +167,191 @@ const catS = StyleSheet.create({
   body: { paddingHorizontal: 14 },
 });
 
+// ── Better picks (alternatives) ────────────────────────────────────────────────
+
+function AlternativeCard({ item, onPress }) {
+  const color = scoreToColor(item._score);
+  const hasBrand = item.brand && item.brand !== 'Unknown Brand';
+
+  return (
+    <TouchableOpacity style={altS.card} onPress={onPress} activeOpacity={0.75}>
+      <View style={altS.thumbWrap}>
+        {item.image ? (
+          <Image source={{ uri: item.image }} style={altS.thumb} resizeMode="contain" />
+        ) : hasBrand ? (
+          <View style={altS.thumbBrandTile}>
+            <Text style={altS.thumbBrandLetter}>{item.brand.charAt(0).toUpperCase()}</Text>
+          </View>
+        ) : (
+          <View style={altS.thumbFallback}>
+            <Ionicons name="cube-outline" size={22} color="#B8C8C3" />
+          </View>
+        )}
+        {/* Score number, not letter — the UI never shows letter grades. */}
+        <View style={[altS.gradeBadge, { backgroundColor: color }]}>
+          <Text style={altS.gradeBadgeText}>{item._score}</Text>
+        </View>
+      </View>
+      <Text style={altS.name} numberOfLines={2}>{item.name}</Text>
+      <Text style={altS.brand} numberOfLines={1}>{item.brand}</Text>
+    </TouchableOpacity>
+  );
+}
+const altS = StyleSheet.create({
+  card: { width: 132, marginRight: 12 },
+  thumbWrap: {
+    width: 132, height: 100, borderRadius: 12, backgroundColor: '#F4F8F6',
+    alignItems: 'center', justifyContent: 'center', overflow: 'hidden',
+    borderWidth: 1, borderColor: '#EDF2F0',
+  },
+  thumb: { width: '80%', height: '80%' },
+  thumbBrandTile: { width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center', backgroundColor: '#E8F7F2' },
+  thumbBrandLetter: { fontSize: 30, fontWeight: '800', color: Colors.primary },
+  thumbFallback: { width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' },
+  gradeBadge: {
+    position: 'absolute', top: 6, right: 6,
+    minWidth: 22, height: 22, borderRadius: 11, paddingHorizontal: 5,
+    alignItems: 'center', justifyContent: 'center',
+  },
+  gradeBadgeText: { fontSize: 11, fontWeight: '800', color: '#fff' },
+  name: { fontSize: 13, fontWeight: '700', color: '#1A2E28', marginTop: 8, lineHeight: 17 },
+  brand: { fontSize: 11, color: '#8AA49E', marginTop: 2 },
+});
+
+// "Best available" ceiling pick — shown instead of the normal Better Picks
+// gallery when the category has no 80+ product at all (see alternatives.js).
+// Deliberately NOT styled like an endorsement (no green, no "cleaner
+// options" framing, not Pro-gated): it's an honest disclosure that even the
+// best option here still misses the 80 bar, so a neutral/tan card with
+// plain-spoken copy and the real number, not a recommendation.
+function CeilingPickSection({ product, item, navigation }) {
+  const onCardPress = () => {
+    Haptics.selectionAsync().catch(() => {});
+    navigation.push('ProductScore', { product: item });
+  };
+  const categoryLabel = product.category && product.category !== 'General' ? product.category : 'category';
+
+  return (
+    <View style={cpS.wrap}>
+      <View style={cpS.headerRow}>
+        <Ionicons name="information-circle-outline" size={15} color="#8AA49E" />
+        <Text style={cpS.header}>Best in this category</Text>
+      </View>
+      <Text style={cpS.desc}>
+        Highest-scored {categoryLabel} we found — still only {item._score}/100. Nothing here clears our 80 bar.
+      </Text>
+      <View style={cpS.cardRow}>
+        <AlternativeCard item={item} onPress={onCardPress} />
+      </View>
+    </View>
+  );
+}
+const cpS = StyleSheet.create({
+  wrap: {
+    marginHorizontal: 16, marginTop: 14, marginBottom: 4,
+    backgroundColor: '#F7F5EF', borderRadius: 14, padding: 14,
+    borderWidth: 1, borderColor: '#EAE3D3',
+  },
+  headerRow: { flexDirection: 'row', alignItems: 'center', gap: 6, marginBottom: 6 },
+  header: { fontSize: 13, fontWeight: '700', color: '#5C7A72' },
+  desc: { fontSize: 13, color: '#6B7B76', lineHeight: 18, marginBottom: 12 },
+  cardRow: { flexDirection: 'row' },
+});
+
+function BetterPicksSection({ product, alternatives, isPro, altShowAll, setAltShowAll, navigation }) {
+  if (!alternatives || alternatives.length === 0) return null;
+
+  // Ceiling fallback is always a single item and always sorts first when
+  // present (see alternatives.js) — branch to the honest-disclosure card
+  // instead of the normal "better picks" gallery.
+  if (alternatives[0]?.ceiling) {
+    return <CeilingPickSection product={product} item={alternatives[0]} navigation={navigation} />;
+  }
+
+  const FREE_VISIBLE = 2;
+  const PRO_VISIBLE = 6;
+
+  const onCardPress = (alt) => {
+    Haptics.selectionAsync().catch(() => {});
+    navigation.push('ProductScore', { product: alt });
+  };
+
+  if (!isPro) {
+    const visible = alternatives.slice(0, FREE_VISIBLE);
+    const remaining = alternatives.length - visible.length;
+    return (
+      <View style={bpS.wrap}>
+        <Text style={bpS.header}>Better picks in {product.category}</Text>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={bpS.row}>
+          {visible.map((alt) => (
+            <AlternativeCard key={alt.barcode} item={alt} onPress={() => onCardPress(alt)} />
+          ))}
+        </ScrollView>
+        {remaining > 0 && (
+          <TouchableOpacity
+            style={bpS.seeAllRow}
+            activeOpacity={0.75}
+            onPress={() => {
+              Haptics.selectionAsync().catch(() => {});
+              navigation.navigate('Paywall', { feature: 'alternatives' });
+            }}
+          >
+            <Text style={bpS.seeAllText}>See all {alternatives.length} cleaner options</Text>
+            <Ionicons name="chevron-forward" size={16} color={Colors.primary} />
+          </TouchableOpacity>
+        )}
+      </View>
+    );
+  }
+
+  // Pro: show up to PRO_VISIBLE, with a show-more expander for the rest.
+  const visible = altShowAll ? alternatives : alternatives.slice(0, PRO_VISIBLE);
+  const hasMore = alternatives.length > PRO_VISIBLE;
+
+  return (
+    <View style={bpS.wrap}>
+      <Text style={bpS.header}>Better picks in {product.category}</Text>
+      <View style={bpS.grid}>
+        {visible.map((alt) => (
+          <AlternativeCard key={alt.barcode} item={alt} onPress={() => onCardPress(alt)} />
+        ))}
+      </View>
+      {hasMore && (
+        <TouchableOpacity
+          style={bpS.showMoreRow}
+          activeOpacity={0.75}
+          onPress={() => {
+            Haptics.selectionAsync().catch(() => {});
+            setAltShowAll((v) => !v);
+          }}
+        >
+          <Text style={bpS.showMoreText}>
+            {altShowAll ? 'Show less' : `Show ${alternatives.length - PRO_VISIBLE} more`}
+          </Text>
+          <Ionicons name={altShowAll ? 'chevron-up' : 'chevron-down'} size={16} color={Colors.primary} />
+        </TouchableOpacity>
+      )}
+    </View>
+  );
+}
+const bpS = StyleSheet.create({
+  wrap: { marginHorizontal: 16, marginTop: 14, marginBottom: 4 },
+  header: { fontSize: 15, fontWeight: '700', color: '#1A2E28', marginBottom: 12 },
+  row: { paddingRight: 4 },
+  grid: { flexDirection: 'row', flexWrap: 'wrap', gap: 12 },
+  seeAllRow: {
+    flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6,
+    marginTop: 12, paddingVertical: 12, borderRadius: 12,
+    backgroundColor: '#E8F7F2',
+  },
+  seeAllText: { fontSize: 13, fontWeight: '700', color: Colors.primary },
+  showMoreRow: {
+    flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6,
+    marginTop: 12, paddingVertical: 10,
+  },
+  showMoreText: { fontSize: 13, fontWeight: '700', color: Colors.primary },
+});
+
 // ── Screen ────────────────────────────────────────────────────────────────────
 
 export default function ProductScoreScreen({ route, navigation }) {
@@ -152,63 +361,271 @@ export default function ProductScoreScreen({ route, navigation }) {
   const [result, setResult] = useState(null);
   const [warnings, setWarnings] = useState(null);
   const [activeTab, setActiveTab] = useState('ingredients');
-  const [collapsedCats, setCollapsedCats] = useState(new Set());
+  const [collapsedCats, setCollapsedCats] = useState(new Set(['bad', 'okay', 'good']));
+  const [prefs, setPrefs] = useState({ showLobbying: true, showDonations: true });
+  // 'idle' | 'loading' | 'done'
+  const [requestState, setRequestState] = useState('idle');
+  const [alternatives, setAlternatives] = useState([]);
+  const [altShowAll, setAltShowAll] = useState(false);
+  const [celebration, setCelebration] = useState(null);
+  // Separate from `celebration` above — this gates the special one-time
+  // full-screen "first 90+ ever" moment (FirstHighScoreCelebration), not
+  // the small hero-corner backflip the other milestone celebrations use.
+  const [firstHighScoreCelebration, setFirstHighScoreCelebration] = useState(false);
+  const gradeAnim = useRef(new Animated.Value(0)).current;
+  // Off-screen ShareCard target for the image-share flow (see handleShare).
+  const shareCardRef = useRef(null);
+
+  // Sticky-tab-bar / fixed-BackButton collision tracking. These MUST live
+  // above the `if (!product) return null` / `if (!result)` early returns
+  // below — a hook declared after a conditional return runs on some renders
+  // and not others, which crashes with "rendered more hooks than during the
+  // previous render" (Sentry, ProductScoreScreen). See handleScroll /
+  // handleTabBarLayout for how they are used.
+  const [tabBarStuck, setTabBarStuck] = useState(false);
+  const tabBarYRef = useRef(Infinity);
+  const stuckRef = useRef(false);
 
   useEffect(() => {
+    if (!product) return;
     const r = scoreProduct(product);
     setResult(r);
-    addScanToHistory(product, r);
-    getUserPrefs().then((prefs) => {
-      setWarnings(getPersonalisedWarnings(r.analyzedIngredients, product, prefs));
+    setAlternatives([]);
+    setAltShowAll(false);
+    setCelebration(null);
+    setFirstHighScoreCelebration(false);
+
+    const grade = r.displayGrade || r.grade;
+
+    // Milestone celebrations only fire on a real scan (never when viewing
+    // history, search results, or an alternative product) — that's what
+    // fromScanner gates. Errors resolve to null inside the util itself, so
+    // this never blocks the score screen from rendering.
+    if (route?.params?.fromScanner) {
+      // checkFirstHighScore uses the real numeric score, never the letter
+      // grade (see CLAUDE.md — scores render as numbers, not letters).
+      // insufficientData products don't get an honest score, so they're
+      // excluded the same way the "better picks" section excludes them
+      // below. Both calls run concurrently — they touch different
+      // AsyncStorage keys, so there's no race between them.
+      const scoreForCelebration = !r.insufficientData && Number.isFinite(r.score) ? r.score : null;
+      Promise.all([
+        checkFirstHighScore(scoreForCelebration),
+        recordScanAndPickCelebration({ displayGrade: grade }),
+      ])
+        .then(([isFirstHighScore, normalCelebration]) => {
+          // The first-ever 90+ scan gets the special full-screen moment
+          // INSTEAD of the normal celebration (they'd otherwise usually
+          // fire on the very same scan, since grade 'A' == score >= 90 —
+          // see mascotMoments.js). Every later 90+ scan already has the
+          // flag spent, so it falls through to the normal system as usual.
+          if (isFirstHighScore) {
+            setFirstHighScoreCelebration(true);
+          } else {
+            setCelebration(normalCelebration);
+          }
+        })
+        .catch(() => {});
+      // Funnel analytics: 'first_scan' fires once per install, no matter how
+      // many real scans happen — logFirstScanIfNeeded() no-ops after the
+      // first (see appAnalytics.js).
+      logFirstScanIfNeeded().catch(() => {});
+    }
+
+    // Below the 80 "recommend" bar (and a real score — insufficientData
+    // products don't get an honest score to compare against, so they're
+    // excluded here same as before). getAlternatives() itself decides
+    // whether that resolves to a curated 80+ list or a "best available"
+    // ceiling single-item fallback; either way, alternatives.length > 0
+    // is what actually gates the section (see showBetterPicks below).
+    if (!r.insufficientData && r.score < 80) {
+      getAlternatives(product, { limit: 12, scannedScore: r.score })
+        .then(({ alternatives: alts }) => setAlternatives(alts))
+        .catch(() => setAlternatives([]));
+    }
+    // Only add to history when navigating from the scanner, not when
+    // viewing a past scan from the history list.
+    if (!route?.params?.fromHistory) {
+      addScanToHistory(product, r);
+    }
+    logProductEvent({
+      barcode: product.barcode,
+      category: product.category || null,
+      score: typeof r.score === 'number' ? r.score : null,
+      grade: r.displayGrade || r.grade || null,
+      source: route?.params?.source || 'scan',
+    }).catch(() => {});
+    getUserPrefs().then((userPrefs) => {
+      setPrefs(userPrefs);
+      setWarnings(getPersonalisedWarnings(r.analyzedIngredients, product, userPrefs));
     });
+
+    // Grade-reveal: haptic keyed to the grade, fired as the entrance animation starts.
+    // Unscored products ('?', insufficient data) skip the haptic — it's not a bad grade.
+    if (grade === 'A' || grade === 'B') {
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
+    } else if (grade === 'C') {
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning).catch(() => {});
+    } else if (grade === 'D' || grade === 'F') {
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error).catch(() => {});
+    }
+    gradeAnim.setValue(0);
+    Animated.spring(gradeAnim, {
+      toValue: 1,
+      friction: 6,
+      tension: 60,
+      useNativeDriver: true,
+    }).start();
   }, [product]);
 
-  const handleShare = useCallback(async () => {
-    if (!result) return;
-    if (!isPro) {
-      navigation.navigate('Paywall', { feature: 'share' });
-      return;
-    }
+  // Called by FirstHighScoreCelebration once its animation finishes. The
+  // review request fires AFTER the celebration, not during — a purchase-
+  // or-praise moment right as the user is delighted is exactly the timing
+  // Apple's guidance recommends, and firing it mid-animation would be a
+  // jarring interruption. maybeRequestAppReview's own guards (cooldown,
+  // once-per-moment, hasAction) still apply — this just supplies the
+  // 'firstHighScore' moment key.
+  const handleFirstHighScoreDone = useCallback(() => {
+    setFirstHighScoreCelebration(false);
+    maybeRequestAppReview('firstHighScore').catch(() => {});
+  }, []);
+
+  // Post-first-scan setup prompt (Part B9, Trigger 1) — once, ever, right as
+  // the user leaves the score screen after a real scan (not history/search),
+  // offer the "personalize your scans?" nudge into ProfileSetupScreen.
+  // `beforeRemove` intercepts every way of leaving (back button, swipe
+  // gesture, programmatic goBack) so this fires reliably; best-effort only —
+  // never blocks navigation on failure.
+  useEffect(() => {
+    if (!route?.params?.fromScanner) return undefined;
+    let handled = false;
+
+    const unsubscribe = navigation.addListener('beforeRemove', (e) => {
+      if (handled) return;
+      handled = true;
+      e.preventDefault();
+      (async () => {
+        try {
+          const alreadyPrompted = await hasBeenPromptedForSetup();
+          if (alreadyPrompted) {
+            navigation.dispatch(e.data.action);
+            return;
+          }
+          await markSetupPrompted();
+          Alert.alert(
+            'Got a minute to personalize your scans?',
+            'Add allergens, dietary preferences, and your favorite stores — takes about a minute.',
+            [
+              { text: 'Not now', style: 'cancel', onPress: () => navigation.dispatch(e.data.action) },
+              {
+                text: "Let's go",
+                onPress: () => {
+                  navigation.dispatch(e.data.action);
+                  navigation.navigate('ProfileSetup');
+                },
+              },
+            ]
+          );
+        } catch (err) {
+          console.warn('[ProductScore] setup-prompt check failed:', err?.message ?? err);
+          navigation.dispatch(e.data.action);
+        }
+      })();
+    });
+
+    return unsubscribe;
+  }, [navigation, route]);
+
+  // Fallback text-only share — used when the image card can't be captured or
+  // shared for any reason. Kept as a separate function (not inlined into the
+  // catch block) so the exact same message is reachable from one place.
+  const shareTextFallback = useCallback(async () => {
     await Share.share({
       message:
-        `${product.name} scored ${result.grade} (${result.score}/100) on Healthy Choices.\n` +
+        `${product.name} scored ${result.score}/100 on Food Exposé.\n` +
         (result.avoidCount > 0
           ? `⚠️ ${result.avoidCount} ingredient(s) to avoid.`
-          : '✅ No major red-flag ingredients!'),
+          : '✅ No major red-flag ingredients!') +
+        `\nGet the app: https://apps.apple.com/app/id6776718186`,
     });
-  }, [result, product, isPro, navigation]);
+  }, [result, product]);
+
+  const handleShare = useCallback(async () => {
+    if (!result || !product) return;
+    const company = product.companyId ? COMPANY_DB[product.companyId] : null;
+
+    try {
+      // Lazy-require the native modules (see import-site note above). A failed
+      // require on a pre-feature binary throws here and is caught below, falling
+      // back to the text share — never a crash.
+      const { captureRef } = require('react-native-view-shot');
+      const Sharing = require('expo-sharing');
+      // Best-effort logo preload before capture — captureRef only grabs what
+      // has actually painted, so a remote favicon that hasn't finished
+      // loading yet would otherwise capture as a blank tile. Raced against a
+      // short timeout so a slow/broken logo URL never blocks the share flow.
+      if (company?.logo) {
+        await Promise.race([
+          Image.prefetch(company.logo).catch(() => {}),
+          new Promise((resolve) => setTimeout(resolve, 1500)),
+        ]);
+      }
+
+      const isAvailable = await Sharing.isAvailableAsync();
+      if (isAvailable && shareCardRef.current) {
+        const uri = await captureRef(shareCardRef, {
+          format: 'png',
+          quality: 1,
+          result: 'tmpfile',
+          width: 1080,
+          height: 1920,
+        });
+        await Sharing.shareAsync(uri, {
+          mimeType: 'image/png',
+          dialogTitle: 'Share this scan',
+        });
+        return;
+      }
+    } catch (err) {
+      console.warn('[ProductScore] share-card capture failed, falling back to text share:', err?.message ?? err);
+    }
+
+    await shareTextFallback();
+  }, [result, product, shareTextFallback]);
 
   if (!product) return null;
   if (!result) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors.background }}>
-        <ActivityIndicator color={Colors.primary} size="large" />
+        <SpecsMascot clip="idle-loop" size={88} />
       </View>
     );
   }
 
-  const { score, grade, analyzedIngredients } = result;
-  const gradeCol = gradeToColor(grade);
-  const verdict = scoreToVerdict(grade);
-  const explanation = generateScoreExplanation(product, result);
+  const { score, grade, displayGrade, analyzedIngredients, insufficientData, hiddenUnreadableCount } = result;
+  const gradeCol = insufficientData ? '#9BB5AE' : scoreToColor(score);
+  const verdict = scoreToVerdict(displayGrade);
+  const explanation = insufficientData ? null : generateScoreExplanation(product, result);
   const { nutrition = {} } = product;
   const company = product.companyId ? COMPANY_DB[product.companyId] : null;
+  const hasHighSeverityIssues = company?.issues?.some((i) => i.severity === 'high');
 
-  const totalBad = analyzedIngredients.filter(isBad).length;
-  const totalOkay = analyzedIngredients.filter(isOkay).length;
-  const totalGood = analyzedIngredients.filter(isGood).length;
+  const personalAllergenLabels = new Set(
+    (warnings?.allergenHits ?? []).flatMap(({ ingredients }) => ingredients.map((i) => i.label))
+  );
 
-  const grouped = analyzedIngredients.reduce((acc, item) => {
-    const key = item.category || 'unknown';
-    (acc[key] = acc[key] || []).push(item);
-    return acc;
-  }, {});
-  const sortedCats = Object.keys(grouped).sort((a, b) => {
-    const badA = grouped[a].filter(isBad).length;
-    const badB = grouped[b].filter(isBad).length;
-    if (badB !== badA) return badB - badA;
-    return grouped[b].length - grouped[a].length;
-  });
+  const { bad: verdictBad, okay: verdictOkay, good: verdictGood } =
+    groupByVerdict(analyzedIngredients, personalAllergenLabels);
+
+  const totalBad = verdictBad.length;
+  const totalOkay = verdictOkay.length;
+  const totalGood = verdictGood.length;
+
+  const VERDICT_SECTIONS = [
+    { key: 'bad', items: verdictBad },
+    { key: 'okay', items: verdictOkay },
+    { key: 'good', items: verdictGood },
+  ].filter((sec) => sec.items.length > 0);
 
   const toggleCat = (key) => {
     setCollapsedCats((prev) => {
@@ -220,6 +637,52 @@ export default function ProductScoreScreen({ route, navigation }) {
 
   const TABS = ['ingredients', 'nutrition', 'company'];
 
+  // The tab bar is a sticky header, so on scroll it parks at the very top —
+  // exactly where the fixed BackButton floats. Without this the button sits
+  // on top of the "Ingredients" tab and hides it (regression introduced when
+  // the old in-tab-bar back chevron was removed in favor of one fixed
+  // button; that second chevron had been solving this collision). Track when
+  // the bar is actually stuck and inset its content past the button only
+  // then, so the unstuck layout keeps its normal even spacing.
+  // (tabBarStuck / tabBarYRef / stuckRef are declared above the early
+  // returns to keep hook order stable.)
+  const handleTabBarLayout = (e) => {
+    tabBarYRef.current = e.nativeEvent.layout.y;
+  };
+
+  // setState only on the transition, never per scroll frame.
+  const handleScroll = (e) => {
+    const y = e.nativeEvent.contentOffset.y;
+    const next = y >= tabBarYRef.current - insets.top - 8;
+    if (next !== stuckRef.current) {
+      stuckRef.current = next;
+      setTabBarStuck(next);
+    }
+  };
+
+  // Broadened from the old D/F-only gate: any scan that fetched alternatives
+  // (see the score < 80 trigger above) and actually got a result — whether
+  // that's the curated 80+ list or the single "best available" ceiling pick
+  // — shows this section.
+  const showBetterPicks = alternatives.length > 0;
+  // Product-level "how was this raised" card — narrow gate, eggs only for
+  // now (see LivingConditionsCard.js / isEggsHousingEligible in
+  // sourcingMatch.js, which also excludes plant-based egg substitutes like
+  // JUST Egg). PRODUCT-based (category + name), not company-based: renders
+  // with or without a resolved company/sourcing record, so it also covers
+  // unrecognized scanned eggs. Computed here (not just inside the
+  // component) because it also has to feed the stickyIndex count below.
+  const showLivingConditions = isEggsHousingEligible(product);
+  // Children before the sticky tab bar: 0 hero, 1 infoCard, optionally 1b
+  // unverified-source banner (community-sourced scans), 2 sayCard,
+  // optionally 2b' living-conditions card (eggs only), optionally 2b request
+  // card (insufficientData) or 2c better-picks (D/F), then the sticky tab
+  // bar itself.
+  const stickyIndex = 3 +
+    (product.source === 'community' ? 1 : 0) +
+    (showLivingConditions ? 1 : 0) +
+    (insufficientData || showBetterPicks ? 1 : 0);
+
   return (
     <View style={s.container}>
       <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
@@ -227,28 +690,50 @@ export default function ProductScoreScreen({ route, navigation }) {
       <ScrollView
         bounces
         showsVerticalScrollIndicator={false}
-        stickyHeaderIndices={[3]}
+        stickyHeaderIndices={[stickyIndex]}
+        scrollEventThrottle={32}
+        onScroll={handleScroll}
       >
         {/* ── 0: Hero image ── */}
         <View style={s.heroWrap}>
           {product.image ? (
             <Image source={{ uri: product.image }} style={s.heroImg} resizeMode="cover" />
           ) : (
-            <View style={[s.heroPlaceholder, { backgroundColor: gradeCol }]}>
-              <Text style={s.heroGrade}>{grade}</Text>
+            <View style={s.heroPlaceholder}>
+              <Image
+                source={require('../../assets/mascot/specs-placeholder-shrug.png')}
+                style={s.heroLogo}
+                resizeMode="contain"
+              />
             </View>
           )}
-          <LinearGradient
-            colors={['rgba(0,0,0,0.52)', 'rgba(0,0,0,0.0)']}
-            style={[s.heroOverlay, { paddingTop: insets.top + 10 }]}
-          >
-            <TouchableOpacity style={s.navBtn} onPress={() => navigation.goBack()}>
-              <Ionicons name="chevron-back" size={22} color="#fff" />
-            </TouchableOpacity>
-            <TouchableOpacity style={s.navBtn} onPress={handleShare}>
-              <Ionicons name="share-outline" size={20} color="#fff" />
-            </TouchableOpacity>
-          </LinearGradient>
+          {product.image ? (
+            // Dark scrim is only needed to keep the share icon legible over
+            // a bright/busy photo. Over the flat placeholder mint below,
+            // the scrim was redundant (the icon already sits on its own
+            // dark navBtn circle) and its fade-to-transparent stop showed
+            // up as a faint banding seam across the flat color — read as a
+            // phantom "surface" line under Specs. Skipped for the no-photo
+            // case so nothing renders under him there.
+            <LinearGradient
+              colors={['rgba(0,0,0,0.5)', 'rgba(0,0,0,0.12)', 'rgba(0,0,0,0)']}
+              locations={[0, 0.22, 0.5]}
+              style={[s.heroOverlay, { paddingTop: insets.top + 10 }]}
+            >
+              <TouchableOpacity style={s.navBtn} onPress={handleShare}>
+                <Ionicons name="share-outline" size={20} color="#fff" />
+              </TouchableOpacity>
+            </LinearGradient>
+          ) : (
+            <View style={[s.heroOverlay, { paddingTop: insets.top + 10 }]}>
+              <TouchableOpacity style={s.navBtn} onPress={handleShare}>
+                <Ionicons name="share-outline" size={20} color="#fff" />
+              </TouchableOpacity>
+            </View>
+          )}
+          {celebration && (
+            <SpecsMascot clip="backflip" size={96} style={s.heroCelebration} />
+          )}
         </View>
 
         {/* ── 1: Product info + score ── */}
@@ -260,12 +745,21 @@ export default function ProductScoreScreen({ route, navigation }) {
           </Text>
 
           <View style={s.scoreRow}>
-            <GradeRing score={score} grade={grade} color={gradeCol} size={88} />
+            <Animated.View
+              style={{
+                opacity: gradeAnim,
+                transform: [{
+                  scale: gradeAnim.interpolate({ inputRange: [0, 1], outputRange: [0.5, 1] }),
+                }],
+              }}
+            >
+              <GradeRing score={insufficientData ? 0 : score} grade={displayGrade} color={gradeCol} size={88} />
+            </Animated.View>
             <View style={s.scoreRight}>
               <View style={[s.verdictBadge, { backgroundColor: gradeCol + '1C' }]}>
                 <Text style={[s.verdictText, { color: gradeCol }]}>{verdict}</Text>
               </View>
-              <Text style={s.scoreSubLabel}>out of 100</Text>
+              <Text style={s.scoreSubLabel}>{insufficientData ? 'Not enough data to score' : 'out of 100'}</Text>
             </View>
           </View>
 
@@ -276,32 +770,141 @@ export default function ProductScoreScreen({ route, navigation }) {
               {product.isGlutenFree && <Tag icon="checkmark-circle" label="Gluten-Free" color={Colors.primary} />}
             </View>
           )}
+
+          {/* Bioengineered (GMO) disclosure — neutral, informational only.
+              NOT a red warning: this is a USDA label statement, not a health
+              risk, and per the Phase 3 founder decision it never changes the
+              score. isBioengineered = curated catalog field; containsBioengineered
+              = live-scan runtime field (productParser.js). */}
+          {(product.isBioengineered || product.containsBioengineered) && (
+            <View style={s.bioengineeredNote}>
+              <Ionicons name="information-circle-outline" size={14} color={ALLERGEN_NEUTRAL_INFO.color} />
+              <Text style={s.bioengineeredNoteText}>Contains a bioengineered (GMO) ingredient</Text>
+            </View>
+          )}
         </View>
 
-        {/* ── 2: HealthyChoices Says ── */}
-        <View style={[s.sayCard, { borderLeftColor: gradeCol }]}>
-          <View style={s.sayHeader}>
-            <View style={[s.sayIcon, { backgroundColor: gradeCol + '22' }]}>
-              <Ionicons name="leaf" size={13} color={gradeCol} />
-            </View>
-            <Text style={[s.sayTitle, { color: gradeCol }]}>HealthyChoices Says</Text>
+        {/* ── 1b: Unverified community-data notice ── */}
+        {product.source === 'community' && (
+          <View style={s.unverifiedBanner}>
+            <Ionicons name="globe-outline" size={18} color="#9A6B00" />
+            <Text style={s.unverifiedBannerText}>
+              <Text style={{ fontWeight: '800' }}>Unverified source: </Text>
+              This product isn't in our curated database yet — the ingredients and score below come from a public, crowd-sourced listing and haven't been checked by Food Exposé.
+            </Text>
           </View>
-          <Text style={s.sayText}>{explanation}</Text>
+        )}
+
+        {/* ── 2: Food Exposé Says ── */}
+        <View style={[s.sayCard, { borderLeftColor: gradeCol }]}>
+          <View style={s.sayMain}>
+            <View style={s.sayHeader}>
+              <View style={[s.sayIcon, { backgroundColor: gradeCol + '22' }]}>
+                <Ionicons name="search" size={13} color={gradeCol} />
+              </View>
+              <Text style={[s.sayTitle, { color: gradeCol }]}>Food Exposé Says</Text>
+            </View>
+            {insufficientData ? (
+              <Text style={s.sayText}>
+                We don't have verified data on this product yet. We've flagged it for investigation — we'll research it and add a full score soon.
+              </Text>
+            ) : (
+              <Text style={s.sayText}>{explanation}</Text>
+            )}
+          </View>
+          <Image
+            source={require('../../assets/mascot/specs-standing.png')}
+            style={s.sayDetective}
+            resizeMode="contain"
+          />
         </View>
+
+        {/* ── 2b': Living Conditions (product-scoped sourcing card, eggs
+              only for now) — Pro-gated with this screen's own ProGateCard
+              convention, not CompanyProfileScreen.js's LockedTeaser. ── */}
+        {showLivingConditions && (
+          isPro ? (
+            <LivingConditionsCard product={product} company={company} navigation={navigation} />
+          ) : (
+            <View style={{ marginHorizontal: 16, marginTop: 10 }}>
+              <ProGateCard
+                icon="leaf-outline"
+                title="Living Conditions"
+                desc="See how the animals behind this exact carton were raised — housing tier, certifications, and space-per-hen data where it's on record."
+                onUpgrade={() => navigation.navigate('Paywall', { feature: 'sourcing' })}
+              />
+            </View>
+          )
+        )}
+
+        {/* ── 2b: Request card (insufficient data only) ── */}
+        {insufficientData && (
+          <View style={s.requestCard}>
+            {requestState === 'done' ? (
+              <View style={s.requestConfirm}>
+                <Ionicons name="checkmark-circle" size={20} color={Colors.primary} />
+                <Text style={s.requestConfirmText}>Got it — added to our research list.</Text>
+              </View>
+            ) : (
+              <>
+                <Text style={s.requestPrompt}>Want this one scored?</Text>
+                <TouchableOpacity
+                  style={[s.requestBtn, requestState === 'loading' && s.requestBtnDisabled]}
+                  disabled={requestState === 'loading'}
+                  activeOpacity={0.82}
+                  onPress={async () => {
+                    setRequestState('loading');
+                    try {
+                      await logProductRequest(product);
+                    } catch (_) {
+                      // silently swallow errors
+                    }
+                    setRequestState('done');
+                  }}
+                >
+                  {requestState === 'loading' ? (
+                    <ActivityIndicator size="small" color="#fff" />
+                  ) : (
+                    <Text style={s.requestBtnText}>Request a full exposé 🔍</Text>
+                  )}
+                </TouchableOpacity>
+              </>
+            )}
+          </View>
+        )}
+
+        {/* ── 2c: Better picks (any scan scoring below 80 with a real alternative) ── */}
+        {showBetterPicks && (
+          <BetterPicksSection
+            product={product}
+            alternatives={alternatives}
+            isPro={isPro}
+            altShowAll={altShowAll}
+            setAltShowAll={setAltShowAll}
+            navigation={navigation}
+          />
+        )}
 
         {/* ── 3: Tabs (sticky) ── */}
-        <View style={s.tabBar}>
-          {TABS.map((tab) => (
-            <TouchableOpacity
-              key={tab}
-              style={[s.tab, activeTab === tab && s.tabActive]}
-              onPress={() => setActiveTab(tab)}
-            >
-              <Text style={[s.tabLabel, activeTab === tab && s.tabLabelActive]}>
-                {tab.charAt(0).toUpperCase() + tab.slice(1)}
-              </Text>
-            </TouchableOpacity>
-          ))}
+        <View style={s.tabBarSticky} onLayout={handleTabBarLayout}>
+          <View style={[s.tabBar, tabBarStuck && s.tabBarStuckInset]}>
+            {TABS.map((tab) => (
+              <TouchableOpacity
+                key={tab}
+                style={[s.tab, activeTab === tab && s.tabActive]}
+                onPress={() => setActiveTab(tab)}
+              >
+                <View style={s.tabInner}>
+                  <Text style={[s.tabLabel, activeTab === tab && s.tabLabelActive]}>
+                    {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                  </Text>
+                  {tab === 'company' && hasHighSeverityIssues && (
+                    <View style={s.tabDot} />
+                  )}
+                </View>
+              </TouchableOpacity>
+            ))}
+          </View>
         </View>
 
         {/* ── 4: Tab body ── */}
@@ -331,34 +934,75 @@ export default function ProductScoreScreen({ route, navigation }) {
                   </Text>
                 </View>
               ))}
+              {/* Bioengineered (GMO) avoidance alert — same personalised-
+                  warnings machinery as the allergen/dietary banners above,
+                  only shown when the user opted in via the "Avoid
+                  Bioengineered (GMO)" dietary preference. This is a heads-up
+                  about a USDA disclosure, not a safety warning, and it never
+                  changes the score. */}
+              {warnings?.bioengineeredAlert ? (
+                <View style={s.warnBannerYellow}>
+                  <Ionicons name="flask-outline" size={18} color="#F5A623" />
+                  <Text style={s.warnBannerYellowText}>
+                    <Text style={{ fontWeight: '800' }}>Bioengineered (GMO): </Text>
+                    This product carries a USDA bioengineered-food disclosure — you asked to be alerted on these.
+                  </Text>
+                </View>
+              ) : null}
               {warnings?.goalNote ? (
                 <View style={s.warnBannerBlue}>
                   <Ionicons name="flag-outline" size={18} color="#3B82F6" />
                   <Text style={s.warnBannerBlueText}>{warnings.goalNote}</Text>
                 </View>
               ) : null}
+              {result.packagingConcern ? (
+                <View style={s.warnBannerOrange}>
+                  <Ionicons name="cube-outline" size={18} color="#C05621" />
+                  <Text style={s.warnBannerOrangeText}>
+                    <Text style={{ fontWeight: '800' }}>Packaging note: </Text>
+                    {result.packagingConcern.note}
+                  </Text>
+                </View>
+              ) : null}
 
               {/* Summary row */}
               <IngredientSummaryRow totalBad={totalBad} totalOkay={totalOkay} totalGood={totalGood} />
 
-              {/* All clear banner */}
-              {totalBad === 0 && totalOkay === 0 && (
-                <View style={s.allClear}>
-                  <Ionicons name="checkmark-circle" size={22} color="#1D9E75" />
-                  <Text style={s.allClearText}>No concerning ingredients found</Text>
+              {/* No ingredient data note (insufficient data path) */}
+              {analyzedIngredients.length === 0 ? (
+                <View style={s.noIngredientNote}>
+                  <Ionicons name="information-circle-outline" size={20} color="#9BB5AE" />
+                  <Text style={s.noIngredientNoteText}>No ingredient data available for this product.</Text>
                 </View>
+              ) : (
+                <>
+                  {/* All clear banner */}
+                  {totalBad === 0 && totalOkay === 0 && (
+                    <View style={s.allClear}>
+                      <Ionicons name="checkmark-circle" size={22} color="#1D9E75" />
+                      <Text style={s.allClearText}>No concerning ingredients found</Text>
+                    </View>
+                  )}
+
+                  {/* Verdict sections */}
+                  {VERDICT_SECTIONS.map(({ key, items }) => (
+                    <VerdictSection
+                      key={key}
+                      verdictKey={key}
+                      items={items}
+                      collapsed={collapsedCats.has(key)}
+                      onToggle={() => toggleCat(key)}
+                    />
+                  ))}
+                </>
               )}
 
-              {/* Category sections */}
-              {sortedCats.map((key) => (
-                <CategorySection
-                  key={key}
-                  catKey={key}
-                  items={grouped[key]}
-                  collapsed={collapsedCats.has(key)}
-                  onToggle={() => toggleCat(key)}
-                />
-              ))}
+              {/* Hidden unreadable label entries (OCR garbage filtered out) */}
+              {hiddenUnreadableCount > 0 && (
+                <Text style={s.noIngredientNoteText}>
+                  {hiddenUnreadableCount} unreadable label {hiddenUnreadableCount === 1 ? 'entry' : 'entries'} hidden
+                </Text>
+              )}
 
               {/* Certifications */}
               {product.certifications?.length > 0 && (
@@ -380,9 +1024,9 @@ export default function ProductScoreScreen({ route, navigation }) {
               <View style={s.nutHead}>
                 <Text style={s.nutTitle}>Nutrition Facts</Text>
                 <Text style={s.nutSub}>
-                  {product.servingSize
-                    ? `Per serving: ${product.servingSize} · ${product.calories} kcal`
-                    : `Per 100g · ${product.calories} kcal`}
+                  {nutrition.perServing
+                    ? `Per serving${product.servingSize ? `: ${product.servingSize}` : ''} · ${product.calories ?? '—'} kcal`
+                    : `Per 100g · ${product.calories ?? '—'} kcal`}
                 </Text>
               </View>
               <StatBar label="Sugar" value={nutrition.sugars ?? 0} max={50} unit="g" warn={(nutrition.sugars ?? 0) > 20} />
@@ -412,12 +1056,35 @@ export default function ProductScoreScreen({ route, navigation }) {
 
           {/* COMPANY TAB */}
           {activeTab === 'company' && !isPro && (
-            <ProGateCard
-              icon="business-outline"
-              title="Company Transparency"
-              desc="See lobbying spend, political donations, and controversies behind every brand you scan."
-              onUpgrade={() => navigation.navigate('Paywall', { feature: 'company' })}
-            />
+            <View>
+              {company && (
+                <View style={s.coTeaserWrap}>
+                  <Text style={s.coName}>{company.name}</Text>
+                  <Text style={s.coHQ}>{company.hq}</Text>
+                  {company.issues?.length > 0 ? (
+                    <View style={s.coTeaserAlert}>
+                      <Ionicons name="alert-circle" size={14} color="#D93B3B" />
+                      <Text style={s.coTeaserAlertText}>
+                        {company.issues.filter((i) => i.severity === 'high').length > 0
+                          ? `${company.issues.filter((i) => i.severity === 'high').length} high-severity issue${company.issues.filter((i) => i.severity === 'high').length > 1 ? 's' : ''} on record — unlock to see details`
+                          : `${company.issues.length} documented issue${company.issues.length > 1 ? 's' : ''} — unlock to see details`}
+                      </Text>
+                    </View>
+                  ) : (
+                    <View style={s.coTeaserClean}>
+                      <Ionicons name="checkmark-circle" size={14} color="#1D9E75" />
+                      <Text style={s.coTeaserCleanText}>No major issues on record</Text>
+                    </View>
+                  )}
+                </View>
+              )}
+              <ProGateCard
+                icon="business-outline"
+                title="Company Transparency"
+                desc="See lobbying spend, political donations, and full issue breakdowns behind every brand you scan."
+                onUpgrade={() => navigation.navigate('Paywall', { feature: 'company' })}
+              />
+            </View>
           )}
           {activeTab === 'company' && isPro && (
             <View>
@@ -428,25 +1095,49 @@ export default function ProductScoreScreen({ route, navigation }) {
                     <Text style={s.coHQ}>{company.hq}</Text>
                   </View>
 
-                  <View style={s.coStats}>
-                    <CoStat icon="people-outline" label="Employees" value={company.employees} />
-                    <CoStat icon="trending-up-outline" label="Revenue" value={`$${company.revenue}`} />
-                    <CoStat
-                      icon="megaphone-outline"
-                      label="Lobbying/yr"
-                      value={formatMoney(company.lobbyingSpend)}
-                      highlight
-                    />
-                  </View>
+                  {/* This row is a flexible flex-row (not a fixed grid), so a
+                      missing stat is simply omitted rather than shown as
+                      "undefined"/"$undefined" — no placeholder text needed
+                      since 1-3 cells all lay out fine. lobbyingSpend of 0 is
+                      this dataset's "unresearched" sentinel (see
+                      getLobbyingRiskLevel in scorer.js), not a verified zero,
+                      so it's treated the same as missing here. The row itself
+                      is skipped when every stat is missing (small/private
+                      sparse records), rather than rendering an empty box. */}
+                  {(company.employees != null ||
+                    company.revenue != null ||
+                    (prefs.showLobbying !== false && company.lobbyingSpend > 0)) && (
+                    <View style={s.coStats}>
+                      {company.employees != null && (
+                        <CoStat icon="people-outline" label="Employees" value={company.employees} />
+                      )}
+                      {company.revenue != null && (
+                        <CoStat icon="trending-up-outline" label="Revenue" value={`$${company.revenue}`} />
+                      )}
+                      {prefs.showLobbying !== false && company.lobbyingSpend > 0 && (
+                        <CoStat
+                          icon="megaphone-outline"
+                          label="Lobbying/yr"
+                          value={formatMoney(company.lobbyingSpend)}
+                          highlight
+                        />
+                      )}
+                    </View>
+                  )}
 
                   {company.issues?.length > 0 && (
-                    <View style={s.coAlert}>
+                    <TouchableOpacity
+                      style={s.coAlert}
+                      onPress={() => navigation.navigate('CompanyProfile', { company, initialTab: 'issues' })}
+                      activeOpacity={0.75}
+                    >
                       <Ionicons name="alert-circle" size={15} color="#D93B3B" />
                       <Text style={s.coAlertText}>
                         {company.issues.filter((i) => i.severity === 'high').length} high-severity &{' '}
                         {company.issues.filter((i) => i.severity === 'medium').length} medium issues documented.
                       </Text>
-                    </View>
+                      <Ionicons name="chevron-forward" size={14} color="#D93B3B" />
+                    </TouchableOpacity>
                   )}
 
                   <TouchableOpacity
@@ -489,13 +1180,28 @@ export default function ProductScoreScreen({ route, navigation }) {
         </View>
 
         {/* Informational disclaimer — required for Apple Health & Fitness category */}
-        <Text style={ps.disclaimer}>
+        <Text style={s.disclaimer}>
           Scores and ingredient information are for educational purposes only and are not medical advice.
           They should not be used to diagnose, treat, or prevent any health condition.
           Consult a qualified healthcare professional for dietary guidance.
         </Text>
 
       </ScrollView>
+
+      <BackButton navigation={navigation} />
+
+      {firstHighScoreCelebration && (
+        <FirstHighScoreCelebration score={result?.score} onDone={handleFirstHighScoreDone} />
+      )}
+
+      {/* Off-screen share-card render target for handleShare's captureRef
+          call above — pointerEvents 'none' + parked far outside the visible
+          area so it never intercepts touches or flashes on screen, but stays
+          mounted (and its remote logo image can load) the whole time this
+          screen is up. */}
+      <View style={s.shareCardOffscreen} pointerEvents="none">
+        <ShareCard ref={shareCardRef} product={product} result={result} company={company} />
+      </View>
     </View>
   );
 }
@@ -585,6 +1291,7 @@ const csS = StyleSheet.create({
 });
 
 function formatMoney(n) {
+  if (n == null) return null;
   if (n >= 1_000_000) return `$${(n / 1_000_000).toFixed(1)}M`;
   if (n >= 1_000) return `$${(n / 1_000).toFixed(0)}K`;
   return `$${n}`;
@@ -597,14 +1304,25 @@ const HERO_H = 220;
 const s = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#fff' },
 
+  // Parked far outside the visible viewport (not just hidden) so it never
+  // affects layout or briefly flashes during the entrance animation.
+  shareCardOffscreen: { position: 'absolute', top: -10000, left: 0 },
+
   // Hero
   heroWrap: { height: HERO_H, overflow: 'hidden', backgroundColor: '#D5EAE3' },
   heroImg: { width: '100%', height: '100%' },
-  heroPlaceholder: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-  heroGrade: { fontSize: 90, fontWeight: '900', color: 'rgba(255,255,255,0.30)' },
+  // Bottom-anchored (not centered) so Specs' feet land on the band's lower
+  // edge, flush with the white infoCard starting right below — reads as him
+  // standing on that white content instead of floating mid-band. heroLogo
+  // uses aspectRatio (not a fixed height) so its box matches the source
+  // art's own proportions exactly, with no leftover letterboxing space for
+  // resizeMode="contain" to center him inside — flex-end here is what
+  // actually controls his vertical position.
+  heroPlaceholder: { flex: 1, alignItems: 'center', justifyContent: 'flex-end', backgroundColor: '#D5EAE3' },
+  heroLogo: { width: '80%', aspectRatio: 1400 / 781 },
   heroOverlay: {
     ...StyleSheet.absoluteFillObject,
-    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start',
+    flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'flex-start',
     paddingHorizontal: 16, paddingBottom: 16,
   },
   navBtn: {
@@ -612,6 +1330,7 @@ const s = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.28)',
     alignItems: 'center', justifyContent: 'center',
   },
+  heroCelebration: { position: 'absolute', bottom: 0, right: 0 },
 
   // Product info card
   infoCard: {
@@ -627,27 +1346,46 @@ const s = StyleSheet.create({
   verdictText: { fontSize: 13, fontWeight: '700' },
   scoreSubLabel: { fontSize: 12, color: '#B0C4BE', fontWeight: '500' },
   tagRow: { flexDirection: 'row', flexWrap: 'wrap', marginTop: 6 },
+  bioengineeredNote: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 8 },
+  bioengineeredNoteText: { flex: 1, fontSize: 12, fontWeight: '600', color: ALLERGEN_NEUTRAL_INFO.color },
+
+  // Unverified community-data notice
+  unverifiedBanner: {
+    flexDirection: 'row', alignItems: 'flex-start', gap: 10,
+    backgroundColor: '#FEF9E7', borderRadius: 12, padding: 12,
+    marginHorizontal: 16, marginTop: 12,
+  },
+  unverifiedBannerText: { flex: 1, fontSize: 13, color: '#9A6B00', lineHeight: 18 },
 
   // HealthyChoices Says card
   sayCard: {
     marginHorizontal: 16, marginTop: 14, marginBottom: 4,
     backgroundColor: '#F7FAF8', borderRadius: 14,
     padding: 16, borderLeftWidth: 3,
+    flexDirection: 'row', alignItems: 'center',
   },
+  sayMain: { flex: 1 },
+  sayDetective: { width: 46, height: 108, marginLeft: 12, alignSelf: 'flex-end' },
   sayHeader: { flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 9 },
   sayIcon: { width: 26, height: 26, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
   sayTitle: { fontSize: 13, fontWeight: '700' },
   sayText: { fontSize: 14, color: '#2D4A42', lineHeight: 22 },
 
   // Tabs (sticky)
+  tabBarSticky: { backgroundColor: '#fff' },
+  // Clears the fixed BackButton (left:16, 44 wide) when the bar is stuck at
+  // the top; not applied while it sits inline below the hero.
+  tabBarStuckInset: { paddingLeft: 68 },
   tabBar: {
     flexDirection: 'row', backgroundColor: '#fff',
     borderBottomWidth: 1, borderBottomColor: '#EDF2F0',
   },
   tab: { flex: 1, alignItems: 'center', paddingVertical: 13 },
   tabActive: { borderBottomWidth: 2.5, borderBottomColor: Colors.primary },
+  tabInner: { flexDirection: 'row', alignItems: 'center', gap: 5 },
   tabLabel: { fontSize: 13, color: '#9BB5AE', fontWeight: '500' },
   tabLabelActive: { color: Colors.primary, fontWeight: '700' },
+  tabDot: { width: 7, height: 7, borderRadius: 4, backgroundColor: '#D93B3B', marginTop: -6 },
 
   // Body
   body: { paddingHorizontal: 20, paddingTop: 18, paddingBottom: 80, backgroundColor: '#fff' },
@@ -669,6 +1407,11 @@ const s = StyleSheet.create({
     backgroundColor: '#EFF6FF', borderRadius: 12, padding: 12, marginBottom: 10,
   },
   warnBannerBlueText: { flex: 1, fontSize: 13, color: '#1D4ED8', lineHeight: 18 },
+  warnBannerOrange: {
+    flexDirection: 'row', alignItems: 'flex-start', gap: 10,
+    backgroundColor: '#FFF4E8', borderRadius: 12, padding: 12, marginBottom: 10,
+  },
+  warnBannerOrangeText: { flex: 1, fontSize: 13, color: '#9A4B12', lineHeight: 18 },
 
   // All clear
   allClear: {
@@ -696,6 +1439,24 @@ const s = StyleSheet.create({
   },
   nutAlertText: { flex: 1, fontSize: 12, color: '#D93B3B', lineHeight: 17 },
 
+  // Company teaser (free users)
+  coTeaserWrap: {
+    backgroundColor: '#fff', borderRadius: 14, padding: 16, marginBottom: 14,
+    borderWidth: 1, borderColor: '#EDF2F0',
+  },
+  coTeaserAlert: {
+    flexDirection: 'row', alignItems: 'center', gap: 7,
+    backgroundColor: '#FDE8E8', borderRadius: 8,
+    paddingHorizontal: 10, paddingVertical: 8, marginTop: 10,
+  },
+  coTeaserAlertText: { flex: 1, fontSize: 12, color: '#D93B3B', fontWeight: '600' },
+  coTeaserClean: {
+    flexDirection: 'row', alignItems: 'center', gap: 7,
+    backgroundColor: '#E8F7F2', borderRadius: 8,
+    paddingHorizontal: 10, paddingVertical: 8, marginTop: 10,
+  },
+  coTeaserCleanText: { fontSize: 12, color: '#1D9E75', fontWeight: '600' },
+
   // Company
   coHead: { marginBottom: 16 },
   coName: { fontSize: 18, fontWeight: '700', color: '#1A2E28' },
@@ -719,4 +1480,35 @@ const s = StyleSheet.create({
   noCo: { alignItems: 'center', paddingVertical: 40, gap: 12 },
   noCoTitle: { fontSize: 18, fontWeight: '700', color: '#1A2E28' },
   noCoSub: { fontSize: 14, color: '#8AA49E', textAlign: 'center', lineHeight: 21 },
+
+  // Request card (insufficient data)
+  requestCard: {
+    marginHorizontal: 16, marginTop: 10, marginBottom: 4,
+    backgroundColor: '#F7FAF8', borderRadius: 14,
+    padding: 16, borderWidth: 1, borderColor: '#EDF2F0',
+    alignItems: 'flex-start',
+  },
+  requestPrompt: { fontSize: 14, fontWeight: '600', color: '#1A2E28', marginBottom: 12 },
+  requestBtn: {
+    flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+    backgroundColor: Colors.primary,
+    paddingHorizontal: 20, paddingVertical: 11, borderRadius: 50,
+    shadowColor: Colors.primary, shadowOpacity: 0.30, shadowRadius: 6,
+    shadowOffset: { width: 0, height: 3 }, elevation: 3,
+    minWidth: 200,
+  },
+  requestBtnDisabled: { opacity: 0.65 },
+  requestBtnText: { fontSize: 14, fontWeight: '700', color: '#fff' },
+  requestConfirm: {
+    flexDirection: 'row', alignItems: 'center', gap: 8,
+  },
+  requestConfirmText: { fontSize: 14, fontWeight: '600', color: Colors.primary },
+
+  // No ingredient data note
+  noIngredientNote: {
+    flexDirection: 'row', alignItems: 'center', gap: 8,
+    backgroundColor: '#F4F8F6', borderRadius: 12,
+    paddingHorizontal: 16, paddingVertical: 12, marginBottom: 18,
+  },
+  noIngredientNoteText: { fontSize: 14, color: '#9BB5AE', fontWeight: '500' },
 });

@@ -1,0 +1,307 @@
+{
+  "category": "frozen_breakfast",
+  "researched_at": "2026-06-15",
+  "products": [
+    {
+      "barcode": "038000402906",
+      "name": "Eggo Buttermilk Waffles",
+      "brand": "Eggo",
+      "company": "Kellanova",
+      "companyId_hint": "kellanova",
+      "size": "12.3 oz (10 waffles)",
+      "ingredients_verbatim": "Enriched flour (wheat flour, niacin, reduced iron, vitamin B1 [thiamin mononitrate], vitamin B2 [riboflavin], folic acid), water, vegetable oil (soybean, palm, canola and/or cottonseed), buttermilk, leavening (baking soda, sodium aluminum phosphate, monocalcium phosphate), sugar, contains 2% or less of salt, eggs, soy lecithin. Vitamins and Minerals: Calcium carbonate, iron, vitamin A palmitate, vitamin B6 (pyridoxine hydrochloride), vitamin B12.",
+      "off_verified": true,
+      "off_product_name": "Buttermilk Waffles",
+      "off_url": "https://world.openfoodfacts.org/product/038000402906"
+    },
+    {
+      "barcode": "038000403200",
+      "name": "Eggo Blueberry Waffles",
+      "brand": "Eggo",
+      "company": "Kellanova",
+      "companyId_hint": "kellanova",
+      "size": "12.3 oz (10 waffles)",
+      "ingredients_verbatim": "Enriched flour (wheat flour, niacin, reduced iron, vitamin B1 [thiamin mononitrate], vitamin B2 [riboflavin], folic acid), water, vegetable oil (soybean and palm, canola and/or cottonseed), sugar, dextrose, eggs, 2% leavening (baking soda, sodium aluminum phosphate, monocalcium phosphate), wheat flour, modified corn starch, salt, maltodextrin, natural flavors, blueberries, blueberry juice concentrate, black carrot juice concentrate, whey, soy lecithin. Calcium carbonate, reduced iron, vitamin A palmitate, vitamin B6 (pyridoxine hydrochloride), vitamin B12.",
+      "off_verified": true,
+      "off_product_name": "Blueberry Waffles",
+      "off_url": "https://world.openfoodfacts.org/product/038000403200"
+    },
+    {
+      "barcode": "038000403705",
+      "name": "Eggo Nutri-Grain Whole Wheat Waffles",
+      "brand": "Eggo",
+      "company": "Kellanova",
+      "companyId_hint": "kellanova",
+      "size": "12.3 oz (10 waffles)",
+      "ingredients_verbatim": "Water, enriched flour (wheat flour, niacin, reduced iron, vitamin B1 [thiamin mononitrate], vitamin B2 [riboflavin], folic acid), whole wheat flour, vegetable oil (soybean, palm and/or canola), wheat bran, sugar, eggs, contains 2% or less of leavening (baking soda, sodium aluminum phosphate, monocalcium phosphate), salt, malt flavor, whey, soy lecithin. Vitamins and minerals: calcium carbonate, vitamin A palmitate, reduced iron, vitamin B6 (pyridoxine hydrochloride), vitamin B12.",
+      "off_verified": true,
+      "off_product_name": "Whole grain waffles, whole grain",
+      "off_url": "https://world.openfoodfacts.org/product/038000403705"
+    },
+    {
+      "barcode": "0018627534198",
+      "name": "Kashi 7 Grain Waffles",
+      "brand": "Kashi",
+      "company": "Kellanova",
+      "companyId_hint": "kellanova",
+      "size": "10.1 oz (8 waffles)",
+      "ingredients_verbatim": "Water, whole wheat flour, Kashi Seven Whole Grain flour (whole: oats, hard red wheat, rye, brown rice, triticale, barley, buckwheat), oat fiber, cracked grain flour (rye, wheat bran, oats, hard red wheat, barley, millet), expeller pressed canola oil, dried cane syrup, ground flax seed, leavening (baking soda, sodium acid pyrophosphate, monocalcium phosphate), soy lecithin, molasses, natural flavors, sea salt, xanthan gum.",
+      "off_verified": true,
+      "off_product_name": "Seven Grain Waffles",
+      "off_url": "https://world.openfoodfacts.org/product/0018627534198"
+    },
+    {
+      "barcode": "705599012211",
+      "name": "Kodiak Power Waffles Buttermilk & Vanilla",
+      "brand": "Kodiak",
+      "company": "Kodiak Cakes",
+      "companyId_hint": "kodiak-cakes",
+      "size": "13.4 oz (10 waffles)",
+      "ingredients_verbatim": "100% whole grain wheat flour, water, 100% whole grain oat flour, sunflower oil, egg whites, sugar, wheat protein isolate, whey protein concentrate, whey protein isolate, natural vanilla flavor, sunflower lecithin, buttermilk, baking powder (monocalcium phosphate, baking soda), and sea salt.",
+      "off_verified": true,
+      "off_product_name": "Protein-Packed Power Waffles Buttermilk & Vanilla",
+      "off_url": "https://world.openfoodfacts.org/product/705599012211"
+    },
+    {
+      "barcode": "705599012150",
+      "name": "Kodiak Power Waffles Blueberry",
+      "brand": "Kodiak",
+      "company": "Kodiak Cakes",
+      "companyId_hint": "kodiak-cakes",
+      "size": "10.72 oz (8 waffles)",
+      "ingredients_verbatim": "Water, 100% whole grain wheat flour, canola and/or sunflower and/or soybean oil, 100% whole grain oat flour, cane sugar, whole blueberries, whey protein concentrate, wheat protein isolate, sunflower lecithin, baking powder (monocalcium phosphate, baking soda), sea salt.",
+      "off_verified": true,
+      "off_product_name": "Protein-Packed Power Waffles Blueberry",
+      "off_url": "https://world.openfoodfacts.org/product/705599012150"
+    },
+    {
+      "barcode": "089947302033",
+      "name": "Van's 8 Whole Grains Multigrain Waffles",
+      "brand": "Van's",
+      "company": "Van's Foods",
+      "companyId_hint": "vans-foods",
+      "size": "8 oz (6 waffles)",
+      "ingredients_verbatim": "(that we are proud of!) water, van's 8 whole grains mix (whole wheat, oat, barley, brown rice, dark rye, quinoa, amaranth and millet flours), non-gmo expeller pressed canola oil, cane sugar, oat fiber, contains 2% or less: malt extract, baking powder (sodium acid pyrophosphate, baking soda, rice flour, monocalcium phosphate), vital wheat gluten, calcium carbonate, sea salt, cinnamon, organic honey, soy lecithin.",
+      "off_verified": true,
+      "off_product_name": "8 Whole Grains Multigrain Waffles",
+      "off_url": "https://world.openfoodfacts.org/product/089947302033"
+    },
+    {
+      "barcode": "058449590545",
+      "name": "Nature's Path Organic Gluten Free Homestyle Waffles",
+      "brand": "Nature's Path",
+      "company": "Nature's Path",
+      "companyId_hint": "natures-path",
+      "size": "7.5 oz (6 waffles)",
+      "ingredients_verbatim": "Water, brown rice flour*, potato starch*, corn flour*, soy oil*, tapioca starch*, cane sugar*, potato flour*, leavening agent (sodium acid pyrophosphate, sodium bicarbonate, and monocalcium phosphate), soy lecithin*, pear juice concentrate*, natural flavor, sea salt.",
+      "off_verified": true,
+      "off_product_name": "Homestyle Waffles",
+      "off_url": "https://world.openfoodfacts.org/product/058449590545"
+    },
+    {
+      "barcode": "058449590583",
+      "name": "Nature's Path Organic Buckwheat Wildberry Waffles",
+      "brand": "Nature's Path",
+      "company": "Nature's Path",
+      "companyId_hint": "natures-path",
+      "size": "7.4 oz (6 waffles)",
+      "ingredients_verbatim": "Water, brown rice flour*, potato starch*, yellow corn flour*, soy oil*, tapioca starch*, cane sugar*, buckwheat flour*, blueberry pieces*, leavening agent (sodium acid pyrophosphate, sodium bicarbonate, and monocalcium phosphate), soy lecithin*, pear juice concentrate*, natural flavor, sea salt.",
+      "off_verified": true,
+      "off_product_name": "Buckwheat waffles wildberries",
+      "off_url": "https://world.openfoodfacts.org/product/058449590583"
+    },
+    {
+      "barcode": "077900502095",
+      "name": "Jimmy Dean Sausage Egg & Cheese Biscuit Sandwiches",
+      "brand": "Jimmy Dean",
+      "company": "Tyson Foods",
+      "companyId_hint": "tyson-foods",
+      "size": "18 oz (4 sandwiches)",
+      "ingredients_verbatim": "BISCUIT: ENRICHED BLEACHED WHEAT FLOUR (CONTAINS BLEACHED WHEAT FLOUR, MALTED BARLEY FLOUR, NIACIN, REDUCED IRON, THIAMIN MONONITRATE, RIBOFLAVIN AND FOLIC ACID), WATER, PALM OIL, CONTAINS 2% OR LESS: HIGH FRUCTOSE CORN SYRUP, SOYBEAN OIL, SALT, LEAVENING (BAKING SODA, SODIUM ALUMINUM PHOSPHATE), NATURAL FLAVOR, CALCIUM PROPIONATE (TO PRESERVE FRESHNESS), METHYLCELLULOSE. COOKED SAUSAGE PATTY (PORK, WATER, CONTAINS 2% OR LESS OF: SALT, SPICES, DEXTROSE, SUGAR, PORK BROTH, MONOSODIUM GLUTAMATE, CARAMEL COLOR). GRILLED EGG PATTY (WHOLE EGGS, MODIFIED TAPIOCA STARCH, SALT, CITRIC ACID). PASTEURIZED PROCESS AMERICAN CHEESE (CHEDDAR CHEESE [MILK, CHEESE CULTURE, SALT, ENZYMES], WATER, WHEY PROTEIN CONCENTRATE, SODIUM CITRATE, SALT, SORBIC ACID [PRESERVATIVE]).",
+      "off_verified": true,
+      "off_product_name": "Biscuit Sausage, Egg & Cheese Sandwiches",
+      "off_url": "https://world.openfoodfacts.org/product/077900502095"
+    },
+    {
+      "barcode": "077900502101",
+      "name": "Jimmy Dean Sausage Egg & Cheese Croissant Sandwiches",
+      "brand": "Jimmy Dean",
+      "company": "Tyson Foods",
+      "companyId_hint": "tyson-foods",
+      "size": "19.2 oz (4 sandwiches)",
+      "ingredients_verbatim": "CROISSANT: ENRICHED BLEACHED WHEAT FLOUR (CONTAINS BLEACHED WHEAT FLOUR, MALTED BARLEY FLOUR, NIACIN, REDUCED IRON, THIAMIN MONONITRATE, RIBOFLAVIN AND FOLIC ACID), WATER, MARGARINE [PALM OIL, WATER, SOYBEAN OIL, CONTAINS 2% OR LESS OF: SUGAR, SOY LECITHIN, MONOGLYCERIDES, POTASSIUM SORBATE AND CITRIC ACID ADDED AS PRESERVATIVES, NATURAL FLAVOR, BETA CAROTENE (COLOR), VITAMIN A PALMITATE ADDED], HIGH FRUCTOSE CORN SYRUP, OAT FIBER, YEAST, CONTAINS 2% OR LESS: SOYBEAN OIL, SALT, LIQUID WHOLE EGGS, CALCIUM PROPIONATE, POTASSIUM SORBATE (TO PRESERVE FRESHNESS), METHYLCELLULOSE, MALTODEXTRIN, SUGAR, NATURAL AND ARTIFICIAL FLAVOR, MEDIUM CHAIN TRIGLYCERIDES, SOY LECITHIN. COOKED SAUSAGE PATTY: PORK, WATER, CONTAINS 2% OR LESS OF: SALT, SPICES, DEXTROSE, SUGAR, PORK BROTH, MONOSODIUM GLUTAMATE, CARAMEL COLOR. GRILLED EGG PATTY: WHOLE EGGS, MODIFIED TAPIOCA STARCH, SALT, CITRIC ACID. PASTEURIZED PROCESS AMERICAN CHEESE: CHEDDAR CHEESE (MILK, CHEESE CULTURE, SALT, ENZYMES), WATER, WHEY PROTEIN CONCENTRATE, SODIUM CITRATE, SALT, SORBIC ACID (PRESERVATIVE).",
+      "off_verified": true,
+      "off_product_name": "Croissant Sausage, Egg & Cheese Sandwiches",
+      "off_url": "https://world.openfoodfacts.org/product/077900502101"
+    },
+    {
+      "barcode": "077900502576",
+      "name": "Jimmy Dean Delights Turkey Sausage Egg White & Cheese Croissant Sandwiches",
+      "brand": "Jimmy Dean",
+      "company": "Tyson Foods",
+      "companyId_hint": "tyson-foods",
+      "size": "19.2 oz (4 sandwiches)",
+      "ingredients_verbatim": "CROISSANT: ENRICHED BLEACHED WHEAT FLOUR (CONTAINS BLEACHED WHEAT FLOUR, MALTED BARLEY FLOUR, NIACIN, REDUCED IRON, THIAMIN MONONITRATE, RIBOFLAVIN AND FOLIC ACID), WATER, MARGARINE [PALM OIL, WATER, SOYBEAN OIL, CONTAINS 2% OR LESS OF: SUGAR, SOY LECITHIN, MONOGLYCERIDES, POTASSIUM SORBATE AND CITRIC ACID ADDED AS PRESERVATIVES, NATURAL FLAVOR, BETA CAROTENE (COLOR), VITAMIN A PALMITATE ADDED], HIGH FRUCTOSE CORN SYRUP, OAT FIBER, YEAST, CONTAINS 2% OR LESS: SOYBEAN OIL, SALT, LIQUID WHOLE EGGS, CALCIUM PROPIONATE, POTASSIUM SORBATE (TO PRESERVE FRESHNESS), METHYLCELLULOSE, MALTODEXTRIN, SUGAR, NATURAL AND ARTIFICIAL FLAVOR, MEDIUM CHAIN TRIGLYCERIDES, SOY LECITHIN. FRIED EGG WHITE PATTY: EGG WHITES, MODIFIED TAPIOCA STARCH, CARRAGEENAN, NATURAL FLAVORS, SALT, SOY LECITHIN. FULLY COOKED TURKEY SAUSAGE PATTY, CITRIC ACID ADDED TO HELP PROTECT FLAVOR, CARMEL COLOR ADDED: MECHANICALLY SEPARATED TURKEY, TURKEY, WATER, SOY PROTEIN CONCENTRATE, CONTAINS 2% OR LESS: SALT, SPICES, DEXTROSE, SUGAR, SODIUM PHOSPHATES, POTASSIUM CHLORIDE, YEAST EXTRACT, FLAVOR, MALTODEXTRIN, CITRIC ACID, MODIFIED FOOD STARCH, CARAMEL COLOR. PASTEURIZED PROCESS AMERICAN CHEESE: MILK, WATER, CREAM, CONTAINS 2% OR LESS OF CHEESE CULTURE, CITRIC ACID, COLOR ADDED, ENZYMES, POTASSIUM CITRATE, SALT, SODIUM CITRATE, SORBIC ACID (PRESERVATIVE), SOY LECITHIN, TETRASODIUM PYROPHOSPHATE.",
+      "off_verified": true,
+      "off_product_name": "Croissant Egg White, Turkey Sausage & Cheese Sandwich",
+      "off_url": "https://world.openfoodfacts.org/product/077900502576"
+    },
+    {
+      "barcode": "077900650482",
+      "name": "Jimmy Dean Simple Scrambles Bacon",
+      "brand": "Jimmy Dean",
+      "company": "Tyson Foods",
+      "companyId_hint": "tyson-foods",
+      "size": "5.35 oz",
+      "ingredients_verbatim": "Liquid whole egg: whole eggs, water, salt, citric acid, pasteurized process colored cheddar cheese: cheddar cheese (milk, cheese culture, salt, enzymes), water, cream, sodium phosphates, salt, sorbic acid (preservative), vegetable color (annatto and paprika extract blend), powdered cellulose (to prevent caking), potassium sorbate and natamycin (preservatives), fully cooked bacon bits: bacon (cured with water, salt, sugar, sodium phosphates, sodium erythorbate, sodium nitrite), smoke flavoring.",
+      "off_verified": true,
+      "off_product_name": "Bacon",
+      "off_url": "https://world.openfoodfacts.org/product/077900650482"
+    },
+    {
+      "barcode": "028989100887",
+      "name": "MorningStar Farms Veggie Sausage Patties Original",
+      "brand": "MorningStar Farms",
+      "company": "Kellanova",
+      "companyId_hint": "kellanova",
+      "size": "8 oz (6 patties)",
+      "ingredients_verbatim": "Water, wheat gluten, soy protein concentrate, vegetable oil (corn, canola and/or sunflower), soy flour, soy protein isolate, maltodextrin, methylcellulose, yeast extract, salt, fruit juice for color natural flavors, spices, sugar, potato starch, konjac flour, onion powder, soy sauce water, soybeans, salt, wheat.",
+      "off_verified": true,
+      "off_product_name": "Original Sausage Patties",
+      "off_url": "https://world.openfoodfacts.org/product/028989100887"
+    },
+    {
+      "barcode": "028989971401",
+      "name": "MorningStar Farms Veggie Sausage Patties Original 8oz",
+      "brand": "MorningStar Farms",
+      "company": "Kellanova",
+      "companyId_hint": "kellanova",
+      "size": "8 oz (6 patties)",
+      "ingredients_verbatim": "Textured Vegetable Protein (Wheat Gluten, Soy Protein Concentrate, Soy Protein Isolate, Water For Hydration), Egg Whites, Corn Oil, Sodium Caseinate, Modified Tapioca Starch, Contains Two Percent Or Less Of Lactose, Soybean Oil, Hydrolyzed Vegetable Protein (Wheat Gluten, Corn Gluten, Soy Protein), Autolyzed Yeast Extract, Spices, Natural And Artificial Flavors, Sodium Phosphates (Tripolyphosphate, Tetrapyrophosphate, Hexametaphosphate, Monophosphate), Salt, Disodium Inosinate, Caramel Color, Cellulose Gum, Whey Powder, Modified Corn Starch, Maltodextrin, Potassium Chloride, Dextrose, Onion Powder, Disodium Guanylate, Vitamins And Minerals (Niacinamide, Iron [Ferrous Sulfate], Thiamin Mononitrate [Vitamin B1], Pyridoxine Hydrochloride [Vitamin B6], Riboflavin [Vitamin B2], Vitamin B12), Succinic Acid, Ascorbic Acid, Lactic Acid, Brewers Yeast, Torula Yeast, Soy Lecithin.",
+      "off_verified": true,
+      "off_product_name": "Veggie Sausage Patties",
+      "off_url": "https://world.openfoodfacts.org/product/028989971401"
+    },
+    {
+      "barcode": "028989971104",
+      "name": "MorningStar Farms Veggie Sausage Links",
+      "brand": "MorningStar Farms",
+      "company": "Kellanova",
+      "companyId_hint": "kellanova",
+      "size": "8 oz (5 pieces)",
+      "ingredients_verbatim": "Water, wheat gluten, corn oil, egg whites, soy protein concentrate, contains 2% or less of potato starch, salt, sodium caseinate, soy protein isolate, methylcellulose, sugar, canola oil, spices, hydrolyzed vegetable protein (soy, wheat, and corn), yeast extract, caramel color, guar gum, natural and artificial flavors, autolyzed yeast extract, onion powder, soy sauce powder (soy sauce [soybeans, salt, wheat], maltodextrin), disodium inosinate, disodium guanylate, soybean oil, sunflower oil, xanthan gum, sesame oil, vitamins and minerals: niacinamide, iron (ferrous sulfate), vitamin b1 (thiamin mononitrate), vitamin b6 (pyridoxine hydrochloride), vitamin b2 (riboflavin), vitamin b12.",
+      "off_verified": true,
+      "off_product_name": "Sausage Links",
+      "off_url": "https://world.openfoodfacts.org/product/028989971104"
+    },
+    {
+      "barcode": "025317006972",
+      "name": "Applegate Natural Chicken & Sage Breakfast Sausage",
+      "brand": "Applegate Naturals",
+      "company": "Hormel Foods",
+      "companyId_hint": "hormel-foods",
+      "size": "7 oz (10 links)",
+      "ingredients_verbatim": "Chicken**, water, contains less than 2% of the following: cane sugar, salt, spices, sage.",
+      "off_verified": true,
+      "off_product_name": "Chicken & Sage Breakfast Sausage",
+      "off_url": "https://world.openfoodfacts.org/product/025317006972"
+    },
+    {
+      "barcode": "042272003532",
+      "name": "Amy's Gluten Free Cheddar Cheese Bean & Rice Burrito",
+      "brand": "Amy's",
+      "company": "Amy's Kitchen",
+      "companyId_hint": "amys-kitchen",
+      "size": "5.5 oz",
+      "ingredients_verbatim": "Organic pinto beans, filtered water, organic brown rice, organic garbanzo bean flour, organic tomato puree, cheddar and monterey jack cheeses (pasteurized milk, culture, salt, enzymes [without animal enzymes or rennet]), organic potato starch, organic tapioca starch, organic onions, expeller pressed high oleic safflower oil, expeller pressed high oleic sunflower oil, organic bell peppers, organic sorghum flour, organic sweet rice flour, sea salt, organic cane sugar, spices, organic garlic.",
+      "off_verified": true,
+      "off_product_name": "Burrito Cheddar Cheese",
+      "off_url": "https://world.openfoodfacts.org/product/042272003532"
+    },
+    {
+      "barcode": "042272000715",
+      "name": "Amy's Cheddar Cheese Burrito",
+      "brand": "Amy's",
+      "company": "Amy's Kitchen",
+      "companyId_hint": "amys-kitchen",
+      "size": "6.0 oz",
+      "ingredients_verbatim": "Organic pinto beans, organic whole wheat, organic wheat flour, filtered water, organic brown rice, organic tomato puree, cheddar and monterey jack cheeses (pasteurized milk, culture, salt, enzymes, expeller pressed high oleic safflower oil, expeller pressed high oleic sunflower oil, organic onions, organic bell peppers, sea salt, organic sweet rice flour, spices, organic wheat gluten, organic garlic.",
+      "off_verified": true,
+      "off_product_name": "Burrito Cheddar Cheese",
+      "off_url": "https://world.openfoodfacts.org/product/042272000715"
+    },
+    {
+      "barcode": "080618415021",
+      "name": "Good Food Made Simple Southwestern Veggie Egg White Breakfast Burrito",
+      "brand": "Good Food Made Simple",
+      "company": "Good Food Made Simple",
+      "companyId_hint": "good-food-made-simple",
+      "size": "5 oz",
+      "ingredients_verbatim": "Flour tortilla (wheat flour, water, whole wheat flour, palm oil, baking powder, cane sugar, salt, guar gum, non-gmo corn starch), cage-free* egg whites (egg whites, whole milk, non-gmo corn starch, sea salt, pepper), organic corn, organic white cheddar cheese sauce (water, organic corn starch, salt, organic cane sugar, organic natural cheddar cheese flavor, and 2% or less organic canola oil), white cheddar cheese (cultured pasteurized milk, salt, enzymes), organic black beans, low moisture part skim mozzarella cheese (pasteurized part skim milk, cultures, salt, enzymes), organic red peppers, organic green peppers, organic onions, organic jalapeno peppers, chili powder (chili pepper, spices, salt, garlic powder), organic corn starch.",
+      "off_verified": true,
+      "off_product_name": "Southwestern veggie cage-free egg whites, sweet corn, cheddar & mozzarella cheeses, black beans, peppers, onions & jalapenos breakfast burrito",
+      "off_url": "https://world.openfoodfacts.org/product/080618415021"
+    },
+    {
+      "barcode": "075900002201",
+      "name": "Bob Evans Original Pork Sausage Links",
+      "brand": "Bob Evans",
+      "company": "Tyson Foods",
+      "companyId_hint": "tyson-foods",
+      "size": "12 oz (14 links)",
+      "ingredients_verbatim": "Pork, water, seasoning (salt, contains 2% or less of each of the following: dextrose, spices, flavoring, monosodium glutamate, maltodextrin, natural flavor), potassium lactate, formed in collagen casing.",
+      "off_verified": true,
+      "off_product_name": "Sausage sausage links",
+      "off_url": "https://world.openfoodfacts.org/product/075900002201"
+    },
+    {
+      "barcode": "075900000740",
+      "name": "Bob Evans Original Pork Sausage Links 16oz",
+      "brand": "Bob Evans",
+      "company": "Tyson Foods",
+      "companyId_hint": "tyson-foods",
+      "size": "16 oz",
+      "ingredients_verbatim": "Pork, water, seasoning (salt, contains 2% or less of each of the following: dextrose, spices, flavoring, monosodium glutamate, maltodextrin, natural flavor), potassium lactate. formed in a collagen casing.",
+      "off_verified": true,
+      "off_product_name": "Bob evans, pork sausage links, original",
+      "off_url": "https://world.openfoodfacts.org/product/075900000740"
+    }
+  ],
+  "could_not_verify": [
+    {
+      "name": "Cascadian Farm Organic Waffles",
+      "barcode_attempted": "021908476230",
+      "reason": "Cascadian Farm no longer lists waffles in their product catalog; brand appears to have discontinued waffle line"
+    },
+    {
+      "name": "Amy's Ranchero Breakfast Burrito",
+      "barcode_attempted": "042272000000",
+      "reason": "OFF search returned 0 results for Amy's Ranchero Breakfast Burrito; no verified barcode found"
+    },
+    {
+      "name": "Special K Flatbread Breakfast Sandwiches Egg & Cheese",
+      "barcode_attempted": "038000102301",
+      "reason": "Barcode 038000102301 matched Frosted Mini Wheats cereal on OFF, not a flatbread sandwich; correct barcode could not be confirmed"
+    },
+    {
+      "name": "Birch Benders Paleo Waffles",
+      "barcode_attempted": "",
+      "reason": "No barcode found via search; product may be discontinued or rebranded"
+    },
+    {
+      "name": "Feel Good Foods Gluten Free Waffles",
+      "barcode_attempted": "",
+      "reason": "No barcode found via search; limited retail presence"
+    },
+    {
+      "name": "Kodiak Cakes Blueberry Chia Energy Waffles",
+      "barcode_attempted": "705599012709",
+      "reason": "Barcode 705599012709 returned Dark Chocolate Power Waffles on OFF, not blueberry chia; verified blueberry product uses separate SKU 705599012150"
+    },
+    {
+      "name": "Bob Evans Scrambled Eggs & Sausage Bowl",
+      "barcode_attempted": "",
+      "reason": "No verified barcode found; Bob Evans frozen breakfast bowls appear to be foodservice / institutional format; retail SKU not located in OFF database"
+    }
+  ]
+}

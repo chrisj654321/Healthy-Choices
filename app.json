@@ -1,22 +1,18 @@
 {
   "expo": {
-    "name": "Healthy Choices",
+    "name": "Food Exposé: Barcode Scanner",
     "slug": "healthychoices",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "privacy": "public",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#1D9E75"
-    },
     "ios": {
-      "supportsTablet": false,
+      "supportsTablet": true,
       "bundleIdentifier": "com.jamesadventure.healthychoices",
+      "usesAppleSignIn": true,
       "infoPlist": {
-        "NSCameraUsageDescription": "Healthy Choices uses your camera to scan product barcodes."
+        "NSCameraUsageDescription": "Food Exposé uses your camera to scan product barcodes.",
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
@@ -33,21 +29,59 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-dev-client",
       [
         "expo-camera",
         {
-          "cameraPermission": "Healthy Choices uses your camera to scan product barcodes."
+          "cameraPermission": "Food Exposé uses your camera to scan product barcodes.",
+          "microphonePermission": false
         }
       ],
       "expo-secure-store",
+      "expo-font",
+      "./plugins/withFmtFix",
+      "expo-status-bar",
+      "expo-web-browser",
       [
-        "react-native-purchases",
+        "expo-notifications",
         {
-          "androidApiKey": "REPLACE_WITH_ANDROID_RC_KEY"
+          "icon": "./assets/icon.png",
+          "color": "#1D9E75"
         }
-      ]
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash.png",
+          "resizeMode": "cover",
+          "backgroundColor": "#1D9E75"
+        }
+      ],
+      "expo-build-properties",
+      "expo-sqlite",
+      "expo-asset",
+      "expo-image",
+      [
+        "@sentry/react-native/expo",
+        {
+          "organization": "shelfexpose",
+          "project": "react-native",
+          "url": "https://sentry.io/"
+        }
+      ],
+      "expo-sharing"
     ],
-    "scheme": "healthychoices"
+    "scheme": "healthychoices",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/158b3aec-7944-42f9-8427-c86ecc45176a"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "158b3aec-7944-42f9-8427-c86ecc45176a"
+      }
+    },
+    "owner": "chrisj654321"
   }
 }

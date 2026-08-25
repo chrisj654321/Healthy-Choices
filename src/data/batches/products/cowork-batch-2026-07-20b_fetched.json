@@ -1,0 +1,308 @@
+{
+ "generated": "2026-07-20T10:09:22",
+ "total": 15,
+ "resolved": 11,
+ "missed": 4,
+ "source_health": {
+  "off-search": {
+   "ok": 3,
+   "miss": 7,
+   "err": 0,
+   "throttled": 23
+  },
+  "usda-fdc": {
+   "ok": 8,
+   "miss": 4,
+   "err": 0,
+   "throttled": 0
+  }
+ },
+ "products": {
+  "pete-gerry-s-classic-free-range-large-brown-eggs": {
+   "input": {
+    "barcode": "",
+    "name": "Pete & Gerry's Classic Free Range Large Brown Eggs",
+    "brand": "Pete & Gerry's"
+   },
+   "name": "Free Range Brown Grade A Large Eggs",
+   "brand": "MEMBER'S MARK",
+   "serving_size": "50.0 g",
+   "calories": 140,
+   "ingredients_verbatim": "FREE RANGE LARGE BROWN EGGS.",
+   "nutrition": {
+    "fat": 10.0,
+    "saturatedFat": 3.0,
+    "sodium": 140,
+    "carbs": 0.0,
+    "sugars": 0.0,
+    "protein": 12.0,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "eggland-s-best-cage-free-large-white-eggs": {
+   "input": {
+    "barcode": "",
+    "name": "Eggland's Best Cage Free Large White Eggs",
+    "brand": "Eggland's Best"
+   },
+   "name": "Cage Free Grade A Large White Eggs",
+   "brand": "HEINEN'S",
+   "serving_size": "50.0 g",
+   "calories": 140,
+   "ingredients_verbatim": "EGGS.",
+   "nutrition": {
+    "fat": 10.0,
+    "saturatedFat": 3.0,
+    "sodium": 140,
+    "carbs": 0.0,
+    "sugars": 0.0,
+    "protein": 12.0,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "eggland-s-best-omega-3-large-white-eggs": {
+   "input": {
+    "barcode": "",
+    "name": "Eggland's Best Omega-3 Large White Eggs",
+    "brand": "Eggland's Best"
+   },
+   "name": "Large Omega-3 Brown Grade A Eggs",
+   "brand": "365 EVERYDAY VALUE",
+   "serving_size": "50.0 g",
+   "calories": 140,
+   "ingredients_verbatim": "ORGANIC EGGS.",
+   "nutrition": {
+    "fat": 10.0,
+    "saturatedFat": 3.0,
+    "sodium": 142,
+    "carbs": 0.0,
+    "sugars": 0.0,
+    "protein": 12.0,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "simple-truth-organic-cage-free-large-brown-eggs": {
+   "input": {
+    "barcode": "",
+    "name": "Simple Truth Organic Cage Free Large Brown Eggs",
+    "brand": "Simple Truth Organic"
+   },
+   "name": "Cage Free Large Brown Eggs",
+   "brand": "Simple Truth Organic",
+   "serving_size": "50g",
+   "calories": 138,
+   "ingredients_verbatim": "EGGS",
+   "nutrition": {
+    "fat": 10,
+    "saturatedFat": 3,
+    "sodium": 0.0,
+    "carbs": 0,
+    "sugars": null,
+    "protein": 12,
+    "fiber": null
+   },
+   "image_url": null,
+   "matched_off_code": "0011110859747",
+   "source": "off-search"
+  },
+  "simple-truth-natural-cage-free-large-brown-eggs": {
+   "input": {
+    "barcode": "",
+    "name": "Simple Truth Natural Cage Free Large Brown Eggs",
+    "brand": "Simple Truth"
+   },
+   "name": "Simple Truth, Natural Ground Turkey",
+   "brand": "SIMPLE TRUTH",
+   "serving_size": "112.0 g",
+   "calories": 143,
+   "ingredients_verbatim": "GROUND TURKEY, NATURAL ROSEMARY FLAVOR",
+   "nutrition": {
+    "fat": 7.14,
+    "saturatedFat": 1.79,
+    "sodium": 67.0,
+    "carbs": 0.0,
+    "sugars": 0.0,
+    "protein": 18.8,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "kroger-grade-a-large-white-eggs": {
+   "input": {
+    "barcode": "",
+    "name": "Kroger Grade A Large White Eggs",
+    "brand": "Kroger"
+   },
+   "name": "Grade A Large White Eggs",
+   "brand": "FOOD LION",
+   "serving_size": "50.0 g",
+   "calories": 140,
+   "ingredients_verbatim": "EGGS.",
+   "nutrition": {
+    "fat": 10.0,
+    "saturatedFat": 3.0,
+    "sodium": null,
+    "carbs": 0.0,
+    "sugars": 0.0,
+    "protein": 12.0,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "kroger-cage-free-large-brown-eggs": {
+   "input": {
+    "barcode": "",
+    "name": "Kroger Cage Free Large Brown Eggs",
+    "brand": "Kroger"
+   },
+   "name": "Grade A Large Cage Free Brown Eggs",
+   "brand": "MEMBER'S MARK",
+   "serving_size": "50.0 g",
+   "calories": 140,
+   "ingredients_verbatim": "CAGE FREE LARGE BROWN EGGS.",
+   "nutrition": {
+    "fat": 10.0,
+    "saturatedFat": 3.0,
+    "sodium": 140,
+    "carbs": 0.0,
+    "sugars": 0.0,
+    "protein": 12.0,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "great-value-grade-a-large-white-eggs": {
+   "input": {
+    "barcode": "",
+    "name": "Great Value Grade A Large White Eggs",
+    "brand": "Great Value"
+   },
+   "name": "Large White Eggs",
+   "brand": "Great Value",
+   "serving_size": "1 egg (44 g)",
+   "calories": 60,
+   "ingredients_verbatim": "Eggs",
+   "nutrition": {
+    "fat": 4,
+    "saturatedFat": 1.5,
+    "sodium": 0.07,
+    "carbs": 0,
+    "sugars": null,
+    "protein": 6,
+    "fiber": null
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/007/874/214/8397/front_en.10.400.jpg",
+   "matched_off_code": "0078742148397",
+   "source": "off-search"
+  },
+  "just-egg-plant-based-egg": {
+   "input": {
+    "barcode": "",
+    "name": "JUST Egg Plant Based Egg",
+    "brand": "JUST Egg"
+   },
+   "name": "Just Egg Plant-Based Egg, 16 Oz",
+   "brand": "JUST EGG",
+   "serving_size": "46.0 GRM",
+   "calories": 152,
+   "ingredients_verbatim": "WATER, MUNG BEAN PROTEIN, EXPELLER-PRESSED CANOLA OIL, CONTAINS LESS THAN 2% OF DEHYDRATED ONION, GELLAN GUM, CARROT EXTRACTIVES (COLOR), TURMERIC EXTRACTIVES (COLOR), POTASSIUM CITRATE, SALT, SUGAR, TAPIOCA SYRUP SOLIDS, TETRASODIUM PYROPHOSPHATE, TRANSGLUTAMINASE, NISIN (PRESERVATIVE)",
+   "nutrition": {
+    "fat": 10.9,
+    "saturatedFat": 0.0,
+    "sodium": 391,
+    "carbs": 2.17,
+    "sugars": 0.0,
+    "protein": 10.9,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "justin-s-honey-almond-butter": {
+   "input": {
+    "barcode": "",
+    "name": "Justin's Honey Almond Butter",
+    "brand": "Justin's"
+   },
+   "name": "Honey Almond Butter, Honey",
+   "brand": "JUSTIN'S",
+   "serving_size": "32.0 GRM",
+   "calories": 594,
+   "ingredients_verbatim": "DRY ROASTED ALMONDS, HONEY POWDER (SUGAR, HONEY), PALM OIL, SEA SALT.",
+   "nutrition": {
+    "fat": 50.0,
+    "saturatedFat": 9.38,
+    "sodium": 203,
+    "carbs": 25.0,
+    "sugars": 12.5,
+    "protein": 18.8,
+    "fiber": 9.4
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "justin-s-maple-almond-butter": {
+   "input": {
+    "barcode": "",
+    "name": "Justin's Maple Almond Butter",
+    "brand": "Justin's"
+   },
+   "name": "Maple Almond Butter",
+   "brand": "Justin's",
+   "serving_size": "1 serving (32 g)",
+   "calories": 210,
+   "ingredients_verbatim": "Dry roasted almonds, maple sugar, palm oil, sea salt.",
+   "nutrition": {
+    "fat": 17,
+    "saturatedFat": 3,
+    "sodium": 0.09,
+    "carbs": 8,
+    "sugars": 5,
+    "protein": 5,
+    "fiber": 2
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/089/445/500/0322/front_en.19.400.jpg",
+   "matched_off_code": "0894455000322",
+   "source": "off-search"
+  }
+ },
+ "misses": [
+  {
+   "barcode": "",
+   "name": "Davidson's Safest Choice Pasteurized Large Eggs",
+   "brand": "Davidson's Safest Choice",
+   "reason": "unresolved",
+   "partial": null
+  },
+  {
+   "barcode": "",
+   "name": "Eggland's Best Classic Jumbo White Eggs",
+   "brand": "Eggland's Best",
+   "reason": "unresolved",
+   "partial": null
+  },
+  {
+   "barcode": "",
+   "name": "Great Value Cage Free Large Brown Eggs",
+   "brand": "Great Value",
+   "reason": "unresolved",
+   "partial": null
+  },
+  {
+   "barcode": "",
+   "name": "Good & Gather Grade A Large Eggs",
+   "brand": "Good & Gather",
+   "reason": "unresolved",
+   "partial": null
+  }
+ ]
+}

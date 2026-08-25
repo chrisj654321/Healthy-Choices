@@ -1,0 +1,146 @@
+{
+  "858660005183": {
+    "image_url": "https://wildwayoflife.com/cdn/shop/files/5_dcc9c6ac-2e5a-4d3a-af41-07c4ca99bc81.png?v=1713295495&width=3000",
+    "source": "retailer",
+    "matched_name": "Wildway Coconut Cashew Grain Free Granola, 8 oz",
+    "review": "pass",
+    "reason": "Current US/English front package from the manufacturer's exact Coconut Cashew 8 oz product page replaces the French-locale Open Food Facts image.",
+    "page_url": "https://wildwayoflife.com/products/wildway-grain-free-granola-coconut-cashew"
+  },
+  "073472004005": {
+    "image_url": "https://icf.listex.info/300x200/0f5b2a6c-4f59-f3c7-4d88-e008f2a26087.jpg",
+    "source": "retailer",
+    "matched_name": "Food for Life Ezekiel 4:9 Sprouted Original Waffles",
+    "review": "pass",
+    "reason": "Exact Original flavor image from a page keyed to UPC 073472004005; no related waffle flavor substituted.",
+    "page_url": "https://listex.online/product/73472004005-us-food-for-life-ezekiel-49-sprouted-original-waffles"
+  },
+  "073472004029": {
+    "image_url": "https://icf.listex.info/300x200/05ac162a-3bbf-4024-4b97-1a1781f035e4.jpg",
+    "source": "retailer",
+    "matched_name": "Food for Life Ezekiel 4:9 Sprouted Golden Flax Waffles",
+    "review": "pass",
+    "reason": "Exact Golden Flax flavor image from a page keyed to UPC 073472004029; no related waffle flavor substituted.",
+    "page_url": "https://listex.online/product/73472004029-us-food-for-life-ezekiel-49-sprouted-golden-flax-waffles-6-ct"
+  },
+  "073472004036": {
+    "image_url": "https://vendingbusinesssolutions.com/cdn/shop/products/073472004036_C1N1.jpg?v=1607936659",
+    "source": "retailer",
+    "matched_name": "Food for Life Ezekiel 4:9 Sprouted Apple Nut Waffles, 10.6 oz",
+    "review": "pass",
+    "reason": "Front package visibly says Apple Nut and the retailer page is keyed to UPC 073472004036 and 10.6 oz.",
+    "page_url": "https://vendingbusinesssolutions.com/products/073472004036-food-for-life-ezekiel-4-9-sprouted-apple-nut-waffles-10-60-oz"
+  },
+  "073472001189": {
+    "image_url": "https://www.kroger.com/product/images/xlarge/front/0007347200118?banner=harristeeter",
+    "source": "retailer",
+    "matched_name": "Food for Life Ezekiel 4:9 Flax Sprouted Whole Grain English Muffins, 16 oz",
+    "review": "pass",
+    "reason": "Front package visibly identifies the Flax English Muffins; retailer product identifier corresponds to UPC 073472001189.",
+    "page_url": "https://www.harristeeter.com/p/food-for-life-ezekiel-frozen-english-muffins/0007347200118"
+  },
+  "814558021239": {
+    "image_url": "https://foragerproject.com/cdn/shop/files/Category_Creamers-Plain_d77bde87-7933-4984-9f08-5ce6e45f3c6e.png?v=1751958587&width=200",
+    "source": "retailer",
+    "matched_name": "Forager Project Plain Unsweetened Dairy-Free Creamer, 20 oz",
+    "review": "pass",
+    "reason": "Manufacturer product thumbnail is explicitly labeled Plain Unsweetened Dairy-Free Creamer and the page specifies the 20 oz size.",
+    "page_url": "https://foragerproject.com/products/organic-dairy-free-plain-unsweetened-dairy-free-creamer"
+  },
+  "850030464224": {
+    "image_url": "https://malkorganics.com/cdn/shop/files/Creamer_Coconut_UnsweetenedFront.png?v=1766513520&width=1400",
+    "source": "retailer",
+    "matched_name": "MALK Organic Unsweetened Coconut Milk Creamer",
+    "review": "pass",
+    "reason": "Manufacturer front-pack image explicitly identifies the coconut and Unsweetened variant; vanilla and sweet-cream images were excluded.",
+    "page_url": "https://malkorganics.com/products/malk-unsweetened-coconut-creamer"
+  },
+  "093966510522": {
+    "image_url": "https://images.cdn.shop.foodland.com/detail/9396651052.jpg",
+    "source": "retailer",
+    "matched_name": "Organic Valley Organic Half & Half, 16 oz Pint",
+    "review": "pass",
+    "reason": "Foodland page and image are tied to exact UPC 093966510522 and the one-pint Half & Half package.",
+    "page_url": "https://shop.foodland.com/product/organic-valley-half-%26-half-093966510522"
+  },
+  "742365216701": {
+    "image_url": "https://images.cdn.shop.foodland.com/detail/74236521670.jpg",
+    "source": "retailer",
+    "matched_name": "Horizon Organic Half & Half, 16 oz Pint",
+    "review": "pass",
+    "reason": "Foodland page and image are tied to exact UPC 742365216701 and the one-pint Half & Half package.",
+    "page_url": "https://shop.foodland.com/product/horizon-organic-half-%26-half-id-742365216701"
+  },
+  "616112031537": {
+    "image_url": "https://www.instacart.com/assets/domains/product-image/file/large_0465cb50-257b-412c-87bd-7e652802a11f.jpg",
+    "source": "retailer",
+    "matched_name": "Wholly Avocado 100% Chunky Avocado Minis, 4 x 2 oz",
+    "review": "pass",
+    "reason": "Exact Cub/Instacart listing is keyed to UPC 616112031537 and shows the four-pack pure-avocado Minis, not a guacamole flavor.",
+    "page_url": "https://www.cub.com/store/cub/products/2756804-wholly-100-chunky-avocado-minis-2-oz"
+  },
+  "616112866719": {
+    "image_url": "https://www.kroger.com/product/images/large/front/0061611286671",
+    "source": "retailer",
+    "matched_name": "Wholly Guacamole Chunky Medium Guacamole, 7.5 oz",
+    "review": "pass",
+    "reason": "Front image visibly identifies the purple-label Chunky Medium 7.5 oz tub; the Kroger listing corresponds to UPC 616112866719.",
+    "page_url": "https://www.kroger.com/p/wholly-guacamole-chunky-medium-guacamole/0061611286671"
+  },
+  "616112353561": {
+    "image_url": "https://storage.googleapis.com/images-prs-prd-c7e7986.prs.prd.v8.commerce.mi9cloud.com/product-images/zoom/00616112353561_1",
+    "source": "retailer",
+    "matched_name": "Wholly Guacamole Extra Chunky Restaurant Style Medium, 7.5 oz",
+    "review": "pass",
+    "reason": "Front image visibly identifies Extra Chunky Restaurant Style, medium spice, and 7.5 oz; retailer identifier contains exact UPC 616112353561.",
+    "page_url": "https://www.fairwaymarket.com/product/wholly-guacamole-extra-chunky-restaurant-style-guacamole-75-oz-id-00616112353561"
+  },
+  "044115403042": {
+    "image_url": "https://d2lnr5mha7bycj.cloudfront.net/product-image/file/large_40111258-d478-45ae-b36e-9c4ea0df6e14.jpg",
+    "source": "retailer",
+    "matched_name": "Cedar's Organic Roasted Red Pepper Hommus, 10 oz",
+    "review": "pass",
+    "reason": "Image shows the exact Organic Roasted Red Pepper 10 oz tub; retailer listing identifies GTIN 00044115403042.",
+    "page_url": "https://shop.sprouts.com/store/sprouts/products/18301852-cedar-s-foods-topped-organic-roasted-red-pepper-hommus-10-0-oz"
+  },
+  "044115008216": {
+    "image_url": "https://images.cdn.shop.foodland.com/detail/4411500821.jpg",
+    "source": "retailer",
+    "matched_name": "Cedar's Garlic Hommus, 8 oz",
+    "review": "pass",
+    "reason": "Foodland image is tied to exact UPC 044115008216 and the Garlic 8 oz variant, not Original or organic Garlic.",
+    "page_url": "https://shop.foodland.com/sm/pickup/rsid/48/product/cedars-garlic-hummus-id-044115008216"
+  },
+  "042272002436": {
+    "image_url": "https://www.kroger.com/product/images/large/front/0004227200243",
+    "source": "retailer",
+    "matched_name": "Amy's Light in Sodium Brown Rice & Vegetables Bowl, 10 oz",
+    "review": "pass",
+    "reason": "Front package visibly says Light in Sodium Brown Rice & Vegetables and 10 oz; retailer identifier corresponds to UPC 042272002436.",
+    "page_url": "https://www.ralphs.com/p/amy-s-bowls-low-sodium-brown-rice-vegetables-bowl/0004227200243"
+  },
+  "857063002867": {
+    "image_url": "https://www.saffronroad.com/cdn/shop/files/10_SR_Optimization_MoroccanChicken_3D.jpg?v=1755048961",
+    "source": "retailer",
+    "matched_name": "Saffron Road Moroccan-Inspired Chicken & Potatoes, 10 oz",
+    "review": "pass",
+    "reason": "Manufacturer front-pack image visibly identifies the Moroccan-inspired Chicken & Potatoes 10 oz meal; no other Saffron Road entree substituted.",
+    "page_url": "https://www.saffronroad.com/products/chicken-and-potatoes"
+  },
+  "857063002898": {
+    "image_url": "https://www.saffronroad.com/cdn/shop/files/D14_SR_ChickenEnchiladasChipotle_3D_LR.jpg?v=1774307725",
+    "source": "retailer",
+    "matched_name": "Saffron Road Chicken & Cheese Enchiladas al Chipotle, 10 oz",
+    "review": "pass",
+    "reason": "Current manufacturer front-pack image explicitly identifies Chicken & Cheese Enchiladas al Chipotle; an obsolete Chicken Saag image associated with this UPC elsewhere was rejected.",
+    "page_url": "https://www.saffronroad.com/products/chicken-cheese-enchiladas-al-chipotle"
+  },
+  "850029953616": {
+    "image_url": "https://www.kroger.com/product/images/large/front/0085002995361",
+    "source": "retailer",
+    "matched_name": "Saffron Road Crossroads Hatch Chile Chicken Pesto, 9.5 oz",
+    "review": "pass",
+    "reason": "Front image visibly identifies Crossroads Hatch Chile Chicken Pesto and 9.5 oz; retailer identifier corresponds to UPC 850029953616.",
+    "page_url": "https://www.kroger.com/p/saffron-road-crossroads-hatch-chile-chicken-pesto-pasta/0085002995361"
+  }
+}

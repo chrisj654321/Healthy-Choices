@@ -1,97 +1,168 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
-  View, Text, StyleSheet, TouchableOpacity, ScrollView,
-  StatusBar, Animated, Dimensions,
+  View, Text, Image, StyleSheet, TouchableOpacity, ScrollView,
+  StatusBar, Animated, Dimensions, TextInput,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import * as WebBrowser from 'expo-web-browser';
+import Slider from '@react-native-community/slider';
 import { Colors } from '../constants/colors';
-import { Font } from '../constants/typography';
 import { DEFAULT_PREFS, saveUserPrefs, markOnboardingDone } from '../utils/storage';
+import { logAppEvent } from '../utils/appAnalytics';
+import { optInToNotifications } from '../utils/notifications';
+import { DEADLINE_BUCKETS, bucketToTargetDate, enableGoalReminders } from '../utils/goalReminders';
 import { PRIMARY_GOAL_OPTIONS } from '../data/preferences';
+import { SelectStep } from '../components/setupSteps';
+import SpecsMascot from '../components/SpecsMascot';
+import PaywallContent from '../components/PaywallContent';
+import OfferContent from '../components/OfferContent';
+import { PRODUCT_IMAGES, COMPANY_LOGOS } from '../data/onboardingAssets';
+import { COMPANY_DB } from '../data/companies';
+import { formatCurrency } from '../utils/scorer';
 
 const { width: SCREEN_W } = Dimensions.get('window');
+
+// Set right before onComplete() on the final "ready" step, cleared by
+// AppNavigator the first time it's read. Survives the Auth screen (which
+// sits between onboarding and the main tabs) because it's persisted storage,
+// not React state — lets us land the user straight on the Scan tab post-auth.
+const SCAN_AFTER_ONBOARDING_KEY = '@hc_scan_after_onboarding';
 
 // ─── Static data for value-building screens ───────────────────────────────────
 
 const BAD_PRODUCTS = [
-  { name: 'Cheerios',         brand: 'General Mills', tag: 'Ultra-processed',    score: 28, color: '#E05252', emoji: '🌾' },
-  { name: 'Doritos',          brand: 'PepsiCo',       tag: 'MSG + dyes',         score: 25, color: '#E05252', emoji: '🔺' },
-  { name: 'Wonder Bread',     brand: 'Bimbo',         tag: 'HFCS + refined',     score: 18, color: '#D93B3B', emoji: '🍞' },
-  { name: 'Pop-Tarts',        brand: 'Kellanova',     tag: 'Dyes + HFCS',        score: 20, color: '#D93B3B', emoji: '🍓' },
-  { name: 'Coca-Cola',        brand: 'Coca-Cola Co.', tag: '39g sugar / can',    score: 22, color: '#E05252', emoji: '🥤' },
-  { name: 'Lunchables',       brand: 'Kraft Heinz',   tag: 'Nitrites + sodium',  score: 24, color: '#E05252', emoji: '🧃' },
-  { name: 'Oreos',            brand: 'Mondelēz',      tag: 'HFCS + palm oil',    score: 22, color: '#E05252', emoji: '🍪' },
-  { name: 'Cheetos',          brand: 'PepsiCo',       tag: 'Yellow 6 + MSG',     score: 24, color: '#E05252', emoji: '🧀' },
-  { name: 'Mountain Dew',     brand: 'PepsiCo',       tag: 'Yellow 5 + BVO',     score: 21, color: '#D93B3B', emoji: '💚' },
-  { name: 'Kraft Mac & Cheese', brand: 'Kraft Heinz', tag: 'Yellow 5 & 6',       score: 26, color: '#E05252', emoji: '🧀' },
-  { name: 'Hot Pockets',      brand: 'Nestlé',        tag: 'TBHQ + nitrites',    score: 23, color: '#D93B3B', emoji: '🌮' },
-  { name: 'Eggo Waffles',     brand: 'Kellanova',     tag: 'TBHQ + dyes',        score: 27, color: '#E05252', emoji: '🧇' },
+  { name: 'Cheerios',         slug: 'cheerios',     brand: 'General Mills', tag: 'Ultra-processed',    score: 28, color: '#E05252', emoji: '🌾' },
+  { name: 'Doritos',          slug: 'doritos',      brand: 'PepsiCo',       tag: 'MSG + dyes',         score: 25, color: '#E05252', emoji: '🔺' },
+  { name: 'Wonder Bread',     slug: 'wonder-bread', brand: 'Bimbo',         tag: 'HFCS + refined',     score: 18, color: '#D93B3B', emoji: '🍞' },
+  { name: 'Pop-Tarts',        slug: 'pop-tarts',    brand: 'Kellanova',     tag: 'Dyes + HFCS',        score: 20, color: '#D93B3B', emoji: '🍓' },
+  { name: 'Coca-Cola',        slug: 'coca-cola',    brand: 'Coca-Cola Co.', tag: '39g sugar / can',    score: 22, color: '#E05252', emoji: '🥤' },
+  { name: 'Lunchables',       slug: 'lunchables',   brand: 'Kraft Heinz',   tag: 'Nitrites + sodium',  score: 24, color: '#E05252', emoji: '🧃' },
+  { name: 'Oreos',            slug: 'oreos',        brand: 'Mondelēz',      tag: 'HFCS + palm oil',    score: 22, color: '#E05252', emoji: '🍪' },
+  { name: 'Cheetos',          slug: 'cheetos',      brand: 'PepsiCo',       tag: 'Yellow 6 + MSG',     score: 24, color: '#E05252', emoji: '🧀' },
+  { name: 'Mountain Dew',     slug: 'mountain-dew', brand: 'PepsiCo',       tag: 'Yellow 5 + 46g sugar', score: 21, color: '#D93B3B', emoji: '💚' },
+  { name: 'Kraft Mac & Cheese', slug: 'kraft-mac',  brand: 'Kraft Heinz',   tag: 'Yellow 5 & 6',       score: 26, color: '#E05252', emoji: '🧀' },
+  { name: 'Hot Pockets',      slug: 'hot-pockets',  brand: 'Nestlé',        tag: 'TBHQ + nitrites',    score: 23, color: '#D93B3B', emoji: '🌮' },
+  { name: 'Eggo Waffles',     slug: 'eggo',         brand: 'Kellanova',     tag: 'TBHQ + dyes',        score: 27, color: '#E05252', emoji: '🧇' },
 ];
 
-const ALTERNATIVES = [
+// Pulled LIVE from the real companies.js record (COMPANY_DB.pepsico) rather
+// than a hand-maintained duplicate — a prior version of this const had drifted
+// out of sync with the real data (fabricated-looking $6.2M/58-42 split vs. the
+// real $3.9M/44-56). Never re-introduce a shadow copy here.
+const PEPSICO = COMPANY_DB.pepsico;
+
+// Onboarding-specific "incentive" stats — NOT stored in companies.js because
+// they're catalog computations, not lobbying/political facts. Verified
+// 2026-07-19 against assets/db/products.db (our own data) + USDA ERS. Recompute
+// via: `select name, nutrition_json from products where companyId='pepsico'`
+// (see src/data/research/pepsico_gmo_labeling_final.js for the GMO-labeling
+// lobbying figures these stats sit alongside).
+//   - Beverages (n=12 PepsiCo drinks in catalog): avg 28.5g sugar/serving,
+//     max 53g (Naked Juice Green Machine). Mountain Dew = 46g.
+//   - AHA added-sugar daily limit: 36g (men) / 25g (women) — heart.org.
+//   - GMO-crop ingredient scan: 43/67 PepsiCo catalog products contain
+//     corn/soy/canola-derived ingredients (text match on ingredients_json).
+//   - USDA ERS 2024: >90% of US corn, soybean, and canola acres are GE varieties.
+const PEPSICO_INCENTIVE_STATS = [
   {
-    bad: { name: 'Cheerios', brand: 'General Mills', score: 28, tag: 'Ultra-processed' },
-    good: [
-      { name: 'Rolled Oats',       brand: "Bob's Red Mill",  score: 92, tag: 'Whole grain, clean' },
-      { name: 'Heritage Flakes',   brand: "Nature's Path",   score: 84, tag: 'Organic flakes' },
-      { name: 'Granola',           brand: "Bob's Red Mill",  score: 80, tag: 'Organic, no additives' },
-    ],
+    value: '28g',
+    text: 'average sugar per serving across PepsiCo drinks in our catalog — one Mountain Dew (46g) alone exceeds a full day’s AHA added-sugar limit for an adult (25–36g).',
   },
   {
-    bad: { name: 'Doritos', brand: 'PepsiCo', score: 25, tag: 'MSG + artificial dyes' },
-    good: [
-      { name: 'Siete Chips',       brand: 'Siete Foods',     score: 81, tag: 'Grain-free, avocado oil' },
-      { name: 'Late July Tortilla', brand: 'Late July',      score: 78, tag: 'Organic, sunflower oil' },
-      { name: "Jackson's Chips",   brand: "Jackson's",       score: 76, tag: 'Sweet potato, clean' },
-    ],
+    value: '43 of 67',
+    text: 'PepsiCo products in our catalog contain corn, soy, or canola — crops that are 90%+ genetically engineered in the U.S. (USDA ERS, 2024).',
   },
 ];
 
-const COMPANY_SPOTLIGHT = {
-  name: 'PepsiCo, Inc.',
-  hq: 'Purchase, New York',
-  revenue: '$91.5B',
-  lobbyingSpend: '$6,200,000',
-  donationSplit: { republican: 58, democrat: 42 },
-  issue: 'Donated millions opposing mandatory GMO & added-sugar labeling laws.',
-  brands: ['Pepsi', 'Doritos', 'Cheetos', 'Gatorade', 'Quaker', 'Mountain Dew'],
-};
+// "Approximately 300" (founder-directed 2026-07-20, deliberately not a hard
+// "300+" claim). Basis: COMPANY_DB has 268 full profiles, but
+// BRAND_PARENT_MAP additionally resolves 22 more parent companies (brand
+// ownership known, no full lobbying/donation profile yet) — so the app
+// actually touches ~290 distinct companies today, not just 268. A prior
+// version of this label was hand-typed as "270+" against a real count of
+// 268 (a genuine never-fabricate miss, caught in review 2026-07-19); this
+// "approximately" framing is honest about both numbers without needing to
+// track the exact live count.
+const COMPANY_COUNT_LABEL = 'approximately 300';
+
+// Verified 2026-07-19 via WebSearch against primary/authoritative sources —
+// never-fabricate gate (plan Part B3). Each figure traces to the source
+// listed; do not edit a number without re-verifying it.
+const STATS_PLACEHOLDER = [
+  {
+    icon: 'fast-food-outline',
+    value: '53%',
+    text: "of adult calories in the U.S. come from ultra-processed food — 62% for kids.",
+    source: 'CDC / NHANES, Aug 2021–Aug 2023 (NCHS Data Brief No. 536, Aug 2025)',
+  },
+  {
+    icon: 'water-outline',
+    value: '~7g',
+    text: 'of microplastics found in the average human brain — about the weight of a plastic spoon.',
+    source: 'Nature Medicine, Feb 2025',
+  },
+  {
+    icon: 'flask-outline',
+    value: 'Banned in 4 countries',
+    text: 'Potassium bromate — a possible carcinogen — is barred from bread in the EU, UK, Canada, and China. Still legal in the U.S.',
+    source: 'IARC (WHO), Group 2B; FDA 21 CFR 137',
+  },
+  {
+    icon: 'nutrition-outline',
+    value: '94%',
+    text: "of Americans don't get enough fiber. Only 1 in 10 eat enough vegetables.",
+    source: 'USDA/HHS Dietary Guidelines 2020–2025; CDC MMWR, 2022',
+  },
+];
+
+const CHALLENGE_OPTIONS = [
+  { id: 'actually-healthy', label: 'Finding foods that are actually healthy, not just marketed that way' },
+  { id: 'ingredient-lists', label: 'Understanding long ingredient lists and unfamiliar additives' },
+  { id: 'compare-fast',     label: 'Comparing similar products fast, without reading every label' },
+  { id: 'balance',          label: 'Balancing price, taste, health, and convenience' },
+  { id: 'dietary-fit',      label: 'Finding meals that fit allergies, intolerances, or dietary needs' },
+  { id: 'avoid-upf',        label: 'Avoiding excess sugar, sodium, saturated fat, and ultra-processed foods' },
+  { id: 'claims-trust',     label: 'Knowing which nutrition claims to trust' },
+  { id: 'time-budget',      label: 'Planning affordable meals with limited time' },
+  { id: 'fresh-quality',    label: 'Finding quality, especially in fresh foods' },
+];
+
+// DEADLINE_BUCKETS is imported from utils/goalReminders.js — single source of
+// truth shared with the bucket -> targetDate math and the reminder copy bank.
 
 // ─── Steps ────────────────────────────────────────────────────────────────────
 
-const STEPS = ['hook', 'reveal', 'better', 'transparency', 'allergens', 'dietary', 'goal', 'ready'];
+const STEPS = ['welcome', 'reveal', 'stats', 'transparency', 'goal', 'challenge', 'commitment', 'paywall', 'ready'];
 
-const ALLERGEN_OPTIONS = [
-  { id: 'peanuts',   label: 'Peanuts',        icon: 'alert-circle-outline' },
-  { id: 'tree nuts', label: 'Tree Nuts',       icon: 'alert-circle-outline' },
-  { id: 'milk',      label: 'Dairy / Milk',    icon: 'alert-circle-outline' },
-  { id: 'eggs',      label: 'Eggs',            icon: 'alert-circle-outline' },
-  { id: 'wheat',     label: 'Wheat / Gluten',  icon: 'alert-circle-outline' },
-  { id: 'soy',       label: 'Soy',             icon: 'alert-circle-outline' },
-  { id: 'fish',      label: 'Fish',            icon: 'alert-circle-outline' },
-  { id: 'shellfish', label: 'Shellfish',        icon: 'alert-circle-outline' },
-];
+// ─── Small helpers ──────────────────────────────────────────────────────────────
 
-const DIETARY_OPTIONS = [
-  { id: 'vegan',        label: 'Vegan',          icon: 'leaf-outline' },
-  { id: 'vegetarian',   label: 'Vegetarian',     icon: 'flower-outline' },
-  { id: 'gluten-free',  label: 'Gluten-Free',    icon: 'ban-outline' },
-  { id: 'dairy-free',   label: 'Dairy-Free',     icon: 'water-outline' },
-  { id: 'keto',         label: 'Keto',           icon: 'fitness-outline' },
-  { id: 'paleo',        label: 'Paleo',          icon: 'nutrition-outline' },
-  { id: 'low-sugar',    label: 'Low Sugar',      icon: 'trending-down-outline' },
-  { id: 'organic-only', label: 'Organic Only',   icon: 'earth-outline' },
-];
+function commitmentLabel(v) {
+  if (v <= 2) return 'Just curious';
+  if (v <= 4) return 'Interested';
+  if (v <= 6) return 'Motivated';
+  if (v <= 8) return 'Serious';
+  if (v <= 9) return 'Committed';
+  return 'All in';
+}
+
+function mixColor(hex1, hex2, t) {
+  const c1 = [1, 3, 5].map((i) => parseInt(hex1.substr(i, 2), 16));
+  const c2 = [1, 3, 5].map((i) => parseInt(hex2.substr(i, 2), 16));
+  return '#' + c1
+    .map((c, i) => Math.round(c + (c2[i] - c) * t).toString(16).padStart(2, '0'))
+    .join('');
+}
 
 // ─── Main component ───────────────────────────────────────────────────────────
 
 export default function OnboardingScreen({ onComplete }) {
   const insets = useSafeAreaInsets();
-  const [step, setStep]   = useState(0);
-  const [altIdx, setAltIdx] = useState(0);
+  const [step, setStep] = useState(0);
   const [prefs, setPrefs] = useState({ ...DEFAULT_PREFS });
+  const [paywallShowOffer, setPaywallShowOffer] = useState(false);
   const scrollRef = useRef(null);
   const fadeAnim  = useRef(new Animated.Value(1)).current;
   const slideAnim = useRef(new Animated.Value(0)).current;
@@ -100,8 +171,16 @@ export default function OnboardingScreen({ onComplete }) {
   const isLast      = step === STEPS.length - 1;
   const progressPct = step / (STEPS.length - 1);
 
+  // Funnel analytics: log the very first step (mount) once. Every later
+  // step is logged from goToStep below, so this plus goToStep together
+  // cover the whole welcome -> ... -> ready flow.
+  useEffect(() => {
+    logAppEvent('onboarding_step', { step: STEPS[0] }).catch(() => {});
+  }, []);
+
   // Animate step transitions
   const goToStep = (next) => {
+    logAppEvent('onboarding_step', { step: STEPS[next] }).catch(() => {});
     Animated.parallel([
       Animated.timing(fadeAnim,  { toValue: 0, duration: 160, useNativeDriver: true }),
       Animated.timing(slideAnim, { toValue: -20, duration: 160, useNativeDriver: true }),
@@ -116,41 +195,91 @@ export default function OnboardingScreen({ onComplete }) {
     });
   };
 
-  const handleNext = async () => {
-    if (isLast) {
-      await saveUserPrefs(prefs);
-      await markOnboardingDone();
-      onComplete();
-      return;
+  const finishOnboarding = async (finalPrefs) => {
+    await saveUserPrefs(finalPrefs);
+    await markOnboardingDone();
+    // A goal deadline was set in the commitment step (which already ran the
+    // inline permission-priming flow) — schedule the actual reminder
+    // cadence now that prefs are final (Part B7/B8).
+    if (finalPrefs?.goalDeadline) {
+      enableGoalReminders(finalPrefs).catch((e) => {
+        console.warn('[Onboarding] enableGoalReminders failed:', e?.message ?? e);
+      });
     }
-    if (currentStep === 'better') {
-      // cycle through alternatives if tapping Next on the same step
-      if (altIdx < ALTERNATIVES.length - 1) {
-        setAltIdx((i) => i + 1);
-        return;
-      }
-      setAltIdx(0);
+    try {
+      await AsyncStorage.setItem(SCAN_AFTER_ONBOARDING_KEY, 'true');
+    } catch (e) {
+      console.warn('[Onboarding] failed to set scan-after-onboarding flag:', e?.message ?? e);
+    }
+    onComplete();
+  };
+
+  const handleNext = async () => {
+    // Continuing past a setup step counts as reviewing it (Skip does not).
+    const reviewKey = { goal: 'goalReviewed', challenge: 'challengeReviewed' }[currentStep];
+    const nextPrefs = reviewKey ? { ...prefs, [reviewKey]: true } : prefs;
+    if (reviewKey) setPrefs(nextPrefs);
+
+    if (isLast) {
+      await finishOnboarding(nextPrefs);
+      return;
     }
     goToStep(step + 1);
   };
 
   const handleSkip = () => goToStep(step + 1);
 
-  const toggleArray = (key, id) => {
-    setPrefs((p) => {
-      const cur = p[key] ?? [];
-      return { ...p, [key]: cur.includes(id) ? cur.filter((x) => x !== id) : [...cur, id] };
-    });
+  // ── Paywall step callbacks ──────────────────────────────────────────────────
+  // The "paywall" step renders full-screen (see early return below), so it
+  // drives its own step advancement instead of going through handleNext.
+  const handlePaywallPurchased = () => {
+    setPaywallShowOffer(false);
+    goToStep(step + 1); // -> ready
+  };
+  const handlePaywallDismissToOffer = () => setPaywallShowOffer(true);
+  const handleOfferPurchased = () => {
+    setPaywallShowOffer(false);
+    goToStep(step + 1); // -> ready
+  };
+  const handleOfferPayFullPrice = () => setPaywallShowOffer(false);
+  const handleOfferDismiss = () => {
+    setPaywallShowOffer(false);
+    goToStep(step + 1); // -> ready
   };
 
-  const showSkip = !isLast && !['hook', 'reveal', 'better', 'transparency', 'ready'].includes(currentStep);
+  // ── Commitment step handlers ────────────────────────────────────────────────
+  const handlePickDeadline = (bucket) => {
+    const targetDate = bucketToTargetDate(bucket.id);
+    setPrefs((p) => ({ ...p, goalDeadline: { bucket: bucket.id, targetDate } }));
+    // Deadline path runs the notification permission flow inline (Part B7) —
+    // fire-and-forget; everyone else gets primed later, inside the
+    // post-first-scan setup flow (Part B9). Scheduling the actual reminder
+    // cadence happens at onboarding completion via goalReminders.js (B8).
+    optInToNotifications().catch(() => {});
+  };
+  const handleClearDeadline = () => setPrefs((p) => ({ ...p, goalDeadline: null }));
+
+  // ── Paywall step: full-screen, bypasses the standard progress/footer chrome ──
+  if (currentStep === 'paywall') {
+    return paywallShowOffer ? (
+      <OfferContent
+        onPurchased={handleOfferPurchased}
+        onPayFullPrice={handleOfferPayFullPrice}
+        onDismiss={handleOfferDismiss}
+      />
+    ) : (
+      <PaywallContent
+        onPurchased={handlePaywallPurchased}
+        onDismiss={handlePaywallDismissToOffer}
+      />
+    );
+  }
+
+  const showSkip = !isLast && ['goal', 'challenge', 'commitment'].includes(currentStep);
 
   const nextLabel = () => {
-    if (currentStep === 'hook')         return 'Show Me';
-    if (currentStep === 'reveal')       return 'So what can I do?';
-    if (currentStep === 'better')       return altIdx < ALTERNATIVES.length - 1 ? 'See Another' : 'How does this work?';
-    if (currentStep === 'transparency') return 'Set Up My Profile';
-    if (isLast)                         return 'Start Scanning';
+    if (currentStep === 'welcome') return 'Show Me';
+    if (isLast)                    return 'Start Scanning';
     return 'Continue';
   };
 
@@ -171,28 +300,10 @@ export default function OnboardingScreen({ onComplete }) {
         keyboardShouldPersistTaps="handled"
       >
         <Animated.View style={{ opacity: fadeAnim, transform: [{ translateY: slideAnim }] }}>
-          {currentStep === 'hook'         && <HookStep />}
+          {currentStep === 'welcome'      && <WelcomeStep />}
           {currentStep === 'reveal'       && <RevealStep />}
-          {currentStep === 'better'       && <BetterStep alt={ALTERNATIVES[altIdx]} />}
+          {currentStep === 'stats'        && <StatsStep />}
           {currentStep === 'transparency' && <TransparencyStep />}
-          {currentStep === 'allergens'    && (
-            <SelectStep
-              title="Any food allergies?"
-              subtitle="We'll highlight these on every product you scan — even trace amounts."
-              options={ALLERGEN_OPTIONS}
-              selected={prefs.allergens}
-              onToggle={(id) => toggleArray('allergens', id)}
-            />
-          )}
-          {currentStep === 'dietary' && (
-            <SelectStep
-              title="How do you eat?"
-              subtitle="We'll personalise your ingredient flags and score summaries."
-              options={DIETARY_OPTIONS}
-              selected={prefs.dietaryFlags}
-              onToggle={(id) => toggleArray('dietaryFlags', id)}
-            />
-          )}
           {currentStep === 'goal' && (
             <SelectStep
               title="What's your top goal?"
@@ -201,6 +312,27 @@ export default function OnboardingScreen({ onComplete }) {
               selected={prefs.primaryGoal ? [prefs.primaryGoal] : []}
               onToggle={(id) => setPrefs((p) => ({ ...p, primaryGoal: p.primaryGoal === id ? null : id }))}
               single
+            />
+          )}
+          {currentStep === 'challenge' && (
+            <SelectStep
+              title="What's your biggest challenge when shopping?"
+              subtitle="Pick one — we'll tailor tips around it."
+              options={CHALLENGE_OPTIONS}
+              selected={prefs.challenge ? [prefs.challenge] : []}
+              onToggle={(id) => setPrefs((p) => ({ ...p, challenge: p.challenge === id ? null : id }))}
+              single
+            />
+          )}
+          {currentStep === 'commitment' && (
+            <CommitmentStep
+              commitment={prefs.commitment}
+              onCommitmentChange={(v) => setPrefs((p) => ({ ...p, commitment: Math.round(v) }))}
+              goalDeadline={prefs.goalDeadline}
+              onPickDeadline={handlePickDeadline}
+              onClearDeadline={handleClearDeadline}
+              goalText={prefs.goalText}
+              onGoalTextChange={(t) => setPrefs((p) => ({ ...p, goalText: t }))}
             />
           )}
           {currentStep === 'ready' && <ReadyStep />}
@@ -223,87 +355,72 @@ export default function OnboardingScreen({ onComplete }) {
   );
 }
 
-// ─── Step: Hook ───────────────────────────────────────────────────────────────
+// ─── Step: Welcome ────────────────────────────────────────────────────────────
 
-function HookStep() {
-  const pulse = useRef(new Animated.Value(1)).current;
-
-  useEffect(() => {
-    const loop = Animated.loop(
-      Animated.sequence([
-        Animated.timing(pulse, { toValue: 1.08, duration: 900, useNativeDriver: true }),
-        Animated.timing(pulse, { toValue: 1,    duration: 900, useNativeDriver: true }),
-      ])
-    );
-    loop.start();
-    return () => loop.stop();
-  }, [pulse]);
+function WelcomeStep() {
+  const openTerms   = () => WebBrowser.openBrowserAsync('https://shelfexpose.app/terms');
+  const openPrivacy = () => WebBrowser.openBrowserAsync('https://shelfexpose.app/privacy');
 
   return (
-    <View style={h.wrap}>
-      {/* Animated scan ring */}
-      <View style={h.ringWrap}>
-        <Animated.View style={[h.ringOuter, { transform: [{ scale: pulse }] }]} />
-        <View style={h.ringInner}>
-          <Ionicons name="scan" size={52} color={Colors.primary} />
-        </View>
-      </View>
+    <View style={w.wrap}>
+      <Image source={require('../../assets/icon.png')} style={w.logo} resizeMode="cover" />
 
-      <Text style={h.title}>You're about to see{'\n'}what's really in{'\n'}your food.</Text>
+      <Text style={w.eyebrow}>WELCOME TO SHELF EXPOSÉ</Text>
+      <Text style={w.title}>Stop guessing.</Text>
+      <Text style={w.title}>Know everything{'\n'}about your food.</Text>
 
-      <Text style={h.sub}>
-        Most people have no idea what they're actually eating.
-        We analyzed 7,500+ products so you don't have to.
+      <Text style={w.sub}>
+        Most people have no idea what they're actually eating. We can analyze
+        3,000,000+ products, 1,000,000+ ingredient listings, and {COMPANY_COUNT_LABEL} companies.
       </Text>
 
-      <View style={h.pills}>
+      <View style={w.pills}>
         {[
           { icon: 'warning-outline',  color: Colors.flagRed,    text: 'Flagged additives highlighted' },
           { icon: 'flask-outline',    color: Colors.flagOrange, text: 'Ultra-processing detected' },
           { icon: 'business-outline', color: Colors.primary,    text: 'Corporate transparency' },
         ].map(({ icon, color, text }) => (
-          <View key={text} style={h.pill}>
-            <View style={[h.pillIcon, { backgroundColor: color + '18' }]}>
+          <View key={text} style={w.pill}>
+            <View style={[w.pillIcon, { backgroundColor: color + '18' }]}>
               <Ionicons name={icon} size={17} color={color} />
             </View>
-            <Text style={h.pillText}>{text}</Text>
+            <Text style={w.pillText}>{text}</Text>
           </View>
         ))}
       </View>
+
+      <Text style={w.legal}>
+        By continuing, you agree to our{' '}
+        <Text style={w.legalLink} onPress={openTerms}>Terms of Service</Text>
+        {' '}and{' '}
+        <Text style={w.legalLink} onPress={openPrivacy}>Privacy Policy</Text>.
+      </Text>
     </View>
   );
 }
 
-const h = StyleSheet.create({
-  wrap:      { alignItems: 'center', paddingTop: 24, paddingBottom: 12 },
-  ringWrap:  { width: 140, height: 140, alignItems: 'center', justifyContent: 'center', marginBottom: 32 },
-  ringOuter: {
-    position: 'absolute', width: 140, height: 140, borderRadius: 70,
-    backgroundColor: Colors.primaryLight,
-  },
-  ringInner: {
-    width: 96, height: 96, borderRadius: 28,
-    backgroundColor: '#fff',
-    alignItems: 'center', justifyContent: 'center',
-    shadowColor: Colors.primary, shadowOpacity: 0.18, shadowRadius: 16, shadowOffset: { width: 0, height: 4 },
-    elevation: 6,
-  },
-  title: {
+const w = StyleSheet.create({
+  wrap:      { alignItems: 'center', paddingTop: 8, paddingBottom: 12 },
+  logo:      { width: 72, height: 72, borderRadius: 20, marginBottom: 20 },
+  eyebrow:   { fontSize: 11, fontWeight: '800', color: Colors.primary, letterSpacing: 1.4, marginBottom: 12 },
+  title:     {
     fontSize: 32, fontWeight: '800', color: Colors.textPrimary,
-    textAlign: 'center', lineHeight: 42, marginBottom: 18,
+    textAlign: 'center', lineHeight: 40,
   },
-  sub: {
-    fontSize: 16, color: Colors.textSecondary, textAlign: 'center',
-    lineHeight: 25, marginBottom: 36, paddingHorizontal: 8,
+  sub:       {
+    fontSize: 15, color: Colors.textSecondary, textAlign: 'center',
+    lineHeight: 23, marginTop: 16, marginBottom: 28, paddingHorizontal: 4,
   },
-  pills:    { width: '100%', gap: 12 },
-  pill:     { flexDirection: 'row', alignItems: 'center', gap: 14,
-              backgroundColor: '#fff', borderRadius: 14, padding: 14,
-              borderWidth: 1, borderColor: Colors.border,
-              shadowColor: '#000', shadowOpacity: 0.04, shadowRadius: 6, shadowOffset: { width: 0, height: 2 },
-              elevation: 1 },
-  pillIcon: { width: 36, height: 36, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
-  pillText: { fontSize: 15, fontWeight: '600', color: Colors.textPrimary, flex: 1 },
+  pills:     { width: '100%', gap: 12, marginBottom: 24 },
+  pill:      { flexDirection: 'row', alignItems: 'center', gap: 14,
+               backgroundColor: '#fff', borderRadius: 14, padding: 14,
+               borderWidth: 1, borderColor: Colors.border,
+               shadowColor: '#000', shadowOpacity: 0.04, shadowRadius: 6, shadowOffset: { width: 0, height: 2 },
+               elevation: 1 },
+  pillIcon:  { width: 36, height: 36, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
+  pillText:  { fontSize: 15, fontWeight: '600', color: Colors.textPrimary, flex: 1 },
+  legal:     { fontSize: 12, color: Colors.textMuted, textAlign: 'center', lineHeight: 17, paddingHorizontal: 8 },
+  legalLink: { color: Colors.textSecondary, fontWeight: '600', textDecorationLine: 'underline' },
 });
 
 // ─── Step: Reveal ─────────────────────────────────────────────────────────────
@@ -313,8 +430,8 @@ function RevealStep() {
     <View style={rv.wrap}>
       <Text style={rv.eyebrow}>WHAT WE FOUND</Text>
       <Text style={rv.title}>
-        <Text style={{ color: Colors.flagRed }}>7,500+ products</Text>
-        {'\n'}with concerning{'\n'}ingredients.
+        <Text style={{ color: Colors.flagRed }}>Household names</Text>
+        {' '}with concerning{'\n'}ingredients.
       </Text>
       <Text style={rv.sub}>
         These are household names sitting in most American kitchens right now.
@@ -331,16 +448,23 @@ function RevealStep() {
 }
 
 function ProductBadCard({ product: p }) {
+  const image = PRODUCT_IMAGES[p.slug];
   return (
     <View style={pc.card}>
-      {/* Score badge */}
+      {/* Score badge — sits above the image tile */}
       <View style={pc.scoreBadge}>
         <Text style={pc.scoreText}>{p.score}</Text>
       </View>
-      {/* Emoji avatar */}
-      <View style={pc.emojiWrap}>
-        <Text style={pc.emoji}>{p.emoji}</Text>
-      </View>
+      {/* Product image, falling back to the emoji avatar if unmapped */}
+      {image ? (
+        <View style={pc.imageWrap}>
+          <Image source={image} style={pc.image} resizeMode="contain" />
+        </View>
+      ) : (
+        <View style={pc.emojiWrap}>
+          <Text style={pc.emoji}>{p.emoji}</Text>
+        </View>
+      )}
       <Text style={pc.name} numberOfLines={2}>{p.name}</Text>
       <Text style={pc.brand} numberOfLines={1}>{p.brand}</Text>
       {/* Concern tag */}
@@ -370,12 +494,16 @@ const pc = StyleSheet.create({
     overflow: 'hidden',
   },
   scoreBadge: {
-    position: 'absolute', top: 8, right: 8,
+    position: 'absolute', top: 8, right: 8, zIndex: 2, elevation: 2,
     width: 30, height: 30, borderRadius: 15,
     backgroundColor: Colors.flagRed,
     alignItems: 'center', justifyContent: 'center',
   },
   scoreText:  { fontSize: 11, fontWeight: '800', color: '#fff' },
+  imageWrap:  { width: '100%', height: 72, borderRadius: 10, backgroundColor: '#fff',
+                borderWidth: 1, borderColor: Colors.border,
+                alignItems: 'center', justifyContent: 'center', marginBottom: 8, overflow: 'hidden' },
+  image:      { width: '100%', height: '100%' },
   emojiWrap:  { width: 40, height: 40, borderRadius: 10, backgroundColor: Colors.dangerLight,
                 alignItems: 'center', justifyContent: 'center', marginBottom: 8 },
   emoji:      { fontSize: 22 },
@@ -386,124 +514,65 @@ const pc = StyleSheet.create({
   tagText:    { fontSize: 10, fontWeight: '700', color: Colors.flagRed },
 });
 
-// ─── Step: Better ─────────────────────────────────────────────────────────────
+// ─── Step: Stats (NEW — scary but sourced) ─────────────────────────────────────
 
-function BetterStep({ alt }) {
+function StatsStep() {
   return (
-    <View style={bt.wrap}>
-      <Text style={bt.eyebrow}>THE SOLUTION</Text>
-      <Text style={bt.title}>
-        For every bad product,{'\n'}
-        <Text style={{ color: Colors.primary }}>we find 3 better ones.</Text>
-      </Text>
-      <Text style={bt.sub}>
-        We don't just flag problems — we show you cleaner alternatives already in stores.
-      </Text>
-
-      {/* Bad product */}
-      <View style={bt.sectionLabel}>
-        <View style={bt.avoidPill}>
-          <Text style={bt.avoidText}>AVOID · {alt.bad.score}</Text>
-        </View>
-      </View>
-      <View style={bt.badRow}>
-        <View style={bt.badLeft}>
-          <Text style={bt.badName}>{alt.bad.name}</Text>
-          <Text style={bt.badBrand}>{alt.bad.brand}</Text>
-          <View style={bt.badTag}>
-            <Text style={bt.badTagText}>{alt.bad.tag}</Text>
-          </View>
-        </View>
-        <Ionicons name="close-circle" size={28} color={Colors.flagRed} />
-      </View>
-
-      {/* Divider */}
-      <View style={bt.divider}>
-        <View style={bt.dividerLine} />
-        <Text style={bt.dividerText}>Better options</Text>
-        <View style={bt.dividerLine} />
-      </View>
-
-      {/* Good alternatives */}
-      {alt.good.map((g) => (
-        <View key={g.name} style={bt.goodRow}>
-          <View style={bt.goodLeft}>
-            <Text style={bt.goodName}>{g.name}</Text>
-            <Text style={bt.goodBrand}>{g.brand}</Text>
-            <View style={bt.goodTag}>
-              <Ionicons name="checkmark-circle" size={11} color={Colors.primary} />
-              <Text style={bt.goodTagText}>{g.tag}</Text>
+    <View style={sts.wrap}>
+      <Text style={sts.title}>The average grocery cart is worse than you think.</Text>
+      <View style={sts.cards}>
+        {STATS_PLACEHOLDER.map((stat, i) => (
+          <View key={i} style={sts.card}>
+            <View style={sts.iconWrap}>
+              <Ionicons name={stat.icon} size={22} color={Colors.flagOrange} />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={sts.value}>{stat.value}</Text>
+              <Text style={sts.text}>{stat.text}</Text>
+              <Text style={sts.source}>{stat.source}</Text>
             </View>
           </View>
-          <View style={bt.scoreBubble}>
-            <Text style={bt.scoreBubbleText}>{g.score}</Text>
-          </View>
-        </View>
-      ))}
+        ))}
+      </View>
     </View>
   );
 }
 
-const bt = StyleSheet.create({
-  wrap:        { paddingBottom: 8 },
-  eyebrow:     { fontSize: 11, fontWeight: '800', color: Colors.primary, letterSpacing: 1.4, marginBottom: 8 },
-  title:       { fontSize: 28, fontWeight: '800', color: Colors.textPrimary, lineHeight: 36, marginBottom: 12 },
-  sub:         { fontSize: 15, color: Colors.textSecondary, lineHeight: 22, marginBottom: 24 },
-  sectionLabel:{ flexDirection: 'row', marginBottom: 8 },
-  avoidPill:   { backgroundColor: Colors.flagRed, borderRadius: 20, paddingHorizontal: 10, paddingVertical: 4 },
-  avoidText:   { fontSize: 11, fontWeight: '800', color: '#fff', letterSpacing: 0.5 },
-  badRow:      {
-    flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
-    backgroundColor: Colors.dangerLight, borderRadius: 14, padding: 14,
-    borderWidth: 1, borderColor: '#F5CECE', marginBottom: 20,
-  },
-  badLeft:     { flex: 1 },
-  badName:     { fontSize: 16, fontWeight: '700', color: Colors.textPrimary, marginBottom: 2 },
-  badBrand:    { fontSize: 12, color: Colors.textMuted, marginBottom: 6 },
-  badTag:      { backgroundColor: '#fff', borderRadius: 6, paddingHorizontal: 7, paddingVertical: 3, alignSelf: 'flex-start' },
-  badTagText:  { fontSize: 11, fontWeight: '600', color: Colors.flagRed },
-  divider:     { flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 16 },
-  dividerLine: { flex: 1, height: 1, backgroundColor: Colors.border },
-  dividerText: { fontSize: 12, fontWeight: '600', color: Colors.textMuted },
-  goodRow:     {
-    flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
-    backgroundColor: '#fff', borderRadius: 14, padding: 14,
-    borderWidth: 1, borderColor: Colors.border, marginBottom: 10,
-    shadowColor: Colors.primary, shadowOpacity: 0.06, shadowRadius: 6,
+const sts = StyleSheet.create({
+  wrap:     { paddingBottom: 8 },
+  title:    { fontSize: 28, fontWeight: '800', color: Colors.textPrimary, lineHeight: 36, marginBottom: 24 },
+  cards:    { gap: 12 },
+  card:     {
+    flexDirection: 'row', alignItems: 'flex-start', gap: 14,
+    backgroundColor: '#fff', borderRadius: 16, padding: 16,
+    borderWidth: 1, borderColor: Colors.border,
+    shadowColor: '#000', shadowOpacity: 0.04, shadowRadius: 6,
     shadowOffset: { width: 0, height: 2 }, elevation: 1,
   },
-  goodLeft:    { flex: 1 },
-  goodName:    { fontSize: 15, fontWeight: '700', color: Colors.textPrimary, marginBottom: 2 },
-  goodBrand:   { fontSize: 12, color: Colors.textMuted, marginBottom: 5 },
-  goodTag:     { flexDirection: 'row', alignItems: 'center', gap: 4 },
-  goodTagText: { fontSize: 11, fontWeight: '600', color: Colors.primary },
-  scoreBubble: {
-    width: 44, height: 44, borderRadius: 22,
-    backgroundColor: Colors.primary,
-    alignItems: 'center', justifyContent: 'center',
-    shadowColor: Colors.primary, shadowOpacity: 0.35, shadowRadius: 8,
-    shadowOffset: { width: 0, height: 3 }, elevation: 4,
-  },
-  scoreBubbleText: { fontSize: 16, fontWeight: '800', color: '#fff' },
+  iconWrap: { width: 40, height: 40, borderRadius: 12, backgroundColor: Colors.warningLight,
+              alignItems: 'center', justifyContent: 'center' },
+  value:    { fontSize: 20, fontWeight: '800', color: Colors.textPrimary, marginBottom: 2 },
+  text:     { fontSize: 13, color: Colors.textSecondary, lineHeight: 19, marginBottom: 4 },
+  source:   { fontSize: 11, color: Colors.textMuted },
 });
 
 // ─── Step: Transparency ───────────────────────────────────────────────────────
 
 function TransparencyStep() {
-  const c = COMPANY_SPOTLIGHT;
+  const c = PEPSICO;
   const repPct = c.donationSplit.republican;
   const demPct = c.donationSplit.democrat;
+  const gmoIssue = c.issues.find((i) => i.id === 'gmo-labeling-opposition');
+  const sugarIssue = c.issues.find((i) => i.id === 'soda-tax-lobbying');
 
   return (
     <View style={tr.wrap}>
       <Text style={tr.eyebrow}>YOUR EDGE</Text>
-      <Text style={tr.title}>
-        See who's really{'\n'}
-        <Text style={{ color: Colors.primary }}>funding your food.</Text>
-      </Text>
+      <Text style={tr.title}>Who really controls{'\n'}your food?</Text>
       <Text style={tr.sub}>
-        We track the lobbying spend and political donations of every company
-        behind the products you scan — so you can make values-aligned choices.
+        Value-aligned choices depend on knowing where your money goes. We track
+        the lobbying influence and political donations of every company behind
+        everyday products.
       </Text>
 
       {/* Company card */}
@@ -511,32 +580,76 @@ function TransparencyStep() {
         {/* Header */}
         <View style={tr.cardHeader}>
           <View style={tr.logoPlaceholder}>
-            <Text style={tr.logoText}>P</Text>
+            {COMPANY_LOGOS?.pepsico ? (
+              <Image source={COMPANY_LOGOS.pepsico} style={tr.logoImage} resizeMode="contain" />
+            ) : (
+              <Text style={tr.logoText}>P</Text>
+            )}
           </View>
           <View style={{ flex: 1 }}>
             <Text style={tr.companyName}>{c.name}</Text>
-            <Text style={tr.companyHq}>{c.hq} · Revenue {c.revenue}</Text>
+            <Text style={tr.companyHq}>{c.hq} · Revenue ${c.revenue}</Text>
           </View>
         </View>
 
         <View style={tr.divider} />
 
-        {/* Stats row */}
+        {/* Stats row — "Brands Owned" cell dropped (chips already show them) */}
         <View style={tr.statsRow}>
           <View style={tr.stat}>
-            <Text style={tr.statValue}>{c.lobbyingSpend}</Text>
+            <Text style={tr.statValue}>{formatCurrency(c.lobbyingSpend)}</Text>
             <Text style={tr.statLabel}>Annual Lobbying</Text>
-          </View>
-          <View style={tr.statDivider} />
-          <View style={tr.stat}>
-            <Text style={tr.statValue}>{c.brands.length}+</Text>
-            <Text style={tr.statLabel}>Brands Owned</Text>
           </View>
         </View>
 
         <View style={tr.divider} />
 
-        {/* Donation split */}
+        {/* Focus block: labeling-opposition lobbying (founder-directed focus,
+            2026-07-19) — GMO first, sugar-tax second. Short one-line
+            compressions of the full sourced descriptions in companies.js
+            (COMPANY_DB.pepsico.issues); the Company Profile shows the full text. */}
+        {gmoIssue && (
+          <View style={tr.issueBadge}>
+            <Ionicons name="document-text-outline" size={15} color={Colors.flagOrange} style={{ marginTop: 1 }} />
+            <Text style={tr.issueText}>
+              Contributed $8M+ opposing mandatory GMO-labeling laws in 4 states (2012–2014).
+            </Text>
+          </View>
+        )}
+        {sugarIssue && (
+          <View style={[tr.issueBadge, { marginTop: 8 }]}>
+            <Ionicons name="cash-outline" size={15} color={Colors.flagOrange} style={{ marginTop: 1 }} />
+            <Text style={tr.issueText}>
+              Actively lobbies against sugary-drink taxes and labeling laws nationwide.
+            </Text>
+          </View>
+        )}
+
+        {/* Incentive stats: shows PepsiCo's own catalog data so the lobbying
+            above reads as motive, not just abstract dollar figures. */}
+        <View style={tr.incentiveBlock}>
+          {PEPSICO_INCENTIVE_STATS.map((stat, i) => (
+            <View key={i} style={tr.incentiveRow}>
+              <Text style={tr.incentiveValue}>{stat.value}</Text>
+              <Text style={tr.incentiveText}>{stat.text}</Text>
+            </View>
+          ))}
+        </View>
+
+        <View style={tr.divider} />
+
+        {/* Brand chips */}
+        <View style={tr.brandChips}>
+          {c.subsidiaries.map((b) => (
+            <View key={b} style={tr.chip}>
+              <Text style={tr.chipText}>{b}</Text>
+            </View>
+          ))}
+        </View>
+
+        <View style={tr.divider} />
+
+        {/* Donation split — moved to the bottom of the card (least important) */}
         <Text style={tr.splitLabel}>Political Donation Split</Text>
         <View style={tr.splitBar}>
           <View style={[tr.splitRep, { flex: repPct }]}>
@@ -545,23 +658,6 @@ function TransparencyStep() {
           <View style={[tr.splitDem, { flex: demPct }]}>
             <Text style={tr.splitBarText}>{demPct}% Dem</Text>
           </View>
-        </View>
-
-        <View style={tr.divider} />
-
-        {/* Issue callout */}
-        <View style={tr.issueBadge}>
-          <Ionicons name="warning-outline" size={15} color={Colors.flagOrange} style={{ marginTop: 1 }} />
-          <Text style={tr.issueText}>{c.issue}</Text>
-        </View>
-
-        {/* Brand chips */}
-        <View style={tr.brandChips}>
-          {c.brands.map((b) => (
-            <View key={b} style={tr.chip}>
-              <Text style={tr.chipText}>{b}</Text>
-            </View>
-          ))}
         </View>
       </View>
 
@@ -586,9 +682,11 @@ const tr = StyleSheet.create({
   cardHeader:      { flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 14 },
   logoPlaceholder: {
     width: 48, height: 48, borderRadius: 14,
-    backgroundColor: Colors.primaryLight,
-    alignItems: 'center', justifyContent: 'center',
+    backgroundColor: '#fff',
+    borderWidth: 1, borderColor: Colors.border,
+    alignItems: 'center', justifyContent: 'center', overflow: 'hidden',
   },
+  logoImage:       { width: '100%', height: '100%' },
   logoText:        { fontSize: 24, fontWeight: '800', color: Colors.primary },
   companyName:     { fontSize: 16, fontWeight: '700', color: Colors.textPrimary },
   companyHq:       { fontSize: 12, color: Colors.textMuted, marginTop: 2 },
@@ -597,7 +695,6 @@ const tr = StyleSheet.create({
   stat:            { flex: 1, alignItems: 'center' },
   statValue:       { fontSize: 15, fontWeight: '800', color: Colors.textPrimary, marginBottom: 2 },
   statLabel:       { fontSize: 11, color: Colors.textMuted, fontWeight: '500' },
-  statDivider:     { width: 1, height: 36, backgroundColor: Colors.border },
   splitLabel:      { fontSize: 12, fontWeight: '700', color: Colors.textSecondary, marginBottom: 8 },
   splitBar:        { flexDirection: 'row', borderRadius: 8, overflow: 'hidden', height: 28, marginBottom: 6 },
   splitRep:        { backgroundColor: '#D93B3B', alignItems: 'center', justifyContent: 'center' },
@@ -608,57 +705,140 @@ const tr = StyleSheet.create({
     backgroundColor: Colors.warningLight, borderRadius: 10, padding: 10,
   },
   issueText:       { fontSize: 12, color: Colors.textSecondary, lineHeight: 17, flex: 1 },
+  incentiveBlock:  { marginTop: 12, gap: 10 },
+  incentiveRow:    { flexDirection: 'row', alignItems: 'baseline', gap: 8 },
+  incentiveValue:  { fontSize: 15, fontWeight: '800', color: Colors.primary, minWidth: 62 },
+  incentiveText:   { fontSize: 12, color: Colors.textSecondary, lineHeight: 17, flex: 1 },
   brandChips:      { flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginTop: 12 },
   chip:            { backgroundColor: Colors.primaryLight, borderRadius: 20, paddingHorizontal: 10, paddingVertical: 4 },
   chipText:        { fontSize: 11, fontWeight: '600', color: Colors.primary },
   footnote:        { fontSize: 11, color: Colors.textMuted, textAlign: 'center', lineHeight: 16 },
 });
 
-// ─── Step: SelectStep (allergens / dietary / goal) ────────────────────────────
+// ─── Step: Commitment (NEW) ─────────────────────────────────────────────────────
 
-function SelectStep({ title, subtitle, options, selected, onToggle, single = false }) {
+function CommitmentStep({
+  commitment, onCommitmentChange,
+  goalDeadline, onPickDeadline, onClearDeadline,
+  goalText, onGoalTextChange,
+}) {
+  const [showBuckets, setShowBuckets] = useState(!!goalDeadline);
+  const value = commitment ?? 5;
+  const trackColor = mixColor(Colors.textSecondary, Colors.primary, (value - 1) / 9);
+
+  const handleYes = () => setShowBuckets(true);
+  const handleNo = () => {
+    setShowBuckets(false);
+    onClearDeadline();
+  };
+
   return (
-    <View style={ss.wrap}>
-      <Text style={ss.title}>{title}</Text>
-      <Text style={ss.sub}>{subtitle}</Text>
-      <View style={ss.grid}>
-        {options.map((opt) => {
-          const active = selected.includes(opt.id);
-          return (
-            <TouchableOpacity
-              key={opt.id}
-              style={[ss.chip, active && ss.chipActive, single && ss.chipFull]}
-              onPress={() => onToggle(opt.id)}
-              activeOpacity={0.75}
-            >
-              {opt.icon && (
-                <Ionicons name={opt.icon} size={14} color={active ? '#fff' : Colors.primary} />
-              )}
-              <Text style={[ss.chipText, active && ss.chipTextActive]}>{opt.label}</Text>
-              {active && <Ionicons name="checkmark" size={13} color="#fff" />}
-            </TouchableOpacity>
-          );
-        })}
+    <View style={cm.wrap}>
+      <Text style={cm.title}>How committed are you?</Text>
+      <Text style={cm.sub}>Slide to where you're really at today — no judgment.</Text>
+
+      <Text style={[cm.sliderLabel, { color: trackColor }]}>{commitmentLabel(value)}</Text>
+      <Slider
+        style={cm.slider}
+        minimumValue={1}
+        maximumValue={10}
+        step={1}
+        value={value}
+        minimumTrackTintColor={Colors.primary}
+        maximumTrackTintColor={Colors.border}
+        thumbTintColor={Colors.primary}
+        onValueChange={onCommitmentChange}
+      />
+      <View style={cm.sliderScale}>
+        <Text style={cm.scaleText}>1</Text>
+        <Text style={cm.scaleText}>10</Text>
       </View>
+
+      <View style={cm.divider} />
+
+      <Text style={cm.subTitle}>Do you have a deadline for your goal?</Text>
+      <View style={cm.yesNoRow}>
+        <TouchableOpacity
+          style={[cm.yesNoBtn, showBuckets && cm.yesNoBtnActive]}
+          onPress={handleYes}
+          activeOpacity={0.75}
+        >
+          <Text style={[cm.yesNoText, showBuckets && cm.yesNoTextActive]}>Yes</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[cm.yesNoBtn, !showBuckets && cm.yesNoBtnActive]}
+          onPress={handleNo}
+          activeOpacity={0.75}
+        >
+          <Text style={[cm.yesNoText, !showBuckets && cm.yesNoTextActive]}>No</Text>
+        </TouchableOpacity>
+      </View>
+
+      {showBuckets && (
+        <View style={cm.bucketGrid}>
+          {DEADLINE_BUCKETS.map((b) => {
+            const active = goalDeadline?.bucket === b.id;
+            return (
+              <TouchableOpacity
+                key={b.id}
+                style={[cm.bucketChip, active && cm.bucketChipActive]}
+                onPress={() => onPickDeadline(b)}
+                activeOpacity={0.75}
+              >
+                <Text style={[cm.bucketText, active && cm.bucketTextActive]}>{b.label}</Text>
+              </TouchableOpacity>
+            );
+          })}
+        </View>
+      )}
+
+      <View style={cm.divider} />
+
+      <Text style={cm.subTitle}>What's the goal? <Text style={cm.optional}>(optional)</Text></Text>
+      <TextInput
+        style={cm.input}
+        placeholder="e.g. Fit into my old jeans by fall"
+        placeholderTextColor={Colors.textMuted}
+        value={goalText}
+        onChangeText={onGoalTextChange}
+        multiline
+      />
     </View>
   );
 }
 
-const ss = StyleSheet.create({
-  wrap:          { paddingBottom: 16 },
-  title:         { fontSize: 26, fontWeight: '800', color: Colors.textPrimary, marginBottom: 8, lineHeight: 33 },
-  sub:           { fontSize: 15, color: Colors.textSecondary, lineHeight: 22, marginBottom: 24 },
-  grid:          { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
-  chip:          {
-    flexDirection: 'row', alignItems: 'center', gap: 6,
-    paddingHorizontal: 14, paddingVertical: 10,
-    borderRadius: 22, borderWidth: 1.5, borderColor: Colors.primary,
-    backgroundColor: Colors.primaryLight,
+const cm = StyleSheet.create({
+  wrap:         { paddingBottom: 16 },
+  title:        { fontSize: 26, fontWeight: '800', color: Colors.textPrimary, marginBottom: 8, lineHeight: 33 },
+  sub:          { fontSize: 15, color: Colors.textSecondary, lineHeight: 22, marginBottom: 20 },
+  sliderLabel:  { fontSize: 16, fontWeight: '800', textAlign: 'center', marginBottom: 4 },
+  slider:       { width: '100%', height: 40 },
+  sliderScale:  { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 8 },
+  scaleText:    { fontSize: 12, color: Colors.textMuted, fontWeight: '600' },
+  divider:      { height: 1, backgroundColor: Colors.border, marginVertical: 20 },
+  subTitle:     { fontSize: 17, fontWeight: '700', color: Colors.textPrimary, marginBottom: 12 },
+  optional:     { fontSize: 13, fontWeight: '500', color: Colors.textMuted },
+  yesNoRow:     { flexDirection: 'row', gap: 10, marginBottom: 12 },
+  yesNoBtn:     {
+    flex: 1, alignItems: 'center', paddingVertical: 12,
+    borderRadius: 14, borderWidth: 1.5, borderColor: Colors.border, backgroundColor: '#fff',
   },
-  chipActive:    { backgroundColor: Colors.primary },
-  chipFull:      { width: '100%' },
-  chipText:      { fontSize: 14, fontWeight: '600', color: Colors.primary },
-  chipTextActive:{ color: '#fff' },
+  yesNoBtnActive: { borderColor: Colors.primary, backgroundColor: Colors.primaryLight },
+  yesNoText:    { fontSize: 15, fontWeight: '700', color: Colors.textSecondary },
+  yesNoTextActive: { color: Colors.primary },
+  bucketGrid:   { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
+  bucketChip:   {
+    paddingHorizontal: 14, paddingVertical: 10, borderRadius: 20,
+    borderWidth: 1.5, borderColor: Colors.primary, backgroundColor: Colors.primaryLight,
+  },
+  bucketChipActive: { backgroundColor: Colors.primary },
+  bucketText:   { fontSize: 13, fontWeight: '600', color: Colors.primary },
+  bucketTextActive: { color: '#fff' },
+  input:        {
+    borderWidth: 1.5, borderColor: Colors.border, borderRadius: 14,
+    padding: 14, fontSize: 15, color: Colors.textPrimary, minHeight: 52,
+    backgroundColor: '#fff', textAlignVertical: 'top',
+  },
 });
 
 // ─── Step: Ready ──────────────────────────────────────────────────────────────
@@ -671,7 +851,7 @@ function ReadyStep() {
         style={rd.gradient}
       >
         <View style={rd.iconWrap}>
-          <Ionicons name="checkmark-circle" size={64} color={Colors.primary} />
+          <SpecsMascot clip="shy-blush" size={96} />
         </View>
       </LinearGradient>
 

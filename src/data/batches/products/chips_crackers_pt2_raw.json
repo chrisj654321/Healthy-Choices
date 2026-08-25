@@ -1,0 +1,598 @@
+{
+  "category": "chips_crackers",
+  "products": [
+    {
+      "upc": "082666500803",
+      "off_api_confirmed_name": "Popchips Sea Salt",
+      "name": "Popchips Original Sea Salt Potato Chips",
+      "brand": "Popchips",
+      "companyId": null,
+      "servingSize": "1 oz (28g)",
+      "calories": 130,
+      "ingredients_verbatim": [
+        "dried potato",
+        "rice flour",
+        "sunflower and/or safflower oil",
+        "potato starch",
+        "sea salt",
+        "salt"
+      ],
+      "nutrition": {
+        "fat": 4.5,
+        "saturatedFat": 0.5,
+        "sodium": 190,
+        "carbs": 21,
+        "sugars": 1,
+        "protein": 1
+      },
+      "certifications": ["Non-GMO Project"],
+      "isOrganic": false,
+      "isVegan": true,
+      "isGlutenFree": true
+    },
+    {
+      "upc": "028400183826",
+      "off_api_confirmed_name": "Baked Original",
+      "name": "Lay's Oven Baked Original Potato Crisps",
+      "brand": "Lay's",
+      "companyId": "pepsico",
+      "servingSize": "1 oz (28g)",
+      "calories": 130,
+      "ingredients_verbatim": [
+        "dried potatoes",
+        "olive oil",
+        "corn starch",
+        "sugar",
+        "sea salt",
+        "soy lecithin",
+        "dextrose",
+        "annatto extract (color)"
+      ],
+      "nutrition": {
+        "fat": 5,
+        "saturatedFat": 1,
+        "sodium": 135,
+        "carbs": 20,
+        "sugars": 2,
+        "protein": 2
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": false
+    },
+    {
+      "upc": "071146002456",
+      "off_api_confirmed_name": "HARVEST SNAPS Lightly Salted Crispy Baked Veggie Snacks",
+      "name": "Harvest Snaps Green Pea Snack Crisps Lightly Salted",
+      "brand": "Harvest Snaps",
+      "companyId": null,
+      "servingSize": "22 pieces (28g)",
+      "calories": 130,
+      "ingredients_verbatim": [
+        "green peas",
+        "canola oil",
+        "rice",
+        "salt",
+        "calcium carbonate",
+        "rosemary extract (for freshness)"
+      ],
+      "nutrition": {
+        "fat": 5,
+        "saturatedFat": 0,
+        "sodium": 75,
+        "carbs": 16,
+        "sugars": 0,
+        "protein": 5
+      },
+      "certifications": ["Certified Gluten-Free (GFCO)", "Non-GMO Project"],
+      "isOrganic": false,
+      "isVegan": true,
+      "isGlutenFree": true
+    },
+    {
+      "upc": "851769007010",
+      "off_api_confirmed_name": "Grain Free Tortilla Chips",
+      "name": "Siete Lime Grain Free Tortilla Chips",
+      "brand": "Siete",
+      "companyId": "pepsico",
+      "servingSize": "14 chips (28g)",
+      "calories": 132,
+      "ingredients_verbatim": [
+        "cassava blend (cassava flour, cassava starch)",
+        "avocado oil",
+        "coconut flour",
+        "chia seed",
+        "sea salt",
+        "citric acid",
+        "lime oil"
+      ],
+      "nutrition": {
+        "fat": 7,
+        "saturatedFat": 1,
+        "sodium": 150,
+        "carbs": 20,
+        "sugars": 1,
+        "protein": 1
+      },
+      "certifications": ["Certified Gluten-Free", "Non-GMO Project"],
+      "isOrganic": false,
+      "isVegan": true,
+      "isGlutenFree": true
+    },
+    {
+      "upc": "015665601004",
+      "off_api_confirmed_name": "Pirate& booty aged white cheddar puffs",
+      "name": "Pirate's Booty Aged White Cheddar Puffs",
+      "brand": "Pirate's Booty",
+      "companyId": "b-and-g-foods",
+      "servingSize": "1 oz (28g)",
+      "calories": 140,
+      "ingredients_verbatim": [
+        "cornmeal",
+        "rice flour",
+        "vegetable oil (expeller pressed canola oil and/or sunflower oil and/or corn oil)",
+        "cheddar cheese (cultured milk, salt, enzymes)",
+        "dried whey",
+        "dried buttermilk",
+        "salt",
+        "citric acid",
+        "sea salt",
+        "black pepper extract"
+      ],
+      "nutrition": {
+        "fat": 6,
+        "saturatedFat": 1,
+        "sodium": 190,
+        "carbs": 18,
+        "sugars": 1,
+        "protein": 3
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": true
+    },
+    {
+      "upc": "708163120589",
+      "off_api_confirmed_name": "Avocado Oil Classic Sea Salt Kettle Style Potato Chips",
+      "name": "Boulder Canyon Avocado Oil Classic Sea Salt Kettle Chips",
+      "brand": "Boulder Canyon",
+      "companyId": "utz-brands",
+      "servingSize": "1 oz (28g)",
+      "calories": 160,
+      "ingredients_verbatim": [
+        "potatoes",
+        "avocado oil",
+        "sea salt"
+      ],
+      "nutrition": {
+        "fat": 9,
+        "saturatedFat": 1.5,
+        "sodium": 120,
+        "carbs": 16,
+        "sugars": 0,
+        "protein": 3
+      },
+      "certifications": ["Certified Gluten-Free", "Non-GMO Project"],
+      "isOrganic": false,
+      "isVegan": true,
+      "isGlutenFree": true
+    },
+    {
+      "upc": "810122080015",
+      "off_api_confirmed_name": "chickpea puffs groovy white cheddar flavored",
+      "name": "Hippeas Organic Chickpea Puffs Groovy White Cheddar",
+      "brand": "Hippeas",
+      "companyId": null,
+      "servingSize": "20 pieces (28g)",
+      "calories": 130,
+      "ingredients_verbatim": [
+        "chickpea flour",
+        "rice flour",
+        "sunflower oil",
+        "yellow pea flour",
+        "maltodextrin",
+        "salt",
+        "sugar",
+        "natural flavor",
+        "yeast extract",
+        "onion powder",
+        "garlic powder",
+        "citric acid",
+        "turmeric extract",
+        "rosemary extract"
+      ],
+      "nutrition": {
+        "fat": 5,
+        "saturatedFat": 0,
+        "sodium": 280,
+        "carbs": 18,
+        "sugars": 1,
+        "protein": 4
+      },
+      "certifications": ["Non-GMO Project", "Kosher"],
+      "isOrganic": false,
+      "isVegan": true,
+      "isGlutenFree": true
+    },
+    {
+      "upc": "081878001343",
+      "off_api_confirmed_name": "could_not_verify_off — confirmed via Kroger product listing",
+      "name": "Angie's BOOMCHICKAPOP Sea Salt Popcorn",
+      "brand": "Angie's BOOMCHICKAPOP",
+      "companyId": "conagra",
+      "servingSize": "3.75 cups (28g)",
+      "calories": 120,
+      "ingredients_verbatim": [
+        "popcorn",
+        "sunflower oil",
+        "sea salt"
+      ],
+      "nutrition": {
+        "fat": 5,
+        "saturatedFat": 0.5,
+        "sodium": 75,
+        "carbs": 15,
+        "sugars": 0,
+        "protein": 2
+      },
+      "certifications": ["Non-GMO Project"],
+      "isOrganic": false,
+      "isVegan": true,
+      "isGlutenFree": true
+    },
+    {
+      "upc": "856369004087",
+      "off_api_confirmed_name": "Microwave popcorn made with organic nongmo corn",
+      "name": "Quinn Butter & Sea Salt Microwave Popcorn 2-pack",
+      "brand": "Quinn",
+      "companyId": null,
+      "servingSize": "2 Tbsp (33g) popped ~1/3 bag",
+      "calories": 170,
+      "ingredients_verbatim": [
+        "organic popcorn kernels",
+        "high oleic sunflower oil",
+        "butter powder (cream, salt, buttermilk)",
+        "sea salt"
+      ],
+      "nutrition": {
+        "fat": 10,
+        "saturatedFat": 1.5,
+        "sodium": 135,
+        "carbs": 17,
+        "sugars": 0,
+        "protein": 3
+      },
+      "certifications": ["Non-GMO Project"],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": true
+    },
+    {
+      "upc": "856762007401",
+      "off_api_confirmed_name": "Paleo Puffs Himalayan Salt",
+      "name": "LesserEvil Himalayan Pink Salt Paleo Puffs",
+      "brand": "LesserEvil",
+      "companyId": null,
+      "servingSize": "1 oz (28g)",
+      "calories": 130,
+      "ingredients_verbatim": [
+        "organic cassava flour",
+        "organic coconut oil",
+        "organic tapioca starch",
+        "organic coconut flour",
+        "organic sweet potato flour",
+        "himalayan salt"
+      ],
+      "nutrition": {
+        "fat": 6,
+        "saturatedFat": 5,
+        "sodium": 190,
+        "carbs": 18,
+        "sugars": 0,
+        "protein": 1
+      },
+      "certifications": ["USDA Organic", "Non-GMO Project"],
+      "isOrganic": true,
+      "isVegan": true,
+      "isGlutenFree": true
+    },
+    {
+      "upc": "028400064088",
+      "off_api_confirmed_name": "Scoops! Original",
+      "name": "Tostitos Scoops! Tortilla Chips",
+      "brand": "Tostitos",
+      "companyId": "pepsico",
+      "servingSize": "about 13 chips (28g)",
+      "calories": 140,
+      "ingredients_verbatim": [
+        "corn",
+        "vegetable oil (corn, canola, and/or sunflower oil)",
+        "salt"
+      ],
+      "nutrition": {
+        "fat": 7,
+        "saturatedFat": 1,
+        "sodium": 115,
+        "carbs": 19,
+        "sugars": 0,
+        "protein": 2
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": true,
+      "isGlutenFree": true
+    },
+    {
+      "upc": "028400705769",
+      "off_api_confirmed_name": "White Corn chips",
+      "name": "Santitas White Corn Tortilla Chips",
+      "brand": "Santitas",
+      "companyId": "pepsico",
+      "servingSize": "10 chips (28g)",
+      "calories": 140,
+      "ingredients_verbatim": [
+        "corn",
+        "vegetable oil (corn, canola, and/or sunflower oil)",
+        "salt"
+      ],
+      "nutrition": {
+        "fat": 6,
+        "saturatedFat": 0.5,
+        "sodium": 105,
+        "carbs": 19,
+        "sugars": 0,
+        "protein": 2
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": true,
+      "isGlutenFree": true
+    },
+    {
+      "upc": "015839000015",
+      "off_api_confirmed_name": "Blue Chips Corn Tortilla Chips",
+      "name": "Garden of Eatin' Blue Corn Tortilla Chips",
+      "brand": "Garden of Eatin'",
+      "companyId": "hain-celestial",
+      "servingSize": "1 oz (28g)",
+      "calories": 140,
+      "ingredients_verbatim": [
+        "organic blue corn",
+        "expeller pressed canola oil and/or safflower oil and/or sunflower oil",
+        "sea salt"
+      ],
+      "nutrition": {
+        "fat": 7,
+        "saturatedFat": 0.5,
+        "sodium": 60,
+        "carbs": 18,
+        "sugars": 0,
+        "protein": 2
+      },
+      "certifications": ["Non-GMO Project"],
+      "isOrganic": true,
+      "isVegan": true,
+      "isGlutenFree": true
+    },
+    {
+      "upc": "855564003024",
+      "off_api_confirmed_name": "Sweet Potato Whole Grain Corn Tortilla Chips",
+      "name": "Way Better Snacks Simply Sweet Potato Tortilla Chips",
+      "brand": "Way Better Snacks",
+      "companyId": null,
+      "servingSize": "about 9 chips (28g)",
+      "calories": 130,
+      "ingredients_verbatim": [
+        "non-gmo stone ground whole corn",
+        "sunflower oil",
+        "sweet potato",
+        "sprouted seed and grain blend (sprouted quinoa, sprouted chia seed)",
+        "pure sea salt"
+      ],
+      "nutrition": {
+        "fat": 7,
+        "saturatedFat": 0.5,
+        "sodium": 80,
+        "carbs": 16,
+        "sugars": 0,
+        "protein": 2
+      },
+      "certifications": ["Non-GMO Project"],
+      "isOrganic": false,
+      "isVegan": true,
+      "isGlutenFree": true
+    },
+    {
+      "upc": "028400630658",
+      "off_api_confirmed_name": "Rice And Veggie Crisps",
+      "name": "Off The Eaten Path Rice, Peas & Black Beans Veggie Crisps",
+      "brand": "Off The Eaten Path",
+      "companyId": "pepsico",
+      "servingSize": "15 pieces (28g)",
+      "calories": 130,
+      "ingredients_verbatim": [
+        "rice flour",
+        "sunflower oil",
+        "dried green peas",
+        "dried yellow peas",
+        "dried black beans",
+        "sea salt",
+        "mixed tocopherols (antioxidant)"
+      ],
+      "nutrition": {
+        "fat": 5,
+        "saturatedFat": 0,
+        "sodium": 140,
+        "carbs": 19,
+        "sugars": 0,
+        "protein": 3
+      },
+      "certifications": ["Non-GMO Project"],
+      "isOrganic": false,
+      "isVegan": true,
+      "isGlutenFree": true
+    },
+    {
+      "upc": "028400092173",
+      "off_api_confirmed_name": "Simply Naked Pita Chips",
+      "name": "Stacy's Simply Naked Pita Chips",
+      "brand": "Stacy's",
+      "companyId": "pepsico",
+      "servingSize": "1 oz (28g)",
+      "calories": 130,
+      "ingredients_verbatim": [
+        "enriched wheat flour (wheat flour, niacin, reduced iron, thiamin mononitrate, riboflavin, folic acid)",
+        "sunflower oil and/or canola oil",
+        "sea salt",
+        "whole wheat flour",
+        "organic cane sugar",
+        "oat fiber",
+        "yeast",
+        "malted barley flour",
+        "rosemary extract (antioxidant)",
+        "ascorbic acid (antioxidant)"
+      ],
+      "nutrition": {
+        "fat": 5,
+        "saturatedFat": 0.5,
+        "sodium": 270,
+        "carbs": 19,
+        "sugars": 1,
+        "protein": 3
+      },
+      "certifications": ["Non-GMO Project", "Kosher"],
+      "isOrganic": false,
+      "isVegan": true,
+      "isGlutenFree": false
+    },
+    {
+      "upc": "856069005155",
+      "off_api_confirmed_name": "ALMOND FLOUR CRACKERS Farmhouse Cheddar",
+      "name": "Simple Mills Almond Flour Crackers Farmhouse Cheddar",
+      "brand": "Simple Mills",
+      "companyId": null,
+      "servingSize": "17 crackers (30g)",
+      "calories": 150,
+      "ingredients_verbatim": [
+        "nut & seed flour blend (almonds, sunflower seeds, flax seeds)",
+        "tapioca starch",
+        "cassava flour",
+        "organic cheddar cheese (cultured milk, salt, enzymes)",
+        "organic cultured cream",
+        "organic whole milk",
+        "organic sunflower oil",
+        "sea salt",
+        "organic onion",
+        "organic garlic",
+        "rosemary extract (for freshness)",
+        "annatto extract (for color)",
+        "paprika extract"
+      ],
+      "nutrition": {
+        "fat": 9,
+        "saturatedFat": 1.5,
+        "sodium": 230,
+        "carbs": 17,
+        "sugars": 0.5,
+        "protein": 3
+      },
+      "certifications": ["Certified Gluten-Free", "Non-GMO Project"],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": true
+    },
+    {
+      "upc": "897580000106",
+      "off_api_confirmed_name": "Original Crackers",
+      "name": "Mary's Gone Crackers Original Crackers",
+      "brand": "Mary's Gone Crackers",
+      "companyId": "hain-celestial",
+      "servingSize": "12 crackers (30g)",
+      "calories": 140,
+      "ingredients_verbatim": [
+        "brown rice",
+        "quinoa",
+        "flax seeds",
+        "sesame seeds",
+        "tamari (water, soybeans, salt, vinegar)",
+        "sea salt"
+      ],
+      "nutrition": {
+        "fat": 5,
+        "saturatedFat": 0.5,
+        "sodium": 180,
+        "carbs": 20,
+        "sugars": 0,
+        "protein": 4
+      },
+      "certifications": ["USDA Organic", "Non-GMO Project"],
+      "isOrganic": true,
+      "isVegan": true,
+      "isGlutenFree": true
+    },
+    {
+      "upc": "036593110055",
+      "off_api_confirmed_name": "3 Seed Sweet Potato Crackers",
+      "name": "RW Garcia 3 Seed Sweet Potato Crackers",
+      "brand": "RW Garcia",
+      "companyId": null,
+      "servingSize": "16 crackers (28g)",
+      "calories": 150,
+      "ingredients_verbatim": [
+        "stone ground yellow corn",
+        "sunflower oil and/or corn oil",
+        "sweet potato",
+        "stone ground white corn",
+        "flaxseed",
+        "black sesame seeds",
+        "chia seeds",
+        "sea salt"
+      ],
+      "nutrition": {
+        "fat": 8,
+        "saturatedFat": 1,
+        "sodium": 50,
+        "carbs": 17,
+        "sugars": 2,
+        "protein": 2
+      },
+      "certifications": ["Non-GMO Project"],
+      "isOrganic": false,
+      "isVegan": true,
+      "isGlutenFree": true
+    },
+    {
+      "upc": "852834002008",
+      "off_api_confirmed_name": "Classic Black Bean Chips - Original OMG Sea Salt",
+      "name": "Beanitos Black Bean Chips Original Sea Salt",
+      "brand": "Beanitos",
+      "companyId": null,
+      "servingSize": "1 oz (28g)",
+      "calories": 130,
+      "ingredients_verbatim": [
+        "whole beans (black, great northern)",
+        "sunflower oil",
+        "rice flour",
+        "tapioca starch",
+        "sea salt"
+      ],
+      "nutrition": {
+        "fat": 7,
+        "saturatedFat": 0.5,
+        "sodium": 105,
+        "carbs": 15,
+        "sugars": 1,
+        "protein": 5
+      },
+      "certifications": ["Non-GMO Project"],
+      "isOrganic": false,
+      "isVegan": true,
+      "isGlutenFree": true
+    }
+  ],
+  "could_not_verify": [
+    "Angie's BOOMCHICKAPOP Sea Salt Popcorn 4.4oz (UPC 081878001343) — UPC confirmed via Kroger product URL but not found in OpenFoodFacts database; ingredients sourced from multiple retailer listings (popcorn, sunflower oil, sea salt)"
+  ]
+}

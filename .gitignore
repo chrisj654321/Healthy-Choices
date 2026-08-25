@@ -11,5 +11,40 @@ web-build/
 web-build/
 .env
 .env.local
+.env.sentry-build-plugin
+# Catch-all so no stray credential file (.env.bak, .env.production, editor
+# backups) can ever be committed. Keep an example file trackable if we add one.
+.env*
+!.env.example
 .claude/
 src/data/products_generated.json
+scripts/ingestion_log.txt
+supabase/.temp/
+marketing/
+
+# ── Data-pipeline scratch / working artifacts (not part of the app) ──
+UserschrisHealthyChoices*
+*_check.txt
+check_*.txt
+enriched_*.csv
+master_products_table.csv
+products_with_competitors.csv
+build_batch*.js
+extract_*.js
+fetch_off_images.py
+fetch_retailer_images.js
+fallback_images*.json
+missing_tmp.json
+*_tmp.json
+off_images*.json
+off_images_progress.log
+retailer_images_batch_*.json
+.agents/
+.netlify/
+web/launch.html
+debug.log
+tmp-runway-*
+src/data/batches/products/_cache/
+
+# ── Generated SQLite catalog (Wave 1) — reproducible from build-products-sqlite.js ──
+assets/db/*.db

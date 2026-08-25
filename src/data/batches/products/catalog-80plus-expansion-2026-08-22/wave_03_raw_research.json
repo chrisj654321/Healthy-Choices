@@ -1,0 +1,67 @@
+{
+  "wave": "03",
+  "status": "SCORED_AND_REVIEWED",
+  "updatedAt": "2026-08-22",
+  "products": [
+    {
+      "status": "verified_below_threshold",
+      "scorePreview": 76,
+      "barcode": "042272002658",
+      "name": "Amy's Mexican Casserole Bowl, Light in Sodium",
+      "brand": "Amy's Kitchen",
+      "companyId": "amy-kitchen",
+      "category": "Frozen Meals",
+      "servingSize": "1 bowl (269g)",
+      "calories": 370,
+      "ingredients": ["filtered water", "organic corn", "organic corn masa (organic stoneground corn flour, trace of lime)", "organic black beans", "monterey jack cheese (pasteurized milk, culture, salt, enzymes)", "olives", "organic tomato puree", "expeller pressed high oleic safflower and/or sunflower oil", "organic onions", "organic sweet rice flour", "spices", "organic garlic", "sea salt", "organic cilantro"],
+      "nutrition": { "fat": 16, "saturatedFat": 5, "sodium": 370, "carbs": 45, "sugars": 4, "protein": 12 },
+      "sources": ["https://www.heb.com/product-detail/amy-s-bowls-light-sodium-mexican-casserole/2132095", "https://tools.myfooddata.com/nutrition-facts/2411701/wt1/"],
+      "notes": ["Current retailer label supplies the exact variant, complete ingredients, serving nutrition, and confirms it is a bowl meal. USDA-derived label data ties the exact UPC to the same formula.", "UPC is absent from the shipping catalog and passes UPC-A mod-10."]
+    },
+    {
+      "status": "verified_below_threshold",
+      "scorePreview": 55,
+      "barcode": "042272010677",
+      "name": "Amy's Harvest Casserole Bowl",
+      "brand": "Amy's Kitchen",
+      "companyId": "amy-kitchen",
+      "category": "Frozen Meals",
+      "servingSize": "1 bowl (284g)",
+      "calories": 320,
+      "ingredients": ["filtered water", "organic brown rice", "organic fire roasted sweet potatoes", "organic kale", "organic swiss chard", "organic red beans", "organic broccoli", "organic tofu (filtered water, organic soybeans, magnesium chloride)", "organic miso (organic soybeans, organic rice, sea salt, water, koji spores)", "organic diced tomatoes", "organic quinoa", "organic pumpkin seeds", "organic brown rice vinegar", "organic carrots", "organic tamari (water, organic soybeans, salt)", "organic onions", "organic cane sugar", "organic extra virgin olive oil", "organic ginger", "toasted sesame seeds", "organic cilantro", "organic toasted sesame seed oil", "sea salt", "expeller pressed high oleic safflower and/or sunflower oil", "organic red wine vinegar", "organic agave nectar", "organic garlic", "black pepper", "spices", "organic chipotle peppers", "organic tomato puree", "organic balsamic vinegar"],
+      "nutrition": { "fat": 10, "saturatedFat": 1.5, "sodium": 650, "carbs": 44, "sugars": 8, "protein": 13 },
+      "sources": ["https://tools.myfooddata.com/nutrition-facts/379333/wt1/", "https://shopwoodmans.com/store/woodmans-food-markets/products/3023411-amy-s-kitchen-frozen-bowls-harvest-casserole-vegan-gluten-free-10-oz", "https://www.amys.com/our-foods"],
+      "notes": ["USDA-derived label data supplies exact UPC, ingredients, and nutrition; a current retailer confirms the exact bowl and consumer GTIN; the manufacturer lists Harvest Casserole Bowl in its current catalog.", "UPC is absent from the shipping catalog and passes UPC-A mod-10."]
+    },
+    {
+      "status": "verified_below_threshold",
+      "scorePreview": 67,
+      "barcode": "042272008339",
+      "name": "Amy's Mushroom Risotto Bowl",
+      "brand": "Amy's Kitchen",
+      "companyId": "amy-kitchen",
+      "category": "Frozen Meals",
+      "servingSize": "1 bowl (269g)",
+      "calories": 230,
+      "ingredients": ["organic arborio rice", "organic mushrooms", "filtered water", "organic peas", "organic butter (organic cream, salt)", "organic onions", "parmesan cheese (pasteurized part-skim milk, culture, salt, enzymes)", "sea salt", "black pepper"],
+      "nutrition": { "fat": 7, "saturatedFat": 4.5, "sodium": 590, "carbs": 35, "sugars": 1, "protein": 7 },
+      "sources": ["https://www.target.com/p/-/A-15389504", "https://www.shoprite.com/sm/planning/rsid/433/product/amys-mushroom-risotto-bowls-95-oz-id-00042272008339", "https://www.amys.com/our-foods"],
+      "notes": ["Two current retailers agree on the exact UPC, complete ingredient list, serving size, and nutrition; the manufacturer lists Mushroom Risotto Bowl in its current catalog.", "UPC is absent from the shipping catalog and passes UPC-A mod-10."]
+    },
+    {
+      "status": "verified_below_threshold",
+      "scorePreview": 60,
+      "barcode": "042272000531",
+      "name": "Amy's Veggie Loaf Whole Meal",
+      "brand": "Amy's Kitchen",
+      "companyId": "amy-kitchen",
+      "category": "Frozen Meals",
+      "servingSize": "1 meal (283g)",
+      "calories": 350,
+      "ingredients": ["organic potatoes", "organic peas", "organic mushrooms", "organic corn", "organic onions", "filtered water", "organic broccoli", "organic green lentils", "baby lima beans (baby lima beans, sea salt)", "organic leeks", "organic celery", "organic carrots", "organic tomato puree", "gluten free oats", "organic soy milk (water, organic soybeans)", "organic sweet rice flour", "expeller pressed high oleic safflower and/or sunflower oil", "extra virgin olive oil", "sea salt", "organic potato starch", "organic garlic", "organic apple cider vinegar", "organic agave nectar", "organic cane sugar", "spices", "black pepper"],
+      "nutrition": { "fat": 10, "saturatedFat": 1, "sodium": 740, "carbs": 55, "sugars": 8, "protein": 11 },
+      "sources": ["https://www.target.com/p/-/A-13192148", "https://shop.foodland.com/product/amys-organic-veggie-loaf-meal-id-042272000531", "https://www.amys.com/our-foods"],
+      "notes": ["Current Target label supplies the exact UPC, ingredients, serving nutrition, and identifies the product as a complete meal with mashed potatoes and vegetables. A current retailer and manufacturer catalog confirm availability and identity.", "UPC is absent from the shipping catalog and passes UPC-A mod-10."]
+    }
+  ]
+}

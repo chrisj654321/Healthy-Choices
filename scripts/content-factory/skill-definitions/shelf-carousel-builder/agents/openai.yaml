@@ -1,0 +1,4 @@
+interface:
+  display_name: "Shelf Carousel Builder"
+  short_description: "Build reviewed TikTok content packages"
+  default_prompt: "Use $shelf-carousel-builder to turn approved Food Exposé concepts into TikTok-ready packages."

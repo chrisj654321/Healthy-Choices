@@ -1,0 +1,172 @@
+{
+  "fetchedAt": "2026-07-06T15:05:58.493Z",
+  "products": {
+    "cheerios": {
+      "dest": "assets/onboarding/products/cheerios.jpg",
+      "bytes": 45980,
+      "source": "https://i5.walmartimages.com/asr/ecbad8f5-25a7-43d4-94a5-bca749dbd8b7_1.4276bdb818fbb3532e2b5547a191c562.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff",
+      "matchedName": "General Mills Cheerios Cereal  14 oz"
+    },
+    "doritos": {
+      "dest": "assets/onboarding/products/doritos.jpg",
+      "bytes": 154851,
+      "source": "https://target.scene7.com/is/image/Target/GUEST_08968306-c35f-48be-9f69-204025f2c49a?wid=1000&hei=1000",
+      "matchedName": "Doritos Nacho Cheese Tortilla Chips - 9.25oz"
+    },
+    "wonder-bread": {
+      "dest": "assets\\onboarding\\products\\wonder-bread.jpg",
+      "bytes": 11080,
+      "source": "https://target.scene7.com/is/image/Target/GUEST_62d8ec0a-d660-4ec3-b865-b7dd69a03aea?wid=300&hei=300&fmt=pjpeg",
+      "catalogName": "Wonder Classic White Bread"
+    },
+    "coca-cola": {
+      "dest": "assets\\onboarding\\products\\coca-cola.jpg",
+      "bytes": 21995,
+      "source": "https://target.scene7.com/is/image/Target/GUEST_8d979a1e-69b0-4b19-9d19-26d4e04c5bbb?wid=300&hei=300&fmt=pjpeg",
+      "catalogName": "Coca-Cola Classic 12oz Can"
+    },
+    "lunchables": {
+      "dest": "assets\\onboarding\\products\\lunchables.jpg",
+      "bytes": 42852,
+      "source": "https://pics.walgreens.com/prodimg/418546/450.jpg",
+      "catalogName": "LUNCHABLES, HAM & CHEDDAR WITH CRACKERS"
+    },
+    "oreos": {
+      "dest": "assets/onboarding/products/oreos.jpg",
+      "bytes": 29853,
+      "source": "https://i5.walmartimages.com/asr/00c279ce-3f8b-4a81-9a99-0a13892a3b2d.b8f9ac4bbc4983617fae02a547a5319d.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff",
+      "matchedName": "OREO COOKIES-SLEEVE PACK 1X0.78 OZ"
+    },
+    "cheetos": {
+      "dest": "assets/onboarding/products/cheetos.jpg",
+      "bytes": 205906,
+      "source": "https://target.scene7.com/is/image/Target/GUEST_483ba9ca-1084-484a-a5a9-5cc5aa1b0fe8?wid=1000&hei=1000",
+      "matchedName": "Cheetos Crunchy Cheese Flavored Snacks, 9 Oz."
+    },
+    "mountain-dew": {
+      "dest": "assets\\onboarding\\products\\mountain-dew.jpg",
+      "bytes": 34538,
+      "source": "https://images.openfoodfacts.org/images/products/001/200/080/9965/front_en.5.400.jpg",
+      "catalogName": "Mountain Dew Original Soda"
+    },
+    "kraft-mac": {
+      "dest": "assets/onboarding/products/kraft-mac.jpg",
+      "bytes": 112566,
+      "source": "https://target.scene7.com/is/image/Target/GUEST_e9dd52f9-59f5-4f62-a739-93b1b6f4c71b?wid=1000&hei=1000",
+      "matchedName": "Kraft Original Mac and Cheese Dinner - 7.25oz"
+    },
+    "eggo": {
+      "dest": "assets/onboarding/products/eggo.jpg",
+      "bytes": 125290,
+      "source": "https://target.scene7.com/is/image/Target/GUEST_6374d07f-3a94-403f-aad9-c5e3c92f69bb?wid=1000&hei=1000",
+      "matchedName": "Kellogg's Eggo Buttermilk Frozen Waffles - 12.3oz/10ct"
+    },
+    "hot-pockets": {
+      "dest": "assets/onboarding/products/hot-pockets.jpg",
+      "bytes": 43300,
+      "source": "https://i5.walmartimages.com/asr/5d5452df-d35e-4f23-9285-f758758b0187_1.ba243ae313803fa7663178d982790a53.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff",
+      "matchedName": "Hot Pockets Hot Pocket Pepperoni Pizza"
+    },
+    "pop-tarts": {
+      "dest": "assets/onboarding/products/pop-tarts.jpg",
+      "bytes": 40508,
+      "source": "https://i5.walmartimages.com/asr/120637de-955b-4e24-96ee-bacfbf20e014_1.b079b367831f46d4705284a378369adc.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff",
+      "matchedName": "Kellogg's Pop-Tarts Frosted Strawberry 3.67oz"
+    }
+  },
+  "stores": {
+    "aldi": {
+      "dest": "assets/onboarding/stores/aldi.png",
+      "bytes": 30406,
+      "source": "https://commons.wikimedia.org/wiki/Special:FilePath/AldiWorldwideLogo.svg?width=512",
+      "note": "wikipedia: AldiWorldwideLogo.svg"
+    },
+    "costco": {
+      "dest": "assets/onboarding/stores/costco.png",
+      "bytes": 49239,
+      "source": "https://commons.wikimedia.org/wiki/Special:FilePath/Costco_Wholesale_logo_2010-10-26.svg?width=512",
+      "note": "wikipedia media-list: Costco_Wholesale_logo_2010-10-26.svg"
+    },
+    "walmart": {
+      "dest": "assets/onboarding/stores/walmart.png",
+      "bytes": 23953,
+      "source": "https://commons.wikimedia.org/wiki/Special:FilePath/Walmart_logo_(2008).svg?width=512",
+      "note": "wikipedia media-list: Walmart_logo_(2008).svg"
+    },
+    "target": {
+      "dest": "assets/onboarding/stores/target.png",
+      "bytes": 45269,
+      "source": "https://commons.wikimedia.org/wiki/Special:FilePath/Target_logo.svg?width=512",
+      "note": "wikipedia: Target_logo.svg"
+    },
+    "kroger": {
+      "dest": "assets\\onboarding\\stores\\kroger.jpg",
+      "bytes": 4563,
+      "source": "https://www.google.com/s2/favicons?domain=kroger.com&sz=256"
+    },
+    "publix": {
+      "dest": "assets\\onboarding\\stores\\publix.png",
+      "bytes": 10680,
+      "source": "https://www.google.com/s2/favicons?domain=publix.com&sz=256"
+    },
+    "harris-teeter": {
+      "dest": "assets\\onboarding\\stores\\harris-teeter.png",
+      "bytes": 3286,
+      "source": "https://www.google.com/s2/favicons?domain=harristeeter.com&sz=256"
+    },
+    "food-lion": {
+      "dest": "assets\\onboarding\\stores\\food-lion.png",
+      "bytes": 7189,
+      "source": "https://www.google.com/s2/favicons?domain=foodlion.com&sz=256"
+    },
+    "whole-foods": {
+      "dest": "assets\\onboarding\\stores\\whole-foods.png",
+      "bytes": 7691,
+      "source": "https://www.google.com/s2/favicons?domain=wholefoodsmarket.com&sz=256"
+    },
+    "trader-joes": {
+      "dest": "assets\\onboarding\\stores\\trader-joes.png",
+      "bytes": 4736,
+      "source": "https://www.google.com/s2/favicons?domain=traderjoes.com&sz=256"
+    },
+    "sams-club": {
+      "dest": "assets/onboarding/stores/sams-club.png",
+      "bytes": 1901,
+      "source": "samsclub.com og:image"
+    },
+    "sprouts": {
+      "dest": "assets\\onboarding\\stores\\sprouts.png",
+      "bytes": 18801,
+      "source": "https://www.google.com/s2/favicons?domain=sprouts.com&sz=256"
+    },
+    "wegmans": {
+      "dest": "assets\\onboarding\\stores\\wegmans.png",
+      "bytes": 12827,
+      "source": "https://www.google.com/s2/favicons?domain=wegmans.com&sz=256"
+    },
+    "meijer": {
+      "dest": "assets\\onboarding\\stores\\meijer.png",
+      "bytes": 547,
+      "source": "https://www.google.com/s2/favicons?domain=meijer.com&sz=256"
+    },
+    "heb": {
+      "dest": "assets\\onboarding\\stores\\heb.png",
+      "bytes": 12374,
+      "source": "https://www.google.com/s2/favicons?domain=heb.com&sz=256"
+    },
+    "gordons": {
+      "dest": "assets/onboarding/stores/gordons.png",
+      "bytes": 33704,
+      "source": "https://commons.wikimedia.org/wiki/Special:FilePath/Gordon_Food_Service_logo.svg?width=512",
+      "note": "wikipedia media-list: Gordon_Food_Service_logo.svg"
+    }
+  },
+  "companies": {
+    "pepsico": {
+      "dest": "assets\\onboarding\\companies\\pepsico.png",
+      "bytes": 4065,
+      "source": "https://www.google.com/s2/favicons?domain=pepsico.com&sz=256"
+    }
+  },
+  "failures": []
+}

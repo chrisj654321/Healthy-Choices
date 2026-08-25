@@ -11,15 +11,14 @@ import {
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
+import * as Haptics from 'expo-haptics';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '../constants/colors';
 import { Font } from '../constants/typography';
 import ScanHistoryItem from '../components/ScanHistoryItem';
-import { getScanHistory, removeScanEntry, clearScanHistory } from '../utils/storage';
-import { PRODUCT_DB } from '../data/products';
+import { getScanHistory, removeScanEntry, clearScanHistory, FREE_HISTORY_LIMIT } from '../utils/storage';
+import { getProductByBarcode } from '../data/productStore';
 import { useProStatus } from '../utils/subscription';
-
-const FREE_HISTORY_LIMIT = 5;
 
 export default function ScanHistoryScreen({ navigation }) {
   const insets = useSafeAreaInsets();
@@ -71,13 +70,13 @@ export default function ScanHistoryScreen({ navigation }) {
     ]);
   };
 
-  const handlePress = (item) => {
-    const product = item.product || PRODUCT_DB[item.barcode];
+  const handlePress = async (item) => {
+    const product = item.product || (await getProductByBarcode(item.barcode));
     if (!product) {
       Alert.alert('Unavailable', 'Full details for this scan are no longer available. Scan the product again to reload it.');
       return;
     }
-    navigation.navigate('ProductScore', { product });
+    navigation.navigate('ProductScore', { product, fromHistory: true });
   };
 
   const FILTERS = ['all', 'A', 'B', 'C', 'D', 'F'];
@@ -151,10 +150,14 @@ export default function ScanHistoryScreen({ navigation }) {
             <TouchableOpacity
               key={f}
               style={[styles.filterPill, filter === f && styles.filterPillActive]}
-              onPress={() => setFilter(f)}
+              onPress={() => {
+                Haptics.selectionAsync().catch(() => {});
+                setFilter(f);
+              }}
             >
               <Text style={[styles.filterText, filter === f && styles.filterTextActive]}>
-                {f === 'all' ? 'All' : f}
+                {/* UI shows 0–100 score ranges; internal filter values stay letter-banded. */}
+                {{ all: 'All', A: '90+', B: '80s', C: '70s', D: '60s', F: '<60' }[f]}
               </Text>
             </TouchableOpacity>
           ))}
@@ -179,7 +182,7 @@ export default function ScanHistoryScreen({ navigation }) {
           {history.length === 0 && (
             <TouchableOpacity
               style={styles.scanNowBtn}
-              onPress={() => navigation.navigate('Scanner')}
+              onPress={() => navigation.getParent()?.navigate('Scan')}
             >
               <Text style={styles.scanNowText}>Scan a Product</Text>
             </TouchableOpacity>
@@ -219,7 +222,7 @@ function HistoryGateBanner({ lockedCount, onUpgrade }) {
       </View>
       <View style={hgS.text}>
         <Text style={hgS.title}>{lockedCount} more scan{lockedCount !== 1 ? 's' : ''} locked</Text>
-        <Text style={hgS.sub}>Upgrade to Pro to see your full history.</Text>
+        <Text style={hgS.sub}>Upgrade to Premium to see your full history.</Text>
       </View>
       <View style={hgS.btn}>
         <Text style={hgS.btnText}>Unlock</Text>

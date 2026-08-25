@@ -1,0 +1,493 @@
+{
+  "batch": [
+    {
+      "label": "egg-antitrust-mdl",
+      "court": {
+        "query": "In re Processed Egg Products Antitrust Litigation 08-md-02002",
+        "totalCount": 1,
+        "results": [
+          {
+            "caseName": "IN RE: PROCESSED EGG PRODUCTS ANTITRUST LITIGATION",
+            "court": "District Court, E.D. Pennsylvania",
+            "docketNumber": "2:08-md-02002",
+            "dateFiled": "2008-12-02",
+            "dateTerminated": "2022-11-08",
+            "natureOfSuit": "410 Other Statutes: Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/4368662/in-re-processed-egg-products-antitrust-litigation/",
+            "parties": [
+              "IN RE: PROCESSED EGG PRODUCTS ANTITRUST LITIGATION",
+              "GARDEN CITY GROUP",
+              "Lisciandro",
+              "LISCIANDRO'S RESTAURANT",
+              "SANDRA A. JESKIE"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "janecyk-egglands-best",
+      "court": {
+        "query": "Janecyk v Eggland's Best 1:24-cv-06222",
+        "totalCount": 1,
+        "results": [
+          {
+            "caseName": "Janecyk v. Eggland's Best, Inc.",
+            "court": "District Court, N.D. Illinois",
+            "docketNumber": "1:24-cv-06222",
+            "dateFiled": "2024-07-23",
+            "dateTerminated": null,
+            "natureOfSuit": "370 Other Fraud",
+            "url": "https://www.courtlistener.com/docket/68970638/janecyk-v-egglands-best-inc/",
+            "parties": [
+              "Amanda Fields",
+              "Moussa Kouyate",
+              "Eggland's Best, Inc.",
+              "Tina Fulford",
+              "Tim Janecyk",
+              "Michelle Spurgeon",
+              "Leroy Jacobs",
+              "Patricia Cavallaro-Kearins",
+              "Eggland's Best, LLC",
+              "Philip Smith",
+              "Tracy Massenburg",
+              "Antonett Garrett"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "kroger-sorkin",
+      "court": {
+        "query": "Sorkin v Kroger 1:23-cv-14916",
+        "totalCount": 1,
+        "results": [
+          {
+            "caseName": "Sorkin v. The Kroger Co.",
+            "court": "District Court, N.D. Illinois",
+            "docketNumber": "1:23-cv-14916",
+            "dateFiled": "2023-10-14",
+            "dateTerminated": "2024-08-06",
+            "natureOfSuit": "370 Other Fraud",
+            "url": "https://www.courtlistener.com/docket/67883102/sorkin-v-the-kroger-co/",
+            "parties": [
+              "Adam Sorkin",
+              "The Kroger Co."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "kroger-long",
+      "court": {
+        "query": "Long v Kroger 1:23-cv-01179",
+        "totalCount": 1,
+        "results": [
+          {
+            "caseName": "Long v. The Kroger Co.",
+            "court": "District Court, C.D. Illinois",
+            "docketNumber": "1:23-cv-01179",
+            "dateFiled": "2023-05-03",
+            "dateTerminated": "2023-10-23",
+            "natureOfSuit": "370 Other Fraud",
+            "url": "https://www.courtlistener.com/docket/67320626/long-v-the-kroger-co/",
+            "parties": [
+              "Larry Long",
+              "The Kroger Co."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "pete-gerrys-lugones",
+      "court": {
+        "query": "Lugones v Pete and Gerry's Organics 1:19-cv-02097",
+        "totalCount": 1,
+        "results": [
+          {
+            "caseName": "Lugones v. Pete and Gerry's Organics, LLC",
+            "court": "District Court, S.D. New York",
+            "docketNumber": "1:19-cv-02097",
+            "dateFiled": "2019-03-06",
+            "dateTerminated": "2020-04-23",
+            "natureOfSuit": "190 Contract: Other",
+            "url": "https://www.courtlistener.com/docket/14631058/lugones-v-pete-and-gerrys-organics-llc/",
+            "parties": [
+              "Isabelle Gray",
+              "Claudia Vassallo",
+              "Denise Alvarado",
+              "Anne Flournoy",
+              "Michelle Lugones",
+              "Karine Sewell",
+              "Pete and Gerry's Organics, LLC",
+              "Marcus Siezing",
+              "Tricia Rizzi",
+              "Sonja Romano",
+              "Nellie's Free Range Eggs",
+              "Minoee Modi"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "pete-gerrys-mogull",
+      "court": {
+        "query": "Mogull v Pete and Gerry's Organics 7:21-cv-03521",
+        "totalCount": 1,
+        "results": [
+          {
+            "caseName": "Mogull v. Pete and Gerry's Organics, LLC",
+            "court": "District Court, S.D. New York",
+            "docketNumber": "7:21-cv-03521",
+            "dateFiled": "2021-04-21",
+            "dateTerminated": "2023-04-12",
+            "natureOfSuit": "370 Other Fraud",
+            "url": "https://www.courtlistener.com/docket/59840464/mogull-v-pete-and-gerrys-organics-llc/",
+            "parties": [
+              "Pete and Gerry's Organics, LLC",
+              "Constance Mogull"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "vital-farms-usler",
+      "court": {
+        "query": "Usler v Vital Farms 1:21-cv-447",
+        "totalCount": 1,
+        "results": [
+          {
+            "caseName": "Usler v. Vital Farms, Inc.",
+            "court": "District Court, W.D. Texas",
+            "docketNumber": "1:21-cv-00447",
+            "dateFiled": "2021-05-20",
+            "dateTerminated": "2025-01-07",
+            "natureOfSuit": "370 Other Fraud",
+            "url": "https://www.courtlistener.com/docket/59922095/usler-v-vital-farms-inc/",
+            "parties": [
+              "Kara Gozde",
+              "Andrew Andrada",
+              "Matthew O'Hayer",
+              "Charles Sankowich",
+              "Scott Marcus",
+              "Vital Farms, Inc.",
+              "Burcu Karaca",
+              "Nicholas A. Usler",
+              "Kenny Kierman",
+              "Dr.  Alina Yurkovsky",
+              "Noah Tanz",
+              "Russell Diez-Canseco"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "vital-farms-wilkerson",
+      "court": {
+        "query": "Wilkerson v Vital Farms 26-cv-00738",
+        "totalCount": 1,
+        "results": [
+          {
+            "caseName": "Wilkerson v. Vital Farms, Inc.",
+            "court": "District Court, W.D. Texas",
+            "docketNumber": "1:26-cv-00738",
+            "dateFiled": "2026-03-27",
+            "dateTerminated": null,
+            "natureOfSuit": "850 Securities/Commodities",
+            "url": "https://www.courtlistener.com/docket/73101339/wilkerson-v-vital-farms-inc/",
+            "parties": [
+              "Russel Diez Canseco",
+              "Vital Farms, Inc.",
+              "Don Wilkerson",
+              "Thilo Wrede"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "vital-farms-fsap",
+      "court": {
+        "query": "Foundation to Support Animal Protection v Vital Farms 22-mc-00023",
+        "totalCount": 1,
+        "results": [
+          {
+            "caseName": "Foundation to Support Animal Protection v. Vital Farms Inc.",
+            "court": "District Court, E.D. Virginia",
+            "docketNumber": "2:22-mc-00023",
+            "dateFiled": "2022-12-30",
+            "dateTerminated": "2023-12-22",
+            "natureOfSuit": "890 Other Statutory Actions",
+            "url": "https://www.courtlistener.com/docket/66694091/foundation-to-support-animal-protection-v-vital-farms-inc/",
+            "parties": [
+              "Foundation to Support Animal Protection",
+              "Vital Farms Inc."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "vital-farms-sec",
+      "sec": {
+        "ticker": "VITL",
+        "cik": "0001579733",
+        "entityName": "Vital Farms, Inc.",
+        "filings": [
+          {
+            "form": "8-K",
+            "filingDate": "2026-06-16",
+            "reportDate": "2026-06-10",
+            "primaryDoc": "vitl-20260610.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/1579733/000119312526271829/vitl-20260610.htm"
+          },
+          {
+            "form": "8-K",
+            "filingDate": "2026-05-07",
+            "reportDate": "2026-05-01",
+            "primaryDoc": "vitl-20260501.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/1579733/000119312526210294/vitl-20260501.htm"
+          },
+          {
+            "form": "10-K",
+            "filingDate": "2026-02-26",
+            "reportDate": "2025-12-28",
+            "primaryDoc": "vitl-20251228.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/1579733/000119312526073423/vitl-20251228.htm"
+          },
+          {
+            "form": "8-K",
+            "filingDate": "2026-02-26",
+            "reportDate": "2026-02-20",
+            "primaryDoc": "vitl-20260220.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/1579733/000119312526073373/vitl-20260220.htm"
+          },
+          {
+            "form": "8-K",
+            "filingDate": "2025-12-16",
+            "reportDate": "2025-12-16",
+            "primaryDoc": "vitl-20251216.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/1579733/000119312525319957/vitl-20251216.htm"
+          }
+        ]
+      }
+    },
+    {
+      "label": "post-holdings-sec",
+      "sec": {
+        "ticker": "POST",
+        "cik": "0001530950",
+        "entityName": "Post Holdings, Inc.",
+        "filings": [
+          {
+            "form": "8-K",
+            "filingDate": "2026-05-07",
+            "reportDate": "2026-05-05",
+            "primaryDoc": "post-20260505.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/1530950/000153095026000056/post-20260505.htm"
+          },
+          {
+            "form": "8-K",
+            "filingDate": "2026-03-13",
+            "reportDate": "2026-03-13",
+            "primaryDoc": "post-20260313.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/1530950/000153095026000041/post-20260313.htm"
+          },
+          {
+            "form": "8-K",
+            "filingDate": "2026-03-04",
+            "reportDate": "2026-03-04",
+            "primaryDoc": "post-20260304.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/1530950/000153095026000038/post-20260304.htm"
+          },
+          {
+            "form": "8-K",
+            "filingDate": "2026-03-04",
+            "reportDate": "2026-03-04",
+            "primaryDoc": "post-20260304.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/1530950/000153095026000034/post-20260304.htm"
+          },
+          {
+            "form": "8-K",
+            "filingDate": "2026-02-05",
+            "reportDate": "2026-02-03",
+            "primaryDoc": "post-20260203.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/1530950/000153095026000019/post-20260203.htm"
+          }
+        ]
+      }
+    },
+    {
+      "label": "kroger-sec",
+      "sec": {
+        "ticker": "KR",
+        "cik": "0000056873",
+        "entityName": "KROGER CO",
+        "filings": [
+          {
+            "form": "10-K",
+            "filingDate": "2026-03-31",
+            "reportDate": "2026-01-31",
+            "primaryDoc": "kr-20260131x10k.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/56873/000110465926037723/kr-20260131x10k.htm"
+          },
+          {
+            "form": "10-K",
+            "filingDate": "2025-04-01",
+            "reportDate": "2025-02-01",
+            "primaryDoc": "kr-20250201x10k.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/56873/000155837025004267/kr-20250201x10k.htm"
+          },
+          {
+            "form": "10-K",
+            "filingDate": "2024-04-02",
+            "reportDate": "2024-02-03",
+            "primaryDoc": "kr-20240203x10k.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/56873/000155837024004603/kr-20240203x10k.htm"
+          },
+          {
+            "form": "10-K",
+            "filingDate": "2023-03-28",
+            "reportDate": "2023-01-28",
+            "primaryDoc": "kr-20230128x10k.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/56873/000155837023004767/kr-20230128x10k.htm"
+          },
+          {
+            "form": "10-K",
+            "filingDate": "2022-03-29",
+            "reportDate": "2022-01-29",
+            "primaryDoc": "kr-20220129x10k.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/56873/000155837022004595/kr-20220129x10k.htm"
+          }
+        ]
+      }
+    },
+    {
+      "label": "walmart-sec",
+      "sec": {
+        "ticker": "WMT",
+        "cik": "0000104169",
+        "entityName": "Walmart Inc.",
+        "filings": [
+          {
+            "form": "10-K",
+            "filingDate": "2026-03-13",
+            "reportDate": "2026-01-31",
+            "primaryDoc": "wmt-20260131.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm"
+          },
+          {
+            "form": "10-K",
+            "filingDate": "2025-03-14",
+            "reportDate": "2025-01-31",
+            "primaryDoc": "wmt-20250131.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/104169/000010416925000021/wmt-20250131.htm"
+          },
+          {
+            "form": "10-K",
+            "filingDate": "2024-03-15",
+            "reportDate": "2024-01-31",
+            "primaryDoc": "wmt-20240131.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/104169/000010416924000056/wmt-20240131.htm"
+          }
+        ]
+      }
+    },
+    {
+      "label": "target-sec",
+      "sec": {
+        "ticker": "TGT",
+        "cik": "0000027419",
+        "entityName": "TARGET CORP",
+        "filings": [
+          {
+            "form": "10-K",
+            "filingDate": "2026-03-11",
+            "reportDate": "2026-01-31",
+            "primaryDoc": "tgt-20260131.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/27419/000002741926000016/tgt-20260131.htm"
+          },
+          {
+            "form": "10-K",
+            "filingDate": "2025-03-12",
+            "reportDate": "2025-02-01",
+            "primaryDoc": "tgt-20250201.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/27419/000002741925000018/tgt-20250201.htm"
+          },
+          {
+            "form": "10-K",
+            "filingDate": "2024-03-13",
+            "reportDate": "2024-02-03",
+            "primaryDoc": "tgt-20240203.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/27419/000002741924000032/tgt-20240203.htm"
+          },
+          {
+            "form": "10-K",
+            "filingDate": "2023-03-08",
+            "reportDate": "2023-01-28",
+            "primaryDoc": "tgt-20230128.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/27419/000002741923000015/tgt-20230128.htm"
+          },
+          {
+            "form": "10-K",
+            "filingDate": "2022-03-09",
+            "reportDate": "2022-01-29",
+            "primaryDoc": "tgt-20220129.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/27419/000002741922000007/tgt-20220129.htm"
+          }
+        ]
+      }
+    },
+    {
+      "label": "albertsons-sec",
+      "sec": {
+        "ticker": "ACI",
+        "cik": "0001646972",
+        "entityName": "Albertsons Companies, Inc.",
+        "filings": [
+          {
+            "form": "10-K",
+            "filingDate": "2026-04-27",
+            "reportDate": "2026-02-28",
+            "primaryDoc": "aci-20260228.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/1646972/000164697226000032/aci-20260228.htm"
+          },
+          {
+            "form": "10-K",
+            "filingDate": "2025-04-21",
+            "reportDate": "2025-02-22",
+            "primaryDoc": "aci-20250222.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/1646972/000164697225000052/aci-20250222.htm"
+          },
+          {
+            "form": "10-K",
+            "filingDate": "2024-04-22",
+            "reportDate": "2024-02-24",
+            "primaryDoc": "aci-20240224.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/1646972/000164697224000060/aci-20240224.htm"
+          },
+          {
+            "form": "10-K",
+            "filingDate": "2023-04-25",
+            "reportDate": "2023-02-25",
+            "primaryDoc": "aci-20230225.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/1646972/000164697223000045/aci-20230225.htm"
+          },
+          {
+            "form": "10-K",
+            "filingDate": "2022-04-26",
+            "reportDate": "2022-02-26",
+            "primaryDoc": "aci-20220226.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/1646972/000164697222000031/aci-20220226.htm"
+          }
+        ]
+      }
+    }
+  ]
+}

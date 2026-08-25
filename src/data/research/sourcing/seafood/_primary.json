@@ -1,0 +1,1356 @@
+{
+  "batch": [
+    {
+      "label": "rich-products",
+      "court": {
+        "query": "Rich Products Corporation",
+        "totalCount": 37159,
+        "results": [
+          {
+            "caseName": "Soto v. Rich Products Corporation",
+            "court": "District Court, N.D. California",
+            "docketNumber": "3:21-cv-08494",
+            "dateFiled": "2021-11-01",
+            "dateTerminated": "2022-03-18",
+            "natureOfSuit": "790 Labor: Other",
+            "url": "https://www.courtlistener.com/docket/60691087/soto-v-rich-products-corporation/",
+            "parties": [
+              "Eloisa Soto",
+              "Rich Products Corporation"
+            ]
+          },
+          {
+            "caseName": "Ehrlich v. Rich Products Corporation",
+            "court": "District Court, M.D. Florida",
+            "docketNumber": "8:16-cv-03532",
+            "dateFiled": "2016-12-30",
+            "dateTerminated": "2018-05-01",
+            "natureOfSuit": "710 Labor: Fair Standards",
+            "url": "https://www.courtlistener.com/docket/6088671/ehrlich-v-rich-products-corporation/",
+            "parties": [
+              "Rich Products Corporation",
+              "Scott Ehrlich",
+              "Salvatore Reale",
+              "Gary Prusinski",
+              "Peter J. Grilli"
+            ]
+          },
+          {
+            "caseName": "Savage v. Rich's Products Corporation",
+            "court": "District Court, N.D. Illinois",
+            "docketNumber": "1:16-cv-07487",
+            "dateFiled": "2016-07-22",
+            "dateTerminated": "2017-09-25",
+            "natureOfSuit": "445 Civil Rights: Americans with Disabilities - Employment",
+            "url": "https://www.courtlistener.com/docket/6217426/savage-v-richs-products-corporation/",
+            "parties": [
+              "Arthur W. Savage",
+              "Rich's Products Corporation"
+            ]
+          },
+          {
+            "caseName": "Espinoza v. Rich Products Corporation",
+            "court": "District Court, S.D. Texas",
+            "docketNumber": "1:18-cv-00010",
+            "dateFiled": "2018-01-16",
+            "dateTerminated": "2018-04-06",
+            "natureOfSuit": "790 Labor: Other",
+            "url": "https://www.courtlistener.com/docket/6281163/espinoza-v-rich-products-corporation/",
+            "parties": [
+              "Rich Products Corporation",
+              "Michael Espinoza"
+            ]
+          },
+          {
+            "caseName": "Valentin v. Rich Products Corporation",
+            "court": "District Court, D. Connecticut",
+            "docketNumber": "3:23-cv-01440",
+            "dateFiled": "2023-11-01",
+            "dateTerminated": "2025-06-17",
+            "natureOfSuit": "Labor: Family and Medical Leave Act",
+            "url": "https://www.courtlistener.com/docket/67936802/valentin-v-rich-products-corporation/",
+            "parties": [
+              "Valentin",
+              "Rich Products Corporation"
+            ]
+          },
+          {
+            "caseName": "Springfield v. Rich Products Corporation",
+            "court": "District Court, W.D. Tennessee",
+            "docketNumber": "2:12-cv-02391",
+            "dateFiled": "2012-05-23",
+            "dateTerminated": "2013-07-31",
+            "natureOfSuit": "790 Labor: Other",
+            "url": "https://www.courtlistener.com/docket/5345363/springfield-v-rich-products-corporation/",
+            "parties": [
+              "Rich Products Corporation",
+              "Tiereney Springfield"
+            ]
+          },
+          {
+            "caseName": "Nellem v. Rich Products Corporation",
+            "court": "District Court, N.D. Illinois",
+            "docketNumber": "1:23-cv-01706",
+            "dateFiled": "2023-03-20",
+            "dateTerminated": "2023-04-19",
+            "natureOfSuit": "360 P.I.: Other",
+            "url": "https://www.courtlistener.com/docket/67049026/nellem-v-rich-products-corporation/",
+            "parties": [
+              "Jakyra Nellem",
+              "Rich Products Corporation"
+            ]
+          },
+          {
+            "caseName": "Parker v. Rich Products Corporation",
+            "court": "District Court, M.D. Tennessee",
+            "docketNumber": "3:13-cv-01149",
+            "dateFiled": "2013-10-17",
+            "dateTerminated": "2014-05-30",
+            "natureOfSuit": "Civil Rights: Jobs",
+            "url": "https://www.courtlistener.com/docket/5067428/parker-v-rich-products-corporation/",
+            "parties": [
+              "Parker",
+              "Rich Products Corporation"
+            ]
+          },
+          {
+            "caseName": "Boyd v. Rich Products Corporation",
+            "court": "District Court, W.D. Tennessee",
+            "docketNumber": "2:10-cv-02317",
+            "dateFiled": "2010-04-27",
+            "dateTerminated": "2011-08-16",
+            "natureOfSuit": "Civil Rights: Jobs",
+            "url": "https://www.courtlistener.com/docket/5261288/boyd-v-rich-products-corporation/",
+            "parties": [
+              "Boyd",
+              "Rich Products Corporation"
+            ]
+          },
+          {
+            "caseName": "Tran v. Rich Products Corporation",
+            "court": "District Court, S.D. Texas",
+            "docketNumber": "4:18-cv-02462",
+            "dateFiled": "2018-07-13",
+            "dateTerminated": "2019-01-04",
+            "natureOfSuit": "442 Civil rights jobs",
+            "url": "https://www.courtlistener.com/docket/7456657/tran-v-rich-products-corporation/",
+            "parties": [
+              "Tran",
+              "Rich Products Corporation"
+            ]
+          },
+          {
+            "caseName": "Hurwitz v. Rich Products Corporation",
+            "court": "United States Bankruptcy Court, C.D. California",
+            "docketNumber": "2:25-ap-01298",
+            "dateFiled": "2025-06-26",
+            "dateTerminated": null,
+            "natureOfSuit": null,
+            "url": "https://www.courtlistener.com/docket/70641326/hurwitz-v-rich-products-corporation/",
+            "parties": [
+              "Hurwitz",
+              "Rich Products Corporation"
+            ]
+          },
+          {
+            "caseName": "Williams v. Rich Products Corporation",
+            "court": "District Court, E.D. Tennessee",
+            "docketNumber": "2:14-cv-00370",
+            "dateFiled": "2014-12-17",
+            "dateTerminated": "2016-11-08",
+            "natureOfSuit": "360 Other personal liability",
+            "url": "https://www.courtlistener.com/docket/14470868/williams-v-rich-products-corporation/",
+            "parties": [
+              "Williams",
+              "Rich Products Corporation"
+            ]
+          },
+          {
+            "caseName": "Rich Products Corporation v. Bluemke",
+            "court": "District Court, W.D. New York",
+            "docketNumber": "1:13-cv-00030",
+            "dateFiled": "2013-01-09",
+            "dateTerminated": "2015-01-16",
+            "natureOfSuit": "Contract: Other",
+            "url": "https://www.courtlistener.com/docket/5089381/rich-products-corporation-v-bluemke/",
+            "parties": [
+              "Rich Products Corporation",
+              "Bluemke"
+            ]
+          },
+          {
+            "caseName": "Rich Products Corporation v. Miller",
+            "court": "District Court, W.D. New York",
+            "docketNumber": "1:23-cv-00093",
+            "dateFiled": "2023-01-30",
+            "dateTerminated": "2024-02-15",
+            "natureOfSuit": "465 Other Immigration Actions",
+            "url": "https://www.courtlistener.com/docket/67824023/rich-products-corporation-v-miller/",
+            "parties": [
+              "Ur Mendoza Jaddou",
+              "Alejandro Mayorkas",
+              "Loren Miller",
+              "Rich Products Corporation",
+              "Merrick Garland",
+              "Pulari Krishnankutty Nair"
+            ]
+          },
+          {
+            "caseName": "Stone v. Rich Products Corporation",
+            "court": "District Court, W.D. Tennessee",
+            "docketNumber": "1:26-cv-02128",
+            "dateFiled": "2026-02-09",
+            "dateTerminated": null,
+            "natureOfSuit": null,
+            "url": "https://www.courtlistener.com/docket/72253911/stone-v-rich-products-corporation/",
+            "parties": [
+              "Stone",
+              "Rich Products Corporation"
+            ]
+          },
+          {
+            "caseName": "Munns v. Rich Products Corporation",
+            "court": "District Court, S.D. Georgia",
+            "docketNumber": "2:23-cv-00111",
+            "dateFiled": "2023-10-02",
+            "dateTerminated": "2024-05-29",
+            "natureOfSuit": "Civil Rights: Jobs",
+            "url": "https://www.courtlistener.com/docket/67849739/munns-v-rich-products-corporation/",
+            "parties": [
+              "Munns",
+              "Rich Products Corporation"
+            ]
+          },
+          {
+            "caseName": "Nosal v. Rich Products Corporation",
+            "court": "District Court, N.D. Illinois",
+            "docketNumber": "1:20-cv-04972",
+            "dateFiled": "2020-08-24",
+            "dateTerminated": "2024-09-05",
+            "natureOfSuit": "P.I.: Other",
+            "url": "https://www.courtlistener.com/docket/18517997/nosal-v-rich-products-corporation/",
+            "parties": [
+              "Rich Products Corporation",
+              "James Nosal"
+            ]
+          },
+          {
+            "caseName": "Suarez v. Rich Products Corporation",
+            "court": "District Court, D. Connecticut",
+            "docketNumber": "3:24-cv-01235",
+            "dateFiled": "2024-07-23",
+            "dateTerminated": null,
+            "natureOfSuit": null,
+            "url": "https://www.courtlistener.com/docket/68970710/suarez-v-rich-products-corporation/",
+            "parties": [
+              "Suarez",
+              "Rich Products Corporation"
+            ]
+          },
+          {
+            "caseName": "Sourinho v. Rich Products Corporation",
+            "court": "District Court, M.D. Tennessee",
+            "docketNumber": "3:19-cv-00179",
+            "dateFiled": "2019-02-26",
+            "dateTerminated": "2021-02-23",
+            "natureOfSuit": "442 Civil Rights: Jobs",
+            "url": "https://www.courtlistener.com/docket/14994474/sourinho-v-rich-products-corporation/",
+            "parties": [
+              "Rich Products Corporation",
+              "Bill Sourinho"
+            ]
+          },
+          {
+            "caseName": "Scott Ehrlich v. Rich Products Corporation",
+            "court": "Court of Appeals for the Eleventh Circuit",
+            "docketNumber": "18-12195",
+            "dateFiled": "2018-05-25",
+            "dateTerminated": null,
+            "natureOfSuit": "3710 Fair Labor Standards Act",
+            "url": "https://www.courtlistener.com/docket/13588661/scott-ehrlich-v-rich-products-corporation/",
+            "parties": [
+              "Scott Ehrlich",
+              "Rich Products Corporation"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "bumble-bee",
+      "court": {
+        "query": "Bumble Bee Foods tuna price fixing",
+        "totalCount": 139,
+        "results": [
+          {
+            "caseName": "Youngblood v. Bumble Bee Foods LLC",
+            "court": "District Court, S.D. California",
+            "docketNumber": "3:15-cv-01863",
+            "dateFiled": "2015-08-21",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/4193485/youngblood-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Starkist Company",
+              "Tri-Union Seafoods LLC",
+              "Beverly Youngblood",
+              "Bumble Bee Foods LLC"
+            ]
+          },
+          {
+            "caseName": "Joseph v. Bumble Bee Foods, LLC",
+            "court": "District Court, S.D. California",
+            "docketNumber": "3:15-cv-02017",
+            "dateFiled": "2015-09-10",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/4193502/joseph-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Bumble Bee Foods, LLC",
+              "Starkist Company",
+              "Amy Joseph",
+              "Tri-Union Seafoods, LLC",
+              "Olean Wholesale Grocery Cooperative, Inc.",
+              "King Oscar, Inc."
+            ]
+          },
+          {
+            "caseName": "United States v. Bumble Bee Foods, LLC",
+            "court": "District Court, N.D. California",
+            "docketNumber": "3:17-cr-00249",
+            "dateFiled": "2017-05-08",
+            "dateTerminated": "2017-08-02",
+            "natureOfSuit": null,
+            "url": "https://www.courtlistener.com/docket/6081948/united-states-v-bumble-bee-foods-llc/",
+            "parties": [
+              "USA",
+              "Bumble Bee Foods, LLC"
+            ]
+          },
+          {
+            "caseName": "Moon v. Bumble Bee Foods LLC",
+            "court": "District Court, S.D. California",
+            "docketNumber": "3:15-cv-02006",
+            "dateFiled": "2015-09-10",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/4193498/moon-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Corey Norris",
+              "Jinkyoung Moon",
+              "Tri-Union Seafoods LLC",
+              "Starkist Company",
+              "Nigel Warren",
+              "Clarissa Simon",
+              "Bumble Bee Foods LLC",
+              "Olean Wholesale Grocery Cooperative, Inc.",
+              "King Oscar, Inc."
+            ]
+          },
+          {
+            "caseName": "Lesher v. Bumble Bee Foods LLC",
+            "court": "District Court, S.D. California",
+            "docketNumber": "3:15-cv-02144",
+            "dateFiled": "2015-09-25",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/4193516/lesher-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Greg Stearns",
+              "Tri-Union Seafoods LLC",
+              "Carl Lesher",
+              "Starkist Company",
+              "Karren Fabian",
+              "Bumble Bee Foods LLC",
+              "King Oscar, Inc.",
+              "Sarah Metivier Schadt"
+            ]
+          },
+          {
+            "caseName": "Damske v. Bumble Bee Foods LLC",
+            "court": "District Court, N.D. California",
+            "docketNumber": "3:15-cv-04025",
+            "dateFiled": "2015-09-03",
+            "dateTerminated": "2016-01-06",
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/4182153/damske-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Virginia Rakipi",
+              "Tri-Union Seafoods LLC",
+              "Ken Dunlap",
+              "Starkist Company",
+              "Bumble Bee Foods LLC",
+              "King Oscar, Inc.",
+              "John Peychal",
+              "Barbara E. Olson",
+              "Debra L. Damske"
+            ]
+          },
+          {
+            "caseName": "Fragoso v. Bumble Bee Foods, LLC",
+            "court": "District Court, S.D. California",
+            "docketNumber": "3:15-cv-02072",
+            "dateFiled": "2015-09-17",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/4193509/fragoso-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Janelle Albarello",
+              "Bumble Bee Foods, LLC",
+              "Michael Coffey",
+              "Starkist Co.",
+              "Samuel Seidenburg",
+              "Tri-Union Seafoods, LLC",
+              "Robert Fragoso"
+            ]
+          },
+          {
+            "caseName": "Musgrave v. Bumble Bee Foods LLC",
+            "court": "District Court, S.D. California",
+            "docketNumber": "3:15-cv-02012",
+            "dateFiled": "2015-09-10",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/4193501/musgrave-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Tri-Union Seafoods LLC",
+              "Rick Musgrave",
+              "Starkist Company",
+              "Bumble Bee Foods LLC",
+              "Olean Wholesale Grocery Cooperative, Inc.",
+              "King Oscar, Inc."
+            ]
+          },
+          {
+            "caseName": "Angga v. Bumble Bee Foods, LLC",
+            "court": "District Court, S.D. California",
+            "docketNumber": "3:25-cv-00583",
+            "dateFiled": "2025-03-12",
+            "dateTerminated": null,
+            "natureOfSuit": "Other Statutory Actions",
+            "url": "https://www.courtlistener.com/docket/69729272/angga-v-bumble-bee-foods-llc/",
+            "parties": [
+              "William S. Dodge",
+              "Muhammad  Sahrudin",
+              "Angga",
+              "Akhmad",
+              "Bumble Bee Foods, LLC",
+              "Muhammad Syafi'i"
+            ]
+          },
+          {
+            "caseName": "Wal-Mart Stores, Inc. v. Bumble Bee Foods, LLC",
+            "court": "District Court, S.D. California",
+            "docketNumber": "3:16-cv-02821",
+            "dateFiled": "2016-11-16",
+            "dateTerminated": "2019-06-07",
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/6311470/wal-mart-stores-inc-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Wal-Mart Stores East, LLC",
+              "Starkist Company",
+              "Sam's East, Inc.",
+              "Sam's West, Inc.",
+              "Wal-Mart Stores, Inc.",
+              "Wal-Mart Stores Texas, LLC",
+              "Del Monte Foods Company",
+              "Tri-Union Seafoods LLC",
+              "Wal-Mart Stores East, LP",
+              "Bumble Bee Foods LLC"
+            ]
+          },
+          {
+            "caseName": "Steven M. Colberg v. Bumble Bee Foods LLC",
+            "court": "District Court, N.D. California",
+            "docketNumber": "3:15-cv-04120",
+            "dateFiled": "2015-09-10",
+            "dateTerminated": "2015-09-28",
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/44328384/steven-m-colberg-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Starkist Company",
+              "Michael Juetten",
+              "Bumble Bee Foods LLC",
+              "Carla Lown",
+              "King Oscar, Inc.",
+              "Steven M. Colberg",
+              "Tri-Union Seafoods LLC"
+            ]
+          },
+          {
+            "caseName": "Olive v. Bumble Bee Foods LLC",
+            "court": "District Court, S.D. California",
+            "docketNumber": "3:15-cv-01909",
+            "dateFiled": "2015-08-28",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/4193491/olive-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Evelyn Olive",
+              "Sterling King",
+              "Jessica Breitbach",
+              "Brian Levy",
+              "Marc Blumstein",
+              "Tri-Union Seafoods LLC",
+              "Louise Adams",
+              "Paul Berger",
+              "John Trent",
+              "Starkist Company",
+              "Jennifer A. Nelson",
+              "Sally Crnkovich"
+            ]
+          },
+          {
+            "caseName": "Grand Supercenter Inc. v. Bumble Bee Foods LLC",
+            "court": "District Court, S.D. New York",
+            "docketNumber": "1:17-cv-07244",
+            "dateFiled": "2017-09-22",
+            "dateTerminated": "2017-10-27",
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/6157399/grand-supercenter-inc-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Bumble Bee Foods LLC",
+              "Grand Supercenter Inc.",
+              "Dongwon Industries Co. Ltd.",
+              "Thai Union Group PCL",
+              "Tri-Union Seafoods LLC",
+              "Starkist Company"
+            ]
+          },
+          {
+            "caseName": "Grand Supercenter Inc. v. Bumble Bee Foods LLC",
+            "court": "District Court, S.D. California",
+            "docketNumber": "3:17-cv-02211",
+            "dateFiled": "2017-10-27",
+            "dateTerminated": "2018-10-15",
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/6182987/grand-supercenter-inc-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Bumble Bee Foods LLC",
+              "Grand Supercenter Inc.",
+              "Dongwon Industries Co. Ltd",
+              "Thai Union Group PCL",
+              "Tri-Union Seafoods LLC",
+              "Starkist Company"
+            ]
+          },
+          {
+            "caseName": "Winn-Dixie Stores, Inc v. Bumble Bee Foods, LLC",
+            "court": "District Court, M.D. Florida",
+            "docketNumber": "3:15-cv-01450",
+            "dateFiled": "2015-12-07",
+            "dateTerminated": "2016-01-05",
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/14453502/winn-dixie-stores-inc-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Winn-Dixie Stores, Inc",
+              "StarKist Company",
+              "Bi-Lo Holding, LLC",
+              "Tri-Union Seafoods, LLC",
+              "Tri-Marine International, Inc",
+              "Bumble Bee Foods, LLC"
+            ]
+          },
+          {
+            "caseName": "Ton-Vuong v. Bumble Bee Foods, LLC",
+            "court": "District Court, S.D. California",
+            "docketNumber": "3:15-cv-02044",
+            "dateFiled": "2015-09-14",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/4193506/ton-vuong-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Bumble Bee Foods, LLC",
+              "Starkist Company",
+              "Tri-Union Seafoods, LLC",
+              "Truyen \"David&quo Ton-Vuong",
+              "King Oscar, Inc."
+            ]
+          },
+          {
+            "caseName": "Alidad v. Bumble Bee Foods LLC",
+            "court": "District Court, S.D. California",
+            "docketNumber": "3:15-cv-02173",
+            "dateFiled": "2015-09-29",
+            "dateTerminated": "2016-10-14",
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/7923736/alidad-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Marissa Jacobus",
+              "Robert Benjamin",
+              "Lisa Hall",
+              "Erica Pruess",
+              "Tya Hughes",
+              "Sheryl Haley",
+              "King Oscar, Inc.",
+              "Gabrielle Kurdt",
+              "Nay Alidad",
+              "Barbara Buenning",
+              "Galyna Andrusyshyn",
+              "Seth Salenger"
+            ]
+          },
+          {
+            "caseName": "Colberg v. Bumble Bee Foods LLC",
+            "court": "District Court, S.D. California",
+            "docketNumber": "3:15-cv-02011",
+            "dateFiled": "2015-09-10",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/4193500/colberg-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Carla Lown",
+              "Michael Juetten",
+              "Tri-Union Seafoods LLC",
+              "Starkist Company",
+              "Steven M. Colberg",
+              "Bumble Bee Foods LLC",
+              "Olean Wholesale Grocery Cooperative, Inc.",
+              "King Oscar, Inc."
+            ]
+          },
+          {
+            "caseName": "Mey v. Bumble Bee Foods LLC",
+            "court": "District Court, S.D. California",
+            "docketNumber": "3:15-cv-02125",
+            "dateFiled": "2015-09-23",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/4193514/mey-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Tri-Union Seafoods LLC",
+              "Starkist Company",
+              "Bumble Bee Foods LLC",
+              "King Oscar, Inc.",
+              "Diana Mey"
+            ]
+          },
+          {
+            "caseName": "Davis Mathews v. Bumble Bee Foods LLC",
+            "court": "District Court, S.D. California",
+            "docketNumber": "3:15-cv-01878",
+            "dateFiled": "2015-08-24",
+            "dateTerminated": "2023-09-25",
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/4193487/davis-mathews-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Danielle Johnson",
+              "Sterling King",
+              "Brian Levy",
+              "Kristin Millican",
+              "Jessica Decker",
+              "Mary Hudson",
+              "Jennifer A. Nelson",
+              "Tina Grant",
+              "Jessica Breitbach",
+              "Elizabeth Twitchell",
+              "Jade Canterbury",
+              "Bonnie VanderLaan"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "starkist",
+      "court": {
+        "query": "StarKist tuna price fixing",
+        "totalCount": 123,
+        "results": [
+          {
+            "caseName": "Gardner v. Starkist Co.",
+            "court": "District Court, N.D. California",
+            "docketNumber": "3:19-cv-02561",
+            "dateFiled": "2019-05-13",
+            "dateTerminated": "2021-11-30",
+            "natureOfSuit": "370 Other Fraud",
+            "url": "https://www.courtlistener.com/docket/15469455/gardner-v-starkist-co/",
+            "parties": [
+              "Jocelyn Jamelo",
+              "Dongwon Industries Co. Ltd.",
+              "Tara Trojano",
+              "Robert Nugent",
+              "Anthony Luciano",
+              "Autumn Hessong",
+              "Robert McQuade",
+              "Jason Petrin",
+              "James Borruso",
+              "Lori Myers",
+              "Starkist Co.",
+              "Heather Meyers"
+            ]
+          },
+          {
+            "caseName": "United States v. Starkist Co.",
+            "court": "District Court, N.D. California",
+            "docketNumber": "3:18-cr-00513",
+            "dateFiled": "2018-10-18",
+            "dateTerminated": "2019-09-11",
+            "natureOfSuit": null,
+            "url": "https://www.courtlistener.com/docket/8049367/united-states-v-starkist-co/",
+            "parties": [
+              "Starkist Co.",
+              "USA"
+            ]
+          },
+          {
+            "caseName": "Vangemert v. Starkist Company",
+            "court": "District Court, N.D. California",
+            "docketNumber": "3:15-cv-05279",
+            "dateFiled": "2015-11-18",
+            "dateTerminated": "2016-01-22",
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/4182371/vangemert-v-starkist-company/",
+            "parties": [
+              "Bumble Bee Foods, LLC",
+              "Tri-Union Seafoods LLC",
+              "Starkist Company",
+              "King Oscar, Inc.",
+              "Kathy Vangemert"
+            ]
+          },
+          {
+            "caseName": "Hendricks v. Starkist Co",
+            "court": "District Court, N.D. California",
+            "docketNumber": "4:13-cv-00729",
+            "dateFiled": "2013-02-19",
+            "dateTerminated": "2016-09-29",
+            "natureOfSuit": "890 Other Statutory Actions",
+            "url": "https://www.courtlistener.com/docket/4179885/hendricks-v-starkist-co/",
+            "parties": [
+              "Carla Lown",
+              "Janet Machen",
+              "National Fisheries Institute",
+              "Patrick Hendricks",
+              "Lesgo Personal Chef, LLC",
+              "Julius  Dunmore",
+              "Starkist Co",
+              "Kathy Durand Gore",
+              "Brittany Ference",
+              "Jemea Graham",
+              "Brett Butler",
+              "Eric Michael Lindberg"
+            ]
+          },
+          {
+            "caseName": "W Lee Flowers & Co Inc v. Bumble Bee Foods LLC",
+            "court": "District Court, D. South Carolina",
+            "docketNumber": "4:16-cv-01498",
+            "dateFiled": "2016-05-09",
+            "dateTerminated": "2016-05-23",
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/13590042/w-lee-flowers-co-inc-v-bumble-bee-foods-llc/",
+            "parties": [
+              "W Lee Flowers & Co Inc",
+              "Starkist Company",
+              "Tri-Union Seafoods LLC",
+              "Bumble Bee Foods LLC"
+            ]
+          },
+          {
+            "caseName": "IN RE: PACKAGED SEAFOOD PRODUCTS ANTITRUST LITIGATION",
+            "court": "District Court, S.D. California",
+            "docketNumber": "3:15-md-02670",
+            "dateFiled": "2015-12-09",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/4193574/in-re-packaged-seafood-products-antitrust-litigation/",
+            "parties": [
+              "Laura Montoya",
+              "Dollar General Corporation",
+              "Jessica Breitbach",
+              "Thai Union Frozen Products PCL",
+              "Tri Marine International, Inc.",
+              "URM Stores, Inc.",
+              "Sysco Corporation",
+              "Edgardo Gutierrez",
+              "A-1 Diner",
+              "Robert Fragoso",
+              "United States Department of Justice",
+              "Ellen Pinto"
+            ]
+          },
+          {
+            "caseName": "Associated Grocers, Inc. v. Tri-Union Seafoods, LLC",
+            "court": "District Court, N.D. California",
+            "docketNumber": "3:15-cv-05371",
+            "dateFiled": "2015-11-24",
+            "dateTerminated": "2016-01-06",
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/4182381/associated-grocers-inc-v-tri-union-seafoods-llc/",
+            "parties": [
+              "Bumble Bee Foods, LLC",
+              "ASSOCIATED GROCERS, INC.",
+              "Tri-Union Seafoods, LLC",
+              "Starkist Co.",
+              "King Oscar, Inc."
+            ]
+          },
+          {
+            "caseName": "Olean Wholesale Grocery Cooperative, Inc. v. Bumble Bee Foods LLC",
+            "court": "District Court, S.D. California",
+            "docketNumber": "3:15-cv-01714",
+            "dateFiled": "2015-08-03",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/4193458/olean-wholesale-grocery-cooperative-inc-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Tri-Union Seafoods LLC",
+              "Starkist Company",
+              "Bumble Bee Foods LLC",
+              "Olean Wholesale Grocery Cooperative, Inc.",
+              "Beverly Youngblood",
+              "Tri Marine International, Inc."
+            ]
+          },
+          {
+            "caseName": "Youngblood v. Bumble Bee Foods LLC",
+            "court": "District Court, S.D. California",
+            "docketNumber": "3:15-cv-01863",
+            "dateFiled": "2015-08-21",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/4193485/youngblood-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Starkist Company",
+              "Tri-Union Seafoods LLC",
+              "Beverly Youngblood",
+              "Bumble Bee Foods LLC"
+            ]
+          },
+          {
+            "caseName": "Wal-Mart Stores, Inc. v. Bumble Bee Foods, LLC",
+            "court": "District Court, S.D. California",
+            "docketNumber": "3:16-cv-02821",
+            "dateFiled": "2016-11-16",
+            "dateTerminated": "2019-06-07",
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/6311470/wal-mart-stores-inc-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Wal-Mart Stores East, LLC",
+              "Starkist Company",
+              "Sam's East, Inc.",
+              "Sam's West, Inc.",
+              "Wal-Mart Stores, Inc.",
+              "Wal-Mart Stores Texas, LLC",
+              "Del Monte Foods Company",
+              "Tri-Union Seafoods LLC",
+              "Wal-Mart Stores East, LP",
+              "Bumble Bee Foods LLC"
+            ]
+          },
+          {
+            "caseName": "Grand Supercenter Inc. v. Bumble Bee Foods LLC",
+            "court": "District Court, S.D. California",
+            "docketNumber": "3:17-cv-02211",
+            "dateFiled": "2017-10-27",
+            "dateTerminated": "2018-10-15",
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/6182987/grand-supercenter-inc-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Bumble Bee Foods LLC",
+              "Grand Supercenter Inc.",
+              "Dongwon Industries Co. Ltd",
+              "Thai Union Group PCL",
+              "Tri-Union Seafoods LLC",
+              "Starkist Company"
+            ]
+          },
+          {
+            "caseName": "Winn-Dixie Stores, Inc v. Bumble Bee Foods, LLC",
+            "court": "District Court, M.D. Florida",
+            "docketNumber": "3:15-cv-01450",
+            "dateFiled": "2015-12-07",
+            "dateTerminated": "2016-01-05",
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/14453502/winn-dixie-stores-inc-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Winn-Dixie Stores, Inc",
+              "StarKist Company",
+              "Bi-Lo Holding, LLC",
+              "Tri-Union Seafoods, LLC",
+              "Tri-Marine International, Inc",
+              "Bumble Bee Foods, LLC"
+            ]
+          },
+          {
+            "caseName": "Grand Supercenter Inc. v. Bumble Bee Foods LLC",
+            "court": "District Court, S.D. New York",
+            "docketNumber": "1:17-cv-07244",
+            "dateFiled": "2017-09-22",
+            "dateTerminated": "2017-10-27",
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/6157399/grand-supercenter-inc-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Bumble Bee Foods LLC",
+              "Grand Supercenter Inc.",
+              "Dongwon Industries Co. Ltd.",
+              "Thai Union Group PCL",
+              "Tri-Union Seafoods LLC",
+              "Starkist Company"
+            ]
+          },
+          {
+            "caseName": "Joseph v. Bumble Bee Foods, LLC",
+            "court": "District Court, S.D. California",
+            "docketNumber": "3:15-cv-02017",
+            "dateFiled": "2015-09-10",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/4193502/joseph-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Bumble Bee Foods, LLC",
+              "Starkist Company",
+              "Amy Joseph",
+              "Tri-Union Seafoods, LLC",
+              "Olean Wholesale Grocery Cooperative, Inc.",
+              "King Oscar, Inc."
+            ]
+          },
+          {
+            "caseName": "Steven M. Colberg v. Bumble Bee Foods LLC",
+            "court": "District Court, N.D. California",
+            "docketNumber": "3:15-cv-04120",
+            "dateFiled": "2015-09-10",
+            "dateTerminated": "2015-09-28",
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/44328384/steven-m-colberg-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Starkist Company",
+              "Michael Juetten",
+              "Bumble Bee Foods LLC",
+              "Carla Lown",
+              "King Oscar, Inc.",
+              "Steven M. Colberg",
+              "Tri-Union Seafoods LLC"
+            ]
+          },
+          {
+            "caseName": "Damske v. Bumble Bee Foods LLC",
+            "court": "District Court, N.D. California",
+            "docketNumber": "3:15-cv-04025",
+            "dateFiled": "2015-09-03",
+            "dateTerminated": "2016-01-06",
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/4182153/damske-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Virginia Rakipi",
+              "Tri-Union Seafoods LLC",
+              "Ken Dunlap",
+              "Starkist Company",
+              "Bumble Bee Foods LLC",
+              "King Oscar, Inc.",
+              "John Peychal",
+              "Barbara E. Olson",
+              "Debra L. Damske"
+            ]
+          },
+          {
+            "caseName": "United States v. Lischewski",
+            "court": "District Court, N.D. California",
+            "docketNumber": "3:18-cr-00203",
+            "dateFiled": "2018-05-16",
+            "dateTerminated": "2020-06-16",
+            "natureOfSuit": null,
+            "url": "https://www.courtlistener.com/docket/6738410/united-states-v-lischewski/",
+            "parties": [
+              "Christopher Lischewski",
+              "USA"
+            ]
+          },
+          {
+            "caseName": "Affiliated Foods, Inc. v. Tri-Union Seafoods, LLC",
+            "court": "District Court, N.D. California",
+            "docketNumber": "3:15-cv-03815",
+            "dateFiled": "2015-08-20",
+            "dateTerminated": "2015-12-10",
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/4182120/affiliated-foods-inc-v-tri-union-seafoods-llc/",
+            "parties": [
+              "Brian Depperschmidt",
+              "WOODMAN'S FOOD MARKET, INC.",
+              "Starkist Co",
+              "Piggly Wiggly Alabama Distributing Co., Inc.",
+              "URM Stores, Inc.",
+              "John Peychal",
+              "Casey Christensen",
+              "Kathy Vangemert",
+              "Scott Dennis",
+              "Ken Dunlap",
+              "Tri-Union Seafoods, LLC",
+              "Barbara E. Olson"
+            ]
+          },
+          {
+            "caseName": "Lesher v. Bumble Bee Foods LLC",
+            "court": "District Court, S.D. California",
+            "docketNumber": "3:15-cv-02144",
+            "dateFiled": "2015-09-25",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/4193516/lesher-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Greg Stearns",
+              "Tri-Union Seafoods LLC",
+              "Carl Lesher",
+              "Starkist Company",
+              "Karren Fabian",
+              "Bumble Bee Foods LLC",
+              "King Oscar, Inc.",
+              "Sarah Metivier Schadt"
+            ]
+          },
+          {
+            "caseName": "Fragoso v. Bumble Bee Foods, LLC",
+            "court": "District Court, S.D. California",
+            "docketNumber": "3:15-cv-02072",
+            "dateFiled": "2015-09-17",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/4193509/fragoso-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Janelle Albarello",
+              "Bumble Bee Foods, LLC",
+              "Michael Coffey",
+              "Starkist Co.",
+              "Samuel Seidenburg",
+              "Tri-Union Seafoods, LLC",
+              "Robert Fragoso"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "wild-planet",
+      "court": {
+        "query": "Wild Planet Foods",
+        "totalCount": 1610,
+        "results": [
+          {
+            "caseName": "Soto v. Wild Planet Foods, Inc.",
+            "court": "District Court, N.D. California",
+            "docketNumber": "5:15-cv-05082",
+            "dateFiled": "2015-11-05",
+            "dateTerminated": "2017-11-27",
+            "natureOfSuit": "370 Other Fraud",
+            "url": "https://www.courtlistener.com/docket/4620259/soto-v-wild-planet-foods-inc/",
+            "parties": [
+              "Ehder Soto",
+              "Wild Planet Foods, Inc.",
+              "Heney Shihad"
+            ]
+          },
+          {
+            "caseName": "Shihad v. Wild Planet Foods, Inc.",
+            "court": "District Court, N.D. California",
+            "docketNumber": "5:16-cv-01478",
+            "dateFiled": "2016-03-25",
+            "dateTerminated": "2017-05-12",
+            "natureOfSuit": "370 Other Fraud",
+            "url": "https://www.courtlistener.com/docket/4182689/shihad-v-wild-planet-foods-inc/",
+            "parties": [
+              "Heney Shihad",
+              "Wild Planet Foods, Inc."
+            ]
+          },
+          {
+            "caseName": "AW Liquidation, Inc. (f/k/a Associated Wholesalers v. Wild Planet Foods, Inc.",
+            "court": "United States Bankruptcy Court, D. Delaware",
+            "docketNumber": "16-51417",
+            "dateFiled": "2016-09-08",
+            "dateTerminated": "2016-10-14",
+            "natureOfSuit": null,
+            "url": "https://www.courtlistener.com/docket/37296013/aw-liquidation-inc-fka-associated-wholesalers-v-wild-planet-foods/",
+            "parties": [
+              "AW Liquidation, Inc. (f/k/a Associated Wholesalers",
+              "Wild Planet Foods, Inc."
+            ]
+          },
+          {
+            "caseName": "ADI Liquidation, Inc.",
+            "court": "United States Bankruptcy Court, D. Delaware",
+            "docketNumber": "14-12092",
+            "dateFiled": "2014-09-09",
+            "dateTerminated": "2025-03-03",
+            "natureOfSuit": null,
+            "url": "https://www.courtlistener.com/docket/4215764/adi-liquidation-inc/",
+            "parties": [
+              "Epiq Corporate Restructuring, LLC",
+              "U.S. Trustee",
+              "Official Committee of Unsecured Creditors",
+              "ADI Liquidation, Inc."
+            ]
+          },
+          {
+            "caseName": "PLANET BINGO LLC v. WILD BILL'S BINGO INC",
+            "court": "District Court, N.D. Florida",
+            "docketNumber": "5:10-cv-00064",
+            "dateFiled": "2010-03-23",
+            "dateTerminated": "2013-05-24",
+            "natureOfSuit": "190 Contract: Other",
+            "url": "https://www.courtlistener.com/docket/4907154/planet-bingo-llc-v-wild-bills-bingo-inc/",
+            "parties": [
+              "WILD BILL'S BINGO LLC",
+              "PLANET BINGO LLC",
+              "GAMING ENTERTAINMENT ENTERPRISES LLC",
+              "WILD BILL'S BINGO INC",
+              "HANCOCK BANK"
+            ]
+          },
+          {
+            "caseName": "Nutraceutical Corporation v. Peaceful Planet",
+            "court": "District Court, D. Utah",
+            "docketNumber": "2:16-cv-01036",
+            "dateFiled": "2016-10-06",
+            "dateTerminated": "2017-02-28",
+            "natureOfSuit": "840 Trademark",
+            "url": "https://www.courtlistener.com/docket/4535236/nutraceutical-corporation-v-peaceful-planet/",
+            "parties": [
+              "Nutraceutical Corporation",
+              "Peaceful Planet",
+              "NutraMarks"
+            ]
+          },
+          {
+            "caseName": "PLANET BINGO LLC v. KERR",
+            "court": "District Court, N.D. Florida",
+            "docketNumber": "5:10-cv-00315",
+            "dateFiled": "2010-12-07",
+            "dateTerminated": "2012-01-30",
+            "natureOfSuit": "190 Contract: Other",
+            "url": "https://www.courtlistener.com/docket/4228734/planet-bingo-llc-v-kerr/",
+            "parties": [
+              "RANDY VON DRASEK",
+              "PLANET BINGO LLC",
+              "MICHAEL KERR",
+              "ROY M STEVENS, JR",
+              "BIGTRAK TECHNOLOGIES LLC"
+            ]
+          },
+          {
+            "caseName": "Amy Joseph v. Trader Joes Company",
+            "court": "District Court, C.D. California",
+            "docketNumber": "2:16-cv-01371",
+            "dateFiled": "2016-02-26",
+            "dateTerminated": "2020-10-07",
+            "natureOfSuit": "Other Fraud",
+            "url": "https://www.courtlistener.com/docket/4492276/amy-joseph-v-trader-joes-company/",
+            "parties": [
+              "Trader Joe's East Inc.",
+              "Atzimba Reyes",
+              "Trader Joes Company",
+              "Amy Joseph",
+              "Christine Shaw",
+              "Kathy Aliano",
+              "Sarah Magier"
+            ]
+          },
+          {
+            "caseName": "Wild Game NG, LLC",
+            "court": "United States Bankruptcy Court, N.D. California",
+            "docketNumber": "10-48272",
+            "dateFiled": "2010-07-21",
+            "dateTerminated": "2010-10-18",
+            "natureOfSuit": null,
+            "url": "https://www.courtlistener.com/docket/4163860/wild-game-ng-llc/",
+            "parties": [
+              "Wild Game NG, LLC",
+              "Official Committee of General Unsecured Creditors for Hi-Five Enterprises, LLC",
+              "Office of the U.S. Trustee/Oak",
+              "The Official Committee of General Unsecured Creditors for Hi-Five Enterprises, LLC"
+            ]
+          },
+          {
+            "caseName": "Wild v. Innova Supply Inc.",
+            "court": "District Court, S.D. Texas",
+            "docketNumber": "4:18-cv-00320",
+            "dateFiled": "2018-02-02",
+            "dateTerminated": "2018-05-17",
+            "natureOfSuit": "820 Copyright",
+            "url": "https://www.courtlistener.com/docket/6297738/wild-v-innova-supply-inc/",
+            "parties": [
+              "Alexander Wild",
+              "Does 1 through 10 inclusive",
+              "Innova Supply Inc."
+            ]
+          },
+          {
+            "caseName": "Oregon Wild v. Warnack",
+            "court": "District Court, D. Oregon",
+            "docketNumber": "6:24-cv-00949",
+            "dateFiled": "2024-06-13",
+            "dateTerminated": null,
+            "natureOfSuit": "893 Environmental Matters",
+            "url": "https://www.courtlistener.com/docket/68852779/oregon-wild-v-warnack/",
+            "parties": [
+              "David Warnack",
+              "Oregon Wild",
+              "American Forest Resource Council",
+              "WildEarth Guardians",
+              "United States Forest Service"
+            ]
+          },
+          {
+            "caseName": "Popcorned Planet, Inc. v. Lively",
+            "court": "District Court, M.D. Florida",
+            "docketNumber": "8:25-mc-00028",
+            "dateFiled": "2025-07-25",
+            "dateTerminated": "2026-06-05",
+            "natureOfSuit": "896 Other Statutes: Arbitration",
+            "url": "https://www.courtlistener.com/docket/70954195/popcorned-planet-inc-v-lively/",
+            "parties": [
+              "Blake Lively",
+              "Popcorned Planet, Inc."
+            ]
+          },
+          {
+            "caseName": "Planet Fitness International Franchise v. JEG-United, LLC",
+            "court": "District Court, D. New Hampshire",
+            "docketNumber": "1:20-cv-00693",
+            "dateFiled": "2020-06-10",
+            "dateTerminated": "2023-11-06",
+            "natureOfSuit": "190 Contract: Other",
+            "url": "https://www.courtlistener.com/docket/17238807/planet-fitness-international-franchise-v-jeg-united-llc/",
+            "parties": [
+              "Raymond Miolla",
+              "ARGONNE CAPITAL GROUP LLC",
+              "Planet Fitness International Franchise",
+              "JEG-United, LLC"
+            ]
+          },
+          {
+            "caseName": "Sleash, LLC v. One Pet Planet, LLC",
+            "court": "District Court, D. Oregon",
+            "docketNumber": "3:14-cv-00863",
+            "dateFiled": "2014-05-28",
+            "dateTerminated": "2014-10-20",
+            "natureOfSuit": "Trademark",
+            "url": "https://www.courtlistener.com/docket/5470047/sleash-llc-v-one-pet-planet-llc/",
+            "parties": [
+              "Sleash, LLC",
+              "One Pet Planet, LLC"
+            ]
+          },
+          {
+            "caseName": "Courthouse News Service v. Michael Planet",
+            "court": "District Court, C.D. California",
+            "docketNumber": "2:11-cv-08083",
+            "dateFiled": "2011-09-29",
+            "dateTerminated": "2021-01-26",
+            "natureOfSuit": "Civil Rights: Other",
+            "url": "https://www.courtlistener.com/docket/4147626/courthouse-news-service-v-michael-planet/",
+            "parties": [
+              "Courthouse News Service",
+              "The Reporters Committee for Freedom of the Press et al",
+              "Michael Planet"
+            ]
+          },
+          {
+            "caseName": "Triumph Foods, LLC v. Campbell",
+            "court": "Court of Appeals for the First Circuit",
+            "docketNumber": "24-1759",
+            "dateFiled": "2024-08-19",
+            "dateTerminated": "2025-10-03",
+            "natureOfSuit": "3950 Constitutionality of State Statutes",
+            "url": "https://www.courtlistener.com/docket/69056868/triumph-foods-llc-v-campbell/",
+            "parties": [
+              "STATE OF TEXAS",
+              "STATE OF NEBRASKA",
+              "ANIMAL WELLNESS ACTION",
+              "STATE OF MISSISSIPPI",
+              "ANIMAL OUTLOOK",
+              "STATE OF IOWA",
+              "HANOR COMPANY OF WISCONSIN, LLC, individually and on behalf of its members",
+              "STATE OF ARKANSAS",
+              "STATE OF KENTUCKY",
+              "ANIMAL LEGAL DEFENSE FUND",
+              "ANDREA J. CAMPBELL, Attorney General of Massachusetts",
+              "PERDUE PREMIUM MEAT COMPANY, INC., d/b/a Niman Ranch"
+            ]
+          },
+          {
+            "caseName": "American Wild Horse Campaign v. Haaland",
+            "court": "District Court, D. Colorado",
+            "docketNumber": "1:21-cv-02146",
+            "dateFiled": "2021-08-09",
+            "dateTerminated": "2025-03-03",
+            "natureOfSuit": "893 Environmental Matters",
+            "url": "https://www.courtlistener.com/docket/60973578/american-wild-horse-campaign-v-haaland/",
+            "parties": [
+              "Evanescent Mustang Rescue & Sanctuary, Inc",
+              "Carol Walker",
+              "Skydog Ranch & Sanctuary",
+              "Clare Staples",
+              "Property and Environment Research Center",
+              "US Bureau of Land Management",
+              "Debra Haaland",
+              "American Wild Horse Campaign"
+            ]
+          },
+          {
+            "caseName": "Sills v. United Natural Foods, Inc.",
+            "court": "District Court, S.D. New York",
+            "docketNumber": "1:23-cv-02364",
+            "dateFiled": "2023-03-20",
+            "dateTerminated": null,
+            "natureOfSuit": "850 Securities/Commodities",
+            "url": "https://www.courtlistener.com/docket/67051745/sills-v-united-natural-foods-inc/",
+            "parties": [
+              "United Natural Foods, Inc.",
+              "Christopher P. Testa",
+              "J.  Alexander Miller Douglas",
+              "George Dick",
+              "Steven L. Spinner",
+              "John W. Howard",
+              "Dan Sills"
+            ]
+          },
+          {
+            "caseName": "Duggan v. Bumble Bee Foods LLC",
+            "court": "District Court, N.D. California",
+            "docketNumber": "4:19-cv-02564",
+            "dateFiled": "2019-05-13",
+            "dateTerminated": "2021-11-16",
+            "natureOfSuit": "370 Other Fraud",
+            "url": "https://www.courtlistener.com/docket/15469452/duggan-v-bumble-bee-foods-llc/",
+            "parties": [
+              "Amar Mody",
+              "Denise Depeza",
+              "Jocelyn Jamelo",
+              "Robert McQuade",
+              "Angela Cosgrove",
+              "James Borruso",
+              "Bumble Bee Foods LLC",
+              "Avraham Isac Zelig",
+              "Kathleen Miller",
+              "Lori Luciano",
+              "Robert Lantos",
+              "Lori Myers"
+            ]
+          },
+          {
+            "caseName": "Sara Safari v. Whole Foods Market, Inc.",
+            "court": "District Court, C.D. California",
+            "docketNumber": "8:22-cv-01562",
+            "dateFiled": "2022-08-23",
+            "dateTerminated": null,
+            "natureOfSuit": "370 Other Fraud",
+            "url": "https://www.courtlistener.com/docket/64914778/sara-safari-v-whole-foods-market-inc/",
+            "parties": [
+              "Mrs. Gooch's Natural Food Markets, Inc.",
+              "Whole Foods Market, Inc.",
+              "Farm Forward",
+              "Whole Foods Market California, Inc.",
+              "Global Animal Partnership",
+              "Sara Safari",
+              "Whole Foods Market Services, Inc.",
+              "Jason Rose",
+              "Peymon Khaghani"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

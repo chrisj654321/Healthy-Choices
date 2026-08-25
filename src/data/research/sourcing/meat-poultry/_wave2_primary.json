@@ -1,0 +1,882 @@
+{
+  "batch": [
+    {
+      "label": "perdue",
+      "court": {
+        "query": "Perdue Farms",
+        "totalCount": 4348,
+        "results": [
+          {
+            "caseName": "Monk v. Perdue Farms",
+            "court": "District Court, D. Maryland",
+            "docketNumber": "1:98-cv-01477",
+            "dateFiled": "1998-05-08",
+            "dateTerminated": "1999-06-03",
+            "natureOfSuit": "370 Other Fraud",
+            "url": "https://www.courtlistener.com/docket/10756293/monk-v-perdue-farms/",
+            "parties": [
+              "Jethro M. Branch",
+              "Russell Wade, Jr.",
+              "Perdue Farms Incorporated",
+              "Charles R. Tyner, Jr.",
+              "Charles R. Tyner",
+              "James Davis",
+              "Winston Monk",
+              "Alma Monk"
+            ]
+          },
+          {
+            "caseName": "Mullis v. Perdue Farms Incorporated",
+            "court": "District Court, N.D. Georgia",
+            "docketNumber": "1:09-cv-03331",
+            "dateFiled": "2009-11-25",
+            "dateTerminated": "2010-12-21",
+            "natureOfSuit": "710 Labor: Fair Standards",
+            "url": "https://www.courtlistener.com/docket/8260178/mullis-v-perdue-farms-incorporated/",
+            "parties": [
+              "Perdue Farms Incorporated",
+              "Susan A. Mullis"
+            ]
+          },
+          {
+            "caseName": "HOWARD v. PERDUE FARMS",
+            "court": "District Court, M.D. Georgia",
+            "docketNumber": "5:15-cv-00212",
+            "dateFiled": "2015-06-05",
+            "dateTerminated": "2016-10-19",
+            "natureOfSuit": "442 Civil rights jobs",
+            "url": "https://www.courtlistener.com/docket/14483972/howard-v-perdue-farms/",
+            "parties": [
+              "HOWARD",
+              "PERDUE FARMS"
+            ]
+          },
+          {
+            "caseName": "Perry v. Perdue Farms, Inc.",
+            "court": "District Court, N.D. California",
+            "docketNumber": "3:16-cv-06537",
+            "dateFiled": "2016-11-09",
+            "dateTerminated": "2017-02-22",
+            "natureOfSuit": "442 Civil Rights: Jobs",
+            "url": "https://www.courtlistener.com/docket/5981985/perry-v-perdue-farms-inc/",
+            "parties": [
+              "Perdue Farms, Inc.",
+              "Patrick L. Perry"
+            ]
+          },
+          {
+            "caseName": "OWENS v. PERDUE FARMS INC",
+            "court": "District Court, M.D. Georgia",
+            "docketNumber": "5:20-cv-00307",
+            "dateFiled": "2020-08-05",
+            "dateTerminated": null,
+            "natureOfSuit": "365 Personal Inj. Prod. Liability",
+            "url": "https://www.courtlistener.com/docket/59952530/owens-v-perdue-farms-inc/",
+            "parties": [
+              "HANS OWENS",
+              "VINCIT GROUP",
+              "PERDUE FOODS LLC",
+              "PERDUE FARMS INC"
+            ]
+          },
+          {
+            "caseName": "Amisial v. Perdue Farms Inc.",
+            "court": "District Court, D. Delaware",
+            "docketNumber": "1:08-cv-00402",
+            "dateFiled": "2008-07-02",
+            "dateTerminated": "2009-09-29",
+            "natureOfSuit": "790 Other labor litigation",
+            "url": "https://www.courtlistener.com/docket/4218778/amisial-v-perdue-farms-inc/",
+            "parties": [
+              "Amisial",
+              "Perdue Farms Inc."
+            ]
+          },
+          {
+            "caseName": "PARKER v. PERDUE FARMS INC",
+            "court": "District Court, M.D. Georgia",
+            "docketNumber": "5:22-cv-00268",
+            "dateFiled": "2022-07-22",
+            "dateTerminated": null,
+            "natureOfSuit": "Labor: Fair Standards",
+            "url": "https://www.courtlistener.com/docket/63894084/parker-v-perdue-farms-inc/",
+            "parties": [
+              "PERDUE FOODS LLC",
+              "BARBARA TRIPP",
+              "ROGER PARKER",
+              "PERDUE FARMS INC"
+            ]
+          },
+          {
+            "caseName": "HEMY v. PERDUE FARMS, INC.",
+            "court": "District Court, D. New Jersey",
+            "docketNumber": "3:11-cv-00888",
+            "dateFiled": "2011-02-17",
+            "dateTerminated": "2014-10-23",
+            "natureOfSuit": "370 Other Fraud",
+            "url": "https://www.courtlistener.com/docket/5795962/hemy-v-perdue-farms-inc/",
+            "parties": [
+              "JOHN DOES 1-10",
+              "NADINE HEMY",
+              "PERDUE FARMS, INC.",
+              "Animal Welfare Institute",
+              "ABC CORPORATIONS 1 THROUGH 10"
+            ]
+          },
+          {
+            "caseName": "Smith v. Perdue Farms Incorporated",
+            "court": "District Court, D. Delaware",
+            "docketNumber": "1:12-cv-00227",
+            "dateFiled": "2012-02-24",
+            "dateTerminated": "2014-09-30",
+            "natureOfSuit": "442 Civil Rights: Jobs",
+            "url": "https://www.courtlistener.com/docket/4219603/smith-v-perdue-farms-incorporated/",
+            "parties": [
+              "Perdue Farms Incorporated",
+              "Marc E. Smith"
+            ]
+          },
+          {
+            "caseName": "Chaney v. Perdue Farms Inc.",
+            "court": "District Court, D. Maryland",
+            "docketNumber": "1:24-cv-02975",
+            "dateFiled": "2024-10-11",
+            "dateTerminated": null,
+            "natureOfSuit": "360 P.I.: Other",
+            "url": "https://www.courtlistener.com/docket/69259987/chaney-v-perdue-farms-inc/",
+            "parties": [
+              "Perdue Foods Incorporated",
+              "Perdue Farms Inc.",
+              "Perdue AgriBusiness LLC",
+              "Perdue Agribusiness Grain LLC",
+              "Rebecca R. Doss",
+              "Gary W. Doss",
+              "Doug C. Davis",
+              "Perdue Agribusiness Incorporated",
+              "FPP Business Services, Inc.",
+              "Rachel M. Chaney",
+              "Perdue Foods LLC",
+              "Julie M. Davis"
+            ]
+          },
+          {
+            "caseName": "Jien v. Perdue Farms, Inc.",
+            "court": "District Court, D. Maryland",
+            "docketNumber": "1:19-cv-02521",
+            "dateFiled": "2019-08-30",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/59999691/jien-v-perdue-farms-inc/",
+            "parties": [
+              "O.K. Foods, Inc.",
+              "Koch Foods, Inc.",
+              "Judy Jien",
+              "Mar-Jac Holdings, Inc.",
+              "Koch Foods of Alabama, LLC",
+              "George's Chicken, LLC",
+              "Pilgrim's Pride Corporation of West Virginia, Inc.",
+              "Wayne Farms, LLC",
+              "Mar-Jac Poultry MS, LLC",
+              "WFSP Foods, LLC",
+              "Fieldale Farms Corporation",
+              "Jennie-O Turkey Store Sales, LLC"
+            ]
+          },
+          {
+            "caseName": "CALLOWAY v. PERDUE FARMS INC",
+            "court": "District Court, M.D. Georgia",
+            "docketNumber": "1:16-cv-00217",
+            "dateFiled": "2016-11-29",
+            "dateTerminated": "2018-03-21",
+            "natureOfSuit": "442 Civil rights jobs",
+            "url": "https://www.courtlistener.com/docket/14514533/calloway-v-perdue-farms-inc/",
+            "parties": [
+              "AMBER CALLOWAY",
+              "PERDUE FARMS INC"
+            ]
+          },
+          {
+            "caseName": "Williams v. Perdue Farms Inc.",
+            "court": "District Court, N.D. California",
+            "docketNumber": "3:19-cv-07671",
+            "dateFiled": "2019-11-21",
+            "dateTerminated": "2023-01-30",
+            "natureOfSuit": "790 Labor: Other",
+            "url": "https://www.courtlistener.com/docket/16501479/williams-v-perdue-farms-inc/",
+            "parties": [
+              "Ronnie Williams",
+              "Perdue Foods LLC",
+              "Coleman Natural Foods, LLC",
+              "Petaluma Acquistion, LLC",
+              "Coleman Natural Products, Inc.",
+              "Perdue Farms Inc."
+            ]
+          },
+          {
+            "caseName": "DAVIS v. PERDUE FARMS INC",
+            "court": "District Court, M.D. Georgia",
+            "docketNumber": "5:23-cv-00380",
+            "dateFiled": "2023-10-03",
+            "dateTerminated": "2024-09-10",
+            "natureOfSuit": "445 Civil Rights: Americans with Disabilities - Employment",
+            "url": "https://www.courtlistener.com/docket/68069926/davis-v-perdue-farms-inc/",
+            "parties": [
+              "XAVIER DAVIS",
+              "PERDUE FARMS INC",
+              "PERDUE FOODS LLC"
+            ]
+          },
+          {
+            "caseName": "Berry v. Perdue Farms Inc",
+            "court": "District Court, D. South Carolina",
+            "docketNumber": "4:19-cv-00794",
+            "dateFiled": "2019-03-15",
+            "dateTerminated": "2020-09-23",
+            "natureOfSuit": "Labor: Other",
+            "url": "https://www.courtlistener.com/docket/15864014/berry-v-perdue-farms-inc/",
+            "parties": [
+              "Perdue Transportation Inc",
+              "Nochus H M Berry",
+              "Perdue Farms Inc"
+            ]
+          },
+          {
+            "caseName": "Reyes v. Perdue Farms Inc.",
+            "court": "District Court, D. Delaware",
+            "docketNumber": "1:07-cv-00570",
+            "dateFiled": "2007-09-21",
+            "dateTerminated": "2008-04-17",
+            "natureOfSuit": "442 Civil rights jobs",
+            "url": "https://www.courtlistener.com/docket/4218017/reyes-v-perdue-farms-inc/",
+            "parties": [
+              "Reyes",
+              "Perdue Farms Inc."
+            ]
+          },
+          {
+            "caseName": "Earnest v. Perdue Farms, Inc.",
+            "court": "District Court, D. Maryland",
+            "docketNumber": "1:19-cv-02680",
+            "dateFiled": "2019-09-12",
+            "dateTerminated": "2020-03-12",
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/51338764/earnest-v-perdue-farms-inc/",
+            "parties": [
+              "Earnest",
+              "Perdue Farms, Inc."
+            ]
+          },
+          {
+            "caseName": "Delgado v. Perdue Farms, Inc.",
+            "court": "District Court, D. Delaware",
+            "docketNumber": "1:20-cv-01714",
+            "dateFiled": "2020-12-17",
+            "dateTerminated": "2021-12-08",
+            "natureOfSuit": null,
+            "url": "https://www.courtlistener.com/docket/18754210/delgado-v-perdue-farms-inc/",
+            "parties": [
+              "Delgado",
+              "Perdue Farms, Inc."
+            ]
+          },
+          {
+            "caseName": "Watts v. Perdue Farms, Inc.",
+            "court": "District Court, M.D. Alabama",
+            "docketNumber": "1:08-cv-00699",
+            "dateFiled": "2008-08-25",
+            "dateTerminated": "2009-10-14",
+            "natureOfSuit": "Civil Rights: Jobs",
+            "url": "https://www.courtlistener.com/docket/5471697/watts-v-perdue-farms-inc/",
+            "parties": [
+              "Watts",
+              "Perdue Farms, Inc."
+            ]
+          },
+          {
+            "caseName": "Williams v. Perdue Farms Inc",
+            "court": "District Court, D. South Carolina",
+            "docketNumber": "4:18-cv-02387",
+            "dateFiled": "2018-08-28",
+            "dateTerminated": "2020-02-05",
+            "natureOfSuit": "P.I.: Other",
+            "url": "https://www.courtlistener.com/docket/13475604/williams-v-perdue-farms-inc/",
+            "parties": [
+              "John Doe Contractor LLC",
+              "Perdue Farms Inc",
+              "Margie Williams"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "butterball",
+      "court": {
+        "query": "Butterball",
+        "totalCount": 638,
+        "results": [
+          {
+            "caseName": "Mattes v. Butterball",
+            "court": "District Court, D. Nebraska",
+            "docketNumber": "4:07-cv-03130",
+            "dateFiled": "2007-05-11",
+            "dateTerminated": "2007-08-20",
+            "natureOfSuit": "Contract: Other",
+            "url": "https://www.courtlistener.com/docket/5673445/mattes-v-butterball/",
+            "parties": [
+              "Mattes",
+              "Butterball"
+            ]
+          },
+          {
+            "caseName": "Jemison v. Butterball Turkey",
+            "court": "District Court, N.D. Alabama",
+            "docketNumber": "2:02-cv-01243",
+            "dateFiled": "2002-05-20",
+            "dateTerminated": "2002-11-08",
+            "natureOfSuit": "Civil Rights: Other",
+            "url": "https://www.courtlistener.com/docket/5388922/jemison-v-butterball-turkey/",
+            "parties": [
+              "Jemison",
+              "Butterball Turkey"
+            ]
+          },
+          {
+            "caseName": "Nicolet v. Butterball LLC",
+            "court": "District Court, W.D. Missouri",
+            "docketNumber": "2:13-cv-04138",
+            "dateFiled": "2013-05-24",
+            "dateTerminated": "2014-08-11",
+            "natureOfSuit": "Consumer Credit",
+            "url": "https://www.courtlistener.com/docket/5100040/nicolet-v-butterball-llc/",
+            "parties": [
+              "Nicolet",
+              "Butterball LLC"
+            ]
+          },
+          {
+            "caseName": "Graham v. Butterball, LLC",
+            "court": "District Court, W.D. Arkansas",
+            "docketNumber": "2:22-cv-02026",
+            "dateFiled": "2022-02-02",
+            "dateTerminated": "2023-03-22",
+            "natureOfSuit": "Other Statutory Actions",
+            "url": "https://www.courtlistener.com/docket/62647778/graham-v-butterball-llc/",
+            "parties": [
+              "Butterball, LLC",
+              "Christopher Marr",
+              "Chris Graham",
+              "Dennis Lassiter",
+              "John Doe, 1",
+              "John Doe, 3",
+              "Adam Crowder",
+              "John Doe, 2"
+            ]
+          },
+          {
+            "caseName": "Cardenas v. Butterball, LLC",
+            "court": "District Court, N.D. Illinois",
+            "docketNumber": "1:14-cv-08589",
+            "dateFiled": "2014-10-30",
+            "dateTerminated": "2016-02-04",
+            "natureOfSuit": "710 Labor: Fair Standards",
+            "url": "https://www.courtlistener.com/docket/7866731/cardenas-v-butterball-llc/",
+            "parties": [
+              "Armando Ortiz",
+              "Mauricio Rosiquez Perez",
+              "Butterball, LLC",
+              "Maria Hernandez",
+              "Lisette Cardenas",
+              "Eva Rojas",
+              "Bertha Contreras-Torres"
+            ]
+          },
+          {
+            "caseName": "Martinez v. Butterball LLC",
+            "court": "District Court, W.D. Texas",
+            "docketNumber": "5:21-cv-01274",
+            "dateFiled": "2021-12-22",
+            "dateTerminated": "2022-12-14",
+            "natureOfSuit": "365 Personal Inj. Prod. Liability",
+            "url": "https://www.courtlistener.com/docket/61639203/martinez-v-butterball-llc/",
+            "parties": [
+              "Butterball LLC",
+              "Candy Bustamante Martinez"
+            ]
+          },
+          {
+            "caseName": "Thompson v. Butterball LLC",
+            "court": "District Court, E.D. Arkansas",
+            "docketNumber": "3:10-cv-00127",
+            "dateFiled": "2010-06-11",
+            "dateTerminated": "2012-03-30",
+            "natureOfSuit": "442 Civil Rights: Jobs",
+            "url": "https://www.courtlistener.com/docket/5417409/thompson-v-butterball-llc/",
+            "parties": [
+              "Thompson",
+              "Butterball LLC"
+            ]
+          },
+          {
+            "caseName": "Mohr v. Butterball, LLC",
+            "court": "District Court, W.D. Arkansas",
+            "docketNumber": "2:21-cv-02163",
+            "dateFiled": "2021-10-05",
+            "dateTerminated": "2021-11-29",
+            "natureOfSuit": "442 Civil Rights: Jobs",
+            "url": "https://www.courtlistener.com/docket/60628554/mohr-v-butterball-llc/",
+            "parties": [
+              "Douglas Mohr",
+              "Butterball, LLC"
+            ]
+          },
+          {
+            "caseName": "Wortham v. Butterball Inc",
+            "court": "District Court, E.D. Arkansas",
+            "docketNumber": "3:11-cv-00212",
+            "dateFiled": "2011-10-25",
+            "dateTerminated": "2011-12-20",
+            "natureOfSuit": "Civil Rights: Jobs",
+            "url": "https://www.courtlistener.com/docket/5450327/wortham-v-butterball-inc/",
+            "parties": [
+              "Wortham",
+              "Butterball Inc"
+            ]
+          },
+          {
+            "caseName": "Perez v. Butterball, LLC",
+            "court": "District Court, E.D. North Carolina",
+            "docketNumber": "5:20-cv-00113",
+            "dateFiled": "2020-03-23",
+            "dateTerminated": "2020-09-15",
+            "natureOfSuit": "710 Labor: Fair Standards",
+            "url": "https://www.courtlistener.com/docket/17003436/perez-v-butterball-llc/",
+            "parties": [
+              "Butterball, LLC",
+              "Mariam Malave-Vega",
+              "North State Services, LLC",
+              "Heather  Brooke Fulcher",
+              "Marilena Perez",
+              "Timothy  Reid Fulcher"
+            ]
+          },
+          {
+            "caseName": "Herrera v. Butterball, LLC",
+            "court": "District Court, W.D. Missouri",
+            "docketNumber": "3:19-cv-05019",
+            "dateFiled": "2019-03-11",
+            "dateTerminated": "2020-12-28",
+            "natureOfSuit": "442 Civil rights jobs",
+            "url": "https://www.courtlistener.com/docket/14674983/herrera-v-butterball-llc/",
+            "parties": [
+              "Herrera",
+              "Butterball, LLC"
+            ]
+          },
+          {
+            "caseName": "Galvan v. Butterball LLC.",
+            "court": "District Court, N.D. Illinois",
+            "docketNumber": "1:17-cv-07454",
+            "dateFiled": "2017-10-16",
+            "dateTerminated": "2018-04-03",
+            "natureOfSuit": "751 Labor: Family and Medical Leave Act",
+            "url": "https://www.courtlistener.com/docket/8338690/galvan-v-butterball-llc/",
+            "parties": [
+              "Butterball LLC.",
+              "Grecia Galvan"
+            ]
+          },
+          {
+            "caseName": "Butterball, LLC v. Atkinson",
+            "court": "District Court, W.D. Arkansas",
+            "docketNumber": "3:15-cv-03050",
+            "dateFiled": "2015-07-10",
+            "dateTerminated": "2017-04-28",
+            "natureOfSuit": "370 Other Fraud",
+            "url": "https://www.courtlistener.com/docket/5498042/butterball-llc-v-atkinson/",
+            "parties": [
+              "Robert Hall",
+              "Heather Anderson",
+              "Bobby Hall",
+              "John R. Atkinson",
+              "Criterion Energy, LLC",
+              "Jourdon Anderson",
+              "Katherine Graham Atkinson",
+              "Butterball, LLC"
+            ]
+          },
+          {
+            "caseName": "Helmert v. Butterball LLC",
+            "court": "District Court, E.D. Arkansas",
+            "docketNumber": "4:08-cv-00342",
+            "dateFiled": "2008-04-18",
+            "dateTerminated": "2012-11-09",
+            "natureOfSuit": "Labor: Fair Standards",
+            "url": "https://www.courtlistener.com/docket/4128170/helmert-v-butterball-llc/",
+            "parties": [
+              "Helmert",
+              "Butterball LLC"
+            ]
+          },
+          {
+            "caseName": "Martinez-Hernandez v. Butterball, LLC",
+            "court": "District Court, E.D. North Carolina",
+            "docketNumber": "5:07-cv-00174-H",
+            "dateFiled": "2007-05-11",
+            "dateTerminated": "2012-06-15",
+            "natureOfSuit": "Labor: Fair Standards",
+            "url": "https://www.courtlistener.com/docket/5499613/martinez-hernandez-v-butterball-llc/",
+            "parties": [
+              "Martinez-Hernandez",
+              "Butterball, LLC"
+            ]
+          },
+          {
+            "caseName": "McDermott v. Butterball, LLC",
+            "court": "District Court, M.D. Florida",
+            "docketNumber": "8:16-cv-02717",
+            "dateFiled": "2016-09-21",
+            "dateTerminated": "2018-03-21",
+            "natureOfSuit": "365 Personal Inj. Prod. Liability",
+            "url": "https://www.courtlistener.com/docket/7620257/mcdermott-v-butterball-llc/",
+            "parties": [
+              "Butterball, LLC",
+              "Conwed Plastics, LLC",
+              "Walmart Stores East, LP",
+              "Patricia Ann McDermott",
+              "Kelly Ann McDermott"
+            ]
+          },
+          {
+            "caseName": "Butterball Farms v. Signature Butter",
+            "court": "District Court, S.D. Florida",
+            "docketNumber": "9:01-cv-08650",
+            "dateFiled": "2001-07-16",
+            "dateTerminated": "2002-11-20",
+            "natureOfSuit": "840 Trademark",
+            "url": "https://www.courtlistener.com/docket/11702256/butterball-farms-v-signature-butter/",
+            "parties": [
+              "Leo Peters Living Trust",
+              "Butterball Farms, Inc.",
+              "Signature Butter Farms, Inc."
+            ]
+          },
+          {
+            "caseName": "Osvaldo Figueroa v. Butterball, LLC",
+            "court": "Court of Appeals for the Fourth Circuit",
+            "docketNumber": "22-289",
+            "dateFiled": "2022-10-13",
+            "dateTerminated": "2022-11-04",
+            "natureOfSuit": null,
+            "url": "https://www.courtlistener.com/docket/69209283/osvaldo-figueroa-v-butterball-llc/",
+            "parties": [
+              "OSVALDO FIGUEROA, On behalf of himself and all others similarly situated",
+              "BUTTERBALL, LLC"
+            ]
+          },
+          {
+            "caseName": "Butterball, LLC v. PLD Logistics, Inc.",
+            "court": "District Court, E.D. North Carolina",
+            "docketNumber": "5:20-cv-00102",
+            "dateFiled": "2020-03-18",
+            "dateTerminated": "2021-06-22",
+            "natureOfSuit": "190 Other contract actions",
+            "url": "https://www.courtlistener.com/docket/16987686/butterball-llc-v-pld-logistics-inc/",
+            "parties": [
+              "Butterball, LLC",
+              "PLD Logistics, Inc."
+            ]
+          },
+          {
+            "caseName": "Marc v. Butterball, LLC",
+            "court": "District Court, E.D. North Carolina",
+            "docketNumber": "5:25-cv-00391",
+            "dateFiled": "2025-07-03",
+            "dateTerminated": null,
+            "natureOfSuit": null,
+            "url": "https://www.courtlistener.com/docket/70701488/marc-v-butterball-llc/",
+            "parties": [
+              "Marc",
+              "Butterball, LLC"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "foster-farms",
+      "court": {
+        "query": "Foster Poultry Farms",
+        "totalCount": 3653,
+        "results": [
+          {
+            "caseName": "Perez v. Foster Poultry Farms",
+            "court": "District Court, E.D. California",
+            "docketNumber": "1:22-cv-00691",
+            "dateFiled": "2022-06-06",
+            "dateTerminated": "2024-01-25",
+            "natureOfSuit": "Civil Rights: Jobs",
+            "url": "https://www.courtlistener.com/docket/63371865/perez-v-foster-poultry-farms/",
+            "parties": [
+              "Alyssa Melo",
+              "Ricardo Perez",
+              "Foster Farms, LLC",
+              "Foster Poultry Farms",
+              "Balhar Kaur",
+              "Tom Doe"
+            ]
+          },
+          {
+            "caseName": "Nelson v. Foster Poultry Farms",
+            "court": "District Court, E.D. California",
+            "docketNumber": "1:21-cv-00222",
+            "dateFiled": "2021-02-19",
+            "dateTerminated": "2023-12-12",
+            "natureOfSuit": "Labor: Labor/Mgt. Relations",
+            "url": "https://www.courtlistener.com/docket/60387913/nelson-v-foster-poultry-farms/",
+            "parties": [
+              "Nelson",
+              "Foster Poultry Farms"
+            ]
+          },
+          {
+            "caseName": "Reichard v. Foster Poultry Farms",
+            "court": "District Court, E.D. California",
+            "docketNumber": "1:06-cv-00238",
+            "dateFiled": "2006-03-01",
+            "dateTerminated": "2006-12-14",
+            "natureOfSuit": "Labor: Labor/Mgt. Relations",
+            "url": "https://www.courtlistener.com/docket/4158448/reichard-v-foster-poultry-farms/",
+            "parties": [
+              "Reichard",
+              "Foster Poultry Farms"
+            ]
+          },
+          {
+            "caseName": "Kravitz v. Foster Poultry Farms",
+            "court": "United States Bankruptcy Court, D. Delaware",
+            "docketNumber": "16-51608",
+            "dateFiled": "2016-12-16",
+            "dateTerminated": "2018-04-19",
+            "natureOfSuit": null,
+            "url": "https://www.courtlistener.com/docket/37373774/kravitz-v-foster-poultry-farms/",
+            "parties": [
+              "Kravitz",
+              "Foster Poultry Farms"
+            ]
+          },
+          {
+            "caseName": "Laguna v. Foster Poultry Farms",
+            "court": "District Court, E.D. California",
+            "docketNumber": "2:10-cv-03137",
+            "dateFiled": "2010-11-19",
+            "dateTerminated": "2011-11-14",
+            "natureOfSuit": "720 Labor: Labor/Mgt. Relations",
+            "url": "https://www.courtlistener.com/docket/5894067/laguna-v-foster-poultry-farms/",
+            "parties": [
+              "Foster Poultry Farms",
+              "Abel Laguna"
+            ]
+          },
+          {
+            "caseName": "Joann Linan v. Foster Poultry Farms",
+            "court": "District Court, E.D. California",
+            "docketNumber": "1:14-cv-01625",
+            "dateFiled": "2014-10-16",
+            "dateTerminated": "2015-12-18",
+            "natureOfSuit": "751 Labor: Family and Medical Leave Act",
+            "url": "https://www.courtlistener.com/docket/5955587/joann-linan-v-foster-poultry-farms/",
+            "parties": [
+              "Joann Linan",
+              "Foster Poultry Farms"
+            ]
+          },
+          {
+            "caseName": "Gipson v. Foster Poultry Farms",
+            "court": "District Court, W.D. Louisiana",
+            "docketNumber": "3:10-cv-00528",
+            "dateFiled": "2010-03-31",
+            "dateTerminated": "2011-04-15",
+            "natureOfSuit": "Civil Rights: Jobs",
+            "url": "https://www.courtlistener.com/docket/5202071/gipson-v-foster-poultry-farms/",
+            "parties": [
+              "Gipson",
+              "Foster Poultry Farms"
+            ]
+          },
+          {
+            "caseName": "Craten v. Foster Poultry Farms Incorporated",
+            "court": "District Court, D. Arizona",
+            "docketNumber": "2:15-cv-02587",
+            "dateFiled": "2015-12-21",
+            "dateTerminated": "2018-09-19",
+            "natureOfSuit": "Personal Injury: Other",
+            "url": "https://www.courtlistener.com/docket/5611477/craten-v-foster-poultry-farms-incorporated/",
+            "parties": [
+              "Craten",
+              "Foster Poultry Farms Incorporated"
+            ]
+          },
+          {
+            "caseName": "Foster Poultry Farms v. American Internation",
+            "court": "District Court, E.D. California",
+            "docketNumber": "1:04-cv-05930",
+            "dateFiled": "2004-07-06",
+            "dateTerminated": "2006-01-10",
+            "natureOfSuit": "Insurance",
+            "url": "https://www.courtlistener.com/docket/5682806/foster-poultry-farms-v-american-internation/",
+            "parties": [
+              "Foster Poultry Farms",
+              "American Internation"
+            ]
+          },
+          {
+            "caseName": "Avalos v. Foster Poultry Farms, Inc.",
+            "court": "District Court, E.D. California",
+            "docketNumber": "1:11-cv-00611",
+            "dateFiled": "2011-04-14",
+            "dateTerminated": "2011-07-01",
+            "natureOfSuit": "720 Labor: Labor/Mgt. Relations",
+            "url": "https://www.courtlistener.com/docket/5881008/avalos-v-foster-poultry-farms-inc/",
+            "parties": [
+              "Foster Poultry Farms, Inc.",
+              "Asusena Avalos"
+            ]
+          },
+          {
+            "caseName": "Garrison v. Foster Poultry Farms Incorporated",
+            "court": "District Court, D. Arizona",
+            "docketNumber": "2:16-cv-00280",
+            "dateFiled": "2016-01-29",
+            "dateTerminated": "2018-02-02",
+            "natureOfSuit": "360 Personal Injury: Other",
+            "url": "https://www.courtlistener.com/docket/5614427/garrison-v-foster-poultry-farms-incorporated/",
+            "parties": [
+              "Pamela Garrison",
+              "Foster Poultry Farms Incorporated",
+              "Chadron Garrison"
+            ]
+          },
+          {
+            "caseName": "Bell v. Foster Poultry Farms, Inc.",
+            "court": "District Court, E.D. California",
+            "docketNumber": "1:05-cv-01539",
+            "dateFiled": "2005-12-02",
+            "dateTerminated": "2008-08-27",
+            "natureOfSuit": "Labor: Fair Standards",
+            "url": "https://www.courtlistener.com/docket/5716423/bell-v-foster-poultry-farms-inc/",
+            "parties": [
+              "Bell",
+              "Foster Poultry Farms, Inc."
+            ]
+          },
+          {
+            "caseName": "Foster Poultry Farms v. Conagra Foods Refrig",
+            "court": "District Court, E.D. California",
+            "docketNumber": "1:04-cv-05810",
+            "dateFiled": "2004-06-08",
+            "dateTerminated": "2006-05-24",
+            "natureOfSuit": "Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/5692590/foster-poultry-farms-v-conagra-foods-refrig/",
+            "parties": [
+              "Foster Poultry Farms",
+              "Conagra Foods Refrig"
+            ]
+          },
+          {
+            "caseName": "Foster Poultry Farms v. Orkin, LLC",
+            "court": "District Court, E.D. California",
+            "docketNumber": "1:14-cv-00812",
+            "dateFiled": "2014-05-28",
+            "dateTerminated": "2015-10-14",
+            "natureOfSuit": "Contract: Other",
+            "url": "https://www.courtlistener.com/docket/5950309/foster-poultry-farms-v-orkin-llc/",
+            "parties": [
+              "Foster Poultry Farms",
+              "Orkin, LLC"
+            ]
+          },
+          {
+            "caseName": "Foster Poultry Farms v. Zacky Farms, Inc.",
+            "court": "United States Bankruptcy Court, E.D. California",
+            "docketNumber": "12-02672",
+            "dateFiled": "2012-11-20",
+            "dateTerminated": "2013-02-15",
+            "natureOfSuit": null,
+            "url": "https://www.courtlistener.com/docket/4157636/foster-poultry-farms-v-zacky-farms-inc/",
+            "parties": [
+              "Foster Poultry Farms",
+              "Zacky Farms, Inc."
+            ]
+          },
+          {
+            "caseName": "Wendy Freeman v. Foster Poultry Farms",
+            "court": "District Court, C.D. California",
+            "docketNumber": "2:15-cv-09129",
+            "dateFiled": "2015-11-24",
+            "dateTerminated": "2016-01-29",
+            "natureOfSuit": "365 Personal injury - Product liability",
+            "url": "https://www.courtlistener.com/docket/13317575/wendy-freeman-v-foster-poultry-farms/",
+            "parties": [
+              "Wendy Freeman",
+              "Foster Poultry Farms"
+            ]
+          },
+          {
+            "caseName": "Foster Poultry Farms Incorporated v. LaClaire",
+            "court": "District Court, D. Arizona",
+            "docketNumber": "2:19-cv-04630",
+            "dateFiled": "2019-07-03",
+            "dateTerminated": "2020-03-12",
+            "natureOfSuit": "Contract: Other",
+            "url": "https://www.courtlistener.com/docket/15879488/foster-poultry-farms-incorporated-v-laclaire/",
+            "parties": [
+              "Foster Poultry Farms Incorporated",
+              "LaClaire"
+            ]
+          },
+          {
+            "caseName": "Foster Poultry Farms v. Suntrust Bank",
+            "court": "District Court, E.D. California",
+            "docketNumber": "1:04-cv-05513",
+            "dateFiled": "2004-04-01",
+            "dateTerminated": "2008-07-14",
+            "natureOfSuit": "190 Contract: Other",
+            "url": "https://www.courtlistener.com/docket/4159698/foster-poultry-farms-v-suntrust-bank/",
+            "parties": [
+              "Foster Poultry Farms Inc",
+              "Fresno Farming LLC",
+              "Suntrust Bank"
+            ]
+          },
+          {
+            "caseName": "Johnson v. Foster Poultry Farms, Inc.",
+            "court": "District Court, S.D. Alabama",
+            "docketNumber": "2:19-cv-00620",
+            "dateFiled": "2019-09-09",
+            "dateTerminated": "2020-06-23",
+            "natureOfSuit": "Civil Rights: Jobs",
+            "url": "https://www.courtlistener.com/docket/16174938/johnson-v-foster-poultry-farms-inc/",
+            "parties": [
+              "Johnson",
+              "Foster Poultry Farms, Inc."
+            ]
+          },
+          {
+            "caseName": "Johnson v. Foster Poultry Farms, Inc.",
+            "court": "District Court, S.D. Alabama",
+            "docketNumber": "2:15-cv-00092",
+            "dateFiled": "2015-02-19",
+            "dateTerminated": "2015-07-14",
+            "natureOfSuit": "Civil Rights: Jobs",
+            "url": "https://www.courtlistener.com/docket/5151056/johnson-v-foster-poultry-farms-inc/",
+            "parties": [
+              "Johnson",
+              "Foster Poultry Farms, Inc."
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

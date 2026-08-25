@@ -1,0 +1,4 @@
+interface:
+  display_name: "Shelf Package Review"
+  short_description: "Independently review content packages"
+  default_prompt: "Use $shelf-package-review to independently review generated Food Exposé packages before founder approval."

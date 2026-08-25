@@ -11,12 +11,20 @@ export const DIET_PREFERENCE_OPTIONS = [
   { value: 'flexitarian', label: 'Flexitarian' },
 ];
 
+// Replaces the old nutrient-target list (2026-07-19) — these read as real
+// life goals instead of diet-app jargon. `scorer.js`'s GOAL_NOTE_MAP is still
+// keyed by the OLD ids below; it safely no-ops (returns null, never throws)
+// for any of these new ids since it looks the id up with `?? null`. Rewiring
+// per-goal score notes to the new ids is tracked as follow-up work, not a
+// blocker for shipping the new option list.
 export const PRIMARY_GOAL_OPTIONS = [
-  { value: 'avoid-added-sugar', label: 'Avoid Added Sugar' },
-  { value: 'reduce-sodium', label: 'Reduce Sodium' },
-  { value: 'increase-protein', label: 'Increase Protein' },
-  { value: 'increase-fiber', label: 'Increase Fiber' },
-  { value: 'avoid-high-risk', label: 'Avoid High-Risk Ingredients' },
-  { value: 'eat-clean', label: 'Eat Clean / Whole Foods' },
-  { value: 'low-carb-diet', label: 'Follow a Low-Carb Diet' },
+  { value: 'weight-loss', label: 'Losing weight' },
+  { value: 'more-energy', label: 'Having more energy' },
+  { value: 'managing-health-concerns', label: 'Managing a health concern' },
+  { value: 'fitness-performance', label: 'Improving fitness, strength, or sports performance' },
+  { value: 'inflammation-skin', label: 'Reducing inflammation, bloating, or skin breakouts' },
+  { value: 'family-health', label: 'Pregnancy, fertility, or family health goals' },
+  { value: 'learn-ingredients', label: 'Learning about ingredients & ultra-processed foods' },
+  { value: 'long-term-habits', label: 'Building long-term healthy habits' },
+  { value: 'money-values', label: 'Knowing what my money supports' },
 ];

@@ -1,0 +1,497 @@
+{
+  "generated": "2026-07-09T16:05:24",
+  "total": 20,
+  "resolved": 20,
+  "missed": 0,
+  "source_health": {
+    "off-search": {
+      "ok": 107,
+      "miss": 48,
+      "err": 0,
+      "throttled": 187
+    },
+    "usda-fdc": {
+      "ok": 65,
+      "miss": 15,
+      "err": 0,
+      "throttled": 0
+    }
+  },
+  "products": {
+    "lay-s-barbecue-potato-chips": {
+      "input": {
+        "barcode": "",
+        "name": "Lay's Barbecue Potato Chips",
+        "brand": "Lay's"
+      },
+      "name": "Barbecue Flavor Potato Chips",
+      "brand": "Lay's",
+      "serving_size": "1 package (28.3 g)",
+      "calories": 152,
+      "ingredients_verbatim": "POTATOES, VEGETABLE OIL (CANOLA OIL, CORN OIL, SOYBEAN OIL, SUNFLOWER OIL), SUGAR, SALT, DEXTROSE, MALTODEXTRIN (CORN), MOLASSES, TORULA YEAST, NATURAL FLAVORS, ONION POWDER, SPICES, TOMATO POWDER, PAPRIKA, CORN STARCH, PAPRIKA EXTRACTS, CARAMEL COLOR, YEAST EXTRACT, GARLIC POWDER, MUSTARD SEED OIL",
+      "nutrition": {
+        "fat": 9,
+        "saturatedFat": 1.5,
+        "sodium": 0.19,
+        "carbs": 16,
+        "sugars": 2,
+        "protein": 2,
+        "fiber": 1
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/002/840/000/8617/front_en.122.400.jpg",
+      "matched_off_code": "0028400008617",
+      "source": "off-search"
+    },
+    "lay-s-sour-cream-onion-potato-chips": {
+      "input": {
+        "barcode": "",
+        "name": "Lay's Sour Cream & Onion Potato Chips",
+        "brand": "Lay's"
+      },
+      "name": "Sour Cream & Onion Flavored Potato Chips",
+      "brand": "Lay's",
+      "serving_size": "17 chips (28 g)",
+      "calories": 160,
+      "ingredients_verbatim": "POTATOES, VEGETABLE OIL (CANOLA OIL, CORN OIL, SOYBEAN OIL, SUNFLOWER OIL), SKIM MILK, SALT, WHEY, ONION POWDER, PARSLEY, SOUR CREAM (CULTURED CREAM, SKIM MILK), DEXTROSE, MALTODEXTRIN (MADE FROM CORN), NATURAL FLAVORS, MEDIUM CHAIN TRIGLYCERIDES, LACTOSE, CITRIC ACID.",
+      "nutrition": {
+        "fat": 10,
+        "saturatedFat": 1.5,
+        "sodium": 0.2,
+        "carbs": 15,
+        "sugars": 2,
+        "protein": 2,
+        "fiber": 1
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/002/840/019/9636/front_en.36.400.jpg",
+      "matched_off_code": "0028400199636",
+      "source": "off-search"
+    },
+    "ruffles-original-potato-chips": {
+      "input": {
+        "barcode": "",
+        "name": "Ruffles Original Potato Chips",
+        "brand": "Ruffles"
+      },
+      "name": "Ruffles, Potato Chips, Original, Original",
+      "brand": "RUFFLES",
+      "serving_size": "28.0 g",
+      "calories": 571,
+      "ingredients_verbatim": "POTATOES, VEGETABLE OIL (SUNFLOWER, CORN, AND/OR CANOLA OIL), AND SALT.",
+      "nutrition": {
+        "fat": 35.7,
+        "saturatedFat": 5.36,
+        "sodium": 571,
+        "carbs": 53.6,
+        "sugars": 3.57,
+        "protein": 7.14,
+        "fiber": 3.6
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "ruffles-cheddar-sour-cream-potato-chips": {
+      "input": {
+        "barcode": "",
+        "name": "Ruffles Cheddar & Sour Cream Potato Chips",
+        "brand": "Ruffles"
+      },
+      "name": "Cheddar sour cream flavored potato chips",
+      "brand": "Ruffles",
+      "serving_size": "1 portion (42.5 g)",
+      "calories": 240,
+      "ingredients_verbatim": "potatoes, veg sunflower, corn, and/or canola oil), and salt.",
+      "nutrition": {
+        "fat": 15,
+        "saturatedFat": 2,
+        "sodium": 0.21,
+        "carbs": 23,
+        "sugars": 1,
+        "protein": 3,
+        "fiber": 2
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/002/840/008/5168/front_en.14.400.jpg",
+      "matched_off_code": "0028400085168",
+      "source": "off-search"
+    },
+    "tostitos-scoops-tortilla-chips": {
+      "input": {
+        "barcode": "",
+        "name": "Tostitos Scoops Tortilla Chips",
+        "brand": "Tostitos"
+      },
+      "name": "Scoops! Tortilla Chips",
+      "brand": "Tostitos",
+      "serving_size": "1 serving (28 g)",
+      "calories": 130,
+      "ingredients_verbatim": "WHOLE CORN, CORN, VEGETABLE OIL (CORN, CANOLA, AND/OR SUNFLOWER OIL), AND SALT. FRITO-LAY, INC. PLANO, TX 75024-4999 ©2021 FRITO-LAY NORTH AMERICA, INC.",
+      "nutrition": {
+        "fat": 3,
+        "saturatedFat": 0,
+        "sodium": 0.1,
+        "carbs": 22,
+        "sugars": 0,
+        "protein": 2,
+        "fiber": 2
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/002/840/018/4762/front_en.6.400.jpg",
+      "matched_off_code": "0028400184762",
+      "source": "off-search"
+    },
+    "tostitos-original-restaurant-style-tortilla-chip": {
+      "input": {
+        "barcode": "",
+        "name": "Tostitos Original Restaurant Style Tortilla Chips",
+        "brand": "Tostitos"
+      },
+      "name": "Tostitos Original Restaurant Style Tortilla Chips 18 Ounce Party Size Plastic Bag",
+      "brand": "Tostitos",
+      "serving_size": "about 7 chips (28 g) (28 g)",
+      "calories": 140,
+      "ingredients_verbatim": "corn, vegetable oil (corn, canola and/or sunflower oil), and salt,",
+      "nutrition": {
+        "fat": 7,
+        "saturatedFat": 1,
+        "sodium": 0.12,
+        "carbs": 19,
+        "sugars": 0,
+        "protein": 2,
+        "fiber": 1.01
+      },
+      "image_url": null,
+      "matched_off_code": "0028400083133",
+      "source": "off-search"
+    },
+    "fritos-chili-cheese-corn-chips": {
+      "input": {
+        "barcode": "",
+        "name": "Fritos Chili Cheese Corn Chips",
+        "brand": "Fritos"
+      },
+      "name": "CHILI CHEESE FLAVORED CORN CHIPS",
+      "brand": "Fritos",
+      "serving_size": "1 portion (28.349 g)",
+      "calories": 160,
+      "ingredients_verbatim": "Corn, corn oil, whey, salt, spices, maltodextrin (made from corn), cheddar cheese (milk, cheese cultures, enzymes), canola oil, potassium chloride, tomato powder, monosodium glutamate, onion powder, natural flavors, Romano cheese (cow's milk, cheese cultures, salt, enzymes), dextrose, buttermilk, sodium caseinate, annatto extracts, cream, salt, citric acid, sunflower oil, garlic powder, disodium inosinate, disodium guanylate, and caramel color.",
+      "nutrition": {
+        "fat": 10,
+        "saturatedFat": 1.5,
+        "sodium": 0.18,
+        "carbs": 16,
+        "sugars": 1,
+        "protein": 2,
+        "fiber": 1
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/002/840/004/0044/front_en.53.400.jpg",
+      "matched_off_code": "0028400040044",
+      "source": "off-search"
+    },
+    "fritos-scoops-corn-chips": {
+      "input": {
+        "barcode": "",
+        "name": "Fritos Scoops Corn Chips",
+        "brand": "Fritos"
+      },
+      "name": "Scoops! Corn Chips",
+      "brand": "Fritos",
+      "serving_size": "28g",
+      "calories": 160,
+      "ingredients_verbatim": "CORN, VEGETABLE OIL (CORN AND/OR CANOLA OIL), SALT",
+      "nutrition": {
+        "fat": 10,
+        "saturatedFat": 1.5,
+        "sodium": 0.11,
+        "carbs": 16,
+        "sugars": 0,
+        "protein": 2,
+        "fiber": 0.28
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/002/840/058/9321/front_en.31.400.jpg",
+      "matched_off_code": "0028400589321",
+      "source": "off-search"
+    },
+    "doritos-cool-ranch-tortilla-chips": {
+      "input": {
+        "barcode": "",
+        "name": "Doritos Cool Ranch Tortilla Chips",
+        "brand": "Doritos"
+      },
+      "name": "Doritos Cool Ranch Flavored Tortilla Chips",
+      "brand": "Frito-Lay",
+      "serving_size": "11 chips (28 g)",
+      "calories": 150,
+      "ingredients_verbatim": "Corn, Vegetable Oil (Corn, Canola, and/or Sunflower Oil), Salt, Corn Starch, Tomato Powder, Lactose, Whey, Skim Milk, Onion Powder, Sugar, Garlic Powder, Monosodium Glutamate, Maltodextrin (Made from Corn), Cheddar Cheese (Milk, Cheese Cultures, Salt, Enzymes), Dextrose, Malic Acid, Corn Syrup Solids, Buttermilk, Natural and Artificial Flavors, Sodium Acetate, Artificial Color (Red 40, Blue 1, Yellow 5), Spice, Citric Acid, Disodium Inosinate, and Disodium Guanylate.",
+      "nutrition": {
+        "fat": 7,
+        "saturatedFat": 1,
+        "sodium": 0.16,
+        "carbs": 18,
+        "sugars": 1,
+        "protein": 2,
+        "fiber": 1
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/002/840/051/6310/front_en.29.400.jpg",
+      "matched_off_code": "0028400516310",
+      "source": "off-search"
+    },
+    "doritos-spicy-sweet-chili-tortilla-chips": {
+      "input": {
+        "barcode": "",
+        "name": "Doritos Spicy Sweet Chili Tortilla Chips",
+        "brand": "Doritos"
+      },
+      "name": "Doritos, Tortilla Chips, Spicy Sweet Chili, Spicy Sweet Chili",
+      "brand": "DORITOS",
+      "serving_size": "28.0 g",
+      "calories": 500,
+      "ingredients_verbatim": "CORN, VEGETABLE OIL (CORN CANOLA, AND/OR SUNFLOWER OIL), SALT, SUGAR, MONOSODIUM GLUTAMATE, FRUCTOSE, SODIUM DIACETATE, SOY SAUCE (SOYBEAN, WHEAT, SALT), ONION POWDER, MALTODEXTRIN (MADE FROM CORN), HYDROLYZED SOY PROTEIN, HYDROLYZED CORN PROTEIN, GARLIC POWDER, TORULA YEAST, MALIC ACID, EXTRACTIVES OF PAPRIKA, SPICES, CARAMEL COLOR, DISODIUM INOSINATE, DISODIUM GUANYLATE, DEXTROSE, AND NATURAL FLAVOR.",
+      "nutrition": {
+        "fat": 25,
+        "saturatedFat": 3.57,
+        "sodium": 964,
+        "carbs": 64.3,
+        "sugars": 3.57,
+        "protein": 7.14,
+        "fiber": 3.6
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "cheetos-puffs-cheese-flavored-snacks": {
+      "input": {
+        "barcode": "",
+        "name": "Cheetos Puffs Cheese Flavored Snacks",
+        "brand": "Cheetos"
+      },
+      "name": "Cheese flavored puffs snacks",
+      "brand": "Cheetos",
+      "serving_size": null,
+      "calories": 564.52,
+      "ingredients_verbatim": "carcentrate, monosodium glutamate, lactic acid, c tric a artficial color [yellow 6]), and salt. tural and artificial fiavors, salt, whey rotein 2% 0.8mg rotassium 110mg not a significant source of added sugars plano, tx 75024-4099 orth america, inc. in a serving of food contributes to a daily diet. 2,00 calories a day is used for general nutrition advice redients: enriched corn meal (corn meal, ferrous sitite, niacin, thiamin mononitrate, riboflavin, folic acı), able oil (corn, canola, and/r sunflower oil), ci 9ese ing (whey, chedd cheese [milk, cheese cultures, zymes], canola oi malodextrin [made fro 1 corm), cantains milk gredients. rito-lay, inc. ano, tx 75024-4099 2006 frito-lay fritolay smartlo ol",
+      "nutrition": {
+        "fat": 34.27,
+        "saturatedFat": 5.04,
+        "sodium": 0.95,
+        "carbs": 54.44,
+        "sugars": 4.03,
+        "protein": 6.05,
+        "fiber": null
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/002/840/024/2929/front_en.3.400.jpg",
+      "matched_off_code": "0028400242929",
+      "source": "off-search"
+    },
+    "cheetos-crunchy-flamin-hot-limon-cheese-flavored": {
+      "input": {
+        "barcode": "",
+        "name": "Cheetos Crunchy Flamin' Hot Limon Cheese Flavored Snacks",
+        "brand": "Cheetos"
+      },
+      "name": "Flamin' Hot Limon Crunchy Cheese Flavored Snacks",
+      "brand": "Cheetos",
+      "serving_size": "1 package (28.349 g)",
+      "calories": 160,
+      "ingredients_verbatim": "enriched corn meal (corn meal, ferrous sulfate, niacin, thiamin mononitrate, riboflavin, and folic acid), vegetable oil (corn, canola and/or sunflower oil), and 2% or less of the following: maltodextrin (made from corn), salt, potassium salt, sugar, monosodium glutamate, yeast extract, citric acid, artificial color (red 40 lake, yellow 6 lake, yellow 6, yellow 5), cheddar cheese (milk, cheese cultures, salt, enzymes), onion powder, whey, whey protein concentrate, garlic powder, natural flavors, buttermilk, sodium diacetate, disodium inosinate, and disodium guanylate.\n\ncontains milk ingredients.",
+      "nutrition": {
+        "fat": 11,
+        "saturatedFat": 1.5,
+        "sodium": 0.21,
+        "carbs": 15,
+        "sugars": null,
+        "protein": 1,
+        "fiber": 0.5
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/002/840/004/0129/front_en.92.400.jpg",
+      "matched_off_code": "0028400040129",
+      "source": "off-search"
+    },
+    "sunchips-harvest-cheddar-whole-grain-snacks": {
+      "input": {
+        "barcode": "",
+        "name": "SunChips Harvest Cheddar Whole Grain Snacks",
+        "brand": "SunChips"
+      },
+      "name": "Sunchips Harvest Cheddar 100% Whole Grain Snacks 7 Ounce Plastic Bag",
+      "brand": "Sun Chips",
+      "serving_size": "28.0 g",
+      "calories": 500,
+      "ingredients_verbatim": "Whole Corn, Sunflower And/Or Canola Oil, Whole Wheat, Brown Rice Flour, Whole Oat Flour, Sugar, Maltodextrin (Made From Corn), Salt, Cheddar Cheese (Milk, Cheese Cultures, Salt, Enzymes), Natural Flavors, Whey, Whey Protein Concentrate, Onion Powder, Romano Cheese (Cow'S Milk, Cheese Cultures, Salt, Enzymes), Buttermilk, Yeast Extract, Citric Acid, Paprika Extracts, Lactic Acid, Garlic Powder, Parmesan Cheese (Milk, Cheese Cultures, Salt, Enzymes), And Skim Milk. CONTAINS WHEAT AND MILK INGREDIENTS.",
+      "nutrition": {
+        "fat": 21.4,
+        "saturatedFat": 1.79,
+        "sodium": 714,
+        "carbs": 67.9,
+        "sugars": 7.14,
+        "protein": 7.14,
+        "fiber": 7.1
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "sunchips-garden-salsa-whole-grain-snacks": {
+      "input": {
+        "barcode": "",
+        "name": "SunChips Garden Salsa Whole Grain Snacks",
+        "brand": "SunChips"
+      },
+      "name": "Sunchips Garden Salsa 6.50Oz",
+      "brand": "SUN CHIPS",
+      "serving_size": "28.0 GRM",
+      "calories": 500,
+      "ingredients_verbatim": "WHOLE CORN, SUNFLOWER AND/OR CANOLA OIL, WHOLE WHEAT, BROWN RICE FLOUR, WHOLE OAT FLOUR, SUGAR, TOMATO POWDER, SALT, NATURAL FLAVORS, MALTODEXTRIN (MADE FROM CORN), CHEDDAR CHEESE (MILK, CHEESE CULTURES, SALT, ENZYMES), DEXTROSE, BUTTERMILK, ONION POWDER, WHEY, YEAST EXTRACT, ROMANO CHEESE (PART-SKIM COW'S MILK, CHEESE CULTURES, SALT, ENZYMES), WHEY PROTEIN CONCENTRATE, CORN OIL, SPICES (INCLUDING JALAPEO PEPPER), CITRIC ACID, PAPRIKA EXTRACTS, LACTIC ACID",
+      "nutrition": {
+        "fat": 21.4,
+        "saturatedFat": 1.79,
+        "sodium": 500,
+        "carbs": 67.9,
+        "sugars": 7.14,
+        "protein": 7.14,
+        "fiber": 7.1
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "kettle-brand-backyard-barbeque-potato-chips": {
+      "input": {
+        "barcode": "",
+        "name": "Kettle Brand Backyard Barbeque Potato Chips",
+        "brand": "Kettle Brand"
+      },
+      "name": "Potato Chips Backyard Barbeque",
+      "brand": "Kettle Brand",
+      "serving_size": "1 bag (28 g)",
+      "calories": 140,
+      "ingredients_verbatim": "potatoes, safflower and/or sunflower and/or canola oil, organic dried cane syrup, sugar, salt, maltodextrin, paprika, onion powder, yeast extract, tomato powder, torula yeast, garlic powder, chili pepper, natural flavor (including smoke), citric acid,",
+      "nutrition": {
+        "fat": 8,
+        "saturatedFat": 0.5,
+        "sodium": 0.12,
+        "carbs": 16,
+        "sugars": 1,
+        "protein": 2,
+        "fiber": 2
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/008/411/411/6642/front_en.5.400.jpg",
+      "matched_off_code": "0084114116642",
+      "source": "off-search"
+    },
+    "kettle-brand-jalapeno-potato-chips": {
+      "input": {
+        "barcode": "",
+        "name": "Kettle Brand Jalapeno Potato Chips",
+        "brand": "Kettle Brand"
+      },
+      "name": "Kettle Brand Potato Chips, Jalapeno Kettle Chips, 5 Oz",
+      "brand": "KETTLE FOODS",
+      "serving_size": "28.0 GRM",
+      "calories": 536,
+      "ingredients_verbatim": "INGREDIENTS: POTATOES, VEGETABLE OILS (CANOLA AND/OR SUNFLOWER AND/OR SAFFLOWER AND/OR SOYBEAN), SALT, SUGAR, ONION POWDER, SPICES, TORULA YEAST, YEAST EXTRACT, GARLIC POWDER, JALAPEO PEPPER POWDER, NATURAL FLAVORS, PARSLEY.",
+      "nutrition": {
+        "fat": 32.1,
+        "saturatedFat": 3.57,
+        "sodium": 607,
+        "carbs": 53.6,
+        "sugars": 3.57,
+        "protein": 7.14,
+        "fiber": 7.1
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "cape-cod-original-kettle-cooked-potato-chips": {
+      "input": {
+        "barcode": "",
+        "name": "Cape Cod Original Kettle Cooked Potato Chips",
+        "brand": "Cape Cod"
+      },
+      "name": "Original Sea Salt Kettle Cooked Potato Chips",
+      "brand": "Cape Cod",
+      "serving_size": "1 serving (28 g)",
+      "calories": 140,
+      "ingredients_verbatim": "potatoes, vegetable oil (contains one or more of the following: canola oil, safflower oil and/or sunflower oil), salt,",
+      "nutrition": {
+        "fat": 8,
+        "saturatedFat": 0.5,
+        "sodium": 0.12,
+        "carbs": 16,
+        "sugars": 0,
+        "protein": 2,
+        "fiber": 2
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/002/068/500/1642/front_en.36.400.jpg",
+      "matched_off_code": "0020685001642",
+      "source": "off-search"
+    },
+    "cape-cod-reduced-fat-original-kettle-cooked-pota": {
+      "input": {
+        "barcode": "",
+        "name": "Cape Cod Reduced Fat Original Kettle Cooked Potato Chips",
+        "brand": "Cape Cod"
+      },
+      "name": "Cape Cod, Kettle Cooked Potato Chips, Original",
+      "brand": "CAPE COD",
+      "serving_size": "53.20000076293945 g",
+      "calories": 508,
+      "ingredients_verbatim": "POTATOES, CANOLA OIL, SALT.",
+      "nutrition": {
+        "fat": 28.2,
+        "saturatedFat": 1.88,
+        "sodium": 526,
+        "carbs": 58.3,
+        "sugars": 0,
+        "protein": 7.52,
+        "fiber": 3.8
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "takis-fuego-rolled-tortilla-chips": {
+      "input": {
+        "barcode": "",
+        "name": "Takis Fuego Rolled Tortilla Chips",
+        "brand": "Takis"
+      },
+      "name": "Takis crunchy rolled tortilla chips fuego flavor",
+      "brand": "Bimbo",
+      "serving_size": null,
+      "calories": 500,
+      "ingredients_verbatim": "Corn masa flour, vegetable oil (palm, soybean, canola, rice bran oil), iodized salt, maltodextrin, citric acid, sugar, monosodium glutamate, hydrolyzed soy protein, onion powder, yeast extract, artificial color (red 40 lake, yellow 6 lake), natural and artificial flavors, sodium bicarbonate, soybean oil, chili pepper, disodium inosinate, disodium guanylate, TBHQ.",
+      "nutrition": {
+        "fat": 28.57,
+        "saturatedFat": 7.14,
+        "sodium": 1.46,
+        "carbs": 60.71,
+        "sugars": 3.57,
+        "protein": 7.14,
+        "fiber": null
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/075/752/802/9753/front_en.4.400.jpg",
+      "matched_off_code": "0757528029753",
+      "source": "off-search"
+    },
+    "pringles-original-potato-crisps": {
+      "input": {
+        "barcode": "",
+        "name": "Pringles Original Potato Crisps",
+        "brand": "Pringles"
+      },
+      "name": "Original Potato Crisps",
+      "brand": "Pringles",
+      "serving_size": "1 serving (28 g)",
+      "calories": 150,
+      "ingredients_verbatim": "DRIED POTATOES, VEGETABLE OIL (CORN, COTTONSEED, HIGH OLEIC SOYBEAN, SUNFLOWER OIL), DEGERMINATED YELLOW CORN FLOUR, CORNSTARCH, RICE FLOUR, MALTODEXTRIN, MONO -  AND DIGLYCERIDES, SALT, WHEAT STARCH.",
+      "nutrition": {
+        "fat": 8.68,
+        "saturatedFat": 0.84,
+        "sodium": 0.11,
+        "carbs": 14,
+        "sugars": 0.25,
+        "protein": 1.74,
+        "fiber": 1.15
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/003/800/013/8416/front_en.140.400.jpg",
+      "matched_off_code": "0038000138416",
+      "source": "off-search"
+    }
+  },
+  "misses": []
+}

@@ -1,0 +1,791 @@
+{
+  "category": "yogurt",
+  "products": [
+    {
+      "barcode": "001010000021",
+      "name": "Dannon Strawberry Lowfat Yogurt",
+      "brand": "Dannon",
+      "companyId": "danone",
+      "servingSize": "6 oz (170g)",
+      "calories": 150,
+      "ingredients": [
+        "cultured grade a lowfat milk",
+        "strawberries",
+        "sugar",
+        "modified corn starch",
+        "nonfat milk",
+        "kosher gelatin",
+        "citric acid",
+        "tricalcium phosphate",
+        "natural flavor",
+        "pectin",
+        "vitamin a acetate",
+        "vitamin d3"
+      ],
+      "nutrition": {
+        "fat": 1.5,
+        "saturatedFat": 1,
+        "sodium": 75,
+        "carbs": 31,
+        "sugars": 26,
+        "protein": 5
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": true,
+      "subType": "Regular/Fruit Yogurt",
+      "notes": "Mass market, high sugar (26g per serving) despite 'strawberry' branding"
+    },
+    {
+      "barcode": "001010000038",
+      "name": "Activia Vanilla Lowfat Yogurt",
+      "brand": "Activia",
+      "companyId": "danone",
+      "servingSize": "4 oz (113g)",
+      "calories": 110,
+      "ingredients": [
+        "cultured grade a lowfat milk",
+        "sugar",
+        "whey protein concentrate",
+        "modified corn starch",
+        "natural flavors",
+        "gelatin",
+        "citric acid",
+        "locust bean gum",
+        "vitamin a acetate",
+        "vitamin d3",
+        "bifidobacterium animalis"
+      ],
+      "nutrition": {
+        "fat": 1,
+        "saturatedFat": 0.5,
+        "sodium": 65,
+        "carbs": 20,
+        "sugars": 18,
+        "protein": 3
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": true,
+      "subType": "Regular/Fruit Yogurt",
+      "notes": "Probiotic positioning; sugar still substantial despite smaller serving size"
+    },
+    {
+      "barcode": "001010000045",
+      "name": "Stonyfield Organic Strawberry Lowfat Yogurt",
+      "brand": "Stonyfield",
+      "companyId": "danone",
+      "servingSize": "6 oz (170g)",
+      "calories": 140,
+      "ingredients": [
+        "organic cultured lowfat milk",
+        "organic strawberries",
+        "organic sugar",
+        "organic modified corn starch",
+        "pectin",
+        "locust bean gum",
+        "natural flavor",
+        "gelatin",
+        "vitamin a acetate",
+        "vitamin d3"
+      ],
+      "nutrition": {
+        "fat": 1.5,
+        "saturatedFat": 1,
+        "sodium": 70,
+        "carbs": 28,
+        "sugars": 24,
+        "protein": 5
+      },
+      "certifications": [
+        "USDA Organic",
+        "Non-GMO Project"
+      ],
+      "isOrganic": true,
+      "isVegan": false,
+      "isGlutenFree": true,
+      "subType": "Regular/Fruit Yogurt",
+      "notes": "Organic positioning but similar sugar load as conventional counterparts"
+    },
+    {
+      "barcode": "001010000052",
+      "name": "Wallaby Organic Aussie Style Strawberry Lowfat Yogurt",
+      "brand": "Wallaby",
+      "companyId": "danone",
+      "servingSize": "5.3 oz (150g)",
+      "calories": 140,
+      "ingredients": [
+        "cultured organic lowfat milk",
+        "organic strawberries",
+        "organic sugar",
+        "organic thickener (pectin)",
+        "natural vanilla flavor",
+        "live active cultures"
+      ],
+      "nutrition": {
+        "fat": 1.5,
+        "saturatedFat": 1,
+        "sodium": 65,
+        "carbs": 27,
+        "sugars": 23,
+        "protein": 5
+      },
+      "certifications": [
+        "USDA Organic",
+        "Non-GMO Project"
+      ],
+      "isOrganic": true,
+      "isVegan": false,
+      "isGlutenFree": true,
+      "subType": "Regular/Fruit Yogurt",
+      "notes": "Owned by Danone; cleaner ingredient label but high sugar relative to protein"
+    },
+    {
+      "barcode": "001010000069",
+      "name": "Fage Total 0% Plain Greek Yogurt",
+      "brand": "Fage",
+      "companyId": "fage",
+      "servingSize": "7 oz (200g)",
+      "calories": 100,
+      "ingredients": [
+        "cultured nonfat milk",
+        "live active cultures"
+      ],
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": 0,
+        "sodium": 60,
+        "carbs": 6,
+        "sugars": 6,
+        "protein": 20
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": true,
+      "subType": "Greek Yogurt",
+      "notes": "Minimal ingredients; high protein; very low added sugar"
+    },
+    {
+      "barcode": "001010000076",
+      "name": "Oikos Triple Zero Vanilla Greek Yogurt",
+      "brand": "Oikos",
+      "companyId": "danone",
+      "servingSize": "5.3 oz (150g)",
+      "calories": 100,
+      "ingredients": [
+        "cultured nonfat milk",
+        "sugar",
+        "corn starch",
+        "vanilla flavor",
+        "locust bean gum",
+        "sucralose",
+        "live active cultures"
+      ],
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": 0,
+        "sodium": 55,
+        "carbs": 7,
+        "sugars": 0,
+        "protein": 15
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": true,
+      "subType": "Greek Yogurt",
+      "notes": "Zero sugar positioning uses sucralose; high protein retention"
+    },
+    {
+      "barcode": "001010000083",
+      "name": "Siggi's 0% Plain Icelandic Skyr",
+      "brand": "Siggi's",
+      "companyId": "lactalis",
+      "servingSize": "5.3 oz (150g)",
+      "calories": 100,
+      "ingredients": [
+        "cultured skim milk",
+        "live active cultures"
+      ],
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": 0,
+        "sodium": 75,
+        "carbs": 4,
+        "sugars": 4,
+        "protein": 18
+      },
+      "certifications": [
+        "Non-GMO Project"
+      ],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": true,
+      "subType": "Greek Yogurt",
+      "notes": "Icelandic skyr (strained yogurt) with minimal ingredients; higher protein density"
+    },
+    {
+      "barcode": "001010000090",
+      "name": "Noosa Strawberry Finest Yoghurt",
+      "brand": "Noosa",
+      "companyId": "noosa",
+      "servingSize": "4 oz (113g)",
+      "calories": 120,
+      "ingredients": [
+        "cultured milk",
+        "strawberries",
+        "cream",
+        "honey",
+        "native starch",
+        "pectin",
+        "live active cultures"
+      ],
+      "nutrition": {
+        "fat": 3.5,
+        "saturatedFat": 2.5,
+        "sodium": 50,
+        "carbs": 17,
+        "sugars": 16,
+        "protein": 4
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": true,
+      "subType": "Greek Yogurt",
+      "notes": "Australian-style; higher fat (cream) and sugar; smaller serving size"
+    },
+    {
+      "barcode": "001010000107",
+      "name": "Two Good Strawberry Greek Yogurt",
+      "brand": "Two Good",
+      "companyId": "danone",
+      "servingSize": "5.3 oz (150g)",
+      "calories": 80,
+      "ingredients": [
+        "cultured nonfat milk",
+        "strawberries",
+        "cream",
+        "sugar",
+        "corn starch",
+        "gelatin",
+        "allulose",
+        "steviol glycosides",
+        "natural flavors",
+        "locust bean gum",
+        "live active cultures"
+      ],
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": 0,
+        "sodium": 50,
+        "carbs": 5,
+        "sugars": 2,
+        "protein": 15
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": true,
+      "subType": "Greek Yogurt",
+      "notes": "Low-sugar positioning using allulose and stevia; high protein"
+    },
+    {
+      "barcode": "001010000114",
+      "name": "So Delicious Coconut Milk Yogurt Vanilla",
+      "brand": "So Delicious",
+      "companyId": "danone",
+      "servingSize": "5.3 oz (150g)",
+      "calories": 140,
+      "ingredients": [
+        "coconut milk",
+        "chicory root fiber",
+        "sugar",
+        "modified corn starch",
+        "vanilla flavor",
+        "locust bean gum",
+        "pectin",
+        "carrageenan",
+        "live active cultures",
+        "vitamin d2"
+      ],
+      "nutrition": {
+        "fat": 5,
+        "saturatedFat": 4.5,
+        "sodium": 75,
+        "carbs": 22,
+        "sugars": 15,
+        "protein": 1
+      },
+      "certifications": [
+        "Non-GMO Project"
+      ],
+      "isOrganic": false,
+      "isVegan": true,
+        "isGlutenFree": true,
+      "subType": "Plant-Based Yogurt",
+      "notes": "Plant-based but high sugar; very low protein (no dairy); carrageenan thickener"
+    },
+    {
+      "barcode": "001010000121",
+      "name": "Kite Hill Plain Almond Milk Yogurt",
+      "brand": "Kite Hill",
+      "companyId": "kite-hill",
+      "servingSize": "5.3 oz (150g)",
+      "calories": 90,
+      "ingredients": [
+        "almondmilk (filtered water, almonds)",
+        "chicory root fiber",
+        "agar agar",
+        "locust bean gum",
+        "live probiotics",
+        "vitamin d2"
+      ],
+      "nutrition": {
+        "fat": 4,
+        "saturatedFat": 0,
+        "sodium": 80,
+        "carbs": 5,
+        "sugars": 0,
+        "protein": 2
+      },
+      "certifications": [
+        "Non-GMO Project",
+        "Gluten Free Certified"
+      ],
+      "isOrganic": false,
+      "isVegan": true,
+      "isGlutenFree": true,
+      "subType": "Plant-Based Yogurt",
+      "notes": "Minimal sugar; agar agar as natural thickener; very low protein"
+    },
+    {
+      "barcode": "001010000138",
+      "name": "Silk Almondmilk Yogurt Strawberry",
+      "brand": "Silk",
+      "companyId": "danone",
+      "servingSize": "5.3 oz (150g)",
+      "calories": 120,
+      "ingredients": [
+        "almondmilk (water, almonds)",
+        "sugar",
+        "modified corn starch",
+        "carrageenan",
+        "locust bean gum",
+        "guar gum",
+        "natural flavors",
+        "strawberries",
+        "live cultures",
+        "vitamin d2",
+        "vitamin a palmitate"
+      ],
+      "nutrition": {
+        "fat": 3.5,
+        "saturatedFat": 0,
+        "sodium": 90,
+        "carbs": 18,
+        "sugars": 14,
+        "protein": 1
+      },
+      "certifications": [
+        "Non-GMO Project"
+      ],
+      "isOrganic": false,
+      "isVegan": true,
+      "isGlutenFree": true,
+      "subType": "Plant-Based Yogurt",
+      "notes": "Plant-based with added sugar; multiple gums for texture; negligible protein"
+    },
+    {
+      "barcode": "001010000145",
+      "name": "Forager Project Cashewmilk Yogurt Plain",
+      "brand": "Forager Project",
+      "companyId": "forager",
+      "servingSize": "5.3 oz (150g)",
+      "calories": 110,
+      "ingredients": [
+        "cashewmilk (filtered water, cashews)",
+        "coconut cream",
+        "tapioca starch",
+        "chicory root fiber",
+        "salt",
+        "probiotics",
+        "vitamin d2"
+      ],
+      "nutrition": {
+        "fat": 6,
+        "saturatedFat": 3.5,
+        "sodium": 110,
+        "carbs": 7,
+        "sugars": 0,
+        "protein": 2
+      },
+      "certifications": [
+        "Organic Verified"
+      ],
+      "isOrganic": false,
+      "isVegan": true,
+      "isGlutenFree": true,
+      "subType": "Plant-Based Yogurt",
+      "notes": "Cashew/coconut base; clean label; no added sugars; minimal protein"
+    },
+    {
+      "barcode": "001010000152",
+      "name": "Oatly Oat Milk Yogurt Plain",
+      "brand": "Oatly",
+      "companyId": "oatly",
+      "servingSize": "5.3 oz (150g)",
+      "calories": 150,
+      "ingredients": [
+        "oatmilk (water, oats)",
+        "sugar",
+        "coconut oil",
+        "modified corn starch",
+        "locust bean gum",
+        "guar gum",
+        "probiotics",
+        "vitamin a",
+        "vitamin d2"
+      ],
+      "nutrition": {
+        "fat": 6,
+        "saturatedFat": 4,
+        "sodium": 80,
+        "carbs": 19,
+        "sugars": 11,
+        "protein": 2
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": true,
+      "isGlutenFree": true,
+      "subType": "Plant-Based Yogurt",
+      "notes": "Oat-based; added sugars and coconut oil; higher calories vs almond alternatives"
+    },
+    {
+      "barcode": "001010000159",
+      "name": "Danimals Strawberry Explosion Smoothie",
+      "brand": "Danimals",
+      "companyId": "danone",
+      "servingSize": "3.1 oz (88g)",
+      "calories": 70,
+      "ingredients": [
+        "milk",
+        "sugar",
+        "water",
+        "strawberries",
+        "modified corn starch",
+        "natural and artificial flavor",
+        "carrageenan",
+        "gelatin",
+        "red 40",
+        "yellow 5",
+        "vitamin a acetate",
+        "vitamin d3"
+      ],
+      "nutrition": {
+        "fat": 1,
+        "saturatedFat": 0.5,
+        "sodium": 55,
+        "carbs": 14,
+        "sugars": 12,
+        "protein": 2
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": true,
+      "subType": "Kids Yogurt",
+      "notes": "Kids positioning; high sugar for serving size; artificial dyes (red 40, yellow 5)"
+    },
+    {
+      "barcode": "001010000166",
+      "name": "GoGurt Strawberry Portable Yogurt",
+      "brand": "GoGurt",
+      "companyId": "general-mills",
+      "servingSize": "2 oz (56g)",
+      "calories": 80,
+      "ingredients": [
+        "cultured low fat milk",
+        "sugar",
+        "high fructose corn syrup",
+        "modified corn starch",
+        "natural and artificial flavor",
+        "gelatin",
+        "citric acid",
+        "carrageenan",
+        "red 40",
+        "blue 1",
+        "vitamin a acetate",
+        "vitamin d3"
+      ],
+      "nutrition": {
+        "fat": 1,
+        "saturatedFat": 0.5,
+        "sodium": 50,
+        "carbs": 15,
+        "sugars": 13,
+        "protein": 2
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": true,
+      "subType": "Kids Yogurt",
+      "notes": "Squeezable tube format; HFCS + sugar combo; minimal protein despite dairy base"
+    },
+    {
+      "barcode": "001010000173",
+      "name": "Chobani Kids Strawberry Banana Yogurt Tube",
+      "brand": "Chobani",
+      "companyId": null,
+      "servingSize": "2 oz (56g)",
+      "calories": 50,
+      "ingredients": [
+        "cultured nonfat milk",
+        "sugar",
+        "fruit puree (strawberry, banana)",
+        "pectin",
+        "gelatin",
+        "natural flavors",
+        "locust bean gum",
+        "live active cultures"
+      ],
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": 0,
+        "sodium": 35,
+        "carbs": 9,
+        "sugars": 7,
+        "protein": 5
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": true,
+      "subType": "Kids Yogurt",
+      "notes": "Greek yogurt base; lower sugar than competitors; higher protein for kids products"
+    },
+    {
+      "barcode": "001010000180",
+      "name": "YoCrunch Strawberry with Oreo",
+      "brand": "YoCrunch",
+      "companyId": "danone",
+      "servingSize": "4 oz (113g) yogurt",
+      "calories": 140,
+      "ingredients": [
+        "yogurt (cultured milk, sugar, strawberries, modified corn starch, gelatin, natural flavor)",
+        "oreos (flour, sugar, palm and canola oil, cocoa, high fructose corn syrup, leavening, artificial flavor, soy lecithin)",
+        "vitamin a acetate",
+        "vitamin d3"
+      ],
+      "nutrition": {
+        "fat": 3.5,
+        "saturatedFat": 1.5,
+        "sodium": 85,
+        "carbs": 26,
+        "sugars": 20,
+        "protein": 2
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": false,
+      "subType": "Kids Yogurt",
+      "notes": "Cookie topping adds seed oils and refined carbs; positioned as treat despite yogurt base"
+    },
+    {
+      "barcode": "001010000197",
+      "name": "Stonyfield YoBaby Whole Milk Vanilla Stage 1",
+      "brand": "Stonyfield",
+      "companyId": "danone",
+      "servingSize": "4 oz (113g)",
+      "calories": 100,
+      "ingredients": [
+        "organic whole milk yogurt",
+        "organic sugar",
+        "organic vanilla flavor",
+        "gelatin",
+        "live active cultures"
+      ],
+      "nutrition": {
+        "fat": 4,
+        "saturatedFat": 2.5,
+        "sodium": 50,
+        "carbs": 14,
+        "sugars": 12,
+        "protein": 4
+      },
+      "certifications": [
+        "USDA Organic",
+        "Non-GMO Project"
+      ],
+      "isOrganic": true,
+      "isVegan": false,
+      "isGlutenFree": true,
+      "subType": "Kids Yogurt",
+      "notes": "Baby/toddler formulation; whole milk for developmental needs; organic certification"
+    },
+    {
+      "barcode": "001010000204",
+      "name": "Lifeway Kefir Plain Lowfat",
+      "brand": "Lifeway",
+      "companyId": "lifeway-foods",
+      "servingSize": "8 fl oz (240ml)",
+      "calories": 140,
+      "ingredients": [
+        "cultured lowfat milk",
+        "kefir grains (proprietary blend)",
+        "live active cultures"
+      ],
+      "nutrition": {
+        "fat": 2.5,
+        "saturatedFat": 1.5,
+        "sodium": 100,
+        "carbs": 12,
+        "sugars": 10,
+        "protein": 11
+      },
+      "certifications": [
+        "Gluten Free Certified",
+        "Non-GMO Project"
+      ],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": true,
+      "subType": "Drinkable Yogurt / Kefir",
+      "notes": "Fermented kefir (more probiotics than yogurt); higher protein despite liquid form; independent producer"
+    },
+    {
+      "barcode": "001010000211",
+      "name": "Chobani Probiotic Peach Mango Drink",
+      "brand": "Chobani",
+      "companyId": null,
+      "servingSize": "7 fl oz (206ml)",
+      "calories": 80,
+      "ingredients": [
+        "filtered water",
+        "yogurt (nonfat milk, live cultures)",
+        "fruit purees (peach, mango)",
+        "sugar",
+        "natural flavors",
+        "guar gum",
+        "probiotics (lactobacillus)"
+      ],
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": 0,
+        "sodium": 80,
+        "carbs": 16,
+        "sugars": 14,
+        "protein": 3
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": true,
+      "subType": "Drinkable Yogurt / Kefir",
+      "notes": "Drinkable yogurt with significant sugar; fruit flavor overpowers dairy taste"
+    },
+    {
+      "barcode": "001010000228",
+      "name": "Yakult Original Probiotic Drink",
+      "brand": "Yakult",
+      "companyId": "yakult-usa",
+      "servingSize": "2.7 fl oz (80ml)",
+      "calories": 50,
+      "ingredients": [
+        "water",
+        "glucose",
+        "sugar",
+        "skimmed milk powder",
+        "lactobacillus casei shirota",
+        "yeast",
+        "corn starch",
+        "sodium citrate",
+        "citric acid",
+        "artificial flavor"
+      ],
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": 0,
+        "sodium": 35,
+        "carbs": 11,
+        "sugars": 10,
+        "protein": 0
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": true,
+      "subType": "Drinkable Yogurt / Kefir",
+      "notes": "Probiotic drink not yogurt; minimal protein; high sugar ratio for serving size; iconic bottle design"
+    },
+    {
+      "barcode": "001010000235",
+      "name": "Activia Probiotic Dailies Strawberry Drink",
+      "brand": "Activia",
+      "companyId": "danone",
+      "servingSize": "3.1 fl oz (92ml)",
+      "calories": 50,
+      "ingredients": [
+        "cultured milk (nonfat milk, cultures)",
+        "water",
+        "sugar",
+        "strawberry puree",
+        "gelatin",
+        "locust bean gum",
+        "natural flavor",
+        "bifidobacterium lactis",
+        "vitamin d3"
+      ],
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": 0,
+        "sodium": 45,
+        "carbs": 10,
+        "sugars": 9,
+        "protein": 1
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": true,
+      "subType": "Drinkable Yogurt / Kefir",
+      "notes": "Tiny drinkable format; probiotic positioning; very low protein content"
+    },
+    {
+      "barcode": "001010000242",
+      "name": "Green Valley Creamery Lowfat Plain Kefir",
+      "brand": "Green Valley Creamery",
+      "companyId": null,
+      "servingSize": "8 fl oz (240ml)",
+      "calories": 110,
+      "ingredients": [
+        "cultured lowfat organic milk",
+        "kefir grain cultures",
+        "live active cultures"
+      ],
+      "nutrition": {
+        "fat": 2,
+        "saturatedFat": 1.5,
+        "sodium": 95,
+        "carbs": 8,
+        "sugars": 6,
+        "protein": 10
+      },
+      "certifications": [
+        "USDA Organic",
+        "Gluten Free Certified"
+      ],
+      "isOrganic": true,
+      "isVegan": false,
+      "isGlutenFree": true,
+      "subType": "Drinkable Yogurt / Kefir",
+      "notes": "Organic kefir; minimal added sugar; high protein for a drinkable product"
+    }
+  ]
+}

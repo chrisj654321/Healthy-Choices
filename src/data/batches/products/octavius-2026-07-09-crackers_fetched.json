@@ -1,0 +1,497 @@
+{
+  "generated": "2026-07-09T16:05:24",
+  "total": 20,
+  "resolved": 20,
+  "missed": 0,
+  "source_health": {
+    "off-search": {
+      "ok": 107,
+      "miss": 48,
+      "err": 0,
+      "throttled": 187
+    },
+    "usda-fdc": {
+      "ok": 65,
+      "miss": 15,
+      "err": 0,
+      "throttled": 0
+    }
+  },
+  "products": {
+    "ritz-garlic-butter-crackers": {
+      "input": {
+        "barcode": "",
+        "name": "Ritz Garlic Butter Crackers",
+        "brand": "Ritz"
+      },
+      "name": "Nabisco Ritz Crackers Garlic Butter 12X13.7 Oz",
+      "brand": "NABISCO RITZ",
+      "serving_size": "16.0 g",
+      "calories": 500,
+      "ingredients_verbatim": "INGREDIENTS: UNBLEACHED ENRICHED FLOUR (WHEAT FLOUR, NIACIN, REDUCED IRON, THIAMINE MONONITRATE {VITAMIN B1}, RIBOFLAVIN {VITAMIN B2}, FOLIC ACID), CANOLA OIL, PALM OIL, SUGAR, HIGH FRUCTOSE CORN SYRUP, LEAVENING (CALCIUM PHOSPHATE AND/OR BAKING SODA), SALT, GARLIC POWDER, SOY LECITHIN, NATURAL FLAVOR. SEEDS, POPPY.",
+      "nutrition": {
+        "fat": 25,
+        "saturatedFat": 6.25,
+        "sodium": 656,
+        "carbs": 62.5,
+        "sugars": 6.25,
+        "protein": 6.25,
+        "fiber": null
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "ritz-fresh-stacks-original-crackers": {
+      "input": {
+        "barcode": "",
+        "name": "Ritz Fresh Stacks Original Crackers",
+        "brand": "Ritz"
+      },
+      "name": "fresh stacks the original",
+      "brand": "Ritz",
+      "serving_size": "5 crackers (16 g) (16 g)",
+      "calories": 80,
+      "ingredients_verbatim": "unbleached enriched flour (wheat flour, niacin, reduced iron, thiamine mononitrate {vitamin b1}, riboflavin {vitamin b2}, folic acid), canola oil, palm oil, sugar, salt, leavening (calcium phosphate and/or baking soda), high fructose corn syrup, soy lecithin, natural flavor,",
+      "nutrition": {
+        "fat": 4.5,
+        "saturatedFat": 1.5,
+        "sodium": 0.13,
+        "carbs": 10,
+        "sugars": 1,
+        "protein": 1,
+        "fiber": 0
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/004/400/003/1138/front_en.75.400.jpg",
+      "matched_off_code": "0044000031138",
+      "source": "off-search"
+    },
+    "wheat-thins-reduced-fat-whole-grain-wheat-cracke": {
+      "input": {
+        "barcode": "",
+        "name": "Wheat Thins Reduced Fat Whole Grain Wheat Crackers",
+        "brand": "Wheat Thins"
+      },
+      "name": "Thin Wheats Reduced Fat Crackers, Thin Wheats",
+      "brand": "MEIJER",
+      "serving_size": "29.0 GRM",
+      "calories": 414,
+      "ingredients_verbatim": "WHOLE WHEAT FLOUR, SUGAR, VEGETABLE OIL (HIGH OLEIC SUNFLOWER OIL AND/OR SOYBEAN OIL WITH TBHQ AND CITRIC ACID FOR FRESHNESS), CORN STARCH, CONTAINS LESS THAN 2% OF SALT, LEAVENING (CALCIUM PHOSPHATE, BAKING SODA), SODIUM SULFITE, BARLEY MALT EXTRACT.",
+      "nutrition": {
+        "fat": 12.1,
+        "saturatedFat": 0,
+        "sodium": 690,
+        "carbs": 75.9,
+        "sugars": 10.3,
+        "protein": 6.9,
+        "fiber": 10.3
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "triscuit-cracked-pepper-and-olive-oil-crackers": {
+      "input": {
+        "barcode": "",
+        "name": "Triscuit Cracked Pepper and Olive Oil Crackers",
+        "brand": "Triscuit"
+      },
+      "name": "Nabisco triscuit crackers cracked pepper and olive oil 1x9 oz",
+      "brand": null,
+      "serving_size": "6 crackers (28 g) (28 g)",
+      "calories": 120,
+      "ingredients_verbatim": "Whole grain wheat, vegetable oil (soybean and/or canola oil), maltodextrin, salt, black pepper, onion powder, garlic powder, olive oil, citric acid, natural flavor (contains celery).",
+      "nutrition": {
+        "fat": 3.5,
+        "saturatedFat": 0.5,
+        "sodium": 0.14,
+        "carbs": 20,
+        "sugars": 0,
+        "protein": 3,
+        "fiber": 3
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/004/400/002/7971/front_en.3.400.jpg",
+      "matched_off_code": "0044000027971",
+      "source": "off-search"
+    },
+    "club-original-crackers": {
+      "input": {
+        "barcode": "",
+        "name": "Club Original Crackers",
+        "brand": "Club"
+      },
+      "name": "Original club crackers four",
+      "brand": "Keebler",
+      "serving_size": null,
+      "calories": 500,
+      "ingredients_verbatim": "Enriched flour (wheat flour, niacin, reduced iron, vitamin B₁ (thiamin mononitrate], vitamin B2 [riboflavin), folic acid), soybean oil (with TBHQ for freshness), sugar. Contains 2% or less of salt, high fructose corn syrup, leavening (baking soda, sodium acid pyrophosphate, monocalcium phosphate), corn syrup, soy lecithin. CONTAINS WHEAT AND SOY INGREDIENTS.",
+      "nutrition": {
+        "fat": 21.43,
+        "saturatedFat": 0,
+        "sodium": 0.89,
+        "carbs": 64.29,
+        "sugars": 7.14,
+        "protein": 7.14,
+        "fiber": null
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/003/010/010/2557/front_en.3.400.jpg",
+      "matched_off_code": "0030100102557",
+      "source": "off-search"
+    },
+    "town-house-original-crackers": {
+      "input": {
+        "barcode": "",
+        "name": "Town House Original Crackers",
+        "brand": "Town House"
+      },
+      "name": "Crackers - Town House Original",
+      "brand": "Kellogg's",
+      "serving_size": "6 craquelins (20 g)",
+      "calories": 110,
+      "ingredients_verbatim": "wheat flour, vegetable oil, sugar, salt, corn syrup, sodium bicarbonate, calcium acid pyrophosphate, corn starch, monocalcium phosphate, ammonium bicarbonate, protease, soy lecithin, tbhq, sulphites.\ncontains ingredients from wheat, soy and sulphites.",
+      "nutrition": {
+        "fat": 6,
+        "saturatedFat": 1,
+        "sodium": 0.18,
+        "carbs": 12,
+        "sugars": 2,
+        "protein": 1,
+        "fiber": 0
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/006/410/012/6121/front_en.7.400.jpg",
+      "matched_off_code": "0064100126121",
+      "source": "off-search"
+    },
+    "town-house-pita-sea-salt-crackers": {
+      "input": {
+        "barcode": "",
+        "name": "Town House Pita Sea Salt Crackers",
+        "brand": "Town House"
+      },
+      "name": "Kellogg'S Town House Pita Cracker Sea Salt Pita Crisp 9.5Oz",
+      "brand": "Kellogg's",
+      "serving_size": "15.0 GRM",
+      "calories": 467,
+      "ingredients_verbatim": "INGREDIENTS: ENRICHED FLOUR (wheat flour, niacin, reduced iron, vitamin B1 [thiamin mononitrate], vitamin B2 [riboflavin], folic acid), VEGETABLE OIL (soybean, canola and/or sunflower with TBHQ for freshness), RICE FLOUR, SUGAR, OAT FIBER, SEA SALT.  CONTAINS 2% OR LESS OF yeast, whey, soy lecithin.",
+      "nutrition": {
+        "fat": 16.7,
+        "saturatedFat": 0,
+        "sodium": 933,
+        "carbs": 73.3,
+        "sugars": 6.67,
+        "protein": 6.67,
+        "fiber": 6.7
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "cheez-it-extra-toasty-baked-snack-crackers": {
+      "input": {
+        "barcode": "",
+        "name": "Cheez-It Extra Toasty Baked Snack Crackers",
+        "brand": "Cheez-It"
+      },
+      "name": "Cheez-It Extra Toasty Original Baked Snack Crackers",
+      "brand": "Cheez-It",
+      "serving_size": "27 crackers (30 g)",
+      "calories": 150,
+      "ingredients_verbatim": "Enriched flour (wheat flour, niacin, reduced iron, vitamin b1 [thiamin mononitrate], vitamin b2 [riboflavin], folic acid), vegetable oil (soybean and palm oil with tbhq for freshness), cheese made with skim milk (skim milk, whey protein, cheese cultures, salt, enzymes, annatto extract color). contains 2% or less of salt, dextrose, paprika, yeast, paprika extract color, soy lecithin.",
+      "nutrition": {
+        "fat": 8,
+        "saturatedFat": 1.5,
+        "sodium": 0.23,
+        "carbs": 17,
+        "sugars": 0,
+        "protein": 3,
+        "fiber": 1
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/002/410/010/4437/front_en.49.400.jpg",
+      "matched_off_code": "0024100104437",
+      "source": "off-search"
+    },
+    "cheez-it-white-cheddar-baked-snack-crackers": {
+      "input": {
+        "barcode": "",
+        "name": "Cheez-It White Cheddar Baked Snack Crackers",
+        "brand": "Cheez-It"
+      },
+      "name": "White Cheddar Baked Snack Crackers",
+      "brand": "Cheez-It",
+      "serving_size": "26 crackers (30 g)",
+      "calories": 150,
+      "ingredients_verbatim": "Enriched flour (wheat flour, niacin, reduced iron, vitamin B1 [thiamin mononitrate], vitamin B2 [riboflavin], folic acid), vegetable oil (soybean and palm oil with TBHQ for freshness), white cheddar cheese (milk, cheese cultures, salt, enzymes), salt, whey, cheddar cheese (milk, cheese cultures, salt, enzymes), monosodium glutamate, whey protein concentrate, butter (cream, salt), baking soda, yeast, natural and artificial flavor, lactic acid, calcium lactate, disodium phosphate, citric acid, turmeric extract color, annatto extract color, soy lecithin.",
+      "nutrition": {
+        "fat": 7,
+        "saturatedFat": 1.5,
+        "sodium": 0.21,
+        "carbs": 18,
+        "sugars": 0,
+        "protein": 3,
+        "fiber": 1
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/002/410/078/9382/front_en.51.400.jpg",
+      "matched_off_code": "0024100789382",
+      "source": "off-search"
+    },
+    "goldfish-colors-cheddar-crackers": {
+      "input": {
+        "barcode": "",
+        "name": "Goldfish Colors Cheddar Crackers",
+        "brand": "Goldfish"
+      },
+      "name": "Goldfish colors cheddar crackers",
+      "brand": null,
+      "serving_size": "Amount per serving (26 g)",
+      "calories": 120,
+      "ingredients_verbatim": "Made with smiles and enriched wheat flour (flour, niacin, reduced iron, thiamine mononitrate, riboflavin, folic acid), cheddar cheese ([cultured milk, salt, enzymes], annatto), canola and/or sunflower oil, salt, contains 2% or less of: yeast, sugar, autolyzed yeast extract, spices, celery, onion powder, baking soda, monocalcium phosphate, colors (beet, huito, and watermelon juice concentrates; paprika and turmeric extracts). contains: wheat, milk.",
+      "nutrition": {
+        "fat": 4.5,
+        "saturatedFat": 1,
+        "sodium": 0.19,
+        "carbs": 17,
+        "sugars": 0,
+        "protein": 3,
+        "fiber": 0.99
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/001/410/009/6597/front_en.4.400.jpg",
+      "matched_off_code": "0014100096597",
+      "source": "off-search"
+    },
+    "goldfish-parmesan-crackers": {
+      "input": {
+        "barcode": "",
+        "name": "Goldfish Parmesan Crackers",
+        "brand": "Goldfish"
+      },
+      "name": "Goldfish Crackers Mix, Cheddar, Zesty Cheddar, Parmesan",
+      "brand": "Goldfish",
+      "serving_size": "Amount per serving (30 g)",
+      "calories": 140,
+      "ingredients_verbatim": "Made with smiles and enriched wheat flour (flour, niacin, reduced iron, thiamine mononitrate, riboflavin, folic acid), canola and/or sunflower oil, cheddar cheese ([cultured milk, salt, enzymes], annatto), parmesan cheese (milk, cultures, salt, enzymes), salt, contains 2% or less of: yeast, sugar, onion powder, autolyzed yeast extract, butter, annatto extract (color), paprika, spices, celery, baking soda, monocalcium phosphate.contains: wheat, milk.",
+      "nutrition": {
+        "fat": 4.5,
+        "saturatedFat": 1,
+        "sodium": 0.24,
+        "carbs": 20,
+        "sugars": 1,
+        "protein": 4,
+        "fiber": 0.99
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/001/410/004/9159/front_en.8.400.jpg",
+      "matched_off_code": "0014100049159",
+      "source": "off-search"
+    },
+    "simple-mills-almond-flour-sea-salt-crackers": {
+      "input": {
+        "barcode": "",
+        "name": "Simple Mills Almond Flour Sea Salt Crackers",
+        "brand": "Simple Mills"
+      },
+      "name": "Almond Flour Crackers - Fine Ground Sea Salt",
+      "brand": "Simple Mills",
+      "serving_size": "17 crackers (30 g)",
+      "calories": 150,
+      "ingredients_verbatim": "Nut & Seed Flour Blend (almonds, sunflower seeds, flax seeds), Tapioca Starch, Cassava Flour, Organic Sunflower Oil, Sea Salt, Organic Onion, Organic Garlic, Rosemary Extract.",
+      "nutrition": {
+        "fat": 9,
+        "saturatedFat": 0.5,
+        "sodium": 0.23,
+        "carbs": 17,
+        "sugars": 0,
+        "protein": 3,
+        "fiber": 2
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/085/606/900/5957/front_en.60.400.jpg",
+      "matched_off_code": "0856069005957",
+      "source": "off-search"
+    },
+    "mary-s-gone-crackers-super-seed-classic-crackers": {
+      "input": {
+        "barcode": "",
+        "name": "Mary's Gone Crackers Super Seed Classic Crackers",
+        "brand": "Mary's Gone Crackers"
+      },
+      "name": "Mary'S Gone Crackers, Minis Crackers, Vanilla, Vanilla",
+      "brand": "MARY'S GONE CRACKERS",
+      "serving_size": "30.0 g",
+      "calories": 433,
+      "ingredients_verbatim": "MARY'S ORGANIC VANILLA GLUTEN FREE BLEND (BROWN RICE FLOUR*, SORGHUM FLOUR*, COCONUT FLOUR*, TAPIOCA STARCH*, WHOLE GRAIN QUINOA FLAKES*, POTATO FLOUR*, POTATO STARCH*, AMARANTH FLOUR*), PALM FRUIT OIL*, FILTERED WATER, COCONUT PALM SUGAR* (FROM COCONUT PALM FLOWER NECTAR), TAPIOCA SYRUP*, VANILLA EXTRACT*, COCONUT OIL*, CHIA SEEDS*, MOLASSES*, RICE BRAN EXTRACT*, BAKING SODA, BAKING POWDER (SODIUM ACID PYROPHOSPHATE, SODIUM BICARBONATE, NON-GMO CORN STARCH AND MONOCALCIUM PHOSPHATE), SEA SALT AND XANTHAN GUM.",
+      "nutrition": {
+        "fat": 20,
+        "saturatedFat": 11.7,
+        "sodium": 667,
+        "carbs": 66.7,
+        "sugars": 16.7,
+        "protein": 3.33,
+        "fiber": 6.7
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "back-to-nature-classic-round-crackers": {
+      "input": {
+        "barcode": "",
+        "name": "Back to Nature Classic Round Crackers",
+        "brand": "Back to Nature"
+      },
+      "name": "CLASSIC ROUND CRACKERS",
+      "brand": "BACK TO NATURE",
+      "serving_size": "5 crackers (15 g)",
+      "calories": 70,
+      "ingredients_verbatim": "WHEAT FLOUR, SAFFLOWER OIL, CANE SUGAR, BROWN RICE SYRUP, CONTAINS 2% OR LESS THAN OF LEAVENING (BAKING SODA, MONOCALCIUM PHOSPHATE MONOHYDRATE, AMMONIUM BICARBONATE), SEA SALT, SOY LECITHIN, ENZYMES",
+      "nutrition": {
+        "fat": 2,
+        "saturatedFat": 0,
+        "sodium": 0.11,
+        "carbs": 11,
+        "sugars": 1,
+        "protein": 1,
+        "fiber": 0
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/081/989/801/0103/front_en.32.400.jpg",
+      "matched_off_code": "0819898010103",
+      "source": "off-search"
+    },
+    "annie-s-organic-cheddar-bunnies-crackers": {
+      "input": {
+        "barcode": "",
+        "name": "Annie's Organic Cheddar Bunnies Crackers",
+        "brand": "Annie's"
+      },
+      "name": "Organic extra cheesy cheddar bunnies snack crackers",
+      "brand": "Annie's Homegrown",
+      "serving_size": "48 crackers (30 g) (30 g)",
+      "calories": 160,
+      "ingredients_verbatim": "Organic wheat flour, organic whole wheat flour, organic expeller-pressed sunflower oil, organic cheddar cheese (organic cultured pasteurized milk, salt, non-animal enzymes), organic whey, salt, organic cheddar cheese (pasteurized organic milk, cheese cultures, sea salt, non-animal enzymes), organic butter (organic cream, salt), leavening (baking soda, monocalcium phosphate), organic yeast, organic paprika, cultured organic milk, organic nonfat dry milk, organic annatto (for color), organic vinegar, cultured organic whey, organic onion powder , organic celery seed powder, mixed tocopherols (vitamin e) to protect flavor, enzymes.",
+      "nutrition": {
+        "fat": 8,
+        "saturatedFat": 1,
+        "sodium": 0.2,
+        "carbs": 18,
+        "sugars": 0,
+        "protein": 3,
+        "fiber": 0.99
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/001/356/232/0509/front_en.4.400.jpg",
+      "matched_off_code": "0013562320509",
+      "source": "off-search"
+    },
+    "carr-s-table-water-crackers": {
+      "input": {
+        "barcode": "",
+        "name": "Carr's Table Water Crackers",
+        "brand": "Carr's"
+      },
+      "name": "TABLE WATER CRACKERS",
+      "brand": "Carr's",
+      "serving_size": "6 craquelins (20 g)",
+      "calories": 80,
+      "ingredients_verbatim": "ENRICHED FLOUR (WHEAT FLOUR, CALCIUM NIACIN, IRON, THIAMIN MONONITRATE MITAMIN B1 RIBOFLAVIN MITAMIN 82, FOLIC ACID, PALM OIL SALT",
+      "nutrition": {
+        "fat": 1.5,
+        "saturatedFat": 0.5,
+        "sodium": 0.11,
+        "carbs": 15,
+        "sugars": 0,
+        "protein": 2,
+        "fiber": 1
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/005/929/057/3220/front_en.51.400.jpg",
+      "matched_off_code": "0059290573220",
+      "source": "off-search"
+    },
+    "wasa-multi-grain-crispbread": {
+      "input": {
+        "barcode": "",
+        "name": "Wasa Multi Grain Crispbread",
+        "brand": "Wasa"
+      },
+      "name": "Multi Grain Swedish Style Crispbread, Multi Grain",
+      "brand": "WASA",
+      "serving_size": "14.0 GRM",
+      "calories": 250,
+      "ingredients_verbatim": "WHOLE GRAIN RYE FLOUR, RYE SOURDOUGH, OAT FLAKES, WHOLE GRAIN WHEAT FLOUR, WHOLE GRAIN OAT FLOUR, WHOLE GRAIN BARLEY FLOUR, YEAST, SALT, BARLEY MALT EXTRACT, SUNFLOWER LECITHIN*.",
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": 0,
+        "sodium": 464,
+        "carbs": 57.1,
+        "sugars": 0,
+        "protein": 14.3,
+        "fiber": 21.4
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "premium-original-saltine-crackers": {
+      "input": {
+        "barcode": "",
+        "name": "Premium Original Saltine Crackers",
+        "brand": "Premium"
+      },
+      "name": "Premium Original Saltine Crackers",
+      "brand": "Nabisco",
+      "serving_size": "5 crackers (16 g)",
+      "calories": 70,
+      "ingredients_verbatim": "Unbleached enriched flour (wheat flour, niacin, reduced iron, thiamine mononitrate {vitamin b1}, riboflavin {vitamin b2}, folic acid), soybean oil, partially hydrogenated cottonseed oil, sea salt, salt, malted barley flour, baking soda, yeast.",
+      "nutrition": {
+        "fat": 1.5,
+        "saturatedFat": null,
+        "sodium": 0.14,
+        "carbs": 12,
+        "sugars": null,
+        "protein": 1,
+        "fiber": null
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/004/400/000/4644/front_en.4.400.jpg",
+      "matched_off_code": "0044000004644",
+      "source": "off-search"
+    },
+    "good-thins-simply-salt-corn-rice-snacks": {
+      "input": {
+        "barcode": "",
+        "name": "Good Thins Simply Salt Corn & Rice Snacks",
+        "brand": "Good Thins"
+      },
+      "name": "Good Thins Crackers Rice Thins Original 1X3.5 Oz",
+      "brand": "GOOD THINS",
+      "serving_size": "31.0 g",
+      "calories": 419,
+      "ingredients_verbatim": "INGREDIENTS: WHITE RICE FLOUR, HIGH OLEIC SAFFLOWER OIL, SALT. SOY, SESAME SEED, TREE NUTS.",
+      "nutrition": {
+        "fat": 4.84,
+        "saturatedFat": 0,
+        "sodium": 274,
+        "carbs": 83.9,
+        "sugars": 0,
+        "protein": 6.45,
+        "fiber": 0
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "crunchmaster-multi-grain-sea-salt-crackers": {
+      "input": {
+        "barcode": "",
+        "name": "Crunchmaster Multi-Grain Sea Salt Crackers",
+        "brand": "Crunchmaster"
+      },
+      "name": "MULTI-GRAIN SEA SALT CRUNCHY BAKED RICE CRACKERS",
+      "brand": "CRUNCHMASTER",
+      "serving_size": "15 crackers (30 g)",
+      "calories": 130,
+      "ingredients_verbatim": "BROWN RICE FLOUR, WHOLE GRAIN YELLOW CORNMEAL, POTATO STARCH, SESAME SEEDS, OLIVE OIL, CANE SUGAR, FLAX SEEDS, OAT FIBER, SEA SALT. CONTAINS: SESAME.",
+      "nutrition": {
+        "fat": 3.5,
+        "saturatedFat": 0.5,
+        "sodium": 0.15,
+        "carbs": 23,
+        "sugars": 2,
+        "protein": 2,
+        "fiber": 2
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/087/989/000/2025/front_en.49.400.jpg",
+      "matched_off_code": "0879890002025",
+      "source": "off-search"
+    }
+  },
+  "misses": []
+}

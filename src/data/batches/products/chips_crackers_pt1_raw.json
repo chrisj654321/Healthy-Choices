@@ -1,0 +1,566 @@
+{
+  "category": "Chips & Crackers",
+  "products": [
+    {
+      "upc": "028400199148",
+      "off_api_confirmed_name": "Classic",
+      "name": "Lay's Classic Potato Chips",
+      "brand": "Lay's",
+      "companyId": "pepsico",
+      "servingSize": "1 oz (28g)",
+      "calories": 160,
+      "ingredients_verbatim": [
+        "POTATOES",
+        "VEGETABLE OIL (CANOLA, CORN, SOYBEAN AND/OR SUNFLOWER OIL)",
+        "AND SALT"
+      ],
+      "nutrition": {
+        "fat": 10,
+        "saturatedFat": 1.5,
+        "sodium": 170,
+        "carbs": 15,
+        "sugars": 1,
+        "protein": 2
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": true,
+      "isGlutenFree": true
+    },
+    {
+      "upc": "028400516464",
+      "off_api_confirmed_name": "Nacho Cheese Flavored Doritos",
+      "name": "Doritos Nacho Cheese Flavored Tortilla Chips",
+      "brand": "Doritos",
+      "companyId": "pepsico",
+      "servingSize": "1 oz (28g)",
+      "calories": 140,
+      "ingredients_verbatim": [
+        "Corn",
+        "vegetable oil (corn, canola, soybean, and/or sunflower oil)",
+        "corn maltodextrin",
+        "less than 2% of cheddar cheese (milk, cheese cultures, salt, enzymes)",
+        "salt",
+        "whey",
+        "monosodium glutamate",
+        "buttermilk",
+        "romano cheese (milk, cheese cultures, salt, enzymes)",
+        "tomato powder",
+        "lactose",
+        "spices",
+        "onion powder",
+        "potassium chloride",
+        "corn flour",
+        "natural and artificial flavor",
+        "artificial color (yellow 6, yellow 5, red 40)",
+        "lactic acid",
+        "citric acid",
+        "sugar",
+        "garlic powder",
+        "skim milk",
+        "red and green bell peppers",
+        "disodium inosinate",
+        "disodium guanylate"
+      ],
+      "nutrition": {
+        "fat": 8,
+        "saturatedFat": 1,
+        "sodium": 210,
+        "carbs": 17,
+        "sugars": 0.5,
+        "protein": 2
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": false
+    },
+    {
+      "upc": "028400516310",
+      "off_api_confirmed_name": "Doritos Cool Ranch Flavored Tortilla Chips",
+      "name": "Doritos Cool Ranch Flavored Tortilla Chips",
+      "brand": "Doritos",
+      "companyId": "pepsico",
+      "servingSize": "1 oz (28g)",
+      "calories": 140,
+      "ingredients_verbatim": [
+        "Corn",
+        "Vegetable Oil (Corn, Canola, and/or Sunflower Oil)",
+        "Salt",
+        "Corn Starch",
+        "Tomato Powder",
+        "Lactose",
+        "Whey",
+        "Skim Milk",
+        "Onion Powder",
+        "Sugar",
+        "Garlic Powder",
+        "Monosodium Glutamate",
+        "Maltodextrin (Made from Corn)",
+        "Cheddar Cheese (Milk, Cheese Cultures, Salt, Enzymes)",
+        "Dextrose",
+        "Malic Acid",
+        "Corn Syrup Solids",
+        "Buttermilk",
+        "Natural and Artificial Flavors",
+        "Sodium Acetate",
+        "Artificial Color (Red 40, Blue 1, Yellow 5)",
+        "Spice",
+        "Citric Acid",
+        "Disodium Inosinate",
+        "and Disodium Guanylate"
+      ],
+      "nutrition": {
+        "fat": 7,
+        "saturatedFat": 1,
+        "sodium": 160,
+        "carbs": 18,
+        "sugars": 1,
+        "protein": 2
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": false
+    },
+    {
+      "upc": "028400589864",
+      "off_api_confirmed_name": "Cheetos Crunchy",
+      "name": "Cheetos Crunchy Cheese Flavored Snacks",
+      "brand": "Cheetos",
+      "companyId": "pepsico",
+      "servingSize": "1 oz (28g)",
+      "calories": 160,
+      "ingredients_verbatim": [
+        "Enriched Corn Meal (Corn Meal, Ferrous Sulfate, Niacin, Thiamin Mononitrate, Riboflavin, Folic Acid)",
+        "Vegetable Oil (Corn, Canola, and/or Sunflower Oil)",
+        "Cheese Seasoning (Whey, Cheddar Cheese [Milk, Cheese Cultures, Salt, Enzymes], Canola Oil, Maltodextrin [Made from Corn], Natural and Artificial Flavors, Salt, Whey Protein Concentrate, Monosodium Glutamate, Lactic Acid, Citric Acid, Artificial Color [Yellow 6])",
+        "and Salt"
+      ],
+      "nutrition": {
+        "fat": 10,
+        "saturatedFat": 1.5,
+        "sodium": 250,
+        "carbs": 15,
+        "sugars": 1,
+        "protein": 2
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": true
+    },
+    {
+      "upc": "028400589895",
+      "off_api_confirmed_name": "Flamin' Hot Crunchy Cheese Flavored Snacks",
+      "name": "Cheetos Flamin' Hot Crunchy Cheese Flavored Snacks",
+      "brand": "Cheetos",
+      "companyId": "pepsico",
+      "servingSize": "1 oz (28g)",
+      "calories": 170,
+      "ingredients_verbatim": [
+        "ENRICHED CORN MEAL (CORN MEAL, FERROUS SULFATE, NIACIN, THIAMIN MONONITRATE, RIBOFLAVIN, FOLIC ACID)",
+        "VEGETABLE OIL (CORN, CANOLA, AND/OR SUNFLOWER OIL)",
+        "FLAMIN' HOT SEASONING (MALTODEXTRIN [MADE FROM CORN], SALT, SUGAR, MONOSODIUM GLUTAMATE, YEAST EXTRACT, CITRIC ACID, ARTIFICIAL COLOR [RED 40 LAKE, YELLOW 6 LAKE, YELLOW 6, YELLOW 5], SUNFLOWER OIL, CHEDDAR CHEESE [MILK, CHEESE CULTURES, SALT, ENZYMES], ONION POWDER, WHEY, WHEY PROTEIN CONCENTRATE, GARLIC POWDER, NATURAL FLAVOR, BUTTERMILK, SODIUM DIACETATE, DISODIUM INOSINATE, DISODIUM GUANYLATE)",
+        "AND SALT"
+      ],
+      "nutrition": {
+        "fat": 11,
+        "saturatedFat": 1.5,
+        "sodium": 250,
+        "carbs": 15,
+        "sugars": 0,
+        "protein": 2
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": true
+    },
+    {
+      "upc": "028400589291",
+      "off_api_confirmed_name": "The Original Corn Chips",
+      "name": "Fritos Original Corn Chips",
+      "brand": "Fritos",
+      "companyId": "pepsico",
+      "servingSize": "1 oz (28g)",
+      "calories": 160,
+      "ingredients_verbatim": [
+        "CORN",
+        "VEGETABLE OIL (CORN AND/OR CANOLA OIL)",
+        "AND SALT"
+      ],
+      "nutrition": {
+        "fat": 10,
+        "saturatedFat": 1.5,
+        "sodium": 170,
+        "carbs": 16,
+        "sugars": 0,
+        "protein": 2
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": true,
+      "isGlutenFree": true
+    },
+    {
+      "upc": "028400516686",
+      "off_api_confirmed_name": "Original Ruffles",
+      "name": "Ruffles Original Flavor Ridged Potato Chips",
+      "brand": "Ruffles",
+      "companyId": "pepsico",
+      "servingSize": "1 oz (28g)",
+      "calories": 160,
+      "ingredients_verbatim": [
+        "POTATOES",
+        "VEGETABLE OIL (CANOLA, CORN, SOYBEAN, AND/OR SUNFLOWER OIL)",
+        "AND SALT"
+      ],
+      "nutrition": {
+        "fat": 10,
+        "saturatedFat": 1.5,
+        "sodium": 160,
+        "carbs": 15,
+        "sugars": 1,
+        "protein": 2
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": true,
+      "isGlutenFree": true
+    },
+    {
+      "upc": "084114108128",
+      "off_api_confirmed_name": "Potato Chips Sea Salt",
+      "name": "Kettle Brand Sea Salt Potato Chips",
+      "brand": "Kettle Brand",
+      "companyId": "campbell",
+      "servingSize": "1 oz (28g)",
+      "calories": 130,
+      "ingredients_verbatim": [
+        "potatoes",
+        "safflower, sunflower, canola oil",
+        "sea salt"
+      ],
+      "nutrition": {
+        "fat": 9,
+        "saturatedFat": 1,
+        "sodium": 115,
+        "carbs": 16,
+        "sugars": 0,
+        "protein": 2
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": true,
+      "isGlutenFree": true
+    },
+    {
+      "upc": "020685001642",
+      "off_api_confirmed_name": "Original Sea Salt Kettle Cooked Potato Chips",
+      "name": "Cape Cod Original Kettle Style Potato Chips",
+      "brand": "Cape Cod",
+      "companyId": "campbell",
+      "servingSize": "1 oz (28g)",
+      "calories": 130,
+      "ingredients_verbatim": [
+        "potatoes",
+        "vegetable oil (contains one or more of the following: canola oil, safflower oil and/or sunflower oil)",
+        "salt"
+      ],
+      "nutrition": {
+        "fat": 8,
+        "saturatedFat": 0.5,
+        "sodium": 125,
+        "carbs": 16,
+        "sugars": 0,
+        "protein": 2
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": true,
+      "isGlutenFree": true
+    },
+    {
+      "upc": "850251004001",
+      "off_api_confirmed_name": "Original Popcorn",
+      "name": "SkinnyPop Original Popcorn",
+      "brand": "SkinnyPop",
+      "companyId": "hershey",
+      "servingSize": "3 cups (28g)",
+      "calories": 100,
+      "ingredients_verbatim": [
+        "popcorn",
+        "sunflower oil",
+        "salt"
+      ],
+      "nutrition": {
+        "fat": 10,
+        "saturatedFat": 1,
+        "sodium": 75,
+        "carbs": 15,
+        "sugars": 0,
+        "protein": 2
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": true,
+      "isGlutenFree": true
+    },
+    {
+      "upc": "028400147415",
+      "off_api_confirmed_name": "Sun Chips Original",
+      "name": "SunChips Original Multigrain Snacks",
+      "brand": "SunChips",
+      "companyId": "pepsico",
+      "servingSize": "1 oz (28g)",
+      "calories": 140,
+      "ingredients_verbatim": [
+        "WHOLE CORN",
+        "SUNFLOWER OIL",
+        "CANOLA OIL",
+        "WHOLE WHEAT",
+        "BROWN RICE FLOUR",
+        "WHOLE OAT FLOUR",
+        "SUGAR",
+        "SALT"
+      ],
+      "nutrition": {
+        "fat": 6,
+        "saturatedFat": 0.5,
+        "sodium": 120,
+        "carbs": 19,
+        "sugars": 2,
+        "protein": 2
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": true,
+      "isGlutenFree": false
+    },
+    {
+      "upc": "028400314015",
+      "off_api_confirmed_name": "White Cheddar",
+      "name": "Smartfood White Cheddar Popcorn",
+      "brand": "Smartfood",
+      "companyId": "pepsico",
+      "servingSize": "1 oz (28g)",
+      "calories": 160,
+      "ingredients_verbatim": [
+        "popcorn",
+        "vegetable oil (corn, canola, and/or sunflower oil)",
+        "natural flavors",
+        "whey",
+        "corn maltodextrin",
+        "buttermilk",
+        "cheddar cheese (milk, cheese cultures, salt, enzymes)",
+        "salt"
+      ],
+      "nutrition": {
+        "fat": 9,
+        "saturatedFat": 2,
+        "sodium": 160,
+        "carbs": 15,
+        "sugars": 0,
+        "protein": 3
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": true
+    },
+    {
+      "upc": "044000031114",
+      "off_api_confirmed_name": "Ritz Crackers the original",
+      "name": "Ritz Original Crackers",
+      "brand": "Ritz",
+      "companyId": "mondelez",
+      "servingSize": "5 crackers (16g)",
+      "calories": 80,
+      "ingredients_verbatim": [
+        "unbleached enriched flour (wheat flour, niacin, reduced iron, thiamine mononitrate {vitamin b1}, riboflavin {vitamin b2}, folic acid)",
+        "vegetable oil (soybean and/or canola and/or palm and/or partially hydrogenated cottonseed oil)",
+        "sugar",
+        "salt",
+        "leavening (baking soda and/or calcium phosphate)",
+        "high fructose corn syrup",
+        "soy lecithin",
+        "malted barley flour",
+        "natural flavor"
+      ],
+      "nutrition": {
+        "fat": 4.5,
+        "saturatedFat": 1,
+        "sodium": 105,
+        "carbs": 10,
+        "sugars": 1,
+        "protein": 1
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": false
+    },
+    {
+      "upc": "044000050986",
+      "off_api_confirmed_name": "original made with sea salt",
+      "name": "Triscuit Original Whole Grain Wheat Crackers",
+      "brand": "Triscuit",
+      "companyId": "mondelez",
+      "servingSize": "6 crackers (28g)",
+      "calories": 120,
+      "ingredients_verbatim": [
+        "whole grain wheat",
+        "canola oil",
+        "sea salt"
+      ],
+      "nutrition": {
+        "fat": 3.5,
+        "saturatedFat": 0,
+        "sodium": 160,
+        "carbs": 20,
+        "sugars": 0,
+        "protein": 3
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": true,
+      "isGlutenFree": false
+    },
+    {
+      "upc": "044000030377",
+      "off_api_confirmed_name": "wheat thins crackers, original",
+      "name": "Wheat Thins Original Whole Grain Wheat Crackers",
+      "brand": "Wheat Thins",
+      "companyId": "mondelez",
+      "servingSize": "16 pieces (31g)",
+      "calories": 140,
+      "ingredients_verbatim": [
+        "whole grain wheat flour",
+        "canola oil",
+        "sugar",
+        "cornstarch",
+        "malt syrup (from corn and barley)",
+        "salt",
+        "refiner's syrup",
+        "leavening (calcium phosphate and baking soda)",
+        "bht added to packaging material to preserve freshness"
+      ],
+      "nutrition": {
+        "fat": 5,
+        "saturatedFat": 0.5,
+        "sodium": 200,
+        "carbs": 22,
+        "sugars": 5,
+        "protein": 2
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": true,
+      "isGlutenFree": false
+    },
+    {
+      "upc": "024100106851",
+      "off_api_confirmed_name": "Original Baked Snack Crackers",
+      "name": "Cheez-It Original Baked Snack Crackers",
+      "brand": "Cheez-It",
+      "companyId": "kelloggs",
+      "servingSize": "27 crackers (30g)",
+      "calories": 150,
+      "ingredients_verbatim": [
+        "enriched flour (wheat flour, niacin, reduced iron, vitamin b1 [thiamin mononitrate], vitamin b2 [riboflavin], folic acid)",
+        "vegetable oil (soybean and palm oil with tbhq for freshness)",
+        "cheese made with skim milk (skim milk, whey protein, cheese cultures, salt, enzymes, annatto extract color)",
+        "contains 2% or less of salt",
+        "paprika",
+        "yeast",
+        "paprika extract color",
+        "soy lecithin"
+      ],
+      "nutrition": {
+        "fat": 8,
+        "saturatedFat": 1.5,
+        "sodium": 230,
+        "carbs": 17,
+        "sugars": 0,
+        "protein": 3
+      },
+      "certifications": [],
+      "isOrganic": false,
+      "isVegan": false,
+      "isGlutenFree": false
+    },
+    {
+      "upc": "013562302154",
+      "off_api_confirmed_name": "Cheddar Bunnies Original",
+      "name": "Annie's Organic Cheddar Bunnies Baked Snack Crackers",
+      "brand": "Annie's",
+      "companyId": "general-mills",
+      "servingSize": "51 crackers (30g)",
+      "calories": 130,
+      "ingredients_verbatim": [
+        "Organic wheat flour",
+        "organic expeller-pressed sunflower oil",
+        "salt",
+        "organic cheddar cheese (pasteurized organic milk, cheese cultures, sea salt, non-animal enzymes)",
+        "baking soda",
+        "organic yeast",
+        "organic paprika",
+        "monocalcium phosphate",
+        "cultured organic milk",
+        "organic nonfat dry milk",
+        "organic annatto (for color)",
+        "organic onion powder",
+        "organic celery seed powder",
+        "enzymes"
+      ],
+      "nutrition": {
+        "fat": 6,
+        "saturatedFat": 1,
+        "sodium": 160,
+        "carbs": 18,
+        "sugars": 0,
+        "protein": 3
+      },
+      "certifications": ["USDA Organic"],
+      "isOrganic": true,
+      "isVegan": false,
+      "isGlutenFree": false
+    },
+    {
+      "upc": "856069005131",
+      "off_api_confirmed_name": "Almond Flour Crackers Fine Ground Sea Salt",
+      "name": "Simple Mills Almond Flour Crackers Fine Ground Sea Salt",
+      "brand": "Simple Mills",
+      "companyId": null,
+      "servingSize": "17 crackers (30g)",
+      "calories": 150,
+      "ingredients_verbatim": [
+        "Nut and Seed Flour Blend (Almonds, Sunflower Seeds, Flax Seeds)",
+        "Tapioca",
+        "Cassava",
+        "Organic Sunflower Oil",
+        "Sea Salt",
+        "Organic Onion",
+        "Organic Garlic",
+        "Rosemary Extract (for freshness)"
+      ],
+      "nutrition": {
+        "fat": 9,
+        "saturatedFat": 0.5,
+        "sodium": 230,
+        "carbs": 17,
+        "sugars": 0,
+        "protein": 3
+      },
+      "certifications": ["Gluten-Free Certified", "Non-GMO Project Verified"],
+      "isOrganic": false,
+      "isVegan": true,
+      "isGlutenFree": true
+    }
+  ],
+  "could_not_verify": [
+    "Late July Clasico Tortilla Chips 7.1oz — No verified UPC-A found for this exact size in any UPC database (upcitemdb, barcodeindex, Instacart, Target, Walmart). The Clasico line exists in 5.5oz (UPC 890444000182) and foodservice 7.8oz cases but no retail 7.1oz barcode could be confirmed. Omitted per protocol.",
+    "PopCorners Flex White Cheddar 5oz — This exact flavor/size SKU does not appear to exist. The PopCorners Flex line is available in Cheddar & Sour Cream (UPC 081060702193), BBQ, and Ranch flavors; a White Cheddar variant in the Flex protein-crisp line was not found in any retailer database. The standard (non-Flex) PopCorners White Cheddar is a different product. Omitted per protocol."
+  ]
+}

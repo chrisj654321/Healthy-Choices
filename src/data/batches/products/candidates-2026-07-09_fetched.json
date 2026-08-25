@@ -1,0 +1,4192 @@
+{
+ "generated": "2026-07-09T16:05:24",
+ "total": 187,
+ "resolved": 172,
+ "missed": 15,
+ "source_health": {
+  "off-search": {
+   "ok": 107,
+   "miss": 48,
+   "err": 0,
+   "throttled": 187
+  },
+  "usda-fdc": {
+   "ok": 65,
+   "miss": 15,
+   "err": 0,
+   "throttled": 0
+  }
+ },
+ "products": {
+  "lunchables-pizza-with-pepperoni": {
+   "input": {
+    "barcode": "",
+    "name": "Lunchables Pizza with Pepperoni",
+    "brand": "Lunchables"
+   },
+   "name": "Lunchables Fun Pack! Pepperoni Pizza with Capri Sun Fruit Punch and Crunch Bar",
+   "brand": "Lunchables",
+   "serving_size": "1 serving (100 g)",
+   "calories": 420,
+   "ingredients_verbatim": "filtered water, sugar, pear juice concentrate, grape juice concentrate, orange juice concentrate, citric acid, monk fruit concentrate, apple juice concentrate, pineapple juice concentrate, natural flavor, mushroom extract, wheat flour, niacin, reduced iron, thiamin mononitrate, riboflavin, folic acid, whole wheat flour, water, sugar, glycerin, soybean oil, vital wheat gluten, mono - ,  diglycerides, salt, xanthan gum, calcium propionate, sorbic acid, natural and artificial flavor, enzyme, tomato paste, sugar, canola oil, modified food starch, garlic powder, onion powder, spices, citric acid, dried basil, sea salt, sodium benzoate, potassium sorbate, pepperoni made with pork and chicken, pork, mechanically separated chicken, salt, dextrose, lactic acid starter culture, oleoresin of paprika, flavoring, sodium ascorbate, sodium nitrite, BHA, BHT, citric acid, mozzarella cheese, part-skim milk, water, milk protein concentrate, milkfat, salt, cheese culture, sodium citrate, sorbic acid, vitamin A palmitate, cellulose powder, milk chocolate, sugar, chocolate, cocoa butter, nonfat milk, milkfat, lactose, soy lecithin, natural flavor, caramel color, sugar, barley malt extract",
+   "nutrition": {
+    "fat": 19,
+    "saturatedFat": 8,
+    "sodium": 0.72,
+    "carbs": 49,
+    "sugars": 23,
+    "protein": 14,
+    "fiber": 2
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/004/470/036/1139/front_en.18.400.jpg",
+   "matched_off_code": "0044700361139",
+   "source": "off-search"
+  },
+  "lunchables-extra-cheesy-pizza": {
+   "input": {
+    "barcode": "",
+    "name": "Lunchables Extra Cheesy Pizza",
+    "brand": "Lunchables"
+   },
+   "name": "Extra Cheesy Pizza fun pack",
+   "brand": "Lunchables",
+   "serving_size": "1 serving (130 g)",
+   "calories": 330,
+   "ingredients_verbatim": "mixed fruit flavored juice drink blend from concentrate, pizza crust, water, sugar, glycerin, soybean oil, contains 2% or less of: yeast, vital wheat gluten, mono - & diglycerides, salt, xanthan gum, calcium propionate, sorbic acid, natural and artificial flavour,mozzarella pasteurized prepared cheese product",
+   "nutrition": {
+    "fat": 9,
+    "saturatedFat": 5,
+    "sodium": 0.5,
+    "carbs": 50,
+    "sugars": 22,
+    "protein": 13,
+    "fiber": 2
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/004/470/036/1146/front_en.33.400.jpg",
+   "matched_off_code": "0044700361146",
+   "source": "off-search"
+  },
+  "lunchables-nachos-cheese-dip-and-salsa": {
+   "input": {
+    "barcode": "",
+    "name": "Lunchables Nachos Cheese Dip and Salsa",
+    "brand": "Lunchables"
+   },
+   "name": "Lunchables, Nachos Cheese Dip & Salsa",
+   "brand": "LUNCHABLES",
+   "serving_size": "124.0 g",
+   "calories": 290,
+   "ingredients_verbatim": "GROUND YELLOW CORN, VEGETABLES OIL (CONTAINS ONE OR MORE OF THE FOLLOWING: CORN, SUNFLOWER OR SOYBEAN OIL), CORN BRAN AND SALT. NACHO CHEESE - WHEY, MILK, CANOLA OIL, DRIED CORN SYRUP, WATER SODIUM PHOSPHATE, CONTAINS LESS THAN 2% OF JALAPENO PEPPERS, SALT, WHEY PROTEIN CONCENTRATE, LACTIC ACID, MILKFAT, SODIUM ALGINATE, VINEGAR, CALCIUM PHOSPHATE, POTASSIUM CHLORIDE, SORBIC ACID AS A PRESERVATIVE, CHEESE CULTURE, ENZYMES, NATURAL FLAVOR, APOCAROTENAL (COLOR). SALSA - WATER, TOMATO PASTE, GREEN CHILI PEPPERS, VINEGAR, DEHYDRATED ONIONS, CONTAINS LESS THAN 2% OF HIGH FRUCTOSE CORN SYRUP, FOOD STARCH-MODIFIED, JALAPENO PEPPERS, SALT, GREEN BELL PEPPERS, GARLIC POWDER, SODIUM BENZOATE AND POTASSIUM SORBATE AS PRESERVATIVES, CITRIC ACID, SPICE.",
+   "nutrition": {
+    "fat": 15.3,
+    "saturatedFat": 2.82,
+    "sodium": 685,
+    "carbs": 33.1,
+    "sugars": 3.23,
+    "protein": 4.84,
+    "fiber": 3.2
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "lunchables-chicken-dunks": {
+   "input": {
+    "barcode": "",
+    "name": "Lunchables Chicken Dunks",
+    "brand": "Lunchables"
+   },
+   "name": "Chicken Dunks",
+   "brand": "Lunchables Uploaded",
+   "serving_size": "158g",
+   "calories": 257,
+   "ingredients_verbatim": "WATER - SPRING WATER. NUGGET SHAPED CHICKEN PATTIES - WHITE CHICKEN, WATER, POTASSIUM LACTATE, MODIFIED CORN STARCH, CONTAINS LESS THAN 2% OF SALT, POTASSIUM CHLORIDE, DEXTROSE, SODIUM PHOSPHATES, CARRAGEENAN, SODIUM DIACETATE, LEMON JUICE SOLIDS, FLAVOR.",
+   "nutrition": {
+    "fat": 11.4,
+    "saturatedFat": 3.8,
+    "sodium": 0.0,
+    "carbs": 31,
+    "sugars": 15.8,
+    "protein": 7.59,
+    "fiber": 0.6
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/004/470/006/9592/front_en.10.400.jpg",
+   "matched_off_code": "0044700069592",
+   "source": "off-search"
+  },
+  "smucker-s-uncrustables-peanut-butter-grape-jelly": {
+   "input": {
+    "barcode": "",
+    "name": "Smucker's Uncrustables Peanut Butter & Grape Jelly Sandwiches",
+    "brand": "Smucker's Uncrustables"
+   },
+   "name": "Peanut Butter & Grape Jelly Sandwich",
+   "brand": "Smucker's Uncrustables",
+   "serving_size": "1 sandwich (58 g)",
+   "calories": 218,
+   "ingredients_verbatim": "Bread: enriched unbleached flour (wheat flour, malted barley flour, niacin, ferrous sulfate, thiamin mononitrate, riboflavin, folic acid), water, unbleached whole wheat flour, sugar, yeast, soybean oil, contains 2% or less of: salt, dough conditioners (distilled mono and diglycerides, datem, enzymes [with wheat starch, ascorbic acid, calcium peroxide]), peanut butter: peanuts, sugar contains 2% or less of: molasses, fully hydrogenated vegetable oils (rapeseed and soybean), mono and diglycerides, salt, grape jelly:sugar, grape juice, contains 2% or less of: pectin, citric acid, potassium sorbate (preservative)",
+   "nutrition": {
+    "fat": 9,
+    "saturatedFat": 2,
+    "sodium": 0.22,
+    "carbs": 28,
+    "sugars": 10,
+    "protein": 6,
+    "fiber": 2
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/005/150/004/8177/front_en.24.400.jpg",
+   "matched_off_code": "0051500048177",
+   "source": "off-search"
+  },
+  "smucker-s-uncrustables-peanut-butter-strawberry-": {
+   "input": {
+    "barcode": "",
+    "name": "Smucker's Uncrustables Peanut Butter & Strawberry Jam Sandwiches",
+    "brand": "Smucker's Uncrustables"
+   },
+   "name": "Smucker'S 2 Ounce Uncrustables Peanut Butter And Strawberry Each",
+   "brand": "Smucker's",
+   "serving_size": "58.0 GRM",
+   "calories": 362,
+   "ingredients_verbatim": "Bread: Enriched Unbleached Flour (Wheat Flour, Malted Barley Flour, Niacin, Ferrous Sulfate, Thiamin Mononitrate, Riboflavin, Folic Acid), Water, Unbleached Whole Wheat Flour, Sugar, Yeast, Soybean Oil, Contains 2% Or Less Of: Wheat Gluten, Salt, Guar Gum, Dough Conditioner (Enzymes, Ascorbic Acid, Calcium Peroxide). Peanut Butter: Peanuts, Sugar, Contains 2% Or Less Of: Fully Hydrogenated Vegetable Oils (Rapeseed And Soybean), Salt, Molasses. Strawberry Jam: Sugar, Strawberries, Contains 2% Or Less Of: Pectin, Citric Acid, Potassium Sorbate (Preservative).",
+   "nutrition": {
+    "fat": 15.5,
+    "saturatedFat": 3.45,
+    "sodium": 379,
+    "carbs": 48.3,
+    "sugars": 17.2,
+    "protein": 10.3,
+    "fiber": 3.4
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "annie-s-real-aged-cheddar-macaroni-cheese-cups": {
+   "input": {
+    "barcode": "",
+    "name": "Annie's Real Aged Cheddar Macaroni & Cheese Cups",
+    "brand": "Annie's"
+   },
+   "name": "Annie's Organic Grass Fed Real Aged Cheddar Macaroni & Cheese Microwavable Cup 12 Pack",
+   "brand": null,
+   "serving_size": "1 package (57 g) (57 g)",
+   "calories": 220,
+   "ingredients_verbatim": "Organic pasta (organic wheat flour, organic whole grain wheat flour), organic tapioca starch, organic dried cheddar cheese (pasteurized organic milk, salt, non-animal enzymes), organic nonfat milk, organic coconut oil, organic corn starch, organic whey, organic butter, salt, cultured organic milk, potassium chloride, organic sunflower lecithin, disodium phosphate, organic annatto extract (for color), silicon dioxide (for anticaking).",
+   "nutrition": {
+    "fat": 4.5,
+    "saturatedFat": 3,
+    "sodium": 0.36,
+    "carbs": 37,
+    "sugars": 2,
+    "protein": 7,
+    "fiber": 2
+   },
+   "image_url": null,
+   "matched_off_code": "0013562479665",
+   "source": "off-search"
+  },
+  "kraft-easy-mac-original-macaroni-cheese-cups": {
+   "input": {
+    "barcode": "",
+    "name": "Kraft Easy Mac Original Macaroni & Cheese Cups",
+    "brand": "Kraft"
+   },
+   "name": "Kraft Easy Cheese American Cheese",
+   "brand": "Easy Cheese",
+   "serving_size": "30.0 g",
+   "calories": 80.0,
+   "ingredients_verbatim": "Water, Whey, Cheddar Cheese ( Milk, Salt, Cheese Culture, Enzymes), Canola Oil, Whey Protein Concentrate, Milk Protein Concentrate, Contains Less than 2% of Milk, Sodium Citrate, Sodium Phosphate, Calcium Phosphate, Salt, Lactic Acid, Sodium Alginate, Sorbic Acid as a Preservative, Color ( Annatto Extract, Apocarotenal), Enzymes, Cheese Culture.",
+   "nutrition": {
+    "fat": 6.0,
+    "saturatedFat": 1.0,
+    "sodium": 430,
+    "carbs": 3.0,
+    "sugars": 2.0,
+    "protein": 4.0,
+    "fiber": null
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "chef-boyardee-beef-ravioli-microwave-bowls": {
+   "input": {
+    "barcode": "",
+    "name": "Chef Boyardee Beef Ravioli Microwave Bowls",
+    "brand": "Chef Boyardee"
+   },
+   "name": "Chef Boyardee Microwave Ravioli",
+   "brand": "Chef Boyardee",
+   "serving_size": "212.0 GRM",
+   "calories": null,
+   "ingredients_verbatim": "Tomatoes (Tomato Puree, Water), Water, Enriched Wheat Flour (Wheat Flour, Malted Barley Flour, Niacin, Reduced Iron, Thiamine Mononitrate [Vitamin B1], Riboflavin [Vitamin B2], Folic Acid), Beef, Crackermeal (Enriched Wheat Flour [Bleached Wheat Flour, Niacin, Reduced Iron, Thiamine Mononitrate, Riboflavin, Folic Acid], May Contain Guar Gum), LESS THAN 2% OF: High Fructose Corn Syrup, Salt, Modified Corn Starch, Textured Vegetable Protein (Soy Flour, Soy Protein Concentrate, Caramel Color), Soybean Oil, Bleached Wheat Flour, Carrots, Dehydrated Onion, Caramel Color, Flavorings, Enzyme Modified Cheese (Cheddar Cheese [Pasteurized Milk, Cultures, Salt, Enzymes], Cream, Water, Salt, Sodium Phosphate, Xanthan Gum, Carotenal [Color]). CONTAINS: MILK, SOY, WHEAT",
+   "nutrition": {
+    "fat": 1.89,
+    "saturatedFat": 0.71,
+    "sodium": 321,
+    "carbs": 14.2,
+    "sugars": 2.36,
+    "protein": 2.83,
+    "fiber": 0.9
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "lunchables-turkey-and-american-cracker-stackers": {
+   "input": {
+    "barcode": "",
+    "name": "Lunchables Turkey and American Cracker Stackers",
+    "brand": "Lunchables"
+   },
+   "name": "Lunchables, Turkey & American Cracker Stackers",
+   "brand": "LUNCHABLES",
+   "serving_size": "96.0 g",
+   "calories": 344,
+   "ingredients_verbatim": "CHOCOLATE SANDWICH COOKIES - SUGAR, UNBLEACHED ENRICHED FLOUR (WHEAT FLOUR, NIACIN, REDUCED IRON, THIAMINE MONONITRATE {VITAMIN B1}, RIBOFLAVIN {VITAMIN B2}, FOLIC ACID), PALM AND/OR CANOLA OIL, COCOA (PROCESSED WITH ALKALI), HIGH FRUCTOSE CORN SYRUP, CORNSTARCH, LEAVENING (BAKING SODA AND/OR CALCIUM PHOSPHATE), SALT, SOY LECITHIN, VANILLA - AN ARTIFICIAL FLAVOR, CHOCOLATE. ROAST WHITE TURKEY - CURED - SMOKE FLAVOR ADDED - WHITE TURKEY, WATER, POTASSIUM LACTATE, MODIFIED CORNSTARCH, CONTAINS LESS THAN 2% OF DEXTROSE, CARRAGEENAN, SALT, SODIUM PHOSPHATES, POTASSIUM CHLORIDE, SODIUM DIACETATE, FLAVOR, SODIUM ASCORBATE, SMOKE FLAVOR, SODIUM NITRITE, NATURAL AND ARTIFICIAL FLAVOR. PASTEURIZED PREPARED AMERICAN CHEESE PRODUCT - MILK, WATER, MILK PROTEIN CONCENTRATE, WHEY, MILKFAT, WHEY PROTEIN CONCENTRATE, SODIUM CITRATE, SALT, LACTIC ACID, SORBIC ACID AS A PRESERVATIVE, CHEESE CULTURE, ENZYMES, OLEORESIN PAPRIKA (COLOR), ANNATTO EXTRACT (COLOR), WITH SUNFLOWER LECITHIN ADDED FOR SLICE SEPARATION. CRACKERS - ENRICHED FLOUR (WHEAT FLOUR, NIACIN, REDUCED IRON, THIAMINE MONONITRATE, RIBOFLAVIN, FOLIC ACID), PALM OIL, SUGAR, SALT, BAKING SODA, WHEY (FROM MILK), SOY LECITHIN, NATURAL FLAVOR.",
+   "nutrition": {
+    "fat": 16.7,
+    "saturatedFat": 7.29,
+    "sodium": 604,
+    "carbs": 38.5,
+    "sugars": 17.7,
+    "protein": 10.4,
+    "fiber": 1.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "lunchables-ham-and-american-cracker-stackers": {
+   "input": {
+    "barcode": "",
+    "name": "Lunchables Ham and American Cracker Stackers",
+    "brand": "Lunchables"
+   },
+   "name": "Lunchables, Turkey & American Cracker Stackers",
+   "brand": "LUNCHABLES",
+   "serving_size": "96.0 g",
+   "calories": 344,
+   "ingredients_verbatim": "CHOCOLATE SANDWICH COOKIES - SUGAR, UNBLEACHED ENRICHED FLOUR (WHEAT FLOUR, NIACIN, REDUCED IRON, THIAMINE MONONITRATE {VITAMIN B1}, RIBOFLAVIN {VITAMIN B2}, FOLIC ACID), PALM AND/OR CANOLA OIL, COCOA (PROCESSED WITH ALKALI), HIGH FRUCTOSE CORN SYRUP, CORNSTARCH, LEAVENING (BAKING SODA AND/OR CALCIUM PHOSPHATE), SALT, SOY LECITHIN, VANILLA - AN ARTIFICIAL FLAVOR, CHOCOLATE. ROAST WHITE TURKEY - CURED - SMOKE FLAVOR ADDED - WHITE TURKEY, WATER, POTASSIUM LACTATE, MODIFIED CORNSTARCH, CONTAINS LESS THAN 2% OF DEXTROSE, CARRAGEENAN, SALT, SODIUM PHOSPHATES, POTASSIUM CHLORIDE, SODIUM DIACETATE, FLAVOR, SODIUM ASCORBATE, SMOKE FLAVOR, SODIUM NITRITE, NATURAL AND ARTIFICIAL FLAVOR. PASTEURIZED PREPARED AMERICAN CHEESE PRODUCT - MILK, WATER, MILK PROTEIN CONCENTRATE, WHEY, MILKFAT, WHEY PROTEIN CONCENTRATE, SODIUM CITRATE, SALT, LACTIC ACID, SORBIC ACID AS A PRESERVATIVE, CHEESE CULTURE, ENZYMES, OLEORESIN PAPRIKA (COLOR), ANNATTO EXTRACT (COLOR), WITH SUNFLOWER LECITHIN ADDED FOR SLICE SEPARATION. CRACKERS - ENRICHED FLOUR (WHEAT FLOUR, NIACIN, REDUCED IRON, THIAMINE MONONITRATE, RIBOFLAVIN, FOLIC ACID), PALM OIL, SUGAR, SALT, BAKING SODA, WHEY (FROM MILK), SOY LECITHIN, NATURAL FLAVOR.",
+   "nutrition": {
+    "fat": 16.7,
+    "saturatedFat": 7.29,
+    "sodium": 604,
+    "carbs": 38.5,
+    "sugars": 17.7,
+    "protein": 10.4,
+    "fiber": 1.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "lunchly-the-pizza": {
+   "input": {
+    "barcode": "",
+    "name": "Lunchly The Pizza",
+    "brand": "Lunchly"
+   },
+   "name": "The Pizza Lunchly",
+   "brand": "MrBeast",
+   "serving_size": "1 portion (132 g)",
+   "calories": 360,
+   "ingredients_verbatim": "CHERRY FREEZE FLAVORED WITH OTHER NATURAL FLAVORS DRINK (WATER, CITRIC ACID, DIPOTASSI-UM PHOSPHATE, NATURAL FLAVORS, SUCRALOSE, ACESULFAME POTASSIUM, GUM ARABIC, ESTER GUM, D-ALPHA TOCOPHERYL ACETATE [VITAMIN E], PYRIDOXINE HYDROCHLORIDE [VITAMIN B6], RETINYL PALMITATE [VITAMIN AJ, CYANOCOBALAMIN [VITAMIN B12]), PIZZA CRUST (ENRICHED BLEACHED WHEAT FLOUR [FLOUR, NIACIN, REDUCED IRON, THIAMINE MONONITRATE, RIBOFLAVIN, FOLIC ACID], WATER, VEGETABLE SHORTENING [INTERESTERIFIED SOYBEAN OIL, HYDROGENATED SOYBEAN OIL], CONTAINS 2% OR LESS OF: SUGAR, SALT, YEAST, VEGETABLE GUMS [CORN STARCH, GUAR GUM, XANTHAN GUM], CALCIUM PROPRION-ATE [PRESERVATIVE], MONOGLYCERIDES), CONTAINS: WHEAT, PIZZA SAUCE (WATER, TOMATO PASTE, SUGAR, MODIFIED CORN STARCH, SALT, HIGHLY REFINED SOYBEAN OIL, CITRIC ACID, GARLIC POWDER, ONION POWDER, SPICES, PRESERVA-TIVES [SODIUM BENZOATE, POTASSIUM SORBATE], XANTHAN GUM, NATURAL FLAVOR), LOW-MOISTURE PART-SKIM MOZZARELLA CHEESE (CULTURED PASTEURIZED PART-SKIM MILK, SALT, ENZYMES, ANTI-CAKING BLEND [POTATO STARCH, CELLULOSE]), CONTAINS: MILK, SMOKED UNCURED PEPPERONI MADE WITH PORK, NO NITRATES OR NITRITES ADDED EXCEPT FOR THOSE NATURALLY OCCURRING NITRITES IN SEA SALT AND CULTURED CELERY EXTRACT (PORK, SEA SALT, CANE SUGAR, SPICE, PAPRIKA, CULTURED CELERY EXTRACT, PAPRIKA EXTRACT, GARLIC POWDER, CHERRY POWDER, RICE CONCENTRATE, SFICE EXTRACT, LACTIC ACID STARTER CULTURE), MILK UICCOLATE WITH PUFFED RICE BAR (MILK CHOCOLATE [SUGAR, WHOLE MILK POWDER, COCOA BUTTER, UNSWEETENED CHOCOLATE, LECITHIN [SOY], VANILLA EXTRACT], CRISP RICE RICE FLOUR, SUGAR, SALT]), CONTAINS: MILK, SOY., MAY CONTAIN: PEANUTS, TREE NUTS, WHEAT, EGG, SESAME.",
+   "nutrition": {
+    "fat": 15,
+    "saturatedFat": 7,
+    "sodium": 0.71,
+    "carbs": 44,
+    "sugars": 12,
+    "protein": 12,
+    "fiber": 2
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/085/006/381/9022/front_en.7.400.jpg",
+   "matched_off_code": "0850063819022",
+   "source": "off-search"
+  },
+  "lunchly-fiesta-nachos": {
+   "input": {
+    "barcode": "",
+    "name": "Lunchly Fiesta Nachos",
+    "brand": "Lunchly"
+   },
+   "name": "Fiesta Nachos",
+   "brand": "Lunchly",
+   "serving_size": "1 package (136.078 g)",
+   "calories": 360,
+   "ingredients_verbatim": "strawberry, banana, citric acid, dipotassium phosphate, natural flavors, sucralose, gum arabic, vegetable juice for color, acesulfame potassium, juice, corn syrup, red bell pepper, sodium phosphate, maltodextrin, jalapeno pepper, white distilled vinegar, yeast extract, natural flavor, lactic acid, calcium chloride, dehydrated hatch chili pepper, annatto, beta-carotene, milk, salsa, water, tomato paste, diced tomatoes, tomato juice, citric acid, dehydrated, roasted red bell pepper, roasted red bell peppers, sugar, potato flour, salt, dried red bell pepper, natural flavor, corn oil, sugar, salt, dehydrated onion, jalapeno peppers, citric acid, dehydrated green bell pepper, potassium sorbate, preservatives, natural flavors, spices, milk chocolate bar, milk chocolate, sugar, whole milk powder, cocoa butter, unsweetened chocolate, lecithin, soy, vanilla extract",
+   "nutrition": {
+    "fat": 17,
+    "saturatedFat": 5,
+    "sodium": 0.74,
+    "carbs": 46,
+    "sugars": 10,
+    "protein": 9,
+    "fiber": 4
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/085/006/381/9039/front_en.18.400.jpg",
+   "matched_off_code": "0850063819039",
+   "source": "off-search"
+  },
+  "lunchly-turkey-stack-ems": {
+   "input": {
+    "barcode": "",
+    "name": "Lunchly Turkey Stack Ems",
+    "brand": "Lunchly"
+   },
+   "name": "Turkey Stack 'EMS",
+   "brand": "Lunchly",
+   "serving_size": "1 package (72 g)",
+   "calories": 230,
+   "ingredients_verbatim": "ICE POP DRINK (WATER, CITRIC ACID,, DIPOTASSIUM PHOSPHATE, NATURAL FLAVORS,, SUCRALOSE, ACESULFAME POTASSIUM, GUM ARABIC,, ESTER GUM, D-ALPHA TOCOPHERYL ACETATE [VITAMIN E],, PYRIDOXINE HYDROCHLORIDE [VITAMIN B6], RETINYL, PALMITATE [VITAMIN A], CYANOCOBALAMIN [VITAMIN B12]);, OVEN ROASTED TURKEY (TURKEY, WATER, SEA SALT,, VINEGAR, POTATO STARCH, CULTURED CELERY EXTRACT,, CANE SUGAR); CRACKERS (ENRICHED WHEAT FLOUR, [FLOUR, NIACIN, REDUCED IRON, THIAMINE MONONITRATE,, RIBOFLAVIN, FOLIC ACID], HIGH OLEIC SUNFLOWER OIL,, SUGAR, CONTAINS 2% OR LESS OF THE FOLLOWING: SALT,, LEAVENING [BAKING SODA, MONOCALCIUM PHOSPHATE),, CORN SYRUP, SOY LECITHIN, NATURAL FLAVOR), CHEDDAR CHEESE (PASTEUR-, IZED MILK, CHEESE CULTURE, SALT, ENZYMES, ANNATTO, [COLOR]), CONTAINS: MILK; MILK CHOCOLATE BAR (MILK, CHOCOLATE [SUGAR, WHOLE MILK POWDER, COCOA, BUTTER, UNSWEETENED CHOCOLATE, LECITHIN [SOY],, VANILLA EXTRACT]), CONTAINS: MILK, SOY.",
+   "nutrition": {
+    "fat": 12,
+    "saturatedFat": 6,
+    "sodium": 0.48,
+    "carbs": 22,
+    "sugars": 7,
+    "protein": 11,
+    "fiber": 1
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/085/006/381/9008/front_en.5.400.jpg",
+   "matched_off_code": "0850063819008",
+   "source": "off-search"
+  },
+  "lunchly-bbq-chicken-dippers": {
+   "input": {
+    "barcode": "",
+    "name": "Lunchly BBQ Chicken Dippers",
+    "brand": "Lunchly"
+   },
+   "name": "Smoky Bbq Flavor Chicken Dippers, Smoky Bbq",
+   "brand": "YUMMY",
+   "serving_size": "77.0 GRM",
+   "calories": 221,
+   "ingredients_verbatim": "BONELESS SKINLESS CHICKEN BREAST WITH RIB MEAT, WATER, YELLOW CORN FLOUR, ENRICHED WHEAT FLOUR (NIACIN (VITAMIN B3), REDUCED IRON, THIAMINE MONONITRATE (VITAMIN B1), RIBOFLAVIN (VITAMIN B2), FOLIC ACID), TORTILLA CHIPS (YELLOW CORN, CANOLA AND/OR SUNFLOWER OIL, CALCIUM HYDROXIDE), RICE FLOUR, ISOLATED SOY PROTEIN, CONTAINS 2% OR LESS OF THE FOLLOWING: SALT, CORN STARCH, SUGAR, POTATO STARCH, FRUCTOSE, WHEAT FLOUR, SPICES, DEXTROSE, ONION AND GARLIC POWDER, TOMATO POWDER, CANOLA OIL, NATURAL FLAVOR, ONION POWDER, GUAR GUM, SMOKE FLAVOR, FLAVOR, EXTRACTIVE OF TURMERIC (COLOR), EXTRACTIVE OF PAPRIKA (COLOR), YEAST, IRON, JALAPENO PEPPER POWDER, EXTRACTIVES OF ANNATTO AND TURMERIC, FLAX MEAL",
+   "nutrition": {
+    "fat": 10.4,
+    "saturatedFat": 1.3,
+    "sodium": 442,
+    "carbs": 20.8,
+    "sugars": 1.3,
+    "protein": 11.7,
+    "fiber": 1.3
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "oscar-mayer-deli-fresh-oven-roasted-turkey-breas": {
+   "input": {
+    "barcode": "",
+    "name": "Oscar Mayer Deli Fresh Oven Roasted Turkey Breast",
+    "brand": "Oscar Mayer"
+   },
+   "name": "Deli fresh oven roasted turkey breast",
+   "brand": "Oscar Mayer",
+   "serving_size": "2 ONZ (56 g)",
+   "calories": 50,
+   "ingredients_verbatim": "Turkey breast, water, modified cornstarch, contains less than 2% of sodium lactate, salt, sugar, sodium phosphates, carrageenan, natural flavor, sodium diacetate, potassium chloride, sodium ascorbate, sodium nitrite, caramel color,",
+   "nutrition": {
+    "fat": 1,
+    "saturatedFat": 0,
+    "sodium": 0.5,
+    "carbs": 2,
+    "sugars": 0,
+    "protein": 9,
+    "fiber": 0
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/004/470/007/5104/front_en.3.400.jpg",
+   "matched_off_code": "0044700075104",
+   "source": "off-search"
+  },
+  "oscar-mayer-deli-fresh-smoked-ham": {
+   "input": {
+    "barcode": "",
+    "name": "Oscar Mayer Deli Fresh Smoked Ham",
+    "brand": "Oscar Mayer"
+   },
+   "name": "Oscar Mayer, Smoked Ham",
+   "brand": "OSCAR MAYER",
+   "serving_size": "57.0 g",
+   "calories": 105,
+   "ingredients_verbatim": "HAM, WATER, CONTAINS LESS THAN 2% OF SALT, SODIUM PHOSPHATES, SUGAR, SODIUM PROPIONATE, SODIUM DIACETATE, SODIUM BENZOATE, SODIUM ASCORBATE, SODIUM NITRITE.",
+   "nutrition": {
+    "fat": 3.51,
+    "saturatedFat": 1.75,
+    "sodium": 842,
+    "carbs": 0.0,
+    "sugars": null,
+    "protein": 17.5,
+    "fiber": null
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "oscar-mayer-deli-fresh-honey-ham": {
+   "input": {
+    "barcode": "",
+    "name": "Oscar Mayer Deli Fresh Honey Ham",
+    "brand": "Oscar Mayer"
+   },
+   "name": "Deli fresh honey uncured ham lunch meat",
+   "brand": "Oscar Mayer",
+   "serving_size": "1 portion (56 g)",
+   "calories": 70,
+   "ingredients_verbatim": "Ham, water, honey, contains less than 2% of salt, sugar, sodium phosphates, sodium propionate, sodium diacetate, sodium benzoate, sodium ascorbate, sodium nitrite, caramel color,",
+   "nutrition": {
+    "fat": 1.5,
+    "saturatedFat": null,
+    "sodium": null,
+    "carbs": 3,
+    "sugars": null,
+    "protein": 10,
+    "fiber": null
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/004/470/007/5081/front_la.5.400.jpg",
+   "matched_off_code": "0044700075081",
+   "source": "off-search"
+  },
+  "oscar-mayer-deli-fresh-rotisserie-seasoned-chick": {
+   "input": {
+    "barcode": "",
+    "name": "Oscar Mayer Deli Fresh Rotisserie Seasoned Chicken Breast",
+    "brand": "Oscar Mayer"
+   },
+   "name": "Rotisserie Seasoned Chicken Breast",
+   "brand": "Oscar Mayer Deli Fresh",
+   "serving_size": "56 g",
+   "calories": 50,
+   "ingredients_verbatim": "CHICKEN BREAST, WATER, MODIFIED CORNSTARCH, VINEGAR, SALT, CULTURED DEXTROSE, SUGAR, NATURAL CHICKEN TYPE FLAVOR (YEAST EXTRACT, SALT, DEXTROSE, ONION POWDER, NATURAL FLAVOR), SODIUM PHOSPHATES, CARRAGEENAN, POTASSIUM CHLORIDE, COATED WITH PAPRIKA, BLACK PEPPER, GARLIC POWDER, ONION POWDER, THYME.",
+   "nutrition": {
+    "fat": 1,
+    "saturatedFat": 0,
+    "sodium": 0.52,
+    "carbs": 1,
+    "sugars": 1,
+    "protein": 8,
+    "fiber": 0
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/004/470/003/0998/front_en.47.400.jpg",
+   "matched_off_code": "0044700030998",
+   "source": "off-search"
+  },
+  "oscar-mayer-deli-fresh-mesquite-smoked-turkey-br": {
+   "input": {
+    "barcode": "",
+    "name": "Oscar Mayer Deli Fresh Mesquite Smoked Turkey Breast",
+    "brand": "Oscar Mayer"
+   },
+   "name": "Oscar Mayer, Deli Fresh, Blackened Turkey Breast",
+   "brand": "OSCAR MAYER",
+   "serving_size": "56.0 g",
+   "calories": 107,
+   "ingredients_verbatim": "TURKEY BREAST, WATER, CULTURED DEXTROSE*, CONTAINS LESS THAN 2% OF MODIFIED CORNSTARCH, SALT, SUGAR, VINEGAR*, CULTURED CELERY JUICE*, SODIUM PHOSPHATES, CARRAGEENAN, CHERRY POWDER, LEMON JUICE SOLIDS, COATED WITH SEASONINGS (GARLIC, ONION POWDER, GARLIC POWDER, BLACK PEPPER, OREGANO, THYME, WHITE PEPPER, DRIED PARSLEY, DRIED BASIL), SALT, CAYENNE PEPPER, RED BELL PEPPERS, CARAMEL COLOR, OLEORESIN PAPRIKA.",
+   "nutrition": {
+    "fat": 2.68,
+    "saturatedFat": 0.0,
+    "sodium": 1000.0,
+    "carbs": 3.57,
+    "sugars": 0.0,
+    "protein": 16.1,
+    "fiber": null
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "hillshire-farm-ultra-thin-oven-roasted-turkey-br": {
+   "input": {
+    "barcode": "",
+    "name": "Hillshire Farm Ultra Thin Oven Roasted Turkey Breast",
+    "brand": "Hillshire Farm"
+   },
+   "name": "Hillshire Farm, Farm Classics, Honey Roasted Turkey Breast",
+   "brand": "HILLSHIRE FARM",
+   "serving_size": "50.0 g",
+   "calories": 120,
+   "ingredients_verbatim": "TURKEY BREAST, WHITE TURKEY, WATER, HONEY, MODIFIED CORN STARCH, CONTAINS 2% OR LESS: SALT, SUGAR, SODIUM PHOSPHATE, CARRAGEENAN, SODIUM PROPIONATE, SODIUM NITRITE.",
+   "nutrition": {
+    "fat": 3.0,
+    "saturatedFat": 1.0,
+    "sodium": 980,
+    "carbs": 6.0,
+    "sugars": 4.0,
+    "protein": 14.0,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "hillshire-farm-ultra-thin-honey-ham": {
+   "input": {
+    "barcode": "",
+    "name": "Hillshire Farm Ultra Thin Honey Ham",
+    "brand": "Hillshire Farm"
+   },
+   "name": "Ultra Thin Honey Ham Water Added",
+   "brand": "Hillshire Farm",
+   "serving_size": "1 serving (56 g)",
+   "calories": 70,
+   "ingredients_verbatim": "Cured with water, honey, contains 2% or less: salt, dextrose, sugar, sodium phosphate, sodium propionate, sodium erythorbate, sodium nitrite.",
+   "nutrition": {
+    "fat": 2.5,
+    "saturatedFat": 1,
+    "sodium": 0.57,
+    "carbs": 4,
+    "sugars": 3,
+    "protein": 9,
+    "fiber": null
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/004/450/020/1963/front_en.14.400.jpg",
+   "matched_off_code": "0044500201963",
+   "source": "off-search"
+  },
+  "hillshire-farm-ultra-thin-black-forest-ham": {
+   "input": {
+    "barcode": "",
+    "name": "Hillshire Farm Ultra Thin Black Forest Ham",
+    "brand": "Hillshire Farm"
+   },
+   "name": "Hillshire Farm, Naturals, Black Forest Ham",
+   "brand": "HILLSHIRE FARM",
+   "serving_size": "49.0 g",
+   "calories": 102,
+   "ingredients_verbatim": "HAM, WATER, CONTAINS 2% OR LESS: SALT, SUGAR, DRIED VINEGAR, CARRAGEENAN, CULTURED CELERY JUICE POWDER.",
+   "nutrition": {
+    "fat": 3.06,
+    "saturatedFat": 1.02,
+    "sodium": 1020.0,
+    "carbs": 2.04,
+    "sugars": 2.04,
+    "protein": 18.4,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "hillshire-farm-ultra-thin-roast-beef": {
+   "input": {
+    "barcode": "",
+    "name": "Hillshire Farm Ultra Thin Roast Beef",
+    "brand": "Hillshire Farm"
+   },
+   "name": "Hillshire Farm, Naturals, Roast Beef",
+   "brand": "HILLSHIRE FARM",
+   "serving_size": "60.0 g",
+   "calories": 100,
+   "ingredients_verbatim": "BEEF, BEEF BROTH, CONTAINS 2% OR LESS: SALT, VINEGAR, LEMON JUICE CONCENTRATE, DEXTROSE, FLAVORING (PECTIN)",
+   "nutrition": {
+    "fat": 2.5,
+    "saturatedFat": 0.83,
+    "sodium": 1000.0,
+    "carbs": 0.0,
+    "sugars": 0.0,
+    "protein": 20.0,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "hormel-natural-choice-oven-roasted-deli-turkey": {
+   "input": {
+    "barcode": "",
+    "name": "Hormel Natural Choice Oven Roasted Deli Turkey",
+    "brand": "Hormel Natural Choice"
+   },
+   "name": "Oven Roasted deli Turkey",
+   "brand": "Hormel Natural Choice",
+   "serving_size": "3 slices (56 g)",
+   "calories": 60,
+   "ingredients_verbatim": "Turkey breast meat, water, salt, potato starch, turbinado sugar, rice starch, carrageenan (from seaweed), baking soda, cultured celery powder, cherry powder.",
+   "nutrition": {
+    "fat": 1,
+    "saturatedFat": 0,
+    "sodium": 0.46,
+    "carbs": 1,
+    "sugars": 1,
+    "protein": 11,
+    "fiber": null
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/003/760/013/2602/front_en.33.400.jpg",
+   "matched_off_code": "0037600132602",
+   "source": "off-search"
+  },
+  "hormel-natural-choice-honey-deli-ham": {
+   "input": {
+    "barcode": "",
+    "name": "Hormel Natural Choice Honey Deli Ham",
+    "brand": "Hormel Natural Choice"
+   },
+   "name": "Honey deli Ham",
+   "brand": "Hormel Natural Choice",
+   "serving_size": "4 SLICES (56 g)",
+   "calories": 39.2,
+   "ingredients_verbatim": "pork, water, honey, salt, turbinado sugar, cultured celery powder, cherry powder, sea salt.",
+   "nutrition": {
+    "fat": 0.84,
+    "saturatedFat": 0.28,
+    "sodium": 0.33,
+    "carbs": 1.68,
+    "sugars": 1.68,
+    "protein": 5.6,
+    "fiber": 0
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/003/760/026/0305/front_en.15.400.jpg",
+   "matched_off_code": "0037600260305",
+   "source": "off-search"
+  },
+  "hormel-natural-choice-smoked-deli-turkey": {
+   "input": {
+    "barcode": "",
+    "name": "Hormel Natural Choice Smoked Deli Turkey",
+    "brand": "Hormel Natural Choice"
+   },
+   "name": "Applewood Smoked deli Turkey",
+   "brand": "Hormel Natural Choice",
+   "serving_size": "3 SLICES (56 g)",
+   "calories": 50,
+   "ingredients_verbatim": "Turkey breast meat, water, salt, potato starch, turbinado sugar, rice starch, carrageenan (from seaweed), baking soda, cultured celery powder, cherry powder.",
+   "nutrition": {
+    "fat": 0.5,
+    "saturatedFat": 0,
+    "sodium": 0.54,
+    "carbs": 1,
+    "sugars": 1,
+    "protein": 10,
+    "fiber": 0
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/003/760/043/5611/front_en.11.400.jpg",
+   "matched_off_code": "0037600435611",
+   "source": "off-search"
+  },
+  "applegate-naturals-oven-roasted-turkey-breast": {
+   "input": {
+    "barcode": "",
+    "name": "Applegate Naturals Oven Roasted Turkey Breast",
+    "brand": "Applegate"
+   },
+   "name": "OVEN ROASTED TURKEY BREAST",
+   "brand": "APPLEGATE NATURALS",
+   "serving_size": "2 slices (55 g)",
+   "calories": 60,
+   "ingredients_verbatim": "Turkey breast**, water. contains less than 2% of the following: sea salt, potato starch, salt, chicken broth, rosemary extract.",
+   "nutrition": {
+    "fat": 0,
+    "saturatedFat": 0,
+    "sodium": 0.29,
+    "carbs": 0,
+    "sugars": 0,
+    "protein": 14,
+    "fiber": 0
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/002/531/758/6009/front_en.92.400.jpg",
+   "matched_off_code": "0025317586009",
+   "source": "off-search"
+  },
+  "applegate-naturals-black-forest-ham": {
+   "input": {
+    "barcode": "",
+    "name": "Applegate Naturals Black Forest Ham",
+    "brand": "Applegate"
+   },
+   "name": "BLACK FOREST UNCURED HAM",
+   "brand": "APPLEGATE NATURALS",
+   "serving_size": "2 slices (55 g)",
+   "calories": 70,
+   "ingredients_verbatim": "PORK**, WATER, CONTAINS LESS THAN 2% OF THE FOLLOWING: SEA SALT, CANE SUGAR, CELERY POWDER, SPICE EXTRACTS.",
+   "nutrition": {
+    "fat": 2,
+    "saturatedFat": 0.5,
+    "sodium": 0.47,
+    "carbs": 1,
+    "sugars": 1,
+    "protein": 12,
+    "fiber": 0
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/002/531/700/5906/front_en.27.400.jpg",
+   "matched_off_code": "0025317005906",
+   "source": "off-search"
+  },
+  "applegate-organics-oven-roasted-turkey-breast": {
+   "input": {
+    "barcode": "",
+    "name": "Applegate Organics Oven Roasted Turkey Breast",
+    "brand": "Applegate"
+   },
+   "name": "Organic Oven Roasted Turkey Breast, Oven Roasted",
+   "brand": "O ORGANICS",
+   "serving_size": "57.0 g",
+   "calories": 105,
+   "ingredients_verbatim": "ORGANIC TURKEY BREAST, WATER, CONTAINS 2% OR LESS OF SEA SALT, ORGANIC POTATO STARCH.",
+   "nutrition": {
+    "fat": 0.88,
+    "saturatedFat": 0.35,
+    "sodium": 789,
+    "carbs": 0.0,
+    "sugars": 0.0,
+    "protein": 21.0,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "boar-s-head-ovengold-roasted-turkey-breast": {
+   "input": {
+    "barcode": "",
+    "name": "Boar's Head Ovengold Roasted Turkey Breast",
+    "brand": "Boar's Head"
+   },
+   "name": "Boar'S Head, Turkey Breast",
+   "brand": "BOAR'S HEAD",
+   "serving_size": "56.0 g",
+   "calories": 107,
+   "ingredients_verbatim": "TURKEY BREAST, WATER, LESS THAN 1.5% OF SALT, SUGAR, SODIUM PHOSPHATE AND DEXTROSE.",
+   "nutrition": {
+    "fat": 1.79,
+    "saturatedFat": 0.0,
+    "sodium": 679,
+    "carbs": 0.0,
+    "sugars": null,
+    "protein": 23.2,
+    "fiber": null
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "boar-s-head-deluxe-ham": {
+   "input": {
+    "barcode": "",
+    "name": "Boar's Head Deluxe Ham",
+    "brand": "Boar's Head"
+   },
+   "name": "Boar'S Head Branded Deluxe Ham",
+   "brand": "BOAR'S HEAD",
+   "serving_size": "56.0 GRM",
+   "calories": 107,
+   "ingredients_verbatim": "FRESH HAM, WATER, SALT, SUGAR, DEXTROSE, LESS THAN 2% OF SODIUM PHOSPHATE, SODIUM ERYTHORBATE, SODIUM NITRITE",
+   "nutrition": {
+    "fat": 1.79,
+    "saturatedFat": 0.0,
+    "sodium": 1050.0,
+    "carbs": 3.57,
+    "sugars": 3.57,
+    "protein": 16.1,
+    "fiber": null
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "dietz-watson-oven-classic-turkey-breast": {
+   "input": {
+    "barcode": "",
+    "name": "Dietz & Watson Oven Classic Turkey Breast",
+    "brand": "Dietz & Watson"
+   },
+   "name": "Dietz & Watson, Turkey Breast",
+   "brand": "DIETZ & WATSON",
+   "serving_size": "56.0 g",
+   "calories": 89.0,
+   "ingredients_verbatim": "TURKEY BREAST, WATER, CONTAINS LESS THAN 2% OF SEA SALT, ORGANIC SUGAR, POTASSIUM LACTATE, SODIUM PHOSPHATE, POTASSIUM CHLORIDE, SODIUM DIACETATE.",
+   "nutrition": {
+    "fat": 0.89,
+    "saturatedFat": 0.0,
+    "sodium": 643,
+    "carbs": 1.79,
+    "sugars": 1.79,
+    "protein": 19.6,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "dietz-watson-black-forest-smoked-ham": {
+   "input": {
+    "barcode": "",
+    "name": "Dietz & Watson Black Forest Smoked Ham",
+    "brand": "Dietz & Watson"
+   },
+   "name": "Smoked Ham",
+   "brand": "Black Forest",
+   "serving_size": "56.00000000000001g",
+   "calories": 118,
+   "ingredients_verbatim": "FRESH HAM, WATER, CONTAINS LESS THAN 2% OF SEA SALT, ORGANIC SUGAR, DEXTROSE, SODIUM PHOSPHATE, POTASSIUM LACTATE, SODIUM DIACETATE, SODIUM ASCORBATE (VITAMIN C), SODIUM NITRITE, NATURAL SMOKE FLAVOR, SPICE EXTRACTS.",
+   "nutrition": {
+    "fat": 3.57,
+    "saturatedFat": 1.79,
+    "sodium": 0.0,
+    "carbs": 1.79,
+    "sugars": 1.79,
+    "protein": 19.6,
+    "fiber": 0
+   },
+   "image_url": null,
+   "matched_off_code": "0031506310270",
+   "source": "off-search"
+  },
+  "land-o-frost-premium-honey-ham": {
+   "input": {
+    "barcode": "",
+    "name": "Land O'Frost Premium Honey Ham",
+    "brand": "Land O'Frost"
+   },
+   "name": "Land O'Frost, Bold Ham",
+   "brand": "LAND O'FROST",
+   "serving_size": "53.0 g",
+   "calories": 113,
+   "ingredients_verbatim": "HAM, WATER, DEXTROSE, LESS THAN 2% OF SALT, VERMONT MAPLE SYRUP, NATURAL FLAVOR, CORN SYRUP, MAPLE EXTRACTIVES, MODIFIED CORN STARCH, MOLASSES, SODIUM PHOSPHATES, CARAMEL COLOR, SODIUM ERYTHORBATE, SODIUM NITRATE.",
+   "nutrition": {
+    "fat": 2.83,
+    "saturatedFat": 0.0,
+    "sodium": 943,
+    "carbs": 3.77,
+    "sugars": 3.77,
+    "protein": 17.0,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "land-o-frost-premium-oven-roasted-turkey-breast": {
+   "input": {
+    "barcode": "",
+    "name": "Land O'Frost Premium Oven Roasted Turkey Breast",
+    "brand": "Land O'Frost"
+   },
+   "name": "Land O'Frost, Premium, Hickory Smoked Turkey Breast",
+   "brand": "LAND O'FROST",
+   "serving_size": "50.0 g",
+   "calories": 180,
+   "ingredients_verbatim": "TURKEY BREAST, WATER, WHITE TURKEY, DEXTROSE, SALT. LESS THAN 2% OF BROWN SUGAR, FLAVORING, MODIFIED CORN STARCH, SODIUM ERYTHORBATE, SODIUM PHOSPHATES, SODIUM NITRITE.",
+   "nutrition": {
+    "fat": 10.0,
+    "saturatedFat": 3.0,
+    "sodium": 1020.0,
+    "carbs": 6.0,
+    "sugars": 4.0,
+    "protein": 16.0,
+    "fiber": null
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "jif-extra-crunchy-peanut-butter": {
+   "input": {
+    "barcode": "",
+    "name": "Jif Extra Crunchy Peanut Butter",
+    "brand": "Jif"
+   },
+   "name": "Extra Crunchy Peanut Butter",
+   "brand": "Jif",
+   "serving_size": "1 serving (33 g)",
+   "calories": 196,
+   "ingredients_verbatim": "ROASTED PEANUTS, SUGAR, 2% MOLASSES, FULL HYDROGENATED VEGETABLE OILS (RAPESEED, SOYBEAN), MONO AND DIGLYCERIDES, SALT.",
+   "nutrition": {
+    "fat": 16,
+    "saturatedFat": 3.5,
+    "sodium": 0.11,
+    "carbs": 8,
+    "sugars": 3,
+    "protein": 7,
+    "fiber": 2
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/005/150/025/5377/front_en.70.400.jpg",
+   "matched_off_code": "0051500255377",
+   "source": "off-search"
+  },
+  "jif-natural-creamy-peanut-butter-spread": {
+   "input": {
+    "barcode": "",
+    "name": "Jif Natural Creamy Peanut Butter Spread",
+    "brand": "Jif"
+   },
+   "name": "Natural Jif Creamy Peanut Butter Spread",
+   "brand": "Jif",
+   "serving_size": "2 tbsp (33 g)",
+   "calories": 196,
+   "ingredients_verbatim": "made from _peanuts_, sugar, palm oil, contains 2% or less of: salt, molasses,",
+   "nutrition": {
+    "fat": 16,
+    "saturatedFat": 3.5,
+    "sodium": 0.08,
+    "carbs": 8,
+    "sugars": 4,
+    "protein": 7,
+    "fiber": 3
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/005/150/024/3220/front_en.66.400.jpg",
+   "matched_off_code": "0051500243220",
+   "source": "off-search"
+  },
+  "jif-natural-crunchy-peanut-butter-spread": {
+   "input": {
+    "barcode": "",
+    "name": "Jif Natural Crunchy Peanut Butter Spread",
+    "brand": "Jif"
+   },
+   "name": "Natural Jif Crunchy Peanut Butter Spread",
+   "brand": "Jif",
+   "serving_size": "2 tbsp (33 g)",
+   "calories": 196,
+   "ingredients_verbatim": "PEANUTS, SUGAR, PALM OIL, CONTAINS 2% OR LESS OF: SALT, MOLASSES",
+   "nutrition": {
+    "fat": 16,
+    "saturatedFat": 3.5,
+    "sodium": 0.07,
+    "carbs": 8,
+    "sugars": 3,
+    "protein": 7,
+    "fiber": 3
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/005/150/025/5742/front_en.61.400.jpg",
+   "matched_off_code": "0051500255742",
+   "source": "off-search"
+  },
+  "jif-no-added-sugar-creamy-peanut-butter-spread": {
+   "input": {
+    "barcode": "",
+    "name": "Jif No Added Sugar Creamy Peanut Butter Spread",
+    "brand": "Jif"
+   },
+   "name": "Jif 27.3 Ounce Simply Jif Creamy Peanut Butter",
+   "brand": "Jif",
+   "serving_size": "33.0 GRM",
+   "calories": 606,
+   "ingredients_verbatim": "Roasted Peanuts, Contains 2% Or Less Of: Fully Hydrogenated Vegetable Oils (rapeseed And Soybean), Mono And Diglycerides, Molasses, Sugar, Salt.",
+   "nutrition": {
+    "fat": 51.5,
+    "saturatedFat": 10.6,
+    "sodium": 197,
+    "carbs": 21.2,
+    "sugars": 6.06,
+    "protein": 21.2,
+    "fiber": 9.1
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "jif-simply-creamy-peanut-butter": {
+   "input": {
+    "barcode": "",
+    "name": "Jif Simply Creamy Peanut Butter",
+    "brand": "Jif"
+   },
+   "name": "Creamy Peanut Butter",
+   "brand": "Simply Jif",
+   "serving_size": "2 Tbsp (33 g)",
+   "calories": 196,
+   "ingredients_verbatim": "roasted peanuts, contains 2% or less of: fully hydrogenated vegetable oils (rapeseed and soybean), mono and diglycerides, molasses, sugar, salt.",
+   "nutrition": {
+    "fat": 17,
+    "saturatedFat": 3.5,
+    "sodium": 0.07,
+    "carbs": 7,
+    "sugars": 3,
+    "protein": 7,
+    "fiber": 3
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/005/150/025/5278/front_en.45.400.jpg",
+   "matched_off_code": "0051500255278",
+   "source": "off-search"
+  },
+  "jif-reduced-fat-creamy-peanut-butter-spread": {
+   "input": {
+    "barcode": "",
+    "name": "Jif Reduced Fat Creamy Peanut Butter Spread",
+    "brand": "Jif"
+   },
+   "name": "Reduced Fat Creamy Peanut Butter",
+   "brand": "Jif",
+   "serving_size": "1 serving (36 g)",
+   "calories": 214,
+   "ingredients_verbatim": "PEANUTS, CORN SYRUP SOLIDS, SUGAR, PEA PROTEIN, CONTAINS 2% OR LESS OF: SALT, HYDROGENATED VEGETABLE OILS (RAPESEED AND SOYBEAN), MONO AND DIGLYCERIDES, MOLASSES,MAGNESIUM OXIDE, FERRIC ORTHOPHOSPHATE, ZINC OXIDE, COPPER SULFATE, PYRIDOXINE HYDROCHLORIDE FRLUC AT NGREDIENTS:",
+   "nutrition": {
+    "fat": 12,
+    "saturatedFat": 2.5,
+    "sodium": 0.19,
+    "carbs": 15,
+    "sugars": 4,
+    "protein": 7,
+    "fiber": 2
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/005/150/025/5186/front_en.72.400.jpg",
+   "matched_off_code": "0051500255186",
+   "source": "off-search"
+  },
+  "skippy-super-chunk-peanut-butter": {
+   "input": {
+    "barcode": "",
+    "name": "Skippy Super Chunk Peanut Butter",
+    "brand": "Skippy"
+   },
+   "name": "Skippy, Super Chunk Peanut Butter, Super Chunk",
+   "brand": "SKIPPY",
+   "serving_size": "32.0 g",
+   "calories": 594,
+   "ingredients_verbatim": "ROASTED PEANUTS, SUGAR, HYDROGENATED VEGETABLE OIL (COTTONSEED, SOYBEAN AND RAPESEED OIL) TO PREVENT SEPARATION, SALT.",
+   "nutrition": {
+    "fat": 50.0,
+    "saturatedFat": 9.38,
+    "sodium": 391,
+    "carbs": 18.8,
+    "sugars": 9.38,
+    "protein": 21.9,
+    "fiber": 6.2
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "skippy-natural-creamy-peanut-butter-spread": {
+   "input": {
+    "barcode": "",
+    "name": "Skippy Natural Creamy Peanut Butter Spread",
+    "brand": "Skippy"
+   },
+   "name": "Natural Creamy Peanut Butter Spread",
+   "brand": "Skippy",
+   "serving_size": "2 tbsp (32 g)",
+   "calories": 190,
+   "ingredients_verbatim": "ROASTED PEANUTS, SUGAR, PALM OIL, SALT.",
+   "nutrition": {
+    "fat": 16,
+    "saturatedFat": 3.49,
+    "sodium": 0.15,
+    "carbs": 6.02,
+    "sugars": 3,
+    "protein": 7.01,
+    "fiber": 2
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/003/760/010/6740/front_en.131.400.jpg",
+   "matched_off_code": "0037600106740",
+   "source": "off-search"
+  },
+  "skippy-natural-super-chunk-peanut-butter-spread": {
+   "input": {
+    "barcode": "",
+    "name": "Skippy Natural Super Chunk Peanut Butter Spread",
+    "brand": "Skippy"
+   },
+   "name": "Natural Super Chunk Peanut Butter Spread",
+   "brand": "Skippy",
+   "serving_size": "1 serving (32 g)",
+   "calories": 190,
+   "ingredients_verbatim": "Roasted peanuts, sugar, palm oil, salt.",
+   "nutrition": {
+    "fat": 17,
+    "saturatedFat": 3.5,
+    "sodium": 0.12,
+    "carbs": 6,
+    "sugars": 3,
+    "protein": 7,
+    "fiber": 1.98
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/003/760/010/5330/front_en.4.400.jpg",
+   "matched_off_code": "0037600105330",
+   "source": "off-search"
+  },
+  "skippy-reduced-fat-creamy-peanut-butter-spread": {
+   "input": {
+    "barcode": "",
+    "name": "Skippy Reduced Fat Creamy Peanut Butter Spread",
+    "brand": "Skippy"
+   },
+   "name": "Reduced Fat Creamy Peanut Butter",
+   "brand": "Skippy",
+   "serving_size": "2 tbsp (34 g)",
+   "calories": 475,
+   "ingredients_verbatim": "Roasted peanuts, corn syrup solids, sugar, soy protein concentrate, salt, hydrogenated vegetable oil (cottonseed, soybean and rapeseed oil) to prevent separation, mono - and diglycerides, minerals (magnesium oxide, zinc oxide, ferric orthophosphate, copper sulfate), vitamins (niacinamide, pyridoxine hydrochloride, folic acid).",
+   "nutrition": {
+    "fat": 4.08,
+    "saturatedFat": 0.68,
+    "sodium": 0.06,
+    "carbs": 4.76,
+    "sugars": 1.36,
+    "protein": 2.38,
+    "fiber": 0.34
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/003/760/010/5002/front_en.66.400.jpg",
+   "matched_off_code": "0037600105002",
+   "source": "off-search"
+  },
+  "skippy-creamy-peanut-butter-spread-no-sugar-adde": {
+   "input": {
+    "barcode": "",
+    "name": "Skippy Creamy Peanut Butter Spread No Sugar Added",
+    "brand": "Skippy"
+   },
+   "name": "No Added Sugar Creamy Peanut Butter",
+   "brand": "Skippy",
+   "serving_size": null,
+   "calories": 577,
+   "ingredients_verbatim": "JORDNÖTTER (97.5%), RAPSOLJA, BOMULLSFRöOLJA, SALT.",
+   "nutrition": {
+    "fat": 50,
+    "saturatedFat": 10,
+    "sodium": 0.39,
+    "carbs": 10,
+    "sugars": 3.7,
+    "protein": 25,
+    "fiber": null
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/003/760/031/1069/front_en.3.400.jpg",
+   "matched_off_code": "0037600311069",
+   "source": "off-search"
+  },
+  "peter-pan-crunchy-peanut-butter": {
+   "input": {
+    "barcode": "",
+    "name": "Peter Pan Crunchy Peanut Butter",
+    "brand": "Peter Pan"
+   },
+   "name": "Crunchy Peanut Butter",
+   "brand": "Peter Pan",
+   "serving_size": "2 tbsp (33 g)",
+   "calories": 210,
+   "ingredients_verbatim": "Roasted Peanuts, Sugar, Less than 2% of: Hydrogenated Vegetable Oils (Cottonseed and Rapeseed), Salt. CONTAINS: PEANUTS.",
+   "nutrition": {
+    "fat": 17,
+    "saturatedFat": 3.5,
+    "sodium": 0.1,
+    "carbs": 7,
+    "sugars": 5,
+    "protein": 8,
+    "fiber": 2
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/004/530/000/5409/front_en.49.400.jpg",
+   "matched_off_code": "0045300005409",
+   "source": "off-search"
+  },
+  "peter-pan-natural-creamy-peanut-butter-spread": {
+   "input": {
+    "barcode": "",
+    "name": "Peter Pan Natural Creamy Peanut Butter Spread",
+    "brand": "Peter Pan"
+   },
+   "name": "PETER PAN Natural Creamy Honey Roast Peanut Butter, 28 OZ",
+   "brand": null,
+   "serving_size": "2 tbsp (33 g) (33 g)",
+   "calories": 220,
+   "ingredients_verbatim": "Roasted Peanuts, Sugar, Honey, Fractionated Palm Oil, Molasses, Salt. CONTAINS: PEANUTS.",
+   "nutrition": {
+    "fat": 16,
+    "saturatedFat": 3,
+    "sodium": 0.13,
+    "carbs": 10,
+    "sugars": 8,
+    "protein": 8,
+    "fiber": 2.01
+   },
+   "image_url": null,
+   "matched_off_code": "0045300299020",
+   "source": "off-search"
+  },
+  "smucker-s-natural-creamy-peanut-butter": {
+   "input": {
+    "barcode": "",
+    "name": "Smucker's Natural Creamy Peanut Butter",
+    "brand": "Smucker's"
+   },
+   "name": "Natural Creamy Peanut Butter",
+   "brand": "Smucker's",
+   "serving_size": "32g",
+   "calories": 190,
+   "ingredients_verbatim": "peanuts, contains 1% or less of salt",
+   "nutrition": {
+    "fat": 16,
+    "saturatedFat": 3,
+    "sodium": 0.11,
+    "carbs": 7,
+    "sugars": 2,
+    "protein": 8,
+    "fiber": 3
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/005/150/001/7005/front_en.100.400.jpg",
+   "matched_off_code": "0051500017005",
+   "source": "off-search"
+  },
+  "smucker-s-natural-chunky-peanut-butter": {
+   "input": {
+    "barcode": "",
+    "name": "Smucker's Natural Chunky Peanut Butter",
+    "brand": "Smucker's"
+   },
+   "name": "Natural Peanut Butter Chunky",
+   "brand": "Smucker's",
+   "serving_size": "1 portion (32 g)",
+   "calories": 190,
+   "ingredients_verbatim": "PEANUTS, SALT",
+   "nutrition": {
+    "fat": 16,
+    "saturatedFat": 3,
+    "sodium": 0.1,
+    "carbs": 7,
+    "sugars": 2,
+    "protein": 8,
+    "fiber": 3
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/005/150/006/2005/front_en.24.400.jpg",
+   "matched_off_code": "0051500062005",
+   "source": "off-search"
+  },
+  "justin-s-classic-peanut-butter": {
+   "input": {
+    "barcode": "",
+    "name": "Justin's Classic Peanut Butter",
+    "brand": "Justin's"
+   },
+   "name": "Classic Peanut Butter Spread",
+   "brand": "Justin's",
+   "serving_size": "2 tbsp (32 g)",
+   "calories": 210,
+   "ingredients_verbatim": "dry roasted peanuts, palm oil",
+   "nutrition": {
+    "fat": 18,
+    "saturatedFat": 3.5,
+    "sodium": 0.03,
+    "carbs": 6,
+    "sugars": 2,
+    "protein": 7,
+    "fiber": 1
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/084/037/910/1393/front_en.44.400.jpg",
+   "matched_off_code": "0840379101393",
+   "source": "off-search"
+  },
+  "crazy-richard-s-100-peanuts-creamy-peanut-butter": {
+   "input": {
+    "barcode": "",
+    "name": "Crazy Richard's 100% Peanuts Creamy Peanut Butter",
+    "brand": "Crazy Richard's"
+   },
+   "name": "Crazy About Cookies, Scoop & Bake Cookie Dough, Peanut Butter, Peanut Butter",
+   "brand": "CRAZY ABOUT COOKIES",
+   "serving_size": "28.0 g",
+   "calories": 429,
+   "ingredients_verbatim": "UNBLEACHED UNBROMATED FLOUR, CANE SUGAR, PEANUT BUTTER (UNSALTED PEANUTS), PALM OIL, WHEY PROTEIN CONCENTRATE, SALT, BAKING SODA, NATURAL BUTTER AND VANILLA FLAVORS.",
+   "nutrition": {
+    "fat": 21.4,
+    "saturatedFat": 7.14,
+    "sodium": 393,
+    "carbs": 57.1,
+    "sugars": 32.1,
+    "protein": 7.14,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "santa-cruz-organic-dark-roasted-creamy-peanut-bu": {
+   "input": {
+    "barcode": "",
+    "name": "Santa Cruz Organic Dark Roasted Creamy Peanut Butter",
+    "brand": "Santa Cruz Organic"
+   },
+   "name": "Creamy Dark Roasted Peanut Butter",
+   "brand": "Santa Cruz Organic",
+   "serving_size": "32g",
+   "calories": 180,
+   "ingredients_verbatim": "Organic roasted peanuts, salt.",
+   "nutrition": {
+    "fat": 16,
+    "saturatedFat": 2,
+    "sodium": 0.05,
+    "carbs": 6,
+    "sugars": 1,
+    "protein": 9,
+    "fiber": 3
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/005/150/090/2882/front_en.28.400.jpg",
+   "matched_off_code": "0051500902882",
+   "source": "off-search"
+  },
+  "santa-cruz-organic-dark-roasted-crunchy-peanut-b": {
+   "input": {
+    "barcode": "",
+    "name": "Santa Cruz Organic Dark Roasted Crunchy Peanut Butter",
+    "brand": "Santa Cruz Organic"
+   },
+   "name": "Crunchy Dark Roasted Peanut Butter",
+   "brand": "Santa Cruz organic",
+   "serving_size": "1 serving (32 g)",
+   "calories": 180,
+   "ingredients_verbatim": "organic roasted peanuts, salt",
+   "nutrition": {
+    "fat": 16,
+    "saturatedFat": 6.25,
+    "sodium": 0.14,
+    "carbs": 6,
+    "sugars": 3.12,
+    "protein": 9,
+    "fiber": 9.38
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/005/150/050/7872/front_en.3.400.jpg",
+   "matched_off_code": "0051500507872",
+   "source": "off-search"
+  },
+  "teddie-all-natural-smooth-peanut-butter": {
+   "input": {
+    "barcode": "",
+    "name": "Teddie All Natural Smooth Peanut Butter",
+    "brand": "Teddie"
+   },
+   "name": "Smooth Unsalted Peanut Butter",
+   "brand": "Teddie All Natural",
+   "serving_size": "2 Tbsp (32 g)",
+   "calories": 190,
+   "ingredients_verbatim": "DRY ROASTED PEANUTS",
+   "nutrition": {
+    "fat": 16,
+    "saturatedFat": 2.5,
+    "sodium": 0,
+    "carbs": 7,
+    "sugars": 2,
+    "protein": 8,
+    "fiber": 3
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/007/101/801/0176/front_en.19.400.jpg",
+   "matched_off_code": "0071018010176",
+   "source": "off-search"
+  },
+  "lay-s-barbecue-potato-chips": {
+   "input": {
+    "barcode": "",
+    "name": "Lay's Barbecue Potato Chips",
+    "brand": "Lay's"
+   },
+   "name": "Barbecue Flavor Potato Chips",
+   "brand": "Lay's",
+   "serving_size": "1 package (28.3 g)",
+   "calories": 152,
+   "ingredients_verbatim": "POTATOES, VEGETABLE OIL (CANOLA OIL, CORN OIL, SOYBEAN OIL, SUNFLOWER OIL), SUGAR, SALT, DEXTROSE, MALTODEXTRIN (CORN), MOLASSES, TORULA YEAST, NATURAL FLAVORS, ONION POWDER, SPICES, TOMATO POWDER, PAPRIKA, CORN STARCH, PAPRIKA EXTRACTS, CARAMEL COLOR, YEAST EXTRACT, GARLIC POWDER, MUSTARD SEED OIL",
+   "nutrition": {
+    "fat": 9,
+    "saturatedFat": 1.5,
+    "sodium": 0.19,
+    "carbs": 16,
+    "sugars": 2,
+    "protein": 2,
+    "fiber": 1
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/002/840/000/8617/front_en.122.400.jpg",
+   "matched_off_code": "0028400008617",
+   "source": "off-search"
+  },
+  "lay-s-sour-cream-onion-potato-chips": {
+   "input": {
+    "barcode": "",
+    "name": "Lay's Sour Cream & Onion Potato Chips",
+    "brand": "Lay's"
+   },
+   "name": "Sour Cream & Onion Flavored Potato Chips",
+   "brand": "Lay's",
+   "serving_size": "17 chips (28 g)",
+   "calories": 160,
+   "ingredients_verbatim": "POTATOES, VEGETABLE OIL (CANOLA OIL, CORN OIL, SOYBEAN OIL, SUNFLOWER OIL), SKIM MILK, SALT, WHEY, ONION POWDER, PARSLEY, SOUR CREAM (CULTURED CREAM, SKIM MILK), DEXTROSE, MALTODEXTRIN (MADE FROM CORN), NATURAL FLAVORS, MEDIUM CHAIN TRIGLYCERIDES, LACTOSE, CITRIC ACID.",
+   "nutrition": {
+    "fat": 10,
+    "saturatedFat": 1.5,
+    "sodium": 0.2,
+    "carbs": 15,
+    "sugars": 2,
+    "protein": 2,
+    "fiber": 1
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/002/840/019/9636/front_en.36.400.jpg",
+   "matched_off_code": "0028400199636",
+   "source": "off-search"
+  },
+  "ruffles-original-potato-chips": {
+   "input": {
+    "barcode": "",
+    "name": "Ruffles Original Potato Chips",
+    "brand": "Ruffles"
+   },
+   "name": "Ruffles, Potato Chips, Original, Original",
+   "brand": "RUFFLES",
+   "serving_size": "28.0 g",
+   "calories": 571,
+   "ingredients_verbatim": "POTATOES, VEGETABLE OIL (SUNFLOWER, CORN, AND/OR CANOLA OIL), AND SALT.",
+   "nutrition": {
+    "fat": 35.7,
+    "saturatedFat": 5.36,
+    "sodium": 571,
+    "carbs": 53.6,
+    "sugars": 3.57,
+    "protein": 7.14,
+    "fiber": 3.6
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "ruffles-cheddar-sour-cream-potato-chips": {
+   "input": {
+    "barcode": "",
+    "name": "Ruffles Cheddar & Sour Cream Potato Chips",
+    "brand": "Ruffles"
+   },
+   "name": "Cheddar sour cream flavored potato chips",
+   "brand": "Ruffles",
+   "serving_size": "1 portion (42.5 g)",
+   "calories": 240,
+   "ingredients_verbatim": "potatoes, veg sunflower, corn, and/or canola oil), and salt.",
+   "nutrition": {
+    "fat": 15,
+    "saturatedFat": 2,
+    "sodium": 0.21,
+    "carbs": 23,
+    "sugars": 1,
+    "protein": 3,
+    "fiber": 2
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/002/840/008/5168/front_en.14.400.jpg",
+   "matched_off_code": "0028400085168",
+   "source": "off-search"
+  },
+  "tostitos-scoops-tortilla-chips": {
+   "input": {
+    "barcode": "",
+    "name": "Tostitos Scoops Tortilla Chips",
+    "brand": "Tostitos"
+   },
+   "name": "Scoops! Tortilla Chips",
+   "brand": "Tostitos",
+   "serving_size": "1 serving (28 g)",
+   "calories": 130,
+   "ingredients_verbatim": "WHOLE CORN, CORN, VEGETABLE OIL (CORN, CANOLA, AND/OR SUNFLOWER OIL), AND SALT. FRITO-LAY, INC. PLANO, TX 75024-4999 ©2021 FRITO-LAY NORTH AMERICA, INC.",
+   "nutrition": {
+    "fat": 3,
+    "saturatedFat": 0,
+    "sodium": 0.1,
+    "carbs": 22,
+    "sugars": 0,
+    "protein": 2,
+    "fiber": 2
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/002/840/018/4762/front_en.6.400.jpg",
+   "matched_off_code": "0028400184762",
+   "source": "off-search"
+  },
+  "tostitos-original-restaurant-style-tortilla-chip": {
+   "input": {
+    "barcode": "",
+    "name": "Tostitos Original Restaurant Style Tortilla Chips",
+    "brand": "Tostitos"
+   },
+   "name": "Tostitos Original Restaurant Style Tortilla Chips 18 Ounce Party Size Plastic Bag",
+   "brand": "Tostitos",
+   "serving_size": "about 7 chips (28 g) (28 g)",
+   "calories": 140,
+   "ingredients_verbatim": "corn, vegetable oil (corn, canola and/or sunflower oil), and salt,",
+   "nutrition": {
+    "fat": 7,
+    "saturatedFat": 1,
+    "sodium": 0.12,
+    "carbs": 19,
+    "sugars": 0,
+    "protein": 2,
+    "fiber": 1.01
+   },
+   "image_url": null,
+   "matched_off_code": "0028400083133",
+   "source": "off-search"
+  },
+  "fritos-chili-cheese-corn-chips": {
+   "input": {
+    "barcode": "",
+    "name": "Fritos Chili Cheese Corn Chips",
+    "brand": "Fritos"
+   },
+   "name": "CHILI CHEESE FLAVORED CORN CHIPS",
+   "brand": "Fritos",
+   "serving_size": "1 portion (28.349 g)",
+   "calories": 160,
+   "ingredients_verbatim": "Corn, corn oil, whey, salt, spices, maltodextrin (made from corn), cheddar cheese (milk, cheese cultures, enzymes), canola oil, potassium chloride, tomato powder, monosodium glutamate, onion powder, natural flavors, Romano cheese (cow's milk, cheese cultures, salt, enzymes), dextrose, buttermilk, sodium caseinate, annatto extracts, cream, salt, citric acid, sunflower oil, garlic powder, disodium inosinate, disodium guanylate, and caramel color.",
+   "nutrition": {
+    "fat": 10,
+    "saturatedFat": 1.5,
+    "sodium": 0.18,
+    "carbs": 16,
+    "sugars": 1,
+    "protein": 2,
+    "fiber": 1
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/002/840/004/0044/front_en.53.400.jpg",
+   "matched_off_code": "0028400040044",
+   "source": "off-search"
+  },
+  "fritos-scoops-corn-chips": {
+   "input": {
+    "barcode": "",
+    "name": "Fritos Scoops Corn Chips",
+    "brand": "Fritos"
+   },
+   "name": "Scoops! Corn Chips",
+   "brand": "Fritos",
+   "serving_size": "28g",
+   "calories": 160,
+   "ingredients_verbatim": "CORN, VEGETABLE OIL (CORN AND/OR CANOLA OIL), SALT",
+   "nutrition": {
+    "fat": 10,
+    "saturatedFat": 1.5,
+    "sodium": 0.11,
+    "carbs": 16,
+    "sugars": 0,
+    "protein": 2,
+    "fiber": 0.28
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/002/840/058/9321/front_en.31.400.jpg",
+   "matched_off_code": "0028400589321",
+   "source": "off-search"
+  },
+  "doritos-cool-ranch-tortilla-chips": {
+   "input": {
+    "barcode": "",
+    "name": "Doritos Cool Ranch Tortilla Chips",
+    "brand": "Doritos"
+   },
+   "name": "Doritos Cool Ranch Flavored Tortilla Chips",
+   "brand": "Frito-Lay",
+   "serving_size": "11 chips (28 g)",
+   "calories": 150,
+   "ingredients_verbatim": "Corn, Vegetable Oil (Corn, Canola, and/or Sunflower Oil), Salt, Corn Starch, Tomato Powder, Lactose, Whey, Skim Milk, Onion Powder, Sugar, Garlic Powder, Monosodium Glutamate, Maltodextrin (Made from Corn), Cheddar Cheese (Milk, Cheese Cultures, Salt, Enzymes), Dextrose, Malic Acid, Corn Syrup Solids, Buttermilk, Natural and Artificial Flavors, Sodium Acetate, Artificial Color (Red 40, Blue 1, Yellow 5), Spice, Citric Acid, Disodium Inosinate, and Disodium Guanylate.",
+   "nutrition": {
+    "fat": 7,
+    "saturatedFat": 1,
+    "sodium": 0.16,
+    "carbs": 18,
+    "sugars": 1,
+    "protein": 2,
+    "fiber": 1
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/002/840/051/6310/front_en.29.400.jpg",
+   "matched_off_code": "0028400516310",
+   "source": "off-search"
+  },
+  "doritos-spicy-sweet-chili-tortilla-chips": {
+   "input": {
+    "barcode": "",
+    "name": "Doritos Spicy Sweet Chili Tortilla Chips",
+    "brand": "Doritos"
+   },
+   "name": "Doritos, Tortilla Chips, Spicy Sweet Chili, Spicy Sweet Chili",
+   "brand": "DORITOS",
+   "serving_size": "28.0 g",
+   "calories": 500,
+   "ingredients_verbatim": "CORN, VEGETABLE OIL (CORN CANOLA, AND/OR SUNFLOWER OIL), SALT, SUGAR, MONOSODIUM GLUTAMATE, FRUCTOSE, SODIUM DIACETATE, SOY SAUCE (SOYBEAN, WHEAT, SALT), ONION POWDER, MALTODEXTRIN (MADE FROM CORN), HYDROLYZED SOY PROTEIN, HYDROLYZED CORN PROTEIN, GARLIC POWDER, TORULA YEAST, MALIC ACID, EXTRACTIVES OF PAPRIKA, SPICES, CARAMEL COLOR, DISODIUM INOSINATE, DISODIUM GUANYLATE, DEXTROSE, AND NATURAL FLAVOR.",
+   "nutrition": {
+    "fat": 25.0,
+    "saturatedFat": 3.57,
+    "sodium": 964,
+    "carbs": 64.3,
+    "sugars": 3.57,
+    "protein": 7.14,
+    "fiber": 3.6
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "cheetos-puffs-cheese-flavored-snacks": {
+   "input": {
+    "barcode": "",
+    "name": "Cheetos Puffs Cheese Flavored Snacks",
+    "brand": "Cheetos"
+   },
+   "name": "Cheese flavored puffs snacks",
+   "brand": "Cheetos",
+   "serving_size": null,
+   "calories": 564.52,
+   "ingredients_verbatim": "carcentrate, monosodium glutamate, lactic acid, c tric a artficial color [yellow 6]), and salt. tural and artificial fiavors, salt, whey rotein 2% 0.8mg rotassium 110mg not a significant source of added sugars plano, tx 75024-4099 orth america, inc. in a serving of food contributes to a daily diet. 2,00 calories a day is used for general nutrition advice redients: enriched corn meal (corn meal, ferrous sitite, niacin, thiamin mononitrate, riboflavin, folic acı), able oil (corn, canola, and/r sunflower oil), ci 9ese ing (whey, chedd cheese [milk, cheese cultures, zymes], canola oi malodextrin [made fro 1 corm), cantains milk gredients. rito-lay, inc. ano, tx 75024-4099 2006 frito-lay fritolay smartlo ol",
+   "nutrition": {
+    "fat": 34.27,
+    "saturatedFat": 5.04,
+    "sodium": 0.95,
+    "carbs": 54.44,
+    "sugars": 4.03,
+    "protein": 6.05,
+    "fiber": null
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/002/840/024/2929/front_en.3.400.jpg",
+   "matched_off_code": "0028400242929",
+   "source": "off-search"
+  },
+  "cheetos-crunchy-flamin-hot-limon-cheese-flavored": {
+   "input": {
+    "barcode": "",
+    "name": "Cheetos Crunchy Flamin' Hot Limon Cheese Flavored Snacks",
+    "brand": "Cheetos"
+   },
+   "name": "Flamin' Hot Limon Crunchy Cheese Flavored Snacks",
+   "brand": "Cheetos",
+   "serving_size": "1 package (28.349 g)",
+   "calories": 160,
+   "ingredients_verbatim": "enriched corn meal (corn meal, ferrous sulfate, niacin, thiamin mononitrate, riboflavin, and folic acid), vegetable oil (corn, canola and/or sunflower oil), and 2% or less of the following: maltodextrin (made from corn), salt, potassium salt, sugar, monosodium glutamate, yeast extract, citric acid, artificial color (red 40 lake, yellow 6 lake, yellow 6, yellow 5), cheddar cheese (milk, cheese cultures, salt, enzymes), onion powder, whey, whey protein concentrate, garlic powder, natural flavors, buttermilk, sodium diacetate, disodium inosinate, and disodium guanylate.\n\ncontains milk ingredients.",
+   "nutrition": {
+    "fat": 11,
+    "saturatedFat": 1.5,
+    "sodium": 0.21,
+    "carbs": 15,
+    "sugars": null,
+    "protein": 1,
+    "fiber": 0.5
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/002/840/004/0129/front_en.92.400.jpg",
+   "matched_off_code": "0028400040129",
+   "source": "off-search"
+  },
+  "sunchips-harvest-cheddar-whole-grain-snacks": {
+   "input": {
+    "barcode": "",
+    "name": "SunChips Harvest Cheddar Whole Grain Snacks",
+    "brand": "SunChips"
+   },
+   "name": "Sunchips Harvest Cheddar 100% Whole Grain Snacks 7 Ounce Plastic Bag",
+   "brand": "Sun Chips",
+   "serving_size": "28.0 g",
+   "calories": 500,
+   "ingredients_verbatim": "Whole Corn, Sunflower And/Or Canola Oil, Whole Wheat, Brown Rice Flour, Whole Oat Flour, Sugar, Maltodextrin (Made From Corn), Salt, Cheddar Cheese (Milk, Cheese Cultures, Salt, Enzymes), Natural Flavors, Whey, Whey Protein Concentrate, Onion Powder, Romano Cheese (Cow'S Milk, Cheese Cultures, Salt, Enzymes), Buttermilk, Yeast Extract, Citric Acid, Paprika Extracts, Lactic Acid, Garlic Powder, Parmesan Cheese (Milk, Cheese Cultures, Salt, Enzymes), And Skim Milk. CONTAINS WHEAT AND MILK INGREDIENTS.",
+   "nutrition": {
+    "fat": 21.4,
+    "saturatedFat": 1.79,
+    "sodium": 714,
+    "carbs": 67.9,
+    "sugars": 7.14,
+    "protein": 7.14,
+    "fiber": 7.1
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "sunchips-garden-salsa-whole-grain-snacks": {
+   "input": {
+    "barcode": "",
+    "name": "SunChips Garden Salsa Whole Grain Snacks",
+    "brand": "SunChips"
+   },
+   "name": "Sunchips Garden Salsa 6.50Oz",
+   "brand": "SUN CHIPS",
+   "serving_size": "28.0 GRM",
+   "calories": 500,
+   "ingredients_verbatim": "WHOLE CORN, SUNFLOWER AND/OR CANOLA OIL, WHOLE WHEAT, BROWN RICE FLOUR, WHOLE OAT FLOUR, SUGAR, TOMATO POWDER, SALT, NATURAL FLAVORS, MALTODEXTRIN (MADE FROM CORN), CHEDDAR CHEESE (MILK, CHEESE CULTURES, SALT, ENZYMES), DEXTROSE, BUTTERMILK, ONION POWDER, WHEY, YEAST EXTRACT, ROMANO CHEESE (PART-SKIM COW'S MILK, CHEESE CULTURES, SALT, ENZYMES), WHEY PROTEIN CONCENTRATE, CORN OIL, SPICES (INCLUDING JALAPEO PEPPER), CITRIC ACID, PAPRIKA EXTRACTS, LACTIC ACID",
+   "nutrition": {
+    "fat": 21.4,
+    "saturatedFat": 1.79,
+    "sodium": 500,
+    "carbs": 67.9,
+    "sugars": 7.14,
+    "protein": 7.14,
+    "fiber": 7.1
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "kettle-brand-backyard-barbeque-potato-chips": {
+   "input": {
+    "barcode": "",
+    "name": "Kettle Brand Backyard Barbeque Potato Chips",
+    "brand": "Kettle Brand"
+   },
+   "name": "Potato Chips Backyard Barbeque",
+   "brand": "Kettle Brand",
+   "serving_size": "1 bag (28 g)",
+   "calories": 140,
+   "ingredients_verbatim": "potatoes, safflower and/or sunflower and/or canola oil, organic dried cane syrup, sugar, salt, maltodextrin, paprika, onion powder, yeast extract, tomato powder, torula yeast, garlic powder, chili pepper, natural flavor (including smoke), citric acid,",
+   "nutrition": {
+    "fat": 8,
+    "saturatedFat": 0.5,
+    "sodium": 0.12,
+    "carbs": 16,
+    "sugars": 1,
+    "protein": 2,
+    "fiber": 2
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/008/411/411/6642/front_en.5.400.jpg",
+   "matched_off_code": "0084114116642",
+   "source": "off-search"
+  },
+  "kettle-brand-jalapeno-potato-chips": {
+   "input": {
+    "barcode": "",
+    "name": "Kettle Brand Jalapeno Potato Chips",
+    "brand": "Kettle Brand"
+   },
+   "name": "Kettle Brand Potato Chips, Jalapeno Kettle Chips, 5 Oz",
+   "brand": "KETTLE FOODS",
+   "serving_size": "28.0 GRM",
+   "calories": 536,
+   "ingredients_verbatim": "INGREDIENTS: POTATOES, VEGETABLE OILS (CANOLA AND/OR SUNFLOWER AND/OR SAFFLOWER AND/OR SOYBEAN), SALT, SUGAR, ONION POWDER, SPICES, TORULA YEAST, YEAST EXTRACT, GARLIC POWDER, JALAPEO PEPPER POWDER, NATURAL FLAVORS, PARSLEY.",
+   "nutrition": {
+    "fat": 32.1,
+    "saturatedFat": 3.57,
+    "sodium": 607,
+    "carbs": 53.6,
+    "sugars": 3.57,
+    "protein": 7.14,
+    "fiber": 7.1
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "cape-cod-original-kettle-cooked-potato-chips": {
+   "input": {
+    "barcode": "",
+    "name": "Cape Cod Original Kettle Cooked Potato Chips",
+    "brand": "Cape Cod"
+   },
+   "name": "Original Sea Salt Kettle Cooked Potato Chips",
+   "brand": "Cape Cod",
+   "serving_size": "1 serving (28 g)",
+   "calories": 140,
+   "ingredients_verbatim": "potatoes, vegetable oil (contains one or more of the following: canola oil, safflower oil and/or sunflower oil), salt,",
+   "nutrition": {
+    "fat": 8,
+    "saturatedFat": 0.5,
+    "sodium": 0.12,
+    "carbs": 16,
+    "sugars": 0,
+    "protein": 2,
+    "fiber": 2
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/002/068/500/1642/front_en.36.400.jpg",
+   "matched_off_code": "0020685001642",
+   "source": "off-search"
+  },
+  "cape-cod-reduced-fat-original-kettle-cooked-pota": {
+   "input": {
+    "barcode": "",
+    "name": "Cape Cod Reduced Fat Original Kettle Cooked Potato Chips",
+    "brand": "Cape Cod"
+   },
+   "name": "Cape Cod, Kettle Cooked Potato Chips, Original",
+   "brand": "CAPE COD",
+   "serving_size": "53.20000076293945 g",
+   "calories": 508,
+   "ingredients_verbatim": "POTATOES, CANOLA OIL, SALT.",
+   "nutrition": {
+    "fat": 28.2,
+    "saturatedFat": 1.88,
+    "sodium": 526,
+    "carbs": 58.3,
+    "sugars": 0.0,
+    "protein": 7.52,
+    "fiber": 3.8
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "takis-fuego-rolled-tortilla-chips": {
+   "input": {
+    "barcode": "",
+    "name": "Takis Fuego Rolled Tortilla Chips",
+    "brand": "Takis"
+   },
+   "name": "Takis crunchy rolled tortilla chips fuego flavor",
+   "brand": "Bimbo",
+   "serving_size": null,
+   "calories": 500,
+   "ingredients_verbatim": "Corn masa flour, vegetable oil (palm, soybean, canola, rice bran oil), iodized salt, maltodextrin, citric acid, sugar, monosodium glutamate, hydrolyzed soy protein, onion powder, yeast extract, artificial color (red 40 lake, yellow 6 lake), natural and artificial flavors, sodium bicarbonate, soybean oil, chili pepper, disodium inosinate, disodium guanylate, TBHQ.",
+   "nutrition": {
+    "fat": 28.57,
+    "saturatedFat": 7.14,
+    "sodium": 1.46,
+    "carbs": 60.71,
+    "sugars": 3.57,
+    "protein": 7.14,
+    "fiber": null
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/075/752/802/9753/front_en.4.400.jpg",
+   "matched_off_code": "0757528029753",
+   "source": "off-search"
+  },
+  "pringles-original-potato-crisps": {
+   "input": {
+    "barcode": "",
+    "name": "Pringles Original Potato Crisps",
+    "brand": "Pringles"
+   },
+   "name": "Original Potato Crisps",
+   "brand": "Pringles",
+   "serving_size": "1 serving (28 g)",
+   "calories": 150,
+   "ingredients_verbatim": "DRIED POTATOES, VEGETABLE OIL (CORN, COTTONSEED, HIGH OLEIC SOYBEAN, SUNFLOWER OIL), DEGERMINATED YELLOW CORN FLOUR, CORNSTARCH, RICE FLOUR, MALTODEXTRIN, MONO -  AND DIGLYCERIDES, SALT, WHEAT STARCH.",
+   "nutrition": {
+    "fat": 8.68,
+    "saturatedFat": 0.84,
+    "sodium": 0.11,
+    "carbs": 14,
+    "sugars": 0.25,
+    "protein": 1.74,
+    "fiber": 1.15
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/003/800/013/8416/front_en.140.400.jpg",
+   "matched_off_code": "0038000138416",
+   "source": "off-search"
+  },
+  "ritz-garlic-butter-crackers": {
+   "input": {
+    "barcode": "",
+    "name": "Ritz Garlic Butter Crackers",
+    "brand": "Ritz"
+   },
+   "name": "Nabisco Ritz Crackers Garlic Butter 12X13.7 Oz",
+   "brand": "NABISCO RITZ",
+   "serving_size": "16.0 g",
+   "calories": 500,
+   "ingredients_verbatim": "INGREDIENTS: UNBLEACHED ENRICHED FLOUR (WHEAT FLOUR, NIACIN, REDUCED IRON, THIAMINE MONONITRATE {VITAMIN B1}, RIBOFLAVIN {VITAMIN B2}, FOLIC ACID), CANOLA OIL, PALM OIL, SUGAR, HIGH FRUCTOSE CORN SYRUP, LEAVENING (CALCIUM PHOSPHATE AND/OR BAKING SODA), SALT, GARLIC POWDER, SOY LECITHIN, NATURAL FLAVOR. SEEDS, POPPY.",
+   "nutrition": {
+    "fat": 25.0,
+    "saturatedFat": 6.25,
+    "sodium": 656,
+    "carbs": 62.5,
+    "sugars": 6.25,
+    "protein": 6.25,
+    "fiber": null
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "ritz-fresh-stacks-original-crackers": {
+   "input": {
+    "barcode": "",
+    "name": "Ritz Fresh Stacks Original Crackers",
+    "brand": "Ritz"
+   },
+   "name": "fresh stacks the original",
+   "brand": "Ritz",
+   "serving_size": "5 crackers (16 g) (16 g)",
+   "calories": 80,
+   "ingredients_verbatim": "unbleached enriched flour (wheat flour, niacin, reduced iron, thiamine mononitrate {vitamin b1}, riboflavin {vitamin b2}, folic acid), canola oil, palm oil, sugar, salt, leavening (calcium phosphate and/or baking soda), high fructose corn syrup, soy lecithin, natural flavor,",
+   "nutrition": {
+    "fat": 4.5,
+    "saturatedFat": 1.5,
+    "sodium": 0.13,
+    "carbs": 10,
+    "sugars": 1,
+    "protein": 1,
+    "fiber": 0
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/004/400/003/1138/front_en.75.400.jpg",
+   "matched_off_code": "0044000031138",
+   "source": "off-search"
+  },
+  "wheat-thins-reduced-fat-whole-grain-wheat-cracke": {
+   "input": {
+    "barcode": "",
+    "name": "Wheat Thins Reduced Fat Whole Grain Wheat Crackers",
+    "brand": "Wheat Thins"
+   },
+   "name": "Thin Wheats Reduced Fat Crackers, Thin Wheats",
+   "brand": "MEIJER",
+   "serving_size": "29.0 GRM",
+   "calories": 414,
+   "ingredients_verbatim": "WHOLE WHEAT FLOUR, SUGAR, VEGETABLE OIL (HIGH OLEIC SUNFLOWER OIL AND/OR SOYBEAN OIL WITH TBHQ AND CITRIC ACID FOR FRESHNESS), CORN STARCH, CONTAINS LESS THAN 2% OF SALT, LEAVENING (CALCIUM PHOSPHATE, BAKING SODA), SODIUM SULFITE, BARLEY MALT EXTRACT.",
+   "nutrition": {
+    "fat": 12.1,
+    "saturatedFat": 0.0,
+    "sodium": 690,
+    "carbs": 75.9,
+    "sugars": 10.3,
+    "protein": 6.9,
+    "fiber": 10.3
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "triscuit-cracked-pepper-and-olive-oil-crackers": {
+   "input": {
+    "barcode": "",
+    "name": "Triscuit Cracked Pepper and Olive Oil Crackers",
+    "brand": "Triscuit"
+   },
+   "name": "Nabisco triscuit crackers cracked pepper and olive oil 1x9 oz",
+   "brand": null,
+   "serving_size": "6 crackers (28 g) (28 g)",
+   "calories": 120,
+   "ingredients_verbatim": "Whole grain wheat, vegetable oil (soybean and/or canola oil), maltodextrin, salt, black pepper, onion powder, garlic powder, olive oil, citric acid, natural flavor (contains celery).",
+   "nutrition": {
+    "fat": 3.5,
+    "saturatedFat": 0.5,
+    "sodium": 0.14,
+    "carbs": 20,
+    "sugars": 0,
+    "protein": 3,
+    "fiber": 3
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/004/400/002/7971/front_en.3.400.jpg",
+   "matched_off_code": "0044000027971",
+   "source": "off-search"
+  },
+  "club-original-crackers": {
+   "input": {
+    "barcode": "",
+    "name": "Club Original Crackers",
+    "brand": "Club"
+   },
+   "name": "Original club crackers four",
+   "brand": "Keebler",
+   "serving_size": null,
+   "calories": 500,
+   "ingredients_verbatim": "Enriched flour (wheat flour, niacin, reduced iron, vitamin B₁ (thiamin mononitrate], vitamin B2 [riboflavin), folic acid), soybean oil (with TBHQ for freshness), sugar. Contains 2% or less of salt, high fructose corn syrup, leavening (baking soda, sodium acid pyrophosphate, monocalcium phosphate), corn syrup, soy lecithin. CONTAINS WHEAT AND SOY INGREDIENTS.",
+   "nutrition": {
+    "fat": 21.43,
+    "saturatedFat": 0,
+    "sodium": 0.89,
+    "carbs": 64.29,
+    "sugars": 7.14,
+    "protein": 7.14,
+    "fiber": null
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/003/010/010/2557/front_en.3.400.jpg",
+   "matched_off_code": "0030100102557",
+   "source": "off-search"
+  },
+  "town-house-original-crackers": {
+   "input": {
+    "barcode": "",
+    "name": "Town House Original Crackers",
+    "brand": "Town House"
+   },
+   "name": "Crackers - Town House Original",
+   "brand": "Kellogg's",
+   "serving_size": "6 craquelins (20 g)",
+   "calories": 110,
+   "ingredients_verbatim": "wheat flour, vegetable oil, sugar, salt, corn syrup, sodium bicarbonate, calcium acid pyrophosphate, corn starch, monocalcium phosphate, ammonium bicarbonate, protease, soy lecithin, tbhq, sulphites.\ncontains ingredients from wheat, soy and sulphites.",
+   "nutrition": {
+    "fat": 6,
+    "saturatedFat": 1,
+    "sodium": 0.18,
+    "carbs": 12,
+    "sugars": 2,
+    "protein": 1,
+    "fiber": 0
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/006/410/012/6121/front_en.7.400.jpg",
+   "matched_off_code": "0064100126121",
+   "source": "off-search"
+  },
+  "town-house-pita-sea-salt-crackers": {
+   "input": {
+    "barcode": "",
+    "name": "Town House Pita Sea Salt Crackers",
+    "brand": "Town House"
+   },
+   "name": "Kellogg'S Town House Pita Cracker Sea Salt Pita Crisp 9.5Oz",
+   "brand": "Kellogg's",
+   "serving_size": "15.0 GRM",
+   "calories": 467,
+   "ingredients_verbatim": "INGREDIENTS: ENRICHED FLOUR (wheat flour, niacin, reduced iron, vitamin B1 [thiamin mononitrate], vitamin B2 [riboflavin], folic acid), VEGETABLE OIL (soybean, canola and/or sunflower with TBHQ for freshness), RICE FLOUR, SUGAR, OAT FIBER, SEA SALT.  CONTAINS 2% OR LESS OF yeast, whey, soy lecithin.",
+   "nutrition": {
+    "fat": 16.7,
+    "saturatedFat": 0.0,
+    "sodium": 933,
+    "carbs": 73.3,
+    "sugars": 6.67,
+    "protein": 6.67,
+    "fiber": 6.7
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "cheez-it-extra-toasty-baked-snack-crackers": {
+   "input": {
+    "barcode": "",
+    "name": "Cheez-It Extra Toasty Baked Snack Crackers",
+    "brand": "Cheez-It"
+   },
+   "name": "Cheez-It Extra Toasty Original Baked Snack Crackers",
+   "brand": "Cheez-It",
+   "serving_size": "27 crackers (30 g)",
+   "calories": 150,
+   "ingredients_verbatim": "Enriched flour (wheat flour, niacin, reduced iron, vitamin b1 [thiamin mononitrate], vitamin b2 [riboflavin], folic acid), vegetable oil (soybean and palm oil with tbhq for freshness), cheese made with skim milk (skim milk, whey protein, cheese cultures, salt, enzymes, annatto extract color). contains 2% or less of salt, dextrose, paprika, yeast, paprika extract color, soy lecithin.",
+   "nutrition": {
+    "fat": 8,
+    "saturatedFat": 1.5,
+    "sodium": 0.23,
+    "carbs": 17,
+    "sugars": 0,
+    "protein": 3,
+    "fiber": 1
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/002/410/010/4437/front_en.49.400.jpg",
+   "matched_off_code": "0024100104437",
+   "source": "off-search"
+  },
+  "cheez-it-white-cheddar-baked-snack-crackers": {
+   "input": {
+    "barcode": "",
+    "name": "Cheez-It White Cheddar Baked Snack Crackers",
+    "brand": "Cheez-It"
+   },
+   "name": "White Cheddar Baked Snack Crackers",
+   "brand": "Cheez-It",
+   "serving_size": "26 crackers (30 g)",
+   "calories": 150,
+   "ingredients_verbatim": "Enriched flour (wheat flour, niacin, reduced iron, vitamin B1 [thiamin mononitrate], vitamin B2 [riboflavin], folic acid), vegetable oil (soybean and palm oil with TBHQ for freshness), white cheddar cheese (milk, cheese cultures, salt, enzymes), salt, whey, cheddar cheese (milk, cheese cultures, salt, enzymes), monosodium glutamate, whey protein concentrate, butter (cream, salt), baking soda, yeast, natural and artificial flavor, lactic acid, calcium lactate, disodium phosphate, citric acid, turmeric extract color, annatto extract color, soy lecithin.",
+   "nutrition": {
+    "fat": 7,
+    "saturatedFat": 1.5,
+    "sodium": 0.21,
+    "carbs": 18,
+    "sugars": 0,
+    "protein": 3,
+    "fiber": 1
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/002/410/078/9382/front_en.51.400.jpg",
+   "matched_off_code": "0024100789382",
+   "source": "off-search"
+  },
+  "goldfish-colors-cheddar-crackers": {
+   "input": {
+    "barcode": "",
+    "name": "Goldfish Colors Cheddar Crackers",
+    "brand": "Goldfish"
+   },
+   "name": "Goldfish colors cheddar crackers",
+   "brand": null,
+   "serving_size": "Amount per serving (26 g)",
+   "calories": 120,
+   "ingredients_verbatim": "Made with smiles and enriched wheat flour (flour, niacin, reduced iron, thiamine mononitrate, riboflavin, folic acid), cheddar cheese ([cultured milk, salt, enzymes], annatto), canola and/or sunflower oil, salt, contains 2% or less of: yeast, sugar, autolyzed yeast extract, spices, celery, onion powder, baking soda, monocalcium phosphate, colors (beet, huito, and watermelon juice concentrates; paprika and turmeric extracts). contains: wheat, milk.",
+   "nutrition": {
+    "fat": 4.5,
+    "saturatedFat": 1,
+    "sodium": 0.19,
+    "carbs": 17,
+    "sugars": 0,
+    "protein": 3,
+    "fiber": 0.99
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/001/410/009/6597/front_en.4.400.jpg",
+   "matched_off_code": "0014100096597",
+   "source": "off-search"
+  },
+  "goldfish-parmesan-crackers": {
+   "input": {
+    "barcode": "",
+    "name": "Goldfish Parmesan Crackers",
+    "brand": "Goldfish"
+   },
+   "name": "Goldfish Crackers Mix, Cheddar, Zesty Cheddar, Parmesan",
+   "brand": "Goldfish",
+   "serving_size": "Amount per serving (30 g)",
+   "calories": 140,
+   "ingredients_verbatim": "Made with smiles and enriched wheat flour (flour, niacin, reduced iron, thiamine mononitrate, riboflavin, folic acid), canola and/or sunflower oil, cheddar cheese ([cultured milk, salt, enzymes], annatto), parmesan cheese (milk, cultures, salt, enzymes), salt, contains 2% or less of: yeast, sugar, onion powder, autolyzed yeast extract, butter, annatto extract (color), paprika, spices, celery, baking soda, monocalcium phosphate.contains: wheat, milk.",
+   "nutrition": {
+    "fat": 4.5,
+    "saturatedFat": 1.0,
+    "sodium": 0.24,
+    "carbs": 20,
+    "sugars": 1.0,
+    "protein": 4,
+    "fiber": 0.99
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/001/410/004/9159/front_en.8.400.jpg",
+   "matched_off_code": "0014100049159",
+   "source": "off-search"
+  },
+  "simple-mills-almond-flour-sea-salt-crackers": {
+   "input": {
+    "barcode": "",
+    "name": "Simple Mills Almond Flour Sea Salt Crackers",
+    "brand": "Simple Mills"
+   },
+   "name": "Almond Flour Crackers - Fine Ground Sea Salt",
+   "brand": "Simple Mills",
+   "serving_size": "17 crackers (30 g)",
+   "calories": 150,
+   "ingredients_verbatim": "Nut & Seed Flour Blend (almonds, sunflower seeds, flax seeds), Tapioca Starch, Cassava Flour, Organic Sunflower Oil, Sea Salt, Organic Onion, Organic Garlic, Rosemary Extract.",
+   "nutrition": {
+    "fat": 9,
+    "saturatedFat": 0.5,
+    "sodium": 0.23,
+    "carbs": 17,
+    "sugars": 0,
+    "protein": 3,
+    "fiber": 2
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/085/606/900/5957/front_en.60.400.jpg",
+   "matched_off_code": "0856069005957",
+   "source": "off-search"
+  },
+  "mary-s-gone-crackers-super-seed-classic-crackers": {
+   "input": {
+    "barcode": "",
+    "name": "Mary's Gone Crackers Super Seed Classic Crackers",
+    "brand": "Mary's Gone Crackers"
+   },
+   "name": "Mary'S Gone Crackers, Minis Crackers, Vanilla, Vanilla",
+   "brand": "MARY'S GONE CRACKERS",
+   "serving_size": "30.0 g",
+   "calories": 433,
+   "ingredients_verbatim": "MARY'S ORGANIC VANILLA GLUTEN FREE BLEND (BROWN RICE FLOUR*, SORGHUM FLOUR*, COCONUT FLOUR*, TAPIOCA STARCH*, WHOLE GRAIN QUINOA FLAKES*, POTATO FLOUR*, POTATO STARCH*, AMARANTH FLOUR*), PALM FRUIT OIL*, FILTERED WATER, COCONUT PALM SUGAR* (FROM COCONUT PALM FLOWER NECTAR), TAPIOCA SYRUP*, VANILLA EXTRACT*, COCONUT OIL*, CHIA SEEDS*, MOLASSES*, RICE BRAN EXTRACT*, BAKING SODA, BAKING POWDER (SODIUM ACID PYROPHOSPHATE, SODIUM BICARBONATE, NON-GMO CORN STARCH AND MONOCALCIUM PHOSPHATE), SEA SALT AND XANTHAN GUM.",
+   "nutrition": {
+    "fat": 20.0,
+    "saturatedFat": 11.7,
+    "sodium": 667,
+    "carbs": 66.7,
+    "sugars": 16.7,
+    "protein": 3.33,
+    "fiber": 6.7
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "back-to-nature-classic-round-crackers": {
+   "input": {
+    "barcode": "",
+    "name": "Back to Nature Classic Round Crackers",
+    "brand": "Back to Nature"
+   },
+   "name": "CLASSIC ROUND CRACKERS",
+   "brand": "BACK TO NATURE",
+   "serving_size": "5 crackers (15 g)",
+   "calories": 70,
+   "ingredients_verbatim": "WHEAT FLOUR, SAFFLOWER OIL, CANE SUGAR, BROWN RICE SYRUP, CONTAINS 2% OR LESS THAN OF LEAVENING (BAKING SODA, MONOCALCIUM PHOSPHATE MONOHYDRATE, AMMONIUM BICARBONATE), SEA SALT, SOY LECITHIN, ENZYMES",
+   "nutrition": {
+    "fat": 2,
+    "saturatedFat": 0,
+    "sodium": 0.11,
+    "carbs": 11,
+    "sugars": 1,
+    "protein": 1,
+    "fiber": 0
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/081/989/801/0103/front_en.32.400.jpg",
+   "matched_off_code": "0819898010103",
+   "source": "off-search"
+  },
+  "annie-s-organic-cheddar-bunnies-crackers": {
+   "input": {
+    "barcode": "",
+    "name": "Annie's Organic Cheddar Bunnies Crackers",
+    "brand": "Annie's"
+   },
+   "name": "Organic extra cheesy cheddar bunnies snack crackers",
+   "brand": "Annie's Homegrown",
+   "serving_size": "48 crackers (30 g) (30 g)",
+   "calories": 160,
+   "ingredients_verbatim": "Organic wheat flour, organic whole wheat flour, organic expeller-pressed sunflower oil, organic cheddar cheese (organic cultured pasteurized milk, salt, non-animal enzymes), organic whey, salt, organic cheddar cheese (pasteurized organic milk, cheese cultures, sea salt, non-animal enzymes), organic butter (organic cream, salt), leavening (baking soda, monocalcium phosphate), organic yeast, organic paprika, cultured organic milk, organic nonfat dry milk, organic annatto (for color), organic vinegar, cultured organic whey, organic onion powder , organic celery seed powder, mixed tocopherols (vitamin e) to protect flavor, enzymes.",
+   "nutrition": {
+    "fat": 8,
+    "saturatedFat": 1,
+    "sodium": 0.2,
+    "carbs": 18,
+    "sugars": 0,
+    "protein": 3,
+    "fiber": 0.99
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/001/356/232/0509/front_en.4.400.jpg",
+   "matched_off_code": "0013562320509",
+   "source": "off-search"
+  },
+  "carr-s-table-water-crackers": {
+   "input": {
+    "barcode": "",
+    "name": "Carr's Table Water Crackers",
+    "brand": "Carr's"
+   },
+   "name": "TABLE WATER CRACKERS",
+   "brand": "Carr's",
+   "serving_size": "6 craquelins (20 g)",
+   "calories": 80,
+   "ingredients_verbatim": "ENRICHED FLOUR (WHEAT FLOUR, CALCIUM NIACIN, IRON, THIAMIN MONONITRATE MITAMIN B1 RIBOFLAVIN MITAMIN 82, FOLIC ACID, PALM OIL SALT",
+   "nutrition": {
+    "fat": 1.5,
+    "saturatedFat": 0.5,
+    "sodium": 0.11,
+    "carbs": 15,
+    "sugars": 0,
+    "protein": 2,
+    "fiber": 1
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/005/929/057/3220/front_en.51.400.jpg",
+   "matched_off_code": "0059290573220",
+   "source": "off-search"
+  },
+  "wasa-multi-grain-crispbread": {
+   "input": {
+    "barcode": "",
+    "name": "Wasa Multi Grain Crispbread",
+    "brand": "Wasa"
+   },
+   "name": "Multi Grain Swedish Style Crispbread, Multi Grain",
+   "brand": "WASA",
+   "serving_size": "14.0 GRM",
+   "calories": 250,
+   "ingredients_verbatim": "WHOLE GRAIN RYE FLOUR, RYE SOURDOUGH, OAT FLAKES, WHOLE GRAIN WHEAT FLOUR, WHOLE GRAIN OAT FLOUR, WHOLE GRAIN BARLEY FLOUR, YEAST, SALT, BARLEY MALT EXTRACT, SUNFLOWER LECITHIN*.",
+   "nutrition": {
+    "fat": 0.0,
+    "saturatedFat": 0.0,
+    "sodium": 464,
+    "carbs": 57.1,
+    "sugars": 0.0,
+    "protein": 14.3,
+    "fiber": 21.4
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "premium-original-saltine-crackers": {
+   "input": {
+    "barcode": "",
+    "name": "Premium Original Saltine Crackers",
+    "brand": "Premium"
+   },
+   "name": "Premium Original Saltine Crackers",
+   "brand": "Nabisco",
+   "serving_size": "5 crackers (16 g)",
+   "calories": 70,
+   "ingredients_verbatim": "Unbleached enriched flour (wheat flour, niacin, reduced iron, thiamine mononitrate {vitamin b1}, riboflavin {vitamin b2}, folic acid), soybean oil, partially hydrogenated cottonseed oil, sea salt, salt, malted barley flour, baking soda, yeast.",
+   "nutrition": {
+    "fat": 1.5,
+    "saturatedFat": null,
+    "sodium": 0.14,
+    "carbs": 12,
+    "sugars": null,
+    "protein": 1,
+    "fiber": null
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/004/400/000/4644/front_en.4.400.jpg",
+   "matched_off_code": "0044000004644",
+   "source": "off-search"
+  },
+  "good-thins-simply-salt-corn-rice-snacks": {
+   "input": {
+    "barcode": "",
+    "name": "Good Thins Simply Salt Corn & Rice Snacks",
+    "brand": "Good Thins"
+   },
+   "name": "Good Thins Crackers Rice Thins Original 1X3.5 Oz",
+   "brand": "GOOD THINS",
+   "serving_size": "31.0 g",
+   "calories": 419,
+   "ingredients_verbatim": "INGREDIENTS: WHITE RICE FLOUR, HIGH OLEIC SAFFLOWER OIL, SALT. SOY, SESAME SEED, TREE NUTS.",
+   "nutrition": {
+    "fat": 4.84,
+    "saturatedFat": 0.0,
+    "sodium": 274,
+    "carbs": 83.9,
+    "sugars": 0.0,
+    "protein": 6.45,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "crunchmaster-multi-grain-sea-salt-crackers": {
+   "input": {
+    "barcode": "",
+    "name": "Crunchmaster Multi-Grain Sea Salt Crackers",
+    "brand": "Crunchmaster"
+   },
+   "name": "MULTI-GRAIN SEA SALT CRUNCHY BAKED RICE CRACKERS",
+   "brand": "CRUNCHMASTER",
+   "serving_size": "15 crackers (30 g)",
+   "calories": 130,
+   "ingredients_verbatim": "BROWN RICE FLOUR, WHOLE GRAIN YELLOW CORNMEAL, POTATO STARCH, SESAME SEEDS, OLIVE OIL, CANE SUGAR, FLAX SEEDS, OAT FIBER, SEA SALT. CONTAINS: SESAME.",
+   "nutrition": {
+    "fat": 3.5,
+    "saturatedFat": 0.5,
+    "sodium": 0.15,
+    "carbs": 23,
+    "sugars": 2,
+    "protein": 2,
+    "fiber": 2
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/087/989/000/2025/front_en.49.400.jpg",
+   "matched_off_code": "0879890002025",
+   "source": "off-search"
+  },
+  "vital-farms-organic-pasture-raised-large-eggs": {
+   "input": {
+    "barcode": "",
+    "name": "Vital Farms Organic Pasture-Raised Large Eggs",
+    "brand": "Vital Farms"
+   },
+   "name": "Vital Farms Unsalted Pasture- Raised Butter",
+   "brand": "Vital Farms",
+   "serving_size": "15.0 g",
+   "calories": 110,
+   "ingredients_verbatim": "Pasteurized Cream ( Milk).",
+   "nutrition": {
+    "fat": 12.0,
+    "saturatedFat": 8.0,
+    "sodium": null,
+    "carbs": null,
+    "sugars": null,
+    "protein": 0.0,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "vital-farms-pasture-raised-extra-large-eggs": {
+   "input": {
+    "barcode": "",
+    "name": "Vital Farms Pasture-Raised Extra Large Eggs",
+    "brand": "Vital Farms"
+   },
+   "name": "Vital Farms Unsalted Pasture- Raised Butter",
+   "brand": "Vital Farms",
+   "serving_size": "15.0 g",
+   "calories": 110,
+   "ingredients_verbatim": "Pasteurized Cream ( Milk).",
+   "nutrition": {
+    "fat": 12.0,
+    "saturatedFat": 8.0,
+    "sodium": null,
+    "carbs": null,
+    "sugars": null,
+    "protein": 0.0,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "pete-gerry-s-organic-free-range-extra-large-eggs": {
+   "input": {
+    "barcode": "",
+    "name": "Pete & Gerry's Organic Free-Range Extra Large Eggs",
+    "brand": "Pete & Gerry's"
+   },
+   "name": "Organic Grade A Free Range Large Eggs",
+   "brand": "WELLSLEY FARMS",
+   "serving_size": "50.0 GRM",
+   "calories": 140,
+   "ingredients_verbatim": "LARGE ORGANIC EGGS.",
+   "nutrition": {
+    "fat": 10.0,
+    "saturatedFat": 3.0,
+    "sodium": 140,
+    "carbs": 0.0,
+    "sugars": 0.0,
+    "protein": 12.0,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "pete-gerry-s-organic-pasture-raised-eggs": {
+   "input": {
+    "barcode": "",
+    "name": "Pete & Gerry's Organic Pasture-Raised Eggs",
+    "brand": "Pete & Gerry's"
+   },
+   "name": "Organic Pasture Raised Eggs",
+   "brand": "URBAN REMEDY",
+   "serving_size": "88.0 g",
+   "calories": 159,
+   "ingredients_verbatim": "HARD-BOILED PASTURE-RAISED EGG*",
+   "nutrition": {
+    "fat": 9.09,
+    "saturatedFat": 3.41,
+    "sodium": 136,
+    "carbs": 1.14,
+    "sugars": 0.0,
+    "protein": 13.6,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "nellie-s-free-range-large-white-eggs": {
+   "input": {
+    "barcode": "",
+    "name": "Nellie's Free Range Large White Eggs",
+    "brand": "Nellie's"
+   },
+   "name": "Grade A Free Range Large Eggs",
+   "brand": "WELLSLEY FARMS",
+   "serving_size": "50.0 GRM",
+   "calories": 140,
+   "ingredients_verbatim": "LARGE EGGS.",
+   "nutrition": {
+    "fat": 10.0,
+    "saturatedFat": 3.0,
+    "sodium": 140,
+    "carbs": 0.0,
+    "sugars": 0.0,
+    "protein": 12.0,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "nellie-s-free-range-organic-large-brown-eggs": {
+   "input": {
+    "barcode": "",
+    "name": "Nellie's Free Range Organic Large Brown Eggs",
+    "brand": "Nellie's"
+   },
+   "name": "Organic Free Range Grade A Large Brown Eggs",
+   "brand": "MEMBER'S MARK",
+   "serving_size": "50.0 g",
+   "calories": 140,
+   "ingredients_verbatim": "FREE RANGE ORGANIC LARGE BROWN EGGS.",
+   "nutrition": {
+    "fat": 10.0,
+    "saturatedFat": 3.0,
+    "sodium": 140,
+    "carbs": 0.0,
+    "sugars": 0.0,
+    "protein": 12.0,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "eggland-s-best-cage-free-large-brown-eggs": {
+   "input": {
+    "barcode": "",
+    "name": "Eggland's Best Cage Free Large Brown Eggs",
+    "brand": "Eggland's Best"
+   },
+   "name": "Grade A Large Cage Free Brown Eggs",
+   "brand": "MEMBER'S MARK",
+   "serving_size": "50.0 g",
+   "calories": 140,
+   "ingredients_verbatim": "CAGE FREE LARGE BROWN EGGS.",
+   "nutrition": {
+    "fat": 10.0,
+    "saturatedFat": 3.0,
+    "sodium": 140,
+    "carbs": 0.0,
+    "sugars": 0.0,
+    "protein": 12.0,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "eggland-s-best-organic-large-brown-eggs": {
+   "input": {
+    "barcode": "",
+    "name": "Eggland's Best Organic Large Brown Eggs",
+    "brand": "Eggland's Best"
+   },
+   "name": "Organic Large Brown Eggs",
+   "brand": "MEMBER'S MARK",
+   "serving_size": "50.0 g",
+   "calories": 140,
+   "ingredients_verbatim": "LARGE ORGANIC BROWN EGGS.",
+   "nutrition": {
+    "fat": 10.0,
+    "saturatedFat": 3.0,
+    "sodium": 140,
+    "carbs": 0.0,
+    "sugars": 0.0,
+    "protein": 12.0,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "eggland-s-best-classic-extra-large-white-eggs": {
+   "input": {
+    "barcode": "",
+    "name": "Eggland's Best Classic Extra Large White Eggs",
+    "brand": "Eggland's Best"
+   },
+   "name": "Grade A Extra Large White Eggs",
+   "brand": "HANNAFORD",
+   "serving_size": "56.0 g",
+   "calories": 143,
+   "ingredients_verbatim": "EGGS.",
+   "nutrition": {
+    "fat": 8.93,
+    "saturatedFat": 3.57,
+    "sodium": 143,
+    "carbs": 0.0,
+    "sugars": 0.0,
+    "protein": 12.5,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "happy-egg-organic-free-range-large-brown-eggs": {
+   "input": {
+    "barcode": "",
+    "name": "Happy Egg Organic Free Range Large Brown Eggs",
+    "brand": "Happy Egg"
+   },
+   "name": "Organic Free Range Grade A Large Brown Eggs",
+   "brand": "MEMBER'S MARK",
+   "serving_size": "50.0 g",
+   "calories": 140,
+   "ingredients_verbatim": "FREE RANGE ORGANIC LARGE BROWN EGGS.",
+   "nutrition": {
+    "fat": 10.0,
+    "saturatedFat": 3.0,
+    "sodium": 140,
+    "carbs": 0.0,
+    "sugars": 0.0,
+    "protein": 12.0,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "happy-egg-free-range-blue-and-brown-heritage-bre": {
+   "input": {
+    "barcode": "",
+    "name": "Happy Egg Free Range Blue and Brown Heritage Breed Eggs",
+    "brand": "Happy Egg"
+   },
+   "name": "Free Range Brown Grade A Large Eggs",
+   "brand": "MEMBER'S MARK",
+   "serving_size": "50.0 g",
+   "calories": 140,
+   "ingredients_verbatim": "FREE RANGE LARGE BROWN EGGS.",
+   "nutrition": {
+    "fat": 10.0,
+    "saturatedFat": 3.0,
+    "sodium": 140,
+    "carbs": 0.0,
+    "sugars": 0.0,
+    "protein": 12.0,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "bob-evans-100-liquid-egg-whites": {
+   "input": {
+    "barcode": "",
+    "name": "Bob Evans 100% Liquid Egg Whites",
+    "brand": "Bob Evans"
+   },
+   "name": "Bob Evans, Sausage Egg & Cheese Croissant",
+   "brand": "BOB EVANS",
+   "serving_size": "103.0 g",
+   "calories": 320,
+   "ingredients_verbatim": "CROISSANT (ENRICHED FLOUR [WHEAT FLOUR, MALTED BARLEY FLOUR, NIACIN, REDUCED IRON, THIAMINE MONONITRATE, RIBOFLAVIN, FOLIC ACID], WATER, MARGARINE [PALM OIL, WATER, SOYBEAN OIL, SUGAR, SOY LECITHIN, MONO- & DIGLYCERIDES, POTASSIUM SORBATE [PRESERVATIVE], CITRIC ACID [PRESERVATIVE], ARTIFICIAL FLAVOR, BETA-CAROTENE COLOR, VITAMIN A PALMITATE], HIGH FRUCTOSE CORN SYRUP, CONTAINS LESS THAN 2% OF THE FOLLOWING: YEAST, SALT, WHEY [MILK], BUTTER WITH LACTIC ACID [PASTEURIZED CREAM, LACTIC ACID], CALCIUM PROPIONATE [PRESERVATIVE], WHEAT FLOUR, DEXTROSE, CALCIUM SULFATE, DATEM, SUGAR, MALTODEXTRIN, ENZYMES, AMMONIUM SULFATE, ASCORBIC ACID [DOUGH CONDITIONER], NATURAL & ARTIFICIAL FLAVOR, HIGH OLEIC CANOLA OIL, AZODICARBONAMIDE, POTATO STARCH, ACACIA GUM, CAPRIC/CAPRYLIC TRIGLYCERIDES), SAUSAGE (PORK, WATER, CONTAINS 2% OR LESS OF THE FOLLOWING: SALT, SPICES, SUGAR, MONOSODIUM GLUTAMATE, CARAMEL COLOR), EGG PATTY: WHOLE EGGS, WHEY, SKIM MILK, SOYBEAN OIL, CONTAINS LESS THAN 2% OF THE FOLLOWING: WATER, DICALCIUM PHOSPHATE DIHYDRATE, ARTIFICIAL BUTTER FLAVOR, (PARTIALLY HYDROGENATED SOYBEAN AND COTTONSEED OIL, FLAVOR, MEDIUM CHAIN TRIGLYCERIDES), NATURAL BUTTER FLAVOR, SALT, SODIUM BICARBONATE, XANTHAN GUM, CITRIC ACID, WHITE PEPPER. PASTEURIZED PROCESS CHEDDAR CHEESE (CHEDDAR CHEESE [PASTEURIZED MILK, CHEESE CULTURE, SALT, ENZYMES], WATER, SODIUM PHOSPHATE, MILKFAT, SALT, SODIUM HEXAMETAPHOSPHATE, SORBIC ACID [PRESERVATIVE], APO CAROTENAL [COLOR]).",
+   "nutrition": {
+    "fat": 23.3,
+    "saturatedFat": 9.71,
+    "sodium": 592,
+    "carbs": 17.5,
+    "sugars": 2.91,
+    "protein": 10.7,
+    "fiber": 1.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "365-by-whole-foods-market-cage-free-large-brown-": {
+   "input": {
+    "barcode": "",
+    "name": "365 by Whole Foods Market Cage-Free Large Brown Eggs",
+    "brand": "365 by Whole Foods Market"
+   },
+   "name": "365 By Whole Foods Market Organic Whole Milk, 32 Oz",
+   "brand": "365",
+   "serving_size": "240.0 g",
+   "calories": 2.0,
+   "ingredients_verbatim": "Ingredients Organic Whole Milk, Vitamin D3.",
+   "nutrition": {
+    "fat": 8.0,
+    "saturatedFat": 5.0,
+    "sodium": null,
+    "carbs": null,
+    "sugars": 12.0,
+    "protein": 8.0,
+    "fiber": null
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "mccann-s-steel-cut-irish-oatmeal": {
+   "input": {
+    "barcode": "",
+    "name": "McCann's Steel Cut Irish Oatmeal",
+    "brand": "McCann's"
+   },
+   "name": "Mccann'S, Quick & Easy Steel Cut Irish Oatmeal",
+   "brand": "MCCANN'S",
+   "serving_size": "40.0 g",
+   "calories": 375,
+   "ingredients_verbatim": "100% WHOLE GRAIN IRISH OATS",
+   "nutrition": {
+    "fat": 6.25,
+    "saturatedFat": 1.25,
+    "sodium": 0.0,
+    "carbs": 67.5,
+    "sugars": 2.5,
+    "protein": 10.0,
+    "fiber": 10.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "mccann-s-quick-easy-steel-cut-irish-oatmeal": {
+   "input": {
+    "barcode": "",
+    "name": "McCann's Quick & Easy Steel Cut Irish Oatmeal",
+    "brand": "McCann's"
+   },
+   "name": "Quick & Easy Steel Cut Irish Oatmeal",
+   "brand": "McCann's",
+   "serving_size": "0.25 cup (40 g)",
+   "calories": 150,
+   "ingredients_verbatim": "whole grain oats",
+   "nutrition": {
+    "fat": 2.5,
+    "saturatedFat": 0.5,
+    "sodium": 0,
+    "carbs": 27,
+    "sugars": 1,
+    "protein": 4,
+    "fiber": 3
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/007/246/300/0354/front_en.5.400.jpg",
+   "matched_off_code": "0072463000354",
+   "source": "off-search"
+  },
+  "quaker-quick-1-minute-oats": {
+   "input": {
+    "barcode": "",
+    "name": "Quaker Quick 1-Minute Oats",
+    "brand": "Quaker"
+   },
+   "name": "Quick 1-Minute Oats",
+   "brand": "Quaker Oats",
+   "serving_size": "40g",
+   "calories": 150,
+   "ingredients_verbatim": "Whole Grain Rolled Oats",
+   "nutrition": {
+    "fat": 3,
+    "saturatedFat": 0.5,
+    "sodium": 0,
+    "carbs": 27,
+    "sugars": 1,
+    "protein": 5,
+    "fiber": 4
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/003/000/001/2000/front_en.169.400.jpg",
+   "matched_off_code": "0030000012000",
+   "source": "off-search"
+  },
+  "quaker-steel-cut-quick-3-minute-oatmeal": {
+   "input": {
+    "barcode": "",
+    "name": "Quaker Steel Cut Quick 3-Minute Oatmeal",
+    "brand": "Quaker"
+   },
+   "name": "Quick 3-Minute Oatmeal Steel Cut Blueberries & Cranberries",
+   "brand": "Quaker",
+   "serving_size": "1 PACKET (46 g)",
+   "calories": 170,
+   "ingredients_verbatim": "Whole grain steel cut oats, sugar, dried blueberries, dried cranberries, salt, natural flavor.",
+   "nutrition": {
+    "fat": 2.5,
+    "saturatedFat": 0.5,
+    "sodium": 0.21,
+    "carbs": 34,
+    "sugars": 12,
+    "protein": 4,
+    "fiber": 3
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/003/000/032/1898/front_en.8.400.jpg",
+   "matched_off_code": "0030000321898",
+   "source": "off-search"
+  },
+  "quaker-instant-oatmeal-apples-cinnamon": {
+   "input": {
+    "barcode": "",
+    "name": "Quaker Instant Oatmeal Apples & Cinnamon",
+    "brand": "Quaker"
+   },
+   "name": "Instant Oatmeal Apples & Cinnamon",
+   "brand": "Quaker",
+   "serving_size": "1 package (43 g)",
+   "calories": 160,
+   "ingredients_verbatim": "WHOLE GRAIN OATS, SUGAR, DRIED APPLES, NATURAL FLAVOR, SALT, CINNAMON",
+   "nutrition": {
+    "fat": 2,
+    "saturatedFat": 0.5,
+    "sodium": 0.16,
+    "carbs": 33,
+    "sugars": 11,
+    "protein": 4,
+    "fiber": 4
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/003/000/031/9567/front_en.31.400.jpg",
+   "matched_off_code": "0030000319567",
+   "source": "off-search"
+  },
+  "quaker-instant-oatmeal-cinnamon-spice": {
+   "input": {
+    "barcode": "",
+    "name": "Quaker Instant Oatmeal Cinnamon & Spice",
+    "brand": "Quaker"
+   },
+   "name": "Instant Oatmeal Cinnamon & Spice",
+   "brand": "Quaker",
+   "serving_size": "1 portion (43 g)",
+   "calories": 160,
+   "ingredients_verbatim": "Whole grain oats, sugar, salt, cinnamon, other spices, natural flavor",
+   "nutrition": {
+    "fat": 2.5,
+    "saturatedFat": 0.5,
+    "sodium": 0.2,
+    "carbs": 32,
+    "sugars": 10,
+    "protein": 4,
+    "fiber": 1
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/000/000/301/3108/front_en.8.400.jpg",
+   "matched_off_code": "03013108",
+   "source": "off-search"
+  },
+  "quaker-instant-oatmeal-dinosaur-eggs-brown-sugar": {
+   "input": {
+    "barcode": "",
+    "name": "Quaker Instant Oatmeal Dinosaur Eggs Brown Sugar",
+    "brand": "Quaker"
+   },
+   "name": "Instant Oatmeal Dinosaur Eggs Brown Sugar",
+   "brand": "Quaker",
+   "serving_size": "1 portion (50 g)",
+   "calories": 317,
+   "ingredients_verbatim": "Whole grain oats, dinosaur egg shaped pieces (sugar, dextrose, hydrogenated palm kernel oil, palm kernel oil, palm oil, annatto [color], carnauba wax, confectioner's glaze, corn maltodextrin, magnesium stearate, modified corn starch, natural flavor, red radish juice [color], spirulina extract [color], sunflower lecithin, turmeric [color]), sugar, salt, natural flavor, calcium carbonate, carob powder, molasses, reduced iron, niacinamide, folic acid, cholecalciferol (vitamin D3), pyridoxine hydrochloride, riboflavin, thiamine mononitrate.",
+   "nutrition": {
+    "fat": 4.5,
+    "saturatedFat": 2,
+    "sodium": 0.24,
+    "carbs": 36,
+    "sugars": 11,
+    "protein": 5,
+    "fiber": 3
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/003/000/026/2917/front_en.32.400.jpg",
+   "matched_off_code": "0030000262917",
+   "source": "off-search"
+  },
+  "quaker-protein-instant-oatmeal-banana-nut": {
+   "input": {
+    "barcode": "",
+    "name": "Quaker Protein Instant Oatmeal Banana Nut",
+    "brand": "Quaker"
+   },
+   "name": "Protein Instant Oatmeal Banana Nut",
+   "brand": "Quaker",
+   "serving_size": "1 packet (61 g)",
+   "calories": 140,
+   "ingredients_verbatim": "Whole grain oats, sugar, whey protein concentrate, walnuts coated with rosemary extract (to help protect flavor), whey protein isolate, dried bananas, salt, banana flakes, soy lecithin, natural flavor",
+   "nutrition": {
+    "fat": 3.05,
+    "saturatedFat": 0.61,
+    "sodium": 0.0,
+    "carbs": 23.2,
+    "sugars": 13.4,
+    "protein": 7.32,
+    "fiber": 2.44
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/003/000/031/5958/front_en.102.400.jpg",
+   "matched_off_code": "0030000315958",
+   "source": "off-search"
+  },
+  "bob-s-red-mill-steel-cut-oats": {
+   "input": {
+    "barcode": "",
+    "name": "Bob's Red Mill Steel Cut Oats",
+    "brand": "Bob's Red Mill"
+   },
+   "name": "Steel Cut Oats",
+   "brand": "Bob's Red Mill",
+   "serving_size": "1 portion (44 g)",
+   "calories": 170,
+   "ingredients_verbatim": "Organic whole grain oats.",
+   "nutrition": {
+    "fat": 3.5,
+    "saturatedFat": 0.5,
+    "sodium": 0,
+    "carbs": 31,
+    "sugars": 1,
+    "protein": 4,
+    "fiber": 4
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/003/997/803/9576/front_en.27.400.jpg",
+   "matched_off_code": "0039978039576",
+   "source": "off-search"
+  },
+  "bob-s-red-mill-scottish-oatmeal": {
+   "input": {
+    "barcode": "",
+    "name": "Bob's Red Mill Scottish Oatmeal",
+    "brand": "Bob's Red Mill"
+   },
+   "name": "Scottish Oatmeal",
+   "brand": "Bob's Red Mill",
+   "serving_size": "1/4 cup (36 g)",
+   "calories": 140,
+   "ingredients_verbatim": "Whole grain oats.",
+   "nutrition": {
+    "fat": 2,
+    "saturatedFat": 0,
+    "sodium": 0,
+    "carbs": 26,
+    "sugars": 0,
+    "protein": 4,
+    "fiber": 2.99
+   },
+   "image_url": null,
+   "matched_off_code": "0039978041210",
+   "source": "off-search"
+  },
+  "bob-s-red-mill-gluten-free-old-fashioned-rolled-": {
+   "input": {
+    "barcode": "",
+    "name": "Bob's Red Mill Gluten Free Old Fashioned Rolled Oats",
+    "brand": "Bob's Red Mill"
+   },
+   "name": "Bob'S Red Mill, Rolled Oats",
+   "brand": "BOB'S RED MILL",
+   "serving_size": "41.0 g",
+   "calories": 390,
+   "ingredients_verbatim": "WHOLE GRAIN OATS.",
+   "nutrition": {
+    "fat": 6.1,
+    "saturatedFat": 1.22,
+    "sodium": 0.0,
+    "carbs": 65.8,
+    "sugars": 2.44,
+    "protein": 17.1,
+    "fiber": 9.8
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "bob-s-red-mill-gluten-free-quick-cooking-rolled-": {
+   "input": {
+    "barcode": "",
+    "name": "Bob's Red Mill Gluten Free Quick Cooking Rolled Oats",
+    "brand": "Bob's Red Mill"
+   },
+   "name": "Gluten Free Organic Quick Cooking Rolled Oats",
+   "brand": "Bob's Red Mill",
+   "serving_size": "0.50 cup (52 g)",
+   "calories": 200,
+   "ingredients_verbatim": "Organic whole grain oats.",
+   "nutrition": {
+    "fat": 3,
+    "saturatedFat": 0.5,
+    "sodium": 0,
+    "carbs": 36,
+    "sugars": 1.0,
+    "protein": 7,
+    "fiber": 4.99
+   },
+   "image_url": null,
+   "matched_off_code": "0039978003881",
+   "source": "off-search"
+  },
+  "better-oats-maple-brown-sugar-instant-oatmeal": {
+   "input": {
+    "barcode": "",
+    "name": "Better Oats Maple & Brown Sugar Instant Oatmeal",
+    "brand": "Better Oats"
+   },
+   "name": "Better oats, oat fit, instant oatmeal with flax, maple & brown sugar",
+   "brand": "Better Oats",
+   "serving_size": "1 POUCH (28 g)",
+   "calories": 100,
+   "ingredients_verbatim": "Whole grain rolled oats, natural and artificial flavor, flaxseed, salt, sucralose, acesulfame potassium. vitamins & minerals: calcium carbonate, ferric orthophosphate (source o iron), alpha tocopherol acetate (vitamin e), niacinamide*, vitamin a palmitate, pyridoxine hydrochloride*, riboflavin*, thiamin mononitrate*, folic acid*.",
+   "nutrition": {
+    "fat": 2,
+    "saturatedFat": 0,
+    "sodium": 0.21,
+    "carbs": 18,
+    "sugars": 1,
+    "protein": 3,
+    "fiber": 3
+   },
+   "image_url": null,
+   "matched_off_code": "0883921118227",
+   "source": "off-search"
+  },
+  "better-oats-steel-cut-instant-oatmeal-with-flax": {
+   "input": {
+    "barcode": "",
+    "name": "Better Oats Steel Cut Instant Oatmeal with Flax",
+    "brand": "Better Oats"
+   },
+   "name": "Better Oats, Instant Oatmeal With Flax",
+   "brand": "BETTER OATS",
+   "serving_size": "43.0 g",
+   "calories": 372,
+   "ingredients_verbatim": "WHOLE GRAIN ROLLED OATS, SUGAR, FLAXSEED, NATURAL AND ARTIFICIAL FLAVOR, SALT, CARAMEL. VITAMINS & MINERALS: CALCIUM CARBONATE, FERRIC ORTHOPHOSPHATE (SOURCE OF IRON), ALPHA TOCOPHEROL ACETATE (VITAMIN E), NIACINAMIDE*, VITAMIN A PALMITATE, PYRIDOXINE HYDROCHLORIDE*, RIBOFLAVIN*, THIAMIN MONONITRATE*, FOLIC ACID*.",
+   "nutrition": {
+    "fat": 5.81,
+    "saturatedFat": 0.0,
+    "sodium": 488,
+    "carbs": 74.4,
+    "sugars": 30.2,
+    "protein": 9.3,
+    "fiber": 7.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "kodiak-protein-packed-oatmeal-maple-brown-sugar": {
+   "input": {
+    "barcode": "",
+    "name": "Kodiak Protein-Packed Oatmeal Maple & Brown Sugar",
+    "brand": "Kodiak"
+   },
+   "name": "Protein-Packed Oatmeal Maple & Brown Sugar",
+   "brand": "Kodiak Cakes",
+   "serving_size": "1 packet (60 g)",
+   "calories": 230,
+   "ingredients_verbatim": "100% WHOLE GRAIN ROLLED OATS, PEA PROTEIN CONCENTRATE WITH TAPIOCA STARCH, CANE SUGAR, MILK PROTEIN CONCENTRATE, BROWN SUGAR, WHEY PROTEIN ISOLATE WITH SUNFLOWER LECITHIN, DRIED MAPLE SYRUP, MILK PROTEIN ISOLATE, SEA SALT, NATURAL FLAVOR",
+   "nutrition": {
+    "fat": 4,
+    "saturatedFat": 0.5,
+    "sodium": 0.22,
+    "carbs": 36,
+    "sugars": 9,
+    "protein": 14,
+    "fiber": 4
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/070/559/901/3430/front_en.94.400.jpg",
+   "matched_off_code": "0705599013430",
+   "source": "off-search"
+  },
+  "cream-of-rice-hot-cereal": {
+   "input": {
+    "barcode": "",
+    "name": "Cream of Rice Hot Cereal",
+    "brand": "Cream of Rice"
+   },
+   "name": "Cream of Rice Hot Cereal",
+   "brand": "Cream of Rice",
+   "serving_size": "1 serving (45 g)",
+   "calories": 150,
+   "ingredients_verbatim": "GRANULATED RICE, CALCIUM CARBONATE, FERRIC ORTHOPHOSPHATE (IRON), NIACINAMIDE (VITAMIN B3), THIAMINE MONONITRATE (VITAMIN B1), PYRIDOXINE HYDROCHLORIDE (VITAMIN B6), RIBOFLAVIN (VITAMIN B2), FOLIC ACID, CHOLECALCIFEROL (VITAMIN D3), ARROZ GRANULADO, CARBONATO DE CALCIO, ORTOSFATO FÉRRICO (HIERRO), NIACINAMIDA (VITAMINA B3), MONONITRATO DE TIAMINA (VITAMINA B1), HIDROCLORURO DE PIRIDOXINA (VITAMINA B6), RIBOFLAVINA (VITAMINA B2), ÁCIDO FÓLICO, COLECALCIFEROL (VITAMINA D3)",
+   "nutrition": {
+    "fat": 0,
+    "saturatedFat": null,
+    "sodium": null,
+    "carbs": 35,
+    "sugars": null,
+    "protein": 2,
+    "fiber": null
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/001/313/000/6965/front_en.14.400.jpg",
+   "matched_off_code": "0013130006965",
+   "source": "off-search"
+  },
+  "malt-o-meal-original-hot-wheat-cereal": {
+   "input": {
+    "barcode": "",
+    "name": "Malt-O-Meal Original Hot Wheat Cereal",
+    "brand": "Malt-O-Meal"
+   },
+   "name": "Malt-O-Meal original Quick Cooking Hot Wheat Cereal",
+   "brand": "Malt-O-Meal",
+   "serving_size": "3 tbsp (35 g)",
+   "calories": 152,
+   "ingredients_verbatim": "Wheat farina, malted barley, calcium carbonate, ferric orthophosphate (source of iron), niacinamide (vitamin b3), pyridoxine hydrochloride (vitamin b6), folic acid, thiamin mononitrate (vitamin b1), riboflavin (vitamin b2).",
+   "nutrition": {
+    "fat": 0,
+    "saturatedFat": null,
+    "sodium": 0,
+    "carbs": 27,
+    "sugars": 0.0,
+    "protein": 4,
+    "fiber": 1
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/004/240/000/1041/front_en.8.400.jpg",
+   "matched_off_code": "0042400001041",
+   "source": "off-search"
+  },
+  "nature-s-path-organic-maple-nut-instant-oatmeal": {
+   "input": {
+    "barcode": "",
+    "name": "Nature's Path Organic Maple Nut Instant Oatmeal",
+    "brand": "Nature's Path"
+   },
+   "name": "Maple Nut Instant Oatmeal",
+   "brand": "Nature's Path Organic",
+   "serving_size": "1 PACKET (50 g)",
+   "calories": 210,
+   "ingredients_verbatim": "Whole grain rolled oats, cane sugar, pecans, sea salt, maple sugar, natural maple flavour.",
+   "nutrition": {
+    "fat": 4,
+    "saturatedFat": 0.5,
+    "sodium": 0.1,
+    "carbs": 38,
+    "sugars": 11,
+    "protein": 5,
+    "fiber": 4
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/005/844/945/0030/front_en.12.400.jpg",
+   "matched_off_code": "0058449450030",
+   "source": "off-search"
+  },
+  "bear-naked-fruit-and-nut-granola": {
+   "input": {
+    "barcode": "",
+    "name": "Bear Naked Fruit and Nut Granola",
+    "brand": "Bear Naked"
+   },
+   "name": "Fruit & Nut Medley Wildly Delicious Granola",
+   "brand": "bear naked",
+   "serving_size": "1 serving (60 g)",
+   "calories": 270,
+   "ingredients_verbatim": "Whole grain oats, honey, _almonds_, expeller pressed canola oil, raisins (raisins, vegetable glycerin), _coconut_, dried cranberries (cranberries, cane sugar, vegetable glycerin), oat bran, maple syrup, _pecans_, walnuts, whole oat flour, ground flax seeds, toasted _sesame seeds_.",
+   "nutrition": {
+    "fat": 11,
+    "saturatedFat": 2.5,
+    "sodium": 0.17,
+    "carbs": 39,
+    "sugars": 16,
+    "protein": 6,
+    "fiber": 5
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/085/641/600/0017/front_en.48.400.jpg",
+   "matched_off_code": "0856416000017",
+   "source": "off-search"
+  },
+  "bear-naked-triple-berry-granola": {
+   "input": {
+    "barcode": "",
+    "name": "Bear Naked Triple Berry Granola",
+    "brand": "Bear Naked"
+   },
+   "name": "Triple Berry Crunch Granola",
+   "brand": "Bear Naked",
+   "serving_size": "1 serving (52 g)",
+   "calories": 210,
+   "ingredients_verbatim": "whole grain oats, brown sugar, brown rice syrup, crisp rice (rice flour, sugar, salt), whole oat flour, dried cranberries (cranberries, cane sugar, vegetable glycerin), canola oil, pumpkin seeds, strawberries, blueberries, baking soda, sea salt, natural flavors, rosemary extract.",
+   "nutrition": {
+    "fat": 5,
+    "saturatedFat": 1,
+    "sodium": 0.19,
+    "carbs": 38,
+    "sugars": 11,
+    "protein": 5,
+    "fiber": 4
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/085/641/600/0703/front_en.80.400.jpg",
+   "matched_off_code": "0856416000703",
+   "source": "off-search"
+  },
+  "bear-naked-cacao-and-cashew-butter-granola": {
+   "input": {
+    "barcode": "",
+    "name": "Bear Naked Cacao and Cashew Butter Granola",
+    "brand": "Bear Naked"
+   },
+   "name": "bear naked granola cacao and cashew butter",
+   "brand": null,
+   "serving_size": null,
+   "calories": null,
+   "ingredients_verbatim": "whole grain oats, semisweet chocolate (cane sugar, chocolate, cocoa butter, soy lecithin, vanilla extract), invert cane syrup. rice crisps (rice flour, cane sugar, salt), cashew butter, expeller pressed oil (sunflower and/or canola), cashews, pepitas, whole oat flour, brow rice syrup, cane sugar, sea salt, ginger, rosemary extract for freshnes contains soy and cashew ingredients. may contain other tree nuts.",
+   "nutrition": {
+    "fat": null,
+    "saturatedFat": null,
+    "sodium": null,
+    "carbs": null,
+    "sugars": null,
+    "protein": null,
+    "fiber": null
+   },
+   "image_url": null,
+   "matched_off_code": "09215113",
+   "source": "off-search"
+  },
+  "kind-healthy-grains-peanut-butter-whole-grain-cl": {
+   "input": {
+    "barcode": "",
+    "name": "KIND Healthy Grains Peanut Butter Whole Grain Clusters",
+    "brand": "KIND"
+   },
+   "name": "Kind, 100% Healthy Whole Grains, Dark Chocolate & Cranberry Clusters, Dark Chocolate & Cranberry Clusters",
+   "brand": "KIND",
+   "serving_size": "29.0 g",
+   "calories": 448,
+   "ingredients_verbatim": "WHOLE GRAINS (GLUTEN FREE OATS, BROWN RICE, MILLET, GLUTEN FREE OAT FLOUR, AMARANTH, BUCKWHEAT, QUINOA), EVAPORATED CANE JUICE, DARK CHOCOLATE (SUGAR, CHOCOLATE LIQUOR, COCOA BUTTER, SOY LECITHIN), CANOLA OIL, CHICORY ROOT FIBER, CRANBERRIES, SUGAR, MOLASSES, SEA SALT, NATURAL VITAMIN E, SUNFLOWER OIL.",
+   "nutrition": {
+    "fat": 10.3,
+    "saturatedFat": 1.72,
+    "sodium": 69.0,
+    "carbs": 79.3,
+    "sugars": 24.1,
+    "protein": 10.3,
+    "fiber": 10.3
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "kind-healthy-grains-dark-chocolate-whole-grain-c": {
+   "input": {
+    "barcode": "",
+    "name": "KIND Healthy Grains Dark Chocolate Whole Grain Clusters",
+    "brand": "KIND"
+   },
+   "name": "Kind, 100% healthy whole grains, dark chocolate & cranberry clusters",
+   "brand": "Kind",
+   "serving_size": "0.33 cup (29 g)",
+   "calories": 130,
+   "ingredients_verbatim": "Whole grains (gluten free oats, brown rice, millet, gluten free oat flour, amaranth, buckwheat, quinoa), evaporated cane juice, dark chocolate (sugar, chocolate liquor, cocoa butter, soy lecithin), canola oil, chicory root fiber, cranberries, sugar, molasses, sea salt, natural vitamin e, sunflower oil.",
+   "nutrition": {
+    "fat": 3,
+    "saturatedFat": 0.5,
+    "sodium": 0.02,
+    "carbs": 23,
+    "sugars": 7,
+    "protein": 3,
+    "fiber": 2.99
+   },
+   "image_url": null,
+   "matched_off_code": "0602652171833",
+   "source": "off-search"
+  },
+  "kind-healthy-grains-cinnamon-oat-clusters": {
+   "input": {
+    "barcode": "",
+    "name": "KIND Healthy Grains Cinnamon Oat Clusters",
+    "brand": "KIND"
+   },
+   "name": "Kind, 100% Healthy Whole Grains, Dark Chocolate & Cranberry Clusters, Dark Chocolate & Cranberry Clusters",
+   "brand": "KIND",
+   "serving_size": "29.0 g",
+   "calories": 448,
+   "ingredients_verbatim": "WHOLE GRAINS (GLUTEN FREE OATS, BROWN RICE, MILLET, GLUTEN FREE OAT FLOUR, AMARANTH, BUCKWHEAT, QUINOA), EVAPORATED CANE JUICE, DARK CHOCOLATE (SUGAR, CHOCOLATE LIQUOR, COCOA BUTTER, SOY LECITHIN), CANOLA OIL, CHICORY ROOT FIBER, CRANBERRIES, SUGAR, MOLASSES, SEA SALT, NATURAL VITAMIN E, SUNFLOWER OIL.",
+   "nutrition": {
+    "fat": 10.3,
+    "saturatedFat": 1.72,
+    "sodium": 69.0,
+    "carbs": 79.3,
+    "sugars": 24.1,
+    "protein": 10.3,
+    "fiber": 10.3
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "purely-elizabeth-ancient-grain-granola-vanilla-a": {
+   "input": {
+    "barcode": "",
+    "name": "Purely Elizabeth Ancient Grain Granola Vanilla Almond Butter",
+    "brand": "Purely Elizabeth"
+   },
+   "name": "Purely Elizabeth, Ancient Granola + Puffs Cereal, Pumpkin Fig",
+   "brand": "Purely Elizabeth",
+   "serving_size": "28.0 g",
+   "calories": 464,
+   "ingredients_verbatim": "PUMPKIN FIG ANCIENT GRAIN GRANOLA [ORGANIC GLUTEN-FREE OATS, ORGANIC COCONUT PALM SUGAR, ORGANIC RAW VIRGIN COCONUT OIL, ORGANIC PUFFED AMARANTH, ORGANIC QUINOA FLAKES, ORGANIC MILLET FLAKES, ORGANIC PUMPKIN SEEDS, DRIED FIGS, ORGANIC SUNFLOWER SEEDS, ORGANIC SALBA CHIA SEEDS, ORGANIC CINNAMON, SEA SALT] ORGANIC MILLET PUFFS.",
+   "nutrition": {
+    "fat": 16.1,
+    "saturatedFat": 8.93,
+    "sodium": 286,
+    "carbs": 64.3,
+    "sugars": 14.3,
+    "protein": 10.7,
+    "fiber": 7.1
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "purely-elizabeth-chocolate-sea-salt-probiotic-gr": {
+   "input": {
+    "barcode": "",
+    "name": "Purely Elizabeth Chocolate Sea Salt Probiotic Granola",
+    "brand": "Purely Elizabeth"
+   },
+   "name": "Purely Elizabeth, Ancient Granola + Puffs Cereal, Pumpkin Fig",
+   "brand": "Purely Elizabeth",
+   "serving_size": "28.0 g",
+   "calories": 464,
+   "ingredients_verbatim": "PUMPKIN FIG ANCIENT GRAIN GRANOLA [ORGANIC GLUTEN-FREE OATS, ORGANIC COCONUT PALM SUGAR, ORGANIC RAW VIRGIN COCONUT OIL, ORGANIC PUFFED AMARANTH, ORGANIC QUINOA FLAKES, ORGANIC MILLET FLAKES, ORGANIC PUMPKIN SEEDS, DRIED FIGS, ORGANIC SUNFLOWER SEEDS, ORGANIC SALBA CHIA SEEDS, ORGANIC CINNAMON, SEA SALT] ORGANIC MILLET PUFFS.",
+   "nutrition": {
+    "fat": 16.1,
+    "saturatedFat": 8.93,
+    "sodium": 286,
+    "carbs": 64.3,
+    "sugars": 14.3,
+    "protein": 10.7,
+    "fiber": 7.1
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "cascadian-farm-organic-fruit-and-nut-granola": {
+   "input": {
+    "barcode": "",
+    "name": "Cascadian Farm Organic Fruit and Nut Granola",
+    "brand": "Cascadian Farm"
+   },
+   "name": "Fruit and Nut Granola",
+   "brand": "Cascadian Farm Organic",
+   "serving_size": "1 serving (63 g)",
+   "calories": 213,
+   "ingredients_verbatim": "Whole Grain Oats, Cane Sugar, Rice, Sunflower Oil, Raisins, Cranberries, Almonds, Molasses, Sea Salt, Natural Flavor, Vitamin E",
+   "nutrition": {
+    "fat": 8,
+    "saturatedFat": 1,
+    "sodium": 0.07,
+    "carbs": 45,
+    "sugars": 15,
+    "protein": 6,
+    "fiber": 4
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/002/190/813/3119/front_en.21.400.jpg",
+   "matched_off_code": "0021908133119",
+   "source": "off-search"
+  },
+  "nature-s-path-love-crunch-dark-chocolate-and-red": {
+   "input": {
+    "barcode": "",
+    "name": "Nature's Path Love Crunch Dark Chocolate and Red Berries Granola",
+    "brand": "Nature's Path"
+   },
+   "name": "Love Crunch Premium Organic Granola Dark Chocolate & Red Berries",
+   "brand": "Nature's Path",
+   "serving_size": "1 cup (95 g)",
+   "calories": 464,
+   "ingredients_verbatim": "Flocons d'avoine*, jus de canne à sucre granulé*, huile de soja*, morceaux de chocolat noir équitable* (jus de canne à sucre granulé*, chocolat non sucré*, beurre de cacao*, vanille*, graines de lin*, noix de coco séchée*, cacao*, mélange de baies* séchées à froid (fraises* séchées à froid, framboises* séchées à froid), fécule de riz*, sel de mer, arôme naturel, tocophérols (pour préserver la fraîcheur). *Biologique. Contient du soja. Peut contenir du blé, du lait, des arac id pu des noix.",
+   "nutrition": {
+    "fat": 16,
+    "saturatedFat": 3.5,
+    "sodium": 0.18,
+    "carbs": 64,
+    "sugars": 21,
+    "protein": 9,
+    "fiber": 5
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/005/844/977/1760/front_en.29.400.jpg",
+   "matched_off_code": "0058449771760",
+   "source": "off-search"
+  },
+  "nature-s-path-pumpkin-seed-and-flax-granola": {
+   "input": {
+    "barcode": "",
+    "name": "Nature's Path Pumpkin Seed and Flax Granola",
+    "brand": "Nature's Path"
+   },
+   "name": "Pumpkin Seed + Flax Granola",
+   "brand": "Nature's Path Organic",
+   "serving_size": "0.75 cup cereal (55 g)",
+   "calories": 260,
+   "ingredients_verbatim": "Whole grain rolled oats*, cane sugar, soy oil*, brown rice flour pumpkin seeds, flax seeds* oat syrup solids* [oat syrup solids*, tocopherols (added to enhance freshness)], sea salt, molasses*, cinnamon*. *Organic. Contains soy. Produced in a facility that uses wheat, peanuts and tree nuts",
+   "nutrition": {
+    "fat": 10,
+    "saturatedFat": 1.5,
+    "sodium": 0.04,
+    "carbs": 37,
+    "sugars": 10,
+    "protein": 6,
+    "fiber": 4
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/005/844/977/0565/front_en.111.400.jpg",
+   "matched_off_code": "0058449770565",
+   "source": "off-search"
+  },
+  "madegood-strawberry-granola-minis": {
+   "input": {
+    "barcode": "",
+    "name": "MadeGood Strawberry Granola Minis",
+    "brand": "MadeGood"
+   },
+   "name": "Strawberry Organic Granola Minis",
+   "brand": "Made Good",
+   "serving_size": "0.85 ONZ (24 g)",
+   "calories": 90,
+   "ingredients_verbatim": "Pure rolled oats*, strawberry pieces* (apple juice concentrate*, apple puree*, strawberry puree*, cherry juice concentrate*, apple pectin, natural flavor*), cane sugar*, agave nectar*, sunflower oil*, apples*, whole grain crisp brown rice*, agave inulin*, apricots*, tapioca flour*, vegetable powder (spinach, broccoli, carrots, tomatoes, beets, shiitake mushrooms), strawberry flavor*.",
+   "nutrition": {
+    "fat": 2.5,
+    "saturatedFat": 0.4,
+    "sodium": 0.0,
+    "carbs": 16,
+    "sugars": 7,
+    "protein": 1,
+    "fiber": 1.99
+   },
+   "image_url": null,
+   "matched_off_code": "0687456223087",
+   "source": "off-search"
+  },
+  "safe-fair-birthday-cake-granola": {
+   "input": {
+    "barcode": "",
+    "name": "Safe + Fair Birthday Cake Granola",
+    "brand": "Safe + Fair"
+   },
+   "name": "Birthday Cake Granola",
+   "brand": "The Safe + Fair Food Company",
+   "serving_size": "30g",
+   "calories": 130,
+   "ingredients_verbatim": "Oats, brown rice syrup, cane sugar, sunflower oil, natural color sprinkles (cane sugar, palm oil and palm kernel oil, corn starch, sunflower lecithin, vegetable juice, annatto, spirulina extract, turmeric, beta carotene, maltodextrin, carnauba wax, cellulose gum), brown rice, millet, natural vanilla flavor, sea salt",
+   "nutrition": {
+    "fat": 4.5,
+    "saturatedFat": 0.5,
+    "sodium": 0.04,
+    "carbs": 21,
+    "sugars": 9,
+    "protein": 2,
+    "fiber": 1
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/085/843/800/3854/front_en.3.400.jpg",
+   "matched_off_code": "0858438003854",
+   "source": "off-search"
+  },
+  "udi-s-gluten-free-au-naturel-granola": {
+   "input": {
+    "barcode": "",
+    "name": "Udi's Gluten Free Au Naturel Granola",
+    "brand": "Udi's"
+   },
+   "name": "Au Naturel Granola",
+   "brand": "Udi's",
+   "serving_size": "0.5 PIZZA CRUST (57 g)",
+   "calories": 200,
+   "ingredients_verbatim": "water, tapioca starch, brown rice flour, canola oil, egg whites, dried cane syrup, tapioca syrup, tapioca maltodextrin, salt, xanthan gum, yeast, cultured corn syrup solids and citric acid (mold inhibitor), enzymes,",
+   "nutrition": {
+    "fat": 5,
+    "saturatedFat": 0,
+    "sodium": 0.35,
+    "carbs": 34,
+    "sugars": 5,
+    "protein": 4,
+    "fiber": 1.03
+   },
+   "image_url": null,
+   "matched_off_code": "0698997809173",
+   "source": "off-search"
+  },
+  "bakery-on-main-extreme-fruit-and-nut-granola": {
+   "input": {
+    "barcode": "",
+    "name": "Bakery on Main Extreme Fruit and Nut Granola",
+    "brand": "Bakery on Main"
+   },
+   "name": "Gluten-Free Granola Extreme Nut & Fruit",
+   "brand": "Bakery On Main",
+   "serving_size": "0.333 cup (30 g)",
+   "calories": 140,
+   "ingredients_verbatim": "corn meal, evaporated cane juice, brown rice, expeller pressed canola oil, sunflower seeds, raisins, almonds, sesame seed, flax seed, coconut, walnuts, hazelnuts, dried cranberries (cranberries, sugar, sunflower oil), corn starch, brazil nuts, rice bran extract, natural flavors, pecans, caramel color, sea salt,",
+   "nutrition": {
+    "fat": 7,
+    "saturatedFat": 1.0,
+    "sodium": 0.02,
+    "carbs": 18,
+    "sugars": 6,
+    "protein": 2,
+    "fiber": 2
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/083/522/800/6028/front_en.6.400.jpg",
+   "matched_off_code": "0835228006028",
+   "source": "off-search"
+  },
+  "rao-s-homemade-tomato-basil-sauce": {
+   "input": {
+    "barcode": "",
+    "name": "Rao's Homemade Tomato Basil Sauce",
+    "brand": "Rao's Homemade"
+   },
+   "name": "Homemade Tomato Basil Soup, Homemade Tomato",
+   "brand": "REBECCA'S BISTRO",
+   "serving_size": "236.0 g",
+   "calories": 76.0,
+   "ingredients_verbatim": "DICED TOMATOES (TOMATOES, TOMATO JUICE, SALT, CITRIC ACID, CALCIUM CHLORIDE), TOMATO PUREE (TOMATOES, SALT), WATER, SUGAR, ONIONS, BROWN SUGAR (SUGAR, MOLASSES), BUTTER (CREAM, SALT) FOOD STARCH-MODIFIED, SEA SALT, GARLIC, SPICES, ONION POWDER, CITRIC ACID.",
+   "nutrition": {
+    "fat": 1.48,
+    "saturatedFat": null,
+    "sodium": 492,
+    "carbs": 14.0,
+    "sugars": 9.32,
+    "protein": 1.27,
+    "fiber": 1.7
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "rao-s-homemade-roasted-garlic-sauce": {
+   "input": {
+    "barcode": "",
+    "name": "Rao's Homemade Roasted Garlic Sauce",
+    "brand": "Rao's Homemade"
+   },
+   "name": "ROASTED GARLIC",
+   "brand": "RAO'S HOMEMADE",
+   "serving_size": "0.5 cup (125 g)",
+   "calories": 110,
+   "ingredients_verbatim": "italian whole peeled tomatoes, italian cherry tomatoes, olive oil, roasted garlic, carrots, salt, basil",
+   "nutrition": {
+    "fat": 8,
+    "saturatedFat": 1,
+    "sodium": 0.33,
+    "carbs": 7,
+    "sugars": 4,
+    "protein": 2,
+    "fiber": 1
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/074/747/900/1557/front_en.62.400.jpg",
+   "matched_off_code": "0747479001557",
+   "source": "off-search"
+  },
+  "rao-s-homemade-vodka-sauce": {
+   "input": {
+    "barcode": "",
+    "name": "Rao's Homemade Vodka Sauce",
+    "brand": "Rao's Homemade"
+   },
+   "name": "Vodka Sauce",
+   "brand": "Rao's Homemade",
+   "serving_size": "0.5 cups (125 g)",
+   "calories": 90,
+   "ingredients_verbatim": "Italian Whole Peeled Tomatoes, Olive Oil, Parmesan Cheese (cow's milk, salt, rennet), Whey, Romano Cheese (pasteurized sheep's milk, rennet, salt), Onions, Salt, Garlic, Basil, Black Pepper, Vodka, Oregano.",
+   "nutrition": {
+    "fat": 6,
+    "saturatedFat": 1.5,
+    "sodium": 0.31,
+    "carbs": 7,
+    "sugars": 5,
+    "protein": 3,
+    "fiber": 1
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/074/747/900/0130/front_en.25.400.jpg",
+   "matched_off_code": "0747479000130",
+   "source": "off-search"
+  },
+  "rao-s-homemade-four-cheese-sauce": {
+   "input": {
+    "barcode": "",
+    "name": "Rao's Homemade Four Cheese Sauce",
+    "brand": "Rao's Homemade"
+   },
+   "name": "Uncured Pepperoni, Mozzarella & Rao'S Homemade Brick Oven Crust Pizza Sauce, Uncured Pepperoni",
+   "brand": "RAO'S",
+   "serving_size": "130.0 g",
+   "calories": 238,
+   "ingredients_verbatim": "CRUST (ENRICHED WHEAT FLOUR [FLOUR, NIACIN, REDUCED IRON, THIAMINE MONONITRATE, RIBOFLAVIN, FOLIC ACID, ENZYMES, ASCORBIC ACID], WATER, SOYBEAN OIL, BREAD CRUMBS [WHEAT FLOUR, SUGAR, YEAST, SALT], SUGAR, YEAST, SALT, OLIVE OIL, MONOCALCIUM PHOSPHATE, SODIUM BICARBONATE, L-CYSTEINE), SAUCE (ITALIAN TOMATOES, OLIVE OIL, ONION, SALT, GARLIC, CARROTS, SPICES), UNCURED+ PEPPERONI +NO NITRITES OR NITRATES ADDED EXCEPT THOSE NATURALLY OCCURRING IN SEA SALT AND CULTURED CELERY JUICE OR POWDER (PORK, BEEF, SEA SALT, SPICES, CONTAINS 2% OR LESS OF: NATURAL FLAVORS, LACTIC ACID STARTER CULTURE, CULTURED CELERY JUICE, DEXTROSE, EXTRACTIVES OF PAPRIKA, CHERRY POWDER, MAY CONTAIN: CULTURED CELERY POWDER, GARLIC POWDER, OLEORESIN OF PAPRIKA), WHOLE MILK MOZZARELLA (PASTEURIZED MILK, CHEESE CULTURES, SALT, ENZYMES), PROVOLONE CHEESE (PASTEURIZED WHOLE MILK, CHEESE CULTURE, SALT, ENZYMES), FONTINA CHEESE (PASTEURIZED MILK, CHEESE CULTURES, SALT, ENZYMES, POWDERED CELLULOSE [ANTICAKING AGENT]), PARMESAN AND ROMANO CHEESE (PARMESAN CHEESE [CULTURED, PART-SKIM MILK, SALT, ENZYMES], ROMANO CHEESE FROM COW'S MILK [CULTURED, PART-SKIM MILK, SALT, ENZYMES], POWDERED CELLULOSE [ANTICAKING AGENT], SALT), PARMESAN CHEESE (PASTEURIZED PART-SKIM MILK, CHEESE CULTURES, SALT, ENZYMES, POWDERED CELLULOSE [ANTICAKING AGENT]), SPICES.",
+   "nutrition": {
+    "fat": 10.8,
+    "saturatedFat": 4.62,
+    "sodium": 531,
+    "carbs": 26.2,
+    "sugars": 1.54,
+    "protein": 10.0,
+    "fiber": 0.8
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "prego-three-cheese-italian-sauce": {
+   "input": {
+    "barcode": "",
+    "name": "Prego Three Cheese Italian Sauce",
+    "brand": "Prego"
+   },
+   "name": "Three Cheese Italian Sauce",
+   "brand": "Prego",
+   "serving_size": "1 serving (120 g)",
+   "calories": 60,
+   "ingredients_verbatim": "Tomato puree (water, tomato paste), diced tomatoes in tomato juice, sugar, contains less than 1% of: salt, canola oil, granular cheese (milk, cultures, salt, enzymes), ricotta cheese (milk, whey, distilled vinegar, salt), romano cheese (cultured part-skim cow's milk, salt, enzymes), citric acid, spice, parmesan cheese (part-skim milk, cultures, salt, enzymes), whey, romano cheese (cow's milk, cultures, salt, enzymes), lactic acid, sodium citrate, garlic extract.",
+   "nutrition": {
+    "fat": 1.5,
+    "saturatedFat": 0.5,
+    "sodium": 0.47,
+    "carbs": 10,
+    "sugars": 9,
+    "protein": 2,
+    "fiber": 2
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/005/100/005/0434/front_en.33.400.jpg",
+   "matched_off_code": "0051000050434",
+   "source": "off-search"
+  },
+  "prego-mushroom-italian-sauce": {
+   "input": {
+    "barcode": "",
+    "name": "Prego Mushroom Italian Sauce",
+    "brand": "Prego"
+   },
+   "name": "Mushroom Italian Sauce",
+   "brand": "Prego",
+   "serving_size": "1 portion (120 ml)",
+   "calories": 72,
+   "ingredients_verbatim": "Tomato puree (water, tomato paste), diced tomatoes in tomato juice, mushrooms, sugar, canola oil, contains less than 1% of: salt, spices, citric acid, onion extract, garlic extract.",
+   "nutrition": {
+    "fat": 1.2,
+    "saturatedFat": 0,
+    "sodium": 0.56,
+    "carbs": 14.4,
+    "sugars": 10.8,
+    "protein": 2.4,
+    "fiber": 3.6
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/005/100/002/7962/front_en.14.400.jpg",
+   "matched_off_code": "0051000027962",
+   "source": "off-search"
+  },
+  "prego-creamy-vodka-sauce": {
+   "input": {
+    "barcode": "",
+    "name": "Prego Creamy Vodka Sauce",
+    "brand": "Prego"
+   },
+   "name": "Creamy Vodka Italian Sauce",
+   "brand": "Prego",
+   "serving_size": "120 g",
+   "calories": 120,
+   "ingredients_verbatim": "Tomato puree (water, tomato paste), heavy cream, vodka, garlic, sugar, ricotta cheese (milk, whey, distilled vinegar, salt), canola oil, contains less than 1% of: salt, romano cheese (cultured part-skim cow's milk, salt, enzymes), citric acid, parmesan cheese (part-skim milk, cultures, salt, enzymes), spices, flavoring.",
+   "nutrition": {
+    "fat": 6,
+    "saturatedFat": 3.5,
+    "sodium": 0.46,
+    "carbs": 13,
+    "sugars": 9,
+    "protein": 3,
+    "fiber": 2
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/005/100/019/8563/front_en.5.400.jpg",
+   "matched_off_code": "0051000198563",
+   "source": "off-search"
+  },
+  "classico-roasted-garlic-pasta-sauce": {
+   "input": {
+    "barcode": "",
+    "name": "Classico Roasted Garlic Pasta Sauce",
+    "brand": "Classico"
+   },
+   "name": "Roasted Garlic Pasta Sauce",
+   "brand": "Classico",
+   "serving_size": "0.5 cup (125 g)",
+   "calories": 45,
+   "ingredients_verbatim": "DICED TOMATOES (TOMATOES, TOMATO JUICE CITRIC ACID, CALCIUM CHLORIDE), TOMATO PUREE (WATER, TOMATO PASTE), CONTAINS 2% OR LESS OF: ONIONS, ROASTED GARLIC, OLIVE OIL, SALT, GRANULATED ROASTED GARLIC, SPICES.",
+   "nutrition": {
+    "fat": 1,
+    "saturatedFat": 0,
+    "sodium": 0.34,
+    "carbs": 8,
+    "sugars": 5,
+    "protein": 2,
+    "fiber": 2
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/004/112/907/7825/front_en.45.400.jpg",
+   "matched_off_code": "0041129077825",
+   "source": "off-search"
+  },
+  "bertolli-olive-oil-and-garlic-pasta-sauce": {
+   "input": {
+    "barcode": "",
+    "name": "Bertolli Olive Oil and Garlic Pasta Sauce",
+    "brand": "Bertolli"
+   },
+   "name": "Olive Oil & Garlic",
+   "brand": "Bertolli",
+   "serving_size": "1 serving (125 g)",
+   "calories": 70,
+   "ingredients_verbatim": "TOMATO PUREE (WATER, TOMATO PASTE), DICED TOMATOES IN JUICE (DICED TOMATOES, TOMATO JUICE, CALCIUM CHLORIDE, CITRIC ACID), EXTRA VIRGIN OLIVE OIL, GARLIC, SUGAR, ONIONS, SALT, SPICES",
+   "nutrition": {
+    "fat": 3.5,
+    "saturatedFat": 0.5,
+    "sodium": 0.36,
+    "carbs": 9,
+    "sugars": 7,
+    "protein": 2,
+    "fiber": 1
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/003/620/021/9331/front_en.48.400.jpg",
+   "matched_off_code": "0036200219331",
+   "source": "off-search"
+  },
+  "newman-s-own-sockarooni-pasta-sauce": {
+   "input": {
+    "barcode": "",
+    "name": "Newman's Own Sockarooni Pasta Sauce",
+    "brand": "Newman's Own"
+   },
+   "name": "Sockarooni Pasta Sauce",
+   "brand": "Newman's Own",
+   "serving_size": "0.5 cup (123 g)",
+   "calories": 60,
+   "ingredients_verbatim": "ALL NATURAL INGREDIENTS TOMATO PUREE (WATER, TOMATO PASTE, CITRIC ACID), DICED TOMATOES, GREEN AND RED BELL PEPPERS, MUSHROOMS, CANE SUGAR, SALT, ONION*, EXTRA VIRGIN OLIVE OIL, SPICES, GARLIC*.",
+   "nutrition": {
+    "fat": 2.5,
+    "saturatedFat": 0,
+    "sodium": 0.46,
+    "carbs": 10,
+    "sugars": 6,
+    "protein": 2,
+    "fiber": 2
+   },
+   "image_url": null,
+   "matched_off_code": "0020662000224",
+   "source": "off-search"
+  },
+  "newman-s-own-tomato-and-basil-bombolina-pasta-sa": {
+   "input": {
+    "barcode": "",
+    "name": "Newman's Own Tomato and Basil Bombolina Pasta Sauce",
+    "brand": "Newman's Own"
+   },
+   "name": "Newman'S Own, Organic Pasta Sauce, Tomato Basil, Tomato Basil",
+   "brand": "NEWMAN'S OWN",
+   "serving_size": "123.0 g",
+   "calories": 81.0,
+   "ingredients_verbatim": "DICED ORGANIC TOMATOES IN ORGANIC TOMATO PUREE, ORGANIC EXTRA VIRGIN OLIVE OIL, ORGANIC BASIL, ORGANIC ONION, WATER, ORGANIC CARROT PUREE, SEA SALT, ORGANIC GARLIC, ORGANIC BLACK PEPPER.",
+   "nutrition": {
+    "fat": 6.5,
+    "saturatedFat": 0.81,
+    "sodium": 317,
+    "carbs": 5.69,
+    "sugars": 3.25,
+    "protein": 1.63,
+    "fiber": 0.8
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "victoria-vodka-sauce": {
+   "input": {
+    "barcode": "",
+    "name": "Victoria Vodka Sauce",
+    "brand": "Victoria Fine Foods"
+   },
+   "name": "Ingredients Come First, Victoria Vegan, Vodka Sauce",
+   "brand": "Victoria Fine Foods",
+   "serving_size": "0.5 cup (113 g)",
+   "calories": 145,
+   "ingredients_verbatim": "Whole tomatoes, soy protein (water, soybeans, soy protein, magnesium chloride, calcium chloride), olive oil, onions, garlic, basil, raw sugar, salt, corn starch.",
+   "nutrition": {
+    "fat": 12.2,
+    "saturatedFat": 1.69,
+    "sodium": 0.65,
+    "carbs": 7.8,
+    "sugars": 4.9,
+    "protein": 2.1,
+    "fiber": 0.9
+   },
+   "image_url": null,
+   "matched_off_code": "0070234017501",
+   "source": "off-search"
+  },
+  "muir-glen-organic-classic-marinara-pasta-sauce": {
+   "input": {
+    "barcode": "",
+    "name": "Muir Glen Organic Classic Marinara Pasta Sauce",
+    "brand": "Muir Glen"
+   },
+   "name": "Organic Classic Marinara Pasta Sauce",
+   "brand": "Muir Glen",
+   "serving_size": "1/2 cup (125 g) (125 g)",
+   "calories": 80,
+   "ingredients_verbatim": "Organic tomato puree (water, organic tomato paste), organic tomatoes in juice, organic sautã‰ed onion, organic extra virgin olive oil, sea salt, organic sautã‰ed garlic, organic basil, citric acid, organic black pepper, organic fennel, calcium chloride, organic oregano.",
+   "nutrition": {
+    "fat": 4.5,
+    "saturatedFat": 0.5,
+    "sodium": 0.39,
+    "carbs": 8,
+    "sugars": 4,
+    "protein": 2,
+    "fiber": 2
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/072/534/244/1921/front_en.4.400.jpg",
+   "matched_off_code": "0725342441921",
+   "source": "off-search"
+  },
+  "carbone-marinara-sauce": {
+   "input": {
+    "barcode": "",
+    "name": "Carbone Marinara Sauce",
+    "brand": "Carbone"
+   },
+   "name": "Marinara sauce",
+   "brand": "Carbone Fine Food",
+   "serving_size": "0.5 cup (113 g)",
+   "calories": 90,
+   "ingredients_verbatim": "Imported Italian Tomatoes (Whole Peeled Tomatoes, Tomato Puree, Sea Salt, Basil), Onions, Olive Oil, Sea Salt, Basil, Garlic, Oregano",
+   "nutrition": {
+    "fat": 7,
+    "saturatedFat": 1,
+    "sodium": 0.41,
+    "carbs": 6,
+    "sugars": 5,
+    "protein": 1,
+    "fiber": 1
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/085/002/473/5071/front_en.3.400.jpg",
+   "matched_off_code": "0850024735071",
+   "source": "off-search"
+  },
+  "michael-s-of-brooklyn-marinara-sauce": {
+   "input": {
+    "barcode": "",
+    "name": "Michael's of Brooklyn Marinara Sauce",
+    "brand": "Michael's of Brooklyn"
+   },
+   "name": "Bea'S Brooklyn'S Best, Gourmet Pasta Sauce, Marinara Sauce",
+   "brand": "BEA'S BROOKLYN'S BEST",
+   "serving_size": "113.0 g",
+   "calories": 71.0,
+   "ingredients_verbatim": "TOMATOES, TOMATO PUREE (WATER, TOMATO PASTE), OLIVE OIL, HONEY, ONIONS, GARLIC, CHIANTI WINE, SALT, BLACK PAPPER, BASIL, OREGANO, CRUSHED RED PEPPER.",
+   "nutrition": {
+    "fat": 4.42,
+    "saturatedFat": 0.44,
+    "sodium": 124,
+    "carbs": 8.85,
+    "sugars": 5.31,
+    "protein": 1.77,
+    "fiber": 1.8
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "starbucks-caffe-verona-ground-coffee": {
+   "input": {
+    "barcode": "",
+    "name": "Starbucks Caffe Verona Ground Coffee",
+    "brand": "Starbucks"
+   },
+   "name": "Starbucks, Specialty Coffee Beverage, Caramel Caffe Latte",
+   "brand": "Starbucks Coffee Company",
+   "serving_size": "240.0 ml",
+   "calories": 54.0,
+   "ingredients_verbatim": "CAFFE BLEND K-CUP POD INGREDIENTS: GROUND COFFEE. SWEETENED DAIRY PACKET INGREDIENTS: SUGAR, NONFAT DRY MILK, DRIED CREAM, NATURAL FLAVORS.",
+   "nutrition": {
+    "fat": 1.46,
+    "saturatedFat": 0.83,
+    "sodium": 29.0,
+    "carbs": 9.17,
+    "sugars": 8.75,
+    "protein": 1.67,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "dunkin-french-vanilla-ground-coffee": {
+   "input": {
+    "barcode": "",
+    "name": "Dunkin French Vanilla Ground Coffee",
+    "brand": "Dunkin"
+   },
+   "name": "Dunkin French Vanilla Ground Coffee imp",
+   "brand": null,
+   "serving_size": null,
+   "calories": null,
+   "ingredients_verbatim": "coffee, natural and artificial flavor.",
+   "nutrition": {
+    "fat": null,
+    "saturatedFat": null,
+    "sodium": null,
+    "carbs": null,
+    "sugars": null,
+    "protein": null,
+    "fiber": null
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/088/133/400/0474/front_en.14.400.jpg",
+   "matched_off_code": "0881334000474",
+   "source": "off-search"
+  },
+  "peet-s-major-dickason-s-blend-ground-coffee": {
+   "input": {
+    "barcode": "",
+    "name": "Peet's Major Dickason's Blend Ground Coffee",
+    "brand": "Peet's Coffee"
+   },
+   "name": "House Blend Medium Roast Ground Coffee",
+   "brand": "EARLY RISER",
+   "serving_size": "28.299999237060547 GRM",
+   "calories": 0.0,
+   "ingredients_verbatim": "GROUND COFFEE",
+   "nutrition": {
+    "fat": 0.0,
+    "saturatedFat": null,
+    "sodium": 0.0,
+    "carbs": 0.0,
+    "sugars": null,
+    "protein": 0.0,
+    "fiber": null
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "peet-s-big-bang-medium-roast-ground-coffee": {
+   "input": {
+    "barcode": "",
+    "name": "Peet's Big Bang Medium Roast Ground Coffee",
+    "brand": "Peet's Coffee"
+   },
+   "name": "Medium Roast Beauty Ground Coffee, Medium Roast",
+   "brand": "VITACUP",
+   "serving_size": "11.5 g",
+   "calories": 43.0,
+   "ingredients_verbatim": "COFFEE, COLLAGEN, CINNAMON, BIOTIN, MANGANESE, METHYLFOLATE.",
+   "nutrition": {
+    "fat": 0.0,
+    "saturatedFat": null,
+    "sodium": 391,
+    "carbs": 0.0,
+    "sugars": null,
+    "protein": 8.7,
+    "fiber": null
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "lavazza-classico-ground-coffee": {
+   "input": {
+    "barcode": "",
+    "name": "Lavazza Classico Ground Coffee",
+    "brand": "Lavazza"
+   },
+   "name": "Lavazza Espresso Italiano classico ground coffee",
+   "brand": "LavAzza",
+   "serving_size": null,
+   "calories": null,
+   "ingredients_verbatim": "GEMAHLENER GERÖSTETER KAFFEE/100% Arabica, medium roast",
+   "nutrition": {
+    "fat": null,
+    "saturatedFat": null,
+    "sodium": null,
+    "carbs": null,
+    "sugars": null,
+    "protein": null,
+    "fiber": null
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/800/007/001/2837/front_en.8.400.jpg",
+   "matched_off_code": "8000070012837",
+   "source": "off-search"
+  },
+  "cafe-bustelo-espresso-ground-coffee": {
+   "input": {
+    "barcode": "",
+    "name": "Cafe Bustelo Espresso Ground Coffee",
+    "brand": "Cafe Bustelo"
+   },
+   "name": "Cafe Espresso Ground Coffee, Cafe Espresso",
+   "brand": "EIGHT O'CLOCK COFFEE COMPANY",
+   "serving_size": "28.299999237060547 g",
+   "calories": 0.0,
+   "ingredients_verbatim": "GROUND COFFEE",
+   "nutrition": {
+    "fat": 0.0,
+    "saturatedFat": null,
+    "sodium": 0.0,
+    "carbs": 0.0,
+    "sugars": null,
+    "protein": 0.0,
+    "fiber": null
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "maxwell-house-breakfast-blend-ground-coffee": {
+   "input": {
+    "barcode": "",
+    "name": "Maxwell House Breakfast Blend Ground Coffee",
+    "brand": "Maxwell House"
+   },
+   "name": "Maxwell House, Iced Coffee, Caramel",
+   "brand": "MAXWELL HOUSE",
+   "serving_size": "5.0 ml",
+   "calories": 300,
+   "ingredients_verbatim": "CONCENTRATED COFFEE (WATER, COFFEE SOLIDS), FRUCTOSE, GLYCERIN, CARAMEL COLOR, NATURAL FLAVOR, CONTAINS LESS THAN 2% OF SALT, SUCRALOSE AND ACESULFAME POTASSIUM (SWEETNESS), POTASSIUM SORBATE (PRESERVATIVES), SULFUR DIOXIDE (SULFITES).",
+   "nutrition": {
+    "fat": 0.0,
+    "saturatedFat": null,
+    "sodium": 500,
+    "carbs": 80.0,
+    "sugars": 20.0,
+    "protein": 0.0,
+    "fiber": null
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "bigelow-earl-grey-black-tea": {
+   "input": {
+    "barcode": "",
+    "name": "Bigelow Earl Grey Black Tea",
+    "brand": "Bigelow"
+   },
+   "name": "Earl grey Black tea",
+   "brand": "Bigelow",
+   "serving_size": "1 serving (1.65 g)",
+   "calories": 0,
+   "ingredients_verbatim": "black tea, natural oil of bergamot",
+   "nutrition": {
+    "fat": 0,
+    "saturatedFat": null,
+    "sodium": null,
+    "carbs": 0,
+    "sugars": null,
+    "protein": 0,
+    "fiber": null
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/007/231/000/1237/front_en.4.400.jpg",
+   "matched_off_code": "0072310001237",
+   "source": "off-search"
+  },
+  "bigelow-constant-comment-black-tea": {
+   "input": {
+    "barcode": "",
+    "name": "Bigelow Constant Comment Black Tea",
+    "brand": "Bigelow"
+   },
+   "name": "Constant Comment Black Tea",
+   "brand": "Bigelow",
+   "serving_size": null,
+   "calories": null,
+   "ingredients_verbatim": "black tea, rind of oranges, sweet spice, natural flavor",
+   "nutrition": {
+    "fat": null,
+    "saturatedFat": null,
+    "sodium": null,
+    "carbs": null,
+    "sugars": null,
+    "protein": null,
+    "fiber": null
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/007/231/000/1039/front_en.5.400.jpg",
+   "matched_off_code": "0072310001039",
+   "source": "off-search"
+  },
+  "twinings-earl-grey-tea": {
+   "input": {
+    "barcode": "",
+    "name": "Twinings Earl Grey Tea",
+    "brand": "Twinings"
+   },
+   "name": "Earl Grey Tea Bags",
+   "brand": "Twinings",
+   "serving_size": null,
+   "calories": null,
+   "ingredients_verbatim": "Tea, bergamot flavouring (4%), natural lemon flavouring with other natural flavourings (1%).",
+   "nutrition": {
+    "fat": null,
+    "saturatedFat": null,
+    "sodium": null,
+    "carbs": null,
+    "sugars": null,
+    "protein": null,
+    "fiber": null
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/007/017/723/1415/front_en.15.400.jpg",
+   "matched_off_code": "0070177231415",
+   "source": "off-search"
+  },
+  "tazo-awake-english-breakfast-tea": {
+   "input": {
+    "barcode": "",
+    "name": "Tazo Awake English Breakfast Tea",
+    "brand": "Tazo"
+   },
+   "name": "Organic Awake english breakfast tea 16 tea bags",
+   "brand": "Tazo",
+   "serving_size": null,
+   "calories": 0,
+   "ingredients_verbatim": "A blend of organic black teas",
+   "nutrition": {
+    "fat": 0,
+    "saturatedFat": 0,
+    "sodium": 0,
+    "carbs": 0,
+    "sugars": 0,
+    "protein": 0,
+    "fiber": 0
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/079/452/200/3037/front_en.3.400.jpg",
+   "matched_off_code": "0794522003037",
+   "source": "off-search"
+  },
+  "tazo-zen-green-tea": {
+   "input": {
+    "barcode": "",
+    "name": "Tazo Zen Green Tea",
+    "brand": "Tazo"
+   },
+   "name": "Tazo, Green Tea, Plum Pomegranate, Plum Pomegranate",
+   "brand": "TAZO",
+   "serving_size": "408.0 ml",
+   "calories": 34.0,
+   "ingredients_verbatim": "A TEA INFUSION OF (WATER, GREEN TEA, NATURAL FLAVORS), CANE SUGAR. PLUM AND POMEGRANATE CONCENTRATE JUICE NATURAL FLAVOR CITRIC ACID.",
+   "nutrition": {
+    "fat": 0.0,
+    "saturatedFat": null,
+    "sodium": 2.0,
+    "carbs": 8.58,
+    "sugars": 8.33,
+    "protein": 0.0,
+    "fiber": null
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "yogi-honey-lavender-stress-relief-tea": {
+   "input": {
+    "barcode": "",
+    "name": "Yogi Honey Lavender Stress Relief Tea",
+    "brand": "Yogi"
+   },
+   "name": "Stress Relief Organic Tea Bags",
+   "brand": "PRIDE OF INDIA",
+   "serving_size": "1.7000000476837158 GRM",
+   "calories": 0.0,
+   "ingredients_verbatim": "INGREDIENTS: 100% ORGANIC BLEND OF MINT, TULSI (HOLY BASIL), LEMONGRASS, ARJUNA & ASHWAGANDHA.",
+   "nutrition": {
+    "fat": 0.0,
+    "saturatedFat": null,
+    "sodium": 0.0,
+    "carbs": 0.0,
+    "sugars": null,
+    "protein": 0.0,
+    "fiber": null
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "celestial-seasonings-bengal-spice-herbal-tea": {
+   "input": {
+    "barcode": "",
+    "name": "Celestial Seasonings Bengal Spice Herbal Tea",
+    "brand": "Celestial Seasonings"
+   },
+   "name": "Bengal Spice Herbal Tea",
+   "brand": "Celestial Seasonings",
+   "serving_size": "1 tea bag (2.35 g)",
+   "calories": null,
+   "ingredients_verbatim": "CINNAMON, ROASTED CHICORY ROASTED CAROB, NATURAL FLAVOURS, GINGER, CARDAMOM, BLACK PEPPER, CLOVES, NUTMEG.",
+   "nutrition": {
+    "fat": 0,
+    "saturatedFat": null,
+    "sodium": null,
+    "carbs": null,
+    "sugars": null,
+    "protein": null,
+    "fiber": null
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/007/073/452/5971/front_en.67.400.jpg",
+   "matched_off_code": "0070734525971",
+   "source": "off-search"
+  },
+  "stash-premium-peppermint-herbal-tea": {
+   "input": {
+    "barcode": "",
+    "name": "Stash Premium Peppermint Herbal Tea",
+    "brand": "Stash"
+   },
+   "name": "Organic Premium Herbal Tea, Peppermint",
+   "brand": "SIGNATURE TEA CO.",
+   "serving_size": "1.5 g",
+   "calories": 0.0,
+   "ingredients_verbatim": "ORGANIC PEPPERMINT LEAVES",
+   "nutrition": {
+    "fat": 0.0,
+    "saturatedFat": 0.0,
+    "sodium": 0.0,
+    "carbs": 0.0,
+    "sugars": 0.0,
+    "protein": 0.0,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  }
+ },
+ "misses": [
+  {
+   "barcode": "",
+   "name": "Lunchly PB&J Dunkers",
+   "brand": "Lunchly",
+   "reason": "unresolved",
+   "partial": null
+  },
+  {
+   "barcode": "",
+   "name": "Vital Farms Alfresco Large Eggs",
+   "brand": "Vital Farms",
+   "reason": "unresolved",
+   "partial": null
+  },
+  {
+   "barcode": "",
+   "name": "Lucerne Grade AA Large Eggs",
+   "brand": "Lucerne",
+   "reason": "unresolved",
+   "partial": null
+  },
+  {
+   "barcode": "",
+   "name": "Seven Sundays Maple Sea Salt Oat Protein Cereal",
+   "brand": "Seven Sundays",
+   "reason": "unresolved",
+   "partial": null
+  },
+  {
+   "barcode": "",
+   "name": "Rao's Homemade Alfredo Sauce",
+   "brand": "Rao's Homemade",
+   "reason": "unresolved",
+   "partial": null
+  },
+  {
+   "barcode": "",
+   "name": "Classico Tomato and Basil Pasta Sauce",
+   "brand": "Classico",
+   "reason": "unresolved",
+   "partial": null
+  },
+  {
+   "barcode": "",
+   "name": "Classico Four Cheese Pasta Sauce",
+   "brand": "Classico",
+   "reason": "unresolved",
+   "partial": null
+  },
+  {
+   "barcode": "",
+   "name": "Bertolli Five Cheese Pasta Sauce",
+   "brand": "Bertolli",
+   "reason": "unresolved",
+   "partial": null
+  },
+  {
+   "barcode": "",
+   "name": "Barilla Vero Gusto Calabrian Marinara",
+   "brand": "Barilla",
+   "reason": "unresolved",
+   "partial": null
+  },
+  {
+   "barcode": "",
+   "name": "Starbucks Veranda Blend Ground Coffee",
+   "brand": "Starbucks",
+   "reason": "unresolved",
+   "partial": null
+  },
+  {
+   "barcode": "",
+   "name": "Starbucks Breakfast Blend Ground Coffee",
+   "brand": "Starbucks",
+   "reason": "unresolved",
+   "partial": null
+  },
+  {
+   "barcode": "",
+   "name": "Dunkin Original Blend Ground Coffee",
+   "brand": "Dunkin",
+   "reason": "unresolved",
+   "partial": null
+  },
+  {
+   "barcode": "",
+   "name": "Community Coffee Breakfast Blend Ground Coffee",
+   "brand": "Community Coffee",
+   "reason": "unresolved",
+   "partial": null
+  },
+  {
+   "barcode": "",
+   "name": "Eight O'Clock The Original Ground Coffee",
+   "brand": "Eight O'Clock Coffee",
+   "reason": "unresolved",
+   "partial": null
+  },
+  {
+   "barcode": "",
+   "name": "Folgers Black Silk Ground Coffee",
+   "brand": "Folgers",
+   "reason": "unresolved",
+   "partial": null
+  }
+ ]
+}

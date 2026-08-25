@@ -1,0 +1,240 @@
+{
+  "category": "cheese_dairy",
+  "researched_at": "2026-06-16",
+  "products": [
+    {
+      "barcode": "046100001134",
+      "name": "Sargento Natural Sharp Cheddar Sliced Cheese",
+      "brand": "Sargento",
+      "company": "Sargento Foods Inc.",
+      "companyId_hint": "sargento",
+      "size": "8 oz (11 slices)",
+      "ingredients_verbatim": "PASTEURIZED MILK, CHEESE CULTURE, SALT, ENZYMES, ANNATTO (VEGETABLE COLOR), NATAMYCIN (A NATURAL MOLD INHIBITOR)",
+      "off_verified": true,
+      "off_product_name": "Sharp Cheddar Sliced Cheddar Cheese",
+      "off_url": "https://world.openfoodfacts.org/product/046100001134"
+    },
+    {
+      "barcode": "072830030021",
+      "name": "Tillamook Farmstyle Sharp Cheddar Cheese Slices",
+      "brand": "Tillamook",
+      "company": "Tillamook County Creamery Association",
+      "companyId_hint": "tillamook",
+      "size": "8 oz (9 slices)",
+      "ingredients_verbatim": "Cultured milk, salt, enzymes, annatto (color).",
+      "off_verified": true,
+      "off_product_name": "SHARP CHEDDAR",
+      "off_url": "https://world.openfoodfacts.org/product/072830030021"
+    },
+    {
+      "barcode": "078354713723",
+      "name": "Cabot Seriously Sharp Cheddar Cracker Cut Slices",
+      "brand": "Cabot",
+      "company": "Agri-Mark Inc. (Cabot Creamery Cooperative)",
+      "companyId_hint": "cabot-creamery",
+      "size": "10 oz (30 ct)",
+      "ingredients_verbatim": "Pasteurized milk, cheese cultures, salt, enzymes.",
+      "off_verified": true,
+      "off_product_name": "Seriously Sharp Cheddar Cheese Cracker Cut Slices",
+      "off_url": "https://world.openfoodfacts.org/product/078354713723"
+    },
+    {
+      "barcode": "021000604647",
+      "name": "Kraft Singles American Cheese",
+      "brand": "Kraft",
+      "company": "Kraft Heinz Company",
+      "companyId_hint": "kraft-heinz",
+      "size": "12 oz (16 slices)",
+      "ingredients_verbatim": "CHEDDAR CHEESE (CULTURED MILK, SALT, ENZYMES), SKIM MILK, WHEY, MILKFAT, MILK PROTEIN CONCENTRATE, CALCIUM PHOSPHATE, SODIUM PHOSPHATE, CONTAINS LESS THAN 2% OF MODIFIED FOOD STARCH, SALT, MILK, LACTIC ACID, SORBIC ACID AS A PRESERVATIVE, OLEORESIN PAPRIKA (COLOR), ENZYMES, CHEESE CULTURE, VITAMIN A PALMITATE, ANNATTO EXTRACT (COLOR).",
+      "off_verified": true,
+      "off_product_name": "Singles American Pasteurized Prepared Cheese Product",
+      "off_url": "https://world.openfoodfacts.org/product/021000604647"
+    },
+    {
+      "barcode": "041757011017",
+      "name": "The Laughing Cow Original Creamy Swiss Spreadable Cheese Wedges",
+      "brand": "The Laughing Cow",
+      "company": "Bel Brands USA (Fromageries Bel)",
+      "companyId_hint": "bel-brands",
+      "size": "6 oz (8 wedges)",
+      "ingredients_verbatim": "[cheddar, swiss, and semisoft cheese (pasteurized cultured milk and part-skim milk, salt, enzymes)], nonfat milk, whey, ultrafiltered nonfat milk, water, milkfat, sodium polyphosphate, citric acid, salt",
+      "off_verified": true,
+      "off_product_name": "Spreadable cheese wedges",
+      "off_url": "https://world.openfoodfacts.org/product/041757011017"
+    },
+    {
+      "barcode": "041757001094",
+      "name": "Mini Babybel Original Semisoft Cheese",
+      "brand": "Babybel",
+      "company": "Bel Brands USA (Fromageries Bel)",
+      "companyId_hint": "bel-brands",
+      "size": "6 ct",
+      "ingredients_verbatim": "Pasteurized cultured milk, salt, microbial enzymes.",
+      "off_verified": true,
+      "off_product_name": "Babybel Mini Original Semisoft Cheese",
+      "off_url": "https://world.openfoodfacts.org/product/041757001094"
+    },
+    {
+      "barcode": "021000612239",
+      "name": "Philadelphia Original Cream Cheese",
+      "brand": "Philadelphia",
+      "company": "Kraft Heinz Company",
+      "companyId_hint": "kraft-heinz",
+      "size": "8 oz",
+      "ingredients_verbatim": "pasteurized milk and cream, salt, carob bean gum, cheese culture",
+      "off_verified": true,
+      "off_product_name": "Cream Cheese",
+      "off_url": "https://world.openfoodfacts.org/product/021000612239"
+    },
+    {
+      "barcode": "073420000110",
+      "name": "Daisy Pure & Natural Sour Cream",
+      "brand": "Daisy",
+      "company": "Daisy Brand LLC",
+      "companyId_hint": "daisy-brand",
+      "size": "16 oz",
+      "ingredients_verbatim": "CULTURED CREAM.",
+      "off_verified": true,
+      "off_product_name": "Sour Cream",
+      "off_url": "https://world.openfoodfacts.org/product/073420000110"
+    },
+    {
+      "barcode": "021000301652",
+      "name": "Breakstone's All Natural Sour Cream",
+      "brand": "Breakstone's",
+      "company": "Kraft Heinz Company",
+      "companyId_hint": "kraft-heinz",
+      "size": "16 oz",
+      "ingredients_verbatim": "CULTURED PASTEURIZED GRADE A MILK AND CREAM, ENZYMES",
+      "off_verified": true,
+      "off_product_name": "All Natural Sour Cream",
+      "off_url": "https://world.openfoodfacts.org/product/021000301652"
+    },
+    {
+      "barcode": "859977005064",
+      "name": "Good Culture Whole Milk Classic Cottage Cheese",
+      "brand": "Good Culture",
+      "company": "Good Culture Inc.",
+      "companyId_hint": "good-culture",
+      "size": "16 oz",
+      "ingredients_verbatim": "Organic skim milk, organic whole milk, organic cream, celtic sea salt, live and active cultures.",
+      "off_verified": true,
+      "off_product_name": "COTTAGE CHEESE",
+      "off_url": "https://world.openfoodfacts.org/product/859977005064"
+    },
+    {
+      "barcode": "071481024007",
+      "name": "Friendship Dairies Lowfat 1% Cottage Cheese",
+      "brand": "Friendship Dairies",
+      "company": "Friendship Dairies Inc.",
+      "companyId_hint": "friendship-dairies",
+      "size": "16 oz",
+      "ingredients_verbatim": "Cultured skim milk, milk, nonfat milk, salt, locust bean gum, carrageenan, carbon dioxide (to preserve freshness), vitamin a palmitate, enzymes.",
+      "off_verified": true,
+      "off_product_name": "Cottage Cheese",
+      "off_url": "https://world.openfoodfacts.org/product/071481024007"
+    },
+    {
+      "barcode": "093966000146",
+      "name": "Organic Valley Organic Whole Milk",
+      "brand": "Organic Valley",
+      "company": "Cooperative Regions of Organic Producer Pools (CROPP)",
+      "companyId_hint": "organic-valley",
+      "size": "1 gal",
+      "ingredients_verbatim": "Organic grade a milk, vitamin d3.",
+      "off_verified": true,
+      "off_product_name": "Organic Whole Milk",
+      "off_url": "https://world.openfoodfacts.org/product/093966000146"
+    },
+    {
+      "barcode": "742365228407",
+      "name": "Horizon Organic Whole Milk",
+      "brand": "Horizon Organic",
+      "company": "Danone North America (WhiteWave/DanoneWave)",
+      "companyId_hint": "danone",
+      "size": "1 gal",
+      "ingredients_verbatim": "Organic grade a milk, vitamin d3.",
+      "off_verified": true,
+      "off_product_name": "Organic whole milk",
+      "off_url": "https://world.openfoodfacts.org/product/742365228407"
+    },
+    {
+      "barcode": "811620020169",
+      "name": "Fairlife Whole Ultra-Filtered Milk",
+      "brand": "Fairlife",
+      "company": "The Coca-Cola Company (Fairlife LLC)",
+      "companyId_hint": "coca-cola",
+      "size": "52 fl oz",
+      "ingredients_verbatim": "ultra-filtered milk, lactase enzyme, vitamin a palmitate, vitamin d3,",
+      "off_verified": true,
+      "off_product_name": "Whole ultra-filtered milk",
+      "off_url": "https://world.openfoodfacts.org/product/811620020169"
+    },
+    {
+      "barcode": "767707001067",
+      "name": "Kerrygold Pure Irish Butter Salted",
+      "brand": "Kerrygold",
+      "company": "Ornua Co-operative Limited",
+      "companyId_hint": "ornua",
+      "size": "8 oz",
+      "ingredients_verbatim": "Pasteurized cream, salt.",
+      "off_verified": true,
+      "off_product_name": "PURE IRISH BUTTER SALTED",
+      "off_url": "https://world.openfoodfacts.org/product/767707001067"
+    },
+    {
+      "barcode": "034500151504",
+      "name": "Land O Lakes Unsalted Butter",
+      "brand": "Land O'Lakes",
+      "company": "Land O'Lakes Inc.",
+      "companyId_hint": "land-o-lakes",
+      "size": "1 lb (4 sticks)",
+      "ingredients_verbatim": "Sweet cream, natural flavoring, milk",
+      "off_verified": true,
+      "off_product_name": "Unsalted Butter",
+      "off_url": "https://world.openfoodfacts.org/product/034500151504"
+    },
+    {
+      "barcode": "072830011044",
+      "name": "Tillamook Sharp Cheddar Farmstyle Shredded Cheese",
+      "brand": "Tillamook",
+      "company": "Tillamook County Creamery Association",
+      "companyId_hint": "tillamook",
+      "size": "8 oz",
+      "ingredients_verbatim": "SHARP CHEDDAR CHEESE (CULTURED MILK, SALT, ENZYMES, ANNATTO [COLOR]), POTATO STARCH (ADDED TO PREVENT CAKING), NATAMYCIN (NATURAL MOLD INHIBITOR)",
+      "off_verified": true,
+      "off_product_name": "Sharp Cheddar Farmstyle Shreds",
+      "off_url": "https://world.openfoodfacts.org/product/072830011044"
+    },
+    {
+      "barcode": "075925300672",
+      "name": "Crystal Farms String Cheese",
+      "brand": "Crystal Farms",
+      "company": "Crystal Farms Refrigerated Distribution Company",
+      "companyId_hint": "crystal-farms",
+      "size": "10 oz",
+      "ingredients_verbatim": "Pasteurized part-skim milk, cheese culture, salt, enzymes.",
+      "off_verified": true,
+      "off_product_name": "STRING CHEESE PART-SKIM MOZZARELLA CHEESE",
+      "off_url": "https://world.openfoodfacts.org/product/075925300672"
+    },
+    {
+      "barcode": "041716232217",
+      "name": "Frigo Cheese Heads Mozzarella String Cheese",
+      "brand": "Frigo Cheese Heads",
+      "company": "Saputo Inc.",
+      "companyId_hint": "saputo",
+      "size": "24 oz (24 ct)",
+      "ingredients_verbatim": "Low moisture part skim mozzarella cheese (pasteurized part skim milk, cheese cultures, salt, enzymes).",
+      "off_verified": true,
+      "off_product_name": "Original String Low Moisture Part Skim Mozzarella Cheese",
+      "off_url": "https://world.openfoodfacts.org/product/041716232217"
+    }
+  ],
+  "could_not_verify": [
+    {
+      "name": "Organic Valley Salted Butter",
+      "reason": "Could not confirm a valid UPC in Open Food Facts; Kroger URL barcode 009396633000 returned 404 on OFF"
+    }
+  ]
+}

@@ -1,0 +1,272 @@
+{
+  "category": "baby_food",
+  "researched_at": "2026-06-15",
+  "products": [
+    {
+      "barcode": "015000048303",
+      "name": "Gerber Lil' Crunchies Mild Cheddar",
+      "brand": "Gerber",
+      "company": "Nestlé",
+      "companyId_hint": "nestle",
+      "size": "1.48 oz canister",
+      "ingredients_verbatim": "WHOLE GRAIN SORGHUM MEAL, DEGERMED, YELLOW CORN MEAL, HIGH OLEIC SUNFLOWER OIL, CHEESE, SEASONING (MALTODEXTRIN, SALT, CHEDDAR CHEESE [CULTURED, MILK, SALT, ENZYMES], BUTTER FAT, NATURAL CHEDDAR CHEESE, FLAVOR, ANNATTO EXTRACT COLOR, DISODIUM PHOSPHATE, AUTOLYZED YEAST EXTRACT), CALCIUM CARBONATE, MIXED, TOCOPHEROLS (TO MAINTAIN FRESHNESS), VITAMINS AND MINERALS: IRON (ELECTROLYTIC), VITAMIN E (ALPHA TOCOPHERYL ACETATE). CONTAINS: MILK.",
+      "off_verified": true,
+      "off_product_name": "Lil' Crunchies",
+      "off_url": "https://world.openfoodfacts.org/product/015000048303"
+    },
+    {
+      "barcode": "015000045203",
+      "name": "Gerber Puffs Strawberry Apple",
+      "brand": "Gerber",
+      "company": "Nestlé",
+      "companyId_hint": "nestle",
+      "size": "1.48 oz canister",
+      "ingredients_verbatim": "RICE FLOUR, WHOLE WHEAT FLOUR, WHEAT STARCH, CANE SUGAR, WHOLE GRAIN OAT FLOUR, NATURAL STRAWBERRY APPLE FLAVOR (INCLUDES STRAWBERRY JUICE CONCENTRATE AND ACETIC ACID), DRIED APPLE PUREE, MIXED TOCOPHEROLS (TO MAINTAIN FRESHNESS), SUNFLOWER LECITHIN, VITAMINS AND MINERALS: CHOLINE BITARTRATE, IRON (ELECTROLYTIC), VITAMIN E (ALPHA TOCOPHERYL ACETATE), NIACINAMIDE (A B VITAMIN), VITAMIN B6 (PYRIDOXINE HYDROCHLORIDE), VITAMIN B1 (THIAMINE HYDROCHLORIDE)",
+      "off_verified": true,
+      "off_product_name": "puffs strawberry apple grain snack",
+      "off_url": "https://world.openfoodfacts.org/product/015000045203"
+    },
+    {
+      "barcode": "023923330351",
+      "name": "Earth's Best Organic Stage 2 Sweet Potato & Beets",
+      "brand": "Earth's Best",
+      "company": "Hain Celestial Group",
+      "companyId_hint": "hain-celestial",
+      "size": "3.5 oz pouch",
+      "ingredients_verbatim": "ORGANIC SWEET POTATO PUREE, WATER, ORGANIC RED BEET PUREE",
+      "off_verified": true,
+      "off_product_name": "Organic Baby Food Puree",
+      "off_url": "https://world.openfoodfacts.org/product/023923330351"
+    },
+    {
+      "barcode": "023923236028",
+      "name": "Earth's Best Organic Sesame Street Veggie Puffs",
+      "brand": "Earth's Best",
+      "company": "Hain Celestial Group",
+      "companyId_hint": "hain-celestial",
+      "size": "1.55 oz bag",
+      "ingredients_verbatim": "organic corn, organic sunflower oil, sea salt, organic carrot powder, organic spinach powder, organic parsley, organic onion powder, organic sunflower oil, organic garlic powder.",
+      "off_verified": true,
+      "off_product_name": "Organic Veggie Puffs",
+      "off_url": "https://world.openfoodfacts.org/product/023923236028"
+    },
+    {
+      "barcode": "890180001894",
+      "name": "Plum Organics Stage 1 Just Prunes",
+      "brand": "Plum Organics",
+      "company": "Campbell Soup Company",
+      "companyId_hint": "campbell",
+      "size": "3.5 oz pouch",
+      "ingredients_verbatim": "Organic Prune Puree.",
+      "off_verified": true,
+      "off_product_name": "Pureed Prunes",
+      "off_url": "https://world.openfoodfacts.org/product/890180001894"
+    },
+    {
+      "barcode": "890180001191",
+      "name": "Plum Organics Stage 2 Pear Spinach & Pea",
+      "brand": "Plum Organics",
+      "company": "Campbell Soup Company",
+      "companyId_hint": "campbell",
+      "size": "4 oz pouch",
+      "ingredients_verbatim": "Organic pear puree, organic spinach, organic peas, organic lemon juice concentrate.",
+      "off_verified": true,
+      "off_product_name": "Pear, Spinach + Pea",
+      "off_url": "https://world.openfoodfacts.org/product/890180001191"
+    },
+    {
+      "barcode": "890180001238",
+      "name": "Plum Organics Stage 2 Banana + Pumpkin",
+      "brand": "Plum Organics",
+      "company": "Campbell Soup Company",
+      "companyId_hint": "campbell",
+      "size": "4 oz pouch",
+      "ingredients_verbatim": "Organic Banana Puree (Organic Bananas, Citric Acid), Organic Pumpkin Puree, Organic Lemon Juice Concentrate.",
+      "off_verified": true,
+      "off_product_name": "banana + pumpkin",
+      "off_url": "https://world.openfoodfacts.org/product/890180001238"
+    },
+    {
+      "barcode": "052200076224",
+      "name": "Beech-Nut Organics Stage 2 Prune & Pear",
+      "brand": "Beech-Nut",
+      "company": "Hero Group",
+      "companyId_hint": "beech-nut",
+      "size": "4 oz jar",
+      "ingredients_verbatim": "Organic Prune Puree (Water, Organic Prunes), Organic Pear, Organic Lemon Juice Concentrate",
+      "off_verified": true,
+      "off_product_name": "prune and pear",
+      "off_url": "https://world.openfoodfacts.org/product/052200076224"
+    },
+    {
+      "barcode": "052200011058",
+      "name": "Beech-Nut Fruities Stage 2 Pear Banana & Raspberries",
+      "brand": "Beech-Nut",
+      "company": "Hero Group",
+      "companyId_hint": "beech-nut",
+      "size": "3.5 oz pouch",
+      "ingredients_verbatim": "Pears, bananas, raspberries, citric acid, ascorbic acid (vitamin c).",
+      "off_verified": true,
+      "off_product_name": "Pear, Banana & Raspberry Puree",
+      "off_url": "https://world.openfoodfacts.org/product/052200011058"
+    },
+    {
+      "barcode": "852697001408",
+      "name": "Happy Baby Organics Stage 2 Broccoli Pears & Peas",
+      "brand": "Happy Baby",
+      "company": "Danone",
+      "companyId_hint": "danone",
+      "size": "4 oz pouch",
+      "ingredients_verbatim": "Organic pear puree, organic pea puree, organic broccoli puree, ascorbic acid (vitamin c), organic lemon juice concentrate.",
+      "off_verified": true,
+      "off_product_name": "Simple Combos Stage 2 Pears. Peas & Broccoli",
+      "off_url": "https://world.openfoodfacts.org/product/852697001408"
+    },
+    {
+      "barcode": "852697001378",
+      "name": "Happy Baby Organics Stage 2 Bananas Beets & Blueberries",
+      "brand": "Happy Baby",
+      "company": "Danone",
+      "companyId_hint": "danone",
+      "size": "4 oz pouch",
+      "ingredients_verbatim": "Organic banana puree, organic beet puree, organic blueberry puree, ascorbic acid (vitamin c), organic lemon juice concentrate.",
+      "off_verified": true,
+      "off_product_name": "Simple Combos Bananas, Beets & Blueberries Baby Food",
+      "off_url": "https://world.openfoodfacts.org/product/852697001378"
+    },
+    {
+      "barcode": "852697001743",
+      "name": "Happy Baby Organics Stage 2 Pears Mangos & Spinach",
+      "brand": "Happy Baby",
+      "company": "Danone",
+      "companyId_hint": "danone",
+      "size": "4 oz pouch",
+      "ingredients_verbatim": "Organic pear puree, organic mango puree, organic spinach puree, ascorbic acid (vitamin c), organic lemon juice concentrate.",
+      "off_verified": true,
+      "off_product_name": "Pears, Mangos & Spinach- Stage 2",
+      "off_url": "https://world.openfoodfacts.org/product/852697001743"
+    },
+    {
+      "barcode": "819573017571",
+      "name": "Happy Baby Organics Clearly Crafted Stage 2 Sweet Potatoes Blueberries & Beets",
+      "brand": "Happy Baby",
+      "company": "Danone",
+      "companyId_hint": "danone",
+      "size": "4 oz pouch",
+      "ingredients_verbatim": "ORGANIC SWEET POTATO PUREE, ORGANIC BLUEBERRY PUREE, ORGANIC BEET PUREE, <1% OF: ORGANIC LEMON JUICE CONCENTRATE, ASCORBIC ACID (VITAMIN C) TO PRESERVE FRESHNESS.",
+      "off_verified": true,
+      "off_product_name": "Organic Sweet Potatoes, Blueberries & Beets",
+      "off_url": "https://world.openfoodfacts.org/product/819573017571"
+    },
+    {
+      "barcode": "819573011579",
+      "name": "Happy Tot Organics Super Foods Pears Beets & Blueberries + Super Chia",
+      "brand": "Happy Tot",
+      "company": "Danone",
+      "companyId_hint": "danone",
+      "size": "4.22 oz pouch",
+      "ingredients_verbatim": "Organic pear puree, organic blueberry puree, milled organic chia seed, organic beet puree, ascorbic acid (vitamin c), organic lemon juice concentrate.",
+      "off_verified": true,
+      "off_product_name": "Super Foods Organic Pears, Beets & Blueberries + Super Chia - Stage 4",
+      "off_url": "https://world.openfoodfacts.org/product/819573011579"
+    },
+    {
+      "barcode": "819573013269",
+      "name": "Happy Baby Organics Clearly Crafted Stage 2 Bananas Raspberries & Oats",
+      "brand": "Happy Baby",
+      "company": "Danone",
+      "companyId_hint": "danone",
+      "size": "4 oz pouch",
+      "ingredients_verbatim": "ORGANIC BANANA PUREE, ORGANIC RASPBERRY PUREE, WATER, MILLED ORGANIC WHOLE GRAIN OATS, <2% OF: ORGANIC LEMON JUICE CONCENTRATE, ASCORBIC ACID (VITAMIN C)",
+      "off_verified": true,
+      "off_product_name": "Clearly Crafted Variety Pack; Bananas, Rapsberries & Oats AND Pears, Kale & Spinach",
+      "off_url": "https://world.openfoodfacts.org/product/819573013269"
+    },
+    {
+      "barcode": "081851201158",
+      "name": "Sprout Organic Stage 2 Apple Banana Butternut Squash",
+      "brand": "Sprout Organics",
+      "company": "North Castle Partners",
+      "companyId_hint": "private",
+      "size": "3.5 oz pouch",
+      "ingredients_verbatim": "Organic Apples, Organic Bananas, Organic Butternut Squash, Organic Lemon Juice.",
+      "off_verified": false,
+      "off_product_name": null,
+      "off_url": "https://world.openfoodfacts.org/product/081851201158",
+      "off_note": "Product confirmed by Harris Teeter, Baker's Plus, Mariano's at UPC 0081851201158; not found in OFF database"
+    },
+    {
+      "barcode": "052200017209",
+      "name": "Beech-Nut Naturals Stage 2 Pineapple Pear & Avocado",
+      "brand": "Beech-Nut",
+      "company": "Hero Group",
+      "companyId_hint": "beech-nut",
+      "size": "4 oz jar",
+      "ingredients_verbatim": "Pineapple, pear, avocado.",
+      "off_verified": false,
+      "off_product_name": null,
+      "off_url": "https://world.openfoodfacts.org/product/052200017209",
+      "off_note": "Product confirmed by Kroger, Harris Teeter, Ralphs, Walmart, Smith's at UPC 0005220017209; not found in OFF database"
+    },
+    {
+      "barcode": "081957301233",
+      "name": "Happy Tot Organics Love My Veggies Spinach Apples Sweet Potatoes & Kiwi",
+      "brand": "Happy Tot",
+      "company": "Danone",
+      "companyId_hint": "danone",
+      "size": "4.22 oz pouch",
+      "ingredients_verbatim": "Organic Spinach Puree, Organic Apple Puree, Organic Sweet Potato Puree, Organic Kiwi Puree, Less than 1.5% of: Organic Lemon Juice Concentrate, Vitamin C (Ascorbic Acid).",
+      "off_verified": false,
+      "off_product_name": null,
+      "off_url": "https://world.openfoodfacts.org/product/081957301233",
+      "off_note": "Product confirmed by Harris Teeter, Fred Meyer, Safeway, Instacart at UPC 0081957301233; not found in OFF database"
+    },
+    {
+      "barcode": "015000074586",
+      "name": "Gerber Organic 2nd Foods Apple Zucchini Spinach & Strawberry",
+      "brand": "Gerber",
+      "company": "Nestlé",
+      "companyId_hint": "nestle",
+      "size": "3.5 oz pouch",
+      "ingredients_verbatim": "Organic Apples, Organic Zucchini, Organic Spinach, Organic Strawberries, Vitamin C (Ascorbic Acid), Organic Lemon Juice Concentrate",
+      "off_verified": false,
+      "off_product_name": "Organic Variety Pack: Pear Spinach, Pear Mango Avocado & Apple Zucchini Spinach Strawberry (Sitter)",
+      "off_url": "https://world.openfoodfacts.org/product/015000074586",
+      "off_note": "Barcode belongs to a variety pack in OFF; individual pouch UPC confirmed at The Fresh Grocer and Kroger (0001500093595 for 6-pack); ingredients verified via OFF variety pack record"
+    }
+  ],
+  "could_not_verify": [
+    {
+      "name": "Gerber 2nd Foods Apple Banana",
+      "reason": "Multiple Gerber 2nd Foods Apple Banana UPCs found (tubs, jar, cereal mixes); no single clean match confirmed in OFF. Replaced with verified Gerber Lil' Crunchies and Puffs Strawberry Apple."
+    },
+    {
+      "name": "Gerber Organic 2nd Foods Pea Spinach Mango",
+      "reason": "No product with this exact flavor combination found at retail or in OFF. Gerber does make Pear Spinach and other combos, but not Pea Spinach Mango specifically."
+    },
+    {
+      "name": "Earth's Best Organic Stage 2 Apple Blueberry",
+      "reason": "Product found as Banana Apple Blueberry or Banana Blueberry Oat at retail, not plain Apple Blueberry. Could not obtain a verified single barcode for this exact flavor."
+    },
+    {
+      "name": "Earth's Best Organic Stage 2 Apple Strawberry",
+      "reason": "Product confirmed at retail (UPC 002392333500 per Smith's Food and Drug) but OFF lookup returned 404. Included Earth's Best Sweet Potato & Beets and Veggie Puffs as verified substitutes."
+    },
+    {
+      "name": "Once Upon a Farm Organic Apple Spinach",
+      "reason": "Products are DTC / cold-pressed; available at retail in Apple Banana Spinach Avocado format (UPC 0081000351706) but OFF lookup returned 404. Brand is private company."
+    },
+    {
+      "name": "Peter Rabbit Organics Carrot Apricot & Apple",
+      "reason": "No barcode found for Carrot Apricot & Apple specifically. Brand's Mango Banana Orange (UPC 0081536701013) also not in OFF. Dropped in favor of verified products."
+    },
+    {
+      "name": "Serenity Kids Grass Fed Beef with Organic Butternut Squash",
+      "reason": "Current product lineup does not include Beef + Butternut Squash; closest is Grass Fed Beef with Kale & Sweet Potato. No UPC found for the suggested flavor. Dropped."
+    },
+    {
+      "name": "Little Spoon Organic Peach Mango",
+      "reason": "Little Spoon is a DTC subscription brand with no retail UPCs in standard barcode databases or OFF. Dropped."
+    }
+  ]
+}

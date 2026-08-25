@@ -1,0 +1,341 @@
+const REANALYZED_ISSUES = {
+  'nestle': [
+    {
+      id: 'buitoni-ecoli-criminal',
+      title: 'Buitoni Pizza E. Coli Deaths — Criminal Charges',
+      severity: 'high',
+      description: 'A 2022 E. coli HUS outbreak linked to Nestlé\'s Buitoni Fraîch\'Up frozen pizzas killed 2 children and sickened 56 people in France, including 50 cases of Hemolytic Uremic Syndrome. French judges placed Nestlé France and subsidiary SPAC under formal criminal investigation in 2024 for involuntary manslaughter, deceptive practices, and endangering others; the criminal trial remains pending as of mid-2026.',
+      source: 'Food Safety News, 2024; France24, 2022',
+    },
+    {
+      id: 'infant-formula-recall-2026',
+      title: 'Largest-Ever Infant Formula Recall — Criminal Probe',
+      severity: 'high',
+      description: 'Nestlé launched its largest-ever recall in January 2026, covering infant formula from 10+ factories across 60+ countries after Bacillus cereus contamination was detected at its Nunspeet, Netherlands plant. Dutch authorities opened a criminal probe after Nestlé delayed notifying regulators by 13 days; French authorities opened a separate criminal investigation after two infant deaths were reported.',
+      source: 'Food Safety News, 2026; NL Times, 2026; Euronews, 2026',
+    },
+    {
+      id: 'cocoa-child-labor-litigation',
+      title: 'Cocoa Child Labor — Active Litigation',
+      severity: 'high',
+      description: 'Corporate Accountability Lab\'s 2023 report documented ongoing child labor on farms supplying Nestlé and other major chocolate companies. Nestlé\'s Child Labor Monitoring and Remediation System covers only a fraction of its supply chain; the industry\'s Harkin-Engel Protocol deadlines (originally 2005) have been extended to 2025 without fulfillment.',
+      source: 'Corporate Accountability Lab, 2023; Harvard Law Systemic Justice Project, 2023',
+    },
+    {
+      id: 'toll-house-wood-recall',
+      title: 'Nestlé Toll House Recall — Wood Fragments',
+      severity: 'medium',
+      description: 'Nestlé USA voluntarily recalled limited batches of Nestlé Toll House Chocolate Chip Cookie Dough Bar (16.5 oz, produced April 24–25, 2023) in August 2023 for potential wood fragment contamination. A small number of consumer complaints prompted the action; no injuries were reported.',
+      source: 'FDA.gov, August 2023',
+    },
+    {
+      id: 'perrier-labeling-lawsuit',
+      title: 'Perrier "Natural Mineral Water" Class Action',
+      severity: 'medium',
+      description: 'A class action filed in March 2024 (Case No. 2:24-cv-01607, E.D.N.Y.) alleges Nestlé USA misled consumers about Perrier\'s purity and "natural mineral water" designation, claiming undisclosed blending of water sources and filtration methods inconsistent with natural mineral water standards. No adjudication has been reached as of mid-2026.',
+      source: 'ClassAction.org, 2024; Bloomberg Law, 2024',
+    },
+    {
+      id: 'cocoa-lobbying',
+      title: 'Alleged Lobbying Against Child Labor Legislation',
+      severity: 'high',
+      description: 'Nestlé, alongside Mars, Hershey, and Cargill, has historically advocated for voluntary rather than mandatory import restrictions on cocoa produced with child labor; the Harkin-Engel Protocol\'s binding legislation was replaced with a voluntary protocol in 2001, and every subsequent deadline was missed. According to the Harvard Law Systemic Justice Project (2023), the industry continued lobbying against mandatory enforcement measures through trade groups during the 2020–2024 period.',
+      source: 'Harvard Law Systemic Justice Project, 2023; IRAadvocates.org',
+    },
+  ],
+
+  'pepsico': [
+    {
+      id: 'ftc-price-discrimination',
+      title: 'FTC Alleged Illegal Preferential Pricing for Walmart',
+      severity: 'high',
+      description: 'The FTC filed suit in January 2025 alleging PepsiCo gave Walmart illegal preferential pricing — including lower average retail prices and promotional payments not proportionally available to competing retailers — in violation of the Robinson-Patman Act. The FTC dismissed the case in May 2025 under the new administration without prejudice; a federal judge ordered the complaint unsealed in December 2025, citing the public\'s constitutional right to access.',
+      source: 'FTC.gov, January 2025; American Prospect, December 2025',
+    },
+    {
+      id: 'plastic-pollution-lawsuits',
+      title: 'Plastic Pollution — Multi-Government Lawsuits',
+      severity: 'high',
+      description: 'New York Attorney General Letitia James filed suit in November 2023 citing PepsiCo as responsible for 17% of branded plastic found in the Buffalo River watershed — three times more than the next brand. Los Angeles County (October 2024), Baltimore (June 2024), and Earth Island Institute (July 2024) have filed additional active or pending suits over plastic pollution and deceptive recyclability claims.',
+      source: 'NY AG press release, November 2023; LA County press release, October 2024',
+    },
+    {
+      id: 'quaker-salmonella-settlement',
+      title: 'Quaker Oats Salmonella Recall — $6.75M Settlement',
+      severity: 'high',
+      description: 'PepsiCo\'s Quaker Oats subsidiary recalled over 90 granola bar and granola product SKUs in late 2023 and early 2024 for potential Salmonella contamination. Quaker agreed to pay $6.75 million to settle a resulting class action without admitting wrongdoing; the claim deadline was June 27, 2025.',
+      source: 'FDA.gov; TopClassActions.com, 2025',
+    },
+    {
+      id: 'soda-tax-lobbying',
+      title: 'Ongoing Opposition to Soda Tax Legislation',
+      severity: 'medium',
+      description: 'PepsiCo has actively opposed soda tax initiatives across multiple U.S. cities and states through direct lobbying and funding of industry front groups, as documented by the Center for Science in the Public Interest. These campaigns have been ongoing through the 2020–2025 period.',
+      source: 'CSPI; OpenSecrets, 2020–2025',
+    },
+  ],
+
+  'coca-cola': [
+    {
+      id: 'plastic-greenwashing-lawsuits',
+      title: 'Plastic Greenwashing — D.C. Appeals Court Ruling',
+      severity: 'high',
+      description: 'The D.C. Court of Appeals ruled on August 28, 2024 that Coca-Cola must face a greenwashing lawsuit (Earth Island Institute v. Coca-Cola) over its sustainability marketing claims, reversing a lower-court dismissal. Los Angeles County filed a separate suit in October 2024 alleging deceptive recyclability marketing; Break Free From Plastic named Coca-Cola the world\'s largest plastic polluter for the sixth consecutive year in its 2023 audit.',
+      source: 'D.C. Court of Appeals, August 2024; LA County press release, October 2024',
+    },
+    {
+      id: 'sugar-science-funding',
+      title: 'Funding Biased Sugar Research',
+      severity: 'high',
+      description: 'A 2016 JAMA Internal Medicine investigation revealed that Coca-Cola secretly funded the Global Energy Balance Network to produce research downplaying the role of sugary drinks in obesity, directing attention toward lack of exercise instead. The UCSF Industry Documents Library continues to document the pattern of corporate funding of research favorable to Coca-Cola\'s products.',
+      source: 'JAMA Internal Medicine, 2016; UCSF Industry Documents Library',
+    },
+    {
+      id: 'natural-flavors-class-action',
+      title: 'Sprite/Fanta "100% Natural Flavors" Lawsuit',
+      severity: 'medium',
+      description: 'A class action filed in May 2025 (Case No. 2:25-cv-04777, C.D. Cal.) alleges Sprite and Fanta are marketed as containing "100% Natural Flavors" while containing citric acid, sodium citrate, potassium citrate, aspartame, and acesulfame potassium produced through synthetic processes. The case was still proceeding as of October 2025; no adjudication has been reached.',
+      source: 'OnlyClassActions; TopClassActions, 2025',
+    },
+    {
+      id: 'metal-contamination-recall',
+      title: 'Metal Contamination Recall — Texas Distribution',
+      severity: 'medium',
+      description: 'Coca-Cola Southwest Beverages LLC recalled 4,228 cans of Coca-Cola Zero Sugar, Coca-Cola, and Sprite on October 3, 2025 (FDA Class II) due to potential metal contamination. Products were distributed in parts of Texas; all recalled product was confirmed removed from market.',
+      source: 'FDA.gov, October 2025',
+    },
+    {
+      id: 'beverage-regulation-lobbying',
+      title: 'Lobbying Against Plastic and Beverage Regulation',
+      severity: 'medium',
+      description: 'Coca-Cola\'s trade association lobbying against plastic reduction mandates and beverage container legislation is disclosed in SEC proxy filings (Form PX14A6G, 2023). According to the Center for Responsive Politics, Coca-Cola has consistently opposed beverage-specific regulations through industry trade groups during the 2020–2025 period.',
+      source: 'SEC Form PX14A6G, 2023; Center for Responsive Politics',
+    },
+  ],
+
+  'kelloggs': [
+    {
+      id: 'honey-smacks-criminal-conviction',
+      title: 'Honey Smacks Salmonella — $19.2M Criminal Fine',
+      severity: 'high',
+      description: 'A 2018 Salmonella outbreak linked to Kellogg\'s Honey Smacks (produced at a Kerry Inc. facility in Gridley, IL) sickened 135+ people across 36 states. Kerry Inc. pleaded guilty on February 3, 2023 to distributing adulterated food and paid a $19,228,000 criminal fine and forfeiture; Kerry\'s former QA Director separately pleaded guilty to three federal misdemeanors for directing subordinates to conceal unsanitary conditions from Kellogg.',
+      source: 'DOJ press release, February 2023; FDA announcement, 2023',
+    },
+    {
+      id: 'bctgm-strike-nlrb',
+      title: '2021 Worker Strike — Unfair Labor Practice Charges',
+      severity: 'high',
+      description: 'Approximately 1,400 Kellogg\'s cereal workers (BCTGM) struck at four U.S. plants from October 5 to December 21, 2021, disputing a two-tier wage system, mandatory overtime documented at up to 80 hours per week, and healthcare and retirement benefits. BCTGM filed NLRB unfair labor practice charges alleging bad-faith bargaining and direct dealing; the strike resolved December 21, 2021 with a five-year contract.',
+      source: 'BCTGM.org, December 2021; NPR, December 2021',
+    },
+    {
+      id: 'mars-acquisition-consolidation',
+      title: 'Acquired by Mars Inc. — $35.9B Consolidation',
+      severity: 'medium',
+      description: 'Mars, Inc. completed its $35.9 billion acquisition of Kellanova on December 11, 2025, following unconditional FTC and European Commission clearance. Kellanova\'s brands — including Pringles, Pop-Tarts, Cheez-It, Eggo, MorningStar Farms, and Nutri-Grain — now sit under Mars\'s ownership, creating a combined entity with estimated annual revenues exceeding $80 billion.',
+      source: 'Mars.com press release; BusinessWire, December 2025',
+    },
+    {
+      id: 'gmo-labeling-history',
+      title: 'Historical GMO Labeling Opposition (Resolved)',
+      severity: 'low',
+      description: 'Kellogg\'s joined industry lobbying campaigns against mandatory GMO labeling from 2012 to 2014. The issue was substantively resolved when the USDA National Bioengineered Food Disclosure Standard took effect on January 1, 2022, making mandatory GMO disclosure federal law.',
+      source: 'CSPI; USDA NBFDS, effective January 2022',
+    },
+  ],
+
+  'general-mills': [
+    {
+      id: 'gold-medal-flour-salmonella',
+      title: 'Gold Medal Flour Salmonella Outbreak — 14 Ill',
+      severity: 'high',
+      description: 'General Mills recalled Gold Medal All Purpose Flour (2-, 5-, and 10-pound bags) on April 28, 2023 after FDA and CDC confirmed 14 illnesses across 13 states and 3 hospitalizations linked to Salmonella Infantis. A second recall followed in September 2023 for potential E. coli O121 in 5-pound bags; this was at least the third General Mills flour recall in five years.',
+      source: 'FDA.gov outbreak investigation, April 2023; CDC, 2023',
+    },
+    {
+      id: 'nature-valley-labeling-settlement',
+      title: 'Nature Valley "100% Natural" Settlement',
+      severity: 'medium',
+      description: 'General Mills settled a consumer lawsuit over "100% Natural" claims on Nature Valley products that contained glyphosate residues, dropping the claim without admitting wrongdoing; the settlement was finalized between 2016 and 2018. Glyphosate was detected at 0.45 ppm — below the EPA limit but above EWG\'s children\'s health benchmark of 0.01 ppm.',
+      source: 'Food Dive, 2018; Insurance Journal, July 2025',
+    },
+    {
+      id: 'glyphosate-oat-products',
+      title: 'Glyphosate Detected in Oat Products',
+      severity: 'high',
+      description: 'EWG\'s 2022 testing found glyphosate residues in General Mills oat-based products including Cheerios and Nature Valley bars at levels above EWG\'s children\'s health benchmark of 0.01 ppm. The herbicide is classified as a probable human carcinogen by the International Agency for Research on Cancer.',
+      source: 'Environmental Working Group, 2022',
+    },
+    {
+      id: 'healthy-label-lobbying',
+      title: 'Threatened Legal Action Against FDA Label Rules',
+      severity: 'medium',
+      description: 'According to trade press reporting in 2022, General Mills joined Kellogg\'s and Post Consumer Brands in threatening legal action against the FDA over proposed updates to the definition of "healthy" on food labels that would require cereals to reduce sodium and sugar content. No lawsuit was ultimately filed per the available record.',
+      source: 'Food Dive, 2022',
+    },
+  ],
+
+  'unilever': [
+    {
+      id: 'dry-shampoo-benzene-recall',
+      title: 'Benzene in Dry Shampoos — Recall and Ongoing Litigation',
+      severity: 'high',
+      description: 'Unilever recalled aerosol dry shampoos under the Dove, Nexxus, Suave, TIGI Bed Head, and TRESemmé brands in October 2022 after elevated benzene — a known human carcinogen — was detected, traced to a hydrocarbon propellant supplied by Aeropres Corporation. A proposed $3.625 million class action settlement was denied by a federal judge in early 2025; litigation was ongoing as of mid-2026.',
+      source: 'Law360, 2025; TopClassActions, 2025',
+    },
+    {
+      id: 'ben-jerrys-censorship-suit',
+      title: "Ben & Jerry's Sues Unilever Over Social Mission",
+      severity: 'medium',
+      description: 'Ben & Jerry\'s and five independent board members filed a federal lawsuit against Unilever in November 2024 alleging Unilever censored at least four social media posts (2023–2024) and violated the social mission protections of their 2000 merger agreement. Additional claims filed in March 2025 alleged Unilever fired the company\'s CEO in retaliation for political activism without following the required advisory process; Unilever moved to dismiss in April 2025.',
+      source: 'CBS News, 2025; NPR, March 2025',
+    },
+    {
+      id: 'nutrafol-deceptive-claims',
+      title: 'Nutrafol — Alleged Deceptive Hair Loss Marketing',
+      severity: 'medium',
+      description: 'TINA.org filed a complaint with the FTC and FDA in April 2023 alleging Unilever\'s Nutrafol brand marketed supplements as "medical-grade" and "clinically proven" to increase hair growth without adequate scientific substantiation, citing inadequate study designs, biased researchers, and influencer disclosure failures. No formal FTC or FDA enforcement action has been publicly announced as of mid-2026.',
+      source: 'TINA.org / GlobeNewswire, April 2023',
+    },
+    {
+      id: 'palm-oil-deforestation',
+      title: 'Palm Oil — Missed 2023 Deforestation-Free Deadline',
+      severity: 'high',
+      description: 'Unilever officially missed its 2023 deadline for achieving a deforestation-free palm oil supply chain, as documented by the Rainforest Action Network\'s 2023 report. Reporting in 2022 additionally linked Unilever\'s supply chain to Brazilian suppliers associated with forced displacement and community conflict in the Amazon.',
+      source: 'Rainforest Action Network, 2023; Mondelēz Form DEF 14A, 2022',
+    },
+  ],
+
+  'kraft-heinz': [
+    {
+      id: 'sec-accounting-fraud-settlement',
+      title: 'SEC Accounting Fraud — $62M Settlement',
+      severity: 'high',
+      description: 'The SEC charged Kraft Heinz in September 2021 with a multi-year procurement accounting scheme (Q4 2015–end of 2018) involving falsified supplier contracts and approximately 300 transactions that improperly reduced cost of goods sold by $208 million. Kraft Heinz agreed to pay $62 million to settle without admitting wrongdoing; the company had restated financials in June 2019 and recorded a $12.6 billion Q4 2018 loss tied to brand write-downs.',
+      source: 'SEC.gov press release, September 2021',
+    },
+    {
+      id: 'oscar-mayer-listeria-recall',
+      title: 'Oscar Mayer Turkey Bacon — Listeria Recall',
+      severity: 'high',
+      description: 'Kraft Heinz recalled 367,812 pounds of Oscar Mayer Turkey Bacon Original in July 2025 for potential Listeria monocytogenes contamination; products were distributed in the US, British Virgin Islands, and Hong Kong. A class action was filed in Florida federal court in August 2025 alleging failure to disclose contamination and violations of Florida consumer protection law.',
+      source: 'USDA FSIS, July 2025; Law360, August 2025',
+    },
+    {
+      id: 'kraft-singles-choking-recall',
+      title: 'Kraft Singles Recall — Six Choking Complaints',
+      severity: 'medium',
+      description: 'Kraft Heinz recalled approximately 83,800 cases of individually-wrapped Kraft Singles American processed cheese slices in September 2023 after a wrapping machine defect caused plastic film to potentially remain adhered to cheese slices, creating a choking or gagging hazard. Kraft Heinz\'s own press release documented six consumer complaints of choking or gagging.',
+      source: 'FDA.gov; Kraft Heinz press release, September 2023',
+    },
+    {
+      id: 'mac-cheese-preservative-lawsuit',
+      title: 'Kraft Mac & Cheese "No Artificial Preservatives" Suit',
+      severity: 'medium',
+      description: 'A class action alleges Kraft Heinz falsely advertised Kraft Macaroni & Cheese as containing "no artificial preservatives" when it contains synthetic citric acid and sodium phosphates that function as preservatives. U.S. District Judge Mary Rowland ruled in November 2024 that plaintiffs sufficiently alleged their claims; the case is proceeding.',
+      source: 'CNN Business, November 2024; Law360',
+    },
+    {
+      id: 'powdered-drink-metal-glass-recall',
+      title: 'Country Time / Tang / Kool-Aid — Metal & Glass Recall',
+      severity: 'medium',
+      description: 'Kraft Heinz voluntarily recalled select Country Time Lemonade, Tang, Arizona Tea, and Kool-Aid powdered beverages in November 2021 due to potential presence of very small metal or glass pieces from a manufacturing defect. No injuries were reported.',
+      source: 'FDA.gov recall notice, November 2021',
+    },
+  ],
+
+  'conagra': [
+    {
+      id: 'canned-meat-class-i-recall',
+      title: 'Canned Meat Recall — 2.58M Pounds (Class I)',
+      severity: 'high',
+      description: 'Conagra recalled 2,581,816 pounds of canned meat and poultry products on January 31, 2023 due to a packaging defect that could allow bacterial contamination without outward signs. The USDA FSIS classified the recall as Class I — meaning a reasonable probability of serious adverse health consequences — and products had been distributed nationwide.',
+      source: 'USDA FSIS recall notice, January 2023',
+    },
+    {
+      id: 'sustainable-seafood-settlement',
+      title: '"Certified Sustainable" Seafood Labeling Settlement',
+      severity: 'medium',
+      description: 'A class action (Bohen et al. v. Conagra Brands, N.D. Ill., Case No. 1:23-cv-01298) filed in March 2023 alleged Conagra falsely advertised Mrs. Paul\'s and Van De Kamp\'s seafood products as "certified sustainable seafood" when sourcing practices did not support that designation. The parties reported a settlement in principle at a November 2024 status hearing; full terms were not publicly disclosed.',
+      source: 'SeafoodSource, November 2024; ClassAction.org',
+    },
+    {
+      id: 'birds-eye-rock-metal-recall',
+      title: "Birds Eye Broccoli Tots — Rock and Metal Fragments",
+      severity: 'medium',
+      description: 'Conagra voluntarily recalled Birds Eye Broccoli Tots (12 oz) in December 2021 for potential small rocks and metal fragments after two consumer reports of dental damage.',
+      source: 'FDA.gov recall notice, December 2021',
+    },
+    {
+      id: 'wish-bone-allergen-recall',
+      title: 'Wish-Bone Dressing — Undeclared Egg Allergen',
+      severity: 'medium',
+      description: 'Conagra recalled limited quantities of Wish-Bone Thousand Island and Chunky Blue Cheese dressings on January 31, 2022 for undeclared egg, a major allergen that was absent from the product label. No injuries or illnesses were reported.',
+      source: 'FDA.gov recall notice; PR Newswire, February 2022',
+    },
+  ],
+
+  'mondelez': [
+    {
+      id: 'ritz-peanut-allergen-recalls',
+      title: 'Ritz Cracker Peanut Allergen Recalls (2020, 2025)',
+      severity: 'high',
+      description: 'Mondelēz Global LLC recalled Ritz Peanut Butter Cracker Sandwiches in July 2025 after packaging defects mislabeled inner packs, posing a life-threatening risk to peanut-allergic consumers; a prior undeclared peanut allergen incident involving Ritz Cheese Cracker Sandwiches was documented in 2020. These are two separate, verified incidents.',
+      source: 'FDA.gov, 2020 and July 2025',
+    },
+    {
+      id: 'cocoa-child-labor-dc-suit',
+      title: 'Cocoa Child Labor — D.C. Class Action Active',
+      severity: 'high',
+      description: 'International Rights Advocates filed a class action in November 2023 against Mars, Cargill, and Mondelēz for consumer fraud and negligent supervision tied to child labor on cocoa farms in Ghana, naming seven child plaintiffs as young as six. A U.S. District Court remanded the case to D.C. Superior Court in March 2025 after finding it had been improperly removed to federal court; it remains active as of mid-2026.',
+      source: 'Courthouse News, November 2023; Duane Morris Blog, March 2025',
+    },
+    {
+      id: 'palm-oil-brazil-suppliers',
+      title: 'Palm Oil — Brazilian Supplier Human Rights Allegations',
+      severity: 'high',
+      description: 'According to Rainforest Action Network\'s 2023 report and 2022 proxy filings, Mondelēz sourced palm oil from Brazilian suppliers Brasil Biofuels (BBF) and Agropalma, linked to allegations of forced displacement, torture, and community conflict in the Amazon. Mondelēz\'s Cocoa Life program is documented as covering only a minority of its cocoa and palm oil sourcing.',
+      source: 'RAN, 2023; Mondelēz Form DEF 14A, 2022',
+    },
+    {
+      id: 'chips-ahoy-choking-recall',
+      title: 'Chips Ahoy! Baked Bites — Choking Hazard Recall',
+      severity: 'medium',
+      description: 'Mondelēz Global LLC recalled Chips Ahoy! Baked Bites (Brookie variety) in December 2024–January 2025 for potential choking hazard caused by corn starch clumps from incorrect mixing. A separate recall of the same product was reported in May 2026.',
+      source: 'Mondelēz press release; Newsweek, 2025',
+    },
+    {
+      id: 'lobbying-vs-climate-commitments',
+      title: 'Shareholders Flag Lobbying vs. Climate Pledges',
+      severity: 'medium',
+      description: 'A 2025 shareholder proposal demanded Mondelēz disclose alignment between its direct and indirect lobbying activities and its net-zero 2050 commitment. The Mondelēz board recommended voting against the proposal, which was put to a vote on May 21, 2025.',
+      source: 'Mondelēz Form PX14A6G, SEC, 2025',
+    },
+  ],
+
+  'mars': [
+    {
+      id: 'cocoa-child-labor-dc-suit-2025',
+      title: 'Cocoa Child Labor — Active D.C. Lawsuit, Missed 2025 Pledge',
+      severity: 'high',
+      description: 'International Rights Advocates filed a class action in November 2023 against Mars, Cargill, and Mondelēz for consumer fraud and negligent supervision tied to child labor on cocoa farms; the case was remanded to D.C. Superior Court in March 2025 and remains active. The 2025 industry pledge deadline — originally made in 2001 and extended repeatedly — has now passed with no public confirmation of fulfillment by Mars.',
+      source: 'CNBC, November 2023; Duane Morris Blog, March 2025; ILO reports',
+    },
+    {
+      id: 'kellanova-acquisition-consolidation',
+      title: 'Kellanova Acquisition — $35.9B Market Consolidation',
+      severity: 'medium',
+      description: 'Mars completed its $35.9 billion acquisition of Kellanova on December 11, 2025 following unconditional FTC and European Commission clearance, adding Pringles, Pop-Tarts, Cheez-It, Eggo, MorningStar Farms, and Nutri-Grain to its existing portfolio. The combined entity has estimated annual revenues exceeding $80 billion.',
+      source: 'Mars.com press release; BusinessWire, December 2025',
+    },
+    {
+      id: 'skittles-gummies-metal-recall',
+      title: 'Skittles / Starburst / Life Savers — Metal Strand Recall',
+      severity: 'medium',
+      description: 'Mars Wrigley Confectionery LLC voluntarily recalled Skittles Gummies, Starburst Gummies, and Life Savers Gummies on May 13, 2022 for potential thin metal strands embedded in the candy or loose in the bag, distributed in the US, Canada, and Mexico. No injuries were reported at the time of the recall; the FDA confirmed the recall complete.',
+      source: 'FDA.gov, May 2022',
+    },
+  ],
+};
+
+module.exports = REANALYZED_ISSUES;

@@ -1,0 +1,602 @@
+[
+  {
+    "ingredient": "made from corn",
+    "count": 479
+  },
+  {
+    "ingredient": "fruit and vegetable juice",
+    "count": 330
+  },
+  {
+    "ingredient": "soybean and or sunflower seed",
+    "count": 312
+  },
+  {
+    "ingredient": "nonfat dry milk solids",
+    "count": 283
+  },
+  {
+    "ingredient": "mono- & diglycerides",
+    "count": 276
+  },
+  {
+    "ingredient": "pork stock",
+    "count": 275
+  },
+  {
+    "ingredient": "pure vanilla extract",
+    "count": 273
+  },
+  {
+    "ingredient": "cultured whey",
+    "count": 272
+  },
+  {
+    "ingredient": "dairy product solids",
+    "count": 270
+  },
+  {
+    "ingredient": "monk fruit",
+    "count": 267
+  },
+  {
+    "ingredient": "pasteurized cultured milk and cream",
+    "count": 262
+  },
+  {
+    "ingredient": "trace of lime",
+    "count": 260
+  },
+  {
+    "ingredient": "vegetable oil peanut",
+    "count": 259
+  },
+  {
+    "ingredient": "vegetable fiber",
+    "count": 258
+  },
+  {
+    "ingredient": "crisp rice",
+    "count": 257
+  },
+  {
+    "ingredient": "flax seed",
+    "count": 256
+  },
+  {
+    "ingredient": "cooked chicken",
+    "count": 255
+  },
+  {
+    "ingredient": "pepperoni made with pork",
+    "count": 254
+  },
+  {
+    "ingredient": "modified food starch corn",
+    "count": 252
+  },
+  {
+    "ingredient": "part skim milk",
+    "count": 251
+  },
+  {
+    "ingredient": "potassium sorbate and sodium benzoate",
+    "count": 248
+  },
+  {
+    "ingredient": "chipotle pepper",
+    "count": 245
+  },
+  {
+    "ingredient": "vegetable oil palm",
+    "count": 244
+  },
+  {
+    "ingredient": "sesame seed",
+    "count": 240
+  },
+  {
+    "ingredient": "enriched flour bleached",
+    "count": 239
+  },
+  {
+    "ingredient": "hydrolyzed soy and corn protein",
+    "count": 238
+  },
+  {
+    "ingredient": "soybean oil and or canola oil",
+    "count": 238
+  },
+  {
+    "ingredient": "tomato sauce",
+    "count": 235
+  },
+  {
+    "ingredient": "beef broth",
+    "count": 234
+  },
+  {
+    "ingredient": "high oleic soybean",
+    "count": 231
+  },
+  {
+    "ingredient": "cultured wheat starch",
+    "count": 229
+  },
+  {
+    "ingredient": "cheese sauce",
+    "count": 228
+  },
+  {
+    "ingredient": "crushed tomatoes",
+    "count": 226
+  },
+  {
+    "ingredient": "vinegar solids",
+    "count": 225
+  },
+  {
+    "ingredient": "aluminum sulfate",
+    "count": 224
+  },
+  {
+    "ingredient": "provolone cheese",
+    "count": 223
+  },
+  {
+    "ingredient": "bacon cured with water",
+    "count": 222
+  },
+  {
+    "ingredient": "cocoa liquor",
+    "count": 221
+  },
+  {
+    "ingredient": "asiago cheese",
+    "count": 221
+  },
+  {
+    "ingredient": "shortening palm oil",
+    "count": 220
+  },
+  {
+    "ingredient": "starter culture",
+    "count": 219
+  },
+  {
+    "ingredient": "vegetable glycerine",
+    "count": 216
+  },
+  {
+    "ingredient": "corn starch-modified",
+    "count": 216
+  },
+  {
+    "ingredient": "non-gmo canola oil",
+    "count": 215
+  },
+  {
+    "ingredient": "onion and garlic powder",
+    "count": 214
+  },
+  {
+    "ingredient": "bell pepper",
+    "count": 214
+  },
+  {
+    "ingredient": "coloring includes blue 1 lake",
+    "count": 210
+  },
+  {
+    "ingredient": "organic high oleic sunflower oil",
+    "count": 208
+  },
+  {
+    "ingredient": "microbial enzyme",
+    "count": 207
+  },
+  {
+    "ingredient": "pepperoni pork",
+    "count": 205
+  },
+  {
+    "ingredient": "potassium sorbate and sodium benzoate preservatives",
+    "count": 202
+  },
+  {
+    "ingredient": "vegetable oil shortening",
+    "count": 201
+  },
+  {
+    "ingredient": "organic evaporated cane juice",
+    "count": 200
+  },
+  {
+    "ingredient": "sunflower and or canola oil",
+    "count": 199
+  },
+  {
+    "ingredient": "fresh garlic",
+    "count": 199
+  },
+  {
+    "ingredient": "cultured part-skim milk",
+    "count": 198
+  },
+  {
+    "ingredient": "semolina wheat",
+    "count": 195
+  },
+  {
+    "ingredient": "wine vinegar",
+    "count": 194
+  },
+  {
+    "ingredient": "chipotle peppers",
+    "count": 194
+  },
+  {
+    "ingredient": "dehydrated potatoes",
+    "count": 194
+  },
+  {
+    "ingredient": "skim milk solids",
+    "count": 193
+  },
+  {
+    "ingredient": "vinegar powder maltodextrin",
+    "count": 192
+  },
+  {
+    "ingredient": "fruit and vegetable juice color",
+    "count": 189
+  },
+  {
+    "ingredient": "evaporated cane syrup",
+    "count": 189
+  },
+  {
+    "ingredient": "anhydrous dextrose",
+    "count": 188
+  },
+  {
+    "ingredient": "margarine soybean oil",
+    "count": 186
+  },
+  {
+    "ingredient": "cultured pasteurized grade a nonfat milk",
+    "count": 185
+  },
+  {
+    "ingredient": "carob bean",
+    "count": 178
+  },
+  {
+    "ingredient": "reduced mineral whey powder",
+    "count": 177
+  },
+  {
+    "ingredient": "locust bean",
+    "count": 177
+  },
+  {
+    "ingredient": "cooked pasta",
+    "count": 177
+  },
+  {
+    "ingredient": "annatto and turmeric color",
+    "count": 176
+  },
+  {
+    "ingredient": "sodium benzoate as a preservative",
+    "count": 174
+  },
+  {
+    "ingredient": "dehydrated butter",
+    "count": 173
+  },
+  {
+    "ingredient": "sunflower seed oil",
+    "count": 171
+  },
+  {
+    "ingredient": "live and active cultures",
+    "count": 170
+  },
+  {
+    "ingredient": "toasted sesame oil",
+    "count": 170
+  },
+  {
+    "ingredient": "dehydrated vegetables",
+    "count": 170
+  },
+  {
+    "ingredient": "pasteurized whey",
+    "count": 170
+  },
+  {
+    "ingredient": "bleached enriched flour",
+    "count": 170
+  },
+  {
+    "ingredient": "rennet casein",
+    "count": 168
+  },
+  {
+    "ingredient": "cultured buttermilk",
+    "count": 167
+  },
+  {
+    "ingredient": "grape tomatoes",
+    "count": 167
+  },
+  {
+    "ingredient": "sunflower seed",
+    "count": 166
+  },
+  {
+    "ingredient": "pasteurized sheep s milk",
+    "count": 166
+  },
+  {
+    "ingredient": "palm and or canola oil",
+    "count": 165
+  },
+  {
+    "ingredient": "hydrolyzed corn and soy protein",
+    "count": 165
+  },
+  {
+    "ingredient": "pure vanilla",
+    "count": 164
+  },
+  {
+    "ingredient": "sodium benzoate and potassium sorbate as preservatives",
+    "count": 164
+  },
+  {
+    "ingredient": "sunflower kernels",
+    "count": 162
+  },
+  {
+    "ingredient": "cooked beef",
+    "count": 161
+  },
+  {
+    "ingredient": "brown cane sugar",
+    "count": 159
+  },
+  {
+    "ingredient": "provolone cheese pasteurized milk",
+    "count": 158
+  },
+  {
+    "ingredient": "sunflower and or safflower",
+    "count": 156
+  },
+  {
+    "ingredient": "potato maltodextrin",
+    "count": 156
+  },
+  {
+    "ingredient": "green pepper",
+    "count": 156
+  },
+  {
+    "ingredient": "preservatives calcium propionate",
+    "count": 154
+  },
+  {
+    "ingredient": "palm oil shortening",
+    "count": 154
+  },
+  {
+    "ingredient": "vegetable enzymes",
+    "count": 152
+  },
+  {
+    "ingredient": "dark brown sugar",
+    "count": 151
+  },
+  {
+    "ingredient": "non-gmo corn starch",
+    "count": 149
+  },
+  {
+    "ingredient": "organic evaporated cane sugar",
+    "count": 148
+  },
+  {
+    "ingredient": "chicken base",
+    "count": 148
+  },
+  {
+    "ingredient": "cultured pasteurized part-skim milk",
+    "count": 148
+  },
+  {
+    "ingredient": "hydrolyzed corn",
+    "count": 147
+  },
+  {
+    "ingredient": "copper sulfate",
+    "count": 147
+  },
+  {
+    "ingredient": "from corn",
+    "count": 147
+  },
+  {
+    "ingredient": "sherry wine",
+    "count": 146
+  },
+  {
+    "ingredient": "contains sulfites",
+    "count": 145
+  },
+  {
+    "ingredient": "vegetable oil sunflower",
+    "count": 144
+  },
+  {
+    "ingredient": "soybean and palm oil with tbhq for freshness",
+    "count": 143
+  },
+  {
+    "ingredient": "maltodextrin from corn",
+    "count": 143
+  },
+  {
+    "ingredient": "canola and or corn oil",
+    "count": 142
+  },
+  {
+    "ingredient": "textured vegetable protein soy protein concentrate",
+    "count": 141
+  },
+  {
+    "ingredient": "organic expeller pressed canola oil",
+    "count": 141
+  },
+  {
+    "ingredient": "lime juice solids",
+    "count": 141
+  },
+  {
+    "ingredient": "tbhq and citric acid",
+    "count": 141
+  },
+  {
+    "ingredient": "potassium sorbate a preservative",
+    "count": 140
+  },
+  {
+    "ingredient": "sweetened condensed skim milk",
+    "count": 140
+  },
+  {
+    "ingredient": "sweet whey",
+    "count": 140
+  },
+  {
+    "ingredient": "shiitake mushroom",
+    "count": 139
+  },
+  {
+    "ingredient": "asiago cheese pasteurized milk",
+    "count": 138
+  },
+  {
+    "ingredient": "cooked rice",
+    "count": 138
+  },
+  {
+    "ingredient": "cultured grade a non fat milk",
+    "count": 137
+  },
+  {
+    "ingredient": "roasted corn",
+    "count": 136
+  },
+  {
+    "ingredient": "organic stevia leaf extract",
+    "count": 136
+  },
+  {
+    "ingredient": "black olives",
+    "count": 136
+  },
+  {
+    "ingredient": "cultured pasteurized skim milk",
+    "count": 136
+  },
+  {
+    "ingredient": "dehydrated tomato",
+    "count": 136
+  },
+  {
+    "ingredient": "green chiles",
+    "count": 135
+  },
+  {
+    "ingredient": "vegetable monoglycerides",
+    "count": 134
+  },
+  {
+    "ingredient": "yogurt cultures",
+    "count": 134
+  },
+  {
+    "ingredient": "alpha tocopherol acetate",
+    "count": 134
+  },
+  {
+    "ingredient": "enzyme modified butter",
+    "count": 133
+  },
+  {
+    "ingredient": "oleoresin turmeric",
+    "count": 133
+  },
+  {
+    "ingredient": "hydrolyzed collagen",
+    "count": 132
+  },
+  {
+    "ingredient": "green chile peppers",
+    "count": 131
+  },
+  {
+    "ingredient": "vegetable oil coconut",
+    "count": 130
+  },
+  {
+    "ingredient": "sunflower or canola oil",
+    "count": 129
+  },
+  {
+    "ingredient": "cooked italian sausage",
+    "count": 129
+  },
+  {
+    "ingredient": "organic roasted soybeans",
+    "count": 128
+  },
+  {
+    "ingredient": "cultured pasteurized nonfat milk",
+    "count": 128
+  },
+  {
+    "ingredient": "dehydrated potato",
+    "count": 128
+  },
+  {
+    "ingredient": "rennet casein milk protein",
+    "count": 128
+  },
+  {
+    "ingredient": "onion puree",
+    "count": 127
+  },
+  {
+    "ingredient": "bifidus and l casei",
+    "count": 127
+  },
+  {
+    "ingredient": "concentrated apple juice",
+    "count": 127
+  },
+  {
+    "ingredient": "annatto and turmeric",
+    "count": 127
+  },
+  {
+    "ingredient": "natamycin to protect flavor",
+    "count": 127
+  },
+  {
+    "ingredient": "soybean and or cottonseed",
+    "count": 126
+  }
+]

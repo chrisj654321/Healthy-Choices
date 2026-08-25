@@ -1,0 +1,452 @@
+{
+  "generated": "2026-07-09T16:05:24",
+  "total": 18,
+  "resolved": 18,
+  "missed": 0,
+  "source_health": {
+    "off-search": {
+      "ok": 107,
+      "miss": 48,
+      "err": 0,
+      "throttled": 187
+    },
+    "usda-fdc": {
+      "ok": 65,
+      "miss": 15,
+      "err": 0,
+      "throttled": 0
+    }
+  },
+  "products": {
+    "mccann-s-steel-cut-irish-oatmeal": {
+      "input": {
+        "barcode": "",
+        "name": "McCann's Steel Cut Irish Oatmeal",
+        "brand": "McCann's"
+      },
+      "name": "Mccann'S, Quick & Easy Steel Cut Irish Oatmeal",
+      "brand": "MCCANN'S",
+      "serving_size": "40.0 g",
+      "calories": 375,
+      "ingredients_verbatim": "100% WHOLE GRAIN IRISH OATS",
+      "nutrition": {
+        "fat": 6.25,
+        "saturatedFat": 1.25,
+        "sodium": 0,
+        "carbs": 67.5,
+        "sugars": 2.5,
+        "protein": 10,
+        "fiber": 10
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "mccann-s-quick-easy-steel-cut-irish-oatmeal": {
+      "input": {
+        "barcode": "",
+        "name": "McCann's Quick & Easy Steel Cut Irish Oatmeal",
+        "brand": "McCann's"
+      },
+      "name": "Quick & Easy Steel Cut Irish Oatmeal",
+      "brand": "McCann's",
+      "serving_size": "0.25 cup (40 g)",
+      "calories": 150,
+      "ingredients_verbatim": "whole grain oats",
+      "nutrition": {
+        "fat": 2.5,
+        "saturatedFat": 0.5,
+        "sodium": 0,
+        "carbs": 27,
+        "sugars": 1,
+        "protein": 4,
+        "fiber": 3
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/007/246/300/0354/front_en.5.400.jpg",
+      "matched_off_code": "0072463000354",
+      "source": "off-search"
+    },
+    "quaker-quick-1-minute-oats": {
+      "input": {
+        "barcode": "",
+        "name": "Quaker Quick 1-Minute Oats",
+        "brand": "Quaker"
+      },
+      "name": "Quick 1-Minute Oats",
+      "brand": "Quaker Oats",
+      "serving_size": "40g",
+      "calories": 150,
+      "ingredients_verbatim": "Whole Grain Rolled Oats",
+      "nutrition": {
+        "fat": 3,
+        "saturatedFat": 0.5,
+        "sodium": 0,
+        "carbs": 27,
+        "sugars": 1,
+        "protein": 5,
+        "fiber": 4
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/003/000/001/2000/front_en.169.400.jpg",
+      "matched_off_code": "0030000012000",
+      "source": "off-search"
+    },
+    "quaker-steel-cut-quick-3-minute-oatmeal": {
+      "input": {
+        "barcode": "",
+        "name": "Quaker Steel Cut Quick 3-Minute Oatmeal",
+        "brand": "Quaker"
+      },
+      "name": "Quick 3-Minute Oatmeal Steel Cut Blueberries & Cranberries",
+      "brand": "Quaker",
+      "serving_size": "1 PACKET (46 g)",
+      "calories": 170,
+      "ingredients_verbatim": "Whole grain steel cut oats, sugar, dried blueberries, dried cranberries, salt, natural flavor.",
+      "nutrition": {
+        "fat": 2.5,
+        "saturatedFat": 0.5,
+        "sodium": 0.21,
+        "carbs": 34,
+        "sugars": 12,
+        "protein": 4,
+        "fiber": 3
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/003/000/032/1898/front_en.8.400.jpg",
+      "matched_off_code": "0030000321898",
+      "source": "off-search"
+    },
+    "quaker-instant-oatmeal-apples-cinnamon": {
+      "input": {
+        "barcode": "",
+        "name": "Quaker Instant Oatmeal Apples & Cinnamon",
+        "brand": "Quaker"
+      },
+      "name": "Instant Oatmeal Apples & Cinnamon",
+      "brand": "Quaker",
+      "serving_size": "1 package (43 g)",
+      "calories": 160,
+      "ingredients_verbatim": "WHOLE GRAIN OATS, SUGAR, DRIED APPLES, NATURAL FLAVOR, SALT, CINNAMON",
+      "nutrition": {
+        "fat": 2,
+        "saturatedFat": 0.5,
+        "sodium": 0.16,
+        "carbs": 33,
+        "sugars": 11,
+        "protein": 4,
+        "fiber": 4
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/003/000/031/9567/front_en.31.400.jpg",
+      "matched_off_code": "0030000319567",
+      "source": "off-search"
+    },
+    "quaker-instant-oatmeal-cinnamon-spice": {
+      "input": {
+        "barcode": "",
+        "name": "Quaker Instant Oatmeal Cinnamon & Spice",
+        "brand": "Quaker"
+      },
+      "name": "Instant Oatmeal Cinnamon & Spice",
+      "brand": "Quaker",
+      "serving_size": "1 portion (43 g)",
+      "calories": 160,
+      "ingredients_verbatim": "Whole grain oats, sugar, salt, cinnamon, other spices, natural flavor",
+      "nutrition": {
+        "fat": 2.5,
+        "saturatedFat": 0.5,
+        "sodium": 0.2,
+        "carbs": 32,
+        "sugars": 10,
+        "protein": 4,
+        "fiber": 1
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/000/000/301/3108/front_en.8.400.jpg",
+      "matched_off_code": "03013108",
+      "source": "off-search"
+    },
+    "quaker-instant-oatmeal-dinosaur-eggs-brown-sugar": {
+      "input": {
+        "barcode": "",
+        "name": "Quaker Instant Oatmeal Dinosaur Eggs Brown Sugar",
+        "brand": "Quaker"
+      },
+      "name": "Instant Oatmeal Dinosaur Eggs Brown Sugar",
+      "brand": "Quaker",
+      "serving_size": "1 portion (50 g)",
+      "calories": 317,
+      "ingredients_verbatim": "Whole grain oats, dinosaur egg shaped pieces (sugar, dextrose, hydrogenated palm kernel oil, palm kernel oil, palm oil, annatto [color], carnauba wax, confectioner's glaze, corn maltodextrin, magnesium stearate, modified corn starch, natural flavor, red radish juice [color], spirulina extract [color], sunflower lecithin, turmeric [color]), sugar, salt, natural flavor, calcium carbonate, carob powder, molasses, reduced iron, niacinamide, folic acid, cholecalciferol (vitamin D3), pyridoxine hydrochloride, riboflavin, thiamine mononitrate.",
+      "nutrition": {
+        "fat": 4.5,
+        "saturatedFat": 2,
+        "sodium": 0.24,
+        "carbs": 36,
+        "sugars": 11,
+        "protein": 5,
+        "fiber": 3
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/003/000/026/2917/front_en.32.400.jpg",
+      "matched_off_code": "0030000262917",
+      "source": "off-search"
+    },
+    "quaker-protein-instant-oatmeal-banana-nut": {
+      "input": {
+        "barcode": "",
+        "name": "Quaker Protein Instant Oatmeal Banana Nut",
+        "brand": "Quaker"
+      },
+      "name": "Protein Instant Oatmeal Banana Nut",
+      "brand": "Quaker",
+      "serving_size": "1 packet (61 g)",
+      "calories": 140,
+      "ingredients_verbatim": "Whole grain oats, sugar, whey protein concentrate, walnuts coated with rosemary extract (to help protect flavor), whey protein isolate, dried bananas, salt, banana flakes, soy lecithin, natural flavor",
+      "nutrition": {
+        "fat": 3.05,
+        "saturatedFat": 0.61,
+        "sodium": 0,
+        "carbs": 23.2,
+        "sugars": 13.4,
+        "protein": 7.32,
+        "fiber": 2.44
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/003/000/031/5958/front_en.102.400.jpg",
+      "matched_off_code": "0030000315958",
+      "source": "off-search"
+    },
+    "bob-s-red-mill-steel-cut-oats": {
+      "input": {
+        "barcode": "",
+        "name": "Bob's Red Mill Steel Cut Oats",
+        "brand": "Bob's Red Mill"
+      },
+      "name": "Steel Cut Oats",
+      "brand": "Bob's Red Mill",
+      "serving_size": "1 portion (44 g)",
+      "calories": 170,
+      "ingredients_verbatim": "Organic whole grain oats.",
+      "nutrition": {
+        "fat": 3.5,
+        "saturatedFat": 0.5,
+        "sodium": 0,
+        "carbs": 31,
+        "sugars": 1,
+        "protein": 4,
+        "fiber": 4
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/003/997/803/9576/front_en.27.400.jpg",
+      "matched_off_code": "0039978039576",
+      "source": "off-search"
+    },
+    "bob-s-red-mill-scottish-oatmeal": {
+      "input": {
+        "barcode": "",
+        "name": "Bob's Red Mill Scottish Oatmeal",
+        "brand": "Bob's Red Mill"
+      },
+      "name": "Scottish Oatmeal",
+      "brand": "Bob's Red Mill",
+      "serving_size": "1/4 cup (36 g)",
+      "calories": 140,
+      "ingredients_verbatim": "Whole grain oats.",
+      "nutrition": {
+        "fat": 2,
+        "saturatedFat": 0,
+        "sodium": 0,
+        "carbs": 26,
+        "sugars": 0,
+        "protein": 4,
+        "fiber": 2.99
+      },
+      "image_url": null,
+      "matched_off_code": "0039978041210",
+      "source": "off-search"
+    },
+    "bob-s-red-mill-gluten-free-old-fashioned-rolled-": {
+      "input": {
+        "barcode": "",
+        "name": "Bob's Red Mill Gluten Free Old Fashioned Rolled Oats",
+        "brand": "Bob's Red Mill"
+      },
+      "name": "Bob'S Red Mill, Rolled Oats",
+      "brand": "BOB'S RED MILL",
+      "serving_size": "41.0 g",
+      "calories": 390,
+      "ingredients_verbatim": "WHOLE GRAIN OATS.",
+      "nutrition": {
+        "fat": 6.1,
+        "saturatedFat": 1.22,
+        "sodium": 0,
+        "carbs": 65.8,
+        "sugars": 2.44,
+        "protein": 17.1,
+        "fiber": 9.8
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "bob-s-red-mill-gluten-free-quick-cooking-rolled-": {
+      "input": {
+        "barcode": "",
+        "name": "Bob's Red Mill Gluten Free Quick Cooking Rolled Oats",
+        "brand": "Bob's Red Mill"
+      },
+      "name": "Gluten Free Organic Quick Cooking Rolled Oats",
+      "brand": "Bob's Red Mill",
+      "serving_size": "0.50 cup (52 g)",
+      "calories": 200,
+      "ingredients_verbatim": "Organic whole grain oats.",
+      "nutrition": {
+        "fat": 3,
+        "saturatedFat": 0.5,
+        "sodium": 0,
+        "carbs": 36,
+        "sugars": 1,
+        "protein": 7,
+        "fiber": 4.99
+      },
+      "image_url": null,
+      "matched_off_code": "0039978003881",
+      "source": "off-search"
+    },
+    "better-oats-maple-brown-sugar-instant-oatmeal": {
+      "input": {
+        "barcode": "",
+        "name": "Better Oats Maple & Brown Sugar Instant Oatmeal",
+        "brand": "Better Oats"
+      },
+      "name": "Better oats, oat fit, instant oatmeal with flax, maple & brown sugar",
+      "brand": "Better Oats",
+      "serving_size": "1 POUCH (28 g)",
+      "calories": 100,
+      "ingredients_verbatim": "Whole grain rolled oats, natural and artificial flavor, flaxseed, salt, sucralose, acesulfame potassium. vitamins & minerals: calcium carbonate, ferric orthophosphate (source o iron), alpha tocopherol acetate (vitamin e), niacinamide*, vitamin a palmitate, pyridoxine hydrochloride*, riboflavin*, thiamin mononitrate*, folic acid*.",
+      "nutrition": {
+        "fat": 2,
+        "saturatedFat": 0,
+        "sodium": 0.21,
+        "carbs": 18,
+        "sugars": 1,
+        "protein": 3,
+        "fiber": 3
+      },
+      "image_url": null,
+      "matched_off_code": "0883921118227",
+      "source": "off-search"
+    },
+    "better-oats-steel-cut-instant-oatmeal-with-flax": {
+      "input": {
+        "barcode": "",
+        "name": "Better Oats Steel Cut Instant Oatmeal with Flax",
+        "brand": "Better Oats"
+      },
+      "name": "Better Oats, Instant Oatmeal With Flax",
+      "brand": "BETTER OATS",
+      "serving_size": "43.0 g",
+      "calories": 372,
+      "ingredients_verbatim": "WHOLE GRAIN ROLLED OATS, SUGAR, FLAXSEED, NATURAL AND ARTIFICIAL FLAVOR, SALT, CARAMEL. VITAMINS & MINERALS: CALCIUM CARBONATE, FERRIC ORTHOPHOSPHATE (SOURCE OF IRON), ALPHA TOCOPHEROL ACETATE (VITAMIN E), NIACINAMIDE*, VITAMIN A PALMITATE, PYRIDOXINE HYDROCHLORIDE*, RIBOFLAVIN*, THIAMIN MONONITRATE*, FOLIC ACID*.",
+      "nutrition": {
+        "fat": 5.81,
+        "saturatedFat": 0,
+        "sodium": 488,
+        "carbs": 74.4,
+        "sugars": 30.2,
+        "protein": 9.3,
+        "fiber": 7
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "kodiak-protein-packed-oatmeal-maple-brown-sugar": {
+      "input": {
+        "barcode": "",
+        "name": "Kodiak Protein-Packed Oatmeal Maple & Brown Sugar",
+        "brand": "Kodiak"
+      },
+      "name": "Protein-Packed Oatmeal Maple & Brown Sugar",
+      "brand": "Kodiak Cakes",
+      "serving_size": "1 packet (60 g)",
+      "calories": 230,
+      "ingredients_verbatim": "100% WHOLE GRAIN ROLLED OATS, PEA PROTEIN CONCENTRATE WITH TAPIOCA STARCH, CANE SUGAR, MILK PROTEIN CONCENTRATE, BROWN SUGAR, WHEY PROTEIN ISOLATE WITH SUNFLOWER LECITHIN, DRIED MAPLE SYRUP, MILK PROTEIN ISOLATE, SEA SALT, NATURAL FLAVOR",
+      "nutrition": {
+        "fat": 4,
+        "saturatedFat": 0.5,
+        "sodium": 0.22,
+        "carbs": 36,
+        "sugars": 9,
+        "protein": 14,
+        "fiber": 4
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/070/559/901/3430/front_en.94.400.jpg",
+      "matched_off_code": "0705599013430",
+      "source": "off-search"
+    },
+    "cream-of-rice-hot-cereal": {
+      "input": {
+        "barcode": "",
+        "name": "Cream of Rice Hot Cereal",
+        "brand": "Cream of Rice"
+      },
+      "name": "Cream of Rice Hot Cereal",
+      "brand": "Cream of Rice",
+      "serving_size": "1 serving (45 g)",
+      "calories": 150,
+      "ingredients_verbatim": "GRANULATED RICE, CALCIUM CARBONATE, FERRIC ORTHOPHOSPHATE (IRON), NIACINAMIDE (VITAMIN B3), THIAMINE MONONITRATE (VITAMIN B1), PYRIDOXINE HYDROCHLORIDE (VITAMIN B6), RIBOFLAVIN (VITAMIN B2), FOLIC ACID, CHOLECALCIFEROL (VITAMIN D3), ARROZ GRANULADO, CARBONATO DE CALCIO, ORTOSFATO FÉRRICO (HIERRO), NIACINAMIDA (VITAMINA B3), MONONITRATO DE TIAMINA (VITAMINA B1), HIDROCLORURO DE PIRIDOXINA (VITAMINA B6), RIBOFLAVINA (VITAMINA B2), ÁCIDO FÓLICO, COLECALCIFEROL (VITAMINA D3)",
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": null,
+        "sodium": null,
+        "carbs": 35,
+        "sugars": null,
+        "protein": 2,
+        "fiber": null
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/001/313/000/6965/front_en.14.400.jpg",
+      "matched_off_code": "0013130006965",
+      "source": "off-search"
+    },
+    "malt-o-meal-original-hot-wheat-cereal": {
+      "input": {
+        "barcode": "",
+        "name": "Malt-O-Meal Original Hot Wheat Cereal",
+        "brand": "Malt-O-Meal"
+      },
+      "name": "Malt-O-Meal original Quick Cooking Hot Wheat Cereal",
+      "brand": "Malt-O-Meal",
+      "serving_size": "3 tbsp (35 g)",
+      "calories": 152,
+      "ingredients_verbatim": "Wheat farina, malted barley, calcium carbonate, ferric orthophosphate (source of iron), niacinamide (vitamin b3), pyridoxine hydrochloride (vitamin b6), folic acid, thiamin mononitrate (vitamin b1), riboflavin (vitamin b2).",
+      "nutrition": {
+        "fat": 0,
+        "saturatedFat": null,
+        "sodium": 0,
+        "carbs": 27,
+        "sugars": 0,
+        "protein": 4,
+        "fiber": 1
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/004/240/000/1041/front_en.8.400.jpg",
+      "matched_off_code": "0042400001041",
+      "source": "off-search"
+    },
+    "nature-s-path-organic-maple-nut-instant-oatmeal": {
+      "input": {
+        "barcode": "",
+        "name": "Nature's Path Organic Maple Nut Instant Oatmeal",
+        "brand": "Nature's Path"
+      },
+      "name": "Maple Nut Instant Oatmeal",
+      "brand": "Nature's Path Organic",
+      "serving_size": "1 PACKET (50 g)",
+      "calories": 210,
+      "ingredients_verbatim": "Whole grain rolled oats, cane sugar, pecans, sea salt, maple sugar, natural maple flavour.",
+      "nutrition": {
+        "fat": 4,
+        "saturatedFat": 0.5,
+        "sodium": 0.1,
+        "carbs": 38,
+        "sugars": 11,
+        "protein": 5,
+        "fiber": 4
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/005/844/945/0030/front_en.12.400.jpg",
+      "matched_off_code": "0058449450030",
+      "source": "off-search"
+    }
+  },
+  "misses": []
+}

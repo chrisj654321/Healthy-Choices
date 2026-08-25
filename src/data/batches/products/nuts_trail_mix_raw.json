@@ -1,0 +1,231 @@
+{
+  "category": "nuts_trail_mix",
+  "researched_at": "2026-06-16",
+  "products": [
+    {
+      "barcode": "029000073258",
+      "name": "Planters Dry Roasted Peanuts",
+      "brand": "Planters",
+      "company": "Hormel Foods",
+      "companyId_hint": "hormel",
+      "size": "16 oz",
+      "ingredients_verbatim": "Peanuts, Contains 2% Or Less Of: Sea Salt, Spices (Contains Celery), Dried Onion, Dried Garlic, Paprika, Natural Flavor, Sugar, Cornstarch, Gelatin, Torula Yeast, Maltodextrin, Dried Corn Syrup.",
+      "off_verified": true,
+      "off_product_name": "Dry Roasted Salted Peanuts",
+      "off_url": "https://world.openfoodfacts.org/product/029000073258"
+    },
+    {
+      "barcode": "029000016705",
+      "name": "Planters Mixed Nuts",
+      "brand": "Planters",
+      "company": "Hormel Foods",
+      "companyId_hint": "hormel",
+      "size": "15.25 oz",
+      "ingredients_verbatim": "Peanuts, Almonds, Cashews, Pecans, Brazil Nuts, Peanut Oil, Sea Salt.",
+      "off_verified": true,
+      "off_product_name": "Mixed Nuts",
+      "off_url": "https://world.openfoodfacts.org/product/029000016705"
+    },
+    {
+      "barcode": "041570030851",
+      "name": "Blue Diamond Roasted Salted Almonds",
+      "brand": "Blue Diamond",
+      "company": "Blue Diamond Growers",
+      "companyId_hint": "blue-diamond",
+      "size": "6 oz",
+      "ingredients_verbatim": "Almonds, Vegetable Oil (Canola, Safflower And/Or Sunflower), Sea Salt.",
+      "off_verified": true,
+      "off_product_name": "Roasted Salted Almonds",
+      "off_url": "https://world.openfoodfacts.org/product/041570030851"
+    },
+    {
+      "barcode": "041570052341",
+      "name": "Blue Diamond Bold Wasabi & Soy Sauce Almonds",
+      "brand": "Blue Diamond",
+      "company": "Blue Diamond Growers",
+      "companyId_hint": "blue-diamond",
+      "size": "6 oz",
+      "ingredients_verbatim": "Almonds, Vegetable Oil (Canola, Safflower And/Or Sunflower), Sugar, Modified Corn Starch, Salt, Soy Sauce (Soybean, Wheat, Salt), Horseradish, Onion, Spice, Fractionated Coconut Oil And/Or Palm Kernel Oil, Garlic Maltodextrin, Yeast Extract, Natural Flavor, Citric Acid, Disodium Guanylate And Disodium Inosinate.",
+      "off_verified": true,
+      "off_product_name": "Wasabi & Soy Sauce Flavored Almonds",
+      "off_url": "https://world.openfoodfacts.org/product/041570052341"
+    },
+    {
+      "barcode": "014113910026",
+      "name": "Wonderful Pistachios Roasted & Salted",
+      "brand": "Wonderful Pistachios",
+      "company": "The Wonderful Company",
+      "companyId_hint": "wonderful-company",
+      "size": "16 oz",
+      "ingredients_verbatim": "Pistachios, Sea Salt.",
+      "off_verified": true,
+      "off_product_name": "Roasted & Salted Pistachios",
+      "off_url": "https://world.openfoodfacts.org/product/0014113910026"
+    },
+    {
+      "barcode": "014113911955",
+      "name": "Wonderful Pistachios No Shells Roasted & Salted",
+      "brand": "Wonderful Pistachios",
+      "company": "The Wonderful Company",
+      "companyId_hint": "wonderful-company",
+      "size": "8 oz",
+      "ingredients_verbatim": "Pistachios, Sea Salt.",
+      "off_verified": true,
+      "off_product_name": "Pistachios Roasted & Salted",
+      "off_url": "https://world.openfoodfacts.org/product/014113911955"
+    },
+    {
+      "barcode": "070690023672",
+      "name": "Fisher Chef's Naturals Walnut Halves & Pieces",
+      "brand": "Fisher",
+      "company": "John B. Sanfilippo & Son",
+      "companyId_hint": "john-b-sanfilippo",
+      "size": "16 oz",
+      "ingredients_verbatim": "Walnuts.",
+      "off_verified": true,
+      "off_product_name": "Walnut Halves & Pieces",
+      "off_url": "https://world.openfoodfacts.org/product/070690023672"
+    },
+    {
+      "barcode": "070690023825",
+      "name": "Fisher Chef's Naturals Whole Natural Almonds",
+      "brand": "Fisher",
+      "company": "John B. Sanfilippo & Son",
+      "companyId_hint": "john-b-sanfilippo",
+      "size": "5 oz",
+      "ingredients_verbatim": "Almonds.",
+      "off_verified": true,
+      "off_product_name": "Whole natural almonds",
+      "off_url": "https://world.openfoodfacts.org/product/070690023825"
+    },
+    {
+      "barcode": "819898013005",
+      "name": "Back to Nature Cashew Almond Pistachio Mix",
+      "brand": "Back to Nature",
+      "company": "Barilla",
+      "companyId_hint": "barilla",
+      "size": "9 oz",
+      "ingredients_verbatim": "Cashews, Almonds, Pistachios, Sea Salt.",
+      "off_verified": true,
+      "off_product_name": "Cashew Almond Pistachio",
+      "off_url": "https://world.openfoodfacts.org/product/0819898013005"
+    },
+    {
+      "barcode": "893869000713",
+      "name": "Sahale Snacks Maple Pecans Glazed Mix",
+      "brand": "Sahale Snacks",
+      "company": "Campbell Soup Company",
+      "companyId_hint": "campbell",
+      "size": "4 oz",
+      "ingredients_verbatim": "Pecans, Walnuts, Dried Cherries (Cherries, Sugar), Dried Apples (Apples, Sugar), Cane Sugar, Maple Sugar, Organic Tapioca Syrup, Brown Sugar, Sea Salt, Cinnamon, Natural Flavors.",
+      "off_verified": true,
+      "off_product_name": "Maple Pecans Glazed Mix",
+      "off_url": "https://world.openfoodfacts.org/product/893869000713"
+    },
+    {
+      "barcode": "077034011487",
+      "name": "Second Nature California Medley Trail Mix",
+      "brand": "Second Nature",
+      "company": "Second Nature Brands",
+      "companyId_hint": "second-nature",
+      "size": "12 oz",
+      "ingredients_verbatim": "Almonds (Roasted In Peanut And/Or Cottonseed Oil), Raisins, Dried Cranberries (Cranberries, Sugar, Sunflower Oil), Pistachio Kernels.",
+      "off_verified": true,
+      "off_product_name": "California Medley",
+      "off_url": "https://world.openfoodfacts.org/product/0077034011487"
+    },
+    {
+      "barcode": "077034011074",
+      "name": "Second Nature Dark Chocolate Medley Trail Mix",
+      "brand": "Second Nature",
+      "company": "Second Nature Brands",
+      "companyId_hint": "second-nature",
+      "size": "4.5 oz",
+      "ingredients_verbatim": "Almonds (Almonds, Peanut And/Or Sunflower Oil), Dark Chocolate Chunks (Sugar, Chocolate Liquor, Cocoa Butter, Soy Lecithin, Salt, Vanilla), Cashews And Pecans (Cashews And Pecans, Peanut And/Or Sunflower Oil, Salt).",
+      "off_verified": true,
+      "off_product_name": "Dark Chocolate Medley",
+      "off_url": "https://world.openfoodfacts.org/product/077034011074"
+    },
+    {
+      "barcode": "031200294500",
+      "name": "Ocean Spray Craisins Original Dried Cranberries",
+      "brand": "Ocean Spray",
+      "company": "Ocean Spray Cranberries (cooperative)",
+      "companyId_hint": "ocean-spray",
+      "size": "12 oz",
+      "ingredients_verbatim": "Cranberries, Sugar, Pomegranate Juice Concentrate, Malic Acid, Natural Flavor, Elderberry Juice Concentrate (For Color).",
+      "off_verified": true,
+      "off_product_name": "CRASINS DRIED CRANBERRIES",
+      "off_url": "https://world.openfoodfacts.org/product/031200294500"
+    },
+    {
+      "barcode": "041143124604",
+      "name": "Sun-Maid California Sun-Dried Raisins",
+      "brand": "Sun-Maid",
+      "company": "Sun-Maid Growers of California (cooperative)",
+      "companyId_hint": "sun-maid",
+      "size": "12 oz",
+      "ingredients_verbatim": "California Seedless Raisins.",
+      "off_verified": true,
+      "off_product_name": "Raisins",
+      "off_url": "https://world.openfoodfacts.org/product/041143124604"
+    },
+    {
+      "barcode": "802763028846",
+      "name": "Sunsweet Amazin Pitted Prunes",
+      "brand": "Sunsweet",
+      "company": "Sunsweet Growers (cooperative)",
+      "companyId_hint": "sunsweet",
+      "size": "16 oz",
+      "ingredients_verbatim": "Pitted Prunes (Dried Plums), Potassium Sorbate (As A Preservative).",
+      "off_verified": true,
+      "off_product_name": "Amaz!n Prunes",
+      "off_url": "https://world.openfoodfacts.org/product/802763028846"
+    },
+    {
+      "barcode": "859908003015",
+      "name": "Dang Toasted Coconut Chips Original",
+      "brand": "Dang",
+      "company": "Dang Foods LLC",
+      "companyId_hint": "dang-foods",
+      "size": "3.17 oz",
+      "ingredients_verbatim": "Coconut, Cane Sugar, Salt.",
+      "off_verified": true,
+      "off_product_name": "Coconut Chips",
+      "off_url": "https://world.openfoodfacts.org/product/0859908003015"
+    },
+    {
+      "barcode": "010300336648",
+      "name": "Emerald Dry Roasted Almonds",
+      "brand": "Emerald",
+      "company": "Flagstone Foods (Atlas Holdings)",
+      "companyId_hint": "flagstone-foods",
+      "size": "5 oz",
+      "ingredients_verbatim": "Almonds, Maltodextrin, Salt, Sugar, Monosodium Glutamate, Roast Flavor (Natural Flavor, Yeast Extract), Paprika, Onion Powder, Garlic Powder, Modified Food Starch.",
+      "off_verified": true,
+      "off_product_name": "Dry Roasted Almonds",
+      "off_url": "https://world.openfoodfacts.org/product/010300336648"
+    },
+    {
+      "barcode": "602652170089",
+      "name": "KIND Almond & Coconut Bar",
+      "brand": "KIND",
+      "company": "Mars, Incorporated",
+      "companyId_hint": "mars",
+      "size": "1.4 oz",
+      "ingredients_verbatim": "Almonds, Coconut, Honey, Non-GMO Glucose, Crisp Rice, Chicory Root Fiber, Soy Lecithin.",
+      "off_verified": true,
+      "off_product_name": "Almond & Coconut",
+      "off_url": "https://world.openfoodfacts.org/product/602652170089"
+    }
+  ],
+  "could_not_verify": [
+    {
+      "name": "Justin's Classic Almond Butter Squeeze Pack",
+      "brand": "Justin's",
+      "size": "1.15 oz",
+      "barcode_candidate": "089445500018",
+      "reason": "Barcode not found in Open Food Facts; product confirmed at multiple retailers (Kroger, Target, CVS) but OFacts entry absent"
+    }
+  ]
+}

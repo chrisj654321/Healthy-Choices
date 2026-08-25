@@ -1,0 +1,384 @@
+{
+  "generated": "2026-07-09T16:05:24",
+  "total": 16,
+  "resolved": 15,
+  "missed": 1,
+  "source_health": {
+    "off-search": {
+      "ok": 107,
+      "miss": 48,
+      "err": 0,
+      "throttled": 187
+    },
+    "usda-fdc": {
+      "ok": 65,
+      "miss": 15,
+      "err": 0,
+      "throttled": 0
+    }
+  },
+  "products": {
+    "lunchables-pizza-with-pepperoni": {
+      "input": {
+        "barcode": "",
+        "name": "Lunchables Pizza with Pepperoni",
+        "brand": "Lunchables"
+      },
+      "name": "Lunchables Fun Pack! Pepperoni Pizza with Capri Sun Fruit Punch and Crunch Bar",
+      "brand": "Lunchables",
+      "serving_size": "1 serving (100 g)",
+      "calories": 420,
+      "ingredients_verbatim": "filtered water, sugar, pear juice concentrate, grape juice concentrate, orange juice concentrate, citric acid, monk fruit concentrate, apple juice concentrate, pineapple juice concentrate, natural flavor, mushroom extract, wheat flour, niacin, reduced iron, thiamin mononitrate, riboflavin, folic acid, whole wheat flour, water, sugar, glycerin, soybean oil, vital wheat gluten, mono - ,  diglycerides, salt, xanthan gum, calcium propionate, sorbic acid, natural and artificial flavor, enzyme, tomato paste, sugar, canola oil, modified food starch, garlic powder, onion powder, spices, citric acid, dried basil, sea salt, sodium benzoate, potassium sorbate, pepperoni made with pork and chicken, pork, mechanically separated chicken, salt, dextrose, lactic acid starter culture, oleoresin of paprika, flavoring, sodium ascorbate, sodium nitrite, BHA, BHT, citric acid, mozzarella cheese, part-skim milk, water, milk protein concentrate, milkfat, salt, cheese culture, sodium citrate, sorbic acid, vitamin A palmitate, cellulose powder, milk chocolate, sugar, chocolate, cocoa butter, nonfat milk, milkfat, lactose, soy lecithin, natural flavor, caramel color, sugar, barley malt extract",
+      "nutrition": {
+        "fat": 19,
+        "saturatedFat": 8,
+        "sodium": 0.72,
+        "carbs": 49,
+        "sugars": 23,
+        "protein": 14,
+        "fiber": 2
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/004/470/036/1139/front_en.18.400.jpg",
+      "matched_off_code": "0044700361139",
+      "source": "off-search"
+    },
+    "lunchables-extra-cheesy-pizza": {
+      "input": {
+        "barcode": "",
+        "name": "Lunchables Extra Cheesy Pizza",
+        "brand": "Lunchables"
+      },
+      "name": "Extra Cheesy Pizza fun pack",
+      "brand": "Lunchables",
+      "serving_size": "1 serving (130 g)",
+      "calories": 330,
+      "ingredients_verbatim": "mixed fruit flavored juice drink blend from concentrate, pizza crust, water, sugar, glycerin, soybean oil, contains 2% or less of: yeast, vital wheat gluten, mono - & diglycerides, salt, xanthan gum, calcium propionate, sorbic acid, natural and artificial flavour,mozzarella pasteurized prepared cheese product",
+      "nutrition": {
+        "fat": 9,
+        "saturatedFat": 5,
+        "sodium": 0.5,
+        "carbs": 50,
+        "sugars": 22,
+        "protein": 13,
+        "fiber": 2
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/004/470/036/1146/front_en.33.400.jpg",
+      "matched_off_code": "0044700361146",
+      "source": "off-search"
+    },
+    "lunchables-nachos-cheese-dip-and-salsa": {
+      "input": {
+        "barcode": "",
+        "name": "Lunchables Nachos Cheese Dip and Salsa",
+        "brand": "Lunchables"
+      },
+      "name": "Lunchables, Nachos Cheese Dip & Salsa",
+      "brand": "LUNCHABLES",
+      "serving_size": "124.0 g",
+      "calories": 290,
+      "ingredients_verbatim": "GROUND YELLOW CORN, VEGETABLES OIL (CONTAINS ONE OR MORE OF THE FOLLOWING: CORN, SUNFLOWER OR SOYBEAN OIL), CORN BRAN AND SALT. NACHO CHEESE - WHEY, MILK, CANOLA OIL, DRIED CORN SYRUP, WATER SODIUM PHOSPHATE, CONTAINS LESS THAN 2% OF JALAPENO PEPPERS, SALT, WHEY PROTEIN CONCENTRATE, LACTIC ACID, MILKFAT, SODIUM ALGINATE, VINEGAR, CALCIUM PHOSPHATE, POTASSIUM CHLORIDE, SORBIC ACID AS A PRESERVATIVE, CHEESE CULTURE, ENZYMES, NATURAL FLAVOR, APOCAROTENAL (COLOR). SALSA - WATER, TOMATO PASTE, GREEN CHILI PEPPERS, VINEGAR, DEHYDRATED ONIONS, CONTAINS LESS THAN 2% OF HIGH FRUCTOSE CORN SYRUP, FOOD STARCH-MODIFIED, JALAPENO PEPPERS, SALT, GREEN BELL PEPPERS, GARLIC POWDER, SODIUM BENZOATE AND POTASSIUM SORBATE AS PRESERVATIVES, CITRIC ACID, SPICE.",
+      "nutrition": {
+        "fat": 15.3,
+        "saturatedFat": 2.82,
+        "sodium": 685,
+        "carbs": 33.1,
+        "sugars": 3.23,
+        "protein": 4.84,
+        "fiber": 3.2
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "lunchables-chicken-dunks": {
+      "input": {
+        "barcode": "",
+        "name": "Lunchables Chicken Dunks",
+        "brand": "Lunchables"
+      },
+      "name": "Chicken Dunks",
+      "brand": "Lunchables Uploaded",
+      "serving_size": "158g",
+      "calories": 257,
+      "ingredients_verbatim": "WATER - SPRING WATER. NUGGET SHAPED CHICKEN PATTIES - WHITE CHICKEN, WATER, POTASSIUM LACTATE, MODIFIED CORN STARCH, CONTAINS LESS THAN 2% OF SALT, POTASSIUM CHLORIDE, DEXTROSE, SODIUM PHOSPHATES, CARRAGEENAN, SODIUM DIACETATE, LEMON JUICE SOLIDS, FLAVOR.",
+      "nutrition": {
+        "fat": 11.4,
+        "saturatedFat": 3.8,
+        "sodium": 0,
+        "carbs": 31,
+        "sugars": 15.8,
+        "protein": 7.59,
+        "fiber": 0.6
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/004/470/006/9592/front_en.10.400.jpg",
+      "matched_off_code": "0044700069592",
+      "source": "off-search"
+    },
+    "smucker-s-uncrustables-peanut-butter-grape-jelly": {
+      "input": {
+        "barcode": "",
+        "name": "Smucker's Uncrustables Peanut Butter & Grape Jelly Sandwiches",
+        "brand": "Smucker's Uncrustables"
+      },
+      "name": "Peanut Butter & Grape Jelly Sandwich",
+      "brand": "Smucker's Uncrustables",
+      "serving_size": "1 sandwich (58 g)",
+      "calories": 218,
+      "ingredients_verbatim": "Bread: enriched unbleached flour (wheat flour, malted barley flour, niacin, ferrous sulfate, thiamin mononitrate, riboflavin, folic acid), water, unbleached whole wheat flour, sugar, yeast, soybean oil, contains 2% or less of: salt, dough conditioners (distilled mono and diglycerides, datem, enzymes [with wheat starch, ascorbic acid, calcium peroxide]), peanut butter: peanuts, sugar contains 2% or less of: molasses, fully hydrogenated vegetable oils (rapeseed and soybean), mono and diglycerides, salt, grape jelly:sugar, grape juice, contains 2% or less of: pectin, citric acid, potassium sorbate (preservative)",
+      "nutrition": {
+        "fat": 9,
+        "saturatedFat": 2,
+        "sodium": 0.22,
+        "carbs": 28,
+        "sugars": 10,
+        "protein": 6,
+        "fiber": 2
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/005/150/004/8177/front_en.24.400.jpg",
+      "matched_off_code": "0051500048177",
+      "source": "off-search"
+    },
+    "smucker-s-uncrustables-peanut-butter-strawberry-": {
+      "input": {
+        "barcode": "",
+        "name": "Smucker's Uncrustables Peanut Butter & Strawberry Jam Sandwiches",
+        "brand": "Smucker's Uncrustables"
+      },
+      "name": "Smucker'S 2 Ounce Uncrustables Peanut Butter And Strawberry Each",
+      "brand": "Smucker's",
+      "serving_size": "58.0 GRM",
+      "calories": 362,
+      "ingredients_verbatim": "Bread: Enriched Unbleached Flour (Wheat Flour, Malted Barley Flour, Niacin, Ferrous Sulfate, Thiamin Mononitrate, Riboflavin, Folic Acid), Water, Unbleached Whole Wheat Flour, Sugar, Yeast, Soybean Oil, Contains 2% Or Less Of: Wheat Gluten, Salt, Guar Gum, Dough Conditioner (Enzymes, Ascorbic Acid, Calcium Peroxide). Peanut Butter: Peanuts, Sugar, Contains 2% Or Less Of: Fully Hydrogenated Vegetable Oils (Rapeseed And Soybean), Salt, Molasses. Strawberry Jam: Sugar, Strawberries, Contains 2% Or Less Of: Pectin, Citric Acid, Potassium Sorbate (Preservative).",
+      "nutrition": {
+        "fat": 15.5,
+        "saturatedFat": 3.45,
+        "sodium": 379,
+        "carbs": 48.3,
+        "sugars": 17.2,
+        "protein": 10.3,
+        "fiber": 3.4
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "annie-s-real-aged-cheddar-macaroni-cheese-cups": {
+      "input": {
+        "barcode": "",
+        "name": "Annie's Real Aged Cheddar Macaroni & Cheese Cups",
+        "brand": "Annie's"
+      },
+      "name": "Annie's Organic Grass Fed Real Aged Cheddar Macaroni & Cheese Microwavable Cup 12 Pack",
+      "brand": null,
+      "serving_size": "1 package (57 g) (57 g)",
+      "calories": 220,
+      "ingredients_verbatim": "Organic pasta (organic wheat flour, organic whole grain wheat flour), organic tapioca starch, organic dried cheddar cheese (pasteurized organic milk, salt, non-animal enzymes), organic nonfat milk, organic coconut oil, organic corn starch, organic whey, organic butter, salt, cultured organic milk, potassium chloride, organic sunflower lecithin, disodium phosphate, organic annatto extract (for color), silicon dioxide (for anticaking).",
+      "nutrition": {
+        "fat": 4.5,
+        "saturatedFat": 3,
+        "sodium": 0.36,
+        "carbs": 37,
+        "sugars": 2,
+        "protein": 7,
+        "fiber": 2
+      },
+      "image_url": null,
+      "matched_off_code": "0013562479665",
+      "source": "off-search"
+    },
+    "kraft-easy-mac-original-macaroni-cheese-cups": {
+      "input": {
+        "barcode": "",
+        "name": "Kraft Easy Mac Original Macaroni & Cheese Cups",
+        "brand": "Kraft"
+      },
+      "name": "Kraft Easy Cheese American Cheese",
+      "brand": "Easy Cheese",
+      "serving_size": "30.0 g",
+      "calories": 80,
+      "ingredients_verbatim": "Water, Whey, Cheddar Cheese ( Milk, Salt, Cheese Culture, Enzymes), Canola Oil, Whey Protein Concentrate, Milk Protein Concentrate, Contains Less than 2% of Milk, Sodium Citrate, Sodium Phosphate, Calcium Phosphate, Salt, Lactic Acid, Sodium Alginate, Sorbic Acid as a Preservative, Color ( Annatto Extract, Apocarotenal), Enzymes, Cheese Culture.",
+      "nutrition": {
+        "fat": 6,
+        "saturatedFat": 1,
+        "sodium": 430,
+        "carbs": 3,
+        "sugars": 2,
+        "protein": 4,
+        "fiber": null
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "chef-boyardee-beef-ravioli-microwave-bowls": {
+      "input": {
+        "barcode": "",
+        "name": "Chef Boyardee Beef Ravioli Microwave Bowls",
+        "brand": "Chef Boyardee"
+      },
+      "name": "Chef Boyardee Microwave Ravioli",
+      "brand": "Chef Boyardee",
+      "serving_size": "212.0 GRM",
+      "calories": null,
+      "ingredients_verbatim": "Tomatoes (Tomato Puree, Water), Water, Enriched Wheat Flour (Wheat Flour, Malted Barley Flour, Niacin, Reduced Iron, Thiamine Mononitrate [Vitamin B1], Riboflavin [Vitamin B2], Folic Acid), Beef, Crackermeal (Enriched Wheat Flour [Bleached Wheat Flour, Niacin, Reduced Iron, Thiamine Mononitrate, Riboflavin, Folic Acid], May Contain Guar Gum), LESS THAN 2% OF: High Fructose Corn Syrup, Salt, Modified Corn Starch, Textured Vegetable Protein (Soy Flour, Soy Protein Concentrate, Caramel Color), Soybean Oil, Bleached Wheat Flour, Carrots, Dehydrated Onion, Caramel Color, Flavorings, Enzyme Modified Cheese (Cheddar Cheese [Pasteurized Milk, Cultures, Salt, Enzymes], Cream, Water, Salt, Sodium Phosphate, Xanthan Gum, Carotenal [Color]). CONTAINS: MILK, SOY, WHEAT",
+      "nutrition": {
+        "fat": 1.89,
+        "saturatedFat": 0.71,
+        "sodium": 321,
+        "carbs": 14.2,
+        "sugars": 2.36,
+        "protein": 2.83,
+        "fiber": 0.9
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "lunchables-turkey-and-american-cracker-stackers": {
+      "input": {
+        "barcode": "",
+        "name": "Lunchables Turkey and American Cracker Stackers",
+        "brand": "Lunchables"
+      },
+      "name": "Lunchables, Turkey & American Cracker Stackers",
+      "brand": "LUNCHABLES",
+      "serving_size": "96.0 g",
+      "calories": 344,
+      "ingredients_verbatim": "CHOCOLATE SANDWICH COOKIES - SUGAR, UNBLEACHED ENRICHED FLOUR (WHEAT FLOUR, NIACIN, REDUCED IRON, THIAMINE MONONITRATE {VITAMIN B1}, RIBOFLAVIN {VITAMIN B2}, FOLIC ACID), PALM AND/OR CANOLA OIL, COCOA (PROCESSED WITH ALKALI), HIGH FRUCTOSE CORN SYRUP, CORNSTARCH, LEAVENING (BAKING SODA AND/OR CALCIUM PHOSPHATE), SALT, SOY LECITHIN, VANILLA - AN ARTIFICIAL FLAVOR, CHOCOLATE. ROAST WHITE TURKEY - CURED - SMOKE FLAVOR ADDED - WHITE TURKEY, WATER, POTASSIUM LACTATE, MODIFIED CORNSTARCH, CONTAINS LESS THAN 2% OF DEXTROSE, CARRAGEENAN, SALT, SODIUM PHOSPHATES, POTASSIUM CHLORIDE, SODIUM DIACETATE, FLAVOR, SODIUM ASCORBATE, SMOKE FLAVOR, SODIUM NITRITE, NATURAL AND ARTIFICIAL FLAVOR. PASTEURIZED PREPARED AMERICAN CHEESE PRODUCT - MILK, WATER, MILK PROTEIN CONCENTRATE, WHEY, MILKFAT, WHEY PROTEIN CONCENTRATE, SODIUM CITRATE, SALT, LACTIC ACID, SORBIC ACID AS A PRESERVATIVE, CHEESE CULTURE, ENZYMES, OLEORESIN PAPRIKA (COLOR), ANNATTO EXTRACT (COLOR), WITH SUNFLOWER LECITHIN ADDED FOR SLICE SEPARATION. CRACKERS - ENRICHED FLOUR (WHEAT FLOUR, NIACIN, REDUCED IRON, THIAMINE MONONITRATE, RIBOFLAVIN, FOLIC ACID), PALM OIL, SUGAR, SALT, BAKING SODA, WHEY (FROM MILK), SOY LECITHIN, NATURAL FLAVOR.",
+      "nutrition": {
+        "fat": 16.7,
+        "saturatedFat": 7.29,
+        "sodium": 604,
+        "carbs": 38.5,
+        "sugars": 17.7,
+        "protein": 10.4,
+        "fiber": 1
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "lunchables-ham-and-american-cracker-stackers": {
+      "input": {
+        "barcode": "",
+        "name": "Lunchables Ham and American Cracker Stackers",
+        "brand": "Lunchables"
+      },
+      "name": "Lunchables, Turkey & American Cracker Stackers",
+      "brand": "LUNCHABLES",
+      "serving_size": "96.0 g",
+      "calories": 344,
+      "ingredients_verbatim": "CHOCOLATE SANDWICH COOKIES - SUGAR, UNBLEACHED ENRICHED FLOUR (WHEAT FLOUR, NIACIN, REDUCED IRON, THIAMINE MONONITRATE {VITAMIN B1}, RIBOFLAVIN {VITAMIN B2}, FOLIC ACID), PALM AND/OR CANOLA OIL, COCOA (PROCESSED WITH ALKALI), HIGH FRUCTOSE CORN SYRUP, CORNSTARCH, LEAVENING (BAKING SODA AND/OR CALCIUM PHOSPHATE), SALT, SOY LECITHIN, VANILLA - AN ARTIFICIAL FLAVOR, CHOCOLATE. ROAST WHITE TURKEY - CURED - SMOKE FLAVOR ADDED - WHITE TURKEY, WATER, POTASSIUM LACTATE, MODIFIED CORNSTARCH, CONTAINS LESS THAN 2% OF DEXTROSE, CARRAGEENAN, SALT, SODIUM PHOSPHATES, POTASSIUM CHLORIDE, SODIUM DIACETATE, FLAVOR, SODIUM ASCORBATE, SMOKE FLAVOR, SODIUM NITRITE, NATURAL AND ARTIFICIAL FLAVOR. PASTEURIZED PREPARED AMERICAN CHEESE PRODUCT - MILK, WATER, MILK PROTEIN CONCENTRATE, WHEY, MILKFAT, WHEY PROTEIN CONCENTRATE, SODIUM CITRATE, SALT, LACTIC ACID, SORBIC ACID AS A PRESERVATIVE, CHEESE CULTURE, ENZYMES, OLEORESIN PAPRIKA (COLOR), ANNATTO EXTRACT (COLOR), WITH SUNFLOWER LECITHIN ADDED FOR SLICE SEPARATION. CRACKERS - ENRICHED FLOUR (WHEAT FLOUR, NIACIN, REDUCED IRON, THIAMINE MONONITRATE, RIBOFLAVIN, FOLIC ACID), PALM OIL, SUGAR, SALT, BAKING SODA, WHEY (FROM MILK), SOY LECITHIN, NATURAL FLAVOR.",
+      "nutrition": {
+        "fat": 16.7,
+        "saturatedFat": 7.29,
+        "sodium": 604,
+        "carbs": 38.5,
+        "sugars": 17.7,
+        "protein": 10.4,
+        "fiber": 1
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "lunchly-the-pizza": {
+      "input": {
+        "barcode": "",
+        "name": "Lunchly The Pizza",
+        "brand": "Lunchly"
+      },
+      "name": "The Pizza Lunchly",
+      "brand": "MrBeast",
+      "serving_size": "1 portion (132 g)",
+      "calories": 360,
+      "ingredients_verbatim": "CHERRY FREEZE FLAVORED WITH OTHER NATURAL FLAVORS DRINK (WATER, CITRIC ACID, DIPOTASSI-UM PHOSPHATE, NATURAL FLAVORS, SUCRALOSE, ACESULFAME POTASSIUM, GUM ARABIC, ESTER GUM, D-ALPHA TOCOPHERYL ACETATE [VITAMIN E], PYRIDOXINE HYDROCHLORIDE [VITAMIN B6], RETINYL PALMITATE [VITAMIN AJ, CYANOCOBALAMIN [VITAMIN B12]), PIZZA CRUST (ENRICHED BLEACHED WHEAT FLOUR [FLOUR, NIACIN, REDUCED IRON, THIAMINE MONONITRATE, RIBOFLAVIN, FOLIC ACID], WATER, VEGETABLE SHORTENING [INTERESTERIFIED SOYBEAN OIL, HYDROGENATED SOYBEAN OIL], CONTAINS 2% OR LESS OF: SUGAR, SALT, YEAST, VEGETABLE GUMS [CORN STARCH, GUAR GUM, XANTHAN GUM], CALCIUM PROPRION-ATE [PRESERVATIVE], MONOGLYCERIDES), CONTAINS: WHEAT, PIZZA SAUCE (WATER, TOMATO PASTE, SUGAR, MODIFIED CORN STARCH, SALT, HIGHLY REFINED SOYBEAN OIL, CITRIC ACID, GARLIC POWDER, ONION POWDER, SPICES, PRESERVA-TIVES [SODIUM BENZOATE, POTASSIUM SORBATE], XANTHAN GUM, NATURAL FLAVOR), LOW-MOISTURE PART-SKIM MOZZARELLA CHEESE (CULTURED PASTEURIZED PART-SKIM MILK, SALT, ENZYMES, ANTI-CAKING BLEND [POTATO STARCH, CELLULOSE]), CONTAINS: MILK, SMOKED UNCURED PEPPERONI MADE WITH PORK, NO NITRATES OR NITRITES ADDED EXCEPT FOR THOSE NATURALLY OCCURRING NITRITES IN SEA SALT AND CULTURED CELERY EXTRACT (PORK, SEA SALT, CANE SUGAR, SPICE, PAPRIKA, CULTURED CELERY EXTRACT, PAPRIKA EXTRACT, GARLIC POWDER, CHERRY POWDER, RICE CONCENTRATE, SFICE EXTRACT, LACTIC ACID STARTER CULTURE), MILK UICCOLATE WITH PUFFED RICE BAR (MILK CHOCOLATE [SUGAR, WHOLE MILK POWDER, COCOA BUTTER, UNSWEETENED CHOCOLATE, LECITHIN [SOY], VANILLA EXTRACT], CRISP RICE RICE FLOUR, SUGAR, SALT]), CONTAINS: MILK, SOY., MAY CONTAIN: PEANUTS, TREE NUTS, WHEAT, EGG, SESAME.",
+      "nutrition": {
+        "fat": 15,
+        "saturatedFat": 7,
+        "sodium": 0.71,
+        "carbs": 44,
+        "sugars": 12,
+        "protein": 12,
+        "fiber": 2
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/085/006/381/9022/front_en.7.400.jpg",
+      "matched_off_code": "0850063819022",
+      "source": "off-search"
+    },
+    "lunchly-fiesta-nachos": {
+      "input": {
+        "barcode": "",
+        "name": "Lunchly Fiesta Nachos",
+        "brand": "Lunchly"
+      },
+      "name": "Fiesta Nachos",
+      "brand": "Lunchly",
+      "serving_size": "1 package (136.078 g)",
+      "calories": 360,
+      "ingredients_verbatim": "strawberry, banana, citric acid, dipotassium phosphate, natural flavors, sucralose, gum arabic, vegetable juice for color, acesulfame potassium, juice, corn syrup, red bell pepper, sodium phosphate, maltodextrin, jalapeno pepper, white distilled vinegar, yeast extract, natural flavor, lactic acid, calcium chloride, dehydrated hatch chili pepper, annatto, beta-carotene, milk, salsa, water, tomato paste, diced tomatoes, tomato juice, citric acid, dehydrated, roasted red bell pepper, roasted red bell peppers, sugar, potato flour, salt, dried red bell pepper, natural flavor, corn oil, sugar, salt, dehydrated onion, jalapeno peppers, citric acid, dehydrated green bell pepper, potassium sorbate, preservatives, natural flavors, spices, milk chocolate bar, milk chocolate, sugar, whole milk powder, cocoa butter, unsweetened chocolate, lecithin, soy, vanilla extract",
+      "nutrition": {
+        "fat": 17,
+        "saturatedFat": 5,
+        "sodium": 0.74,
+        "carbs": 46,
+        "sugars": 10,
+        "protein": 9,
+        "fiber": 4
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/085/006/381/9039/front_en.18.400.jpg",
+      "matched_off_code": "0850063819039",
+      "source": "off-search"
+    },
+    "lunchly-turkey-stack-ems": {
+      "input": {
+        "barcode": "",
+        "name": "Lunchly Turkey Stack Ems",
+        "brand": "Lunchly"
+      },
+      "name": "Turkey Stack 'EMS",
+      "brand": "Lunchly",
+      "serving_size": "1 package (72 g)",
+      "calories": 230,
+      "ingredients_verbatim": "ICE POP DRINK (WATER, CITRIC ACID,, DIPOTASSIUM PHOSPHATE, NATURAL FLAVORS,, SUCRALOSE, ACESULFAME POTASSIUM, GUM ARABIC,, ESTER GUM, D-ALPHA TOCOPHERYL ACETATE [VITAMIN E],, PYRIDOXINE HYDROCHLORIDE [VITAMIN B6], RETINYL, PALMITATE [VITAMIN A], CYANOCOBALAMIN [VITAMIN B12]);, OVEN ROASTED TURKEY (TURKEY, WATER, SEA SALT,, VINEGAR, POTATO STARCH, CULTURED CELERY EXTRACT,, CANE SUGAR); CRACKERS (ENRICHED WHEAT FLOUR, [FLOUR, NIACIN, REDUCED IRON, THIAMINE MONONITRATE,, RIBOFLAVIN, FOLIC ACID], HIGH OLEIC SUNFLOWER OIL,, SUGAR, CONTAINS 2% OR LESS OF THE FOLLOWING: SALT,, LEAVENING [BAKING SODA, MONOCALCIUM PHOSPHATE),, CORN SYRUP, SOY LECITHIN, NATURAL FLAVOR), CHEDDAR CHEESE (PASTEUR-, IZED MILK, CHEESE CULTURE, SALT, ENZYMES, ANNATTO, [COLOR]), CONTAINS: MILK; MILK CHOCOLATE BAR (MILK, CHOCOLATE [SUGAR, WHOLE MILK POWDER, COCOA, BUTTER, UNSWEETENED CHOCOLATE, LECITHIN [SOY],, VANILLA EXTRACT]), CONTAINS: MILK, SOY.",
+      "nutrition": {
+        "fat": 12,
+        "saturatedFat": 6,
+        "sodium": 0.48,
+        "carbs": 22,
+        "sugars": 7,
+        "protein": 11,
+        "fiber": 1
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/085/006/381/9008/front_en.5.400.jpg",
+      "matched_off_code": "0850063819008",
+      "source": "off-search"
+    },
+    "lunchly-bbq-chicken-dippers": {
+      "input": {
+        "barcode": "",
+        "name": "Lunchly BBQ Chicken Dippers",
+        "brand": "Lunchly"
+      },
+      "name": "Smoky Bbq Flavor Chicken Dippers, Smoky Bbq",
+      "brand": "YUMMY",
+      "serving_size": "77.0 GRM",
+      "calories": 221,
+      "ingredients_verbatim": "BONELESS SKINLESS CHICKEN BREAST WITH RIB MEAT, WATER, YELLOW CORN FLOUR, ENRICHED WHEAT FLOUR (NIACIN (VITAMIN B3), REDUCED IRON, THIAMINE MONONITRATE (VITAMIN B1), RIBOFLAVIN (VITAMIN B2), FOLIC ACID), TORTILLA CHIPS (YELLOW CORN, CANOLA AND/OR SUNFLOWER OIL, CALCIUM HYDROXIDE), RICE FLOUR, ISOLATED SOY PROTEIN, CONTAINS 2% OR LESS OF THE FOLLOWING: SALT, CORN STARCH, SUGAR, POTATO STARCH, FRUCTOSE, WHEAT FLOUR, SPICES, DEXTROSE, ONION AND GARLIC POWDER, TOMATO POWDER, CANOLA OIL, NATURAL FLAVOR, ONION POWDER, GUAR GUM, SMOKE FLAVOR, FLAVOR, EXTRACTIVE OF TURMERIC (COLOR), EXTRACTIVE OF PAPRIKA (COLOR), YEAST, IRON, JALAPENO PEPPER POWDER, EXTRACTIVES OF ANNATTO AND TURMERIC, FLAX MEAL",
+      "nutrition": {
+        "fat": 10.4,
+        "saturatedFat": 1.3,
+        "sodium": 442,
+        "carbs": 20.8,
+        "sugars": 1.3,
+        "protein": 11.7,
+        "fiber": 1.3
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    }
+  },
+  "misses": [
+    {
+      "barcode": "",
+      "name": "Lunchly PB&J Dunkers",
+      "brand": "Lunchly",
+      "reason": "unresolved",
+      "partial": null
+    }
+  ]
+}

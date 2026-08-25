@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food Exposé Content Review</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Food Exposé: Barcode Scanner</p>
+        <h1>Content Review</h1>
+      </div>
+      <button id="refresh" class="icon-button" aria-label="Refresh" title="Refresh">↻</button>
+    </header>
+    <main>
+      <section class="summary" aria-label="Workflow summary">
+        <div><strong id="concept-count">0</strong><span>Concepts waiting</span></div>
+        <div><strong id="package-count">0</strong><span>Final reviews</span></div>
+        <div><strong id="buffer-count">0</strong><span>Ready for Buffer</span></div>
+        <div><strong id="community-count">0</strong><span>Replies waiting</span></div>
+      </section>
+
+      <section class="work-section">
+        <div class="section-heading">
+          <h2>Concept Approval</h2>
+          <p>Approval authorizes production only. It does not publish anything.</p>
+        </div>
+        <div id="concepts" class="work-list"></div>
+      </section>
+
+      <section class="work-section">
+        <div class="section-heading">
+          <h2>Final Packages</h2>
+          <p>Founder approval is available only after deterministic and independent QA pass.</p>
+        </div>
+        <div id="packages" class="work-list"></div>
+      </section>
+
+      <section class="work-section">
+        <div class="section-heading">
+          <h2>Community Reply Queue</h2>
+          <p>Approval means copy manually. The factory never posts replies.</p>
+        </div>
+        <div id="community" class="work-list"></div>
+      </section>
+    </main>
+    <div id="toast" role="status" aria-live="polite"></div>
+    <script src="/app.js"></script>
+  </body>
+</html>

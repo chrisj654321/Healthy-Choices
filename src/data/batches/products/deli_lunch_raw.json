@@ -1,0 +1,260 @@
+{
+  "category": "deli_lunch",
+  "researched_at": "2026-06-15",
+  "products": [
+    {
+      "barcode": "0208531312801",
+      "name": "OvenGold Roasted Turkey Breast",
+      "brand": "Boar's Head",
+      "company": "Boar's Head Brand LLC",
+      "companyId_hint": null,
+      "size": "varies (deli counter)",
+      "ingredients_verbatim": "Turkey Breast, Water, Contains Less Than 2% of Salt, Sugar, Sodium Phosphates.",
+      "off_verified": true,
+      "off_product_name": "OvenGold Roasted Turkey Breast",
+      "off_url": "https://world.openfoodfacts.org/product/0208531312801"
+    },
+    {
+      "barcode": "044700030509",
+      "name": "Deli Fresh Oven Roasted Turkey Breast",
+      "brand": "Oscar Mayer",
+      "company": "Kraft Heinz",
+      "companyId_hint": "kraft-heinz",
+      "size": "9 oz",
+      "ingredients_verbatim": "Turkey breast, water, modified cornstarch, contains less than 2% of sodium lactate, salt, sugar, sodium phosphates, carrageenan, natural flavor, sodium diacetate, potassium chloride, sodium ascorbate, sodium nitrite, caramel color.",
+      "off_verified": true,
+      "off_product_name": "Oven Roasted Turkey Breast",
+      "off_url": "https://world.openfoodfacts.org/product/044700030509"
+    },
+    {
+      "barcode": "044700031285",
+      "name": "Deli Fresh Oven Roasted Turkey Breast Family Size",
+      "brand": "Oscar Mayer",
+      "company": "Kraft Heinz",
+      "companyId_hint": "kraft-heinz",
+      "size": "16 oz",
+      "ingredients_verbatim": "Turkey breast, water, modified cornstarch, contains less than 2% of sodium lactate, salt, sugar, sodium phosphates, carrageenan, natural flavor, sodium diacetate, potassium chloride, sodium ascorbate, sodium nitrite, caramel color.",
+      "off_verified": true,
+      "off_product_name": "Oven Roasted Turkey Breast",
+      "off_url": "https://world.openfoodfacts.org/product/044700031285"
+    },
+    {
+      "barcode": "044700030547",
+      "name": "Deli Fresh Honey Uncured Ham",
+      "brand": "Oscar Mayer",
+      "company": "Kraft Heinz",
+      "companyId_hint": "kraft-heinz",
+      "size": "9 oz",
+      "ingredients_verbatim": "Ham, water, honey, cultured dextrose, salt, sugar, vinegar, cultured celery juice, sodium phosphates, cherry powder, caramel coloring.",
+      "off_verified": true,
+      "off_product_name": "Honey Uncured Ham",
+      "off_url": "https://world.openfoodfacts.org/product/044700030547"
+    },
+    {
+      "barcode": "025317686006",
+      "name": "Organics Oven Roasted Turkey Breast",
+      "brand": "Applegate",
+      "company": "Hormel Foods",
+      "companyId_hint": "hormel",
+      "size": "6 oz",
+      "ingredients_verbatim": "Organic turkey breast, water. Contains less than 2% of the following: sea salt, organic potato starch, organic chicken broth, rosemary extract.",
+      "off_verified": true,
+      "off_product_name": "Oven Roasted Turkey Breast",
+      "off_url": "https://world.openfoodfacts.org/product/025317686006"
+    },
+    {
+      "barcode": "044500976489",
+      "name": "Ultra Thin Deli Select Honey Ham",
+      "brand": "Hillshire Farm",
+      "company": "Tyson Foods",
+      "companyId_hint": "tyson",
+      "size": "9 oz",
+      "ingredients_verbatim": "Cured with water, honey, contains 2% or less: salt, dextrose, sugar, sodium phosphate, sodium propionate, sodium erythorbate, sodium nitrite.",
+      "off_verified": true,
+      "off_product_name": "Honey Ham",
+      "off_url": "https://world.openfoodfacts.org/product/044500976489"
+    },
+    {
+      "barcode": "044500976502",
+      "name": "Ultra Thin Sliced Oven Roasted Turkey Breast",
+      "brand": "Hillshire Farm",
+      "company": "Tyson Foods",
+      "companyId_hint": "tyson",
+      "size": "9 oz",
+      "ingredients_verbatim": "Turkey breast, turkey broth, modified corn starch, contains 2% or less of: salt, sodium phosphate, carrageenan, sodium propionate, sodium nitrite, natural flavor, caramel color.",
+      "off_verified": true,
+      "off_product_name": "Oven Roasted Turkey Breast",
+      "off_url": "https://world.openfoodfacts.org/product/044500976502"
+    },
+    {
+      "barcode": "037600132602",
+      "name": "Natural Choice Oven Roasted Turkey Breast",
+      "brand": "Hormel Natural Choice",
+      "company": "Hormel Foods",
+      "companyId_hint": "hormel",
+      "size": "8 oz",
+      "ingredients_verbatim": "Turkey breast meat, water, salt, potato starch, turbinado sugar, rice starch, carrageenan (from seaweed), baking soda, cultured celery powder, cherry powder.",
+      "off_verified": true,
+      "off_product_name": "Oven Roasted deli Turkey",
+      "off_url": "https://world.openfoodfacts.org/product/0037600132602"
+    },
+    {
+      "barcode": "075971174418",
+      "name": "Premium Meats Honey Roasted Turkey Breast",
+      "brand": "Sara Lee",
+      "company": "Tyson Foods",
+      "companyId_hint": "tyson",
+      "size": "varies (deli sliced)",
+      "ingredients_verbatim": "Turkey breast, water, honey, contains 2% or less: salt, sugar, sodium phosphate, ascorbic acid, citric acid, sodium nitrite, sodium propionate.",
+      "off_verified": true,
+      "off_product_name": "Premium meat honey roasted turkey breast",
+      "off_url": "https://world.openfoodfacts.org/product/075971174418"
+    },
+    {
+      "barcode": "031506739194",
+      "name": "Oven Roasted Turkey Breast",
+      "brand": "Dietz & Watson",
+      "company": "Dietz & Watson Inc.",
+      "companyId_hint": null,
+      "size": "7 oz",
+      "ingredients_verbatim": "Turkey breast, water, salt, sodium phosphates.",
+      "off_verified": true,
+      "off_product_name": "Oven roasted turkey breast",
+      "off_url": "https://world.openfoodfacts.org/product/0031506739194"
+    },
+    {
+      "barcode": "074956000001",
+      "name": "All Natural Uncured Beef Franks",
+      "brand": "Hebrew National",
+      "company": "Kraft Heinz",
+      "companyId_hint": "kraft-heinz",
+      "size": "10.3 oz",
+      "ingredients_verbatim": "Kosher beef, water, salt, spice, distilled vinegar powder, paprika, cultured celery powder, garlic powder, cherry powder, sea salt, natural flavorings.",
+      "off_verified": true,
+      "off_product_name": "All Natural Uncured Beef Franks",
+      "off_url": "https://world.openfoodfacts.org/product/074956000001"
+    },
+    {
+      "barcode": "074956184404",
+      "name": "Beef Franks",
+      "brand": "Hebrew National",
+      "company": "Kraft Heinz",
+      "companyId_hint": "kraft-heinz",
+      "size": "34.1 oz (20 ct)",
+      "ingredients_verbatim": "Beef, water, contains 2% or less of: salt, spice, sodium lactate, paprika, hydrolyzed soy protein, garlic powder, sodium diacetate, sodium erythorbate, flavoring, sodium nitrite.",
+      "off_verified": true,
+      "off_product_name": "BEEF FRANKS",
+      "off_url": "https://world.openfoodfacts.org/product/074956184404"
+    },
+    {
+      "barcode": "044700075050",
+      "name": "Classic Uncured Beef Franks",
+      "brand": "Oscar Mayer",
+      "company": "Kraft Heinz",
+      "companyId_hint": "kraft-heinz",
+      "size": "15 oz (5 ct)",
+      "ingredients_verbatim": "Beef, water, cultured dextrose, contains less than 2% of the following: dextrose, salt, cultured celery juice, distilled white vinegar, sodium phosphate, cherry powder, flavor, extractives of paprika.",
+      "off_verified": true,
+      "off_product_name": "Beef franks",
+      "off_url": "https://world.openfoodfacts.org/product/044700075050"
+    },
+    {
+      "barcode": "054500193298",
+      "name": "Bun Size Beef Franks",
+      "brand": "Ball Park",
+      "company": "Tyson Foods",
+      "companyId_hint": "tyson",
+      "size": "15 oz (8 ct)",
+      "ingredients_verbatim": "Beef, water, corn syrup, contains 2% or less: salt, potassium lactate, hydrolyzed beef stock, sodium phosphates, flavorings, sodium diacetate, sodium erythorbate, sodium nitrite, extractives of paprika.",
+      "off_verified": true,
+      "off_product_name": "Bun Size Beef",
+      "off_url": "https://world.openfoodfacts.org/product/054500193298"
+    },
+    {
+      "barcode": "077782007879",
+      "name": "Original Bratwurst",
+      "brand": "Johnsonville",
+      "company": "Johnsonville LLC",
+      "companyId_hint": null,
+      "size": "19 oz (5 ct)",
+      "ingredients_verbatim": "Pork, water, corn syrup and less than 2% of the following: pork broth with natural flavorings, salt, dextrose, natural flavors, BHA, propyl gallate, citric acid.",
+      "off_verified": true,
+      "off_product_name": "BRATS ORIGINAL Bratwurst",
+      "off_url": "https://world.openfoodfacts.org/product/077782007879"
+    },
+    {
+      "barcode": "027815001114",
+      "name": "Smoked Sausage Rope",
+      "brand": "Eckrich",
+      "company": "Smithfield Foods",
+      "companyId_hint": "smithfield",
+      "size": "14 oz",
+      "ingredients_verbatim": "Meat ingredients (pork, beef), mechanically separated turkey, water, corn syrup, contains 2% or less of dextrose, flavorings, autolyzed yeast, modified food starch, mechanically separated chicken, monosodium glutamate, potassium and sodium lactate, salt, sodium diacetate, sodium nitrite, sodium phosphate, vitamin C (ascorbic acid).",
+      "off_verified": true,
+      "off_product_name": "Smoked Sausage",
+      "off_url": "https://world.openfoodfacts.org/product/027815001114"
+    },
+    {
+      "barcode": "040822011143",
+      "name": "Classic Hummus",
+      "brand": "Sabra",
+      "company": "Sabra Dipping Company LLC",
+      "companyId_hint": "pepsico",
+      "size": "10 oz",
+      "ingredients_verbatim": "Cooked chickpeas, tahini (ground sesame), non-GMO soybean oil, water, garlic, salt, non-GMO citric acid, potassium sorbate added to maintain freshness.",
+      "off_verified": true,
+      "off_product_name": "Classic Hummus",
+      "off_url": "https://world.openfoodfacts.org/product/040822011143"
+    },
+    {
+      "barcode": "044115403011",
+      "name": "Organic Original Hommus",
+      "brand": "Cedar's",
+      "company": "Cedar's Mediterranean Foods Inc.",
+      "companyId_hint": null,
+      "size": "10 oz",
+      "ingredients_verbatim": "Chickpeas (organic chickpeas, water), organic sesame tahini (organic ground sesame), blend of oils (organic sunflower oil, organic extra virgin olive oil), sea salt, organic garlic, citric acid, organic cumin, organic guar gum.",
+      "off_verified": true,
+      "off_product_name": "Organic Original Hommus",
+      "off_url": "https://world.openfoodfacts.org/product/0044115403011"
+    },
+    {
+      "barcode": "856500004006",
+      "name": "Organic Original Recipe Hummus",
+      "brand": "Hope Foods",
+      "company": "Hope Foods LLC",
+      "companyId_hint": null,
+      "size": "8 oz",
+      "ingredients_verbatim": "Organic garbanzo beans, water, organic tahini (sesame seeds), organic extra virgin olive oil, sea salt, organic lemon juice, organic spices, citric acid, organic garlic powder.",
+      "off_verified": true,
+      "off_product_name": "Organic Original Recipe Hummus",
+      "off_url": "https://world.openfoodfacts.org/product/856500004006"
+    },
+    {
+      "barcode": "051900016059",
+      "name": "Premium Honey Smoked Turkey Breast",
+      "brand": "Land O'Frost",
+      "company": "Land O'Frost Inc.",
+      "companyId_hint": null,
+      "size": "16 oz",
+      "ingredients_verbatim": "Turkey breast, white turkey, water, honey, salt, less than 2% of vinegar, dextrose, modified corn starch, brown sugar, sodium erythorbate, sodium phosphates, sodium nitrite.",
+      "off_verified": true,
+      "off_product_name": "Honey Smoked Turkey Breast & White Turkey | Lean",
+      "off_url": "https://world.openfoodfacts.org/product/051900016059"
+    }
+  ],
+  "could_not_verify": [
+    {
+      "name": "Boar's Head Honey Ham",
+      "reason": "Deli-counter item only; no standard packaged UPC found in OpenFoodFacts"
+    },
+    {
+      "name": "Land O'Frost Premium Honey Ham",
+      "reason": "Packaged product UPC (005190001603) not found in OpenFoodFacts database"
+    },
+    {
+      "name": "Applegate Organic Turkey Slices (distinct SKU)",
+      "reason": "Could not find a separate packaged 'Applegate Organic Turkey Slices' SKU distinct from Organic Oven Roasted Turkey Breast; included the organic oven roasted as the representative product"
+    }
+  ]
+}

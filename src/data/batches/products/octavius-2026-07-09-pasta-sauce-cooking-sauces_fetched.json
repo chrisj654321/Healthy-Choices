@@ -1,0 +1,415 @@
+{
+  "generated": "2026-07-09T16:05:24",
+  "total": 20,
+  "resolved": 15,
+  "missed": 5,
+  "source_health": {
+    "off-search": {
+      "ok": 107,
+      "miss": 48,
+      "err": 0,
+      "throttled": 187
+    },
+    "usda-fdc": {
+      "ok": 65,
+      "miss": 15,
+      "err": 0,
+      "throttled": 0
+    }
+  },
+  "products": {
+    "rao-s-homemade-tomato-basil-sauce": {
+      "input": {
+        "barcode": "",
+        "name": "Rao's Homemade Tomato Basil Sauce",
+        "brand": "Rao's Homemade"
+      },
+      "name": "Homemade Tomato Basil Soup, Homemade Tomato",
+      "brand": "REBECCA'S BISTRO",
+      "serving_size": "236.0 g",
+      "calories": 76,
+      "ingredients_verbatim": "DICED TOMATOES (TOMATOES, TOMATO JUICE, SALT, CITRIC ACID, CALCIUM CHLORIDE), TOMATO PUREE (TOMATOES, SALT), WATER, SUGAR, ONIONS, BROWN SUGAR (SUGAR, MOLASSES), BUTTER (CREAM, SALT) FOOD STARCH-MODIFIED, SEA SALT, GARLIC, SPICES, ONION POWDER, CITRIC ACID.",
+      "nutrition": {
+        "fat": 1.48,
+        "saturatedFat": null,
+        "sodium": 492,
+        "carbs": 14,
+        "sugars": 9.32,
+        "protein": 1.27,
+        "fiber": 1.7
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "rao-s-homemade-roasted-garlic-sauce": {
+      "input": {
+        "barcode": "",
+        "name": "Rao's Homemade Roasted Garlic Sauce",
+        "brand": "Rao's Homemade"
+      },
+      "name": "ROASTED GARLIC",
+      "brand": "RAO'S HOMEMADE",
+      "serving_size": "0.5 cup (125 g)",
+      "calories": 110,
+      "ingredients_verbatim": "italian whole peeled tomatoes, italian cherry tomatoes, olive oil, roasted garlic, carrots, salt, basil",
+      "nutrition": {
+        "fat": 8,
+        "saturatedFat": 1,
+        "sodium": 0.33,
+        "carbs": 7,
+        "sugars": 4,
+        "protein": 2,
+        "fiber": 1
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/074/747/900/1557/front_en.62.400.jpg",
+      "matched_off_code": "0747479001557",
+      "source": "off-search"
+    },
+    "rao-s-homemade-vodka-sauce": {
+      "input": {
+        "barcode": "",
+        "name": "Rao's Homemade Vodka Sauce",
+        "brand": "Rao's Homemade"
+      },
+      "name": "Vodka Sauce",
+      "brand": "Rao's Homemade",
+      "serving_size": "0.5 cups (125 g)",
+      "calories": 90,
+      "ingredients_verbatim": "Italian Whole Peeled Tomatoes, Olive Oil, Parmesan Cheese (cow's milk, salt, rennet), Whey, Romano Cheese (pasteurized sheep's milk, rennet, salt), Onions, Salt, Garlic, Basil, Black Pepper, Vodka, Oregano.",
+      "nutrition": {
+        "fat": 6,
+        "saturatedFat": 1.5,
+        "sodium": 0.31,
+        "carbs": 7,
+        "sugars": 5,
+        "protein": 3,
+        "fiber": 1
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/074/747/900/0130/front_en.25.400.jpg",
+      "matched_off_code": "0747479000130",
+      "source": "off-search"
+    },
+    "rao-s-homemade-four-cheese-sauce": {
+      "input": {
+        "barcode": "",
+        "name": "Rao's Homemade Four Cheese Sauce",
+        "brand": "Rao's Homemade"
+      },
+      "name": "Uncured Pepperoni, Mozzarella & Rao'S Homemade Brick Oven Crust Pizza Sauce, Uncured Pepperoni",
+      "brand": "RAO'S",
+      "serving_size": "130.0 g",
+      "calories": 238,
+      "ingredients_verbatim": "CRUST (ENRICHED WHEAT FLOUR [FLOUR, NIACIN, REDUCED IRON, THIAMINE MONONITRATE, RIBOFLAVIN, FOLIC ACID, ENZYMES, ASCORBIC ACID], WATER, SOYBEAN OIL, BREAD CRUMBS [WHEAT FLOUR, SUGAR, YEAST, SALT], SUGAR, YEAST, SALT, OLIVE OIL, MONOCALCIUM PHOSPHATE, SODIUM BICARBONATE, L-CYSTEINE), SAUCE (ITALIAN TOMATOES, OLIVE OIL, ONION, SALT, GARLIC, CARROTS, SPICES), UNCURED+ PEPPERONI +NO NITRITES OR NITRATES ADDED EXCEPT THOSE NATURALLY OCCURRING IN SEA SALT AND CULTURED CELERY JUICE OR POWDER (PORK, BEEF, SEA SALT, SPICES, CONTAINS 2% OR LESS OF: NATURAL FLAVORS, LACTIC ACID STARTER CULTURE, CULTURED CELERY JUICE, DEXTROSE, EXTRACTIVES OF PAPRIKA, CHERRY POWDER, MAY CONTAIN: CULTURED CELERY POWDER, GARLIC POWDER, OLEORESIN OF PAPRIKA), WHOLE MILK MOZZARELLA (PASTEURIZED MILK, CHEESE CULTURES, SALT, ENZYMES), PROVOLONE CHEESE (PASTEURIZED WHOLE MILK, CHEESE CULTURE, SALT, ENZYMES), FONTINA CHEESE (PASTEURIZED MILK, CHEESE CULTURES, SALT, ENZYMES, POWDERED CELLULOSE [ANTICAKING AGENT]), PARMESAN AND ROMANO CHEESE (PARMESAN CHEESE [CULTURED, PART-SKIM MILK, SALT, ENZYMES], ROMANO CHEESE FROM COW'S MILK [CULTURED, PART-SKIM MILK, SALT, ENZYMES], POWDERED CELLULOSE [ANTICAKING AGENT], SALT), PARMESAN CHEESE (PASTEURIZED PART-SKIM MILK, CHEESE CULTURES, SALT, ENZYMES, POWDERED CELLULOSE [ANTICAKING AGENT]), SPICES.",
+      "nutrition": {
+        "fat": 10.8,
+        "saturatedFat": 4.62,
+        "sodium": 531,
+        "carbs": 26.2,
+        "sugars": 1.54,
+        "protein": 10,
+        "fiber": 0.8
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "prego-three-cheese-italian-sauce": {
+      "input": {
+        "barcode": "",
+        "name": "Prego Three Cheese Italian Sauce",
+        "brand": "Prego"
+      },
+      "name": "Three Cheese Italian Sauce",
+      "brand": "Prego",
+      "serving_size": "1 serving (120 g)",
+      "calories": 60,
+      "ingredients_verbatim": "Tomato puree (water, tomato paste), diced tomatoes in tomato juice, sugar, contains less than 1% of: salt, canola oil, granular cheese (milk, cultures, salt, enzymes), ricotta cheese (milk, whey, distilled vinegar, salt), romano cheese (cultured part-skim cow's milk, salt, enzymes), citric acid, spice, parmesan cheese (part-skim milk, cultures, salt, enzymes), whey, romano cheese (cow's milk, cultures, salt, enzymes), lactic acid, sodium citrate, garlic extract.",
+      "nutrition": {
+        "fat": 1.5,
+        "saturatedFat": 0.5,
+        "sodium": 0.47,
+        "carbs": 10,
+        "sugars": 9,
+        "protein": 2,
+        "fiber": 2
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/005/100/005/0434/front_en.33.400.jpg",
+      "matched_off_code": "0051000050434",
+      "source": "off-search"
+    },
+    "prego-mushroom-italian-sauce": {
+      "input": {
+        "barcode": "",
+        "name": "Prego Mushroom Italian Sauce",
+        "brand": "Prego"
+      },
+      "name": "Mushroom Italian Sauce",
+      "brand": "Prego",
+      "serving_size": "1 portion (120 ml)",
+      "calories": 72,
+      "ingredients_verbatim": "Tomato puree (water, tomato paste), diced tomatoes in tomato juice, mushrooms, sugar, canola oil, contains less than 1% of: salt, spices, citric acid, onion extract, garlic extract.",
+      "nutrition": {
+        "fat": 1.2,
+        "saturatedFat": 0,
+        "sodium": 0.56,
+        "carbs": 14.4,
+        "sugars": 10.8,
+        "protein": 2.4,
+        "fiber": 3.6
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/005/100/002/7962/front_en.14.400.jpg",
+      "matched_off_code": "0051000027962",
+      "source": "off-search"
+    },
+    "prego-creamy-vodka-sauce": {
+      "input": {
+        "barcode": "",
+        "name": "Prego Creamy Vodka Sauce",
+        "brand": "Prego"
+      },
+      "name": "Creamy Vodka Italian Sauce",
+      "brand": "Prego",
+      "serving_size": "120 g",
+      "calories": 120,
+      "ingredients_verbatim": "Tomato puree (water, tomato paste), heavy cream, vodka, garlic, sugar, ricotta cheese (milk, whey, distilled vinegar, salt), canola oil, contains less than 1% of: salt, romano cheese (cultured part-skim cow's milk, salt, enzymes), citric acid, parmesan cheese (part-skim milk, cultures, salt, enzymes), spices, flavoring.",
+      "nutrition": {
+        "fat": 6,
+        "saturatedFat": 3.5,
+        "sodium": 0.46,
+        "carbs": 13,
+        "sugars": 9,
+        "protein": 3,
+        "fiber": 2
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/005/100/019/8563/front_en.5.400.jpg",
+      "matched_off_code": "0051000198563",
+      "source": "off-search"
+    },
+    "classico-roasted-garlic-pasta-sauce": {
+      "input": {
+        "barcode": "",
+        "name": "Classico Roasted Garlic Pasta Sauce",
+        "brand": "Classico"
+      },
+      "name": "Roasted Garlic Pasta Sauce",
+      "brand": "Classico",
+      "serving_size": "0.5 cup (125 g)",
+      "calories": 45,
+      "ingredients_verbatim": "DICED TOMATOES (TOMATOES, TOMATO JUICE CITRIC ACID, CALCIUM CHLORIDE), TOMATO PUREE (WATER, TOMATO PASTE), CONTAINS 2% OR LESS OF: ONIONS, ROASTED GARLIC, OLIVE OIL, SALT, GRANULATED ROASTED GARLIC, SPICES.",
+      "nutrition": {
+        "fat": 1,
+        "saturatedFat": 0,
+        "sodium": 0.34,
+        "carbs": 8,
+        "sugars": 5,
+        "protein": 2,
+        "fiber": 2
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/004/112/907/7825/front_en.45.400.jpg",
+      "matched_off_code": "0041129077825",
+      "source": "off-search"
+    },
+    "bertolli-olive-oil-and-garlic-pasta-sauce": {
+      "input": {
+        "barcode": "",
+        "name": "Bertolli Olive Oil and Garlic Pasta Sauce",
+        "brand": "Bertolli"
+      },
+      "name": "Olive Oil & Garlic",
+      "brand": "Bertolli",
+      "serving_size": "1 serving (125 g)",
+      "calories": 70,
+      "ingredients_verbatim": "TOMATO PUREE (WATER, TOMATO PASTE), DICED TOMATOES IN JUICE (DICED TOMATOES, TOMATO JUICE, CALCIUM CHLORIDE, CITRIC ACID), EXTRA VIRGIN OLIVE OIL, GARLIC, SUGAR, ONIONS, SALT, SPICES",
+      "nutrition": {
+        "fat": 3.5,
+        "saturatedFat": 0.5,
+        "sodium": 0.36,
+        "carbs": 9,
+        "sugars": 7,
+        "protein": 2,
+        "fiber": 1
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/003/620/021/9331/front_en.48.400.jpg",
+      "matched_off_code": "0036200219331",
+      "source": "off-search"
+    },
+    "newman-s-own-sockarooni-pasta-sauce": {
+      "input": {
+        "barcode": "",
+        "name": "Newman's Own Sockarooni Pasta Sauce",
+        "brand": "Newman's Own"
+      },
+      "name": "Sockarooni Pasta Sauce",
+      "brand": "Newman's Own",
+      "serving_size": "0.5 cup (123 g)",
+      "calories": 60,
+      "ingredients_verbatim": "ALL NATURAL INGREDIENTS TOMATO PUREE (WATER, TOMATO PASTE, CITRIC ACID), DICED TOMATOES, GREEN AND RED BELL PEPPERS, MUSHROOMS, CANE SUGAR, SALT, ONION*, EXTRA VIRGIN OLIVE OIL, SPICES, GARLIC*.",
+      "nutrition": {
+        "fat": 2.5,
+        "saturatedFat": 0,
+        "sodium": 0.46,
+        "carbs": 10,
+        "sugars": 6,
+        "protein": 2,
+        "fiber": 2
+      },
+      "image_url": null,
+      "matched_off_code": "0020662000224",
+      "source": "off-search"
+    },
+    "newman-s-own-tomato-and-basil-bombolina-pasta-sa": {
+      "input": {
+        "barcode": "",
+        "name": "Newman's Own Tomato and Basil Bombolina Pasta Sauce",
+        "brand": "Newman's Own"
+      },
+      "name": "Newman'S Own, Organic Pasta Sauce, Tomato Basil, Tomato Basil",
+      "brand": "NEWMAN'S OWN",
+      "serving_size": "123.0 g",
+      "calories": 81,
+      "ingredients_verbatim": "DICED ORGANIC TOMATOES IN ORGANIC TOMATO PUREE, ORGANIC EXTRA VIRGIN OLIVE OIL, ORGANIC BASIL, ORGANIC ONION, WATER, ORGANIC CARROT PUREE, SEA SALT, ORGANIC GARLIC, ORGANIC BLACK PEPPER.",
+      "nutrition": {
+        "fat": 6.5,
+        "saturatedFat": 0.81,
+        "sodium": 317,
+        "carbs": 5.69,
+        "sugars": 3.25,
+        "protein": 1.63,
+        "fiber": 0.8
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "victoria-vodka-sauce": {
+      "input": {
+        "barcode": "",
+        "name": "Victoria Vodka Sauce",
+        "brand": "Victoria Fine Foods"
+      },
+      "name": "Ingredients Come First, Victoria Vegan, Vodka Sauce",
+      "brand": "Victoria Fine Foods",
+      "serving_size": "0.5 cup (113 g)",
+      "calories": 145,
+      "ingredients_verbatim": "Whole tomatoes, soy protein (water, soybeans, soy protein, magnesium chloride, calcium chloride), olive oil, onions, garlic, basil, raw sugar, salt, corn starch.",
+      "nutrition": {
+        "fat": 12.2,
+        "saturatedFat": 1.69,
+        "sodium": 0.65,
+        "carbs": 7.8,
+        "sugars": 4.9,
+        "protein": 2.1,
+        "fiber": 0.9
+      },
+      "image_url": null,
+      "matched_off_code": "0070234017501",
+      "source": "off-search"
+    },
+    "muir-glen-organic-classic-marinara-pasta-sauce": {
+      "input": {
+        "barcode": "",
+        "name": "Muir Glen Organic Classic Marinara Pasta Sauce",
+        "brand": "Muir Glen"
+      },
+      "name": "Organic Classic Marinara Pasta Sauce",
+      "brand": "Muir Glen",
+      "serving_size": "1/2 cup (125 g) (125 g)",
+      "calories": 80,
+      "ingredients_verbatim": "Organic tomato puree (water, organic tomato paste), organic tomatoes in juice, organic sautã‰ed onion, organic extra virgin olive oil, sea salt, organic sautã‰ed garlic, organic basil, citric acid, organic black pepper, organic fennel, calcium chloride, organic oregano.",
+      "nutrition": {
+        "fat": 4.5,
+        "saturatedFat": 0.5,
+        "sodium": 0.39,
+        "carbs": 8,
+        "sugars": 4,
+        "protein": 2,
+        "fiber": 2
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/072/534/244/1921/front_en.4.400.jpg",
+      "matched_off_code": "0725342441921",
+      "source": "off-search"
+    },
+    "carbone-marinara-sauce": {
+      "input": {
+        "barcode": "",
+        "name": "Carbone Marinara Sauce",
+        "brand": "Carbone"
+      },
+      "name": "Marinara sauce",
+      "brand": "Carbone Fine Food",
+      "serving_size": "0.5 cup (113 g)",
+      "calories": 90,
+      "ingredients_verbatim": "Imported Italian Tomatoes (Whole Peeled Tomatoes, Tomato Puree, Sea Salt, Basil), Onions, Olive Oil, Sea Salt, Basil, Garlic, Oregano",
+      "nutrition": {
+        "fat": 7,
+        "saturatedFat": 1,
+        "sodium": 0.41,
+        "carbs": 6,
+        "sugars": 5,
+        "protein": 1,
+        "fiber": 1
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/085/002/473/5071/front_en.3.400.jpg",
+      "matched_off_code": "0850024735071",
+      "source": "off-search"
+    },
+    "michael-s-of-brooklyn-marinara-sauce": {
+      "input": {
+        "barcode": "",
+        "name": "Michael's of Brooklyn Marinara Sauce",
+        "brand": "Michael's of Brooklyn"
+      },
+      "name": "Bea'S Brooklyn'S Best, Gourmet Pasta Sauce, Marinara Sauce",
+      "brand": "BEA'S BROOKLYN'S BEST",
+      "serving_size": "113.0 g",
+      "calories": 71,
+      "ingredients_verbatim": "TOMATOES, TOMATO PUREE (WATER, TOMATO PASTE), OLIVE OIL, HONEY, ONIONS, GARLIC, CHIANTI WINE, SALT, BLACK PAPPER, BASIL, OREGANO, CRUSHED RED PEPPER.",
+      "nutrition": {
+        "fat": 4.42,
+        "saturatedFat": 0.44,
+        "sodium": 124,
+        "carbs": 8.85,
+        "sugars": 5.31,
+        "protein": 1.77,
+        "fiber": 1.8
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    }
+  },
+  "misses": [
+    {
+      "barcode": "",
+      "name": "Rao's Homemade Alfredo Sauce",
+      "brand": "Rao's Homemade",
+      "reason": "unresolved",
+      "partial": null
+    },
+    {
+      "barcode": "",
+      "name": "Classico Tomato and Basil Pasta Sauce",
+      "brand": "Classico",
+      "reason": "unresolved",
+      "partial": null
+    },
+    {
+      "barcode": "",
+      "name": "Classico Four Cheese Pasta Sauce",
+      "brand": "Classico",
+      "reason": "unresolved",
+      "partial": null
+    },
+    {
+      "barcode": "",
+      "name": "Bertolli Five Cheese Pasta Sauce",
+      "brand": "Bertolli",
+      "reason": "unresolved",
+      "partial": null
+    },
+    {
+      "barcode": "",
+      "name": "Barilla Vero Gusto Calabrian Marinara",
+      "brand": "Barilla",
+      "reason": "unresolved",
+      "partial": null
+    }
+  ]
+}

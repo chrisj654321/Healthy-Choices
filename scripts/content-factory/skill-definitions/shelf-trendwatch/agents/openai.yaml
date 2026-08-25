@@ -1,0 +1,4 @@
+interface:
+  display_name: "Shelf Trendwatch"
+  short_description: "Research weekly public content opportunities"
+  default_prompt: "Use $shelf-trendwatch to research this week's public TikTok formats and save structured Food Exposé findings."

@@ -1,0 +1,374 @@
+{
+ "generated": "2026-07-17T11:26:14",
+ "total": 15,
+ "resolved": 15,
+ "missed": 0,
+ "source_health": {
+  "off-search": {
+   "ok": 6,
+   "miss": 6,
+   "err": 0,
+   "throttled": 15
+  },
+  "usda-fdc": {
+   "ok": 9,
+   "miss": 0,
+   "err": 0,
+   "throttled": 0
+  }
+ },
+ "products": {
+  "ronzoni-elbows": {
+   "input": {
+    "barcode": "",
+    "name": "Ronzoni Elbows",
+    "brand": "Ronzoni"
+   },
+   "name": "Elbows",
+   "brand": "New World Pasta Company",
+   "serving_size": "1 serving (56 g)",
+   "calories": 190,
+   "ingredients_verbatim": "Semolina (wheat), durum flour (wheat), niacin, ferrous sulfate (iron), thiamin mononitrate, riboflavin, folic acid.",
+   "nutrition": {
+    "fat": 1,
+    "saturatedFat": 0,
+    "sodium": 0,
+    "carbs": 39,
+    "sugars": 1,
+    "protein": 6,
+    "fiber": 2
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/007/130/000/0359/front_en.13.400.jpg",
+   "matched_off_code": "0071300000359",
+   "source": "off-search"
+  },
+  "de-cecco-penne-rigate-no-41": {
+   "input": {
+    "barcode": "",
+    "name": "De Cecco Penne Rigate No. 41",
+    "brand": "De Cecco"
+   },
+   "name": "Penne Rigate no. 41",
+   "brand": "De Cecco",
+   "serving_size": "1 serving (56 g)",
+   "calories": 200,
+   "ingredients_verbatim": "hard (wheat) semolina, niacin, ferrous lactate, thiamine mononitrate, riboflavin, folic acid,",
+   "nutrition": {
+    "fat": 1,
+    "saturatedFat": 0,
+    "sodium": 0,
+    "carbs": 40,
+    "sugars": 2,
+    "protein": 8,
+    "fiber": 2
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/002/409/407/0411/front_en.14.400.jpg",
+   "matched_off_code": "0024094070411",
+   "source": "off-search"
+  },
+  "de-cecco-linguine-no-7": {
+   "input": {
+    "barcode": "",
+    "name": "De Cecco Linguine No. 7",
+    "brand": "De Cecco"
+   },
+   "name": "Linguine No. 7",
+   "brand": "De Cecco",
+   "serving_size": "0.125 box (56 g)",
+   "calories": 200,
+   "ingredients_verbatim": "DURUM (WHEAT) SEMOLINA, NIACIN, FERROUS LACTATE, THIAMINE MONONITRATE, RIBOFLAVIN, FOLIC ACID.",
+   "nutrition": {
+    "fat": 1,
+    "saturatedFat": 0,
+    "sodium": 0,
+    "carbs": 40,
+    "sugars": 2,
+    "protein": 8,
+    "fiber": 2
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/002/409/407/0077/front_en.4.400.jpg",
+   "matched_off_code": "0024094070077",
+   "source": "off-search"
+  },
+  "riceselect-texmati-white-rice": {
+   "input": {
+    "barcode": "",
+    "name": "RiceSelect Texmati White Rice",
+    "brand": "RiceSelect"
+   },
+   "name": "Riceselect, Texmati, Long Grain American Basmati Rice",
+   "brand": "RICESELECT",
+   "serving_size": "45.0 g",
+   "calories": 333,
+   "ingredients_verbatim": "TEXMATI AMERICAN BASMATI RICE.",
+   "nutrition": {
+    "fat": 1.11,
+    "saturatedFat": 0.0,
+    "sodium": 0.0,
+    "carbs": 75.6,
+    "sugars": null,
+    "protein": 6.67,
+    "fiber": 1.6
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "mahatma-jasmine-white-rice": {
+   "input": {
+    "barcode": "",
+    "name": "Mahatma Jasmine White Rice",
+    "brand": "Mahatma"
+   },
+   "name": "Mahatma, Jasmine, Enriched Thai Fragrant Long Grain Rice",
+   "brand": "MAHATMA",
+   "serving_size": "45.0 GRM",
+   "calories": 356,
+   "ingredients_verbatim": "ENRICHED THAI JASMINE RICE [RICE, NIACIN, IRON (FERRIC ORTHOPHOSPHATE), THIAMIN (THIAMIN MONONITRATE), FOLIC ACID].",
+   "nutrition": {
+    "fat": 0.0,
+    "saturatedFat": 0.0,
+    "sodium": 0.0,
+    "carbs": 80.0,
+    "sugars": 0.0,
+    "protein": 6.67,
+    "fiber": 0.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "near-east-parmesan-couscous-mix": {
+   "input": {
+    "barcode": "",
+    "name": "Near East Parmesan Couscous Mix",
+    "brand": "Near East"
+   },
+   "name": "Near East Original Couscous Mix 2.25 Pound Paper Box",
+   "brand": "Near East",
+   "serving_size": "56.0 g",
+   "calories": 360,
+   "ingredients_verbatim": "INGREDIENTS: MEDIUM GRAIN COUSCOUS.",
+   "nutrition": {
+    "fat": 1.07,
+    "saturatedFat": 0.15,
+    "sodium": 1.0,
+    "carbs": 74.6,
+    "sugars": 0.0,
+    "protein": 12.9,
+    "fiber": 3.9
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "gerber-2nd-foods-apple-blueberry-baby-food": {
+   "input": {
+    "barcode": "",
+    "name": "Gerber 2nd Foods Apple Blueberry Baby Food",
+    "brand": "Gerber"
+   },
+   "name": "Gerber Organic For Baby Grain And Grow 2Nd Foods Oatmeal Banana Cereal 8Oz Canister",
+   "brand": "GERBER",
+   "serving_size": "15.0 GRM",
+   "calories": 400,
+   "ingredients_verbatim": "INGREDIENTS: ORGANIC WHOLE GRAIN OAT FLOUR (CONTAINS WHEAT), ORGANIC BANANA FLAKES, VITAMINS AND MINERALS: CALCIUM CARBONATE, CHOLINE BITARTRATE, VITAMIN C (ASCORBIC ACID), IRON (ELECTROLYTIC), ZINC SULFATE, VITAMIN E (ALPHA TOCOPHERYL ACETATE), NIACINAMIDE, VITAMIN B2 (RIBOFLAVIN), VITAMIN B1 (THIAMINE MONONITRATE), VITAMIN B6 (PYRIDOXINE HYDROCHLORIDE), FOLIC ACID, VITAMIN B12. CONTAINS: WHEAT.",
+   "nutrition": {
+    "fat": 6.67,
+    "saturatedFat": 0.0,
+    "sodium": 67.0,
+    "carbs": 73.3,
+    "sugars": 13.3,
+    "protein": 6.67,
+    "fiber": 6.7
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "gerber-2nd-foods-banana-blackberry-blueberry-bab": {
+   "input": {
+    "barcode": "",
+    "name": "Gerber 2nd Foods Banana Blackberry Blueberry Baby Food",
+    "brand": "Gerber"
+   },
+   "name": "Gerber Organic For Baby Grain And Grow 2Nd Foods Oatmeal Banana Cereal 8Oz Canister",
+   "brand": "GERBER",
+   "serving_size": "15.0 GRM",
+   "calories": 400,
+   "ingredients_verbatim": "INGREDIENTS: ORGANIC WHOLE GRAIN OAT FLOUR (CONTAINS WHEAT), ORGANIC BANANA FLAKES, VITAMINS AND MINERALS: CALCIUM CARBONATE, CHOLINE BITARTRATE, VITAMIN C (ASCORBIC ACID), IRON (ELECTROLYTIC), ZINC SULFATE, VITAMIN E (ALPHA TOCOPHERYL ACETATE), NIACINAMIDE, VITAMIN B2 (RIBOFLAVIN), VITAMIN B1 (THIAMINE MONONITRATE), VITAMIN B6 (PYRIDOXINE HYDROCHLORIDE), FOLIC ACID, VITAMIN B12. CONTAINS: WHEAT.",
+   "nutrition": {
+    "fat": 6.67,
+    "saturatedFat": 0.0,
+    "sodium": 67.0,
+    "carbs": 73.3,
+    "sugars": 13.3,
+    "protein": 6.67,
+    "fiber": 6.7
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "gerber-2nd-foods-apple-strawberry-banana-baby-fo": {
+   "input": {
+    "barcode": "",
+    "name": "Gerber 2nd Foods Apple Strawberry Banana Baby Food",
+    "brand": "Gerber"
+   },
+   "name": "Gerber Organic For Baby Grain And Grow 2Nd Foods Oatmeal Banana Cereal 8Oz Canister",
+   "brand": "GERBER",
+   "serving_size": "15.0 GRM",
+   "calories": 400,
+   "ingredients_verbatim": "INGREDIENTS: ORGANIC WHOLE GRAIN OAT FLOUR (CONTAINS WHEAT), ORGANIC BANANA FLAKES, VITAMINS AND MINERALS: CALCIUM CARBONATE, CHOLINE BITARTRATE, VITAMIN C (ASCORBIC ACID), IRON (ELECTROLYTIC), ZINC SULFATE, VITAMIN E (ALPHA TOCOPHERYL ACETATE), NIACINAMIDE, VITAMIN B2 (RIBOFLAVIN), VITAMIN B1 (THIAMINE MONONITRATE), VITAMIN B6 (PYRIDOXINE HYDROCHLORIDE), FOLIC ACID, VITAMIN B12. CONTAINS: WHEAT.",
+   "nutrition": {
+    "fat": 6.67,
+    "saturatedFat": 0.0,
+    "sodium": 67.0,
+    "carbs": 73.3,
+    "sugars": 13.3,
+    "protein": 6.67,
+    "fiber": 6.7
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "gerber-2nd-foods-carrot-baby-food": {
+   "input": {
+    "barcode": "",
+    "name": "Gerber 2nd Foods Carrot Baby Food",
+    "brand": "Gerber"
+   },
+   "name": "Gerber Organic For Baby Grain And Grow 2Nd Foods Oatmeal Banana Cereal 8Oz Canister",
+   "brand": "GERBER",
+   "serving_size": "15.0 GRM",
+   "calories": 400,
+   "ingredients_verbatim": "INGREDIENTS: ORGANIC WHOLE GRAIN OAT FLOUR (CONTAINS WHEAT), ORGANIC BANANA FLAKES, VITAMINS AND MINERALS: CALCIUM CARBONATE, CHOLINE BITARTRATE, VITAMIN C (ASCORBIC ACID), IRON (ELECTROLYTIC), ZINC SULFATE, VITAMIN E (ALPHA TOCOPHERYL ACETATE), NIACINAMIDE, VITAMIN B2 (RIBOFLAVIN), VITAMIN B1 (THIAMINE MONONITRATE), VITAMIN B6 (PYRIDOXINE HYDROCHLORIDE), FOLIC ACID, VITAMIN B12. CONTAINS: WHEAT.",
+   "nutrition": {
+    "fat": 6.67,
+    "saturatedFat": 0.0,
+    "sodium": 67.0,
+    "carbs": 73.3,
+    "sugars": 13.3,
+    "protein": 6.67,
+    "fiber": 6.7
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "gerber-2nd-foods-pear-baby-food": {
+   "input": {
+    "barcode": "",
+    "name": "Gerber 2nd Foods Pear Baby Food",
+    "brand": "Gerber"
+   },
+   "name": "Gerber Organic For Baby Grain And Grow 2Nd Foods Oatmeal Banana Cereal 8Oz Canister",
+   "brand": "GERBER",
+   "serving_size": "15.0 GRM",
+   "calories": 400,
+   "ingredients_verbatim": "INGREDIENTS: ORGANIC WHOLE GRAIN OAT FLOUR (CONTAINS WHEAT), ORGANIC BANANA FLAKES, VITAMINS AND MINERALS: CALCIUM CARBONATE, CHOLINE BITARTRATE, VITAMIN C (ASCORBIC ACID), IRON (ELECTROLYTIC), ZINC SULFATE, VITAMIN E (ALPHA TOCOPHERYL ACETATE), NIACINAMIDE, VITAMIN B2 (RIBOFLAVIN), VITAMIN B1 (THIAMINE MONONITRATE), VITAMIN B6 (PYRIDOXINE HYDROCHLORIDE), FOLIC ACID, VITAMIN B12. CONTAINS: WHEAT.",
+   "nutrition": {
+    "fat": 6.67,
+    "saturatedFat": 0.0,
+    "sodium": 67.0,
+    "carbs": 73.3,
+    "sugars": 13.3,
+    "protein": 6.67,
+    "fiber": 6.7
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "beech-nut-naturals-apple-baby-food": {
+   "input": {
+    "barcode": "",
+    "name": "Beech-Nut Naturals Apple Baby Food",
+    "brand": "Beech-Nut"
+   },
+   "name": "Naturals Pureed Baby Food, Raspberry, Apple & Beets",
+   "brand": "Beech-Nut",
+   "serving_size": "113 g (113 g)",
+   "calories": 59.9,
+   "ingredients_verbatim": "Apples, beets, raspberries.",
+   "nutrition": {
+    "fat": 0,
+    "saturatedFat": null,
+    "sodium": 0.0,
+    "carbs": 15,
+    "sugars": 12,
+    "protein": 0.99,
+    "fiber": 3.05
+   },
+   "image_url": null,
+   "matched_off_code": "0052200172032",
+   "source": "off-search"
+  },
+  "beech-nut-naturals-banana-baby-food": {
+   "input": {
+    "barcode": "",
+    "name": "Beech-Nut Naturals Banana Baby Food",
+    "brand": "Beech-Nut"
+   },
+   "name": "Naturals S1 Bananas Baby Food",
+   "brand": "Beech-Nut",
+   "serving_size": "113 g (113 g)",
+   "calories": 100,
+   "ingredients_verbatim": "Bananas, lemon juice concentrate.",
+   "nutrition": {
+    "fat": 0,
+    "saturatedFat": 0,
+    "sodium": 0,
+    "carbs": 25,
+    "sugars": 18,
+    "protein": 1,
+    "fiber": 2
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/005/220/017/1011/front_en.7.400.jpg",
+   "matched_off_code": "0052200171011",
+   "source": "off-search"
+  },
+  "beech-nut-naturals-sweet-potato-baby-food": {
+   "input": {
+    "barcode": "",
+    "name": "Beech-Nut Naturals Sweet Potato Baby Food",
+    "brand": "Beech-Nut"
+   },
+   "name": "Beech-Nut, Just Apple & Aronia Berry Baby Food",
+   "brand": "BEECH-NUT",
+   "serving_size": "120.0 g",
+   "calories": 58.0,
+   "ingredients_verbatim": "APPLES, ARONIA BERRIES.",
+   "nutrition": {
+    "fat": 0.0,
+    "saturatedFat": null,
+    "sodium": 0.0,
+    "carbs": 14.2,
+    "sugars": 10.8,
+    "protein": 0.0,
+    "fiber": 2.5
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "beech-nut-naturals-green-beans-baby-food": {
+   "input": {
+    "barcode": "",
+    "name": "Beech-Nut Naturals Green Beans Baby Food",
+    "brand": "Beech-Nut"
+   },
+   "name": "100% Natural Pureed Baby Food, Just Green Beans",
+   "brand": "Beech-Nut",
+   "serving_size": "60 g (0.25 cup)",
+   "calories": 25.2,
+   "ingredients_verbatim": "Green beans.",
+   "nutrition": {
+    "fat": 0,
+    "saturatedFat": null,
+    "sodium": 0,
+    "carbs": 5,
+    "sugars": 1,
+    "protein": 1,
+    "fiber": 1.98
+   },
+   "image_url": null,
+   "matched_off_code": "0052200071076",
+   "source": "off-search"
+  }
+ },
+ "misses": []
+}

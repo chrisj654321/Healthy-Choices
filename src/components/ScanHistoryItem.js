@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { gradeToColor, scoreToVerdict } from '../utils/scorer';
+import { scoreToColor, scoreToVerdict } from '../utils/scorer';
 
 export default function ScanHistoryItem({ item, onPress, onDelete }) {
-  const gradeColor = gradeToColor(item.grade);
+  const gradeColor = item.score == null ? '#9BB5AE' : scoreToColor(item.score);
   const verdict = scoreToVerdict(item.grade);
   const date = new Date(item.scannedAt);
   const dateStr = date.toLocaleDateString([], { month: 'short', day: 'numeric' });

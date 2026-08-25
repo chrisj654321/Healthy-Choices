@@ -1,0 +1,362 @@
+{
+ "generated": "2026-07-20T09:20:24",
+ "total": 15,
+ "resolved": 14,
+ "missed": 1,
+ "source_health": {
+  "off-search": {
+   "ok": 9,
+   "miss": 3,
+   "err": 0,
+   "throttled": 16
+  },
+  "usda-fdc": {
+   "ok": 5,
+   "miss": 1,
+   "err": 0,
+   "throttled": 0
+  }
+ },
+ "products": {
+  "chobani-caramel-macchiato-coffee-creamer": {
+   "input": {
+    "barcode": "",
+    "name": "Chobani Caramel Macchiato Coffee Creamer",
+    "brand": "Chobani"
+   },
+   "name": "Coffee Creamer Caramel Macchiato",
+   "brand": "Chobani",
+   "serving_size": "1 Tbsp (15 g)",
+   "calories": 35,
+   "ingredients_verbatim": "Milk, cream, cane sug natural flavors. 2% Total Carbohydrate 5g 2% Chobani, LLC, New Berlin, NY 13411 Saturated Fat 1g 5% Cholesterol &lt;5mg 2% Sodium 10mg Total Sugars 5g Added Sugars 5g 0% Protein Og 10% 35 Not a significant source of trans fat, dietary fiber, vitamin D, calcium, iron, and potassium. Keep refrigerated GRADEA (U",
+   "nutrition": {
+    "fat": 1.5,
+    "saturatedFat": 1,
+    "sodium": 0.01,
+    "carbs": 5,
+    "sugars": 5,
+    "protein": 0,
+    "fiber": null
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/081/829/001/5488/front_en.27.400.jpg",
+   "matched_off_code": "0818290015488",
+   "source": "off-search"
+  },
+  "nutpods-french-vanilla-unsweetened-almond-coconu": {
+   "input": {
+    "barcode": "",
+    "name": "nutpods French Vanilla Unsweetened Almond + Coconut Creamer",
+    "brand": "nutpods"
+   },
+   "name": "Nutpods Creamer, French Vanilla, Almond + Coconut",
+   "brand": "nutpods",
+   "serving_size": "15.0 g",
+   "calories": 10.0,
+   "ingredients_verbatim": "Water, Coconut Cream, Almonds, Natural Flavors, Acacia Gum, Dipotassium Phosphate, Sunflower Lecithin, Sea Salt, Gellan Gum.",
+   "nutrition": {
+    "fat": 1.0,
+    "saturatedFat": 0.0,
+    "sodium": null,
+    "carbs": 0.0,
+    "sugars": 0.0,
+    "protein": 0.0,
+    "fiber": null
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "planters-roasted-salted-cashews": {
+   "input": {
+    "barcode": "",
+    "name": "Planters Roasted & Salted Cashews",
+    "brand": "Planters"
+   },
+   "name": "Deluxe Salted Mixed Nuts",
+   "brand": "Kraft Heinz",
+   "serving_size": "1 serving (28 g)",
+   "calories": null,
+   "ingredients_verbatim": "CASHEWS, ALMONDS, BRAZIL NUTS, PISTACHIOS, PECANS, PEANUT OIL, SEA SALT.",
+   "nutrition": {
+    "fat": null,
+    "saturatedFat": null,
+    "sodium": null,
+    "carbs": null,
+    "sugars": null,
+    "protein": null,
+    "fiber": null
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/002/900/001/6200/front_en.20.400.jpg",
+   "matched_off_code": "0029000016200",
+   "source": "off-search"
+  },
+  "planters-deluxe-whole-cashews": {
+   "input": {
+    "barcode": "",
+    "name": "Planters Deluxe Whole Cashews",
+    "brand": "Planters"
+   },
+   "name": "Planters, Deluxe Whole Cashews",
+   "brand": "PLANTERS",
+   "serving_size": "28.0 g",
+   "calories": 571,
+   "ingredients_verbatim": "CASHEW, SEA SALT, PEANUT AND/OR COTTONSEED OIL.",
+   "nutrition": {
+    "fat": 46.4,
+    "saturatedFat": 8.93,
+    "sodium": 339,
+    "carbs": 32.1,
+    "sugars": 7.14,
+    "protein": 17.9,
+    "fiber": 3.6
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "blue-diamond-smokehouse-almonds": {
+   "input": {
+    "barcode": "",
+    "name": "Blue Diamond Smokehouse Almonds",
+    "brand": "Blue Diamond"
+   },
+   "name": "Smokehouse",
+   "brand": "Blue Diamond Almonds",
+   "serving_size": "28 g",
+   "calories": 170,
+   "ingredients_verbatim": "Almonds, vegetable oil (canola, safflower and/or sunflower), salt, corn maltodextrin, natural hickory smoke flavor, yeast, hydrolyzed corn and soy protein and natural flavors.",
+   "nutrition": {
+    "fat": 16,
+    "saturatedFat": 1,
+    "sodium": 0.15,
+    "carbs": 5,
+    "sugars": 1,
+    "protein": 6,
+    "fiber": 3
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/004/157/003/0837/front_en.5.400.jpg",
+   "matched_off_code": "0041570030837",
+   "source": "off-search"
+  },
+  "blue-diamond-bold-sriracha-almonds": {
+   "input": {
+    "barcode": "",
+    "name": "Blue Diamond Bold Sriracha Almonds",
+    "brand": "Blue Diamond"
+   },
+   "name": "Blue diamond almonds, bold almonds, sriracha",
+   "brand": "Blue Diamond Almonds",
+   "serving_size": "1 ONZ (28 g)",
+   "calories": 170,
+   "ingredients_verbatim": "Almonds, vegetable oil (canola, safflower and/or sunflower), sugar, salt, corn maltodextrin paprika, garlic powder, cayenne pepper sauce (salt, aged cayenne red peppers, vinegar solids, garlic), tomato powder, citric acid, yeast extract, vinegar solids, extractives of paprika, and natural flavor.",
+   "nutrition": {
+    "fat": 15,
+    "saturatedFat": 1,
+    "sodium": 0.12,
+    "carbs": 5,
+    "sugars": 2,
+    "protein": 6,
+    "fiber": 3
+   },
+   "image_url": null,
+   "matched_off_code": "0041570350461",
+   "source": "off-search"
+  },
+  "blue-diamond-honey-roasted-almonds": {
+   "input": {
+    "barcode": "",
+    "name": "Blue Diamond Honey Roasted Almonds",
+    "brand": "Blue Diamond"
+   },
+   "name": "Almonds Honey Roasted",
+   "brand": "Blue Diamond",
+   "serving_size": "1 portion (28 g)",
+   "calories": 160,
+   "ingredients_verbatim": "ALMONDS, SUGAR, VEGETABLE OIL (CANOLA, SAFFLOWER AND/OR SUNFLOWER), HONEY, SALT AND CORN MALTODEXTRIN.",
+   "nutrition": {
+    "fat": 13,
+    "saturatedFat": 1,
+    "sodium": 0.06,
+    "carbs": 9,
+    "sugars": 5,
+    "protein": 5,
+    "fiber": 2
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/004/157/007/2561/front_en.55.400.jpg",
+   "matched_off_code": "0041570072561",
+   "source": "off-search"
+  },
+  "blue-diamond-lightly-salted-almonds": {
+   "input": {
+    "barcode": "",
+    "name": "Blue Diamond Lightly Salted Almonds",
+    "brand": "Blue Diamond"
+   },
+   "name": "Lightly Salted Almonds",
+   "brand": "Blue Diamond",
+   "serving_size": "28 nuts (28 g)",
+   "calories": 170,
+   "ingredients_verbatim": "ALMONDS, VEGETABLE OIL (ALMOND, CANOLA, SAFFLOWER AND/OR SUNFLOWER), SEA SALT.",
+   "nutrition": {
+    "fat": 16,
+    "saturatedFat": 1,
+    "sodium": 0.04,
+    "carbs": 5,
+    "sugars": 1,
+    "protein": 6,
+    "fiber": 3
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/004/157/013/0766/front_en.32.400.jpg",
+   "matched_off_code": "0041570130766",
+   "source": "off-search"
+  },
+  "wonderful-pistachios-no-shells-chili-roasted": {
+   "input": {
+    "barcode": "",
+    "name": "Wonderful Pistachios No Shells Chili Roasted",
+    "brand": "Wonderful Pistachios"
+   },
+   "name": "Wonderful Pistachios Chili Roasted No Shells",
+   "brand": "Wonderful",
+   "serving_size": "1/4 cup (28 g)",
+   "calories": 170,
+   "ingredients_verbatim": "Pistachios, sunflower oil",
+   "nutrition": {
+    "fat": 13,
+    "saturatedFat": 1.5,
+    "sodium": 0.24,
+    "carbs": 6,
+    "sugars": 2,
+    "protein": 6,
+    "fiber": 3
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/001/411/391/0873/front_en.4.400.jpg",
+   "matched_off_code": "0014113910873",
+   "source": "off-search"
+  },
+  "wonderful-pistachios-no-shells-salt-pepper": {
+   "input": {
+    "barcode": "",
+    "name": "Wonderful Pistachios No Shells Salt & Pepper",
+    "brand": "Wonderful Pistachios"
+   },
+   "name": "Salt & Pepper No Shell Pistachios, Salt & Pepper",
+   "brand": "GREAT VALUE",
+   "serving_size": "30.0 GRM",
+   "calories": 567,
+   "ingredients_verbatim": "PISTACHIO NUTS, BLACK PEPPER, SEA SALT, SUGAR, SILICON DIOXIDE.",
+   "nutrition": {
+    "fat": 43.3,
+    "saturatedFat": 5.0,
+    "sodium": 633,
+    "carbs": 30.0,
+    "sugars": 6.67,
+    "protein": 20.0,
+    "fiber": 10.0
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "emerald-roasted-salted-cashews": {
+   "input": {
+    "barcode": "",
+    "name": "Emerald Roasted & Salted Cashews",
+    "brand": "Emerald"
+   },
+   "name": "Roasted & Salted Whole Cashews with Sea Salt",
+   "brand": "Emerald",
+   "serving_size": "1 ONZ (28 g)",
+   "calories": 170,
+   "ingredients_verbatim": "Cashews, vegetable oil (safflower, sunflower, and/or canola oil), salt, rosemary extract (to preserve freshness).",
+   "nutrition": {
+    "fat": 13,
+    "saturatedFat": 2,
+    "sodium": 0.08,
+    "carbs": 8,
+    "sugars": 2,
+    "protein": 5,
+    "fiber": 1.01
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/001/030/093/3649/front_en.4.400.jpg",
+   "matched_off_code": "0010300933649",
+   "source": "off-search"
+  },
+  "kar-s-sweet-n-salty-mix": {
+   "input": {
+    "barcode": "",
+    "name": "Kar's Sweet 'N Salty Mix",
+    "brand": "Kar's"
+   },
+   "name": "Kar'S, Sweet 'N Salty Mix",
+   "brand": "KAR'S",
+   "serving_size": "28.0 g",
+   "calories": 500,
+   "ingredients_verbatim": "PEANUTS. PEANUTS, SUNFLOWER AND/OR COTTONSEED OIL, SALT. RAISINS. CHOCOLATE CANDIES: CONFECTIONERY COATING [SUGAR, PARTIALLY HYDROGENATED PALM KERNEL OIL, COCOA POWDER, WHEY POWDER, NONFAT MILK POWDER, SOY LECITHIN, VANILLIN (AN ARTIFICIAL FLAVOR)], SUGAR, ARTIFICIAL COLORING (INCLUDES YELLOW 6 LAKE, YELLOW 6, YELLOW 5 LAKE, BLUE 1 LAKE, RED 40 LAKE, BLUE 2 LAKE), GUM ARABIC, CORN SYRUP, CONFECTIONER'S GLAZE. SUNFLOWER KERNELS: SUNFLOWER KERNELS, PEANUT, SUNFLOWER AND/OR COTTONSEED OIL, SALT",
+   "nutrition": {
+    "fat": 32.1,
+    "saturatedFat": 8.93,
+    "sodium": 196,
+    "carbs": 50.0,
+    "sugars": 35.7,
+    "protein": 14.3,
+    "fiber": 3.6
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  },
+  "sahale-snacks-honey-almonds-glazed-mix": {
+   "input": {
+    "barcode": "",
+    "name": "Sahale Snacks Honey Almonds Glazed Mix",
+    "brand": "Sahale Snacks"
+   },
+   "name": "Honey Almonds Glazed Mix",
+   "brand": "Sahale Snacks",
+   "serving_size": null,
+   "calories": 548.39,
+   "ingredients_verbatim": "almonds, dried cranberries (sugar, cranberries), organic cane sugar, sesame seeds, organic tapioca syrup, brown sugar, sea salt, organic tapioca syrup solids, organic honey, ground vanilla beans, vanilla extract, almond extract, natural flavors",
+   "nutrition": {
+    "fat": 41.94,
+    "saturatedFat": 3.23,
+    "sodium": 0.52,
+    "carbs": 35.48,
+    "sugars": 22.58,
+    "protein": 16.13,
+    "fiber": 9.68
+   },
+   "image_url": "https://images.openfoodfacts.org/images/products/089/386/900/5084/front_fr.7.400.jpg",
+   "matched_off_code": "0893869005084",
+   "source": "off-search"
+  },
+  "fisher-deluxe-mixed-nuts": {
+   "input": {
+    "barcode": "",
+    "name": "Fisher Deluxe Mixed Nuts",
+    "brand": "Fisher"
+   },
+   "name": "Fisher, Deluxe Mixed Nuts",
+   "brand": "FISHER",
+   "serving_size": "28.0 g",
+   "calories": 607,
+   "ingredients_verbatim": "ALMONDS, CASHEWS, PECANS, BRAZILS, VEGETABLE OIL (PEANUT, COTTONSEED, SOYBEAN AND/OR SUNFLOWER SEED), FILBERTS, SEA SALT.",
+   "nutrition": {
+    "fat": 57.1,
+    "saturatedFat": 7.14,
+    "sodium": 393,
+    "carbs": 21.4,
+    "sugars": 3.57,
+    "protein": 17.9,
+    "fiber": 7.1
+   },
+   "image_url": null,
+   "source": "usda-fdc"
+  }
+ },
+ "misses": [
+  {
+   "barcode": "",
+   "name": "Good & Gather Monster Trail Mix",
+   "brand": "Good & Gather",
+   "reason": "unresolved",
+   "partial": null
+  }
+ ]
+}

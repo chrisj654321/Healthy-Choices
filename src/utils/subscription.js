@@ -16,13 +16,15 @@
 import Purchases, { LOG_LEVEL, PACKAGE_TYPE } from 'react-native-purchases';
 import { useState, useEffect, useCallback } from 'react';
 import { Platform } from 'react-native';
+import { captureException } from './sentry';
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 
+// Production iOS SDK key from app.revenuecat.com → Project → API Keys.
+// Android needs its own goog_ key before any Android release.
 const RC_API_KEY = Platform.select({
-  ios:     'test_OGDUwBQEwAbrJPBbvDRYlEKDYfH',
-  android: 'REPLACE_WITH_ANDROID_RC_KEY',   // add when ready for Google Play
-  default: 'test_OGDUwBQEwAbrJPBbvDRYlEKDYfH',
+  ios:     'appl_SYiRPjeztFkVwTveOffZPjSXuRl',
+  default: null,
 });
 
 export const ENTITLEMENT_ID = 'Healthy Choices Pro';
@@ -35,18 +37,29 @@ export const ENTITLEMENT_ID = 'Healthy Choices Pro';
  * leave userId undefined to start anonymous (RC assigns its own ID).
  */
 export async function initRevenueCat(userId) {
-  if (__DEV__) {
-    Purchases.setLogLevel(LOG_LEVEL.DEBUG);
-  }
-
-  Purchases.configure({ apiKey: RC_API_KEY });
-
-  if (userId) {
-    try {
-      await Purchases.logIn(userId);
-    } catch (e) {
-      console.warn('[RC] logIn during init:', e.message);
+  try {
+    if (!RC_API_KEY) {
+      console.warn('[RC] no SDK key for this platform — skipping configure');
+      return;
     }
+
+    if (__DEV__) {
+      Purchases.setLogLevel(LOG_LEVEL.DEBUG);
+    }
+
+    Purchases.configure({ apiKey: RC_API_KEY });
+
+    if (userId) {
+      try {
+        await Purchases.logIn(userId);
+      } catch (e) {
+        console.warn('[RC] logIn during init:', e.message);
+        captureException(e, { function: 'initRevenueCat', step: 'logIn', userId });
+      }
+    }
+  } catch (e) {
+    console.warn('[RC] configure failed:', e.message);
+    captureException(e, { function: 'initRevenueCat', step: 'configure' });
   }
 }
 
@@ -62,6 +75,7 @@ export async function identifyRCUser(userId) {
     return customerInfo;
   } catch (e) {
     console.warn('[RC] identifyRCUser:', e.message);
+    captureException(e, { function: 'identifyRCUser', userId });
     return null;
   }
 }
@@ -76,6 +90,7 @@ export async function resetRCUser() {
     // logOut throws if already anonymous — safe to ignore
     if (!e.message?.includes('anonymous')) {
       console.warn('[RC] resetRCUser:', e.message);
+      captureException(e, { function: 'resetRCUser' });
     }
   }
 }
@@ -92,6 +107,7 @@ export async function getProStatus() {
     return info.entitlements.active[ENTITLEMENT_ID] !== undefined;
   } catch (e) {
     console.warn('[RC] getProStatus:', e.message);
+    captureException(e, { function: 'getProStatus' });
     return false;
   }
 }
@@ -103,7 +119,8 @@ export async function getProStatus() {
 export async function getCustomerInfo() {
   try {
     return await Purchases.getCustomerInfo();
-  } catch {
+  } catch (e) {
+    captureException(e, { function: 'getCustomerInfo' });
     return null;
   }
 }
@@ -126,6 +143,7 @@ export async function getCurrentOffering() {
     return offerings.current ?? null;
   } catch (e) {
     console.warn('[RC] getOfferings:', e.message);
+    captureException(e, { function: 'getCurrentOffering' });
     return null;
   }
 }
@@ -166,8 +184,15 @@ export function extractPackages(offering) {
  * Check e.userCancelled === true to detect user backing out (no error toast needed).
  */
 export async function purchaseRCPackage(rcPackage) {
-  const { customerInfo } = await Purchases.purchasePackage(rcPackage);
-  return customerInfo.entitlements.active[ENTITLEMENT_ID] !== undefined;
+  try {
+    const { customerInfo } = await Purchases.purchasePackage(rcPackage);
+    return customerInfo.entitlements.active[ENTITLEMENT_ID] !== undefined;
+  } catch (e) {
+    if (!e.userCancelled) {
+      captureException(e, { function: 'purchaseRCPackage', packageId: rcPackage?.identifier });
+    }
+    throw e;
+  }
 }
 
 /**
@@ -180,6 +205,7 @@ export async function restorePurchases() {
     return info.entitlements.active[ENTITLEMENT_ID] !== undefined;
   } catch (e) {
     console.warn('[RC] restorePurchases:', e.message);
+    captureException(e, { function: 'restorePurchases' });
     return false;
   }
 }
@@ -209,12 +235,27 @@ export function useProStatus() {
 
     // RC fires this listener whenever subscription state changes:
     // purchase, renewal, cancellation, grace period, etc.
-    const remove = Purchases.addCustomerInfoUpdateListener((info) => {
+    // addCustomerInfoUpdateListener returns void in RC v10 — removal is
+    // by passing the same listener to removeCustomerInfoUpdateListener.
+    const listener = (info) => {
       setIsPro(info.entitlements.active[ENTITLEMENT_ID] !== undefined);
       setLoading(false);
-    });
+    };
+    try {
+      Purchases.addCustomerInfoUpdateListener(listener);
+    } catch (e) {
+      console.warn('[RC] addCustomerInfoUpdateListener:', e.message);
+      captureException(e, { function: 'useProStatus', step: 'addCustomerInfoUpdateListener' });
+    }
 
-    return () => remove();
+    return () => {
+      try {
+        Purchases.removeCustomerInfoUpdateListener(listener);
+      } catch (e) {
+        console.warn('[RC] removeCustomerInfoUpdateListener:', e.message);
+        captureException(e, { function: 'useProStatus', step: 'removeCustomerInfoUpdateListener' });
+      }
+    };
   }, [refresh]);
 
   return { isPro, loading, refresh };
@@ -223,11 +264,6 @@ export function useProStatus() {
 // ─── Feature gate config ──────────────────────────────────────────────────────
 
 export const PRO_FEATURES = {
-  share: {
-    icon:  'share-social-outline',
-    title: 'Share Product Scores',
-    desc:  'Send product health scores to friends and family.',
-  },
   search: {
     icon:  'search-outline',
     title: 'Search Products',

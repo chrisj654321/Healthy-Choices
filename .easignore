@@ -1,0 +1,49 @@
+# EAS build archive exclusions.
+# NOTE: when .easignore exists it REPLACES .gitignore for EAS uploads,
+# so this must be a superset of .gitignore.
+node_modules/
+.expo/
+dist/
+web-build/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+.env
+.env.local
+.claude/
+
+# The 221 MB generated catalog must never reach a build machine —
+# bundling it would OOM Metro. The app falls back to the OpenFoodFacts API.
+src/data/products_generated.json
+
+# Internal docs / data-pipeline artifacts not needed to build the app
+scripts/ingestion_log.txt
+scripts/archive/files.zip
+scripts/catalog-database/.ingestion_state.json
+docs/business-financials.html
+docs/competitor-pricing.html
+web/
+supabase/
+
+# marketing/ is gitignored but .easignore REPLACES .gitignore for EAS
+# uploads rather than extending it, so it was never actually excluded from
+# the build archive — 81MB of ad creative, screenshots, and video projects,
+# zero runtime relevance. Found 2026-07-22 chasing a 147MB tarball upload
+# failure (GCS signed-URL ECONNRESET, almost certainly caused by the size).
+marketing/
+
+# Octavius/cowork product-pipeline staging data (raw fetches, QA reports,
+# intermediate formatted/reviewed batches, caches) — 14MB, confirmed zero
+# imports from any runtime app code. The real catalog is products.js.
+src/data/batches/
+
+# Mascot asset-pipeline source masters: MP4 video masters, the true-alpha
+# WebM intermediates, and the original reference render. None of these are
+# require()'d anywhere — only assets/mascot/webp/*.webp, specs-standing.png,
+# and grocery-aisle-bg.jpg ship in the app. ~14MB, confirmed unused.
+assets/mascot/*.mp4
+assets/mascot/transparent/
+assets/mascot/specs-reference.png

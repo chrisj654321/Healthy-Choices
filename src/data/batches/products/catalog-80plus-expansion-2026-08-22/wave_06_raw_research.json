@@ -1,0 +1,52 @@
+{
+  "wave": "06",
+  "status": "SCORED_AND_REVIEWED",
+  "updatedAt": "2026-08-22",
+  "products": [
+    {
+      "status": "verified_below_threshold",
+      "scorePreview": 55,
+      "barcode": "850029953135",
+      "name": "Saffron Road Korean-Inspired BBQ Chicken",
+      "brand": "Saffron Road",
+      "companyId": "american-halal",
+      "category": "Frozen Meals",
+      "servingSize": "1 package (283g)",
+      "calories": 410,
+      "ingredients": ["fire-roasted dark meat chicken (dark meat chicken, water, rice starch, sea salt, black pepper, garlic)", "medium grain white rice (water, white rice)", "spinach", "water", "carrots", "gluten free reduced sodium tamari (water, soybeans, salt)", "apple juice concentrate", "cane sugar", "sesame oil", "gochujang chili paste (water, tapioca syrup, brown rice, red pepper powder, salt, garlic, onion)", "ginger", "olive oil", "garlic", "native corn starch", "white miso (water, soybeans, rice, salt)", "sesame seeds", "lemon juice", "spices", "chili flakes"],
+      "nutrition": { "fat": 13, "saturatedFat": 2.5, "sodium": 710, "carbs": 49, "sugars": 8, "protein": 22 },
+      "sources": ["https://www.thefreshgrocer.com/product/saffron-road-koreanstyle-fireroasted-chicken-10-oz-id-00850029953135", "https://www.saffronroad.com/products/korean-inspired-bbq-chicken", "https://go-upc.com/search?q=850029953135", "https://www.myfooddiary.com/foods/7814486/saffron-road-korean-inspired-bbq-chicken"],
+      "notes": ["Current retailer and manufacturer supply the current formula and nutrition; an independent barcode record ties the exact UPC to the product.", "UPC is absent from the shipping catalog and passes UPC-A mod-10."]
+    },
+    {
+      "status": "verified_below_threshold",
+      "scorePreview": 67,
+      "barcode": "857063002386",
+      "name": "Saffron Road Chicken Enchiladas Poblano",
+      "brand": "Saffron Road",
+      "companyId": "american-halal",
+      "category": "Frozen Meals",
+      "servingSize": "1 package (283g)",
+      "calories": 420,
+      "ingredients": ["white rice (water, white rice)", "white meat chicken (white meat chicken, water, potato starch, sea salt)", "black beans (black beans, water, salt, calcium chloride)", "water", "nixtamal corn tortillas (corn, water, trace of lime)", "poblano peppers", "monterey jack cheese (pasteurized milk, cheese culture, sea salt, vegetarian enzymes)", "olive oil", "onions", "spinach", "cream", "jalapeno", "native corn starch", "sea salt", "lime juice", "garlic", "cumin", "spices", "jalapeno powder", "natural smoke flavor", "chipotle powder"],
+      "nutrition": { "fat": 17, "saturatedFat": 5, "sodium": 700, "carbs": 44, "sugars": 1, "protein": 21 },
+      "sources": ["https://shop.foodland.com/product/saffron-chicken-enchiladas-poblano-with-black-beans-%26-rice-857063002386", "https://www.saffronroad.com/products/chicken-enchgiladas-poblano", "https://www.myfooddiary.com/foods/7060888/saffron-road-chicken-enchiladas-poblano", "https://img1.wsimg.com/blobby/go/aa7b10cd-c46b-4154-9e6a-5baa0913363d/UNFI%2520CATALOG.pdf"],
+      "notes": ["Current retailer and distributor verify the UPC; manufacturer and current nutrition record supply exact formula and serving nutrition.", "UPC is absent from the shipping catalog and passes UPC-A mod-10."]
+    },
+    {
+      "status": "verified_score_80plus",
+      "scorePreview": 80,
+      "barcode": "857063002898",
+      "name": "Saffron Road Chicken and Cheese Enchiladas al Chipotle",
+      "brand": "Saffron Road",
+      "companyId": "american-halal",
+      "category": "Frozen Meals",
+      "servingSize": "1 package (283g)",
+      "calories": 370,
+      "ingredients": ["white rice (water, white rice)", "white meat chicken (white meat chicken, water, potato starch, sea salt)", "black beans (black beans, water, salt, calcium chloride)", "water", "nixtamal corn tortillas (corn, water, trace of lime)", "onions", "oaxaca cheese (pasteurized milk, cheese culture, salt, vegetarian enzymes)", "olive oil", "organic fire-roasted corn", "tomato paste", "poblano peppers", "whole milk", "native corn starch", "cream", "garlic", "sea salt", "chipotle powder", "cumin", "spices", "natural smoke flavor"],
+      "nutrition": { "fat": 12, "saturatedFat": 3, "sodium": 590, "carbs": 46, "sugars": 2, "protein": 20 },
+      "sources": ["https://www.kroger.com/p/saffron-road-chicken-enchiladas-al-chipotle-frozen-meal/0085706300289", "https://www.saffronroad.com/products/chicken-cheese-enchiladas-al-chipotle", "https://www.myfooddiary.com/foods/7814482/saffron-road-chicken-cheese-enchiladas-al-chipotle", "https://cooklist.com/product/saffron-road-chicken-saag-with-basmati-rice-224466"],
+      "notes": ["Current retailer and manufacturer agree on formula and exact meal identity; an independent nutrition record supplies serving values and a barcode record identifies UPC 857063002898.", "UPC is absent from the shipping catalog and passes UPC-A mod-10."]
+    }
+  ]
+}

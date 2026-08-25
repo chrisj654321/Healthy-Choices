@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy — Healthy Choices</title>
+  <title>Privacy Policy — Food Exposé</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -57,13 +57,13 @@
 
   <header>
     <div class="logo">
-      <div class="logo-icon">🧺</div>
-      <span class="logo-name">Healthy Choices</span>
+      <div class="logo-icon">🔍</div>
+      <span class="logo-name">Food Exposé</span>
     </div>
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: June 1, 2026</p>
+    <p class="updated">Last updated: July 26, 2026</p>
     <p class="intro">
-      Your privacy matters. This policy explains what information Healthy Choices collects,
+      Your privacy matters. This policy explains what information Food Exposé collects,
       how it is used, and what choices you have. We keep things simple: we collect as little
       as possible and never sell your data.
     </p>
@@ -77,9 +77,19 @@
   <h2>1. Information We Collect</h2>
   <p><strong>Account information (stored securely in our database):</strong></p>
   <ul>
+    <li><strong>First name</strong> — collected when you create an account (typed directly, or shared by Apple/Google during sign-in). Used only to personalize the app's greeting; never shared with third parties.</li>
     <li><strong>Email address</strong> — collected when you create an account or sign in with Apple or Google. Used only to identify your account and send essential service emails (e.g., password reset, email confirmation). We do not send marketing emails without your explicit opt-in.</li>
     <li><strong>Authentication provider</strong> — whether you signed in via Apple, Google, or email/password. No passwords are stored by us — authentication is handled by Supabase and the respective provider.</li>
     <li><strong>Subscription status</strong> — whether you have an active Pro subscription, tied to your account so it follows you across devices.</li>
+    <li><strong>Product requests</strong> — if you submit a request to add a product that isn't yet in our database, the barcode, product name, and brand you provide are stored in our database and associated with your account, so we can review and add it.</li>
+  </ul>
+  <p><strong>Anonymous data (never linked to you):</strong></p>
+  <ul>
+    <li><strong>Product-interaction analytics</strong> — which products and categories are viewed in the app and their scores, with no account, device, or identity linkage of any kind. Used only in aggregate to understand shopper trends and improve the catalog.</li>
+  </ul>
+  <p><strong>Usage data (tied to a random install code, not to you):</strong></p>
+  <ul>
+    <li><strong>App-usage analytics</strong> — events about how the app itself is used: when it is opened or closed, which setup steps are finished, when a first scan happens, and when the subscription screen is shown, dismissed, or leads to a purchase. Used to find where the app is confusing or broken. These events include a <strong>random install code</strong> — a random string of characters created on your device the first time you open the app. It lets us see that <em>somebody</em> came back a week later without knowing who. It is not your device's identifier, it is not built from anything about you or your phone, it is never connected to your account, name, or email, it is never shared with advertisers or anyone else, and it is erased for good when you delete the app.</li>
   </ul>
   <p><strong>Data stored only on your device:</strong></p>
   <ul>
@@ -89,7 +99,7 @@
 
   <h2>2. Camera</h2>
   <p>
-    Healthy Choices requests access to your device camera solely to scan product barcodes.
+    Food Exposé requests access to your device camera solely to scan product barcodes.
     Camera data is processed entirely on your device in real time and is never stored,
     transmitted, or used for any other purpose. You can deny camera access at any time in
     your device's Settings; the app will still function using manual barcode entry.
@@ -97,50 +107,72 @@
 
   <h2>3. Purchases &amp; Subscriptions</h2>
   <p>
-    Subscription purchases are processed entirely through Apple's App Store or Google Play.
-    We never see or store your payment information. Apple and Google's privacy policies
-    govern the handling of your payment data.
+    Subscription purchases are processed entirely through Apple's App Store.
+    We never see or store your payment information. Apple's privacy policy
+    governs the handling of your payment data.
   </p>
   <p>
     We use <strong>RevenueCat</strong> to manage subscription status verification.
-    RevenueCat receives an anonymous, device-generated identifier to confirm whether a
-    valid subscription is active. No personal information is shared with RevenueCat.
+    RevenueCat receives your user ID (linked to your Food Exposé account) to confirm
+    whether a valid subscription is active and to track your subscription history.
     You can review RevenueCat's privacy policy at
     <a href="https://www.revenuecat.com/privacy" target="_blank">revenuecat.com/privacy</a>.
   </p>
 
   <h2>4. Product &amp; Nutritional Data</h2>
   <p>
-    When you scan a product barcode, the app may query the
-    <strong>USDA FoodData Central API</strong> to retrieve nutritional information.
+    When you scan a product barcode, the app queries the
+    <strong>Open Food Facts API</strong> to retrieve product names, ingredients, and nutritional information.
     This request contains only the barcode number — no personal or device information
-    is included. USDA's data service is a free, public government resource.
+    is included. Open Food Facts is a free, public collaborative database.
   </p>
 
   <h2>5. Analytics &amp; Crash Reporting</h2>
   <p>
-    We do not currently use any third-party analytics or crash reporting services.
-    If this changes in a future update, this policy will be updated and users notified
-    via the app update release notes.
+    We do not use any third-party analytics services. The analytics we collect are our own,
+    and they are described in Section 1.
+  </p>
+  <p>
+    <strong>Product-interaction events</strong> — which products get viewed and what they
+    scored — carry no identifier at all. There is nothing in them that could point back to
+    you, your account, or your phone.
+  </p>
+  <p>
+    <strong>App-usage events</strong> — opening the app, finishing setup steps, seeing or
+    dismissing the subscription screen — carry a random install code, so we can tell whether
+    people come back to the app over time. Without it we cannot tell one person returning
+    five times from five different people. That code is a random string made on your device;
+    it is never linked to your account, name, or email, it is never shared with advertisers
+    or data brokers, it is never used to target ads, and deleting the app erases it
+    permanently. We do not sell any of this data.
+  </p>
+  <p>
+    We use <strong>Sentry</strong>, a third-party crash-reporting service, to detect and fix
+    bugs. When the app encounters an error, Sentry receives the error message and a technical
+    stack trace only. We configure Sentry to never attach your identity, account information,
+    IP address, or device identifiers to these reports. Crash reports cannot be linked back to
+    you or your account.
   </p>
 
   <h2>6. Children's Privacy</h2>
   <p>
-    Healthy Choices is not directed at children under the age of 13. We do not knowingly
+    Food Exposé is not directed at children under the age of 13. We do not knowingly
     collect any personal information from children. If you believe a child has provided
     information through the app, please contact us and we will address it promptly.
   </p>
 
   <h2>7. Data Retention &amp; Deletion</h2>
   <p>
-    All data (scan history, preferences, subscription status) is stored locally on your
-    device. You can delete all app data at any time by:
+    <strong>Local data (scan history and preferences)</strong> is stored only on your device.
+    You can delete all app data locally at any time by using the "Clear History" button in
+    the Scan History screen, or by uninstalling the app.
   </p>
-  <ul>
-    <li>Using the "Clear History" button in the Scan History screen, or</li>
-    <li>Uninstalling the app from your device, which removes all locally stored data permanently.</li>
-  </ul>
-  <p>We hold no data on our servers that could be deleted remotely — there is nothing to request deletion of.</p>
+  <p>
+    <strong>Account deletion:</strong> If you choose to delete your Food Exposé account,
+    you can initiate deletion from the app's Profile screen under "Data &amp; Privacy."
+    This permanently removes your account and associated data (email, authentication provider,
+    subscription status) from our servers. Account deletion is immediate and cannot be undone.
+  </p>
 
   <h2>8. Third-Party Links</h2>
   <p>
@@ -164,7 +196,8 @@
   </p>
 
   <footer>
-    &copy; 2026 Healthy Choices. All rights reserved.
+    Food Exposé is a product of James Adventure Sales &amp; Marketing LLC.<br>
+    &copy; 2026 James Adventure Sales &amp; Marketing LLC. All rights reserved.
   </footer>
 
 </div>

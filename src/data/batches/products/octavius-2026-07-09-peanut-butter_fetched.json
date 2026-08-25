@@ -1,0 +1,500 @@
+{
+  "generated": "2026-07-09T16:05:24",
+  "total": 20,
+  "resolved": 20,
+  "missed": 0,
+  "source_health": {
+    "off-search": {
+      "ok": 107,
+      "miss": 48,
+      "err": 0,
+      "throttled": 187
+    },
+    "usda-fdc": {
+      "ok": 65,
+      "miss": 15,
+      "err": 0,
+      "throttled": 0
+    }
+  },
+  "products": {
+    "jif-extra-crunchy-peanut-butter": {
+      "input": {
+        "barcode": "",
+        "name": "Jif Extra Crunchy Peanut Butter",
+        "brand": "Jif"
+      },
+      "name": "Extra Crunchy Peanut Butter",
+      "brand": "Jif",
+      "serving_size": "1 serving (33 g)",
+      "calories": 196,
+      "ingredients_verbatim": "ROASTED PEANUTS, SUGAR, 2% MOLASSES, FULL HYDROGENATED VEGETABLE OILS (RAPESEED, SOYBEAN), MONO AND DIGLYCERIDES, SALT.",
+      "nutrition": {
+        "fat": 16,
+        "saturatedFat": 3.5,
+        "sodium": 0.11,
+        "carbs": 8,
+        "sugars": 3,
+        "protein": 7,
+        "fiber": 2
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/005/150/025/5377/front_en.70.400.jpg",
+      "matched_off_code": "0051500255377",
+      "source": "off-search"
+    },
+    "jif-natural-creamy-peanut-butter-spread": {
+      "input": {
+        "barcode": "",
+        "name": "Jif Natural Creamy Peanut Butter Spread",
+        "brand": "Jif"
+      },
+      "name": "Natural Jif Creamy Peanut Butter Spread",
+      "brand": "Jif",
+      "serving_size": "2 tbsp (33 g)",
+      "calories": 196,
+      "ingredients_verbatim": "made from _peanuts_, sugar, palm oil, contains 2% or less of: salt, molasses,",
+      "nutrition": {
+        "fat": 16,
+        "saturatedFat": 3.5,
+        "sodium": 0.08,
+        "carbs": 8,
+        "sugars": 4,
+        "protein": 7,
+        "fiber": 3
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/005/150/024/3220/front_en.66.400.jpg",
+      "matched_off_code": "0051500243220",
+      "source": "off-search"
+    },
+    "jif-natural-crunchy-peanut-butter-spread": {
+      "input": {
+        "barcode": "",
+        "name": "Jif Natural Crunchy Peanut Butter Spread",
+        "brand": "Jif"
+      },
+      "name": "Natural Jif Crunchy Peanut Butter Spread",
+      "brand": "Jif",
+      "serving_size": "2 tbsp (33 g)",
+      "calories": 196,
+      "ingredients_verbatim": "PEANUTS, SUGAR, PALM OIL, CONTAINS 2% OR LESS OF: SALT, MOLASSES",
+      "nutrition": {
+        "fat": 16,
+        "saturatedFat": 3.5,
+        "sodium": 0.07,
+        "carbs": 8,
+        "sugars": 3,
+        "protein": 7,
+        "fiber": 3
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/005/150/025/5742/front_en.61.400.jpg",
+      "matched_off_code": "0051500255742",
+      "source": "off-search"
+    },
+    "jif-no-added-sugar-creamy-peanut-butter-spread": {
+      "input": {
+        "barcode": "",
+        "name": "Jif No Added Sugar Creamy Peanut Butter Spread",
+        "brand": "Jif"
+      },
+      "name": "Jif 27.3 Ounce Simply Jif Creamy Peanut Butter",
+      "brand": "Jif",
+      "serving_size": "33.0 GRM",
+      "calories": 606,
+      "ingredients_verbatim": "Roasted Peanuts, Contains 2% Or Less Of: Fully Hydrogenated Vegetable Oils (rapeseed And Soybean), Mono And Diglycerides, Molasses, Sugar, Salt.",
+      "nutrition": {
+        "fat": 51.5,
+        "saturatedFat": 10.6,
+        "sodium": 197,
+        "carbs": 21.2,
+        "sugars": 6.06,
+        "protein": 21.2,
+        "fiber": 9.1
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "jif-simply-creamy-peanut-butter": {
+      "input": {
+        "barcode": "",
+        "name": "Jif Simply Creamy Peanut Butter",
+        "brand": "Jif"
+      },
+      "name": "Creamy Peanut Butter",
+      "brand": "Simply Jif",
+      "serving_size": "2 Tbsp (33 g)",
+      "calories": 196,
+      "ingredients_verbatim": "roasted peanuts, contains 2% or less of: fully hydrogenated vegetable oils (rapeseed and soybean), mono and diglycerides, molasses, sugar, salt.",
+      "nutrition": {
+        "fat": 17,
+        "saturatedFat": 3.5,
+        "sodium": 0.07,
+        "carbs": 7,
+        "sugars": 3,
+        "protein": 7,
+        "fiber": 3
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/005/150/025/5278/front_en.45.400.jpg",
+      "matched_off_code": "0051500255278",
+      "source": "off-search"
+    },
+    "jif-reduced-fat-creamy-peanut-butter-spread": {
+      "input": {
+        "barcode": "",
+        "name": "Jif Reduced Fat Creamy Peanut Butter Spread",
+        "brand": "Jif"
+      },
+      "name": "Reduced Fat Creamy Peanut Butter",
+      "brand": "Jif",
+      "serving_size": "1 serving (36 g)",
+      "calories": 214,
+      "ingredients_verbatim": "PEANUTS, CORN SYRUP SOLIDS, SUGAR, PEA PROTEIN, CONTAINS 2% OR LESS OF: SALT, HYDROGENATED VEGETABLE OILS (RAPESEED AND SOYBEAN), MONO AND DIGLYCERIDES, MOLASSES,MAGNESIUM OXIDE, FERRIC ORTHOPHOSPHATE, ZINC OXIDE, COPPER SULFATE, PYRIDOXINE HYDROCHLORIDE FRLUC AT NGREDIENTS:",
+      "nutrition": {
+        "fat": 12,
+        "saturatedFat": 2.5,
+        "sodium": 0.19,
+        "carbs": 15,
+        "sugars": 4,
+        "protein": 7,
+        "fiber": 2
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/005/150/025/5186/front_en.72.400.jpg",
+      "matched_off_code": "0051500255186",
+      "source": "off-search"
+    },
+    "skippy-super-chunk-peanut-butter": {
+      "input": {
+        "barcode": "",
+        "name": "Skippy Super Chunk Peanut Butter",
+        "brand": "Skippy"
+      },
+      "name": "Skippy, Super Chunk Peanut Butter, Super Chunk",
+      "brand": "SKIPPY",
+      "serving_size": "32.0 g",
+      "calories": 594,
+      "ingredients_verbatim": "ROASTED PEANUTS, SUGAR, HYDROGENATED VEGETABLE OIL (COTTONSEED, SOYBEAN AND RAPESEED OIL) TO PREVENT SEPARATION, SALT.",
+      "nutrition": {
+        "fat": 50,
+        "saturatedFat": 9.38,
+        "sodium": 391,
+        "carbs": 18.8,
+        "sugars": 9.38,
+        "protein": 21.9,
+        "fiber": 6.2
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "skippy-natural-creamy-peanut-butter-spread": {
+      "input": {
+        "barcode": "",
+        "name": "Skippy Natural Creamy Peanut Butter Spread",
+        "brand": "Skippy"
+      },
+      "name": "Natural Creamy Peanut Butter Spread",
+      "brand": "Skippy",
+      "serving_size": "2 tbsp (32 g)",
+      "calories": 190,
+      "ingredients_verbatim": "ROASTED PEANUTS, SUGAR, PALM OIL, SALT.",
+      "nutrition": {
+        "fat": 16,
+        "saturatedFat": 3.49,
+        "sodium": 0.15,
+        "carbs": 6.02,
+        "sugars": 3,
+        "protein": 7.01,
+        "fiber": 2
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/003/760/010/6740/front_en.131.400.jpg",
+      "matched_off_code": "0037600106740",
+      "source": "off-search"
+    },
+    "skippy-natural-super-chunk-peanut-butter-spread": {
+      "input": {
+        "barcode": "",
+        "name": "Skippy Natural Super Chunk Peanut Butter Spread",
+        "brand": "Skippy"
+      },
+      "name": "Natural Super Chunk Peanut Butter Spread",
+      "brand": "Skippy",
+      "serving_size": "1 serving (32 g)",
+      "calories": 190,
+      "ingredients_verbatim": "Roasted peanuts, sugar, palm oil, salt.",
+      "nutrition": {
+        "fat": 17,
+        "saturatedFat": 3.5,
+        "sodium": 0.12,
+        "carbs": 6,
+        "sugars": 3,
+        "protein": 7,
+        "fiber": 1.98
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/003/760/010/5330/front_en.4.400.jpg",
+      "matched_off_code": "0037600105330",
+      "source": "off-search"
+    },
+    "skippy-reduced-fat-creamy-peanut-butter-spread": {
+      "input": {
+        "barcode": "",
+        "name": "Skippy Reduced Fat Creamy Peanut Butter Spread",
+        "brand": "Skippy"
+      },
+      "name": "Reduced Fat Creamy Peanut Butter",
+      "brand": "Skippy",
+      "serving_size": "2 tbsp (34 g)",
+      "calories": 475,
+      "ingredients_verbatim": "Roasted peanuts, corn syrup solids, sugar, soy protein concentrate, salt, hydrogenated vegetable oil (cottonseed, soybean and rapeseed oil) to prevent separation, mono - and diglycerides, minerals (magnesium oxide, zinc oxide, ferric orthophosphate, copper sulfate), vitamins (niacinamide, pyridoxine hydrochloride, folic acid).",
+      "nutrition": {
+        "fat": 4.08,
+        "saturatedFat": 0.68,
+        "sodium": 0.06,
+        "carbs": 4.76,
+        "sugars": 1.36,
+        "protein": 2.38,
+        "fiber": 0.34
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/003/760/010/5002/front_en.66.400.jpg",
+      "matched_off_code": "0037600105002",
+      "source": "off-search"
+    },
+    "skippy-creamy-peanut-butter-spread-no-sugar-adde": {
+      "input": {
+        "barcode": "",
+        "name": "Skippy Creamy Peanut Butter Spread No Sugar Added",
+        "brand": "Skippy"
+      },
+      "name": "No Added Sugar Creamy Peanut Butter",
+      "brand": "Skippy",
+      "serving_size": null,
+      "calories": 577,
+      "ingredients_verbatim": "JORDNÖTTER (97.5%), RAPSOLJA, BOMULLSFRöOLJA, SALT.",
+      "nutrition": {
+        "fat": 50,
+        "saturatedFat": 10,
+        "sodium": 0.39,
+        "carbs": 10,
+        "sugars": 3.7,
+        "protein": 25,
+        "fiber": null
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/003/760/031/1069/front_en.3.400.jpg",
+      "matched_off_code": "0037600311069",
+      "source": "off-search"
+    },
+    "peter-pan-crunchy-peanut-butter": {
+      "input": {
+        "barcode": "",
+        "name": "Peter Pan Crunchy Peanut Butter",
+        "brand": "Peter Pan"
+      },
+      "name": "Crunchy Peanut Butter",
+      "brand": "Peter Pan",
+      "serving_size": "2 tbsp (33 g)",
+      "calories": 210,
+      "ingredients_verbatim": "Roasted Peanuts, Sugar, Less than 2% of: Hydrogenated Vegetable Oils (Cottonseed and Rapeseed), Salt. CONTAINS: PEANUTS.",
+      "nutrition": {
+        "fat": 17,
+        "saturatedFat": 3.5,
+        "sodium": 0.1,
+        "carbs": 7,
+        "sugars": 5,
+        "protein": 8,
+        "fiber": 2
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/004/530/000/5409/front_en.49.400.jpg",
+      "matched_off_code": "0045300005409",
+      "source": "off-search"
+    },
+    "peter-pan-natural-creamy-peanut-butter-spread": {
+      "input": {
+        "barcode": "",
+        "name": "Peter Pan Natural Creamy Peanut Butter Spread",
+        "brand": "Peter Pan"
+      },
+      "name": "PETER PAN Natural Creamy Honey Roast Peanut Butter, 28 OZ",
+      "brand": null,
+      "serving_size": "2 tbsp (33 g) (33 g)",
+      "calories": 220,
+      "ingredients_verbatim": "Roasted Peanuts, Sugar, Honey, Fractionated Palm Oil, Molasses, Salt. CONTAINS: PEANUTS.",
+      "nutrition": {
+        "fat": 16,
+        "saturatedFat": 3,
+        "sodium": 0.13,
+        "carbs": 10,
+        "sugars": 8,
+        "protein": 8,
+        "fiber": 2.01
+      },
+      "image_url": null,
+      "matched_off_code": "0045300299020",
+      "source": "off-search"
+    },
+    "smucker-s-natural-creamy-peanut-butter": {
+      "input": {
+        "barcode": "",
+        "name": "Smucker's Natural Creamy Peanut Butter",
+        "brand": "Smucker's"
+      },
+      "name": "Natural Creamy Peanut Butter",
+      "brand": "Smucker's",
+      "serving_size": "32g",
+      "calories": 190,
+      "ingredients_verbatim": "peanuts, contains 1% or less of salt",
+      "nutrition": {
+        "fat": 16,
+        "saturatedFat": 3,
+        "sodium": 0.11,
+        "carbs": 7,
+        "sugars": 2,
+        "protein": 8,
+        "fiber": 3
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/005/150/001/7005/front_en.100.400.jpg",
+      "matched_off_code": "0051500017005",
+      "source": "off-search"
+    },
+    "smucker-s-natural-chunky-peanut-butter": {
+      "input": {
+        "barcode": "",
+        "name": "Smucker's Natural Chunky Peanut Butter",
+        "brand": "Smucker's"
+      },
+      "name": "Natural Peanut Butter Chunky",
+      "brand": "Smucker's",
+      "serving_size": "1 portion (32 g)",
+      "calories": 190,
+      "ingredients_verbatim": "PEANUTS, SALT",
+      "nutrition": {
+        "fat": 16,
+        "saturatedFat": 3,
+        "sodium": 0.1,
+        "carbs": 7,
+        "sugars": 2,
+        "protein": 8,
+        "fiber": 3
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/005/150/006/2005/front_en.24.400.jpg",
+      "matched_off_code": "0051500062005",
+      "source": "off-search"
+    },
+    "justin-s-classic-peanut-butter": {
+      "input": {
+        "barcode": "",
+        "name": "Justin's Classic Peanut Butter",
+        "brand": "Justin's"
+      },
+      "name": "Classic Peanut Butter Spread",
+      "brand": "Justin's",
+      "serving_size": "2 tbsp (32 g)",
+      "calories": 210,
+      "ingredients_verbatim": "dry roasted peanuts, palm oil",
+      "nutrition": {
+        "fat": 18,
+        "saturatedFat": 3.5,
+        "sodium": 0.03,
+        "carbs": 6,
+        "sugars": 2,
+        "protein": 7,
+        "fiber": 1
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/084/037/910/1393/front_en.44.400.jpg",
+      "matched_off_code": "0840379101393",
+      "source": "off-search"
+    },
+    "crazy-richard-s-100-peanuts-creamy-peanut-butter": {
+      "input": {
+        "barcode": "",
+        "name": "Crazy Richard's 100% Peanuts Creamy Peanut Butter",
+        "brand": "Crazy Richard's"
+      },
+      "name": "Crazy About Cookies, Scoop & Bake Cookie Dough, Peanut Butter, Peanut Butter",
+      "brand": "CRAZY ABOUT COOKIES",
+      "serving_size": "28.0 g",
+      "calories": 429,
+      "ingredients_verbatim": "UNBLEACHED UNBROMATED FLOUR, CANE SUGAR, PEANUT BUTTER (UNSALTED PEANUTS), PALM OIL, WHEY PROTEIN CONCENTRATE, SALT, BAKING SODA, NATURAL BUTTER AND VANILLA FLAVORS.",
+      "nutrition": {
+        "fat": 21.4,
+        "saturatedFat": 7.14,
+        "sodium": 393,
+        "carbs": 57.1,
+        "sugars": 32.1,
+        "protein": 7.14,
+        "fiber": 0
+      },
+      "image_url": null,
+      "source": "usda-fdc"
+    },
+    "santa-cruz-organic-dark-roasted-creamy-peanut-bu": {
+      "input": {
+        "barcode": "",
+        "name": "Santa Cruz Organic Dark Roasted Creamy Peanut Butter",
+        "brand": "Santa Cruz Organic"
+      },
+      "name": "Creamy Dark Roasted Peanut Butter",
+      "brand": "Santa Cruz Organic",
+      "serving_size": "32g",
+      "calories": 180,
+      "ingredients_verbatim": "Organic roasted peanuts, salt.",
+      "nutrition": {
+        "fat": 16,
+        "saturatedFat": 2,
+        "sodium": 0.05,
+        "carbs": 6,
+        "sugars": 1,
+        "protein": 9,
+        "fiber": 3
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/005/150/090/2882/front_en.28.400.jpg",
+      "matched_off_code": "0051500902882",
+      "source": "off-search"
+    },
+    "santa-cruz-organic-dark-roasted-crunchy-peanut-b": {
+      "input": {
+        "barcode": "",
+        "name": "Santa Cruz Organic Dark Roasted Crunchy Peanut Butter",
+        "brand": "Santa Cruz Organic"
+      },
+      "name": "Crunchy Dark Roasted Peanut Butter",
+      "brand": "Santa Cruz organic",
+      "serving_size": "1 serving (32 g)",
+      "calories": 180,
+      "ingredients_verbatim": "organic roasted peanuts, salt",
+      "nutrition": {
+        "fat": 16,
+        "saturatedFat": 6.25,
+        "sodium": 0.14,
+        "carbs": 6,
+        "sugars": 3.12,
+        "protein": 9,
+        "fiber": 9.38
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/005/150/050/7872/front_en.3.400.jpg",
+      "matched_off_code": "0051500507872",
+      "source": "off-search"
+    },
+    "teddie-all-natural-smooth-peanut-butter": {
+      "input": {
+        "barcode": "",
+        "name": "Teddie All Natural Smooth Peanut Butter",
+        "brand": "Teddie"
+      },
+      "name": "Smooth Unsalted Peanut Butter",
+      "brand": "Teddie All Natural",
+      "serving_size": "2 Tbsp (32 g)",
+      "calories": 190,
+      "ingredients_verbatim": "DRY ROASTED PEANUTS",
+      "nutrition": {
+        "fat": 16,
+        "saturatedFat": 2.5,
+        "sodium": 0,
+        "carbs": 7,
+        "sugars": 2,
+        "protein": 8,
+        "fiber": 3
+      },
+      "image_url": "https://images.openfoodfacts.org/images/products/007/101/801/0176/front_en.19.400.jpg",
+      "matched_off_code": "0071018010176",
+      "source": "off-search"
+    }
+  },
+  "misses": []
+}

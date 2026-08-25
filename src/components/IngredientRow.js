@@ -17,12 +17,14 @@ export default function IngredientRow({ item }) {
   const [expanded, setExpanded] = useState(false);
   const { color, bg, label } = resolveColors(item);
   const note = item.note || (item.category === 'unknown' ? 'Not yet in our ingredient database.' : null);
+  const evidence = item.evidence || null;
+  const hasDetail = note || evidence;
 
   return (
     <TouchableOpacity
       style={styles.row}
-      onPress={() => note && setExpanded((e) => !e)}
-      activeOpacity={note ? 0.7 : 1}
+      onPress={() => hasDetail && setExpanded((e) => !e)}
+      activeOpacity={hasDetail ? 0.7 : 1}
     >
       <View style={[styles.dot, { backgroundColor: color }]} />
       <View style={styles.content}>
@@ -37,7 +39,13 @@ export default function IngredientRow({ item }) {
         {expanded && note ? (
           <Text style={[styles.note, item.category === 'unknown' && styles.noteGray]}>{note}</Text>
         ) : null}
-        {note ? (
+        {expanded && evidence ? (
+          <View style={styles.evidenceWrap}>
+            <Ionicons name="document-text-outline" size={12} color={color} style={styles.evidenceIcon} />
+            <Text style={styles.evidence}>{evidence}</Text>
+          </View>
+        ) : null}
+        {hasDetail ? (
           <Ionicons
             name={expanded ? 'chevron-up' : 'chevron-down'}
             size={13}
@@ -79,5 +87,14 @@ const styles = StyleSheet.create({
     fontSize: 12, color: '#5C7A72', lineHeight: 17, marginTop: 5,
   },
   noteGray: { color: '#9BB5AE', fontStyle: 'italic' },
+  evidenceWrap: {
+    flexDirection: 'row', alignItems: 'flex-start',
+    marginTop: 7, paddingTop: 7,
+    borderTopWidth: 1, borderTopColor: '#F0F5F2',
+  },
+  evidenceIcon: { marginTop: 2, marginRight: 6, flexShrink: 0 },
+  evidence: {
+    flex: 1, fontSize: 11, color: '#78918B', lineHeight: 16, fontStyle: 'italic',
+  },
   chevron: { marginTop: 3 },
 });

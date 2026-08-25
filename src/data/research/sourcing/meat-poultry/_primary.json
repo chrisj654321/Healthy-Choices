@@ -1,0 +1,1315 @@
+{
+  "batch": [
+    {
+      "label": "tyson",
+      "sec": {
+        "ticker": "TSN",
+        "cik": "0000100493",
+        "entityName": "TYSON FOODS, INC.",
+        "filings": [
+          {
+            "form": "10-K",
+            "filingDate": "2025-11-10",
+            "reportDate": "2025-09-27",
+            "primaryDoc": "tsn-20250927.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/100493/000010049325000095/tsn-20250927.htm"
+          },
+          {
+            "form": "10-K",
+            "filingDate": "2024-11-12",
+            "reportDate": "2024-09-28",
+            "primaryDoc": "tsn-20240928.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/100493/000010049324000119/tsn-20240928.htm"
+          },
+          {
+            "form": "10-K",
+            "filingDate": "2023-11-13",
+            "reportDate": "2023-09-30",
+            "primaryDoc": "tsn-20230930.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/100493/000010049323000105/tsn-20230930.htm"
+          },
+          {
+            "form": "10-K",
+            "filingDate": "2022-11-14",
+            "reportDate": "2022-10-01",
+            "primaryDoc": "tsn-20221001.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/100493/000010049322000097/tsn-20221001.htm"
+          },
+          {
+            "form": "10-K",
+            "filingDate": "2021-11-15",
+            "reportDate": "2021-10-02",
+            "primaryDoc": "tsn-20211002.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/100493/000010049321000122/tsn-20211002.htm"
+          }
+        ]
+      }
+    },
+    {
+      "label": "hormel",
+      "sec": {
+        "ticker": "HRL",
+        "cik": "0000048465",
+        "entityName": "HORMEL FOODS CORP /DE/",
+        "filings": [
+          {
+            "form": "10-K",
+            "filingDate": "2025-12-05",
+            "reportDate": "2025-10-26",
+            "primaryDoc": "hrl-20251026.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/48465/000004846525000059/hrl-20251026.htm"
+          },
+          {
+            "form": "10-K",
+            "filingDate": "2024-12-05",
+            "reportDate": "2024-10-27",
+            "primaryDoc": "hrl-20241027.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/48465/000004846524000051/hrl-20241027.htm"
+          },
+          {
+            "form": "10-K",
+            "filingDate": "2023-12-06",
+            "reportDate": "2023-10-29",
+            "primaryDoc": "hrl-20231029.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/48465/000004846523000083/hrl-20231029.htm"
+          },
+          {
+            "form": "10-K",
+            "filingDate": "2022-12-06",
+            "reportDate": "2022-10-30",
+            "primaryDoc": "hrl-20221030.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/48465/000004846522000051/hrl-20221030.htm"
+          },
+          {
+            "form": "10-K",
+            "filingDate": "2021-12-10",
+            "reportDate": "2021-10-31",
+            "primaryDoc": "hrl-20211031.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/48465/000004846521000067/hrl-20211031.htm"
+          }
+        ]
+      }
+    },
+    {
+      "label": "kraft-heinz",
+      "sec": {
+        "ticker": "KHC",
+        "cik": "0001637459",
+        "entityName": "Kraft Heinz Co",
+        "filings": [
+          {
+            "form": "10-K",
+            "filingDate": "2026-02-12",
+            "reportDate": "2025-12-27",
+            "primaryDoc": "khc-20251227.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/1637459/000163745926000009/khc-20251227.htm"
+          },
+          {
+            "form": "10-K",
+            "filingDate": "2025-02-13",
+            "reportDate": "2024-12-28",
+            "primaryDoc": "khc-20241228.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/1637459/000163745925000011/khc-20241228.htm"
+          },
+          {
+            "form": "10-K",
+            "filingDate": "2024-02-15",
+            "reportDate": "2023-12-30",
+            "primaryDoc": "khc-20231230.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/1637459/000163745924000018/khc-20231230.htm"
+          },
+          {
+            "form": "10-K",
+            "filingDate": "2023-02-16",
+            "reportDate": "2022-12-31",
+            "primaryDoc": "khc-20221231.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/1637459/000163745923000009/khc-20221231.htm"
+          },
+          {
+            "form": "10-K",
+            "filingDate": "2022-02-17",
+            "reportDate": "2021-12-25",
+            "primaryDoc": "khc-20211225.htm",
+            "url": "https://www.sec.gov/Archives/edgar/data/1637459/000163745922000018/khc-20211225.htm"
+          }
+        ]
+      }
+    },
+    {
+      "label": "broiler-chicken-antitrust",
+      "court": {
+        "query": "In re Broiler Chicken Antitrust Litigation",
+        "totalCount": 1348,
+        "results": [
+          {
+            "caseName": "In Re: Broiler Chicken Antitrust Litigation",
+            "court": "District Court, C.D. California",
+            "docketNumber": "2:20-mc-00310",
+            "dateFiled": "2020-11-13",
+            "dateTerminated": "2022-01-20",
+            "natureOfSuit": "890 Other Statutory Actions",
+            "url": "https://www.courtlistener.com/docket/18356996/in-re-broiler-chicken-antitrust-litigation/",
+            "parties": [
+              "Golden State Foods Corp.",
+              "Commercial and Institutional Indirect Purchasers",
+              "Broiler Chicken Antitrust Litigation"
+            ]
+          },
+          {
+            "caseName": "In re Broiler Chicken Antitrust Litigation",
+            "court": "District Court, N.D. Illinois",
+            "docketNumber": "1:16-cv-08637",
+            "dateFiled": "2016-09-02",
+            "dateTerminated": null,
+            "natureOfSuit": "791 Labor: E.R.I.S.A.",
+            "url": "https://www.courtlistener.com/docket/4508538/in-re-broiler-chicken-antitrust-litigation/",
+            "parties": [
+              "Sanderson Farms, Inc. (Processing Division)",
+              "Golden Tree Restaurants, LLC",
+              "The NPD Group, Inc",
+              "OSI Restaurant Partners, LLC",
+              "Poultry Products Company, LLC",
+              "Cheney Bros., Inc.",
+              "Sumner Country Restaurant and Creamery, LLC",
+              "McLane Company, Inc.",
+              "Kraft Heinz Foods Company",
+              "Alpine Special Treatment Center, Inc.",
+              "Tyson Breeders, Inc.",
+              "Meijer Distribution, Inc."
+            ]
+          },
+          {
+            "caseName": "IN RE: Chicken \"Broiler\" Antitrust Litigation",
+            "court": "United States Judicial Panel on Multidistrict Litigation",
+            "docketNumber": "MDL No. 237",
+            "dateFiled": "1975-11-20",
+            "dateTerminated": "1987-05-01",
+            "natureOfSuit": null,
+            "url": "https://www.courtlistener.com/docket/17268552/in-re-chicken-broiler-antitrust-litigation/",
+            "parties": []
+          },
+          {
+            "caseName": "IN RE: Broiler Chicken Grower Antitrust Litigation",
+            "court": "United States Judicial Panel on Multidistrict Litigation",
+            "docketNumber": "MDL No. 2838",
+            "dateFiled": "2018-03-08",
+            "dateTerminated": "2018-06-06",
+            "natureOfSuit": null,
+            "url": "https://www.courtlistener.com/docket/8209087/in-re-broiler-chicken-grower-antitrust-litigation/",
+            "parties": [
+              "Liaison Counsel for Plaintiffs",
+              "Liaison Counsel for Defendants"
+            ]
+          },
+          {
+            "caseName": "IN RE: Broiler Chicken Grower Antitrust Litigation (No. III)",
+            "court": "United States Judicial Panel on Multidistrict Litigation",
+            "docketNumber": "MDL No. 3167",
+            "dateFiled": "2025-09-23",
+            "dateTerminated": null,
+            "natureOfSuit": null,
+            "url": "https://www.courtlistener.com/docket/71458612/in-re-broiler-chicken-grower-antitrust-litigation-no-iii/",
+            "parties": []
+          },
+          {
+            "caseName": "IN RE: Broiler Chicken Grower Antitrust Litigation (No. II)",
+            "court": "United States Judicial Panel on Multidistrict Litigation",
+            "docketNumber": "MDL No. 2977",
+            "dateFiled": "2020-10-06",
+            "dateTerminated": "2025-01-29",
+            "natureOfSuit": null,
+            "url": "https://www.courtlistener.com/docket/499216/in-re-broiler-chicken-grower-antitrust-litigation-no-ii/",
+            "parties": [
+              "Liaison Counsel for Defendants",
+              "Liaison Counsel for Plaintiffs"
+            ]
+          },
+          {
+            "caseName": "In Re: Broiler Chicken Grower Antitrust Litigation (No. III)",
+            "court": "District Court, D. Utah",
+            "docketNumber": "2:25-md-03167",
+            "dateFiled": "2025-12-16",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/72043662/in-re-broiler-chicken-grower-antitrust-litigation-no-iii/",
+            "parties": [
+              "George's Chicken, LLC",
+              "Daniel  W. Gaines, Jr.",
+              "George's Inc.",
+              "George's Processing Inc.",
+              "Mar-Jac Poultry, LLC",
+              "Amick Farms, LLC",
+              "Mar-Jac Holdings, Inc.",
+              "Allen Harim Foods LLC",
+              "Marc McEntire",
+              "Norman W. Fries",
+              "Mountaire Farms, Inc.",
+              "Peco Foods, Inc."
+            ]
+          },
+          {
+            "caseName": "In re: Sanderson and Koch Broiler Chicken Grower Litigation",
+            "court": "District Court, E.D. North Carolina",
+            "docketNumber": "7:18-cv-00031",
+            "dateFiled": "2018-02-21",
+            "dateTerminated": "2020-12-18",
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/6342886/in-re-sanderson-and-koch-broiler-chicken-grower-litigation/",
+            "parties": [
+              "Haff Poultry, Inc.",
+              "Koch Meat Co., Inc.",
+              "Sanderson Farms, Inc. (Production Division)",
+              "Jonathan Walters",
+              "Sanderson Farms, Inc. (Food Division)",
+              "Myles Weaver",
+              "Melissa Weaver",
+              "Koch Foods, Inc.",
+              "Sanderson Farms, Inc.",
+              "Sanderson Farms, Inc. (Processing Division)",
+              "Johnny Upchurch",
+              "Nancy Butler"
+            ]
+          },
+          {
+            "caseName": "IN RE: DIISOCYANATES ANTITRUST LITIGATION",
+            "court": "District Court, W.D. Pennsylvania",
+            "docketNumber": "2:18-mc-01001",
+            "dateFiled": "2018-10-10",
+            "dateTerminated": null,
+            "natureOfSuit": "Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/8042096/in-re-diisocyanates-antitrust-litigation/",
+            "parties": [
+              "RHINO LININGS CORPORATION",
+              "WANHUA CHEMICAL US HOLDING, INC.",
+              "DOW CHEMICAL CO.",
+              "MITSUI CHEMICALS & SKC POLYURETHANES, INC",
+              "BAYER MATERIALSCIENCE LLC",
+              "UTAH FOAM PRODUCTS, INC",
+              "EMMA CHEMICALS CO., INC.",
+              "HUNTSMAN CORP.",
+              "WANHUA CHEMICAL AMERICA CO. LTD",
+              "BAYER A.G.",
+              "MCNS",
+              "AMERICAN POLYMERS CORP."
+            ]
+          },
+          {
+            "caseName": "In re Valve Antitrust Litigation",
+            "court": "District Court, W.D. Washington",
+            "docketNumber": "2:21-cv-00563",
+            "dateFiled": "2021-04-27",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/59859024/in-re-valve-antitrust-litigation/",
+            "parties": [
+              "Microsoft Corporation",
+              "Daniel Escobar",
+              "William Herbert",
+              "Epic Games Inc",
+              "Dark Catt Studios Holdings Inc",
+              "Sean Colvin",
+              "Connor Hepler",
+              "Susann Davis",
+              "Brandon Drake",
+              "Best Buy Co., Inc.",
+              "Eric Saavedra",
+              "Wolfire Games LLC"
+            ]
+          },
+          {
+            "caseName": "In re ACTOS Antitrust Litigation",
+            "court": "District Court, S.D. New York",
+            "docketNumber": "1:13-cv-09244",
+            "dateFiled": "2013-12-31",
+            "dateTerminated": "2015-09-24",
+            "natureOfSuit": "Contract: Other",
+            "url": "https://www.courtlistener.com/docket/5542865/in-re-actos-antitrust-litigation/",
+            "parties": [
+              "Takeda Pharmaceuticals U.S.A., Inc.",
+              "Fraternal Order of Police, Fort Lauderdale Lodge 31, Insurance Trust Fund",
+              "Takeda Pharamceuticals, U.S.A., Inc.",
+              "Takeda Pharmaceutical Co. Ltd.",
+              "Ranbaxy, Inc.",
+              "Takeda America Holdings, Inc.",
+              "Dr, Reddy's Laboratories, Inc.",
+              "Ranbaxy Pharmaceuticals Inc.",
+              "Watson Laboratories, Inc.",
+              "Crosby Tugs, LLC",
+              "Teva Pharmaceuticals USA, Inc.",
+              "A.F. of L. - A.G.C. Building Trades Welfare Plan"
+            ]
+          },
+          {
+            "caseName": "In re: PVC Pipe Antitrust Litigation",
+            "court": "District Court, N.D. Illinois",
+            "docketNumber": "1:24-cv-07639",
+            "dateFiled": "2024-08-23",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/69077911/in-re-pvc-pipe-antitrust-litigation/",
+            "parties": [
+              "Non-Converter Seller Purchaser Class Plaintiffs",
+              "George Bavolak",
+              "Scott Fluegge",
+              "United States of America",
+              "RJI, Inc.",
+              "My Flooring, Inc.",
+              "Cantex Inc.",
+              "Prime Conduit, Inc.",
+              "Nelson Aviles",
+              "Vinyltech Corporation",
+              "Direct Purchaser Plaintiff Class",
+              "Joshua Barnett"
+            ]
+          },
+          {
+            "caseName": "In re Resistors Antitrust Litigation",
+            "court": "District Court, N.D. California",
+            "docketNumber": "3:15-cv-03820",
+            "dateFiled": "2015-08-20",
+            "dateTerminated": "2020-03-24",
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/4182121/in-re-resistors-antitrust-litigation/",
+            "parties": [
+              "Susumu Co., Ltd.",
+              "Tokyo Cosmos Electric Co., Ltd.",
+              "Yageo Corporation",
+              "Direct Purchaser Plaintiffs",
+              "Kamaya Electric Co., Ltd.",
+              "Sanyo Electric Co., Ltd",
+              "Michael Brooks",
+              "Walsin Technology Corporation",
+              "Rohm Semiconductor U.S.A., LLC",
+              "TDK Corporation",
+              "Hokuriku Electric Industry Co.",
+              "Murata Manufacturing Co., Ltd."
+            ]
+          },
+          {
+            "caseName": "In re Bystolic Antitrust Litigation",
+            "court": "District Court, S.D. New York",
+            "docketNumber": "1:20-cv-05735",
+            "dateFiled": "2020-07-23",
+            "dateTerminated": "2023-08-18",
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/17377160/in-re-bystolic-antitrust-litigation/",
+            "parties": [
+              "Forest Laboratories Ireland, LTD",
+              "Forest Laboratories Holdings Ltd.",
+              "Glenmark Generics Inc.",
+              "International Center for Law & Economics",
+              "The Kroger Co.",
+              "Hetero USA Inc.",
+              "Hetero Labs Ltd",
+              "Forest Laboratories, Inc.",
+              "Watson Laboratories, Inc. (NV)",
+              "Actavis Inc.",
+              "Alkem Laboratories Ltd.",
+              "CVS Pharmacy, Inc."
+            ]
+          },
+          {
+            "caseName": "In Re: Humira (Adalimumab) Antitrust Litigation",
+            "court": "District Court, N.D. Illinois",
+            "docketNumber": "1:19-cv-01873",
+            "dateFiled": "2019-03-18",
+            "dateTerminated": "2020-06-30",
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/14737052/in-re-humira-adalimumab-antitrust-litigation/",
+            "parties": [
+              "Louisiana Health Service & Indemnity Company d/b/a Blue Cross Blue Shield of Louisiana",
+              "Momenta Pharmaceuticals, Inc.",
+              "Fraternal Order of Police, Miami Lodge 20, Insurance Trust Fund",
+              "Fresenius Kabi USA, LLC",
+              "Kentucky Laborers District Council Health and Welfare Fund",
+              "Samsung Bioepis Co., Ltd.",
+              "Service List",
+              "Locals 302 & 612 of the International Union of Operating Engineers-Employers Construction Industry Health and Security Trust Fund",
+              "Sandoz, Inc.",
+              "Mayor and City Council of Baltimore",
+              "Amgen Inc.",
+              "Pipe Trades Services MN Welfare Fund"
+            ]
+          },
+          {
+            "caseName": "In re HIV Antitrust Litigation",
+            "court": "District Court, N.D. California",
+            "docketNumber": "3:19-cv-02573",
+            "dateFiled": "2019-05-14",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/15498509/in-re-hiv-antitrust-litigation/",
+            "parties": [
+              "Designating non-party Aurobindo USA, Inc.",
+              "MSP Recovery Claims, Series LLC",
+              "H-E-B LP",
+              "Fraternal Order of Police, Miami Lodge 20, Insurance Trust Fund",
+              "Aetna Inc.",
+              "Robert  J. Vazquez",
+              "Albertsons Companies, Inc.",
+              "United HealthCare Services, Inc.",
+              "Mylan Pharmaceuticals Inc.",
+              "Gilead Sciences, LLC",
+              "John Carroll",
+              "John Doe"
+            ]
+          },
+          {
+            "caseName": "IN RE: Pork Antitrust Litigation",
+            "court": "United States Judicial Panel on Multidistrict Litigation",
+            "docketNumber": "MDL No. 2998",
+            "dateFiled": "2021-03-10",
+            "dateTerminated": null,
+            "natureOfSuit": null,
+            "url": "https://www.courtlistener.com/docket/59763001/in-re-pork-antitrust-litigation/",
+            "parties": [
+              "Liaison Counsel for Plaintiffs",
+              "Liaison Counsel for Defendants"
+            ]
+          },
+          {
+            "caseName": "In re: Construction Equipment Antitrust Litigation",
+            "court": "District Court, N.D. Illinois",
+            "docketNumber": "1:25-cv-03487",
+            "dateFiled": "2025-04-01",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/69831514/in-re-construction-equipment-antitrust-litigation/",
+            "parties": [
+              "Enterprise Lodging of Huntsville, L.L.C.",
+              "IPCS Corp.",
+              "HERC Holdings Inc.",
+              "The Home Depot U.S.A., Inc.",
+              "McGinnis Construction Co., Inc.",
+              "Mack's Junk Removal, LLC",
+              "Immediate Appliance Service, Inc.",
+              "IZQ Construction LLC",
+              "Strupp Trucking, Inc.,",
+              "Sunstate Equipment Co., LLC",
+              "United Rentals, Inc.",
+              "Matrix Construction L.L.C."
+            ]
+          },
+          {
+            "caseName": "IN RE TURKEY ANTITRUST LITIGATION",
+            "court": "District Court, N.D. Illinois",
+            "docketNumber": "1:19-cv-08318",
+            "dateFiled": "2019-12-19",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/16610105/in-re-turkey-antitrust-litigation/",
+            "parties": [
+              "Service List",
+              "Jetro Holdings, LLC",
+              "Sandee's Bakery",
+              "Michigan Turkey Producers, LLC",
+              "BJ's Wholesale Club Inc.",
+              "Hamilton Meat, LLC",
+              "Farbest Foods, Inc.",
+              "Sysco Corporation",
+              "Target Corporation",
+              "Winn-Dixie Stores, Inc.",
+              "The Hillshire Brands Company",
+              "Perdue Farms, Inc."
+            ]
+          },
+          {
+            "caseName": "In Re: Granulated Sugar Antitrust Litigation",
+            "court": "District Court, D. Minnesota",
+            "docketNumber": "0:24-md-03110",
+            "dateFiled": "2024-06-07",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/68845552/in-re-granulated-sugar-antitrust-litigation/",
+            "parties": [
+              "Defendants' Steering Committee",
+              "Plaintiffs' Liaison Counsel",
+              "McLane/Western, Inc.",
+              "Plaintiffs' Steering Committee",
+              "Defendants' Liaison Counsel",
+              "In Re: Granulated Sugar Antitrust Litigation"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "pork-antitrust",
+      "court": {
+        "query": "In re Pork Antitrust Litigation",
+        "totalCount": 1428,
+        "results": [
+          {
+            "caseName": "IN RE PORK ANTITRUST LITIGATION",
+            "court": "United States Judicial Panel on Multidistrict Litigation",
+            "docketNumber": "0:18-cv-01776",
+            "dateFiled": "2018-06-28",
+            "dateTerminated": null,
+            "natureOfSuit": null,
+            "url": "https://www.courtlistener.com/docket/59934920/in-re-pork-antitrust-litigation/",
+            "parties": []
+          },
+          {
+            "caseName": "IN RE: Pork Antitrust Litigation",
+            "court": "United States Judicial Panel on Multidistrict Litigation",
+            "docketNumber": "MDL No. 2998",
+            "dateFiled": "2021-03-10",
+            "dateTerminated": null,
+            "natureOfSuit": null,
+            "url": "https://www.courtlistener.com/docket/59763001/in-re-pork-antitrust-litigation/",
+            "parties": [
+              "Liaison Counsel for Plaintiffs",
+              "Liaison Counsel for Defendants"
+            ]
+          },
+          {
+            "caseName": "In Re: Pork Antitrust Litigation",
+            "court": "District Court, D. Minnesota",
+            "docketNumber": "0:21-md-02998",
+            "dateFiled": "2021-06-22",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/60002931/in-re-pork-antitrust-litigation/",
+            "parties": [
+              "In Re: Pork Antitrust Litigation"
+            ]
+          },
+          {
+            "caseName": "IN RE PORK ANTITRUST LITIGATION",
+            "court": "District Court, D. Minnesota",
+            "docketNumber": "0:18-cv-01776",
+            "dateFiled": "2018-06-28",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/7338509/in-re-pork-antitrust-litigation/",
+            "parties": [
+              "In Re Pork Antitrust Litigation",
+              "Interim Co-Lead Class Counsel for Direct Purchaser Plaintiffs",
+              "Commercial and Institutional Indirect Purchaser Plaintiffs",
+              "Plaintiffs' Co-Lead Counsel",
+              "Seaboard Corporation",
+              "Direct Purchaser Plaintiffs",
+              "United Food Service, Inc.",
+              "Direct Action Plaintiffs",
+              "Hormel Foods, LLC",
+              "Agri Stats, Inc.",
+              "Seaboard Foods, LLC",
+              "Smithfield Foods, Inc."
+            ]
+          },
+          {
+            "caseName": "In re Valve Antitrust Litigation",
+            "court": "District Court, W.D. Washington",
+            "docketNumber": "2:21-cv-00563",
+            "dateFiled": "2021-04-27",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/59859024/in-re-valve-antitrust-litigation/",
+            "parties": [
+              "Microsoft Corporation",
+              "Daniel Escobar",
+              "William Herbert",
+              "Epic Games Inc",
+              "Dark Catt Studios Holdings Inc",
+              "Sean Colvin",
+              "Connor Hepler",
+              "Susann Davis",
+              "Brandon Drake",
+              "Best Buy Co., Inc.",
+              "Eric Saavedra",
+              "Wolfire Games LLC"
+            ]
+          },
+          {
+            "caseName": "IN RE: Vitamin Antitrust Litigation",
+            "court": "United States Judicial Panel on Multidistrict Litigation",
+            "docketNumber": "MDL No. 1285",
+            "dateFiled": "1999-03-30",
+            "dateTerminated": "2009-09-14",
+            "natureOfSuit": null,
+            "url": "https://www.courtlistener.com/docket/54701496/in-re-vitamin-antitrust-litigation/",
+            "parties": []
+          },
+          {
+            "caseName": "In re: PVC Pipe Antitrust Litigation",
+            "court": "District Court, N.D. Illinois",
+            "docketNumber": "1:24-cv-07639",
+            "dateFiled": "2024-08-23",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/69077911/in-re-pvc-pipe-antitrust-litigation/",
+            "parties": [
+              "Non-Converter Seller Purchaser Class Plaintiffs",
+              "George Bavolak",
+              "Scott Fluegge",
+              "United States of America",
+              "RJI, Inc.",
+              "My Flooring, Inc.",
+              "Cantex Inc.",
+              "Prime Conduit, Inc.",
+              "Nelson Aviles",
+              "Vinyltech Corporation",
+              "Direct Purchaser Plaintiff Class",
+              "Joshua Barnett"
+            ]
+          },
+          {
+            "caseName": "In re Bystolic Antitrust Litigation",
+            "court": "District Court, S.D. New York",
+            "docketNumber": "1:20-cv-05735",
+            "dateFiled": "2020-07-23",
+            "dateTerminated": "2023-08-18",
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/17377160/in-re-bystolic-antitrust-litigation/",
+            "parties": [
+              "Forest Laboratories Ireland, LTD",
+              "Forest Laboratories Holdings Ltd.",
+              "Glenmark Generics Inc.",
+              "International Center for Law & Economics",
+              "The Kroger Co.",
+              "Hetero USA Inc.",
+              "Hetero Labs Ltd",
+              "Forest Laboratories, Inc.",
+              "Watson Laboratories, Inc. (NV)",
+              "Actavis Inc.",
+              "Alkem Laboratories Ltd.",
+              "CVS Pharmacy, Inc."
+            ]
+          },
+          {
+            "caseName": "In re HIV Antitrust Litigation",
+            "court": "District Court, N.D. California",
+            "docketNumber": "3:19-cv-02573",
+            "dateFiled": "2019-05-14",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/15498509/in-re-hiv-antitrust-litigation/",
+            "parties": [
+              "Designating non-party Aurobindo USA, Inc.",
+              "MSP Recovery Claims, Series LLC",
+              "H-E-B LP",
+              "Fraternal Order of Police, Miami Lodge 20, Insurance Trust Fund",
+              "Aetna Inc.",
+              "Robert  J. Vazquez",
+              "Albertsons Companies, Inc.",
+              "United HealthCare Services, Inc.",
+              "Mylan Pharmaceuticals Inc.",
+              "Gilead Sciences, LLC",
+              "John Carroll",
+              "John Doe"
+            ]
+          },
+          {
+            "caseName": "IN RE: DOMESTIC DRYWALL ANTITRUST LITIGATION",
+            "court": "District Court, E.D. Pennsylvania",
+            "docketNumber": "2:13-md-02437",
+            "dateFiled": "2013-04-08",
+            "dateTerminated": "2024-01-16",
+            "natureOfSuit": "410 Other Statutes: Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/4370563/in-re-domestic-drywall-antitrust-litigation/",
+            "parties": [
+              "HOME DEPOT U.S.A., INC.",
+              "US LBM HOLDINGS, LLC",
+              "ABRAHAM J. GAFNI",
+              "IN RE: DOMESTIC DRYWALL ANTITRUST LITIGATION",
+              "DREW C. ROSEN"
+            ]
+          },
+          {
+            "caseName": "In re: Construction Equipment Antitrust Litigation",
+            "court": "District Court, N.D. Illinois",
+            "docketNumber": "1:25-cv-03487",
+            "dateFiled": "2025-04-01",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/69831514/in-re-construction-equipment-antitrust-litigation/",
+            "parties": [
+              "Enterprise Lodging of Huntsville, L.L.C.",
+              "IPCS Corp.",
+              "HERC Holdings Inc.",
+              "The Home Depot U.S.A., Inc.",
+              "McGinnis Construction Co., Inc.",
+              "Mack's Junk Removal, LLC",
+              "Immediate Appliance Service, Inc.",
+              "IZQ Construction LLC",
+              "Strupp Trucking, Inc.,",
+              "Sunstate Equipment Co., LLC",
+              "United Rentals, Inc.",
+              "Matrix Construction L.L.C."
+            ]
+          },
+          {
+            "caseName": "In Re: Crop Inputs Antitrust Litigation",
+            "court": "District Court, E.D. Missouri",
+            "docketNumber": "4:21-md-02993",
+            "dateFiled": "2021-06-08",
+            "dateTerminated": "2024-09-13",
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/59972338/in-re-crop-inputs-antitrust-litigation/",
+            "parties": [
+              "Jason J. Canjar",
+              "Simplot AB Retail Sub, Inc.",
+              "Jones Planting Co. III",
+              "Pioneer Hi-Bred International, Inc.",
+              "Randi Handwerk",
+              "Melinda Budde",
+              "Leon Pfaff",
+              "Justin Pic",
+              "Eagle Lake Farms Partnership",
+              "Wunsch Farms",
+              "Bayer CropScience Incorporated",
+              "Univar Solutions, Inc."
+            ]
+          },
+          {
+            "caseName": "In Re: Shell Eggs Antitrust Litigation",
+            "court": "District Court, W.D. Wisconsin",
+            "docketNumber": "3:26-md-03175",
+            "dateFiled": "2026-02-13",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/72280418/in-re-shell-eggs-antitrust-litigation/",
+            "parties": [
+              "Does 1-20",
+              "Hillandale-Gettysburg, LLC",
+              "Hillandale Farms of Delaware, Inc.",
+              "Cal-Maine Foods, Inc.",
+              "Hillandale Farms, Inc.",
+              "Versova Holdings, LLC",
+              "Hillandale Farms Conn., LLC",
+              "Hillandale Farms Corporation",
+              "Opal Foods LLC",
+              "United Egg Producers",
+              "Shell Eggs Antitrust Litigation",
+              "Hillandale Farms East, Inc."
+            ]
+          },
+          {
+            "caseName": "IN RE TURKEY ANTITRUST LITIGATION",
+            "court": "District Court, N.D. Illinois",
+            "docketNumber": "1:19-cv-08318",
+            "dateFiled": "2019-12-19",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/16610105/in-re-turkey-antitrust-litigation/",
+            "parties": [
+              "Service List",
+              "Jetro Holdings, LLC",
+              "Sandee's Bakery",
+              "Michigan Turkey Producers, LLC",
+              "BJ's Wholesale Club Inc.",
+              "Hamilton Meat, LLC",
+              "Farbest Foods, Inc.",
+              "Sysco Corporation",
+              "Target Corporation",
+              "Winn-Dixie Stores, Inc.",
+              "The Hillshire Brands Company",
+              "Perdue Farms, Inc."
+            ]
+          },
+          {
+            "caseName": "In Re: Shale Oil Antitrust Litigation",
+            "court": "District Court, D. New Mexico",
+            "docketNumber": "1:24-md-03119",
+            "dateFiled": "2024-08-15",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Antitrust",
+            "url": "https://www.courtlistener.com/docket/69047366/in-re-shale-oil-antitrust-litigation/",
+            "parties": [
+              "Shirley Hecht-Asher",
+              "These Paws Were Made for Walkin' LLC",
+              "Laurie Olsen Santillo",
+              "David Silver",
+              "Anne Lane",
+              "Cherie Grant Johnson",
+              "Phillip MacDowell",
+              "Brian Courtmanche",
+              "Exxon Mobil Corporation",
+              "Robert Carignan",
+              "Robert Jones",
+              "City of San Jose"
+            ]
+          },
+          {
+            "caseName": "In Re: Granulated Sugar Antitrust Litigation",
+            "court": "District Court, D. Minnesota",
+            "docketNumber": "0:24-md-03110",
+            "dateFiled": "2024-06-07",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/68845552/in-re-granulated-sugar-antitrust-litigation/",
+            "parties": [
+              "Defendants' Steering Committee",
+              "Plaintiffs' Liaison Counsel",
+              "McLane/Western, Inc.",
+              "Plaintiffs' Steering Committee",
+              "Defendants' Liaison Counsel",
+              "In Re: Granulated Sugar Antitrust Litigation"
+            ]
+          },
+          {
+            "caseName": "In Re: Cattle and Beef Antitrust Litigation",
+            "court": "District Court, D. Minnesota",
+            "docketNumber": "0:22-md-03031",
+            "dateFiled": "2022-06-03",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/63363039/in-re-cattle-and-beef-antitrust-litigation/",
+            "parties": [
+              "Consumer Indirect Purchaser Plaintiffs",
+              "Tyson Foods, Inc.",
+              "Tyson Fresh Meats, Inc.",
+              "Cargill Meat Solutions Corporation",
+              "Swift Beef Company",
+              "JBS USA Food Company",
+              "Director Purchaser Plaintiffs (DPPs)",
+              "David Hyatt d/b/a Hyatt Farms",
+              "National Beef Packing Company, LLC",
+              "Terry Faul d/b/a Faul Land Improvements",
+              "Cattle Class Plaintiffs",
+              "JBS S.A."
+            ]
+          },
+          {
+            "caseName": "IN RE: Archery Products Antitrust Litigation",
+            "court": "United States Judicial Panel on Multidistrict Litigation",
+            "docketNumber": "MDL No. 3160",
+            "dateFiled": "2025-07-21",
+            "dateTerminated": null,
+            "natureOfSuit": null,
+            "url": "https://www.courtlistener.com/docket/70897936/in-re-archery-products-antitrust-litigation/",
+            "parties": []
+          },
+          {
+            "caseName": "IN RE: Fire Apparatus Antitrust Litigation",
+            "court": "District Court, E.D. Wisconsin",
+            "docketNumber": "2:26-md-03179",
+            "dateFiled": "2026-04-06",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/73150899/in-re-fire-apparatus-antitrust-litigation/",
+            "parties": [
+              "City of Green Bay",
+              "Banner Fire Equipment Inc",
+              "City of Pittsburgh",
+              "Mayor & City Council of Baltimore",
+              "Absolute Fire Protection Co Inc",
+              "AIP/CHC Holdings LLC",
+              "County of San Diego",
+              "1st Out Specialty Vehicles & Equipment LLC",
+              "Keystone Fire Apparatus Inc",
+              "Spartan Emergency Response (Spartan ER)",
+              "Conrad Fire Equipment Inc",
+              "City of Ann Arbor"
+            ]
+          },
+          {
+            "caseName": "In re Cattle and Beef Antitrust Litigation",
+            "court": "District Court, D. Minnesota",
+            "docketNumber": "0:20-cv-01319",
+            "dateFiled": "2020-06-06",
+            "dateTerminated": "2022-11-01",
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/17232739/in-re-cattle-and-beef-antitrust-litigation/",
+            "parties": [
+              "Dan Campbell",
+              "John Shup",
+              "J.B.S. S.A.",
+              "Strack and Van Til Super Market, Inc.",
+              "National Beef Packing Company",
+              "Ranchers Cattlemen Action Legal Fund United Stockgrowers of America",
+              "Harold M Nayanjom",
+              "R&D Marketing, LLC",
+              "Charles Weinreis",
+              "Plaintiff's Interim Co-Lead Counsel",
+              "Mark Sperry",
+              "Plaintiff's Interim Liaison Counsel"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "beef-price-fixing",
+      "court": {
+        "query": "In re Cattle and Beef Antitrust Litigation",
+        "totalCount": 618,
+        "results": [
+          {
+            "caseName": "IN RE: Cattle and Beef Antitrust Litigation",
+            "court": "United States Judicial Panel on Multidistrict Litigation",
+            "docketNumber": "MDL No. 3031",
+            "dateFiled": "2022-03-10",
+            "dateTerminated": null,
+            "natureOfSuit": null,
+            "url": "https://www.courtlistener.com/docket/63177012/in-re-cattle-and-beef-antitrust-litigation/",
+            "parties": [
+              "Liaison Counsel for Plaintiffs",
+              "Liaison Counsel for Defendants"
+            ]
+          },
+          {
+            "caseName": "In Re: Cattle and Beef Antitrust Litigation",
+            "court": "District Court, D. Nebraska",
+            "docketNumber": "8:23-cv-00153",
+            "dateFiled": "2023-04-18",
+            "dateTerminated": "2024-02-09",
+            "natureOfSuit": "Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/67217588/in-re-cattle-and-beef-antitrust-litigation/",
+            "parties": [
+              "Nebraska Beef, Ltd.",
+              "Swift Beef Company",
+              "JBS Packerland, Inc.",
+              "JBS USA Food Company",
+              "JBS S.A."
+            ]
+          },
+          {
+            "caseName": "In re Cattle and Beef Antitrust Litigation",
+            "court": "District Court, D. Minnesota",
+            "docketNumber": "0:20-cv-01319",
+            "dateFiled": "2020-06-06",
+            "dateTerminated": "2022-11-01",
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/17232739/in-re-cattle-and-beef-antitrust-litigation/",
+            "parties": [
+              "Dan Campbell",
+              "John Shup",
+              "J.B.S. S.A.",
+              "Strack and Van Til Super Market, Inc.",
+              "National Beef Packing Company",
+              "Ranchers Cattlemen Action Legal Fund United Stockgrowers of America",
+              "Harold M Nayanjom",
+              "R&D Marketing, LLC",
+              "Charles Weinreis",
+              "Plaintiff's Interim Co-Lead Counsel",
+              "Mark Sperry",
+              "Plaintiff's Interim Liaison Counsel"
+            ]
+          },
+          {
+            "caseName": "In Re: Cattle and Beef Antitrust Litigation",
+            "court": "District Court, D. Minnesota",
+            "docketNumber": "0:22-md-03031",
+            "dateFiled": "2022-06-03",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/63363039/in-re-cattle-and-beef-antitrust-litigation/",
+            "parties": [
+              "Consumer Indirect Purchaser Plaintiffs",
+              "Tyson Foods, Inc.",
+              "Tyson Fresh Meats, Inc.",
+              "Cargill Meat Solutions Corporation",
+              "Swift Beef Company",
+              "JBS USA Food Company",
+              "Director Purchaser Plaintiffs (DPPs)",
+              "David Hyatt d/b/a Hyatt Farms",
+              "National Beef Packing Company, LLC",
+              "Terry Faul d/b/a Faul Land Improvements",
+              "Cattle Class Plaintiffs",
+              "JBS S.A."
+            ]
+          },
+          {
+            "caseName": "In re Cattle and Beef Antitrust Litigation",
+            "court": "District Court, D. Minnesota",
+            "docketNumber": "0:19-cv-01222",
+            "dateFiled": "2020-06-06",
+            "dateTerminated": "2022-11-01",
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/15497901/in-re-cattle-and-beef-antitrust-litigation/",
+            "parties": [
+              "Plaintiff's Interim Liaison Counsel",
+              "Dan Campbell",
+              "JBS USA Food Company Holdings",
+              "Brent Rasmussen",
+              "Erbert & Gerbert's, Inc.",
+              "Farmers Educational and Cooperative Union of America",
+              "Eric Nelson",
+              "Direct Purchaser Plaintiffs Beef Steering Committee",
+              "Nicole Gutierrez",
+              "Cargill Meat Solutions Corporation",
+              "Marfrig Global Foods, S.A.",
+              "Sharon Killmon"
+            ]
+          },
+          {
+            "caseName": "In re Cattle and Beef Antitrust Litigation",
+            "court": "United States Judicial Panel on Multidistrict Litigation",
+            "docketNumber": "0:20-cv-01319",
+            "dateFiled": "2020-06-06",
+            "dateTerminated": null,
+            "natureOfSuit": null,
+            "url": "https://www.courtlistener.com/docket/63196744/in-re-cattle-and-beef-antitrust-litigation/",
+            "parties": [
+              "Michelle Oversen",
+              "Tanya Lewis",
+              "Cindy Abernathy",
+              "Farmers Educational and Cooperative Union of America",
+              "Redner's Markets, Inc.",
+              "Marcelo Lopez",
+              "R&D Marketing, LLC",
+              "Lisa Melegari",
+              "Nathan Graham",
+              "Steven Graham",
+              "Plaintiff's Interim Liaison Counsel",
+              "John Shup"
+            ]
+          },
+          {
+            "caseName": "Porter v. In re Cattle and Beef Antitrust Litigation",
+            "court": "District Court, D. Nebraska",
+            "docketNumber": "8:23-cv-00128",
+            "dateFiled": "2023-03-31",
+            "dateTerminated": "2023-04-18",
+            "natureOfSuit": "Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/67119142/porter-v-in-re-cattle-and-beef-antitrust-litigation/",
+            "parties": [
+              "Porter",
+              "In re Cattle and Beef Antitrust Litigation"
+            ]
+          },
+          {
+            "caseName": "In Re Cattle and Beef Antitrust Litigation v. JBS S.A.",
+            "court": "District Court, D. Nebraska",
+            "docketNumber": "8:22-cv-00204",
+            "dateFiled": "2022-06-07",
+            "dateTerminated": "2023-06-02",
+            "natureOfSuit": "890 Other Statutory Actions",
+            "url": "https://www.courtlistener.com/docket/63367578/in-re-cattle-and-beef-antitrust-litigation-v-jbs-sa/",
+            "parties": [
+              "Nebraska Beef, Ltd.",
+              "In Re Cattle and Beef Antitrust Litigation",
+              "JBS S.A."
+            ]
+          },
+          {
+            "caseName": "In Re Cattle and Beef Antitrust Litigation v. Central Valley Meat Co., Inc.",
+            "court": "District Court, E.D. California",
+            "docketNumber": "1:23-at-00086",
+            "dateFiled": "2023-02-01",
+            "dateTerminated": null,
+            "natureOfSuit": null,
+            "url": "https://www.courtlistener.com/docket/66780912/in-re-cattle-and-beef-antitrust-litigation-v-central-valley-meat-co-inc/",
+            "parties": [
+              "In Re Cattle and Beef Antitrust Litigation",
+              "Central Valley Meat Co., Inc."
+            ]
+          },
+          {
+            "caseName": "In Re Cattle and Beef Antitrust Litigation v. Central Valley Meat Co., Inc.",
+            "court": "District Court, E.D. California",
+            "docketNumber": "1:23-mc-00013",
+            "dateFiled": "2023-02-01",
+            "dateTerminated": "2023-09-13",
+            "natureOfSuit": "890 Other Statutory Actions",
+            "url": "https://www.courtlistener.com/docket/66782058/in-re-cattle-and-beef-antitrust-litigation-v-central-valley-meat-co-inc/",
+            "parties": [
+              "Central Valley Meat Co., Inc.",
+              "In Re Cattle and Beef Antitrust Litigation",
+              "Harris Ranch Beef Company"
+            ]
+          },
+          {
+            "caseName": "IN RE: Beef Industry Antitrust Litigation",
+            "court": "United States Judicial Panel on Multidistrict Litigation",
+            "docketNumber": "MDL No. 248",
+            "dateFiled": "1976-02-24",
+            "dateTerminated": "1989-04-19",
+            "natureOfSuit": null,
+            "url": "https://www.courtlistener.com/docket/17268624/in-re-beef-industry-antitrust-litigation/",
+            "parties": []
+          },
+          {
+            "caseName": "In re Valve Antitrust Litigation",
+            "court": "District Court, W.D. Washington",
+            "docketNumber": "2:21-cv-00563",
+            "dateFiled": "2021-04-27",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/59859024/in-re-valve-antitrust-litigation/",
+            "parties": [
+              "Microsoft Corporation",
+              "Daniel Escobar",
+              "William Herbert",
+              "Epic Games Inc",
+              "Dark Catt Studios Holdings Inc",
+              "Sean Colvin",
+              "Connor Hepler",
+              "Susann Davis",
+              "Brandon Drake",
+              "Best Buy Co., Inc.",
+              "Eric Saavedra",
+              "Wolfire Games LLC"
+            ]
+          },
+          {
+            "caseName": "In re: PVC Pipe Antitrust Litigation",
+            "court": "District Court, N.D. Illinois",
+            "docketNumber": "1:24-cv-07639",
+            "dateFiled": "2024-08-23",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/69077911/in-re-pvc-pipe-antitrust-litigation/",
+            "parties": [
+              "Non-Converter Seller Purchaser Class Plaintiffs",
+              "George Bavolak",
+              "Scott Fluegge",
+              "United States of America",
+              "RJI, Inc.",
+              "My Flooring, Inc.",
+              "Cantex Inc.",
+              "Prime Conduit, Inc.",
+              "Nelson Aviles",
+              "Vinyltech Corporation",
+              "Direct Purchaser Plaintiff Class",
+              "Joshua Barnett"
+            ]
+          },
+          {
+            "caseName": "IN RE PORK ANTITRUST LITIGATION",
+            "court": "District Court, D. Minnesota",
+            "docketNumber": "0:18-cv-01776",
+            "dateFiled": "2018-06-28",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/7338509/in-re-pork-antitrust-litigation/",
+            "parties": [
+              "In Re Pork Antitrust Litigation",
+              "Interim Co-Lead Class Counsel for Direct Purchaser Plaintiffs",
+              "Commercial and Institutional Indirect Purchaser Plaintiffs",
+              "Plaintiffs' Co-Lead Counsel",
+              "Seaboard Corporation",
+              "Direct Purchaser Plaintiffs",
+              "United Food Service, Inc.",
+              "Direct Action Plaintiffs",
+              "Hormel Foods, LLC",
+              "Agri Stats, Inc.",
+              "Seaboard Foods, LLC",
+              "Smithfield Foods, Inc."
+            ]
+          },
+          {
+            "caseName": "In Re: Granulated Sugar Antitrust Litigation",
+            "court": "District Court, D. Minnesota",
+            "docketNumber": "0:24-md-03110",
+            "dateFiled": "2024-06-07",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/68845552/in-re-granulated-sugar-antitrust-litigation/",
+            "parties": [
+              "Defendants' Steering Committee",
+              "Plaintiffs' Liaison Counsel",
+              "McLane/Western, Inc.",
+              "Plaintiffs' Steering Committee",
+              "Defendants' Liaison Counsel",
+              "In Re: Granulated Sugar Antitrust Litigation"
+            ]
+          },
+          {
+            "caseName": "In Re: Shale Oil Antitrust Litigation",
+            "court": "District Court, D. New Mexico",
+            "docketNumber": "1:24-md-03119",
+            "dateFiled": "2024-08-15",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Antitrust",
+            "url": "https://www.courtlistener.com/docket/69047366/in-re-shale-oil-antitrust-litigation/",
+            "parties": [
+              "Shirley Hecht-Asher",
+              "These Paws Were Made for Walkin' LLC",
+              "Laurie Olsen Santillo",
+              "David Silver",
+              "Anne Lane",
+              "Cherie Grant Johnson",
+              "Phillip MacDowell",
+              "Brian Courtmanche",
+              "Exxon Mobil Corporation",
+              "Robert Carignan",
+              "Robert Jones",
+              "City of San Jose"
+            ]
+          },
+          {
+            "caseName": "IN RE TURKEY ANTITRUST LITIGATION",
+            "court": "District Court, N.D. Illinois",
+            "docketNumber": "1:19-cv-08318",
+            "dateFiled": "2019-12-19",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/16610105/in-re-turkey-antitrust-litigation/",
+            "parties": [
+              "Service List",
+              "Jetro Holdings, LLC",
+              "Sandee's Bakery",
+              "Michigan Turkey Producers, LLC",
+              "BJ's Wholesale Club Inc.",
+              "Hamilton Meat, LLC",
+              "Farbest Foods, Inc.",
+              "Sysco Corporation",
+              "Target Corporation",
+              "Winn-Dixie Stores, Inc.",
+              "The Hillshire Brands Company",
+              "Perdue Farms, Inc."
+            ]
+          },
+          {
+            "caseName": "IN RE: Archery Products Antitrust Litigation",
+            "court": "United States Judicial Panel on Multidistrict Litigation",
+            "docketNumber": "MDL No. 3160",
+            "dateFiled": "2025-07-21",
+            "dateTerminated": null,
+            "natureOfSuit": null,
+            "url": "https://www.courtlistener.com/docket/70897936/in-re-archery-products-antitrust-litigation/",
+            "parties": []
+          },
+          {
+            "caseName": "IN RE: Fire Apparatus Antitrust Litigation",
+            "court": "District Court, E.D. Wisconsin",
+            "docketNumber": "2:26-md-03179",
+            "dateFiled": "2026-04-06",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/73150899/in-re-fire-apparatus-antitrust-litigation/",
+            "parties": [
+              "City of Green Bay",
+              "Banner Fire Equipment Inc",
+              "City of Pittsburgh",
+              "Mayor & City Council of Baltimore",
+              "Absolute Fire Protection Co Inc",
+              "AIP/CHC Holdings LLC",
+              "County of San Diego",
+              "1st Out Specialty Vehicles & Equipment LLC",
+              "Keystone Fire Apparatus Inc",
+              "Spartan Emergency Response (Spartan ER)",
+              "Conrad Fire Equipment Inc",
+              "City of Ann Arbor"
+            ]
+          },
+          {
+            "caseName": "In re: Archery Products Antitrust Litigation",
+            "court": "District Court, D. Colorado",
+            "docketNumber": "1:25-md-03160",
+            "dateFiled": "2025-10-16",
+            "dateTerminated": null,
+            "natureOfSuit": "410 Anti-Trust",
+            "url": "https://www.courtlistener.com/docket/71775266/in-re-archery-products-antitrust-litigation/",
+            "parties": [
+              "Cabelas LLC",
+              "Justen Goodall",
+              "Jays Sporting Goods, Inc.",
+              "Co-Lead Counsel",
+              "Jays Sports, Inc.",
+              "Timothy Reznich",
+              "Jonathan Langley",
+              "Peter A. Sabatini",
+              "Bear Archery, Inc.",
+              "Shawn Butter",
+              "Rogers Sporting Goods Holdings, Inc.",
+              "Co-Lead Interim Class Counsel"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
