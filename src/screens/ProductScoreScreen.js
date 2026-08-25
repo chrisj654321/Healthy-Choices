@@ -770,6 +770,18 @@ export default function ProductScoreScreen({ route, navigation }) {
               {product.isGlutenFree && <Tag icon="checkmark-circle" label="Gluten-Free" color={Colors.primary} />}
             </View>
           )}
+
+          {/* Bioengineered (GMO) disclosure — neutral, informational only.
+              NOT a red warning: this is a USDA label statement, not a health
+              risk, and per the Phase 3 founder decision it never changes the
+              score. isBioengineered = curated catalog field; containsBioengineered
+              = live-scan runtime field (productParser.js). */}
+          {(product.isBioengineered || product.containsBioengineered) && (
+            <View style={s.bioengineeredNote}>
+              <Ionicons name="information-circle-outline" size={14} color={ALLERGEN_NEUTRAL_INFO.color} />
+              <Text style={s.bioengineeredNoteText}>Contains a bioengineered (GMO) ingredient</Text>
+            </View>
+          )}
         </View>
 
         {/* ── 1b: Unverified community-data notice ── */}
@@ -922,6 +934,21 @@ export default function ProductScoreScreen({ route, navigation }) {
                   </Text>
                 </View>
               ))}
+              {/* Bioengineered (GMO) avoidance alert — same personalised-
+                  warnings machinery as the allergen/dietary banners above,
+                  only shown when the user opted in via the "Avoid
+                  Bioengineered (GMO)" dietary preference. This is a heads-up
+                  about a USDA disclosure, not a safety warning, and it never
+                  changes the score. */}
+              {warnings?.bioengineeredAlert ? (
+                <View style={s.warnBannerYellow}>
+                  <Ionicons name="flask-outline" size={18} color="#F5A623" />
+                  <Text style={s.warnBannerYellowText}>
+                    <Text style={{ fontWeight: '800' }}>Bioengineered (GMO): </Text>
+                    This product carries a USDA bioengineered-food disclosure — you asked to be alerted on these.
+                  </Text>
+                </View>
+              ) : null}
               {warnings?.goalNote ? (
                 <View style={s.warnBannerBlue}>
                   <Ionicons name="flag-outline" size={18} color="#3B82F6" />
@@ -1319,6 +1346,8 @@ const s = StyleSheet.create({
   verdictText: { fontSize: 13, fontWeight: '700' },
   scoreSubLabel: { fontSize: 12, color: '#B0C4BE', fontWeight: '500' },
   tagRow: { flexDirection: 'row', flexWrap: 'wrap', marginTop: 6 },
+  bioengineeredNote: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 8 },
+  bioengineeredNoteText: { flex: 1, fontSize: 12, fontWeight: '600', color: ALLERGEN_NEUTRAL_INFO.color },
 
   // Unverified community-data notice
   unverifiedBanner: {

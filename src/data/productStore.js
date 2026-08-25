@@ -165,6 +165,7 @@ function rowToProduct(row) {
     isOrganic: !!row.isOrganic,
     isVegan: !!row.isVegan,
     isGlutenFree: !!row.isGlutenFree,
+    isBioengineered: !!row.isBioengineered,
   };
 }
 

@@ -11978,6 +11978,14 @@ const MANUAL_PRODUCTS = {
     isOrganic: false,
     isVegan: true,
     isGlutenFree: true,
+    // Set explicitly (Phase 3, 2026-08-25): the raw OFF ingredients text for
+    // this product carries a USDA "Bioengineered Food Ingredient" disclosure
+    // (parboiled brown rice), but the Phase 2 ingredient-normalization clean
+    // (see phase2-ingredient-drift-2026-08-23.md) strips that sentence out of
+    // the stored `ingredients` array as label text, not an ingredient — so
+    // runtime detectBioengineered() re-detection no longer sees it here. This
+    // is a neutral disclosure flag only; it does not affect the score.
+    isBioengineered: true,
   },
 
   '017400118457': {

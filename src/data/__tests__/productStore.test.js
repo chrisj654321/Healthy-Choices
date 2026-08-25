@@ -315,6 +315,7 @@ describe('getProductByBarcode', () => {
       isOrganic: false,
       isVegan: false,
       isGlutenFree: false,
+      isBioengineered: false,
     });
 
     expect(mockDb.getFirstAsync).toHaveBeenCalledWith(

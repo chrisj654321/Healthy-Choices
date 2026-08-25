@@ -503,6 +503,51 @@ describe('scoreProduct: insufficient data', () => {
   });
 });
 
+// ─── scoreProduct: bioengineered (GMO) flag never affects the score ────────
+//
+// Phase 3 founder-locked decision (2026-08-25): a bioengineered disclosure is
+// a neutral, factual label statement, not a health harm — scoreProduct()
+// must produce IDENTICAL output whether or not isBioengineered /
+// containsBioengineered is set on the product. This pins that down directly
+// against the real Ben's Original Ready Rice fixture (barcode 054800423347),
+// plus a synthetic pair to rule out any interaction with a non-trivial
+// ingredient list.
+describe('scoreProduct: bioengineered (GMO) flag is score-neutral', () => {
+  const bensOriginalReadyRice = {
+    ingredients: ['water', 'parboiled long grain brown rice', 'canola oil'],
+    nutrition: { fat: 2, saturatedFat: 0, sodium: 10, carbs: 35, sugars: 0, protein: 4 },
+    certifications: [],
+    isOrganic: false,
+    isVegan: true,
+    isGlutenFree: true,
+  };
+
+  test('the real catalog product scores identically with isBioengineered true vs. unset', () => {
+    const withoutFlag = scoreProduct(bensOriginalReadyRice);
+    const withFlag = scoreProduct({ ...bensOriginalReadyRice, isBioengineered: true });
+    expect(withFlag.score).toBe(withoutFlag.score);
+    expect(withFlag.grade).toBe(withoutFlag.grade);
+    expect(withFlag.displayGrade).toBe(withoutFlag.displayGrade);
+  });
+
+  test('a synthetic product scores identically regardless of isBioengineered/containsBioengineered', () => {
+    const base = {
+      ingredients: ['sugar beets', 'high fructose corn syrup', 'sodium nitrite'],
+      nutrition: { fat: 5, saturatedFat: 2, sodium: 400, carbs: 30, sugars: 15, protein: 2 },
+    };
+    const baseline = scoreProduct(base);
+    const withIsBioengineered = scoreProduct({ ...base, isBioengineered: true });
+    const withContainsBioengineered = scoreProduct({ ...base, containsBioengineered: true });
+    const withBoth = scoreProduct({ ...base, isBioengineered: true, containsBioengineered: true });
+
+    expect(withIsBioengineered.score).toBe(baseline.score);
+    expect(withContainsBioengineered.score).toBe(baseline.score);
+    expect(withBoth.score).toBe(baseline.score);
+    expect(withIsBioengineered.grade).toBe(baseline.grade);
+    expect(withContainsBioengineered.grade).toBe(baseline.grade);
+  });
+});
+
 describe('scoreProduct: processing-ceiling clamp', () => {
   test('two severe markers (partially hydrogenated oil + sodium nitrite) clamp the score at/under the computed upfCeiling', () => {
     const product = {
@@ -869,7 +914,40 @@ describe('getPersonalisedWarnings', () => {
 
   test('null prefs returns the empty shape', () => {
     const warnings = getPersonalisedWarnings([], {}, null);
-    expect(warnings).toEqual({ allergenHits: [], dietaryConflicts: [], goalNote: null });
+    expect(warnings).toEqual({ allergenHits: [], dietaryConflicts: [], goalNote: null, bioengineeredAlert: false });
+  });
+});
+
+// ─── getPersonalisedWarnings: bioengineered (GMO) avoidance (Phase 3) ───────
+//
+// A neutral disclosure preference, not an ingredient-keyword scan — the USDA
+// disclosure sentence is stripped OUT of the ingredient tokens by
+// ingredientNormalizer.js, so this checks the product-level flag directly
+// (isBioengineered = curated catalog field, containsBioengineered = runtime
+// live-scan field). Crucially, none of this touches scoreProduct() — see the
+// "score is unchanged" describe block below.
+describe('getPersonalisedWarnings: bioengineeredAlert', () => {
+  const prefsOn  = { allergens: [], dietaryFlags: ['avoid-bioengineered'], primaryGoal: null };
+  const prefsOff = { allergens: [], dietaryFlags: [], primaryGoal: null };
+
+  test('fires when the preference is on and the catalog isBioengineered flag is true', () => {
+    const warnings = getPersonalisedWarnings([], { nutrition: {}, isBioengineered: true }, prefsOn);
+    expect(warnings.bioengineeredAlert).toBe(true);
+  });
+
+  test('fires when the preference is on and the runtime containsBioengineered flag is true', () => {
+    const warnings = getPersonalisedWarnings([], { nutrition: {}, containsBioengineered: true }, prefsOn);
+    expect(warnings.bioengineeredAlert).toBe(true);
+  });
+
+  test('does NOT fire when the preference is off, even if the product is flagged', () => {
+    const warnings = getPersonalisedWarnings([], { nutrition: {}, isBioengineered: true }, prefsOff);
+    expect(warnings.bioengineeredAlert).toBe(false);
+  });
+
+  test('does NOT fire when the preference is on but the product carries no flag', () => {
+    const warnings = getPersonalisedWarnings([], { nutrition: {} }, prefsOn);
+    expect(warnings.bioengineeredAlert).toBe(false);
   });
 });
 

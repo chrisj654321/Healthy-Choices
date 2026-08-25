@@ -4,7 +4,7 @@
  * src/utils/__tests__/ingredientNormalizer.test.js for the normalizer's own
  * unit tests). These tests pin down the OpenFoodFacts-shaped call contract.
  */
-import { parseIngredients, findCompanyId, buildProductFromRaw } from '../productParser';
+import { parseIngredients, findCompanyId, buildProductFromRaw, detectContainsBioengineered } from '../productParser';
 import { BRAND_TO_COMPANY, COMPANY_DB } from '../../data/companies';
 
 describe('parseIngredients', () => {
@@ -153,6 +153,73 @@ describe('findCompanyId — COMPANY_DB name matching (stage 3)', () => {
     expect(findCompanyId("m&m's")).toBe('mars');
     expect(findCompanyId('aveeno')).toBe('kenvue');
     expect(findCompanyId('nescafe')).toBe('nestle');
+  });
+});
+
+/**
+ * Phase 3 (2026-08-25, founder-locked): bioengineered (GMO) disclosure is a
+ * neutral flag, detected against the RAW ingredients text BEFORE
+ * normalizeIngredientTokens strips the USDA disclosure sentence out as label
+ * text. detectContainsBioengineered/detectBioengineered themselves are unit
+ * tested in ingredientNormalizer.test.js — these tests pin down the runtime
+ * wiring: that buildProductFromRaw attaches the flag to the product object,
+ * and that the disclosure text never leaks into the parsed ingredients list
+ * (which is what makes it a real flag, not a fake ingredient row).
+ */
+describe('detectContainsBioengineered / buildProductFromRaw — bioengineered flag wiring', () => {
+  test('detects a USDA bioengineered disclosure in the raw text', () => {
+    expect(detectContainsBioengineered({ ingredients_text_en: 'Sugar Beets (Produced With Genetic Engineering), Water' })).toBe(true);
+  });
+
+  test('returns false for ordinary ingredients text', () => {
+    expect(detectContainsBioengineered({ ingredients_text_en: 'Water, Sugar, Salt' })).toBe(false);
+  });
+
+  test('returns false when there is no ingredients text on any known field', () => {
+    expect(detectContainsBioengineered({})).toBe(false);
+  });
+
+  test('buildProductFromRaw attaches containsBioengineered: true, and the disclosure never leaks into the ingredients array', () => {
+    const p = buildProductFromRaw('000', {
+      product_name: 'Some Rice',
+      ingredients_text_en: 'Water, Parboiled Rice, Bioengineered Food Ingredient',
+    });
+    expect(p.containsBioengineered).toBe(true);
+    expect(p.ingredients).toEqual(['water', 'parboiled rice']);
+  });
+
+  test('buildProductFromRaw attaches containsBioengineered: false for a clean product', () => {
+    const p = buildProductFromRaw('001', {
+      product_name: 'Plain Water',
+      ingredients_text_en: 'Water',
+    });
+    expect(p.containsBioengineered).toBe(false);
+  });
+
+  // Mirrors the exact boolean condition ProductScoreScreen.js uses to decide
+  // whether to render the neutral "Contains a bioengineered (GMO)
+  // ingredient" badge — (product.isBioengineered || product.containsBioengineered).
+  // There's no component-render test harness in this codebase (no
+  // @testing-library/react-native dependency — see package.json), so this is
+  // the logic-level proxy for "the flag renders the badge": it proves the
+  // exact predicate the screen gates on evaluates true for both a runtime
+  // (containsBioengineered) and a curated-catalog (isBioengineered) product,
+  // and false for neither.
+  describe('badge-visibility predicate (product.isBioengineered || product.containsBioengineered)', () => {
+    const showsBadge = (product) => !!(product.isBioengineered || product.containsBioengineered);
+
+    test('shows for a runtime-flagged (live scan) product', () => {
+      expect(showsBadge({ containsBioengineered: true })).toBe(true);
+    });
+
+    test('shows for a catalog-flagged product (e.g. Ben\'s Original Ready Rice)', () => {
+      expect(showsBadge({ isBioengineered: true })).toBe(true);
+    });
+
+    test('does not show when neither flag is set', () => {
+      expect(showsBadge({ isVegan: true })).toBe(false);
+      expect(showsBadge({})).toBe(false);
+    });
   });
 });
 

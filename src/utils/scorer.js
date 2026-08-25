@@ -410,10 +410,25 @@ function classifyUnknown(name) {
  * Returns { allergenHits, dietaryConflicts, goalNote }
  */
 export function getPersonalisedWarnings(analyzedIngredients, product, prefs) {
-  if (!prefs) return { allergenHits: [], dietaryConflicts: [], goalNote: null };
+  if (!prefs) return { allergenHits: [], dietaryConflicts: [], goalNote: null, bioengineeredAlert: false };
 
   const { allergens = [], dietaryFlags = [], primaryGoal } = prefs;
   const { nutrition = {} } = product;
+
+  // Bioengineered (GMO) avoidance alert — Phase 3 (2026-08-25, founder-locked
+  // decision): a NEUTRAL disclosure, never a score change (scoreProduct never
+  // reads isBioengineered/containsBioengineered). This can't be detected by
+  // the usual ingredient-keyword scan above/below — the USDA disclosure
+  // sentence itself is stripped OUT of the ingredient tokens as label text
+  // (see ingredientNormalizer.js's detectBioengineered/BIOENGINEERED_PATTERNS)
+  // — so it's a direct product-level flag check instead. `isBioengineered` is
+  // the curated-catalog field (products.js / productStore.js);
+  // `containsBioengineered` is the runtime live-scan field (productParser.js,
+  // computed from the raw pre-normalized ingredients text). Only surfaces
+  // when the user opted in via the 'avoid-bioengineered' dietary preference.
+  const bioengineeredAlert =
+    dietaryFlags.includes('avoid-bioengineered') &&
+    !!(product.isBioengineered || product.containsBioengineered);
 
   // Allergen hits — ingredient category matches an allergen the user flagged
   const ALLERGEN_CATEGORY_MAP = {
@@ -500,7 +515,7 @@ export function getPersonalisedWarnings(analyzedIngredients, product, prefs) {
   };
   const goalNote = primaryGoal ? GOAL_NOTE_MAP[primaryGoal] ?? null : null;
 
-  return { allergenHits, dietaryConflicts, goalNote };
+  return { allergenHits, dietaryConflicts, goalNote, bioengineeredAlert };
 }
 
 /**

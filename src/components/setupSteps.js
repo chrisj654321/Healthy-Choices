@@ -32,6 +32,11 @@ export const DIETARY_OPTIONS = [
   { id: 'paleo',        label: 'Paleo',          icon: 'nutrition-outline' },
   { id: 'low-sugar',    label: 'Low Sugar',      icon: 'trending-down-outline' },
   { id: 'organic-only', label: 'Organic Only',   icon: 'earth-outline' },
+  // Phase 3 (2026-08-25, founder-locked): a neutral disclosure preference,
+  // NOT a health-danger flag — turning this on only surfaces a heads-up card
+  // (ProductScoreScreen's personalised warnings) when a scanned product
+  // carries a USDA bioengineered-food disclosure. It never changes the score.
+  { id: 'avoid-bioengineered', label: 'Avoid Bioengineered (GMO)', icon: 'flask-outline' },
 ];
 
 // ─── SelectStep (allergens / dietary / goal / challenge) ───────────────────────

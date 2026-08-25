@@ -329,6 +329,16 @@ describe('getUserPrefs / saveUserPrefs', () => {
     await expect(getUserPrefs()).resolves.toEqual(DEFAULT_PREFS);
   });
 
+  // Phase 3 (2026-08-25): the "Avoid Bioengineered (GMO)" preference is just
+  // another id inside dietaryFlags (see src/components/setupSteps.js's
+  // DIETARY_OPTIONS) — no new storage key or allowlist, so it round-trips
+  // through the same generic path as every other dietary flag.
+  test('round-trip preserves the avoid-bioengineered dietary preference', async () => {
+    const prefs = { ...DEFAULT_PREFS, dietaryFlags: ['avoid-bioengineered'], dietaryReviewed: true };
+    await saveUserPrefs(prefs);
+    await expect(getUserPrefs()).resolves.toEqual(prefs);
+  });
+
   test('partially-saved prefs merge with DEFAULT_PREFS: saved values win, defaults fill in the rest', async () => {
     await AsyncStorage.setItem(PREFS_KEY, JSON.stringify({ allergens: ['peanuts'] }));
     const result = await getUserPrefs();

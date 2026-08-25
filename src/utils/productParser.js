@@ -4,24 +4,42 @@
  */
 
 import { BRAND_TO_COMPANY, BRAND_PARENT_MAP, COMPANY_DB } from '../data/companies';
-import { normalizeIngredientTokens } from './ingredientNormalizer';
+import { normalizeIngredientTokens, detectBioengineered } from './ingredientNormalizer';
 
 // ─── Parse ingredient string → array ─────────────────────────────────────────
 // Normalization (paren-flattening, oil-disclosure resolution, advisory-phrase
 // filtering, dedup) lives in ingredientNormalizer.js — shared with the
 // build-time ingest script (scripts/catalog-database/ingest-products.js).
 
-export function parseIngredients(p) {
-  const text =
+function rawIngredientsText(p) {
+  return (
     p.ingredients_text_en ||
     p.ingredients_text ||
     (Array.isArray(p.ingredients)
       ? p.ingredients.map((i) => i.text || '').join(', ')
-      : '');
+      : '')
+  );
+}
 
+export function parseIngredients(p) {
+  const text = rawIngredientsText(p);
   if (!text) return [];
 
   return normalizeIngredientTokens(text);
+}
+
+// ─── Bioengineered (GMO) disclosure detection ────────────────────────────────
+//
+// Runs detectBioengineered() against the RAW ingredients text — i.e. BEFORE
+// normalizeIngredientTokens strips a USDA "Bioengineered Food Ingredient" /
+// "produced with genetic engineering" disclosure sentence as label text (see
+// ingredientNormalizer.js's BIOENGINEERED_PATTERNS). This is a neutral
+// disclosure flag only — Phase 3 (2026-08-25, founder-locked): bioengineered
+// status must NEVER change the 0-100 score (src/utils/scorer.js does not
+// read this field), it only drives a UI badge + an opt-in avoidance
+// preference alert.
+export function detectContainsBioengineered(p) {
+  return detectBioengineered(rawIngredientsText(p));
 }
 
 // ─── Parse nutriments object → normalized nutrition ───────────────────────────
@@ -290,6 +308,7 @@ export function buildProductFromRaw(barcode, p) {
     isOrganic:      labels.includes('en:organic'),
     isVegan:        labels.includes('en:vegan'),
     isGlutenFree:   labels.includes('en:gluten-free'),
+    containsBioengineered: detectContainsBioengineered(p),
     servingSize:    p.serving_size || null,
     calories:       Math.round(
       p.nutriments?.['energy-kcal_serving'] ||

@@ -156,6 +156,7 @@ function comparableDbRow(row) {
     isOrganic: !!row.isOrganic,
     isVegan: !!row.isVegan,
     isGlutenFree: !!row.isGlutenFree,
+    isBioengineered: !!row.isBioengineered,
   };
 }
 
@@ -178,6 +179,7 @@ function comparableProduct(product, productImages) {
     isOrganic: !!product.isOrganic,
     isVegan: !!product.isVegan,
     isGlutenFree: !!product.isGlutenFree,
+    isBioengineered: !!product.isBioengineered,
   };
 }
 
@@ -264,6 +266,21 @@ function main() {
     packagingRow
       ? `isOrganic=${packagingRow.isOrganic}, isVegan=${packagingRow.isVegan}, isGlutenFree=${packagingRow.isGlutenFree}`
       : 'missing'
+  ) && allOk;
+
+  // Dedicated spot check for the Phase 3 GMO-disclosure flag: the one
+  // catalog product with isBioengineered explicitly set (see products.js —
+  // the raw disclosure text was stripped from `ingredients` by the Phase 2
+  // clean, so this MUST be set explicitly, not re-detected at build time).
+  const bioengineeredBarcode = '054800423347'; // Ben's Original Ready Rice Whole Grain Brown
+  const bioengineeredRow = productQuery.get(bioengineeredBarcode);
+  const bioengineeredSource = manualProducts[bioengineeredBarcode];
+  allOk = check(
+    `manual isBioengineered flag populated ${bioengineeredBarcode}`,
+    !!bioengineeredRow
+      && !!bioengineeredRow.isBioengineered === true
+      && !!bioengineeredRow.isBioengineered === !!bioengineeredSource?.isBioengineered,
+    bioengineeredRow ? `isBioengineered=${bioengineeredRow.isBioengineered}` : 'missing'
   ) && allOk;
 
   const expectedIndexes = new Set([
